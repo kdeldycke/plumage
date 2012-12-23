@@ -1,43 +1,52 @@
 <!DOCTYPE html>
 <html lang="{{ DEFAULT_LANG }}">
-<head>
-        {% block head %}
-        <title>{% block title %}{{ SITENAME }}{% endblock title %}</title>
-        <meta charset="utf-8" />
-        {% if FEED_ALL_ATOM %}
-        <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Full Atom Feed" />
-        {% endif %}
-        {% if FEED_ALL_RSS %}
-        <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Full RSS Feed" />
-        {% endif %}
-        {% if FEED_ATOM %}
-        <link href="{{ FEED_DOMAIN }}/{{ FEED_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Atom Feed" />
-        {% endif %}
-        {% if FEED_RSS %}
-        <link href="{{ FEED_DOMAIN }}/{{ FEED_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} RSS Feed" />
-        {% endif %}
-        {% if CATEGORY_FEED_ATOM %}
-        <link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_ATOM|format(category) }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Categories Atom Feed" />
-        {% endif %}
-        {% if CATEGORY_FEED_RSS %}
-        <link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_RSS|format(category) }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Categories RSS Feed" />
-        {% endif %}
-        {% if TAG_FEED_ATOM %}
-        <link href="{{ FEED_DOMAIN }}/{{ TAG_FEED_ATOM|format(tag) }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Tags Atom Feed" />
-        {% endif %}
-        {% if TAG_FEED_RSS %}
-        <link href="{{ FEED_DOMAIN }}/{{ TAG_FEED_RSS|format(tag) }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Tags RSS Feed" />
-        {% endif %}
-        {% endblock head %}
-</head>
+  <head>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="{{ SITEURL }}">{{ SITENAME }} <strong>{{ SITESUBTITLE }}</strong></a></h1>
-        </header><!-- /#banner -->
-        <nav id="menu"><ul>
+    {% block head %}
+
+    <title>{% block title %}{{ SITENAME }}{% endblock title %}</title>
+
+    <!-- Bootstrap -->
+    <link href="{{ SITEURL }}/theme/css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+    <!-- Feeds -->
+    {% if FEED_ALL_ATOM %}
+      <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Full Atom Feed" />
+    {% endif %}
+    {% if FEED_ALL_RSS %}
+      <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Full RSS Feed" />
+    {% endif %}
+    {% if FEED_ATOM %}
+      <link href="{{ FEED_DOMAIN }}/{{ FEED_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Atom Feed" />
+    {% endif %}
+    {% if FEED_RSS %}
+      <link href="{{ FEED_DOMAIN }}/{{ FEED_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} RSS Feed" />
+    {% endif %}
+    {% if CATEGORY_FEED_ATOM %}
+      <link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_ATOM|format(category) }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Categories Atom Feed" />
+    {% endif %}
+    {% if CATEGORY_FEED_RSS %}
+      <link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_RSS|format(category) }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Categories RSS Feed" />
+    {% endif %}
+    {% if TAG_FEED_ATOM %}
+      <link href="{{ FEED_DOMAIN }}/{{ TAG_FEED_ATOM|format(tag) }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Tags Atom Feed" />
+    {% endif %}
+    {% if TAG_FEED_RSS %}
+      <link href="{{ FEED_DOMAIN }}/{{ TAG_FEED_RSS|format(tag) }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Tags RSS Feed" />
+    {% endif %}
+
+    {% endblock head %}
+
+  </head>
+
+  <body>
+
+    <h1><a href="{{ SITEURL }}">{{ SITENAME }} <strong>{{ SITESUBTITLE }}</strong></a></h1>
+
+    <nav>
+      <ul>
         {% for title, link in MENUITEMS %}
-            <li><a href="{{ link }}">{{ title }}</a></li>
+          <li><a href="{{ link }}">{{ title }}</a></li>
         {% endfor %}
         {% if DISPLAY_PAGES_ON_MENU %}
           {% for p in PAGES %}
@@ -48,15 +57,15 @@
             <li{% if cat == category %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
           {% endfor %}
         {% endif %}
-        </ul></nav><!-- /#menu -->
-        {% block content %}
-        {% endblock %}
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
-                which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
-        </footer><!-- /#contentinfo -->
-        {% include 'analytics.html' %}
-</body>
+      </ul>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+
+    {% include 'analytics.html' %}
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="{{ SITEURL }}/theme/js/bootstrap.min.js"></script>
+
+  </body>
 </html>
