@@ -3,8 +3,6 @@
   <head>
     <meta charset="utf-8"/>
 
-    {% block head %}
-
     <title>{% block title %}{{ SITENAME }}{% endblock title %}</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -46,7 +44,8 @@
       <link href="{{ FEED_DOMAIN }}/{{ TAG_FEED_RSS|format(tag) }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Tags RSS Feed"/>
     {% endif %}
 
-    {% endblock head %}
+    {% block head %}
+    {% endblock %}
 
   </head>
 
@@ -54,7 +53,7 @@
 
     <div class="container">
 
-      <header class="jumbotron subhead" id="overview">
+      <header>
         <div class="row">
           <div class="span6">
             <h1>
@@ -62,7 +61,7 @@
               {{ SITENAME }}
               <!-- </a> -->
             </h1>
-            <p class="lead">{{ SITESUBTITLE }}</p>
+            <p>{{ SITESUBTITLE }}</p>
           </div>
         </div>
         <div class="subnav">
@@ -81,10 +80,30 @@
 
       <section>
 
-        <!-- Headings & Paragraph Copy -->
         <div class="row">
 
           <div class="span2">
+            {% block top_left %}
+            {% endblock %}
+          </div>
+
+          <div class="span8">
+            {% block top_center %}
+            {% endblock %}
+          </div>
+
+          <div class="span2">
+            {% block top_right %}
+            {% endblock %}
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="span2">
+            {% block left_sidebar %}
+            {% endblock %}
           </div>
 
           <div class="span8">
@@ -94,7 +113,7 @@
 
           <div class="span2">
             <div data-spy="affix" data-offset-top="0">
-              <h3>Sponsors</h3>
+              <h4>Sponsors</h4>
               <script type="text/javascript"><!--
                 google_ad_client = "pub-0142056597033291";
                 google_ad_slot = "9501596707";
@@ -104,6 +123,8 @@
               </script>
               <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
             </div>
+            {% block right_sidebar %}
+            {% endblock %}
           </div>
 
         </div>
@@ -116,7 +137,7 @@
         <div class="span2">
           <h5>Professional profiles</h5>
           <ul class="xoxo blogroll">
-            <li><a href="http://careers.stackoverflow.com/kdeldycke" rel="me">Careers 2.0</a></li>
+            <li><a href="http://careers.stackoverflow.com/kdeldycke" rel="me"><img src="http://kevin.deldycke.com/wp-content/uploads/2006/04/careers-stack-overflow-icon.png" alt="Careers 2.0"/> Careers 2.0</a></li>
             <li><a href="http://linkedin.com/in/kevindeldycke/en" rel="me"><img src="http://kevin.deldycke.com/wp-content/uploads/2006/05/linkedin-icon.png" alt="LinkedIn"> LinkedIn</a></li>
             <li><a href="http://docs.google.com/document/export?format=pdf&amp;id=1XaJgwRAhxHDuBSD-JqE--8WKGx0uTasa6IOU4IFBeKg" rel="me"><img src="http://kevin.deldycke.com/wp-content/uploads/2006/05/pdf-icon.gif" alt="PDF resume"> PDF resume</a></li>
             <li><a href="http://viadeo.com/fr/profile/kevin.deldycke" rel="me"><img src="http://kevin.deldycke.com/wp-content/uploads/2006/05/viadeo-icon.png" alt="Viadeo"> Viadeo</a></li>
@@ -127,7 +148,7 @@
           <h5>Software communities</h5>
           <ul class="xoxo blogroll">
             <li><a href="http://bitbucket.org/kdeldycke" rel="me"><img src="http://kevin.deldycke.com/wp-content/uploads/2006/04/bitbucket-icon.png" alt="BitBucket"> BitBucket</a></li>
-            <li><a href="http://coderwall.com/kdeldycke" rel="me">CoderWall</a></li>
+            <li><a href="http://coderwall.com/kdeldycke" rel="me"><img src="http://kevin.deldycke.com/wp-content/uploads/2006/04/coderwall-icon.png" alt="CoderWall"/> CoderWall</a></li>
             <li><a href="http://github.com/kdeldycke" rel="me"><img src="http://kevin.deldycke.com/wp-content/uploads/2006/04/github_icon.png" alt="GitHub"> GitHub</a></li>
             <li><a href="http://code.google.com/u/kevin@deldycke.com/" rel="me"><img src="http://kevin.deldycke.com/wp-content/uploads/2006/04/google-code-icon.png" alt="Google code"> Google code</a></li>
             <li><a href="http://news.ycombinator.com/user?id=kdeldycke" rel="me"><img src="http://kevin.deldycke.com/wp-content/uploads/2006/04/hackernews-icon.png" alt="Hacker News"> Hacker News</a></li>
