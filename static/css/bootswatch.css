@@ -201,7 +201,7 @@ section {
 
 .links > a {
 	margin-right: 10px;
-} 
+}
 
 div.one .bsa_it_ad {
 	padding: 25px 25px 15px 25px;
@@ -361,7 +361,7 @@ body .one .bsa_it_p {
 @media (min-width: 980px) {
 	.subnav-fixed {
 		position: fixed;
-		top: 40px;
+		top: 0;
 		left: 0;
 		right: 0;
 		z-index: 1020; /* 10 less than .navbar-fixed to prevent any overlap */
