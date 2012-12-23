@@ -15,7 +15,7 @@
     <![endif]-->
 
     <!-- Bootstrap -->
-    <!--<link href="{{ SITEURL }}/theme/css/bootstrap.min.css" rel="stylesheet" media="screen"/>-->
+    <!-- <link href="{{ SITEURL }}/theme/css/bootstrap.min.css" rel="stylesheet" media="screen"/> -->
     <link rel="stylesheet" href="{{ SITEURL }}/theme/css/bootswatch-spacelab.min.css"/>
     <link rel="stylesheet" href="{{ SITEURL }}/theme/css/bootstrap-responsive.min.css"/>
     <link rel="stylesheet" href="{{ SITEURL }}/theme/css/bootswatch.css"/>
@@ -57,7 +57,11 @@
       <header class="jumbotron subhead" id="overview">
         <div class="row">
           <div class="span6">
-            <h1><a href="{{ SITEURL }}">{{ SITENAME }}</a></h1>
+            <h1>
+              <!-- <a href="{{ SITEURL }}"> -->
+              {{ SITENAME }}
+              <!-- </a> -->
+            </h1>
             <p class="lead">{{ SITESUBTITLE }}</p>
           </div>
         </div>
@@ -79,15 +83,66 @@
         </div>
       </header>
 
-      {% block content %}
-      {% endblock %}
+      <section>
+
+        <!-- Headings & Paragraph Copy -->
+        <div class="row">
+
+          <div class="span2">
+            XXXXXXXXXXXXXX XX X XXXX X XX X X X XXXXXXXXXXXXXX XX X XXXX X XX X X X
+            XXXXXXXXXXXXXX XX X XXXX X XX X X X XXXXXXXXXXXXXX XX X XXXX X XX X X X
+            XXXXXXXXXXXXXX XX X XXXX X XX X X X XXXXXXXXXXXXXX XX X XXXX X XX X X X
+            XXXXXXXXXXXXXX XX X XXXX X XX X X X XXXXXXXXXXXXXX XX X XXXX X XX X X X
+            XXXXXXXXXXXXXX XX X XXXX X XX X X X XXXXXXXXXXXXXX XX X XXXX X XX X X X
+            XXXXXXXXXXXXXX XX X XXXX X XX X X X XXXXXXXXXXXXXX XX X XXXX X XX X X X
+            XXXXXXXXXXXXXX XX X XXXX X XX X X X XXXXXXXXXXXXXX XX X XXXX X XX X X X
+            XXXXXXXXXXXXXX XX X XXXX X XX X X X XXXXXXXXXXXXXX XX X XXXX X XX X X X
+          </div>
+
+          <div class="span8">
+            {% block content %}
+            {% endblock %}
+          </div>
+
+          <div class="span2">
+            <div data-spy="affix" data-offset-top="0">
+              <h3>Sponsors</h3>
+              <script type="text/javascript"><!--
+                google_ad_client = "pub-0142056597033291";
+                google_ad_slot = "9501596707";
+                google_ad_width = 160;
+                google_ad_height = 600;
+                //-->
+              </script>
+              <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
 
       <hr/>
-      <footer id="footer">
-        <p class="pull-right"><a href="#">Back to top</a></p>
+      <footer id="footer" class="row">
+
+        <div class="span2">
+        </div>
+        <div class="span2">
+        </div>
+        <div class="span2">
+        </div>
+        <div class="span2">
+        </div>
+        <div class="span2">
+        </div>
+        <div class="span2">
+          <p class="pull-right"><a href="#">Back to top</a></p>
+        </div>
+<!--
+
         <div class="links">
           <a href="#">XXX</a>
-        </div>
+        </div>-->
       </footer>
 
     </div>
