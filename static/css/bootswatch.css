@@ -1,6 +1,6 @@
 body {
-	padding-top: 80px;
-	padding-bottom: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .navbar a > i {
@@ -11,18 +11,6 @@ body {
 	opacity: 1;
 }
 
-section {
-	margin-top: 100px;
-}
-
-.subhead {
-	padding-bottom: 0;
-	margin-bottom: 9px;
-}
-
-.subhead h1 {
-	font-size: 54px;
-}
 
 .subnav {
 	margin-bottom: 60px;
@@ -193,54 +181,6 @@ section {
 .thumbnail .btn-toolbar {
 	margin-top: 15px;
 	text-align: right;
-}
-
-.links {
-	margin-bottom: 20px;
-}
-
-.links > a {
-	margin-right: 10px;
-}
-
-div.one .bsa_it_ad {
-	padding: 25px 25px 15px 25px;
-}
-
-div.one .bsa_it_p {
-	display: none;
-}
-
-.bsa {
-	float: right;
-	max-width: 400px;
-	padding: 0;
-}
-
-body .one .bsa_it_ad {
-	margin-bottom: -10px;
-	background: none;
-	border: none;
-	font-family: inherit;
-	color: inherit;
-}
-
-body .one .bsa_it_ad .bsa_it_t,
-body .one .bsa_it_ad .bsa_it_d {
-	color: inherit;
-	font-size: inherit;
-}
-
-body .one .bsa_it_p {
-	display: none;
-}
-
-.links {
-	margin-bottom: 20px;
-}
-
-.links > a {
-	margin-right: 10px;
 }
 
 @media (max-width: 480px) {
