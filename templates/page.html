@@ -1,9 +1,22 @@
 {% extends "base.html" %}
-{% block title %}{{ page.title }}{%endblock%}
-{% block content %}
-    <h1>{{ page.title }}</h1>
-    {% import 'translations.html' as translations with context %}
-    {{ translations.translations_for(page) }}
 
+
+{% block title %}
+  {{ page.title }}
+{% endblock %}
+
+
+{% block top_center %}
+  <h1 class="entry-title">
+    <a href="{{ page.url }}" rel="bookmark" title="Permalink to {{ page.title|striptags }}">{{ page.title }}</a>
+  </h1>
+{% endblock %}
+
+
+{% block content %}
+  {% import 'translations.html' as translations with context %}
+  {{ translations.translations_for(page) }}
+  <div class="entry-content">
     {{ page.content }}
+  </div>
 {% endblock %}

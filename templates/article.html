@@ -1,32 +1,38 @@
 {% extends "base.html" %}
 
 
+{% block title %}
+  {{ article.title }}
+{% endblock %}
+
+
 {% block top_center %}
-
-    <h1 class="entry-title">
-      <a href="{{ article.url }}" rel="bookmark"
-         title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a>
-    </h1>
-
+  <h1 class="entry-title">
+    <a href="{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a>
+  </h1>
 {% endblock %}
 
 
 {% block left_sidebar %}
-
   <div class="post-info">
 
-    <p><abbr class="published" title="{{ article.date.isoformat() }}">
+    <p>
       <i class="icon-calendar"></i>
-      {{ article.locale_date }}
-    </abbr></p>
+      <abbr class="published" title="{{ article.date.isoformat() }}">{{ article.locale_date }}</abbr>
+    </p>
 
     {% if article.author %}
-      <p><address class="vcard author">
-        <i class="icon-user"></i> By <a class="url fn" href="{{ SITEURL }}/{{ article.author.url }}">{{ article.author }}</a>
-      </address></p>
+      <p>
+        <address class="vcard author">
+          <i class="icon-user"></i>
+          By <a class="url fn" href="{{ SITEURL }}/{{ article.author.url }}">{{ article.author }}</a>
+        </address>
+      </p>
     {% endif %}
 
-    <p><a href="{{ SITEURL }}/{{ article.category.url }}"><span class="label label-info">{{ article.category }}</span></a></p>
+    <p>
+      <a href="{{ SITEURL }}/{{ article.category.url }}"><span class="label label-info">{{ article.category }}</span></a>
+    </p>
 
     {% if article.tags %}
       <p>
@@ -41,17 +47,13 @@
     {% endif %}
 
   </div>
-
 {% endblock %}
 
 
 {% block content %}
-
- {% import 'translations.html' as translations with context %}
- {{ translations.translations_for(article) }}
-
+  {% import 'translations.html' as translations with context %}
+  {{ translations.translations_for(article) }}
   <div class="entry-content">
     {{ article.content }}
   </div>
-
 {% endblock %}
