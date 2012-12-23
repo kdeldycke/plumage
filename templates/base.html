@@ -15,8 +15,10 @@
     <![endif]-->
 
     <!-- Bootstrap -->
-    <link href="{{ SITEURL }}/theme/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
-    <link href="{{ SITEURL }}/theme/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen"/>
+    <!--<link href="{{ SITEURL }}/theme/css/bootstrap.min.css" rel="stylesheet" media="screen"/>-->
+    <link rel="stylesheet" href="{{ SITEURL }}/theme/css/bootswatch-spacelab.min.css"/>
+    <link rel="stylesheet" href="{{ SITEURL }}/theme/css/bootstrap-responsive.min.css"/>
+    <link rel="stylesheet" href="{{ SITEURL }}/theme/css/bootswatch.css"/>
 
     <!-- Feeds -->
     {% if FEED_ALL_ATOM %}
@@ -93,6 +95,7 @@
     {% include 'analytics.html' %}
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="{{ SITEURL }}/theme/js/bootstrap.min.js"></script>
+    <script src="{{ SITEURL }}/theme/js/application.js"></script>
 
   </body>
 </html>
