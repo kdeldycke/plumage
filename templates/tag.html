@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+  {{ tag }}
+{% endblock %}
+
+
+{% block top_center %}
+  <h1 class="entry-title">
+    <a  href="{{ SITEURL }}/{{ tag.url }}" rel="bookmark" title="Permalink to {{ tag }} articles">{{ tag }} articles</a>
+  </h1>
+{% endblock %}
+
+
+{% block content %}
+  <dl class="dl-horizontal">
+    {% for article in articles %}
+      <dt><abbr class="published" title="{{ article.date.isoformat() }}">{{ article.locale_date }}</abbr></dt>
+      <dd><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></dd>
+    {% endfor %}
+  </dl>
+{% endblock %}

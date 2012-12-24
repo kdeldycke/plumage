@@ -16,7 +16,7 @@
 {% block content %}
   <dl class="dl-horizontal">
     {% for article in dates %}
-      <dt>{{ article.locale_date }}</dt>
+      <dt><abbr class="published" title="{{ article.date.isoformat() }}">{{ article.locale_date }}</abbr></dt>
       <dd><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></dd>
     {% endfor %}
   </dl>

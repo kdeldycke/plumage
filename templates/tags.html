@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+  Tags
+{% endblock %}
+
+
+{% block top_center %}
+  <h1 class="entry-title">
+    <a href="{{ SITEURL }}/tags.html" rel="bookmark" title="Permalink to tags">Tags</a>
+  </h1>
+{% endblock %}
+
+
+{% block content %}
+  {% for tag, articles in tags %}
+    <a href="{{ SITEURL }}/{{ tag.url }}"><span class="label">{{ tag }}</span></a>
+  {% endfor %}
+{% endblock %}
