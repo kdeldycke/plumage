@@ -3,6 +3,9 @@ body {
   padding-bottom: 20px;
 }
 
+
+/* Subnav style from https://github.com/thomaspark/bootswatch/blob/gh-pages/css/bootswatch.css */
+
 .subnav {
 	margin-bottom: 60px;
 	width: 100%;

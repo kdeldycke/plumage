@@ -1,18 +1,19 @@
 !function ($) {
-
   $(function(){
 
-    // fix sub nav on scroll
+
+    // Activate Bootstrap's tooltips
+    $("[rel=tooltip]").tooltip();
+
+
+    // Subnav fixing code from https://github.com/thomaspark/bootswatch/blob/gh-pages/js/application.js
     var $win = $(window)
       , $nav = $('.subnav')
-	  , navHeight = $('.navbar').first().height()
+      , navHeight = $('.navbar').first().height()
       , navTop = $('.subnav').length && $('.subnav').offset().top - navHeight
       , isFixed = 0
-
     processScroll()
-
     $win.on('scroll', processScroll)
-
     function processScroll() {
       var i, scrollTop = $win.scrollTop()
       if (scrollTop >= navTop && !isFixed) {
@@ -24,9 +25,6 @@
       }
     }
 
+
   })
-
-  /* Activate Bootstrap's tooltips */
-  $("[rel=tooltip]").tooltip();
-
 }(window.jQuery)

@@ -30,6 +30,10 @@
       </p>
     {% endif %}
 
+    {% if PDF_PROCESSOR %}
+      <p><i class="icon-file"></i> <a href="{{ SITEURL }}/pdf/{{ article.slug }}.pdf">Download the .pdf</a></p>
+    {% endif %}
+
     <p>
       <a href="{{ SITEURL }}/{{ article.category.url }}"><span class="label label-info">{{ article.category }}</span></a>
     </p>
@@ -42,10 +46,6 @@
       </p>
     {% endif %}
 
-    {% if PDF_PROCESSOR %}
-      <p><i class="icon-file"></i> <a href="{{ SITEURL }}/pdf/{{ article.slug }}.pdf">Download the .pdf</a></p>
-    {% endif %}
-
   </div>
 {% endblock %}
 
@@ -53,7 +53,16 @@
 {% block content %}
   {% import 'translations.html' as translations with context %}
   {{ translations.translations_for(article) }}
+
   <div class="entry-content">
     {{ article.content }}
   </div>
+
+  <!--div class="alert alert-error">
+    <strong>TODO !</strong>
+    <ul class="pager">
+      <li class="previous disabled"><a href="#">← Older</a></li>
+      <li class="next"><a href="#">Newer →</a></li>
+    </ul>
+  </div-->
 {% endblock %}
