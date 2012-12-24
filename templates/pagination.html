@@ -1,15 +1,31 @@
 {% if DEFAULT_PAGINATION %}
-<p class="paginator">
-    {% if articles_page.has_previous() %}
-        {% if articles_page.previous_page_number() == 1 %}
-            <a href="{{ SITEURL }}/{{ page_name }}.html">&laquo;</a>
+  <div class="pagination pagination-small">
+    <ul>
+      {% if articles_page.has_previous() %}
+        {% set num = articles_page.previous_page_number() %}
+        <li class="prev"><a href="{{ SITEURL }}/{{ page_name }}{{ num if num > 1 else '' }}.html">&larr; Previous</a></li>
+      {% else %}
+        <li class="prev disabled"><a href="#">&larr; Previous</a></li>
+      {% endif %}
+
+      {% set is_previous_ellipsis = False -%}
+      {% for num in range(1, articles_paginator.num_pages + 1) %}
+        {% if num in [1, 2, articles_page.number - 1, articles_page.number, articles_page.number + 1, articles_paginator.num_pages - 1, articles_paginator.num_pages] %}
+          <li class="{{ 'active' if num == articles_page.number else '' }}"><a href="{{ SITEURL }}/{{ page_name }}{{ num if num > 1 else '' }}.html">{{ num }}</a></li>
+          {% set is_previous_ellipsis = False -%}
         {% else %}
-            <a href="{{ SITEURL }}/{{ page_name }}{{ articles_page.previous_page_number() }}.html">&laquo;</a>
+          {% if not is_previous_ellipsis %}
+            <li class="disabled"><a>…</a></li>
+          {% endif %}
+          {% set is_previous_ellipsis = True -%}
         {% endif %}
-    {% endif %}
-    Page {{ articles_page.number }} / {{ articles_paginator.num_pages }}
-    {% if articles_page.has_next() %}
-        <a href="{{ SITEURL }}/{{ page_name }}{{ articles_page.next_page_number() }}.html">&raquo;</a>
-    {% endif %}
-</p>
+      {% endfor %}
+
+      {% if articles_page.has_next() %}
+        <li class="next"><a href="{{ SITEURL }}/{{ page_name }}{{ articles_page.next_page_number() }}.html">Next &rarr;</a></li>
+      {% else %}
+        <li class="next disabled"><a href="#">&rarr; Next</a></li>
+      {% endif %}
+    </ul>
+  </div>
 {% endif %}
