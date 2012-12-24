@@ -63,18 +63,28 @@
             <p>{{ SITESUBTITLE }}</p>
           </div>
         </div>
-        <div class="subnav">
-          <ul class="nav nav-pills">
-            {% for title, link in MENUITEMS %}
-              <li><a href="{{ link }}">{{ title }}</a></li>
-            {% endfor %}
-            {% if DISPLAY_PAGES_ON_MENU %}
-              {% for p in PAGES %}
-                <li{% if p == page %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a></li>
+
+        <div class="navbar">
+          <div class="navbar-inner">
+            <a class="brand" href="{{ SITEURL }}" title="{{ SITESUBTITLE }}">{{ SITENAME }}</a>
+            <ul class="nav">
+              {% for title, link in MENUITEMS %}
+                <li><a href="{{ link }}">{{ title }}</a></li>
               {% endfor %}
-            {% endif %}
-          </ul>
+              {% if DISPLAY_PAGES_ON_MENU %}
+                {% for p in PAGES %}
+                  <li {% if p == page %} class="active" {% endif %}><a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a></li>
+                {% endfor %}
+              {% endif %}
+            </ul>
+            <ul class="nav pull-right">
+              <form class="navbar-search pull-left" action="">
+                <input type="text" class="search-query span2" placeholder="Search">
+              </form>
+            </ul>
+          </div>
         </div>
+
       </header>
 
       <section>
