@@ -26,4 +26,7 @@
 
   })
 
+  /* Activate Bootstrap's tooltips */
+  $("[rel=tooltip]").tooltip();
+
 }(window.jQuery)

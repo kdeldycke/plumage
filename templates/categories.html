@@ -2,19 +2,19 @@
 
 
 {% block title %}
-  Categories
+  All categories
 {% endblock %}
 
 
 {% block top_center %}
   <h1 class="entry-title">
-    <a href="{{ SITEURL }}/categories.html" rel="bookmark" title="Permalink to categories">Categories</a>
+    <a href="{{ SITEURL }}/categories.html" rel="bookmark" title="Permalink to category list">Categories</a>
   </h1>
 {% endblock %}
 
 
 {% block content %}
   {% for category, articles in categories %}
-    <a href="{{ SITEURL }}/{{ category.url }}"><span class="label label-info">{{ category }}</span></a>
+    <a href="{{ SITEURL }}/{{ category.url }}" rel="tooltip" data-placement="bottom" data-original-title="{{ articles|length() }} article{{ 's' if articles|length() > 1 else '' }} in this category"><span class="label label-info">{{ category }}</span></a>
   {% endfor %}
 {% endblock %}
