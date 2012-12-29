@@ -52,15 +52,8 @@
     <div class="container">
 
       <header>
-        <div class="row">
-          <div class="span6">
-            <h1>
-              <!-- <a href="{{ SITEURL }}"> -->
-              {{ SITENAME }}
-              <!-- </a> -->
-            </h1>
-            <p>{{ SITESUBTITLE }}</p>
-          </div>
+        <div class="page-header">
+          <h1><a href="{{ SITEURL }}">{{ SITENAME }}</a> <small>{{ SITESUBTITLE }}</small></h1>
         </div>
 
         <div class="navbar">
@@ -78,8 +71,9 @@
               {% endif %}
             </ul>
             <ul class="nav pull-right">
-              <form class="navbar-search pull-left" action="">
-                <input type="text" class="search-query span2" placeholder="Search">
+              <form class="navbar-search pull-left" action="#">
+                <input type="text" class="search-query span2" placeholder="Search"/>
+                <div class="icon-search"></div>
               </form>
             </ul>
           </div>

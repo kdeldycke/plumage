@@ -4,6 +4,19 @@ body {
 }
 
 
+.page-header {
+  margin: 0;
+  border-bottom: none;
+}
+.page-header a {
+  color: #2D2D2D;
+}
+.page-header a:hover {
+  color: #666;
+  text-decoration: none;
+}
+
+
 /* Only display site's name in the navbar if it's fixed */
 .navbar .brand {
   display: none;
@@ -11,12 +24,21 @@ body {
 .navbar.navbar-fixed-top .brand {
   display: block;
 }
-
-
 .navbar.navbar-fixed-top .navbar-inner {
   padding-right: 20px;
   padding-left: 20px;
 }
+
+
+/* Add a search icon in navbar's search field */
+.navbar-search .search-query {
+  padding-left: 29px;
+}
+.navbar-search .icon-search {
+  position: absolute;
+  top: 7px;
+  left: 11px;
+}​
 
 
 footer {
