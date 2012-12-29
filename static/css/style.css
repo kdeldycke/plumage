@@ -1,6 +1,6 @@
 body {
   padding-top: 20px;
-  padding-bottom: 20px;
+  background: url(http://subtlepatterns.subtlepatterns.netdna-cdn.com/wp-content/themes/tweaker6/images/bgnoise.png);
 }
 
 
@@ -41,27 +41,17 @@ body {
 }​
 
 
+h1, h2 {
+  text-shadow: 1px 1px 1px #ddd;
+}
+/*.box-shadow {
+    box-shadow: 0 0 1em 1em #ccc;
+}*/
+
+
 footer {
+  border-top: 1px solid #fff;
   margin-top: 50px;
-}
-
-
-
-@media (max-width: 767px) {
-
-  body {
-    padding-top: 0;
-  }
-
-}
-
-
-
-@media (min-width: 768px) and (max-width: 979px) {
-
-  /* Remove any padding from the body */
-  body {
-    padding-top: 0;
-  }
-
+  background: url(http://subtlepatterns.subtlepatterns.netdna-cdn.com/patterns/creampaper.png);
+  padding: 20px;
 }
