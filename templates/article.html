@@ -58,11 +58,26 @@
     {{ article.content }}
   </div>
 
-  <!--div class="alert alert-error">
-    <strong>TODO !</strong>
-    <ul class="pager">
-      <li class="previous disabled"><a href="#" rel="prev">← Older</a></li>
-      <li class="next"><a href="#" rel="next">Newer →</a></li>
-    </ul>
-  </div-->
+  <ul class="pager">
+    {% set newer_article = [] %}
+    {% set older_article = [] %}
+    {% set article_found = False %}
+    {% for a in dates %}
+      {% if article_found and not older_article %}
+        <!-- Jinja Hack. See: http://stackoverflow.com/questions/4870346/can-a-jinja-variables-scope-extend-beyond-in-an-inner-block#comment8152266_4880398 -->
+        {% if older_article.append(a.title) %}{% endif %}
+        {% if older_article.append(a.url)   %}{% endif %}
+      {% endif %}
+      {% if a == article %}
+        {% set article_found = True %}
+      {% endif %}
+      {% if not article_found %}
+        {% if newer_article.append(a.title) %}{% endif %}
+        {% if newer_article.append(a.url)   %}{% endif %}
+      {% endif %}
+    {% endfor %}
+    <li class="previous {% if not older_article %} disabled {% endif %}"><a {% if older_article %} href="{{ SITEURL }}/{{ older_article[1] }}" title="{{ older_article[0] }}" {% endif %} rel="prev">← Older</a></li>
+    <li class="next {% if not newer_article %} disabled {% endif %}"><a {% if newer_article %} href="{{ SITEURL }}/{{ newer_article[1] }}" title="{{ newer_article[0] }}" {% endif %} rel="next">Newer →</a></li>
+  </ul>
+
 {% endblock %}
