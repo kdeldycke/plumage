@@ -25,23 +25,23 @@
       <p>
         <address class="vcard author">
           <i class="icon-user"></i>
-          By <a class="url fn" href="{{ SITEURL }}/{{ article.author.url }}">{{ article.author }}</a>
+          By <a class="url fn" href="{{ SITEURL }}/{{ article.author.url }}" rel="author">{{ article.author }}</a>
         </address>
       </p>
     {% endif %}
 
     {% if PDF_PROCESSOR %}
-      <p><i class="icon-file"></i> <a href="{{ SITEURL }}/pdf/{{ article.slug }}.pdf">Download the .pdf</a></p>
+      <p><i class="icon-file"></i> <a href="{{ SITEURL }}/pdf/{{ article.slug }}.pdf" rel="alternate">Download the .pdf</a></p>
     {% endif %}
 
     <p>
-      <a href="{{ SITEURL }}/{{ article.category.url }}"><span class="label label-info">{{ article.category }}</span></a>
+      <a href="{{ SITEURL }}/{{ article.category.url }}" rel="tag"><span class="label label-info">{{ article.category }}</span></a>
     </p>
 
     {% if article.tags %}
       <p>
         {% for tag in article.tags %}
-          <a href="{{ SITEURL }}/{{ tag.url }}"><span class="label">{{ tag }}</span></a>
+          <a href="{{ SITEURL }}/{{ tag.url }}" rel="tag"><span class="label">{{ tag }}</span></a>
         {% endfor %}
       </p>
     {% endif %}
@@ -61,8 +61,8 @@
   <!--div class="alert alert-error">
     <strong>TODO !</strong>
     <ul class="pager">
-      <li class="previous disabled"><a href="#">← Older</a></li>
-      <li class="next"><a href="#">Newer →</a></li>
+      <li class="previous disabled"><a href="#" rel="prev">← Older</a></li>
+      <li class="next"><a href="#" rel="next">Newer →</a></li>
     </ul>
   </div-->
 {% endblock %}
