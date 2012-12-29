@@ -4,6 +4,16 @@ body {
 }
 
 
+/* Only display site's name in the navbar if it's fixed */
+.navbar .brand {
+  display: none;
+}
+.navbar.navbar-fixed-top .brand {
+  display: block;
+}
+
+
+
 @media (max-width: 767px) {
 
   body {
@@ -11,6 +21,7 @@ body {
   }
 
 }
+
 
 
 @media (min-width: 768px) and (max-width: 979px) {
