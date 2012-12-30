@@ -15,26 +15,51 @@
 
 {% block content %}
 
-  {% set current_year = False %}
-
-  {% for article in dates %}
-
-    {% if article.date.year != current_year %}
-      {% set current_year = article.date.year %}
-      {% if not loop.first %}
-        </dl>
-      {% endif %}
-      <h2 id="{{ article.date.year }}">{{ article.date.year }}</h2>
-      <dl class="dl-horizontal">
-    {% endif %}
-
-    <dt><abbr class="published" title="{{ article.date.isoformat() }}">{{ article.locale_date }}</abbr></dt>
-    <dd><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></dd>
-
-    {% if loop.last %}
-      </dl>
-    {% endif %}
-
+  {% set year_range = [] %}
+  {% for year in range(dates[-1].date.year, dates[0].date.year + 1) %}
+    {% if year_range.append(year) %}{% endif %}
   {% endfor %}
+  {% set year_range = year_range[::-1] %}
+
+  <div class="tabbable tabs-left">
+
+    <ul class="nav nav-tabs">
+      {% for year in year_range %}
+        <li {% if loop.first %} class="active" {% endif %}><a href="#{{ year }}" data-toggle="tab">{{ year }}</a></li>
+      {% endfor %}
+    </ul>
+
+    <div class="tab-content">
+      {% for year in year_range %}
+        <div class="tab-pane {% if loop.first %} active {% endif %}" id="{{ year }}">
+
+
+          {% set current_month = False %}
+          {% for article in dates %}
+            {% if article.date.year == year %}
+
+              {% if article.date.month != current_month %}
+                {% set current_month = article.date.month %}
+                {% if not loop.first %}
+                  </dl>
+                {% endif %}
+                <dl class="dl-horizontal">
+              {% endif %}
+
+              <dt><abbr class="published" title="{{ article.date.isoformat() }}">{{ article.date.strftime('%b. %d') }}</abbr></dt>
+              <dd><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></dd>
+
+              {% if loop.last %}
+                </dl>
+              {% endif %}
+
+            {% endif %}
+          {% endfor %}
+
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
 
 {% endblock %}
