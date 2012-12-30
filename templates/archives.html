@@ -14,10 +14,27 @@
 
 
 {% block content %}
-  <dl class="dl-horizontal">
-    {% for article in dates %}
-      <dt><abbr class="published" title="{{ article.date.isoformat() }}">{{ article.locale_date }}</abbr></dt>
-      <dd><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></dd>
-    {% endfor %}
-  </dl>
+
+  {% set current_year = False %}
+
+  {% for article in dates %}
+
+    {% if article.date.year != current_year %}
+      {% set current_year = article.date.year %}
+      {% if not loop.first %}
+        </dl>
+      {% endif %}
+      <h2 id="{{ article.date.year }}">{{ article.date.year }}</h2>
+      <dl class="dl-horizontal">
+    {% endif %}
+
+    <dt><abbr class="published" title="{{ article.date.isoformat() }}">{{ article.locale_date }}</abbr></dt>
+    <dd><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></dd>
+
+    {% if loop.last %}
+      </dl>
+    {% endif %}
+
+  {% endfor %}
+
 {% endblock %}
