@@ -39,9 +39,17 @@
     </p>
 
     {% if article.tags %}
+      {% set article_tags = [] %}
+      {% for tag, articles in tags %}
+        {% for t in article.tags %}
+          {% if tag.url == t.url %}
+            {% if article_tags.append({'name': tag.name, 'url': tag.url, 'articles': articles|length()}) %}{% endif %}
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
       <p>
-        {% for tag in article.tags %}
-          <a href="{{ SITEURL }}/{{ tag.url }}" rel="tag"><span class="label">{{ tag }}</span></a>
+        {% for tag in article_tags|sort(reverse = True, attribute = 'articles') %}
+          <a href="{{ SITEURL }}/{{ tag.url }}" rel="tag tooltip" data-placement="bottom" data-original-title="{{ tag.articles }} article{{ 's' if tag.articles > 1 else '' }} with this tag"><span class="label">{{ tag.name }}</span></a>
         {% endfor %}
       </p>
     {% endif %}
