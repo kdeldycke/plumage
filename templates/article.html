@@ -34,9 +34,16 @@
       <p><i class="icon-file"></i> <a href="{{ SITEURL }}/pdf/{{ article.slug }}.pdf" rel="alternate">Download the .pdf</a></p>
     {% endif %}
 
-    <p>
-      <a href="{{ SITEURL }}/{{ article.category.url }}" rel="tag"><span class="label label-info">{{ article.category }}</span></a>
-    </p>
+    {% if article.category %}
+      <p>
+        {% for category, articles in categories %}
+          {% if category.url == article.category.url %}
+            {% set article_counter = articles|length() %}
+            <a href="{{ SITEURL }}/{{ article.category.url }}" rel="tag tooltip" data-placement="right" data-original-title="{{ article_counter }} article{{ 's' if article_counter > 1 else '' }} in this category"><span class="label label-info">{{ article.category }}</span></a>
+          {% endif %}
+        {% endfor %}
+      </p>
+    {% endif %}
 
     {% if article.tags %}
       {% set article_tags = [] %}
@@ -49,7 +56,7 @@
       {% endfor %}
       <p>
         {% for tag in article_tags|sort(reverse = True, attribute = 'articles') %}
-          <a href="{{ SITEURL }}/{{ tag.url }}" rel="tag tooltip" data-placement="bottom" data-original-title="{{ tag.articles }} article{{ 's' if tag.articles > 1 else '' }} with this tag"><span class="label">{{ tag.name }}</span></a>
+          <a href="{{ SITEURL }}/{{ tag.url }}" rel="tag tooltip" data-placement="right" data-original-title="{{ tag.articles }} article{{ 's' if tag.articles > 1 else '' }} with this tag"><span class="label">{{ tag.name }}</span></a>
         {% endfor %}
       </p>
     {% endif %}

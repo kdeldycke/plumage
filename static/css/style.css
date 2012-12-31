@@ -1,6 +1,7 @@
 body {
   padding-top: 20px;
   background: url(http://subtlepatterns.subtlepatterns.netdna-cdn.com/wp-content/themes/tweaker6/images/bgnoise.png);
+  box-shadow: inset 0 10px 100px -30px rgba(0, 0, 0, 0.5);
 }
 
 
@@ -20,6 +21,9 @@ body {
 /* Only display site's name in the navbar if it's fixed */
 .navbar .brand {
   display: none;
+}
+.navbar.navbar-fixed-top {
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
 }
 .navbar.navbar-fixed-top .brand {
   display: block;
@@ -54,4 +58,9 @@ footer {
   margin-top: 50px;
   background: url(http://subtlepatterns.subtlepatterns.netdna-cdn.com/patterns/creampaper.png);
   padding: 20px;
+  text-shadow: 0px 1px 1px white;
+  box-shadow: inset 0 30px 30px -30px rgba(0, 0, 0, 0.5);
+}
+footer a {
+  color: #1B5786;
 }
