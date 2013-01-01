@@ -73,6 +73,15 @@
     {{ article.content }}
   </div>
 
+  {% if article.related_posts %}
+    <h3>Related content</h3>
+    <ul>
+      {% for related_post in article.related_posts %}
+        <li><a href="{{ SITEURL }}/{{ related_post.url }}">{{ related_post.title }}</a></li>
+      {% endfor %}
+      </ul>
+  {% endif %}
+
   <ul class="pager">
     {% set newer_article = [] %}
     {% set older_article = [] %}
