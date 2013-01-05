@@ -25,5 +25,9 @@
     }
 
 
+    // Let's make videos take the full width
+    $(".container").fitVids();
+
+
   })
 }(window.jQuery)
