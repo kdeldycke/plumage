@@ -26,6 +26,7 @@
 
 
     // Let's make videos take the full width
+    // TODO; fix aspect ratio
     $(".container").fitVids();
 
 
