@@ -104,4 +104,27 @@
     <li class="next {% if not newer_article %} disabled {% endif %}"><a {% if newer_article %} href="{{ SITEURL }}/{{ newer_article[1] }}" title="{{ newer_article[0] }}" {% endif %} rel="next">Newer →</a></li>
   </ul>
 
+  {% if DISQUS_SITENAME %}
+    <div class="comments">
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        var disqus_shortname = '{{ DISQUS_SITENAME }}';
+        var disqus_identifier = "{{ article.url }}";
+        var disqus_title = "{{ article.title }}";
+        var disqus_url = "http://kevin.deldycke.com/{{ article.url }}";
+        {% if not RELATIVE_URLS %}
+          /*var disqus_url = "{{ SITEURL }}/{{ article.url }}";*/
+        {% elif FEED_DOMAIN %}
+          /*var disqus_url = "{{ FEED_DOMAIN }}/{{ article.url }}";*/
+        {% endif %}
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  {% endif %}
+
 {% endblock %}
