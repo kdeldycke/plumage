@@ -38,7 +38,6 @@ nosetests.xml
 
 # Pelican
 *.pid
-output
 
 # Kevin private stuff
 Makefile
