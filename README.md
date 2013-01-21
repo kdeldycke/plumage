@@ -1,13 +1,24 @@
-blog-pelican-theme
-==================
+Kevin Deldycke's blog
+=====================
 
-Pelican Theme for my [blog](http://kevin.deldycke.com).
+These are the source files of the content and theme of my [blog](http://kevin.deldycke.com),
+which is powered by [Pelican](http://getpelican.com), a static site generator written in Python.
+
+
+License
+-------
+
+The content of this repository is copyrighted (c) 2004-2013 Kevin Deldycke.
+
+All the code and softwares published here are released under a [GNU/GPL licence, v2.0](http://www.fsf.org/licensing/licenses/gpl.html) and any later version.
+
+All other written content, including articles, is published under a [Creative Commons Attribution-Share Alike 3.0 License](http://creativecommons.org/licenses/by-sa/3.0/).
 
 
 Third-party assets
 ------------------
 
-This tool uses external softwares, scripts, libraries and artworks:
+The theme uses external softwares, scripts, libraries and artworks:
 
     Twitter Bootstrap v2.2.2
     Copyright (c) 2012 Twitter, Inc.
