@@ -5,6 +5,30 @@ These are the source files of the content and theme of my [blog](http://kevin.de
 which is powered by [Pelican](http://getpelican.com), a static site generator written in Python.
 
 
+TODO
+----
+
+  * Remove unused image thumbnails from ./content/uploads
+  * Use relative path for image assets in Markdown sources
+  * Redirect all URLs to the canonical kevin.deldycke.com sub-domain
+  * Re-write video, code and theme page
+  * Add a "Contribute corrections for this article on GitHub" link on all articles to let readers fix mistakes & typo
+  * Re-import failed sub-comments from Disqus
+  * Use a proper favicon at the root of the site
+  * Re-use previous artworks from Maomium ?
+  * Fix "newer" link on articles
+  * Move the Newer and older link below articles metadata ?
+  * Test different ad placements: http://news.ycombinator.com/item?id=4974511
+  * Update social link icons and use PNGs with proper alpha
+  * Clean-up and consolidate tags
+  * Hack google search to integrate search result within theme design ?
+  * Fix embedded video aspect-ratio
+  * Use a big carousel for front-page articles (ex: http://twitter.github.com/bootstrap/examples/carousel.html ) + a bit of http://srobbin.com/jquery-plugins/backstretch/ to keep aspect-ratio
+  * Check some web-dev essentials: http://webdevchecklist.com/
+  * Center all images by default ?
+  * Add a fancy zoom for images
+
+
 License
 -------
 
