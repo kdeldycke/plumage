@@ -35,3 +35,16 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
+
+# Pelican
+*.pid
+output
+
+# Kevin private stuff
+*.xml
+Makefile
+sync_all.sh
+
+# Huge binary content
+content/documents/*
+content/repository/*
