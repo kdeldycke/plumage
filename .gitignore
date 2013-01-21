@@ -41,9 +41,7 @@ nosetests.xml
 output
 
 # Kevin private stuff
-*.xml
 Makefile
-sync_all.sh
 
 # Huge binary content
 content/documents/*
