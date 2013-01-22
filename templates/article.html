@@ -14,7 +14,7 @@
 
 
 {% block left_sidebar %}
-  <div class="post-info">
+  <div class="post-info well">
 
     <p>
       <i class="icon-calendar"></i>
@@ -33,6 +33,8 @@
     {% if PDF_PROCESSOR %}
       <p><i class="icon-file"></i> <a href="{{ SITEURL }}/pdf/{{ article.slug }}.pdf" rel="alternate">Download the .pdf</a></p>
     {% endif %}
+
+    <hr/>
 
     {% if article.category %}
       <p>
@@ -61,10 +63,14 @@
       </p>
     {% endif %}
 
-    <div class="well">
-      <p>Found a typo ?<br/>Want to fix it ?</p>
+    <hr/>
+
+    <p>
+      Found a typo ? Want to fix it ?<br/>
       <a class="btn btn-info btn-block" href="https://github.com/kdeldycke/kevin-deldycke-blog/edit/master/content/posts/{{ article.slug }}.md"><i class="icon-random icon-white"></i> Edit article on GitHub</a>
-    </div>
+    </p>
+
+    <hr/>
 
     <ul class="pager">
       {% set newer_article = [] %}
