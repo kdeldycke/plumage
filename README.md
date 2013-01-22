@@ -12,7 +12,6 @@ TODO
   * Use relative path for image assets in Markdown sources
   * Redirect all URLs to the canonical kevin.deldycke.com sub-domain
   * Re-write video, code and theme page
-  * Add a "Contribute corrections for this article on GitHub" link on all articles to let readers fix mistakes & typo
   * Re-import failed sub-comments from Disqus
   * Use a proper favicon at the root of the site
   * Re-use previous artworks from Maomium ?
