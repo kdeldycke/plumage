@@ -17,7 +17,6 @@ TODO
   * Use a proper favicon at the root of the site
   * Re-use previous artworks from Maomium ?
   * Fix "newer" link on articles
-  * Move the Newer and older link below articles metadata ?
   * Test different ad placements: http://news.ycombinator.com/item?id=4974511
   * Update social link icons and use PNGs with proper alpha
   * Clean-up and consolidate tags
