@@ -16,7 +16,6 @@ TODO
   * Re-import failed sub-comments from Disqus
   * Use a proper favicon at the root of the site
   * Re-use previous artworks from Maomium ?
-  * Fix "newer" link on articles
   * Test different ad placements: http://news.ycombinator.com/item?id=4974511
   * Update social link icons and use PNGs with proper alpha
   * Clean-up and consolidate tags
