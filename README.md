@@ -24,7 +24,6 @@ TODO
   * Check some web-dev essentials: http://webdevchecklist.com/
   * Center all images by default ?
   * Add a fancy zoom for images
-  * Use richer code block rendering thanks to Pygment
   * Update Related content links to use images as in http://kevin.deldycke.com/2012/04/beautify-contextual-related-posts-wordpress-plugin/
   * Get rid of old Mandriva RPM repository
   * Add some space to let <hX> breathe
