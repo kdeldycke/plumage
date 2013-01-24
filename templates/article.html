@@ -21,7 +21,7 @@
       <abbr class="published" title="{{ article.date.isoformat() }}">{{ article.locale_date }}</abbr>
     </p>
 
-    {% if article.author %}
+    {% if AUTHOR_SAVE_AS and article.author %}
       <p>
         <address class="vcard author">
           <i class="icon-user"></i>
