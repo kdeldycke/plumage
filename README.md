@@ -10,7 +10,6 @@ TODO
 
   * Remove unused image thumbnails from ./content/uploads
   * Use relative path for image assets in Markdown sources
-  * Redirect all URLs to the canonical kevin.deldycke.com sub-domain
   * Re-write video, code and theme page
   * Re-import failed sub-comments from Disqus
   * Use a proper favicon at the root of the site
@@ -28,6 +27,8 @@ TODO
   * Get rid of old Mandriva RPM repository
   * Add some space to let <hX> breathe
   * Update comment URLs to new Disqus location
+  * Remove unused content metadate like comments: and layout:
+  * Get rid of /year/month/ in URL slug ? Or get rid of month only ?
 
 
 License
