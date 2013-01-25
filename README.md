@@ -26,7 +26,6 @@ TODO
   * Update Related content links to use images as in http://kevin.deldycke.com/2012/04/beautify-contextual-related-posts-wordpress-plugin/
   * Get rid of old Mandriva RPM repository
   * Add some space to let <hX> breathe
-  * Update comment URLs to new Disqus location
   * Remove unused content metadate like comments: and layout:
   * Get rid of /year/month/ in URL slug ? Or get rid of month only ?
 
