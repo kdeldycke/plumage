@@ -11,7 +11,6 @@ TODO
   * Remove unused image thumbnails from ./content/uploads
   * Use relative path for image assets in Markdown sources
   * Re-write video, code and theme page
-  * Re-import failed sub-comments from Disqus
   * Use a proper favicon at the root of the site
   * Re-use previous artworks from Maomium ?
   * Test different ad placements: http://news.ycombinator.com/item?id=4974511
