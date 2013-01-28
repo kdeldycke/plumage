@@ -98,12 +98,13 @@
   {% import 'translations.html' as translations with context %}
   {{ translations.translations_for(article) }}
 
-  <div>
+  <div id="content" role="main">
     {{ article.content }}
   </div>
 
   {% if article.related_posts %}
     <h3>Related content</h3>
+    <!-- TODO: Use fancier related layout, as in http://kevin.deldycke.com/2012/04/beautify-contextual-related-posts-wordpress-plugin/ -->
     <ul>
       {% for related_post in article.related_posts %}
         <li><a href="{{ SITEURL }}/{{ related_post.url }}">{{ related_post.title }}</a></li>
