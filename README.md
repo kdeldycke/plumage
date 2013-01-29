@@ -9,7 +9,6 @@ TODO
 ----
 
   * Remove unused image thumbnails from ./content/uploads
-  * Use relative path for image assets in Markdown sources
   * Re-write video, code and theme page
   * Use a proper favicon at the root of the site
   * Re-use previous artworks from Maomium ?
