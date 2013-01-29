@@ -12,7 +12,7 @@ TODO
   * Re-write video, code and theme page
   * Re-use previous artworks from Maomium ?
   * Test different ad placements: http://news.ycombinator.com/item?id=4974511
-  * Update social link icons and use PNGs with proper alpha
+  * Update social link icons and use PNGs with proper alpha. Or use: http://getfavicon.appspot.com/
   * Clean-up and consolidate tags
   * Hack google search to integrate search result within theme design ?
   * Fix embedded video aspect-ratio
@@ -25,8 +25,13 @@ TODO
   * Get rid of /year/month/ in URL slug ? Or get rid of month only ?
   * Deduplicate articles' tags.
   * Check kev.coolcavemen.com redirects
-  * Redo typography
+  * Redo typography. Inspiration:
+    * http://sachagreif.com/more-google-webfonts-that-dont-suck/
+    * http://designshack.net/articles/css/10-great-google-font-combinations-you-can-copy/
   * Do I really need bootswatch ?
+  * Use custom jinja filters instead of heavy tag soup in my theme ? Example: https://bitbucket.org/sirex/blog/src/32c192ff7a10/pelican.conf.py#cl-53
+  * Simplify Amazon affiliates links ? See: http://www.linktrackr.com/blog/amazon-affiliate-link/
+  * Replace Google custom search by https://swiftype.com/ ?
 
 
 License
