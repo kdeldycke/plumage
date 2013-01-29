@@ -58,9 +58,19 @@ body {
 h1, h2 {
   text-shadow: 1px 1px 1px #ddd;
 }
+section h1 {
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+
+
 /*.box-shadow {
     box-shadow: 0 0 1em 1em #ccc;
 }*/
+
+.comments {
+  margin-top: 5em;
+}
 
 #content img {
   border: 1px solid #999;
