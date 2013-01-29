@@ -10,7 +10,6 @@ TODO
 
   * Remove unused image thumbnails from ./content/uploads
   * Re-write video, code and theme page
-  * Use a proper favicon at the root of the site
   * Re-use previous artworks from Maomium ?
   * Test different ad placements: http://news.ycombinator.com/item?id=4974511
   * Update social link icons and use PNGs with proper alpha
