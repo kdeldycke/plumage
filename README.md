@@ -26,6 +26,8 @@ TODO
   * Get rid of /year/month/ in URL slug ? Or get rid of month only ?
   * Deduplicate articles' tags.
   * Check kev.coolcavemen.com redirects
+  * Redo typography
+  * Do I really need bootswatch ?
 
 
 License
