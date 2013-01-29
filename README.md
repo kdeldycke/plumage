@@ -27,6 +27,7 @@ TODO
   * Remove unused content metadate like comments: and layout:
   * Get rid of /year/month/ in URL slug ? Or get rid of month only ?
   * Deduplicate articles' tags.
+  * Check kev.coolcavemen.com redirects
 
 
 License
