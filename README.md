@@ -21,7 +21,6 @@ TODO
   * Center all images by default ?
   * Add a fancy zoom for images
   * Get rid of old Mandriva RPM repository
-  * Remove unused content metadate like comments: and layout:
   * Get rid of /year/month/ in URL slug ? Or get rid of month only ?
   * Deduplicate articles' tags.
   * Check kev.coolcavemen.com redirects
