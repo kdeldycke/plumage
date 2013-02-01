@@ -8,7 +8,6 @@ which is powered by [Pelican](http://getpelican.com), a static site generator wr
 TODO
 ----
 
-  * Remove unused image thumbnails from ./content/uploads
   * Re-write video, code and theme page
   * Re-use previous artworks from Maomium ?
   * Test different ad placements: http://news.ycombinator.com/item?id=4974511
@@ -31,6 +30,7 @@ TODO
   * Use custom jinja filters instead of heavy tag soup in my theme ? Example: https://bitbucket.org/sirex/blog/src/32c192ff7a10/pelican.conf.py#cl-53
   * Simplify Amazon affiliates links ? See: http://www.linktrackr.com/blog/amazon-affiliate-link/
   * Replace Google custom search by https://swiftype.com/ ?
+  * Automate blog building and publishing on commit update with Fabric ?
 
 
 License
