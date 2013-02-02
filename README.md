@@ -12,7 +12,6 @@ TODO
   * Re-use previous artworks from Maomium ?
   * Test different ad placements: http://news.ycombinator.com/item?id=4974511
   * Update social link icons and use PNGs with proper alpha. Or use: http://getfavicon.appspot.com/
-  * Clean-up and consolidate tags
   * Hack google search to integrate search result within theme design ?
   * Fix embedded video aspect-ratio
   * Use a big carousel for front-page articles (ex: http://twitter.github.com/bootstrap/examples/carousel.html ) + a bit of http://srobbin.com/jquery-plugins/backstretch/ to keep aspect-ratio
