@@ -44,4 +44,3 @@ Makefile
 
 # Huge binary content
 content/documents/*
-content/repository/*
