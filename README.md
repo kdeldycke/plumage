@@ -51,7 +51,7 @@ The theme uses external softwares, scripts, libraries and artworks:
     Distributed under a Apache license 2.0
     Source: http://twitter.github.com/bootstrap/
 
-    Bootswatch Spacelab theme
+    Bootswatch Spacelab theme v2.3.0
     Copyright (c) 2012 Thomas Park
     Distributed under a Apache license 2.0
     Source: http://bootswatch.com/spacelab/
