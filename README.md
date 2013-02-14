@@ -29,6 +29,7 @@ TODO
   * Simplify Amazon affiliates links ? See: http://www.linktrackr.com/blog/amazon-affiliate-link/
   * Replace Google custom search by https://swiftype.com/ ?
   * Automate blog building and publishing on commit update with Fabric ?
+  * Add progressive image loading
 
 
 License
@@ -47,12 +48,12 @@ Third-party assets
 The theme uses external softwares, scripts, libraries and artworks:
 
     Twitter Bootstrap v2.3.0
-    Copyright (c) 2012 Twitter, Inc.
+    Copyright (c) 2013 Twitter, Inc.
     Distributed under a Apache license 2.0
     Source: http://twitter.github.com/bootstrap/
 
     Bootswatch Spacelab theme v2.3.0
-    Copyright (c) 2012 Thomas Park
+    Copyright (c) 2013 Thomas Park
     Distributed under a Apache license 2.0
     Source: http://bootswatch.com/spacelab/
 
