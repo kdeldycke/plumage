@@ -8,7 +8,7 @@ which is powered by [Pelican](http://getpelican.com), a static site generator wr
 TODO
 ----
 
-  * Re-write video, code and theme page
+  * Re-write video and theme page
   * Re-use previous artworks from Maomium ?
   * Test different ad placements: http://news.ycombinator.com/item?id=4974511
   * Update social link icons and use PNGs with proper alpha. Or use: http://getfavicon.appspot.com/
