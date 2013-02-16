@@ -1,10 +1,8 @@
 !function ($) {
   $(function(){
 
-
     // Activate Bootstrap's tooltips
     $("[rel*=tooltip]").tooltip();
-
 
     // Subnav fixing code from https://github.com/thomaspark/bootswatch/blob/gh-pages/js/application.js
     var $win = $(window)
@@ -24,11 +22,18 @@
       }
     }
 
-
     // Let's make videos take the full width
     // TODO; fix aspect ratio
     $(".container").fitVids();
 
-
   })
-}(window.jQuery)
+}(window.jQuery);
+
+
+// Apply masonry smart layout, only at the end of the document load
+$(document).ready(function(){
+  $('.masonry').masonry({
+    itemSelector: '.thumbnail',
+    isFitWidth: true,
+  });
+});

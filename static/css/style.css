@@ -73,19 +73,27 @@ a {
 }
 
 
-/*a.label, a.badge, a.link-circle {
+/*a.label, a.badge,*/ a.link-circle {
   background-color: rgb(228, 228, 228);
 }
-a.label:hover, a.badge:hover, a.link-circle:hover {
+/*a.label:hover, a.badge:hover,*/ a.link-circle:hover {
   background-color: #999;
-}*/
+}
 
 
-.thumbnails .thumbnail {
+.masonry {
+  margin: 0 auto;
+}
+
+
+.thumbnail {
   background: #fff;
   padding: 10.5px 10.5px 0;
 }
-#content .thumbnails img {
+.masonry .thumbnail {
+  margin-bottom: 20px;
+}
+#content .thumbnail img {
   border: 0;
 }
 .link-circle {
@@ -95,7 +103,7 @@ a.label:hover, a.badge:hover, a.link-circle:hover {
   height: 42px;
   border-radius: 50%;
   font-size: 28px;
-  line-height: 38px;
+  line-height: 42px;
   text-align: center;
   text-decoration: none;
   margin-right: 10px;
