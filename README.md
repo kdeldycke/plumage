@@ -46,18 +46,6 @@ Third-party assets
 
 The theme uses external softwares, scripts, libraries and artworks:
 
-    Twitter Bootstrap v2.3.0
-    Copyright (c) 2013 Twitter, Inc.
-    Distributed under a Apache license 2.0
-    Source: http://twitter.github.com/bootstrap/
-
-    Font Awesome v3.0.2
-    Copyright (c) 2013 Dave Gandy
-    Font distributed under a SIL Open Font license
-    CSS distributed under a MIT license
-    Pictograms ditributed under a Creative Commons Attribution 3.0 license
-    Source: http://fortawesome.github.com/Font-Awesome
-
     Solarized Pygment style v0.1.0
     Copyright (c) 2012 Shoji KUMAGAI
     Distributed under a MIT license
