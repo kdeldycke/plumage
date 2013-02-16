@@ -64,6 +64,48 @@ section h1 {
 }
 
 
+a {
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+
+
+/*a.label, a.badge, a.link-circle {
+  background-color: rgb(228, 228, 228);
+}
+a.label:hover, a.badge:hover, a.link-circle:hover {
+  background-color: #999;
+}*/
+
+
+.thumbnails .thumbnail {
+  background: #fff;
+  padding: 10.5px 10.5px 0;
+}
+#content .thumbnails img {
+  border: 0;
+}
+.link-circle {
+  color: #fff;
+  display: block;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  font-size: 28px;
+  line-height: 38px;
+  text-align: center;
+  text-decoration: none;
+  margin-right: 10px;
+}
+.link-circle:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+
 /*.box-shadow {
     box-shadow: 0 0 1em 1em #ccc;
 }*/
