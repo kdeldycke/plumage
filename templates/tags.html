@@ -36,17 +36,17 @@
 
   <h2>Top tier</h2>
   {% for tag in tier_1 %}
-    <a href="{{ SITEURL }}/{{ tag.url }}" rel="tooltip" data-placement="bottom" data-original-title="{{ tag.articles }} article{{ 's' if tag.articles > 1 else '' }} with this tag"><span class="label">{{ tag.name }}</span></a>
+    <a href="{{ SITEURL }}/{{ tag.url }}" rel="tooltip" class="label" data-placement="bottom" data-original-title="{{ tag.articles }} article{{ 's' if tag.articles > 1 else '' }} with this tag">{{ tag.name }}</a>
   {% endfor %}
 
   <h2>Middle tier</h2>
   {% for tag in tier_2 %}
-    <a href="{{ SITEURL }}/{{ tag.url }}" rel="tooltip" data-placement="bottom" data-original-title="{{ tag.articles }} article{{ 's' if tag.articles > 1 else '' }} with this tag"><span class="label">{{ tag.name }}</span></a>
+    <a href="{{ SITEURL }}/{{ tag.url }}" rel="tooltip" class="label" data-placement="bottom" data-original-title="{{ tag.articles }} article{{ 's' if tag.articles > 1 else '' }} with this tag">{{ tag.name }}</a>
   {% endfor %}
 
   <h2>Lower tier</h2>
   {% for tag in tier_3 %}
-    <a href="{{ SITEURL }}/{{ tag.url }}" rel="tooltip" data-placement="bottom" data-original-title="{{ tag.articles }} article{{ 's' if tag.articles > 1 else '' }} with this tag"><span class="label">{{ tag.name }}</span></a>
+    <a href="{{ SITEURL }}/{{ tag.url }}" rel="tooltip" class="label" data-placement="bottom" data-original-title="{{ tag.articles }} article{{ 's' if tag.articles > 1 else '' }} with this tag">{{ tag.name }}</a>
   {% endfor %}
 
 {% endblock %}
