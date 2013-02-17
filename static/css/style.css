@@ -2,7 +2,7 @@
 @import url(http://fonts.googleapis.com/css?family=Istok+Web);
 @import url(http://fonts.googleapis.com/css?family=Droid+Sans+Mono);
 
-body, input, button, select, textarea, .navbar-search .search-query {
+body, input, button, select, textarea, li, .navbar-search .search-query {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   line-height: 24px;
@@ -66,6 +66,7 @@ body {
 /* Add a search icon in navbar's search field */
 .navbar-search .search-query {
   padding-left: 29px;
+  height: inherit;
 }
 .navbar-search .icon-search {
   position: absolute;
