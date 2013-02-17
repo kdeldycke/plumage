@@ -22,6 +22,9 @@
       }
     }
 
+    // Add bootstrap table style to table elements
+    $("#content table").addClass('table').addClass('table-hover');
+
     // Let's make videos take the full width
     // TODO; fix aspect ratio
     $(".container").fitVids();
