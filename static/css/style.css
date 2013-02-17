@@ -1,3 +1,22 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+@import url(http://fonts.googleapis.com/css?family=Istok+Web);
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans+Mono);
+
+body, input, button, select, textarea, .navbar-search .search-query {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Istok Web', sans-serif;
+}
+code, pre {
+  font-family: "Droid Sans Mono", Monaco, Menlo, Consolas, "Courier New", monospace;
+  font-size: 15px;
+  line-height: 21px;
+}
+
+
 body {
   padding-top: 20px;
   background: url(/theme/img/fabric_plaid.png);
@@ -96,6 +115,9 @@ a {
 #content .thumbnail img {
   border: 0;
 }
+.thumbnail > img {
+  max-height: 180px;
+}
 .link-circle {
   color: #fff;
   display: block;
@@ -113,10 +135,6 @@ a {
   text-decoration: none;
 }
 
-
-/*.box-shadow {
-    box-shadow: 0 0 1em 1em #ccc;
-}*/
 
 .comments {
   margin-top: 5em;

@@ -20,10 +20,6 @@ TODO
   * Add a fancy zoom for images
   * Get rid of /year/month/ in URL slug ? Or get rid of month only ?
   * Deduplicate articles' tags.
-  * Check kev.coolcavemen.com redirects
-  * Redo typography. Inspiration:
-    * http://sachagreif.com/more-google-webfonts-that-dont-suck/
-    * http://designshack.net/articles/css/10-great-google-font-combinations-you-can-copy/
   * Use custom jinja filters instead of heavy tag soup in my theme ? Example: https://bitbucket.org/sirex/blog/src/32c192ff7a10/pelican.conf.py#cl-53
   * Simplify Amazon affiliates links ? See: http://www.linktrackr.com/blog/amazon-affiliate-link/
   * Replace Google custom search by https://swiftype.com/ ?
