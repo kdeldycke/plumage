@@ -16,7 +16,6 @@ TODO
   * Fix embedded video aspect-ratio
   * Use a big carousel for front-page articles (ex: http://twitter.github.com/bootstrap/examples/carousel.html ) + a bit of http://srobbin.com/jquery-plugins/backstretch/ to keep aspect-ratio
   * Check some web-dev essentials: http://webdevchecklist.com/
-  * Center all images by default ?
   * Add a fancy zoom for images
   * Get rid of /year/month/ in URL slug ? Or get rid of month only ?
   * Deduplicate articles' tags.
