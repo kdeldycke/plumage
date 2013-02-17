@@ -26,14 +26,15 @@
     // TODO; fix aspect ratio
     $(".container").fitVids();
 
+    // Apply masonry smart layout, only when all images are loaded
+    // Source: http://stackoverflow.com/a/7257177
+    var $container = $('.masonry');
+    $container.imagesLoaded(function(){
+      $container.masonry({
+        itemSelector: '.thumbnail',
+        isFitWidth: true,
+      });
+    });
+
   })
 }(window.jQuery);
-
-
-// Apply masonry smart layout, only at the end of the document load
-$(document).ready(function(){
-  $('.masonry').masonry({
-    itemSelector: '.thumbnail',
-    isFitWidth: true,
-  });
-});
