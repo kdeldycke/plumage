@@ -158,9 +158,10 @@ footer {
   text-shadow: 0px 1px 1px white;
   box-shadow: inset 0 30px 30px -30px rgba(0, 0, 0, 0.5);
 }
-
-
-#copyright {
+footer, footer li {
+  font-size: 14px;
+}
+footer .muted {
   font-size: 12px;
   line-height: 13px;
 }
