@@ -31,6 +31,7 @@
 
     // Apply masonry smart layout, only when all images are loaded
     // Source: http://stackoverflow.com/a/7257177
+    // TODO: try to hide re-pagination animation
     var $container = $('.masonry');
     $container.imagesLoaded(function(){
       $container.masonry({
