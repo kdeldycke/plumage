@@ -1,0 +1,95 @@
+{% set LAYOUT = 'full-width' %}
+{% extends "base.html" %}
+
+
+{% block extra_js %}
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/masonry/2.1.07/jquery.masonry.min.js"></script>
+{% endblock %}
+
+
+{% set ICONS =  { 'github.com': 'icon-github-alt'
+                , 'kevin.deldycke.com': 'icon-bullhorn'
+                , 'type_of_search=mlists': 'icon-envelope-alt'
+                , 'bitbucket.org': '⛁'
+                }
+%}
+
+
+{% macro render_projects() %}
+  {% set all_tags = [] %}
+  {% for tag, articles in tags %}
+    {% if all_tags.append({'name': tag.name, 'url': tag.url, 'articles': articles|length()}) %}{% endif %}
+  {% endfor %}
+
+  <div class="masonry">
+
+    {% block project_pre_content %}{% endblock %}
+
+    {% for project in PROJECTS %}
+      <div class="thumbnail span3">
+        {% if project.inactive %}
+          <div class="progress progress-danger progress-striped">
+            <div class="bar" style="width: 100%;"><strong>Inactive</strong></div>
+          </div>
+        {% endif %}
+        {% if project.thumb %}
+          <img alt="{{ project.name }} screenshot" src="{{ project.thumb }}"/>
+        {% endif %}
+        <h4>{{ project.name }}</h4>
+        {% if project.desc %}
+          <p>{{ project.desc }}</p>
+        {% endif %}
+        {% if project.roles or project.tools %}
+          <p>
+            {% for role in project.roles %}
+              <span class="label label-success">{{ role }}</span>
+            {% endfor %}
+            {% for tag in all_tags|sort(reverse = True, attribute = 'articles') %}
+              {% if tag.name in project.tools %}
+                {{ m.render_tag(tag) }}
+              {% endif %}
+            {% endfor %}
+            {% set tag_names = [] %}
+            {% for tag in all_tags %}
+              {% if tag_names.append(tag.name) %}{% endif %}
+            {% endfor %}
+            {% for tool in project.tools %}
+              {% if tool not in tag_names %}
+                <span class="label">{{ tool }}</span>
+              {% endif %}
+            {% endfor %}
+          </p>
+        {% endif %}
+        {% if project.links %}
+          <p class="clearfix">
+            {% for link in project.links %}
+              {% set link_icon = ['icon-home'] %}
+              {% for (domain, icon) in ICONS.items() %}
+                {% if link.find(domain) != -1 %}
+                  {% if link_icon.append(icon) %}{% endif %}
+                {% endif %}
+              {% endfor %}
+              {% set link_icon = link_icon[-1] %}
+              {% set icon_name_size = link_icon|length() %}
+              <a href="{{ link }}" class="pull-left link-circle">
+                {% if icon_name_size > 1 %}
+                  <i class="{{ link_icon }}"></i>
+                {% else %}
+                  <strong>{{ link_icon }}</strong>
+                {% endif %}
+              </a>
+            {% endfor %}
+          </p>
+        {% endif %}
+      </div>
+    {% endfor %}
+
+    {% block project_post_content %}{% endblock %}
+
+  </div>
+{% endmacro %}
+
+
+{% block content %}
+   {{ render_projects() }}
+{% endblock %}
