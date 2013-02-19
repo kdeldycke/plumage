@@ -28,6 +28,8 @@
     <link href='http://fonts.googleapis.com/css?family=Istok+Web' rel='stylesheet' type='text/css'/>
     <link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'/>
 
+    {% block extra_css %}{% endblock %}
+
     <link rel="icon" href="{{ SITEURL }}/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="{{ SITEURL }}/favicon.ico" type="image/x-icon">
 
@@ -193,9 +195,9 @@
     {% include 'analytics.html' %}
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.0/js/bootstrap.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/masonry/2.1.07/jquery.masonry.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
     <script src="{{ SITEURL }}/theme/js/application.js"></script>
+    {% block extra_js %}{% endblock %}
 
   </body>
 </html>
