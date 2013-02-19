@@ -34,19 +34,11 @@
     {% endif %}
   {% endfor %}
 
-  <h2>Top tier</h2>
-  {% for tag in tier_1 %}
-    <a href="{{ SITEURL }}/{{ tag.url }}" rel="tooltip" class="label" data-placement="bottom" data-original-title="{{ tag.articles }} article{{ 's' if tag.articles > 1 else '' }} with this tag">{{ tag.name }}</a>
-  {% endfor %}
-
-  <h2>Middle tier</h2>
-  {% for tag in tier_2 %}
-    <a href="{{ SITEURL }}/{{ tag.url }}" rel="tooltip" class="label" data-placement="bottom" data-original-title="{{ tag.articles }} article{{ 's' if tag.articles > 1 else '' }} with this tag">{{ tag.name }}</a>
-  {% endfor %}
-
-  <h2>Lower tier</h2>
-  {% for tag in tier_3 %}
-    <a href="{{ SITEURL }}/{{ tag.url }}" rel="tooltip" class="label" data-placement="bottom" data-original-title="{{ tag.articles }} article{{ 's' if tag.articles > 1 else '' }} with this tag">{{ tag.name }}</a>
+  {% for (tier_name, tier_tags) in [("Top", tier_1), ("Middle", tier_2), ("Lower", tier_3)] %}
+    <h2>{{ tier_name }} tier</h2>
+    {% for tag in tier_tags %}
+      {{ m.render_tag(tag) }}
+    {% endfor %}
   {% endfor %}
 
 {% endblock %}

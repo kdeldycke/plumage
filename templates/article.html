@@ -14,56 +14,46 @@
 
 
 {% block right_sidebar %}
-  <div class="post-info well">
+  <div class="well">
 
-    <p>
-      <i class="icon-calendar"></i>
-      <abbr class="published" title="{{ article.date.isoformat() }}">{{ article.locale_date }}</abbr>
-    </p>
+    <p><abbr class="icon-calendar" title="{{ article.date.isoformat() }}"> {{ article.locale_date }}</abbr></p>
 
     {% if AUTHOR_SAVE_AS and article.author %}
-      <p>
-        <address class="vcard author">
-          <i class="icon-user"></i>
-          By <a class="url fn" href="{{ SITEURL }}/{{ article.author.url }}" rel="author">{{ article.author }}</a>
-        </address>
-      </p>
+      <p><address class="icon-user"> By <a href="{{ SITEURL }}/{{ article.author.url }}" rel="author">{{ article.author }}</a></address></p>
     {% endif %}
 
     {% if PDF_PROCESSOR %}
-      <p><i class="icon-file"></i> <a href="{{ SITEURL }}/pdf/{{ article.slug }}.pdf" rel="alternate">Download the .pdf</a></p>
+      <p><a href="{{ SITEURL }}/pdf/{{ article.slug }}.pdf" rel="alternate" class="icon-file"> Download the .pdf</a></p>
     {% endif %}
 
     <hr/>
 
-    {% if article.category %}
+    {% if article.category or article.tags %}
       <p>
-        {% for category, articles in categories %}
-          {% if category.url == article.category.url %}
-            {% set article_counter = articles|length() %}
-            <a href="{{ SITEURL }}/{{ article.category.url }}" rel="tag tooltip" class="label label-info" data-placement="right" data-original-title="{{ article_counter }} article{{ 's' if article_counter > 1 else '' }} in this category">{{ article.category }}</a>
-          {% endif %}
-        {% endfor %}
+        {% if article.category %}
+          {% for category, articles in categories %}
+            {% if category.url == article.category.url %}
+              {% set article_counter = articles|length() %}
+              <a href="{{ SITEURL }}/{{ article.category.url }}" rel="tag tooltip" class="label label-info" data-placement="right" data-original-title="{{ article_counter }} article{{ 's' if article_counter > 1 else '' }} in this category">{{ article.category }}</a>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+        {% if article.tags %}
+          {% set article_tags = [] %}
+          {% for tag, articles in tags %}
+            {% for t in article.tags %}
+              {% if tag.url == t.url %}
+                {% if article_tags.append({'name': tag.name, 'url': tag.url, 'articles': articles|length()}) %}{% endif %}
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
+          {% for tag in article_tags|sort(reverse = True, attribute = 'articles') %}
+            {{ m.render_tag(tag) }}
+          {% endfor %}
+        {% endif %}
       </p>
+      <hr/>
     {% endif %}
-
-    {% if article.tags %}
-      {% set article_tags = [] %}
-      {% for tag, articles in tags %}
-        {% for t in article.tags %}
-          {% if tag.url == t.url %}
-            {% if article_tags.append({'name': tag.name, 'url': tag.url, 'articles': articles|length()}) %}{% endif %}
-          {% endif %}
-        {% endfor %}
-      {% endfor %}
-      <p>
-        {% for tag in article_tags|sort(reverse = True, attribute = 'articles') %}
-          <a href="{{ SITEURL }}/{{ tag.url }}" rel="tag tooltip" class="label" data-placement="right" data-original-title="{{ tag.articles }} article{{ 's' if tag.articles > 1 else '' }} with this tag">{{ tag.name }}</a>
-        {% endfor %}
-      </p>
-    {% endif %}
-
-    <hr/>
 
     <p>Found a typo ? Want to fix it ?</p>
     <a class="btn btn-info btn-block" href="https://github.com/kdeldycke/kevin-deldycke-blog/edit/master/content/posts/{{ article.slug }}.md"><i class="icon-random icon-white"></i> Edit article on GitHub</a>
