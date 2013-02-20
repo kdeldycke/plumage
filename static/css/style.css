@@ -112,18 +112,41 @@ a {
 
 
 .thumbnail {
+  padding: 0;
   background: #fff;
-  padding: 10.5px 10.5px 0;
+  overflow: hidden;
 }
-.masonry .thumbnail {
-  margin-bottom: 20px;
+.thumbnail .corner {
+  font-size: 13px;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  background-color: rgb(155, 70, 70);
+  position: absolute;
+  right: -65px;
+  top: 15px;
+  width: 200px;
+  transform: rotate(30deg);
+  -moz-transform: rotate(30deg);
+  -webkit-transform: rotate(30deg);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+  -moz-box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .3);
 }
 #content .thumbnail img {
   border: 0;
 }
 .thumbnail > img {
   max-height: 180px;
+  box-shadow: 0 4px 10px -4px rgba(0,0,0,.3);
 }
+.masonry .thumbnail {
+  margin-bottom: 20px;
+}
+.thumbnail .details {
+  padding: 10.5px 10.5px 0;
+}
+
 .link-circle {
   color: #fff;
   display: block;

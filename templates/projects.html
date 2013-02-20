@@ -29,59 +29,59 @@
     {% for project in PROJECTS %}
       <div class="thumbnail span3">
         {% if project.inactive %}
-          <div class="progress progress-danger progress-striped">
-            <div class="bar" style="width: 100%;"><strong>Inactive</strong></div>
-          </div>
+          <div class="corner">Inactive</div>
         {% endif %}
         {% if project.thumb %}
           <img alt="{{ project.name }} screenshot" src="{{ project.thumb }}"/>
         {% endif %}
-        <h4>{{ project.name }}</h4>
-        {% if project.desc %}
-          <p>{{ project.desc }}</p>
-        {% endif %}
-        {% if project.roles or project.tools %}
-          <p>
-            {% for role in project.roles %}
-              <span class="label label-success">{{ role }}</span>
-            {% endfor %}
-            {% for tag in all_tags|sort(reverse = True, attribute = 'articles') %}
-              {% if tag.name in project.tools %}
-                {{ m.render_tag(tag) }}
-              {% endif %}
-            {% endfor %}
-            {% set tag_names = [] %}
-            {% for tag in all_tags %}
-              {% if tag_names.append(tag.name) %}{% endif %}
-            {% endfor %}
-            {% for tool in project.tools %}
-              {% if tool not in tag_names %}
-                <span class="label">{{ tool }}</span>
-              {% endif %}
-            {% endfor %}
-          </p>
-        {% endif %}
-        {% if project.links %}
-          <p class="clearfix">
-            {% for link in project.links %}
-              {% set link_icon = ['icon-home'] %}
-              {% for (domain, icon) in ICONS.items() %}
-                {% if link.find(domain) != -1 %}
-                  {% if link_icon.append(icon) %}{% endif %}
+        <div class="details">
+          <h4>{{ project.name }}</h4>
+          {% if project.desc %}
+            <p>{{ project.desc }}</p>
+          {% endif %}
+          {% if project.roles or project.tools %}
+            <p>
+              {% for role in project.roles %}
+                <span class="label label-success">{{ role }}</span>
+              {% endfor %}
+              {% for tag in all_tags|sort(reverse = True, attribute = 'articles') %}
+                {% if tag.name in project.tools %}
+                  {{ m.render_tag(tag) }}
                 {% endif %}
               {% endfor %}
-              {% set link_icon = link_icon[-1] %}
-              {% set icon_name_size = link_icon|length() %}
-              <a href="{{ link }}" class="pull-left link-circle">
-                {% if icon_name_size > 1 %}
-                  <i class="{{ link_icon }}"></i>
-                {% else %}
-                  <strong>{{ link_icon }}</strong>
+              {% set tag_names = [] %}
+              {% for tag in all_tags %}
+                {% if tag_names.append(tag.name) %}{% endif %}
+              {% endfor %}
+              {% for tool in project.tools %}
+                {% if tool not in tag_names %}
+                  <span class="label">{{ tool }}</span>
                 {% endif %}
-              </a>
-            {% endfor %}
-          </p>
-        {% endif %}
+              {% endfor %}
+            </p>
+          {% endif %}
+          {% if project.links %}
+            <p class="clearfix">
+              {% for link in project.links %}
+                {% set link_icon = ['icon-home'] %}
+                {% for (domain, icon) in ICONS.items() %}
+                  {% if link.find(domain) != -1 %}
+                    {% if link_icon.append(icon) %}{% endif %}
+                  {% endif %}
+                {% endfor %}
+                {% set link_icon = link_icon[-1] %}
+                {% set icon_name_size = link_icon|length() %}
+                <a href="{{ link }}" class="pull-left link-circle">
+                  {% if icon_name_size > 1 %}
+                    <i class="{{ link_icon }}"></i>
+                  {% else %}
+                    <strong>{{ link_icon }}</strong>
+                  {% endif %}
+                </a>
+              {% endfor %}
+            </p>
+          {% endif %}
+        </div>
       </div>
     {% endfor %}
 
