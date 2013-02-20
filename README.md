@@ -8,7 +8,6 @@ which is powered by [Pelican](http://getpelican.com), a static site generator wr
 TODO
 ----
 
-  * Re-write theme page
   * Re-use previous artworks from Maomium ?
   * Test different ad placements: http://news.ycombinator.com/item?id=4974511
   * Hack google search to integrate search result within theme design ?
