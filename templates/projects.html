@@ -32,7 +32,13 @@
           <div class="corner">Inactive</div>
         {% endif %}
         {% if project.thumb %}
-          <img alt="{{ project.name }} screenshot" src="{{ project.thumb }}"/>
+          {% if project.thumb_link %}
+            <a href="{{ project.thumb_link }}">
+          {% endif %}
+            <img alt="{{ project.name }} thumbnail" src="{{ project.thumb }}"/>
+          {% if project.thumb_link %}
+            </a>
+          {% endif %}
         {% endif %}
         <div class="details">
           <h4>{{ project.name }}</h4>
