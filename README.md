@@ -22,7 +22,7 @@ TODO
   * Replace Google custom search by https://swiftype.com/ ?
   * Automate blog building and publishing on commit update with Fabric ?
   * Add progressive image loading
-  * Concatenate and minify CSS and Javascript. For CSS, use: https://pypi.python.org/pypi/mincss
+  * Concatenate and minify CSS and Javascript. For CSS, use: https://pypi.python.org/pypi/mincss . Also, have a look at: https://pypi.python.org/pypi/pelican-minify
   * Inline and embed all CSS in the page ? See: http://www.peterbe.com/plog/100-percent-inline-css
   * Use LESS version of bootstrap for cleaner customizations ?
 
