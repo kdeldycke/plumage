@@ -11,6 +11,7 @@ TODO
   * Re-use previous artworks from Maomium ?
   * Test different ad placements: http://news.ycombinator.com/item?id=4974511
   * Hack google search to integrate search result within theme design ?
+  * Replace Google custom search by https://swiftype.com/ ? Or better, static search: http://ralsina.com.ar/weblog/posts/standalone-search-in-nikola.html
   * Fix embedded video aspect-ratio
   * Use a big carousel for front-page articles (ex: http://twitter.github.com/bootstrap/examples/carousel.html ) + a bit of http://srobbin.com/jquery-plugins/backstretch/ to keep aspect-ratio
   * Check some web-dev essentials: http://webdevchecklist.com/
@@ -20,7 +21,6 @@ TODO
   * Use custom jinja filters instead of heavy tag soup in my theme ? Example: https://bitbucket.org/sirex/blog/src/32c192ff7a10/pelican.conf.py#cl-53
   * Simplify Amazon affiliates links ? See: http://www.linktrackr.com/blog/amazon-affiliate-link/
   * Automate Amazon link creation: https://github.com/rdegges/python-amazonify
-  * Replace Google custom search by https://swiftype.com/ ?
   * Automate blog building and publishing on commit update with Fabric ? See: http://stackful-dev.com/easier-pelican-blogging-with-fabric-automation.html and https://pypi.python.org/pypi/pelicangit
   * Add progressive image loading. See: http://www.appelsiini.net/projects/lazyload 
   * Concatenate and minify CSS and Javascript. For CSS, use: https://pypi.python.org/pypi/mincss . Also, have a look at: https://pypi.python.org/pypi/pelican-minify
