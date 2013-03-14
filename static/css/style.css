@@ -15,7 +15,7 @@ code, pre {
 
 body {
   padding-top: 20px;
-  background: url(/theme/img/fabric_plaid.png);
+  background: rgb(236, 236, 236) url(/theme/img/fabric_plaid.png);
   box-shadow: inset 0 10px 100px -30px rgba(0, 0, 0, 0.5);
 }
 
@@ -79,6 +79,11 @@ section h1 {
   margin-top: 1em;
 }
 
+code {
+  color: inherit;
+  background-color: rgb(236, 236, 236); /* same as body's background-color */
+  border-color: rgb(224, 224, 235);
+}
 
 a {
   -webkit-transition: all 0.2s ease-out;
