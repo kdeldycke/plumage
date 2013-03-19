@@ -22,10 +22,11 @@ TODO
   * Simplify Amazon affiliates links ? See: http://www.linktrackr.com/blog/amazon-affiliate-link/
   * Automate Amazon link creation: https://github.com/rdegges/python-amazonify
   * Automate blog building and publishing on commit update with Fabric ? See: http://stackful-dev.com/easier-pelican-blogging-with-fabric-automation.html and https://pypi.python.org/pypi/pelicangit
-  * Add progressive image loading. See: http://www.appelsiini.net/projects/lazyload 
+  * Add progressive image loading. See: http://www.appelsiini.net/projects/lazyload
   * Concatenate and minify CSS and Javascript. For CSS, use: https://pypi.python.org/pypi/mincss . Also, have a look at: https://pypi.python.org/pypi/pelican-minify
   * Inline and embed all CSS in the page ? See: http://www.peterbe.com/plog/100-percent-inline-css
   * Use LESS version of bootstrap for cleaner customizations ?
+  * Check and fix style on mobile (especially ugly margins)
 
 
 License
