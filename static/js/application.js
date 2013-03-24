@@ -25,7 +25,7 @@
     // Add bootstrap table style to table elements
     $("#content table").addClass('table').addClass('table-hover');
 
-    // Let's make videos take the full width
+    // Allow videos to take the full width of a page
     // TODO; fix aspect ratio
     $(".container").fitVids();
 
@@ -38,6 +38,11 @@
         itemSelector: '.thumbnail',
         isFitWidth: true,
       });
+    });
+
+    // Display an icon overlay for images enclosed in a link in the main content column
+    $(function(){
+      $("#content a img").mglass();
     });
 
   })
