@@ -106,6 +106,17 @@ a {
 }
 
 
+.mglass {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.mglass:hover {
+  opacity: 1;
+}
+#content .video .mglass {
+  background-image: url(/theme/img/play-button.png);
+}
+
+
 .masonry {
   margin: 0 auto;
 }

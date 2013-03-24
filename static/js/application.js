@@ -40,9 +40,19 @@
       });
     });
 
+    // YouTube URL parser. Source: http://stackoverflow.com/questions/2964678/jquery-youtube-url-validation-with-regex/10315969#10315969
+    function parse_youtube_url(url) {
+      var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+      return (url.match(p)) ? RegExp.$1 : false;
+    }
+
     // Display an icon overlay for images enclosed in a link in the main content column
-    $(function(){
-      $("#content a img").mglass();
+    $("#content a img").each(function(i, image){
+      $(image).mglass({opacity: 1,});
+      var image_link = $(image).closest("a");
+      if (parse_youtube_url(image_link.attr("href")) != false) {
+        image_link.addClass("video");
+      };
     });
 
   })
