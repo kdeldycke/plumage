@@ -31,18 +31,77 @@ body {
   color: #2D2D2D;
 }
 .page-header a:hover {
-  color: #666;
+  color: #005580;
   text-decoration: none;
 }
-.page-header .avatar {
+
+
+/* Card flip inspired by http://learn.shayhowe.com/advanced-html-css/transitions-animations */
+.page-header .avatar-container {
   float: left;
-  overflow: hidden;
-  border-radius: 16px;
   width: 80px;
   height: 80px;
+  margin: 0 20px;
+  position: relative;
+  -webkit-perspective: 600;
+  -moz-perspective: 600;
+  -ms-perspective: 600;
+  -o-perspective: 600;
+  perspective: 600;
+}
+.page-header .avatar {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+.page-header .avatar .side {
   border: solid 3px white;
   box-shadow: 0 1px 6px rgba(0, 0, 0, .25);
-  margin: 0 20px;
+  border-radius: 16px;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.page-header .avatar:hover, .page-header .avatar .back {
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+.page-header .avatar .side:hover, .page-header .avatar .back {
+  border-color: #005580;
+}
+.page-header .avatar .back {
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #eeeeee), color-stop(100%, #dddddd));
+  background-image: -webkit-linear-gradient(#eeeeee,#dddddd);
+  background-image: -moz-linear-gradient(#eeeeee,#dddddd);
+  background-image: -o-linear-gradient(#eeeeee,#dddddd);
+  background-image: linear-gradient(#eeeeee,#dddddd);
+  -webkit-box-shadow: inset 0 0 25px rgba(0,0,0,0.1);
+  -moz-box-shadow: inset 0 0 25px rgba(0,0,0,0.1);
+  box-shadow: inset 0 0 25px rgba(0,0,0,0.1);
+  font-size: 13px;
+  line-height: 20px;
+}
+.page-header .avatar .back p {
+  padding-top: 8px;
 }
 
 
