@@ -27,6 +27,9 @@ TODO
   * Inline and embed all CSS in the page ? See: http://www.peterbe.com/plog/100-percent-inline-css
   * Use LESS version of bootstrap for cleaner customizations ?
   * Check and fix style on mobile (especially ugly margins)
+  * Look at app-template for code inspiration and ideas:
+      *  https://github.com/nprapps/app-template/blob/master/templates/_base.html
+      *  https://github.com/nprapps/app-template/blob/master/render_utils.py
 
 
 License
