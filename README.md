@@ -30,6 +30,7 @@ TODO
   * Look at app-template for code inspiration and ideas:
       *  https://github.com/nprapps/app-template/blob/master/templates/_base.html
       *  https://github.com/nprapps/app-template/blob/master/render_utils.py
+  * Add progressive loading on masonery layouts. See: http://masonry.desandro.com/demos/infinite-scroll.html
 
 
 License
