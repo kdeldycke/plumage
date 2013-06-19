@@ -31,7 +31,9 @@ TODO
       *  https://github.com/nprapps/app-template/blob/master/templates/_base.html
       *  https://github.com/nprapps/app-template/blob/master/render_utils.py
   * Add progressive loading on masonery layouts. See: http://masonry.desandro.com/demos/infinite-scroll.html
-  * Contibute theme to Pelican's repository ? For the moment I have 1 fan: https://twitter.com/_alagappan/status/328299060815618048
+  * Contibute theme to Pelican's repository ? For the moment I have 2 fans:
+      * https://twitter.com/_alagappan/status/328299060815618048
+      * https://twitter.com/Jonas_Wallin/status/346373684912599040
   * Fix Google Analytics bouncing rate ? See: http://drawingablank.me/blog/fix-your-bounce-rate.html
 
 
