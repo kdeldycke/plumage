@@ -11,8 +11,14 @@
                 , 'kevin.deldycke.com': 'icon-bullhorn'
                 , 'type_of_search=mlists': 'icon-envelope-alt'
                 , 'gmane.org': 'icon-envelope-alt'
-                , 'bitbucket.org': '⛁'
+                , 'bitbucket.org': 'icon-bitbucket'
                 , 'youtube.com': 'icon-play'
+                , 'bugs.launchpad.net': 'icon-bug'
+                , 'trac.wordpress.org': 'icon-bug'
+                , 'sourceforge.net/apps/trac': 'icon-bug'
+                , 'bugs.debian.org': 'icon-bug'
+                , 'ticket=on': 'icon-bug'
+                , 'ohloh.net': 'icon-bar-chart'
                 }
 %}
 
@@ -77,13 +83,8 @@
                   {% endif %}
                 {% endfor %}
                 {% set link_icon = link_icon[-1] %}
-                {% set icon_name_size = link_icon|length() %}
                 <a href="{{ link }}" class="pull-left link-circle">
-                  {% if icon_name_size > 1 %}
-                    <i class="{{ link_icon }}"></i>
-                  {% else %}
-                    <strong>{{ link_icon }}</strong>
-                  {% endif %}
+                  <i class="{{ link_icon }}"></i>
                 </a>
               {% endfor %}
             </p>
