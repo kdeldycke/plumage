@@ -36,7 +36,6 @@
     $container.imagesLoaded(function(){
       $container.masonry({
         itemSelector: '.thumbnail',
-        isFitWidth: true,
       });
     });
 
