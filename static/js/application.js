@@ -47,7 +47,7 @@
     }
 
     // Display an icon overlay for images enclosed in a link in the main content column
-    $("#content a img").each(function(i, image){
+    $("#content a img:not(.icon)").each(function(i, image){
       $(image).mglass({opacity: 1,});
       var image_link = $(image).closest("a");
       if (parse_youtube_url(image_link.attr("href")) != false) {
