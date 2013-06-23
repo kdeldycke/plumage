@@ -130,7 +130,7 @@
             </div>
           {% endif %}
 
-          <div {% if LAYOUT != 'full-width' %} class="span6" {% endif %} id="content" role="main">
+          <div class="{% if LAYOUT == 'full-width' %} offset1 {% else %} span6 {% endif %}"  id="content" role="main">
             {% block content %}
             {% endblock %}
           </div>

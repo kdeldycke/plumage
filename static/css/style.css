@@ -176,11 +176,6 @@ a {
 }
 
 
-.masonry {
-  margin: 0 auto;
-}
-
-
 /*a.label, a.badge,*/ a.link-circle {
   background-color: rgb(228, 228, 228);
 }
@@ -222,6 +217,7 @@ a {
   margin-bottom: 20px;
 }
 .thumbnail .details {
+  font-size: 14px;
   padding: 10.5px 10.5px 0;
 }
 
