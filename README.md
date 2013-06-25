@@ -16,7 +16,7 @@ TODO
   * Use a big carousel for front-page articles (ex: http://twitter.github.com/bootstrap/examples/carousel.html ) + a bit of http://srobbin.com/jquery-plugins/backstretch/ to keep aspect-ratio
   * Check some web-dev essentials: http://webdevchecklist.com/
   * Add a fancy zoom for images
-  * Get rid of /year/month/ in URL slug ? Or get rid of month only ?
+  * Get rid of /year/month/ for articles ? Or get rid of month only ?
   * Deduplicate articles' tags.
   * Use custom jinja filters instead of heavy tag soup in my theme ? Example: https://bitbucket.org/sirex/blog/src/32c192ff7a10/pelican.conf.py#cl-53
   * Simplify Amazon affiliates links ? See: http://www.linktrackr.com/blog/amazon-affiliate-link/
