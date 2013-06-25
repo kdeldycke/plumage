@@ -22,6 +22,15 @@
                 , 'ohloh.net': 'icon-bar-chart'
                 }
 %}
+{% set LABELS = { 'icon-github-alt': 'Git repository'
+                , 'icon-bullhorn': 'Announcement on this blog'
+                , 'icon-envelope-alt': 'Mailing-list participation'
+                , 'icon-bitbucket': 'Mercurial repository'
+                , 'icon-play': 'Play video'
+                , 'icon-bug': 'Reported bugs'
+                , 'icon-bar-chart': 'Contribution statistics'
+                }
+%}
 
 
 {% macro render_projects() %}
@@ -84,7 +93,7 @@
                   {% endif %}
                 {% endfor %}
                 {% set link_icon = link_icon[-1] %}
-                <a href="{{ link }}" class="pull-left link-circle">
+                <a href="{{ link }}" class="pull-left link-circle" title="{{ LABELS.get(link_icon, 'Project home') }}">
                   <i class="{{ link_icon }}"></i>
                 </a>
               {% endfor %}
