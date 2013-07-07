@@ -1,8 +1,9 @@
-Kevin Deldycke's blog
-=====================
+Plumage
+=======
 
-These are the source files of the content and theme of my [blog](http://kevin.deldycke.com),
-which is powered by [Pelican](http://getpelican.com), a static site generator written in Python.
+Plumage is a theme for [Pelican](http://getpelican.com), a static site generator written in Python.
+
+I initially created this theme for [my blog](http://kevin.deldycke.com), but now the theme is supposed to be generic enough to have its own repository.
 
 
 TODO
@@ -43,12 +44,9 @@ TODO
 License
 -------
 
-The content of this repository is copyrighted (c) 2004-2013 Kevin Deldycke.
+The content of this repository is copyrighted (c) 2012-2013 Kevin Deldycke.
 
-Unless contrary mention, the licensing terms below applies:
-
-  * Code and software released under [GNU/GPL licence, v2.0](http://www.fsf.org/licensing/licenses/gpl.html).
-  * Other content published under [Creative Commons Attribution-Share Alike 3.0 license](http://creativecommons.org/licenses/by-sa/3.0/).
+Unless contrary mention, the content in this repository is licensed under a [GNU/GPL licence, v2.0](http://www.fsf.org/licensing/licenses/gpl.html).
 
 
 Third-party assets
