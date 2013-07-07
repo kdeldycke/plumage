@@ -35,7 +35,6 @@ TODO
       * https://twitter.com/Jonas_Wallin/status/346373684912599040
   * Remove hard-coded Ad
   * Remove hard-coded Google Analytics code
-  * Remove hard-coded Disqus code
   * Remove hard-coded header avatar
   * Replace Previous/Next article navigation with Pelican plugin: https://github.com/getpelican/pelican-plugins/tree/master/neighbors
   * Re-integrate Related Posts: the Disqus widget doesn't do a good job. Use: https://github.com/getpelican/pelican-plugins/tree/master/related_posts
