@@ -40,7 +40,6 @@ TODO
   * Replace Previous/Next article navigation with Pelican plugin: https://github.com/getpelican/pelican-plugins/tree/master/neighbors
   * Re-integrate Related Posts: the Disqus widget doesn't do a good job. Use: https://github.com/getpelican/pelican-plugins/tree/master/related_posts
   * Make footer content dynamic
-  * Remove GoSquared
 
 
 License
