@@ -9,20 +9,13 @@ I initially created this theme for [my blog](http://kevin.deldycke.com), but now
 TODO
 ----
 
-  * Re-use previous artworks from Maomium ?
-  * Test different ad placements: http://news.ycombinator.com/item?id=4974511
   * Hack google search to integrate search result within theme design ?
   * Replace Google custom search by https://swiftype.com/ ? Or better, static search: http://ralsina.com.ar/weblog/posts/standalone-search-in-nikola.html
   * Fix embedded video aspect-ratio
   * Use a big carousel for front-page articles (ex: http://twitter.github.com/bootstrap/examples/carousel.html ) + a bit of http://srobbin.com/jquery-plugins/backstretch/ to keep aspect-ratio
   * Check some web-dev essentials: http://webdevchecklist.com/
   * Add a fancy zoom for images
-  * Get rid of /year/month/ for articles ? Or get rid of month only ?
-  * Deduplicate articles' tags.
   * Use custom jinja filters instead of heavy tag soup in my theme ? Example: https://bitbucket.org/sirex/blog/src/32c192ff7a10/pelican.conf.py#cl-53
-  * Simplify Amazon affiliates links ? See: http://www.linktrackr.com/blog/amazon-affiliate-link/
-  * Automate Amazon link creation: https://github.com/rdegges/python-amazonify
-  * Automate blog building and publishing on commit update with Fabric ? See: http://stackful-dev.com/easier-pelican-blogging-with-fabric-automation.html and https://pypi.python.org/pypi/pelicangit
   * Add progressive image loading. See: http://www.appelsiini.net/projects/lazyload
   * Concatenate and minify CSS and Javascript. See:
       * https://pypi.python.org/pypi/mincss
@@ -38,7 +31,6 @@ TODO
   * Contibute theme to Pelican's repository ? For the moment I have 2 fans:
       * https://twitter.com/_alagappan/status/328299060815618048
       * https://twitter.com/Jonas_Wallin/status/346373684912599040
-  * Fix Google Analytics bouncing rate ? See: http://drawingablank.me/blog/fix-your-bounce-rate.html
 
 
 License
