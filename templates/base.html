@@ -201,8 +201,10 @@
     {% if GOOGLE_ANALYTICS %}
       <script type="text/javascript">
         var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', '{{GOOGLE_ANALYTICS}}']);
-        _gaq.push(['_setDomainName', 'deldycke.com']);
+        _gaq.push(['_setAccount', '{{ GOOGLE_ANALYTICS }}']);
+        {% if GOOGLE_ANALYTICS_DOMAIN %}
+          _gaq.push(['_setDomainName', '{{ GOOGLE_ANALYTICS_DOMAIN }}']);
+        {% endif %}
         _gaq.push(['_setAllowLinker', true]);
         _gaq.push(['_trackPageview']);
         (function() {
