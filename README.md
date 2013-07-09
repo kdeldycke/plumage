@@ -31,7 +31,21 @@ Plumage has built-in support for the following plugins:
 Settings
 --------
 
-Plumage is sensible to this list of [standard Pelican parameters](http://docs.getpelican.com/en/latest/settings.html):
+Plumage can be customized by adding these optionnal parameters to your `pelicanconf.py` file:
+
+  * `SITESUBTITLE`: Set the subtitle from the site's header.
+  * `MENUITEMS`: A list of tuples (Title, URL) for additional menu items to appear at the beginning of the main menu.
+  * `SOCIAL`: A list of tuples (Title, URL) to appear in the first columns of the footer.
+  * `SOCIAL_TITLE`: Ovveride the title of the first column of the footer. Default value: `Social`.
+  * `LINKS`: A list of tuples (Title, URL) for links to appear in the second column of the footer.
+  * `LINKS_TITLE`: Ovveride the title of the second column of the footer. Default value: `Links`.
+  * `DISQUS_SITENAME`: Disqus sitename identifier.
+  * `GOOGLE_ANALYTICS`: Google Analytics unique identifier, in the form of `UA-XXXX-YYYY`.
+  * `GOOGLE_ANALYTICS_DOMAIN`: Add the `_setDomainName` variable to Google Analytics' Javascript code.
+
+Most of these [parameters are similar to `notmyidea`'s](http://docs.getpelican.com/en/latest/settings.html#themes) (Pelican's default theme). For usage example, please have a look into [my own `pelicanconf.py`](https://github.com/kdeldycke/kevin-deldycke-blog/blob/master/pelicanconf.py).
+
+The theme is also sensible to this list of [standard Pelican parameters](http://docs.getpelican.com/en/latest/settings.html):
 
   * `ARCHIVES_SAVE_AS`
   * `AUTHOR_SAVE_AS`
@@ -41,30 +55,17 @@ Plumage is sensible to this list of [standard Pelican parameters](http://docs.ge
   * `DEFAULT_LANG`
   * `DEFAULT_PAGINATION`
   * `DISPLAY_PAGES_ON_MENU`
-  * `DISQUS_SITENAME`
   * `FEED_ALL_ATOM`
   * `FEED_ALL_RSS`
   * `FEED_ATOM`
   * `FEED_DOMAIN`
   * `FEED_RSS`
-  * `GOOGLE_ANALYTICS`
-  * `LINKS`
-  * `MENUITEMS`
   * `PDF_PROCESSOR`
   * `SITENAME`
-  * `SITESUBTITLE`
   * `SITEURL`
   * `TAG_FEED_ATOM`
   * `TAG_FEED_RSS`
   * `TAGS_SAVE_AS`
-
-This theme also adds some new parameters:
-
-  * `SOCIAL_TITLE`: Set the title of the block listing social links. Default value: `Social`.
-  * `LINKS_TITLE`: Set the title of the block listing the misc links. Default value: `Links`.
-  * `GOOGLE_ANALYTICS_DOMAIN`: Add the `_setDomainName` variable to Google Analytics' Javascript code.
-
-All parameters mentionned here are optionnal.
 
 
 TODO
