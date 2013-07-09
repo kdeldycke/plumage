@@ -94,6 +94,7 @@ TODO
   * Contibute theme to Pelican's repository ? For the moment I have 2 fans:
       * https://twitter.com/_alagappan/status/328299060815618048
       * https://twitter.com/Jonas_Wallin/status/346373684912599040
+  * Make a macro to generated iconized links
   * Remove hard-coded Ad
   * Remove hard-coded header avatar
 
