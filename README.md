@@ -24,6 +24,7 @@ Plugins
 Plumage has built-in support for the following plugins:
 
   * [`neighbors`](https://github.com/getpelican/pelican-plugins/tree/master/neighbors)
+  * [`related_posts`](https://github.com/getpelican/pelican-plugins/tree/master/related_posts)
 
 
 Settings
@@ -89,7 +90,6 @@ TODO
       * https://twitter.com/Jonas_Wallin/status/346373684912599040
   * Remove hard-coded Ad
   * Remove hard-coded header avatar
-  * Re-integrate Related Posts: the Disqus widget doesn't do a good job. Use: https://github.com/getpelican/pelican-plugins/tree/master/related_posts
   * Make footer content dynamic
 
 
