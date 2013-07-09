@@ -16,6 +16,7 @@ Features
   * Tags grouped by tiers
   * External assets (Bootstrap, Jquery, etc...) uses CDN
   * YouTube links
+  * Direct link to edit articles on Github
 
 
 Plugins
@@ -32,9 +33,11 @@ Settings
 
 Plumage is sensible to this list of [standard Pelican parameters](http://docs.getpelican.com/en/latest/settings.html):
 
+  * `ARCHIVES_SAVE_AS`
   * `AUTHOR_SAVE_AS`
   * `CATEGORY_FEED_ATOM`
   * `CATEGORY_FEED_RSS`
+  * `CATEGORY_SAVE_AS`
   * `DEFAULT_LANG`
   * `DEFAULT_PAGINATION`
   * `DISPLAY_PAGES_ON_MENU`
@@ -53,10 +56,13 @@ Plumage is sensible to this list of [standard Pelican parameters](http://docs.ge
   * `SITEURL`
   * `TAG_FEED_ATOM`
   * `TAG_FEED_RSS`
+  * `TAGS_SAVE_AS`
 
 This theme also adds some new parameters:
 
-  * `GOOGLE_ANALYTICS_DOMAIN`: add support for the `_setDomainName` variable in GA Javascript code.
+  * `SOCIAL_TITLE`: Set the title of the block listing social links. Default value: `Social`.
+  * `LINKS_TITLE`: Set the title of the block listing the misc links. Default value: `Links`.
+  * `GOOGLE_ANALYTICS_DOMAIN`: add the `_setDomainName` variable to Google Analytics' Javascript code.
 
 All parameters mentionned here are optionnal.
 
@@ -90,7 +96,6 @@ TODO
       * https://twitter.com/Jonas_Wallin/status/346373684912599040
   * Remove hard-coded Ad
   * Remove hard-coded header avatar
-  * Make footer content dynamic
 
 
 Authors

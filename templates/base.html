@@ -152,31 +152,34 @@
       <div class="container">
         <div class="row">
 
-          <div class="span2">
-            <h5>Contact</h5>
-            <p><a href="http://twitter.com/kdeldycke" class="icon-twitter"> @kdeldycke</a></p>
-            <p><a href="mailto:kevin@deldycke.com" class="icon-envelope-alt"> kevin@deldycke.com</a></p>
-          </div>
+          {% set SOCIAL_TITLE = SOCIAL_TITLE or 'Social' %}
+          {% set LINKS_TITLE  = LINKS_TITLE  or 'Links'  %}
+          {% for group_title, group_links in ((SOCIAL_TITLE, SOCIAL), (LINKS_TITLE, LINKS)) %}
+            <div class="span2">
+              {% if group_links %}
+                <h5>{{ group_title }}</h5>
+                <ul class="unstyled">
+                {% for title, link in group_links %}
+                    <li><a href="{{ link }}"><img src="http://g.etfv.co/{{ '/'.join(link.split('/', 3)[:3]) }}?defaulticon=lightpng" width="16" height="16" alt="{{ title }} icon"/> {{ title }}</a></li>
+                {% endfor %}
+                </ul>
+              {% endif %}
+            </div>
+          {% endfor %}
 
           <div class="span2">
-            <h5>Professional profiles</h5>
+            <h5>Browse content by</h5>
             <ul class="unstyled">
-              <li><a href="http://docs.google.com/document/export?format=pdf&amp;id=1XaJgwRAhxHDuBSD-JqE--8WKGx0uTasa6IOU4IFBeKg"><i class="icon-file"></i> PDF resume</a></li>
-              <li><a href="http://careers.stackoverflow.com/kdeldycke"><img src="http://g.etfv.co/http://careers.stackoverflow.com?defaulticon=lightpng" width="16" height="16" alt="Careers 2.0 profile"/> Careers 2.0</a></li>
-              <li><a href="http://linkedin.com/in/kevindeldycke/en"><img src="http://g.etfv.co/http://linkedin.com?defaulticon=lightpng" width="16" height="16" alt="LinkedIn profile"/> LinkedIn</a></li>
-              <li><a href="http://viadeo.com/fr/profile/kevin.deldycke"><img src="http://g.etfv.co/http://viadeo.com?defaulticon=lightpng" width="16" height="16" alt="Viadeo profile"/> Viadeo</a></li>
+              {% if CATEGORY_SAVE_AS %}
+                <li><a href="{{ SITEURL }}/categories.html" class="icon-tags"> Categories</a></li>
+              {% endif %}
+              {% if ARCHIVES_SAVE_AS %}
+                <li><a href="{{ SITEURL }}/{{ ARCHIVES_SAVE_AS }}" class="icon-calendar"> Dates</a></li>
+              {% endif %}
+              {% if TAGS_SAVE_AS %}
+                <li><a href="{{ SITEURL }}/{{ TAGS_SAVE_AS }}" class="icon-tag"> Tags</a></li>
+              {% endif %}
             </ul>
-          </div>
-
-          <div class="span2">
-            {% if LINKS %}
-              <h5>Other pages</h5>
-              <ul class="unstyled">
-              {% for name, link in LINKS %}
-                  <li><a href="{{ link }}">{{ name }}</a></li>
-              {% endfor %}
-              </ul>
-            {% endif %}
           </div>
 
           <div class="span2 muted">
