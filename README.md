@@ -103,7 +103,11 @@ Changelog
 ---------
 
 * **1.0.dev** (unreleased)
-  * No changes yet
+  * Make Disqus and Google Analytics code generic.
+  * Remove GoSquared.
+  * Replace custom navigation with Pelican's neighbors plugin.
+  * Add screenshot.
+  * Update documentation.
 
 * **0.1** (2013-07-07)
   * Move out theme from my [blog repository](https://github.com/kdeldycke/kevin-deldycke-blog) to its own repository.
