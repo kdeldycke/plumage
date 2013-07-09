@@ -35,6 +35,7 @@ Plumage can be customized by adding these optionnal parameters to your `pelicanc
 
   * `SITESUBTITLE`: Set the subtitle from the site's header.
   * `MENUITEMS`: A list of tuples (Title, URL) for additional menu items to appear at the beginning of the main menu.
+  * `LEFT_SIDEBAR`, `RIGHT_SIDEBAR`: HTML content to put as-is in the left or right sidebar.
   * `SOCIAL`: A list of tuples (Title, URL) to appear in the first columns of the footer.
   * `SOCIAL_TITLE`: Ovveride the title of the first column of the footer. Default value: `Social`.
   * `LINKS`: A list of tuples (Title, URL) for links to appear in the second column of the footer.
@@ -97,7 +98,6 @@ TODO
       * https://twitter.com/_alagappan/status/328299060815618048
       * https://twitter.com/Jonas_Wallin/status/346373684912599040
   * Make a macro to generated iconized links
-  * Remove hard-coded Ad
   * Remove hard-coded header avatar
 
 
@@ -111,16 +111,15 @@ Changelog
 ---------
 
 * **1.0.dev** (unreleased)
-  * Make Disqus and Google Analytics code generic.
-  * Remove GoSquared.
+  * Make theme fully generic through the use of variables.
   * Replace custom navigation with Pelican's neighbors plugin.
   * Add screenshot.
   * Update documentation.
 
 * **0.1** (2013-07-07)
-  * Move out theme from my [blog repository](https://github.com/kdeldycke/kevin-deldycke-blog) to its own repository.
   * Theme has now a name: Plumage.
-  * The theme should now be generic enough. Update TODO-list accordingly.
+  * Move the theme out of my [blog repository](https://github.com/kdeldycke/kevin-deldycke-blog) to its own repository.
+  * Theme is now generic enough. Update TODO-list accordingly.
 
 * **0.0** (2012-12-23)
   * First commit.
