@@ -78,7 +78,7 @@ body {
   -o-backface-visibility: hidden;
   backface-visibility: hidden;
 }
-.page-header .avatar:hover, .page-header .avatar .back {
+.page-header .avatar.animate:hover, .page-header .avatar.animate .back {
   -webkit-transform: rotateY(180deg);
   -moz-transform: rotateY(180deg);
   -ms-transform: rotateY(180deg);
