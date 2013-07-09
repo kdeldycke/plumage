@@ -26,16 +26,38 @@ Plumage has built-in support for the following plugins:
   * [`neighbors`](https://github.com/getpelican/pelican-plugins/tree/master/neighbors)
 
 
-Variables
----------
+Settings
+--------
 
-Plumage add new variables:
+Plumage is sensible to this list of [standard Pelican parameters](http://docs.getpelican.com/en/latest/settings.html):
 
-  * `GOOGLE_ANALYTICS_DOMAIN`: add support for the `_setDomainName` variable in GA JS code.
-
-And support other standards variables:
-
+  * `AUTHOR_SAVE_AS`
+  * `CATEGORY_FEED_ATOM`
+  * `CATEGORY_FEED_RSS`
+  * `DEFAULT_LANG`
+  * `DEFAULT_PAGINATION`
+  * `DISPLAY_PAGES_ON_MENU`
+  * `DISQUS_SITENAME`
+  * `FEED_ALL_ATOM`
+  * `FEED_ALL_RSS`
+  * `FEED_ATOM`
+  * `FEED_DOMAIN`
+  * `FEED_RSS`
   * `GOOGLE_ANALYTICS`
+  * `LINKS`
+  * `MENUITEMS`
+  * `PDF_PROCESSOR`
+  * `SITENAME`
+  * `SITESUBTITLE`
+  * `SITEURL`
+  * `TAG_FEED_ATOM`
+  * `TAG_FEED_RSS`
+
+This theme also adds some new parameters:
+
+  * `GOOGLE_ANALYTICS_DOMAIN`: add support for the `_setDomainName` variable in GA Javascript code.
+
+All parameters mentionned here are optionnal.
 
 
 TODO
