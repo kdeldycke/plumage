@@ -99,6 +99,21 @@ Authors
   * Kevin Deldycke <kevin@deldycke.com>
 
 
+Changelog
+---------
+
+* **1.0.dev** (unreleased)
+  * No changes yet
+
+* **0.1** (2013-07-07)
+  * Move out theme from my [blog repository](https://github.com/kdeldycke/kevin-deldycke-blog) to its own repository.
+  * Theme has now a name: Plumage.
+  * The theme should now be generic enough. Update TODO-list accordingly.
+
+* **0.0** (2012-12-23)
+  * First commit.
+
+
 License
 -------
 
