@@ -62,7 +62,7 @@ This theme also adds some new parameters:
 
   * `SOCIAL_TITLE`: Set the title of the block listing social links. Default value: `Social`.
   * `LINKS_TITLE`: Set the title of the block listing the misc links. Default value: `Links`.
-  * `GOOGLE_ANALYTICS_DOMAIN`: add the `_setDomainName` variable to Google Analytics' Javascript code.
+  * `GOOGLE_ANALYTICS_DOMAIN`: Add the `_setDomainName` variable to Google Analytics' Javascript code.
 
 All parameters mentionned here are optionnal.
 
