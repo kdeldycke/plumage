@@ -113,7 +113,7 @@ Authors
 Changelog
 ---------
 
-* **1.0.dev** (unreleased)
+* **0.2** (2013-07-09)
   * Make theme fully generic through the use of variables.
   * Replace custom navigation with Pelican's neighbors plugin.
   * Add screenshot.
