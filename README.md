@@ -37,6 +37,7 @@ Plumage can be customized by adding these optionnal parameters to your `pelicanc
   * `SITE_THUMBNAIL_TEXT`: Text displayed behind site's thumbnail.
   * `SITESUBTITLE`: Set the subtitle from the site's header.
   * `MENUITEMS`: A list of tuples (Title, URL) for additional menu items to appear at the beginning of the main menu.
+  * `GOOGLE_SEARCH`: [Google's Custom Search Engine](https://www.google.com/cse/) ID (e.g. `partner-pub-0123456789098765:0123456789`) to activate blog specific search.
   * `LEFT_SIDEBAR`, `RIGHT_SIDEBAR`: HTML content to put as-is in the left or right sidebar.
   * `ARTICLE_EDIT_LINK`: Generate an edit link besides each article. Can use `%(slug)s` to include dynamic article's slug in the link.
   * `SOCIAL`: A list of tuples (Title, URL) to appear in the first columns of the footer.
@@ -45,7 +46,7 @@ Plumage can be customized by adding these optionnal parameters to your `pelicanc
   * `LINKS_TITLE`: Ovveride the title of the second column of the footer. Default value: `Links`.
   * `COPYRIGHT`: Additional copyright statement to add in the third column of the footer.
   * `DISQUS_SITENAME`: Disqus sitename identifier.
-  * `GOOGLE_ANALYTICS`: Google Analytics unique identifier, in the form of `UA-XXXX-YYYY`.
+  * `GOOGLE_ANALYTICS`: Google Analytics unique identifier (e.g. `UA-XXXX-YYYY`).
   * `GOOGLE_ANALYTICS_DOMAIN`: Add the `_setDomainName` variable to Google Analytics' Javascript code.
 
 Most of these [parameters are similar to `notmyidea`'s](http://docs.getpelican.com/en/latest/settings.html#themes) (Pelican's default theme). For usage example, please have a look into [my own `pelicanconf.py`](https://github.com/kdeldycke/kevin-deldycke-blog/blob/master/pelicanconf.py).
