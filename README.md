@@ -12,6 +12,7 @@ Features
 --------
 
   * Based on Twitter Bootstrap
+  * Project template
   * Tags grouped by tiers
   * External assets (Bootstrap, Jquery, etc...) uses CDN
   * YouTube links
