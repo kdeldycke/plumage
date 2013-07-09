@@ -36,6 +36,7 @@ Plumage can be customized by adding these optionnal parameters to your `pelicanc
   * `SITESUBTITLE`: Set the subtitle from the site's header.
   * `MENUITEMS`: A list of tuples (Title, URL) for additional menu items to appear at the beginning of the main menu.
   * `LEFT_SIDEBAR`, `RIGHT_SIDEBAR`: HTML content to put as-is in the left or right sidebar.
+  * `ARTICLE_EDIT_LINK`: Generate an edit link besides each article. Can use `%(slug)s` to include dynamic article's slug in the link.
   * `SOCIAL`: A list of tuples (Title, URL) to appear in the first columns of the footer.
   * `SOCIAL_TITLE`: Ovveride the title of the first column of the footer. Default value: `Social`.
   * `LINKS`: A list of tuples (Title, URL) for links to appear in the second column of the footer.
