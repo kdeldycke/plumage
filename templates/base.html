@@ -70,12 +70,16 @@
 
       <header>
         <div class="page-header">
-          <a href="{{ SITEURL }}" class="avatar-container">
-            <div class="avatar">
-              <div class="side"><img src="/static/uploads/2006/avatar-orig.png"/></div>
-              <div class="side back"><p class="text-center">Official avatar since MMIV</p></div>
-            </div>
-          </a>
+          {% if SITE_THUMBNAIL %}
+            <a href="{{ SITEURL }}" class="avatar-container">
+              <div class="avatar">
+                <div class="side"><img src="{{ SITE_THUMBNAIL }}"/></div>
+                {% if SITE_THUMBNAIL_TEXT %}
+                  <div class="side back"><p class="text-center">{{ SITE_THUMBNAIL_TEXT }}</p></div>
+                {% endif %}
+              </div>
+            </a>
+          {% endif %}
           <h1><a href="{{ SITEURL }}">{{ SITENAME }}</a> <small>{{ SITESUBTITLE }}</small></h1>
         </div>
 

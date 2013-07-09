@@ -33,6 +33,8 @@ Settings
 
 Plumage can be customized by adding these optionnal parameters to your `pelicanconf.py` file:
 
+  * `SITE_THUMBNAIL`: Site's thumbnail URL as displayed in the header. Should be a square image of at least 80x80 pixels.
+  * `SITE_THUMBNAIL_TEXT`: Text displayed behind site's thumbnail.
   * `SITESUBTITLE`: Set the subtitle from the site's header.
   * `MENUITEMS`: A list of tuples (Title, URL) for additional menu items to appear at the beginning of the main menu.
   * `LEFT_SIDEBAR`, `RIGHT_SIDEBAR`: HTML content to put as-is in the left or right sidebar.
@@ -99,7 +101,6 @@ TODO
       * https://twitter.com/_alagappan/status/328299060815618048
       * https://twitter.com/Jonas_Wallin/status/346373684912599040
   * Make a macro to generated iconized links
-  * Remove hard-coded header avatar
 
 
 Authors
