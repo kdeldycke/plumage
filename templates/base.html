@@ -14,12 +14,13 @@
     <![endif]-->
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap-responsive.min.css"/>
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap-responsive.min.css"/>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.0/css/font-awesome.min.css"/>
     <!--[if IE 7]>
-      <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.0/css/font-awesome-ie7.min.css">
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.0/css/font-awesome-ie7.min.css">
     <![endif]-->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/jquery.magnific-popup/0.8.9/magnific-popup.css"/>
     <link rel="stylesheet" href="{{ SITEURL }}/theme/css/jquery.mglass.css"/>
     <link rel="stylesheet" href="{{ SITEURL }}/theme/css/pygment-solarized-dark.css"/>
     <link rel="stylesheet" href="{{ SITEURL }}/theme/css/style.css"/>
@@ -126,7 +127,7 @@
             </div>
           {% endif %}
 
-          <div class="{% if LAYOUT == 'full-width' %} offset1 {% else %} span6 {% endif %}"  id="content" role="main">
+          <div class="{% if LAYOUT == 'full-width' %} offset1 {% else %} span6 {% endif %}" id="content" role="main">
             {% block content %}
             {% endblock %}
           </div>
@@ -224,9 +225,10 @@
         })();
       </script>
     {% endif %}
-    <script src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.10.0.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="//cdn.jsdelivr.net/jquery.magnific-popup/0.8.9/jquery.magnific-popup.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
     <script src="{{ SITEURL }}/theme/js/jquery.mglass.js"></script>
     <script src="{{ SITEURL }}/theme/js/application.js"></script>
     {% block extra_js %}{% endblock %}

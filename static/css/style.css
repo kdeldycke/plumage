@@ -37,6 +37,7 @@ body {
 
 
 /* Card flip inspired by http://learn.shayhowe.com/advanced-html-css/transitions-animations */
+/* Possible alternative: use https://github.com/mintchaos/flippant.js */
 .page-header .avatar-container {
   float: left;
   width: 80px;
@@ -90,13 +91,13 @@ body {
 }
 .page-header .avatar .back {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #eeeeee), color-stop(100%, #dddddd));
-  background-image: -webkit-linear-gradient(#eeeeee,#dddddd);
-  background-image: -moz-linear-gradient(#eeeeee,#dddddd);
-  background-image: -o-linear-gradient(#eeeeee,#dddddd);
-  background-image: linear-gradient(#eeeeee,#dddddd);
-  -webkit-box-shadow: inset 0 0 25px rgba(0,0,0,0.1);
-  -moz-box-shadow: inset 0 0 25px rgba(0,0,0,0.1);
-  box-shadow: inset 0 0 25px rgba(0,0,0,0.1);
+  background-image: -webkit-linear-gradient(#eeeeee, #dddddd);
+  background-image: -moz-linear-gradient(#eeeeee, #dddddd);
+  background-image: -o-linear-gradient(#eeeeee, #dddddd);
+  background-image: linear-gradient(#eeeeee, #dddddd);
+  -webkit-box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.1);
   font-size: 13px;
   line-height: 20px;
 }
@@ -150,8 +151,8 @@ code {
 a {
   -webkit-transition: all 0.2s ease-out;
   -moz-transition: all 0.2s ease-out;
-  -o-transition: all 0.2s ease-out;
   -ms-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
   transition: all 0.2s ease-out;
 }
 .muted a {
@@ -167,12 +168,41 @@ a {
 
 .mglass {
   background-color: rgba(0, 0, 0, 0.3);
+  cursor: -webkit-zoom-in;
+  cursor: -moz-zoom-in;
+  cursor: zoom-in;
 }
 .mglass:hover {
   opacity: 1;
 }
 #content .video .mglass {
   background-image: url(/theme/img/play-button.png);
+}
+
+
+.mfp-with-zoom .mfp-container,
+.mfp-with-zoom.mfp-bg {
+  opacity: 0;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+.mfp-with-zoom.mfp-ready .mfp-container {
+  opacity: 1;
+}
+.mfp-with-zoom.mfp-ready.mfp-bg {
+  opacity: 0.8;
+}
+.mfp-with-zoom.mfp-removing .mfp-container,
+.mfp-with-zoom.mfp-removing.mfp-bg {
+  opacity: 0;
 }
 
 
@@ -211,7 +241,7 @@ a {
 }
 .thumbnail > img {
   max-height: 180px;
-  box-shadow: 0 4px 10px -4px rgba(0,0,0,.3);
+  box-shadow: 0 4px 10px -4px rgba(0, 0, 0, .3);
 }
 .masonry .thumbnail {
   margin-bottom: 20px;

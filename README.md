@@ -88,7 +88,6 @@ TODO
       * http://webdevchecklist.com/
       * https://github.com/getpelican/pelican-plugins/tree/master/w3c_validate
       * https://github.com/dypsilon/frontend-dev-bookmarks
-  * Add a fancy zoom for images
   * Use custom jinja filters instead of heavy tag soup in my theme ? Example: https://bitbucket.org/sirex/blog/src/32c192ff7a10/pelican.conf.py#cl-53
   * Add progressive image loading. See:
       * http://www.appelsiini.net/projects/lazyload
@@ -126,7 +125,7 @@ Changelog
 ---------
 
 * **0.3.dev** (unreleased)
-  * No changes yet.
+  * Add auto-zoom of images based on Magnific Popup.
 
 * **0.2** (2013-07-09)
   * Make theme fully generic through the use of variables.

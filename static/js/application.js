@@ -25,6 +25,23 @@
     // Add bootstrap table style to table elements
     $("#content table").addClass('table').addClass('table-hover');
 
+    // Activate zoom on content images
+    $("#content img").each(function(){
+      $(this).wrap(
+        $('<a/>').attr('href', $(this).attr('src'))
+      ).closest('a').magnificPopup({
+        type: 'image',
+        closeOnContentClick: true,
+        midClick: true,
+        mainClass: 'mfp-with-zoom',
+        zoom: {
+          enabled: true,
+          duration: 300,
+          easing: 'ease-in-out',
+        },
+      });
+    })
+
     // Allow videos to take the full width of a page
     // TODO; fix aspect ratio
     $(".container").fitVids();
@@ -33,11 +50,13 @@
     // Source: http://stackoverflow.com/a/7257177
     // TODO: try to hide re-pagination animation
     var $container = $('.masonry');
-    $container.imagesLoaded(function(){
-      $container.masonry({
-        itemSelector: '.thumbnail',
+    if ($container.length) {
+      $container.imagesLoaded(function(){
+        $container.masonry({
+          itemSelector: '.thumbnail',
+        });
       });
-    });
+    };
 
     // YouTube URL parser. Source: http://stackoverflow.com/questions/2964678/jquery-youtube-url-validation-with-regex/10315969#10315969
     function parse_youtube_url(url) {
