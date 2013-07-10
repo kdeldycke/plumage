@@ -17,6 +17,7 @@ Features
   * External assets (Bootstrap, Jquery, etc...) uses CDN
   * YouTube links
   * Direct link to edit articles on Github
+  * Pygments syntax highlighting
 
 
 Plugins
