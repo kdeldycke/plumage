@@ -84,22 +84,36 @@ TODO
       * https://github.com/toddmotto/fluidvids
       * https://github.com/chriscoyier/Fluid-Width-Video
   * Use a big carousel for front-page articles (ex: http://twitter.github.com/bootstrap/examples/carousel.html ) + a bit of http://srobbin.com/jquery-plugins/backstretch/ to keep aspect-ratio
-  * Check some web-dev essentials: http://webdevchecklist.com/
+  * Check some web-dev essentials:
+      * http://webdevchecklist.com/
+      * https://github.com/getpelican/pelican-plugins/tree/master/w3c_validate
+      * https://github.com/dypsilon/frontend-dev-bookmarks
   * Add a fancy zoom for images
   * Use custom jinja filters instead of heavy tag soup in my theme ? Example: https://bitbucket.org/sirex/blog/src/32c192ff7a10/pelican.conf.py#cl-53
-  * Add progressive image loading. See: http://www.appelsiini.net/projects/lazyload
+  * Add progressive image loading. See:
+      * http://www.appelsiini.net/projects/lazyload
+      * https://github.com/luis-almeida/unveil
   * Concatenate and minify CSS and Javascript. See:
       * https://pypi.python.org/pypi/mincss
       * http://ralsina.com.ar/weblog/posts/mincss-is-amazing.html
       * https://pypi.python.org/pypi/pelican-minify
+      * https://github.com/getpelican/pelican-plugins/tree/master/assets
   * Inline and embed all CSS in the page ? See: http://www.peterbe.com/plog/100-percent-inline-css
   * Use LESS version of bootstrap for cleaner customizations ?
   * Check and fix style on mobile (especially ugly margins)
   * Look at app-template for code inspiration and ideas:
       *  https://github.com/nprapps/app-template/blob/master/templates/_base.html
       *  https://github.com/nprapps/app-template/blob/master/render_utils.py
+  * Make Masonry responsive ? See:
+      * http://osvaldas.info/responsive-jquery-masonry-or-pinterest-style-layout
+      * http://deanclatworthy.com/2012/09/responsive-twitter-bootstrap-masonry/
   * Add progressive loading on masonery layouts. See: http://masonry.desandro.com/demos/infinite-scroll.html
   * Make a macro to generated iconized links
+  * Generate thumbnails in article content. See:
+      * https://github.com/getpelican/pelican-plugins/pull/40
+      * https://github.com/getpelican/pelican-plugins/pull/43
+  * Auto-enhance created thumbnails ? See: https://news.ycombinator.com/item?id=5999201
+  * Generate Disqus static comments for SEO ? See: https://github.com/getpelican/pelican-plugins/tree/master/disqus_static
 
 
 Authors
