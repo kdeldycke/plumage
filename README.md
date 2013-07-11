@@ -106,6 +106,7 @@ TODO
   * Make Masonry responsive ? See:
       * http://osvaldas.info/responsive-jquery-masonry-or-pinterest-style-layout
       * http://deanclatworthy.com/2012/09/responsive-twitter-bootstrap-masonry/
+      * http://www.maurizioconventi.com/2012/06/19/responsive-example-integrating-twitter-bootstrap-and-jquery-masonry/
   * Add progressive loading on masonery layouts. See: http://masonry.desandro.com/demos/infinite-scroll.html
   * Make a macro to generated iconized links
   * Generate thumbnails in article content. See:
