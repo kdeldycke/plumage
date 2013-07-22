@@ -10,6 +10,8 @@ code, pre {
   font-family: "Droid Sans Mono", Monaco, Menlo, Consolas, "Courier New", monospace;
   font-size: 15px;
   line-height: 21px;
+  white-space: pre;
+  overflow: auto;
 }
 
 
@@ -291,4 +293,8 @@ footer, footer li {
 footer .muted {
   font-size: 12px;
   line-height: 13px;
+}
+
+blockquote {
+  border-left: 5px solid #0088CC;
 }
