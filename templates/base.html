@@ -112,27 +112,27 @@
 
       <section>
         <div class="row">
-          <div class="span6 offset3">
+            <div class="{% if has_left and has_right %} span6 {% elif has_left or has_right%} span9 {% else %} span12 {% endif %} {% if has_left %} offset3 {% endif %}">
             {% block top_center %}
             {% endblock %}
           </div>
         </div>
         <div class="row">
 
-          {% if LAYOUT != 'full-width' %}
+            {% if LAYOUT != 'full-width' and has_left %}
             <div class="span3">
               {% block left_sidebar %}
               {% endblock %}
               {{ LEFT_SIDEBAR }}
             </div>
-          {% endif %}
+            {% endif %}
 
-          <div class="{% if LAYOUT == 'full-width' %} offset1 {% else %} span6 {% endif %}" id="content" role="main">
+            <div class="{% if LAYOUT == 'full-width' %} offset1 {% elif has_left and has_right %} span6 {% elif has_left or has_right %} span9 {% else %} span12{% endif %}" id="content" role="main">
             {% block content %}
             {% endblock %}
           </div>
 
-          {% if LAYOUT != 'full-width' %}
+          {% if LAYOUT != 'full-width' and has_right %}
             <div class="span3">
               {% block right_sidebar %}
               {% endblock %}
