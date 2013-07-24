@@ -111,28 +111,31 @@
       </header>
 
       <section>
-        <div class="row">
-          <div class="span6 offset3">
+      <div class="row">
+            {% set has_left_content = has_left or LEFT_SIDEBAR is defined %}
+            {% set has_right_content = has_right or RIGHT_SIDEBAR is defined %}
+
+            <div class="{% if has_left_content and has_right_content %} span6 {% elif has_left_content or has_right_content%} span9 {% else %} span12 {% endif %} {% if has_left %} offset3 {% endif %}">
             {% block top_center %}
             {% endblock %}
           </div>
         </div>
         <div class="row">
 
-          {% if LAYOUT != 'full-width' %}
+            {% if LAYOUT != 'full-width' and has_left_content %}
             <div class="span3">
               {% block left_sidebar %}
               {% endblock %}
               {{ LEFT_SIDEBAR }}
             </div>
-          {% endif %}
+            {% endif %}
 
-          <div class="{% if LAYOUT == 'full-width' %} offset1 {% else %} span6 {% endif %}" id="content" role="main">
+            <div class="{% if LAYOUT == 'full-width' %} offset1 {% elif has_left_content and has_right_content %} span6 {% elif has_left_content or has_right_content %} span9 {% else %} span12 {% endif %}" id="content" role="main">
             {% block content %}
             {% endblock %}
           </div>
 
-          {% if LAYOUT != 'full-width' %}
+          {% if LAYOUT != 'full-width' and has_right_content %}
             <div class="span3">
               {% block right_sidebar %}
               {% endblock %}
@@ -182,7 +185,7 @@
 
           <div class="span2 muted">
             <h5>Copyright notice</h5>
-            <p>© Copyright {{ dates[-1].date.year }}-{{ dates[0].date.year }} {{ AUTHOR }}.</p>
+            <p>© Copyright {{ dates[0].date.year }} {{ AUTHOR }}.</p>
             {% if COPYRIGHT %}
               <p>{{ COPYRIGHT }}</p>
             {% endif %}
