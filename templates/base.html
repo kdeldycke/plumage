@@ -115,7 +115,7 @@
         {% set has_right_content = has_right or RIGHT_SIDEBAR is defined %}
 
         <div class="row">
-          <div class="{% if has_left_content and has_right_content %} span6 {% elif has_left_content or has_right_content%} span9 {% else %} span12 {% endif %} {% if has_left %} offset3 {% endif %}">
+          <div class="{% if (has_left_content and has_right_content) or LAYOUT == 'full-width' %} span6 {% elif has_left_content or has_right_content%} span9 {% else %} span12 {% endif %} {% if has_left_content %} offset3 {% endif %}">
             {% block top_center %}
             {% endblock %}
           </div>
