@@ -116,10 +116,12 @@ TODO
   * Generate Disqus static comments for SEO ? See: https://github.com/getpelican/pelican-plugins/tree/master/disqus_static
 
 
-Authors
--------
+Contributors
+------------
 
   * Kevin Deldycke <kevin@deldycke.com>
+  * Cedric Bosdonnat
+  * Jeff Smith
 
 
 Changelog
@@ -127,6 +129,9 @@ Changelog
 
 * **0.3.dev** (unreleased)
   * Add auto-zoom of images based on Magnific Popup.
+  * Let the content take the available width if there is no right or left sidebars.
+  * Do not wrap code in code blocks.
+  * Fix code highlight for older Pelican versions.
 
 * **0.2** (2013-07-09)
   * Make theme fully generic through the use of variables.
