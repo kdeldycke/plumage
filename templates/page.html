@@ -8,7 +8,7 @@
 
 {% block top_center %}
   <h1>
-    <a href="{{ SITEURL }}/{{ page.url }}" rel="bookmark" title="Permalink to {{ page.title|striptags }}">{{ page.title }}</a>
+    <a href="{{ SITEURL }}/{{ page.url }}" rel="bookmark" title="Permalink to {{ page.title|striptags|e }}">{{ page.title }}</a>
   </h1>
 {% endblock %}
 

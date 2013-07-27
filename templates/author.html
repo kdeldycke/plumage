@@ -8,6 +8,6 @@
 
 {% block top_center %}
   <h1>
-    <a  href="{{ SITEURL }}/{{ author.url }}" rel="bookmark" title="Permalink to {{ author }}'s articles">Articles by {{ author }}</a>
+    <a  href="{{ SITEURL }}/{{ author.url }}" rel="bookmark" title="Permalink to {{ author|e }}'s articles">Articles by {{ author }}</a>
   </h1>
 {% endblock %}

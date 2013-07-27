@@ -8,7 +8,7 @@
 
 {% block top_center %}
   <h1>
-    <a  href="{{ SITEURL }}/{{ category.url }}" rel="bookmark" title="Permalink to {{ category }} articles">{{ category }} articles</a>
+    <a  href="{{ SITEURL }}/{{ category.url }}" rel="bookmark" title="Permalink to {{ category|e }} articles">{{ category }} articles</a>
   </h1>
 {% endblock %}
 
