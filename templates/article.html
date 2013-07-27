@@ -3,7 +3,7 @@
 {% set has_right = True %}
 
 {% block title %}
-  {{ article.title }}
+  {{ article.title|striptags }}
 {% endblock %}
 
 
