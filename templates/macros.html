@@ -1,3 +1,18 @@
 {% macro render_tag(tag) -%}
   <a href="{{ SITEURL }}/{{ tag.url }}" rel="tooltip" class="label" data-placement="right" data-original-title="{{ tag.articles }} article{{ 's' if tag.articles > 1 else '' }} with this tag">{{ tag.name }}</a>
 {%- endmacro %}
+
+{% macro render_link_icon(link, label, icon=None) -%}
+  {% set protocol = link.split(':', 1)[0] %}
+  {% if protocol == 'mailto' %}
+    {% set icon = 'envelope' %}
+  {% elif protocol.startswith('http') %}
+    {% set domain = '/'.join(link.split('/', 3)[:3]) %}
+  {% endif %}
+  <a href="{{ link }}" {% if icon %} class="{{ 'icon-%s' % icon }}" {% endif %}>
+    {% if not icon and domain %}
+      <img src="http://g.etfv.co/{{ domain }}?defaulticon=lightpng" width="16" height="16" class="icon" alt="{{ domain }} icon"/>
+    {% endif %}
+    {{ label }}
+  </a>
+{%- endmacro %}

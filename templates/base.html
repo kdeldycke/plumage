@@ -165,7 +165,7 @@
                 <h5>{{ group_title }}</h5>
                 <ul class="unstyled">
                 {% for title, link in group_links %}
-                    <li><a href="{{ link }}"><img src="http://g.etfv.co/{{ '/'.join(link.split('/', 3)[:3]) }}?defaulticon=lightpng" width="16" height="16" alt="{{ title }} icon"/> {{ title }}</a></li>
+                  <li>{{ m.render_link_icon(link, title) }}</li>
                 {% endfor %}
                 </ul>
               {% endif %}

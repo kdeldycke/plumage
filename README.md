@@ -108,7 +108,6 @@ TODO
       * http://deanclatworthy.com/2012/09/responsive-twitter-bootstrap-masonry/
       * http://www.maurizioconventi.com/2012/06/19/responsive-example-integrating-twitter-bootstrap-and-jquery-masonry/
   * Add progressive loading on masonery layouts. See: http://masonry.desandro.com/demos/infinite-scroll.html
-  * Make a macro to generated iconized links
   * Generate thumbnails in article content. See:
       * https://github.com/getpelican/pelican-plugins/pull/40
       * https://github.com/getpelican/pelican-plugins/pull/43
