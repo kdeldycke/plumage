@@ -119,9 +119,9 @@ TODO
 Contributors
 ------------
 
-  * Kevin Deldycke <kevin@deldycke.com>
-  * Cedric Bosdonnat
-  * Jeff Smith
+  * [Kevin Deldycke](https://github.com/kdeldycke)
+  * [Cedric Bosdonnat](https://github.com/cbosdo)
+  * [Jeff Smith](https://github.com/jeffreyksmithjr)
 
 
 Changelog
