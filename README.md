@@ -134,7 +134,7 @@ Contributors
 Changelog
 ---------
 
-* **0.3.dev** (unreleased)
+* **0.3** (2013-08-16)
   * Add auto-zoom of images based on Magnific Popup.
   * Let the content take the available width if there is no right or left sidebars.
   * Add an dynamic feed link in footer.
