@@ -129,8 +129,11 @@ Changelog
 * **0.3.dev** (unreleased)
   * Add auto-zoom of images based on Magnific Popup.
   * Let the content take the available width if there is no right or left sidebars.
+  * Add an dynamic feed link in footer.
   * Do not wrap code in code blocks.
   * Fix code highlight for older Pelican versions.
+  * Escape and strip tags in all title attributes.
+  * Style ampersands for those using Typogriphy.
 
 * **0.2** (2013-07-09)
   * Make theme fully generic through the use of variables.
