@@ -134,6 +134,9 @@ Contributors
 Changelog
 ---------
 
+* **0.4.dev** (unreleased)
+  * No changes yet.
+
 * **0.3** (2013-08-16)
   * Add auto-zoom of images based on Magnific Popup.
   * Let the content take the available width if there is no right or left sidebars.
