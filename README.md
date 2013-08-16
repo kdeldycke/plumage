@@ -27,6 +27,7 @@ Plumage has built-in support for the following plugins:
 
   * [`neighbors`](https://github.com/getpelican/pelican-plugins/tree/master/neighbors)
   * [`related_posts`](https://github.com/getpelican/pelican-plugins/tree/master/related_posts)
+  * [`typogrify`](https://github.com/getpelican/pelican-typogrify)
 
 
 Settings
@@ -140,7 +141,7 @@ Changelog
   * Do not wrap code in code blocks.
   * Fix code highlight for older Pelican versions.
   * Escape and strip tags in all title attributes.
-  * Style ampersands for those using Typogriphy.
+  * Style ampersands for those using typogrify.
 
 * **0.2** (2013-07-09)
   * Make theme fully generic through the use of variables.
