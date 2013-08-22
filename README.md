@@ -115,7 +115,9 @@ TODO
       * https://github.com/getpelican/pelican-plugins/pull/43
   * Auto-enhance created thumbnails ? See: https://news.ycombinator.com/item?id=5999201
   * Generate Disqus static comments for SEO ? See: https://github.com/getpelican/pelican-plugins/tree/master/disqus_static
-  * Group contiguous images in a post into a tiled galery, as in WordPress' jetpack plugin: https://github.com/crowdfavorite-mirrors/wp-jetpack/tree/master/modules/tiled-gallery
+  * Group contiguous images in a post into a tiled galery:
+      * as in WordPress' jetpack plugin: https://github.com/crowdfavorite-mirrors/wp-jetpack/tree/master/modules/tiled-gallery
+      * or thanks to https://github.com/jakobholmelund/fitpicsjs
   * Replace MGlass zoom icon overlay with pure CSS. Inspirations:
       * Cover effect at http://h5bp.github.io/Effeckt.css/dist/captions.html
       * http://codepen.io/Twikito/pen/Jeaub
