@@ -137,7 +137,8 @@ Changelog
 ---------
 
 * **0.4.dev** (unreleased)
-  * No changes yet.
+  * Drop support of old browsers.
+  * Move from jQuery 1.x to 2.x.
 
 * **0.3** (2013-08-16)
   * Add auto-zoom of images based on Magnific Popup.
