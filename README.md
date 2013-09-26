@@ -26,6 +26,7 @@ Plugins
 Plumage has built-in support for the following plugins:
 
   * [`neighbors`](https://github.com/getpelican/pelican-plugins/tree/master/neighbors)
+  * [`pdf`](https://github.com/getpelican/pelican-plugins/tree/master/pdf)
   * [`related_posts`](https://github.com/getpelican/pelican-plugins/tree/master/related_posts)
   * [`typogrify`](https://github.com/getpelican/pelican-typogrify)
 
@@ -68,7 +69,6 @@ The theme is also sensible to this list of [standard Pelican parameters](http://
   * `FEED_ATOM`
   * `FEED_DOMAIN`
   * `FEED_RSS`
-  * `PDF_PROCESSOR`
   * `SITENAME`
   * `SITEURL`
   * `TAG_FEED_ATOM`
