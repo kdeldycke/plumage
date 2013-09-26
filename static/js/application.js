@@ -26,7 +26,6 @@
     $("#content table").addClass('table').addClass('table-hover');
 
     // Allow videos to take the full width of a page
-    // TODO; fix aspect ratio
     $(".container").fitVids();
 
     // Apply masonry smart layout, only when all images are loaded
