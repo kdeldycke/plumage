@@ -58,6 +58,7 @@ The theme is also sensible to this list of [standard Pelican parameters](http://
 
   * `ARCHIVES_SAVE_AS`
   * `AUTHOR_SAVE_AS`
+  * `CATEGORIES_SAVE_AS`
   * `CATEGORY_FEED_ATOM`
   * `CATEGORY_FEED_RSS`
   * `CATEGORY_SAVE_AS`
@@ -134,6 +135,7 @@ Changelog
 ---------
 
 * **0.4.dev** (unreleased)
+  * Generate tags, categories and archives URLs depending on site configuration.
   * Drop support of old browsers.
   * Move from jQuery 1.x to 2.x.
 
