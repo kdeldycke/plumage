@@ -121,6 +121,9 @@ TODO
       * http://codepen.io/Twikito/pen/Jeaub
       * To center the zoom icon, we can use one of these trick: http://codepen.io/shshaw/full/gEiDt
   * CSS typography: http://www.newnet-soft.com/blog/csstypography
+  * Add links to yearly/monthly indexes in archives
+  * Upgrade to Bootstrap 3.x
+  * Try to paginate monthly and yearly archives
 
 
 Contributors
