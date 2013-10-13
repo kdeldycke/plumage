@@ -35,6 +35,67 @@
 %}
 
 
+{% macro render_project(all_tags, project) %}
+  <div class="thumbnail span3">
+    {% if project.inactive %}
+      <div class="corner">Inactive</div>
+    {% endif %}
+    {% if project.thumb %}
+      {% if project.thumb_link %}
+        <a href="{{ project.thumb_link }}">
+      {% endif %}
+        <img alt="{{ project.name }} thumbnail" src="{{ project.thumb }}"/>
+      {% if project.thumb_link %}
+        </a>
+      {% endif %}
+    {% endif %}
+    <div class="details">
+      <h4>{{ project.name }}</h4>
+      {% if project.desc %}
+        <p>{{ project.desc }}</p>
+      {% endif %}
+      {% if project.roles or project.tools %}
+        <p>
+          {% for role in project.roles %}
+            <span class="label label-success">{{ role }}</span>
+          {% endfor %}
+          {% for tag in all_tags|sort(reverse = True, attribute = 'articles') %}
+            {% if tag.name in project.tools %}
+              {{ m.render_tag(tag) }}
+            {% endif %}
+          {% endfor %}
+          {% set tag_names = [] %}
+          {% for tag in all_tags %}
+            {% if tag_names.append(tag.name) %}{% endif %}
+          {% endfor %}
+          {% for tool in project.tools %}
+            {% if tool not in tag_names %}
+              <span class="label">{{ tool }}</span>
+            {% endif %}
+          {% endfor %}
+        </p>
+      {% endif %}
+      {% if project.links %}
+        <p class="clearfix">
+          {% for link in project.links %}
+            {% set link_icon = ['icon-home'] %}
+            {% for (domain, icon) in ICONS.items() %}
+              {% if link.find(domain) != -1 %}
+                {% if link_icon.append(icon) %}{% endif %}
+              {% endif %}
+            {% endfor %}
+            {% set link_icon = link_icon[-1] %}
+            <a href="{{ link }}" class="pull-left link-circle" title="{{ LABELS.get(link_icon, 'Project home')|e }}">
+              <i class="{{ link_icon }}"></i>
+            </a>
+          {% endfor %}
+        </p>
+      {% endif %}
+    </div>
+  </div>
+{% endmacro %}
+
+
 {% macro render_projects() %}
   {% set all_tags = [] %}
   {% for tag, articles in tags %}
@@ -45,64 +106,11 @@
 
     {% block project_pre_content %}{% endblock %}
 
-    {% for project in PROJECTS %}
-      <div class="thumbnail span3">
-        {% if project.inactive %}
-          <div class="corner">Inactive</div>
-        {% endif %}
-        {% if project.thumb %}
-          {% if project.thumb_link %}
-            <a href="{{ project.thumb_link }}">
-          {% endif %}
-            <img alt="{{ project.name }} thumbnail" src="{{ project.thumb }}"/>
-          {% if project.thumb_link %}
-            </a>
-          {% endif %}
-        {% endif %}
-        <div class="details">
-          <h4>{{ project.name }}</h4>
-          {% if project.desc %}
-            <p>{{ project.desc }}</p>
-          {% endif %}
-          {% if project.roles or project.tools %}
-            <p>
-              {% for role in project.roles %}
-                <span class="label label-success">{{ role }}</span>
-              {% endfor %}
-              {% for tag in all_tags|sort(reverse = True, attribute = 'articles') %}
-                {% if tag.name in project.tools %}
-                  {{ m.render_tag(tag) }}
-                {% endif %}
-              {% endfor %}
-              {% set tag_names = [] %}
-              {% for tag in all_tags %}
-                {% if tag_names.append(tag.name) %}{% endif %}
-              {% endfor %}
-              {% for tool in project.tools %}
-                {% if tool not in tag_names %}
-                  <span class="label">{{ tool }}</span>
-                {% endif %}
-              {% endfor %}
-            </p>
-          {% endif %}
-          {% if project.links %}
-            <p class="clearfix">
-              {% for link in project.links %}
-                {% set link_icon = ['icon-home'] %}
-                {% for (domain, icon) in ICONS.items() %}
-                  {% if link.find(domain) != -1 %}
-                    {% if link_icon.append(icon) %}{% endif %}
-                  {% endif %}
-                {% endfor %}
-                {% set link_icon = link_icon[-1] %}
-                <a href="{{ link }}" class="pull-left link-circle" title="{{ LABELS.get(link_icon, 'Project home')|e }}">
-                  <i class="{{ link_icon }}"></i>
-                </a>
-              {% endfor %}
-            </p>
-          {% endif %}
-        </div>
-      </div>
+    {% for project in PROJECTS|rejectattr("inactive") %}
+      {{ render_project(all_tags, project) }}
+    {% endfor %}
+    {% for project in PROJECTS|selectattr("inactive") %}
+      {{ render_project(all_tags, project) }}
     {% endfor %}
 
     {% block project_post_content %}{% endblock %}

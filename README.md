@@ -139,6 +139,7 @@ Changelog
 
 * **0.4.dev** (unreleased)
   * Generate tags, categories and archives URLs depending on site configuration.
+  * Sort out inactive projects to the bottom of the project list.
   * Drop support of old browsers.
   * Move from jQuery 1.x to 2.x.
 
