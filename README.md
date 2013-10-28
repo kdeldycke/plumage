@@ -123,6 +123,7 @@ TODO
   * CSS typography: http://www.newnet-soft.com/blog/csstypography
   * Add links to yearly/monthly indexes in archives
   * Upgrade to Bootstrap 3.x
+  * Use http://startbootstrap.com/modern-business for first page ?
   * Try to paginate monthly and yearly archives
 
 
