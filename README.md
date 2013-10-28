@@ -124,7 +124,9 @@ TODO
   * Add links to yearly/monthly indexes in archives
   * Upgrade to Bootstrap 3.x
   * Use http://startbootstrap.com/modern-business for first page ?
+  * Upgrade to Font Awesome 4.X: http://fontawesome.io/whats-new/
   * Try to paginate monthly and yearly archives
+  * Use Font-awesome CDN ? http://blog.fontawesome.io/2013/05/20/get-the-most-out-font-awesome-and-bootstrapcdn/
 
 
 Contributors
