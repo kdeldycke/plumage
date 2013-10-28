@@ -59,7 +59,7 @@
           {% for role in project.roles %}
             <span class="label label-success">{{ role }}</span>
           {% endfor %}
-          {% for tag in all_tags|sort(reverse = True, attribute = 'articles') %}
+          {% for tag in all_tags|sort(reverse=True, attribute='articles') %}
             {% if tag.name in project.tools %}
               {{ m.render_tag(tag) }}
             {% endif %}
@@ -107,12 +107,19 @@
     <div class="masonry">
       {% block project_pre_content %}{% endblock %}
 
-      {% set active_projects = projects|rejectattr("inactive") %}
-      {% set inactive_projects = projects|selectattr("inactive") %}
+      {% set active_projects = [] %}
+      {% set inactive_projects = [] %}
+      {% for project in projects %}
+        {% if project.inactive %}
+          {% if inactive_projects.append(project) %}{% endif %}
+        {% else %}
+          {% if active_projects.append(project) %}{% endif %}
+        {% endif %}
+      {% endfor %}
 
       {% for project_list in [active_projects, inactive_projects] %}
         {% for project in project_list %}
-            {{ render_project(all_tags, project) }}
+          {{ render_project(all_tags, project) }}
         {% endfor %}
       {% endfor %}
 
