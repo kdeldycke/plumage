@@ -96,29 +96,49 @@
 {% endmacro %}
 
 
-{% macro render_projects() %}
+{% macro render_projects(projects) %}
+
   {% set all_tags = [] %}
   {% for tag, articles in tags %}
     {% if all_tags.append({'name': tag.name, 'url': tag.url, 'articles': articles|length()}) %}{% endif %}
   {% endfor %}
 
-  <div class="masonry">
+  {% if projects is defined %}
+    <div class="masonry">
+      {% block project_pre_content %}{% endblock %}
 
-    {% block project_pre_content %}{% endblock %}
+      {% set active_projects = projects|rejectattr("inactive") %}
+      {% set inactive_projects = projects|selectattr("inactive") %}
 
-    {% for project in PROJECTS|rejectattr("inactive") %}
-      {{ render_project(all_tags, project) }}
-    {% endfor %}
-    {% for project in PROJECTS|selectattr("inactive") %}
-      {{ render_project(all_tags, project) }}
-    {% endfor %}
+      {% for project_list in [active_projects, inactive_projects] %}
+        {% for project in project_list %}
+            {{ render_project(all_tags, project) }}
+        {% endfor %}
+      {% endfor %}
 
-    {% block project_post_content %}{% endblock %}
+      {% block project_post_content %}{% endblock %}
+    </div>
+  {% endif %}
 
-  </div>
+{% endmacro %}
+
+
+{% macro render_project_group(group, projects) %}
+  {{ group.pre }}
+  {{ render_projects(projects) }}
+  {{ group.post }}
 {% endmacro %}
 
 
 {% block content %}
-   {{ render_projects() }}
+  {% if PROJECT_GROUPS is defined %}
+    {% for group in PROJECT_GROUPS %}
+      {{ render_project_group(group, PROJECTS|selectattr("group", "sameas", group.id)) }}
+    {% endfor %}
+
+    {{ render_projects(PROJECTS|rejectattr("group", "defined")) }}
+
+  {% else %}
+    {{ render_projects(PROJECTS) }}
+  {% endif %}
 {% endblock %}

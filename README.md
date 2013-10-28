@@ -141,6 +141,7 @@ Changelog
 ---------
 
 * **0.4.dev** (unreleased)
+  * Allow grouping of projects.
   * Generate tags, categories and archives URLs depending on site configuration.
   * Sort out inactive projects to the bottom of the project list.
   * Drop support of old browsers.
