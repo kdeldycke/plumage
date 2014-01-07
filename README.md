@@ -81,7 +81,9 @@ TODO
 ----
 
   * Hack google search to integrate search result within theme design ?
-  * Replace Google custom search by https://swiftype.com/ ? Or better, static search: http://ralsina.com.ar/weblog/posts/standalone-search-in-nikola.html
+  * Replace Google custom search by https://swiftype.com/ ? Or better, static search:
+      * http://ralsina.com.ar/weblog/posts/standalone-search-in-nikola.html
+      * https://news.ycombinator.com/item?id=6958735
   * Use a big carousel for front-page articles (ex: http://twitter.github.com/bootstrap/examples/carousel.html ) + a bit of http://srobbin.com/jquery-plugins/backstretch/ to keep aspect-ratio
   * Check some web-dev essentials:
       * http://webdevchecklist.com/
