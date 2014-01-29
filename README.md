@@ -139,6 +139,7 @@ Contributors
   * [Kevin Deldycke](https://github.com/kdeldycke)
   * [Cedric Bosdonnat](https://github.com/cbosdo)
   * [Jeff Smith](https://github.com/jeffreyksmithjr)
+  * [Stratos Gerakakis](https://github.com/stratosgear)
 
 
 Changelog
