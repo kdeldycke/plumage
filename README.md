@@ -43,6 +43,7 @@ Plumage can be customized by adding these optionnal parameters to your `pelicanc
   * `GOOGLE_SEARCH`: [Google's Custom Search Engine](https://www.google.com/cse/) ID (e.g. `partner-pub-0123456789098765:0123456789`) to activate blog specific search.
   * `LEFT_SIDEBAR`, `RIGHT_SIDEBAR`: HTML content to put as-is in the left or right sidebar.
   * `ARTICLE_EDIT_LINK`: Generate an edit link besides each article. Can use `%(slug)s` to include dynamic article's slug in the link.
+  * `PDF_PROCESSOR`: Set this to 'True' if you want to have a 'Download the .pdf' link created, if you are using the PDF plugin.
   * `SOCIAL`: A list of tuples (Title, URL) to appear in the first columns of the footer.
   * `SOCIAL_TITLE`: Overide the title of the first column of the footer. Default value: `Social`.
   * `LINKS`: A list of tuples (Title, URL) for links to appear in the second column of the footer.
