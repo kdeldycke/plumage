@@ -44,10 +44,11 @@ Plumage can be customized by adding these optionnal parameters to your `pelicanc
   * `LEFT_SIDEBAR`, `RIGHT_SIDEBAR`: HTML content to put as-is in the left or right sidebar.
   * `ARTICLE_EDIT_LINK`: Generate an edit link besides each article. Can use `%(slug)s` to include dynamic article's slug in the link.
   * `SOCIAL`: A list of tuples (Title, URL) to appear in the first columns of the footer.
-  * `SOCIAL_TITLE`: Ovveride the title of the first column of the footer. Default value: `Social`.
+  * `SOCIAL_TITLE`: Overide the title of the first column of the footer. Default value: `Social`.
   * `LINKS`: A list of tuples (Title, URL) for links to appear in the second column of the footer.
-  * `LINKS_TITLE`: Ovveride the title of the second column of the footer. Default value: `Links`.
+  * `LINKS_TITLE`: Overide the title of the second column of the footer. Default value: `Links`.
   * `COPYRIGHT`: Additional copyright statement to add in the third column of the footer.
+  * `DISCLAIMER`: Overide the Disclaimer notice that gets displayed at the fourth column of the footer.
   * `DISQUS_SITENAME`: Disqus sitename identifier.
   * `GOOGLE_ANALYTICS`: Google Analytics unique identifier (e.g. `UA-XXXX-YYYY`).
   * `GOOGLE_ANALYTICS_DOMAIN`: Add the `_setDomainName` variable to Google Analytics' Javascript code.
