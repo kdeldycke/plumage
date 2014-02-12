@@ -152,6 +152,7 @@ Changelog
   * Sort out inactive projects to the bottom of the project list.
   * Drop support of old browsers.
   * Move from jQuery 1.x to 2.x.
+  * Use [latest Google Analytics](https://developers.google.com/analytics/devguides/collection/upgrade/) tracking code.
 
 * **0.3** (2013-08-16)
   * Add auto-zoom of images based on Magnific Popup.
