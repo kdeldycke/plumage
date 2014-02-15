@@ -153,6 +153,7 @@ Changelog
   * Use [latest Google Analytics](https://developers.google.com/analytics/devguides/collection/upgrade/) tracking code.
   * Upgrade to Font Awesome 4.0.3.
   * Upgrade to Masonry 3.1.2.
+  * Upgrade to ImagesLoaded 3.0.4.
 
 * **0.3** (2013-08-16)
   * Add auto-zoom of images based on Magnific Popup.
