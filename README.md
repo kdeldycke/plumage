@@ -204,7 +204,7 @@ Now [create a Pull Request](https://github.com/kdeldycke/pelican-themes/compare/
 License
 -------
 
-The content of this repository is copyrighted (c) 2012-2013 Kevin Deldycke.
+The content of this repository is copyrighted (c) 2012-2014 Kevin Deldycke.
 
 This code is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
