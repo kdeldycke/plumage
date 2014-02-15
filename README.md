@@ -128,9 +128,7 @@ TODO
   * Add links to yearly/monthly indexes in archives
   * Upgrade to Bootstrap 3.x
   * Use http://startbootstrap.com/modern-business for first page ?
-  * Upgrade to Font Awesome 4.X: http://fontawesome.io/whats-new/
   * Try to paginate monthly and yearly archives
-  * Use Font-awesome CDN ? http://blog.fontawesome.io/2013/05/20/get-the-most-out-font-awesome-and-bootstrapcdn/
 
 
 Contributors
@@ -153,6 +151,7 @@ Changelog
   * Drop support of old browsers.
   * Move from jQuery 1.x to 2.x.
   * Use [latest Google Analytics](https://developers.google.com/analytics/devguides/collection/upgrade/) tracking code.
+  * Upgrade to Font Awesome 4.0.3.
 
 * **0.3** (2013-08-16)
   * Add auto-zoom of images based on Magnific Popup.
