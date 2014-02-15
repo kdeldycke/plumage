@@ -143,6 +143,9 @@ Contributors
 Changelog
 ---------
 
+* **0.5.dev** (unreleased)
+  * No changes yet.
+
 * **0.4** (2014-02-15)
   * Allow grouping of projects.
   * Add option to overide disclaimer notice.
