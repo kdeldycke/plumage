@@ -126,14 +126,14 @@ body {
 
 /* Add a search icon in navbar's search field */
 .navbar-search .search-query {
-  padding-left: 29px;
+  padding-left: 32px;
   height: inherit;
 }
 .navbar-search .fa-search {
   position: absolute;
-  top: 7px;
-  left: 11px;
-}​
+  top: 8px;
+  left: 10px;
+}
 
 
 h1, h2 {
