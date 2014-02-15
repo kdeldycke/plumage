@@ -143,7 +143,7 @@ Contributors
 Changelog
 ---------
 
-* **0.4.dev** (unreleased)
+* **0.4** (2014-02-15)
   * Allow grouping of projects.
   * Add option to overide disclaimer notice.
   * Generate tags, categories and archives URLs depending on site configuration.
