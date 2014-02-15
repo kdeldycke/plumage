@@ -154,6 +154,7 @@ Changelog
   * Upgrade to Font Awesome 4.0.3.
   * Upgrade to Masonry 3.1.2.
   * Upgrade to ImagesLoaded 3.0.4.
+  * Upgrade to Magnific Popup 0.9.9.
 
 * **0.3** (2013-08-16)
   * Add auto-zoom of images based on Magnific Popup.
