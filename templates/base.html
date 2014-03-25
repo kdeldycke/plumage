@@ -229,16 +229,7 @@
 
     </footer>
 
-    {% if GOOGLE_ANALYTICS and GOOGLE_ANALYTICS_DOMAIN %}
-      <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-        ga('create', '{{ GOOGLE_ANALYTICS }}', '{{ GOOGLE_ANALYTICS_DOMAIN }}');
-        ga('send', 'pageview');
-      </script>
-    {% endif %}
+    {% include "analytics.html" %}
     <script src="//code.jquery.com/jquery-2.0.3.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
     <script src="//cdn.jsdelivr.net/jquery.magnific-popup/0.9.9/jquery.magnific-popup.min.js"></script>
