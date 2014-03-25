@@ -53,6 +53,8 @@ Plumage can be customized by adding these optionnal parameters to your `pelicanc
   * `DISQUS_SITENAME`: Disqus sitename identifier.
   * `GOOGLE_ANALYTICS`: Google Analytics unique identifier (e.g. `UA-XXXX-YYYY`).
   * `GOOGLE_ANALYTICS_DOMAIN`: Add the `_setDomainName` variable to Google Analytics' Javascript code.
+  * `PIWIK_URL`: Base URL for the intended [Piwik](http://piwik.org) installation.
+  * `PIWIK_SITE_ID`: Specifies the ID of the site being tracked by Piwik.
 
 Most of these [parameters are similar to `notmyidea`'s](http://docs.getpelican.com/en/latest/settings.html#themes) (Pelican's default theme). For usage example, please have a look into [my own `pelicanconf.py`](https://github.com/kdeldycke/kevin-deldycke-blog/blob/master/pelicanconf.py).
 
