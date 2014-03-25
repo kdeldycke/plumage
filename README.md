@@ -140,13 +140,14 @@ Contributors
   * [Cedric Bosdonnat](https://github.com/cbosdo)
   * [Jeff Smith](https://github.com/jeffreyksmithjr)
   * [Stratos Gerakakis](https://github.com/stratosgear)
+  * [Renato Cunha](https://github.com/trovao)
 
 
 Changelog
 ---------
 
 * **0.5.dev** (unreleased)
-  * No changes yet.
+  * Add support for piwik.
 
 * **0.4** (2014-02-15)
   * Allow grouping of projects.
