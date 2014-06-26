@@ -131,6 +131,7 @@ TODO
   * Upgrade to Bootstrap 3.x
   * Use http://startbootstrap.com/modern-business for first page ?
   * Try to paginate monthly and yearly archives
+  * Reuse edit link logic from https://github.com/pmclanahan/pelican-edit-url ?
 
 
 Contributors
