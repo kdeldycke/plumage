@@ -5,7 +5,8 @@ Plumage is a theme for [Pelican](http://getpelican.com), a static site generator
 
 I initially created this theme for [my blog](http://kevin.deldycke.com), but now the theme is supposed to be generic enough to have its own repository.
 
-![Plumage article view](http://github.com/kdeldycke/plumage/raw/master/plumage-article-screenshot.png)
+![Plumage article view](https://raw.githubusercontent.com/kdeldycke/plumage
+/master/plumage-article-screenshot.png)
 
 
 Features
