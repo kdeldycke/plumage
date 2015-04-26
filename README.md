@@ -7,8 +7,8 @@ generator written in Python.
 I initially created this theme for [my blog](http://kevin.deldycke.com), but
 now the theme is supposed to be generic enough to have its own repository.
 
-![Plumage article view](https://raw.githubusercontent.com/kdeldycke/plumage
-/master/plumage-article-screenshot.png)
+![Plumage article view
+](https://raw.githubusercontent.com/kdeldycke/plumage/master/plumage-article-screenshot.png)
 
 
 Features
@@ -28,11 +28,11 @@ Plugins
 
 Plumage has built-in support for the following plugins:
 
-  * [`neighbors`](https://github.com/getpelican/pelican-plugins/tree/master
-  /neighbors)
+  * [`neighbors`
+  ](https://github.com/getpelican/pelican-plugins/tree/master/neighbors)
   * [`pdf`](https://github.com/getpelican/pelican-plugins/tree/master/pdf)
-  * [`related_posts`](https://github.com/getpelican/pelican-plugins/tree/master
-  /related_posts)
+  * [`related_posts`
+  ](https://github.com/getpelican/pelican-plugins/tree/master/related_posts)
   * [`typogrify`](https://github.com/getpelican/pelican-typogrify)
 
 
@@ -48,9 +48,9 @@ Plumage can be customized by adding these optionnal parameters to your
   * `SITESUBTITLE`: Set the subtitle from the site's header.
   * `MENUITEMS`: A list of tuples (Title, URL) for additional menu items to
   appear at the beginning of the main menu.
-  * `GOOGLE_SEARCH`: [Google's Custom Search Engine](https://www.google.com
-  /cse/) ID (e.g. `partner-pub-0123456789098765:0123456789`) to activate blog
-  specific search.
+  * `GOOGLE_SEARCH`: [Google's Custom Search Engine
+  ](https://www.google.com/cse/) ID (e.g.
+  `partner-pub-0123456789098765:0123456789`) to activate blog specific search.
   * `LEFT_SIDEBAR`, `RIGHT_SIDEBAR`: HTML content to put as-is in the left or
   right sidebar.
   * `ARTICLE_EDIT_LINK`: Generate an edit link besides each article. Can use
@@ -77,13 +77,13 @@ Plumage can be customized by adding these optionnal parameters to your
   * `PIWIK_URL`: Base URL for the intended [Piwik](http://piwik.org) installation.
   * `PIWIK_SITE_ID`: Specifies the ID of the site being tracked by Piwik.
 
-Most of these [parameters are similar to `notmyidea`'s](http:
-//docs.getpelican.com/en/latest/settings.html#themes) (Pelican's default theme).
-For usage example, please have a look into [my own `pelicanconf.py`](https:
-//github.com/kdeldycke/kevin-deldycke-blog/blob/master/pelicanconf.py).
+Most of these [parameters are similar to `notmyidea`'s
+](http://docs.getpelican.com/en/latest/settings.html#themes) (Pelican's default
+theme). For usage example, please have a look into [my own `pelicanconf.py`
+](https://github.com/kdeldycke/kevin-deldycke-blog/blob/master/pelicanconf.py).
 
-The theme is also sensible to this list of [standard Pelican parameters](http:
-//docs.getpelican.com/en/latest/settings.html):
+The theme is also sensible to this list of [standard Pelican parameters
+](http://docs.getpelican.com/en/latest/settings.html):
 
   * `ARCHIVES_SAVE_AS`
   * `AUTHOR_SAVE_AS`
@@ -182,8 +182,9 @@ Changelog
   * Sort out inactive projects to the bottom of the project list.
   * Drop support of old browsers.
   * Move from jQuery 1.x to 2.x.
-  * Use [latest Google Analytics](https://developers.google.com/analytics
-  /devguides/collection/upgrade/) tracking code.
+  * Use [latest Google Analytics
+  ](https://developers.google.com/analytics/devguides/collection/upgrade/)
+  tracking code.
   * Upgrade to Font Awesome 4.0.3.
   * Upgrade to Masonry 3.1.2.
   * Upgrade to ImagesLoaded 3.0.4.
@@ -207,8 +208,8 @@ Changelog
 
 * **0.1** (2013-07-07)
   * Theme has now a name: Plumage.
-  * Move the theme out of my [blog repository](https://github.com/kdeldycke
-  /kevin-deldycke-blog) to its own repository.
+  * Move the theme out of my [blog repository
+  ](https://github.com/kdeldycke/kevin-deldycke-blog) to its own repository.
   * Theme is now generic enough. Update TODO-list accordingly.
 
 * **0.0** (2012-12-23)
@@ -231,9 +232,9 @@ to [Pelican's theme repository](https://github.com/getpelican/pelican-themes).
     $ cd ..
     $ rm -rf ./pelican-themes
 
-Now [create a Pull Request](https://github.com/kdeldycke/pelican-themes/compare
-/getpelican:master...master) from GitHub web interface, and submit it for
-merging to the original repository.
+Now [create a Pull Request
+](https://github.com/kdeldycke/pelican-themes/compare/getpelican:master...master)
+from GitHub web interface, and submit it for merging to the original repository.
 
 
 License
