@@ -1,9 +1,11 @@
 Plumage
 =======
 
-Plumage is a theme for [Pelican](http://getpelican.com), a static site generator written in Python.
+Plumage is a theme for [Pelican](http://getpelican.com), a static site
+generator written in Python.
 
-I initially created this theme for [my blog](http://kevin.deldycke.com), but now the theme is supposed to be generic enough to have its own repository.
+I initially created this theme for [my blog](http://kevin.deldycke.com), but
+now the theme is supposed to be generic enough to have its own repository.
 
 ![Plumage article view](https://raw.githubusercontent.com/kdeldycke/plumage
 /master/plumage-article-screenshot.png)
@@ -26,40 +28,62 @@ Plugins
 
 Plumage has built-in support for the following plugins:
 
-  * [`neighbors`](https://github.com/getpelican/pelican-plugins/tree/master/neighbors)
+  * [`neighbors`](https://github.com/getpelican/pelican-plugins/tree/master
+  /neighbors)
   * [`pdf`](https://github.com/getpelican/pelican-plugins/tree/master/pdf)
-  * [`related_posts`](https://github.com/getpelican/pelican-plugins/tree/master/related_posts)
+  * [`related_posts`](https://github.com/getpelican/pelican-plugins/tree/master
+  /related_posts)
   * [`typogrify`](https://github.com/getpelican/pelican-typogrify)
 
 
 Settings
 --------
 
-Plumage can be customized by adding these optionnal parameters to your `pelicanconf.py` file:
+Plumage can be customized by adding these optionnal parameters to your
+`pelicanconf.py` file:
 
-  * `SITE_THUMBNAIL`: Site's thumbnail URL as displayed in the header. Should be a square image of at least 80x80 pixels.
+  * `SITE_THUMBNAIL`: Site's thumbnail URL as displayed in the header. Should
+  be a square image of at least 80x80 pixels.
   * `SITE_THUMBNAIL_TEXT`: Text displayed behind site's thumbnail.
   * `SITESUBTITLE`: Set the subtitle from the site's header.
-  * `MENUITEMS`: A list of tuples (Title, URL) for additional menu items to appear at the beginning of the main menu.
-  * `GOOGLE_SEARCH`: [Google's Custom Search Engine](https://www.google.com/cse/) ID (e.g. `partner-pub-0123456789098765:0123456789`) to activate blog specific search.
-  * `LEFT_SIDEBAR`, `RIGHT_SIDEBAR`: HTML content to put as-is in the left or right sidebar.
-  * `ARTICLE_EDIT_LINK`: Generate an edit link besides each article. Can use `%(slug)s` to include dynamic article's slug in the link.
-  * `PDF_PROCESSOR`: Set this to 'True' if you want to have a 'Download the .pdf' link created, if you are using the PDF plugin.
-  * `SOCIAL`: A list of tuples (Title, URL) to appear in the first columns of the footer.
-  * `SOCIAL_TITLE`: Overide the title of the first column of the footer. Default value: `Social`.
-  * `LINKS`: A list of tuples (Title, URL) for links to appear in the second column of the footer.
-  * `LINKS_TITLE`: Overide the title of the second column of the footer. Default value: `Links`.
-  * `COPYRIGHT`: Additional copyright statement to add in the third column of the footer.
-  * `DISCLAIMER`: Overide the Disclaimer notice that gets displayed at the fourth column of the footer.
+  * `MENUITEMS`: A list of tuples (Title, URL) for additional menu items to
+  appear at the beginning of the main menu.
+  * `GOOGLE_SEARCH`: [Google's Custom Search Engine](https://www.google.com
+  /cse/) ID (e.g. `partner-pub-0123456789098765:0123456789`) to activate blog
+  specific search.
+  * `LEFT_SIDEBAR`, `RIGHT_SIDEBAR`: HTML content to put as-is in the left or
+  right sidebar.
+  * `ARTICLE_EDIT_LINK`: Generate an edit link besides each article. Can use
+  `%(slug)s` to include dynamic article's slug in the link.
+  * `PDF_PROCESSOR`: Set this to 'True' if you want to have a 'Download the
+  .pdf' link created, if you are using the PDF plugin.
+  * `SOCIAL`: A list of tuples (Title, URL) to appear in the first columns of
+  the footer.
+  * `SOCIAL_TITLE`: Overide the title of the first column of the footer.
+  Default value: `Social`.
+  * `LINKS`: A list of tuples (Title, URL) for links to appear in the second
+  column of the footer.
+  * `LINKS_TITLE`: Overide the title of the second column of the footer.
+  Default value: `Links`.
+  * `COPYRIGHT`: Additional copyright statement to add in the third column of
+  the footer.
+  * `DISCLAIMER`: Overide the Disclaimer notice that gets displayed at the
+  fourth column of the footer.
   * `DISQUS_SITENAME`: Disqus sitename identifier.
-  * `GOOGLE_ANALYTICS`: Google Analytics unique identifier (e.g. `UA-XXXX-YYYY`).
-  * `GOOGLE_ANALYTICS_DOMAIN`: Add the `_setDomainName` variable to Google Analytics' Javascript code.
+  * `GOOGLE_ANALYTICS`: Google Analytics unique identifier (e.g.
+  `UA-XXXX-YYYY`).
+  * `GOOGLE_ANALYTICS_DOMAIN`: Add the `_setDomainName` variable to Google
+  Analytics' Javascript code.
   * `PIWIK_URL`: Base URL for the intended [Piwik](http://piwik.org) installation.
   * `PIWIK_SITE_ID`: Specifies the ID of the site being tracked by Piwik.
 
-Most of these [parameters are similar to `notmyidea`'s](http://docs.getpelican.com/en/latest/settings.html#themes) (Pelican's default theme). For usage example, please have a look into [my own `pelicanconf.py`](https://github.com/kdeldycke/kevin-deldycke-blog/blob/master/pelicanconf.py).
+Most of these [parameters are similar to `notmyidea`'s](http:
+//docs.getpelican.com/en/latest/settings.html#themes) (Pelican's default theme).
+For usage example, please have a look into [my own `pelicanconf.py`](https:
+//github.com/kdeldycke/kevin-deldycke-blog/blob/master/pelicanconf.py).
 
-The theme is also sensible to this list of [standard Pelican parameters](http://docs.getpelican.com/en/latest/settings.html):
+The theme is also sensible to this list of [standard Pelican parameters](http:
+//docs.getpelican.com/en/latest/settings.html):
 
   * `ARCHIVES_SAVE_AS`
   * `AUTHOR_SAVE_AS`
@@ -158,7 +182,8 @@ Changelog
   * Sort out inactive projects to the bottom of the project list.
   * Drop support of old browsers.
   * Move from jQuery 1.x to 2.x.
-  * Use [latest Google Analytics](https://developers.google.com/analytics/devguides/collection/upgrade/) tracking code.
+  * Use [latest Google Analytics](https://developers.google.com/analytics
+  /devguides/collection/upgrade/) tracking code.
   * Upgrade to Font Awesome 4.0.3.
   * Upgrade to Masonry 3.1.2.
   * Upgrade to ImagesLoaded 3.0.4.
@@ -166,7 +191,8 @@ Changelog
 
 * **0.3** (2013-08-16)
   * Add auto-zoom of images based on Magnific Popup.
-  * Let the content take the available width if there is no right or left sidebars.
+  * Let the content take the available width if there is no right or left
+  sidebars.
   * Add an dynamic feed link in footer.
   * Do not wrap code in code blocks.
   * Fix code highlight for older Pelican versions.
@@ -181,7 +207,8 @@ Changelog
 
 * **0.1** (2013-07-07)
   * Theme has now a name: Plumage.
-  * Move the theme out of my [blog repository](https://github.com/kdeldycke/kevin-deldycke-blog) to its own repository.
+  * Move the theme out of my [blog repository](https://github.com/kdeldycke
+  /kevin-deldycke-blog) to its own repository.
   * Theme is now generic enough. Update TODO-list accordingly.
 
 * **0.0** (2012-12-23)
@@ -191,7 +218,8 @@ Changelog
 Pushing Plumage to Pelican project
 ----------------------------------
 
-This is just a note to myself on how to submit new stable releases of Plumage to [Pelican's theme repository](https://github.com/getpelican/pelican-themes).
+This is just a note to myself on how to submit new stable releases of Plumage
+to [Pelican's theme repository](https://github.com/getpelican/pelican-themes).
 
     $ git clone --recursive https://github.com/kdeldycke/pelican-themes
     $ cd pelican-themes/plumage/
@@ -203,7 +231,9 @@ This is just a note to myself on how to submit new stable releases of Plumage to
     $ cd ..
     $ rm -rf ./pelican-themes
 
-Now [create a Pull Request](https://github.com/kdeldycke/pelican-themes/compare/getpelican:master...master) from GitHub web interface, and submit it for merging to the original repository.
+Now [create a Pull Request](https://github.com/kdeldycke/pelican-themes/compare
+/getpelican:master...master) from GitHub web interface, and submit it for
+merging to the original repository.
 
 
 License
