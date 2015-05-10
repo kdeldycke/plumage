@@ -174,6 +174,10 @@ Changelog
 
 * **0.5.dev** (unreleased)
   * Add support for piwik.
+  * Upgrade to jQuery 2.1.3.
+  * Upgrade to Masonry 3.3.0.
+  * Upgrade to fitvids 1.1.0.
+  * Upgrade to Magnific Popup 1.0.0.
 
 * **0.4** (2014-02-15)
   * Allow grouping of projects.
