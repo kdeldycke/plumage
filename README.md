@@ -172,6 +172,9 @@ Contributors
 Changelog
 ---------
 
+* **0.6.dev** (unreleased)
+  * No changes yet.
+
 * **0.5** (2015-05-25)
   * Add support for piwik.
   * Upgrade to jQuery 2.1.3.
