@@ -223,27 +223,6 @@ Changelog
   * First commit.
 
 
-Pushing Plumage to Pelican project
-----------------------------------
-
-This is just a note to myself on how to submit new stable releases of Plumage
-to [Pelican's theme repository](https://github.com/getpelican/pelican-themes).
-
-    $ git clone --recursive https://github.com/kdeldycke/pelican-themes
-    $ cd pelican-themes/plumage/
-    $ git checkout 0.X
-    $ cd ..
-    $ git add ./plumage
-    $ git commit -m "Update Plumage to version 0.X"
-    $ git push
-    $ cd ..
-    $ rm -rf ./pelican-themes
-
-Now [create a Pull Request
-](https://github.com/kdeldycke/pelican-themes/compare/getpelican:master...master)
-from GitHub web interface, and submit it for merging to the original repository.
-
-
 License
 -------
 
