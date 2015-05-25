@@ -172,7 +172,7 @@ Contributors
 Changelog
 ---------
 
-* **0.5.dev** (unreleased)
+* **0.5** (2015-05-25)
   * Add support for piwik.
   * Upgrade to jQuery 2.1.3.
   * Upgrade to Masonry 3.3.0.
