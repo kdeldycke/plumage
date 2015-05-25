@@ -35,7 +35,7 @@
     {% if icon %}
       <i class="fa {{ 'fa-%s' % icon[0] }}"></i>
     {% elif not icon and domain %}
-      <img src="http://g.etfv.co/http://{{ domain }}?defaulticon=lightpng" width="16" height="16" class="icon" alt="{{ domain }} icon"/>
+      <img src="http://grabicon.com/icon?domain={{ domain }}&size=16" width="16" height="16" class="icon" alt="{{ domain }} icon"/>
     {% endif %}
     {{ label }}
   </a>

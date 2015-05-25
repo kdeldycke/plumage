@@ -173,7 +173,7 @@ Changelog
 ---------
 
 * **0.6.dev** (unreleased)
-  * No changes yet.
+  * Fix favicon rendering.
 
 * **0.5** (2015-05-25)
   * Add support for piwik.
