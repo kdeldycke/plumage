@@ -172,6 +172,9 @@ Contributors
 Changelog
 ---------
 
+* **0.7.dev** (unreleased)
+  * No changes yet.
+
 * **0.6** (2015-05-30)
   * Fix favicon rendering.
 
