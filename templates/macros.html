@@ -2,7 +2,7 @@
   <a href="{{ SITEURL }}/{{ tag.url }}" rel="tooltip" class="label" data-placement="right" data-original-title="{{ tag.articles }} article{{ 's' if tag.articles > 1 else '' }} with this tag">{{ tag.name }}</a>
 {%- endmacro %}
 
-{% macro render_link_icon(link, label) -%}
+{% macro render_link_icon(link, label, grabicon=False) -%}
   {% set icon = [] %}
   {% set protocol = link.split(':', 1)[0] %}
   {% if protocol == 'mailto' %}
@@ -34,7 +34,7 @@
   <a href="{{ link }}">
     {% if icon %}
       <i class="fa {{ 'fa-%s' % icon[0] }}"></i>
-    {% elif not icon and domain %}
+    {% elif not icon and domain and grabicon %}
       <img src="http://grabicon.com/icon?domain={{ domain }}&size=16" width="16" height="16" class="icon" alt="{{ domain }} icon"/>
     {% endif %}
     {{ label }}
