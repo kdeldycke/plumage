@@ -65,7 +65,8 @@ Plumage can be customized by adding these optionnal parameters to your
   column of the footer.
   * `LINKS_TITLE`: Overide the title of the second column of the footer.
   Default value: `Links`.
-  * `GRAB_ICONS`: Fetch link's icons from the grabicon.com web service.
+  * `GRAB_ICONS`: Fetch link's icons from the grabicon.com web service. Default
+  value: `False`.
   * `COPYRIGHT`: Additional copyright statement to add in the third column of
   the footer.
   * `DISCLAIMER`: Overide the Disclaimer notice that gets displayed at the
