@@ -21,6 +21,7 @@ Features
   * YouTube links
   * Direct link to edit articles on Github
   * Pygments syntax highlighting
+  * Javascrip-based, site-wide static search
 
 
 Plugins
