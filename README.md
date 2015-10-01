@@ -179,6 +179,7 @@ Changelog
 
 * **0.7.dev** (unreleased)
   * Add option to bypass grabicon.com web service.
+  * Add static search based on Tipue Search.
 
 * **0.6** (2015-05-30)
   * Fix favicon rendering.
