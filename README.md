@@ -76,10 +76,12 @@ Plumage can be customized by adding these optionnal parameters to your
   * `DISQUS_SITENAME`: Disqus sitename identifier.
   * `GOOGLE_ANALYTICS`: Google Analytics unique identifier (e.g.
   `UA-XXXX-YYYY`).
-  * `GOOGLE_ANALYTICS_DOMAIN`: Add the `_setDomainName` variable to Google
-  Analytics' Javascript code.
-  * `PIWIK_URL`: Base URL for the intended [Piwik](http://piwik.org) installation.
-  * `PIWIK_SITE_ID`: Specifies the ID of the site being tracked by Piwik.
+  * `PIWIK_URL`: URL to your [Piwik](http://piwik.org) server - without
+  `http://` at the beginning.
+  * `PIWIK_SSL_URL`: If the SSL-URL differs from the normal Piwik-URL you have
+  to include this setting too. (optional)
+  * `PIWIK_SITE_ID`: ID for the monitored website. You can find the ID in the
+  Piwik admin interface > Settings > Websites.
   * `TIPUE_SEARCH`: When defined and evaluated to True, integrates [Tipue
     Search](http://www.tipue.com/search) (javascript search engine) into the
     site. Requires the [`tipue_search`](https://github.com/getpelican/pelican-plugins/tree/master/tipue_search) plugin.
@@ -179,6 +181,7 @@ Changelog
 * **0.7.dev** (unreleased)
   * Add option to bypass grabicon.com web service.
   * Add static search based on Tipue Search.
+  * Align Piwik and Google analytics code to Pelican's `notmyidea` theme.
 
 * **0.6** (2015-05-30)
   * Fix favicon rendering.
