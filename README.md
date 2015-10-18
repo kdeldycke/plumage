@@ -15,13 +15,14 @@ Features
 --------
 
   * Based on Twitter Bootstrap
+  * [Solarized](http://ethanschoonover.com/solarized) pygments syntax
+  highlighting
+  * Javascrip-based, site-wide static search
   * Project template
   * Tags grouped by tiers
   * External assets (Bootstrap, Jquery, etc...) uses CDN
   * YouTube links
   * Direct link to edit articles on Github
-  * Pygments syntax highlighting
-  * Javascrip-based, site-wide static search
 
 
 Plugins
