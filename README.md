@@ -63,11 +63,11 @@ Plumage can be customized by adding these optionnal parameters to your
   .pdf' link created, if you are using the PDF plugin.
   * `SOCIAL`: A list of tuples (Title, URL) to appear in the first columns of
   the footer.
-  * `SOCIAL_TITLE`: Overide the title of the first column of the footer.
+  * `SOCIAL_WIDGET_NAME`: Overide the title of the first column of the footer.
   Default value: `Social`.
   * `LINKS`: A list of tuples (Title, URL) for links to appear in the second
   column of the footer.
-  * `LINKS_TITLE`: Overide the title of the second column of the footer.
+  * `LINKS_WIDGET_NAME`: Overide the title of the second column of the footer.
   Default value: `Links`.
   * `GRAB_ICONS`: Fetch link's icons from the grabicon.com web service. Default
   value: `False`.
@@ -184,6 +184,8 @@ Changelog
 * **0.7.dev** (unreleased)
   * Add option to bypass grabicon.com web service.
   * Add static search based on Tipue Search.
+  * Add new `LINKS_WIDGET_NAME` and `SOCIAL_WIDGET_NAME` options to mirror
+    upcoming Pelican 3.7.
   * Align Piwik and Google analytics code to Pelican's `notmyidea` theme.
   * Upgrade to jQuery 2.1.4.
   * Upgrade to Masonry 3.3.2.

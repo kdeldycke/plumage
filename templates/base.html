@@ -156,9 +156,9 @@
       <div class="container">
         <div class="row">
 
-          {% set SOCIAL_TITLE = SOCIAL_TITLE or 'Social' %}
-          {% set LINKS_TITLE  = LINKS_TITLE  or 'Links'  %}
-          {% for group_title, group_links in ((SOCIAL_TITLE, SOCIAL), (LINKS_TITLE, LINKS)) %}
+          {% set SOCIAL_WIDGET_NAME = SOCIAL_WIDGET_NAME or 'Social' %}
+          {% set LINKS_WIDGET_NAME = LINKS_WIDGET_NAME or 'Links' %}
+          {% for group_title, group_links in ((SOCIAL_WIDGET_NAME, SOCIAL), (LINKS_WIDGET_NAME, LINKS)) %}
             <div class="span2">
               {% if group_links %}
                 <h5>{{ group_title }}</h5>
