@@ -38,7 +38,7 @@ Plumage has built-in support for the following plugins:
   * [`pdf`](https://github.com/getpelican/pelican-plugins/tree/master/pdf)
   * [`related_posts`
   ](https://github.com/getpelican/pelican-plugins/tree/master/related_posts)
-  * [`typogrify`](https://github.com/getpelican/pelican-typogrify)
+  * [`typogrify`](https://pypi.python.org/pypi/typogrify)
 
 
 Settings
