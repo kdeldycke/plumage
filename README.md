@@ -119,7 +119,6 @@ The theme is also sensible to this list of [standard Pelican parameters
 TODO
 ----
 
-  * Hack google search to integrate search result within theme design ?
   * Use a big carousel for front-page articles (ex: http://twitter.github.com/bootstrap/examples/carousel.html ) + a bit of http://srobbin.com/jquery-plugins/backstretch/ to keep aspect-ratio
   * Check some web-dev essentials:
       * http://webdevchecklist.com/
