@@ -23,10 +23,6 @@
       <p><address class="fa fa-user"> By <a href="{{ SITEURL }}/{{ article.author.url }}" rel="author">{{ article.author }}</a></address></p>
     {% endif %}
 
-    {% if PDF_PROCESSOR %}
-      <p><a href="{{ SITEURL }}/pdf/{{ article.slug }}.pdf" rel="alternate" class="fa fa-file"> Download the .pdf</a></p>
-    {% endif %}
-
     <hr/>
 
     {% if article.category or article.tags %}

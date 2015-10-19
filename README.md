@@ -35,7 +35,6 @@ Plumage has built-in support for the following plugins:
   ](https://github.com/getpelican/pelican-plugins/tree/master/tipue_search)
   * [`neighbors`
   ](https://github.com/getpelican/pelican-plugins/tree/master/neighbors)
-  * [`pdf`](https://github.com/getpelican/pelican-plugins/tree/master/pdf)
   * [`related_posts`
   ](https://github.com/getpelican/pelican-plugins/tree/master/related_posts)
   * [`typogrify`](https://pypi.python.org/pypi/typogrify)
@@ -190,6 +189,7 @@ Changelog
   * Align Piwik and Google analytics code to Pelican's `notmyidea` theme.
   * Upgrade to jQuery 2.1.4.
   * Upgrade to Masonry 3.3.2.
+  * Remove `PDF_PROCESSOR` option now that plugin is out of core.
 
 * **0.6** (2015-05-30)
   * Fix favicon rendering.
