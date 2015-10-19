@@ -30,7 +30,8 @@ Plugins
 
 Plumage has built-in support for the following plugins:
 
-  * [`tipue_search`](https://github.com/getpelican/pelican-plugins/tree/master/tipue_search)
+  * [`tipue_search`
+  ](https://github.com/getpelican/pelican-plugins/tree/master/tipue_search)
   * [`neighbors`
   ](https://github.com/getpelican/pelican-plugins/tree/master/neighbors)
   * [`pdf`](https://github.com/getpelican/pelican-plugins/tree/master/pdf)
@@ -84,8 +85,10 @@ Plumage can be customized by adding these optionnal parameters to your
   * `PIWIK_SITE_ID`: ID for the monitored website. You can find the ID in the
   Piwik admin interface > Settings > Websites.
   * `TIPUE_SEARCH`: When defined and evaluated to True, integrates [Tipue
-    Search](http://www.tipue.com/search) (javascript search engine) into the
-    site. Requires the [`tipue_search`](https://github.com/getpelican/pelican-plugins/tree/master/tipue_search) plugin.
+  Search](http://www.tipue.com/search) (javascript search engine) into the
+  site. Requires the [`tipue_search`
+  ](https://github.com/getpelican/pelican-plugins/tree/master/tipue_search)
+  plugin.
 
 Most of these [parameters are similar to `notmyidea`'s
 ](http://docs.getpelican.com/en/latest/settings.html#themes) (Pelican's default
