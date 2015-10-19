@@ -182,6 +182,8 @@ Changelog
   * Add option to bypass grabicon.com web service.
   * Add static search based on Tipue Search.
   * Align Piwik and Google analytics code to Pelican's `notmyidea` theme.
+  * Upgrade to jQuery 2.1.4.
+  * Upgrade to Masonry 3.3.2.
 
 * **0.6** (2015-05-30)
   * Fix favicon rendering.
