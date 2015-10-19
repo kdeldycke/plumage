@@ -46,49 +46,29 @@ Settings
 Plumage can be customized by adding these optionnal parameters to your
 `pelicanconf.py` file:
 
-  * `SITE_THUMBNAIL`: Site's thumbnail URL as displayed in the header. Should
-  be a square image of at least 80x80 pixels.
-  * `SITE_THUMBNAIL_TEXT`: Text displayed behind site's thumbnail.
-  * `SITESUBTITLE`: Set the subtitle from the site's header.
-  * `MENUITEMS`: A list of tuples (Title, URL) for additional menu items to
-  appear at the beginning of the main menu.
-  * `GOOGLE_SEARCH`: [Google's Custom Search Engine
-  ](https://www.google.com/cse/) ID (e.g.
-  `partner-pub-0123456789098765:0123456789`) to activate blog specific search.
-  * `LEFT_SIDEBAR`, `RIGHT_SIDEBAR`: HTML content to put as-is in the left or
-  right sidebar.
-  * `ARTICLE_EDIT_LINK`: Generate an edit link besides each article. Can use
-  `%(slug)s` to include dynamic article's slug in the link.
-  * `PDF_PROCESSOR`: Set this to 'True' if you want to have a 'Download the
-  .pdf' link created, if you are using the PDF plugin.
-  * `SOCIAL`: A list of tuples (Title, URL) to appear in the first columns of
-  the footer.
-  * `SOCIAL_WIDGET_NAME`: Overide the title of the first column of the footer.
-  Default value: `Social`.
-  * `LINKS`: A list of tuples (Title, URL) for links to appear in the second
-  column of the footer.
-  * `LINKS_WIDGET_NAME`: Overide the title of the second column of the footer.
-  Default value: `Links`.
-  * `GRAB_ICONS`: Fetch link's icons from the grabicon.com web service. Default
-  value: `False`.
-  * `COPYRIGHT`: Additional copyright statement to add in the third column of
-  the footer.
-  * `DISCLAIMER`: Overide the Disclaimer notice that gets displayed at the
-  fourth column of the footer.
-  * `DISQUS_SITENAME`: Disqus sitename identifier.
-  * `GOOGLE_ANALYTICS`: Google Analytics unique identifier (e.g.
-  `UA-XXXX-YYYY`).
-  * `PIWIK_URL`: URL to your [Piwik](http://piwik.org) server - without
-  `http://` at the beginning.
-  * `PIWIK_SSL_URL`: If the SSL-URL differs from the normal Piwik-URL you have
-  to include this setting too. (optional)
-  * `PIWIK_SITE_ID`: ID for the monitored website. You can find the ID in the
-  Piwik admin interface > Settings > Websites.
-  * `TIPUE_SEARCH`: When defined and evaluated to True, integrates [Tipue
-  Search](http://www.tipue.com/search) (javascript search engine) into the
-  site. Requires the [`tipue_search`
-  ](https://github.com/getpelican/pelican-plugins/tree/master/tipue_search)
-  plugin.
+Setting name | Default value | Description
+:--- |:--- |:---
+`ARTICLE_EDIT_LINK` | | Generate an edit link besides each article. Can use `%(slug)s` to include dynamic article's slug in the link.
+`COPYRIGHT` | | Additional copyright statement to add in the third column of the footer.
+`DISCLAIMER` | | Overide the Disclaimer notice that gets displayed at the fourth column of the footer.
+`DISQUS_SITENAME` | | Pelican can handle Disqus comments. Specify the Disqus sitename identifier here.
+`GOOGLE_ANALYTICS` | | Set to `UA-XXXX-YYYY` to activate Google Analytics.
+`GOOGLE_SEARCH` | | [Google's Custom Search Engine](https://www.google.com/cse/) ID (e.g. `partner-pub-0123456789098765:0123456789`) to activate blog specific search.
+`GRAB_ICONS` | `False` | Fetch link's icons from the grabicon.com web service.
+`LEFT_SIDEBAR` | | HTML content to put as-is in the left sidebar.
+`LINKS_WIDGET_NAME` | `"Links"` | Allows override of the name of the links widget.
+`LINKS` | | A list of tuples (Title, URL) for links to appear in the second column of the footer.
+`MENUITEMS`| | A list of tuples (Title, URL) for additional menu items to appear at the beginning of the main menu.
+`PIWIK_SITE_ID` | | ID for the monitored website. You can find the ID in the Piwik admin interface > Settings > Websites.
+`PIWIK_SSL_URL` | | If the SSL-URL differs from the normal Piwik-URL you have to include this setting too. (optional)
+`PIWIK_URL` | | URL to your [Piwik](http://piwik.org) server - without `http://` at the beginning.
+`RIGHT_SIDEBAR` | | HTML content to put as-is in the right sidebar.
+`SITESUBTITLE` | | A subtitle to appear in the header.
+`SITE_THUMBNAIL_TEXT` | | Text displayed behind site's thumbnail.
+`SITE_THUMBNAIL` | | Site's thumbnail URL as displayed in the header. Should be a square image of at least 80x80 pixels.
+`SOCIAL_WIDGET_NAME` | `"Social"` | Allows override of the name of the “social” widget.
+`SOCIAL` | | A list of tuples (Title, URL) to appear in the first columns of the footer.
+`TIPUE_SEARCH` | `False` | Activate [Tipue Search](http://www.tipue.com/search) (javascript search engine) into the site. Requires the [`tipue_search`](https://github.com/getpelican/pelican-plugins/tree/master/tipue_search) plugin.
 
 Most of these [parameters are similar to `notmyidea`'s
 ](http://docs.getpelican.com/en/latest/settings.html#themes) (Pelican's default
