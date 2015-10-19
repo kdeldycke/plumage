@@ -14,13 +14,14 @@ now the theme is supposed to be generic enough to have its own repository.
 Features
 --------
 
-  * Based on Twitter Bootstrap
+  * Based on [Bootstrap v2](http://getbootstrap.com/2.3.2/)
   * [Solarized](http://ethanschoonover.com/solarized) pygments syntax
   highlighting
   * Javascrip-based, site-wide static search
   * Project template
   * Tags grouped by tiers
-  * External assets (Bootstrap, Jquery, etc...) uses CDN
+  * External assets (Bootstrap, Jquery, etc...) uses [CDNjs
+  ](https://cdnjs.com/about)
   * YouTube links
   * Direct link to edit articles on Github
 
