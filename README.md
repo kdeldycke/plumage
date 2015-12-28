@@ -158,6 +158,7 @@ Contributors
   * [Jeff Smith](https://github.com/jeffreyksmithjr)
   * [Stratos Gerakakis](https://github.com/stratosgear)
   * [Renato Cunha](https://github.com/trovao)
+  * [Florian Wilhelm](https://github.com/FlorianWilhelm)
 
 
 Changelog
