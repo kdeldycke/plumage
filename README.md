@@ -164,6 +164,9 @@ Contributors
 Changelog
 ---------
 
+* **0.8.dev** (unreleased)
+  * No changes yet.
+
 * **0.7** (2015-12-28)
   * Add option to bypass grabicon.com web service.
   * Add static search based on Tipue Search.
