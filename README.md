@@ -53,6 +53,8 @@ Setting name | Default value | Description
 `DISCLAIMER` | | Overide the Disclaimer notice that gets displayed at the fourth column of the footer.
 `DISQUS_SITENAME` | | Pelican can handle Disqus comments. Specify the Disqus sitename identifier here.
 `GOOGLE_ANALYTICS` | | Set to `UA-XXXX-YYYY` to activate Google Analytics.
+`GOOGLE_ANALYTICS_UNIVERSAL` | | Set to `UA-XXXXXXXX-Y` to activate newer Google Analytics Universal.
+`GOOGLE_ANALYTICS_UNIVERSAL_PROPERTY` | | Set to property like `auto` for newer Google Analytics Universal.
 `GOOGLE_SEARCH` | | [Google's Custom Search Engine](https://www.google.com/cse/) ID (e.g. `partner-pub-0123456789098765:0123456789`) to activate blog specific search.
 `GRAB_ICONS` | `False` | Fetch link's icons from the grabicon.com web service.
 `LEFT_SIDEBAR` | | HTML content to put as-is in the left sidebar.
