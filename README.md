@@ -52,9 +52,8 @@ Setting name | Default value | Description
 `COPYRIGHT` | | Additional copyright statement to add in the third column of the footer.
 `DISCLAIMER` | | Overide the Disclaimer notice that gets displayed at the fourth column of the footer.
 `DISQUS_SITENAME` | | Pelican can handle Disqus comments. Specify the Disqus sitename identifier here.
-`GOOGLE_ANALYTICS` | | Set to `UA-XXXX-YYYY` to activate Google Analytics.
-`GOOGLE_ANALYTICS_UNIVERSAL` | | Set to `UA-XXXXXXXX-Y` to activate newer Google Analytics Universal.
-`GOOGLE_ANALYTICS_UNIVERSAL_PROPERTY` | | Set to property like `auto` for newer Google Analytics Universal.
+`GOOGLE_ANALYTICS` | | Set to `UA-XXXXXXXX-Y` to activate Google Analytics.
+`GOOGLE_ANALYTICS_PROPERTY` | | Set to property like `auto` to fine-tune Google Analytics tracking code.
 `GOOGLE_SEARCH` | | [Google's Custom Search Engine](https://www.google.com/cse/) ID (e.g. `partner-pub-0123456789098765:0123456789`) to activate blog specific search.
 `GRAB_ICONS` | `False` | Fetch link's icons from the grabicon.com web service.
 `LEFT_SIDEBAR` | | HTML content to put as-is in the left sidebar.
@@ -165,7 +164,9 @@ Changelog
 ---------
 
 * **0.8.dev** (unreleased)
-  * No changes yet.
+  * Remove legacy Google Analytics tracking code.
+  * Rename `GOOGLE_ANALYTICS_UNIVERSAL` option by `GOOGLE_ANALYTICS` and
+  `GOOGLE_ANALYTICS_UNIVERSAL_PROPERTY` by `GOOGLE_ANALYTICS_PROPERTY`.
 
 * **0.7** (2015-12-28)
   * Add option to bypass grabicon.com web service.
