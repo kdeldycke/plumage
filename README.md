@@ -168,7 +168,9 @@ Changelog
   * Add static search based on Tipue Search.
   * Add new `LINKS_WIDGET_NAME` and `SOCIAL_WIDGET_NAME` options to mirror
     upcoming Pelican 3.7.
-  * Align Piwik and Google analytics code to Pelican's `notmyidea` theme.
+  * Align Piwik and Google Analytics code to Pelican's `notmyidea` theme.
+  * Add support for newer Google Analytics Universal embed code, via new
+    `GOOGLE_ANALYTICS_UNIVERSAL` and `GOOGLE_ANALYTICS_UNIVERSAL_PROPERTY` options.
   * Upgrade to jQuery 2.1.4.
   * Upgrade to Masonry 3.3.2.
   * Remove `PDF_PROCESSOR` option now that plugin is out of core.
