@@ -119,6 +119,7 @@ Changelog
   * Rename `GOOGLE_ANALYTICS_UNIVERSAL` option by `GOOGLE_ANALYTICS` and
   `GOOGLE_ANALYTICS_UNIVERSAL_PROPERTY` by `GOOGLE_ANALYTICS_PROPERTY`.
   * Set default `GOOGLE_ANALYTICS_PROPERTY` value to `"auto"`.
+  * Allow deactivation of zoom on article's images.
 
 * **0.7** (2015-12-28)
   * Add option to bypass grabicon.com web service.
