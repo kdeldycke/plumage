@@ -14,16 +14,16 @@ now the theme is supposed to be generic enough to have its own repository.
 Features
 --------
 
-  * Based on [Bootstrap v2](http://getbootstrap.com/2.3.2/)
-  * [Solarized](http://ethanschoonover.com/solarized) pygments syntax
-  highlighting
-  * Javascrip-based, site-wide static search
-  * Project template
-  * Tags grouped by tiers
+  * Based on [Bootstrap v2](http://getbootstrap.com/2.3.2/).
+  * [Solarized](http://ethanschoonover.com/solarized) code snippets via
+    [Pygments](http://pygments.org/) for syntax highlighting.
+  * Site-wide static search via [Tipue-search](http://www.tipue.com/search/).
+  * Project template.
+  * Tags grouped by tiers.
   * External assets (Bootstrap, Jquery, etc...) uses [CDNjs
-  ](https://cdnjs.com/about)
-  * YouTube links
-  * Direct link to edit articles on Github
+  ](https://cdnjs.com/about).
+  * YouTube links.
+  * Direct link to edit articles on Github.
 
 
 Plugins
@@ -127,7 +127,8 @@ Changelog
     upcoming Pelican 3.7.
   * Align Piwik and Google Analytics code to Pelican's `notmyidea` theme.
   * Add support for newer Google Analytics Universal embed code, via new
-    `GOOGLE_ANALYTICS_UNIVERSAL` and `GOOGLE_ANALYTICS_UNIVERSAL_PROPERTY` options.
+    `GOOGLE_ANALYTICS_UNIVERSAL` and `GOOGLE_ANALYTICS_UNIVERSAL_PROPERTY`
+    options.
   * Upgrade to jQuery 2.1.4.
   * Upgrade to Masonry 3.3.2.
   * Remove `PDF_PROCESSOR` option now that plugin is out of core.
@@ -145,7 +146,8 @@ Changelog
 * **0.4** (2014-02-15)
   * Allow grouping of projects.
   * Add option to overide disclaimer notice.
-  * Generate tags, categories and archives URLs depending on site configuration.
+  * Generate tags, categories and archives URLs depending on site
+    configuration.
   * Sort out inactive projects to the bottom of the project list.
   * Drop support of old browsers.
   * Move from jQuery 1.x to 2.x.
