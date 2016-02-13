@@ -100,6 +100,22 @@ The theme is also sensible to this list of [standard Pelican parameters
   * `TAGS_SAVE_AS`
 
 
+FAQ
+---
+
+**How can I disable the zoom on images?**
+
+All images of an article are zoomable by default. You can deactivate the
+magnifying class per-image by adding a `noZoom` CSS class. So instead of the
+following Markdown code:
+
+    ![Image title](/folder/image.png)
+
+You have to use the following template to deactivate the zoom of an image:
+
+    ![Image title](/folder/image.png){: .noZoom}
+
+
 Contributors
 ------------
 
@@ -213,7 +229,6 @@ The theme uses external softwares, scripts, libraries and artworks:
     Copyright (c) 2012 Younès El Biache
     Distributed under a MIT license
     Source: https://github.com/younes0/jQuery-MGlass
-    Note: Use *noZoom* as class to omit the magnifying glass
 
     Solarized Pygment style v0.1.0
     Copyright (c) 2012 Shoji KUMAGAI
