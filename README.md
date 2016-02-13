@@ -106,7 +106,7 @@ FAQ
 **How can I disable the zoom on images?**
 
 All images of an article are zoomable by default. You can deactivate the
-magnifying class per-image by adding a `noZoom` CSS class. So instead of the
+magnifying glass per-image by adding a `noZoom` CSS class. So instead of the
 following Markdown code:
 
     ![Image title](/folder/image.png)
