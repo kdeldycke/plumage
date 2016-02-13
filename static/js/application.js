@@ -62,20 +62,26 @@
       var link_tag = $(this).closest('a');
       if (parse_youtube_url(link_tag.attr('href')) != false) {
         link_tag.addClass("video");
-      } else {
-        // Activate zoom popup
-        link_tag.magnificPopup({
-          type: 'image',
-          closeOnContentClick: true,
-          midClick: true,
-          mainClass: 'mfp-with-zoom',
-          zoom: {
-            enabled: true,
-            duration: 300,
-            easing: 'ease-in-out',
-          },
-        });
-      };
+        return;
+      }
+      // No zoom popup for class noZoom
+      if ($(this).hasClass( "noZoom" )) {
+        return;
+      }
+
+      // Activate zoom popup
+      link_tag.magnificPopup({
+        type: 'image',
+        closeOnContentClick: true,
+        midClick: true,
+        mainClass: 'mfp-with-zoom',
+        zoom: {
+          enabled: true,
+          duration: 300,
+          easing: 'ease-in-out',
+        },
+      });
+
       // Add overlay zoom icon
       $(this).mglass({opacity: 1,});
     });
