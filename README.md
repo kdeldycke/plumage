@@ -137,6 +137,11 @@ Changelog
   `GOOGLE_ANALYTICS_UNIVERSAL_PROPERTY` by `GOOGLE_ANALYTICS_PROPERTY`.
   * Set default `GOOGLE_ANALYTICS_PROPERTY` value to `"auto"`.
   * Allow deactivation of zoom on article's images.
+  * Upgrade to Font Awesome 4.6.3.
+  * Upgrade to ImagesLoaded 4.1.0.
+  * Upgrade to Masonry 4.1.0.
+  * Upgrade to Magnific Popup 1.1.0.
+  * Upgrade to jQuery 2.2.4.
 
 * [**0.7**
   (2015-12-28)](https://github.com/kdeldycke/plumage/compare/0.6...0.7)
