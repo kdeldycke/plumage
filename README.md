@@ -147,6 +147,7 @@ Changelog
   * Rename `GRAB_ICONS` option to `FAVICON_LINKS`.
   * Enable favicon fetching by default.
   * Fallback on default external link icon if none found.
+  * Remove local copy of Tipue Search assets. Rely on CDNjs instead.
 
 * [**0.7**
   (2015-12-28)](https://github.com/kdeldycke/plumage/compare/0.6...0.7)
