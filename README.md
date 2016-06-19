@@ -52,10 +52,10 @@ Setting name | Default value | Description
 `COPYRIGHT` | | Additional copyright statement to add in the third column of the footer.
 `DISCLAIMER` | | Overide the Disclaimer notice that gets displayed at the fourth column of the footer.
 `DISQUS_SITENAME` | | Pelican can handle Disqus comments. Specify the Disqus sitename identifier here.
+`FAVICON_LINKS` | `True` | Fetch link's icons from the free [Favicon Finder](http://icons.better-idea.org) web service.
 `GOOGLE_ANALYTICS` | | Set to `UA-XXXXXXXX-Y` to activate Google Analytics.
 `GOOGLE_ANALYTICS_PROPERTY` | `"auto"` | Set to property to fine-tune Google Analytics tracking code.
 `GOOGLE_SEARCH` | | [Google's Custom Search Engine](https://www.google.com/cse/) ID (e.g. `partner-pub-0123456789098765:0123456789`) to activate blog specific search.
-`GRAB_ICONS` | `False` | Fetch link's icons from the grabicon.com web service.
 `LEFT_SIDEBAR` | | HTML content to put as-is in the left sidebar.
 `LINKS_WIDGET_NAME` | `"Links"` | Allows override of the name of the links widget.
 `LINKS` | | A list of tuples (Title, URL) for links to appear in the second column of the footer.
@@ -142,6 +142,11 @@ Changelog
   * Upgrade to Masonry 4.1.0.
   * Upgrade to Magnific Popup 1.1.0.
   * Upgrade to jQuery 2.2.4.
+  * Ditch `grabicon.com` in favor of the free [Favicon Finder
+  ](http://icons.better-idea.org) web service.
+  * Rename `GRAB_ICONS` option to `FAVICON_LINKS`.
+  * Enable favicon fetching by default.
+  * Fallback on default external link icon if none found.
 
 * [**0.7**
   (2015-12-28)](https://github.com/kdeldycke/plumage/compare/0.6...0.7)
