@@ -130,14 +130,16 @@ Contributors
 Changelog
 ---------
 
-* **0.8.dev** (unreleased)
+* [**0.8.dev**
+  (unreleased)](https://github.com/kdeldycke/plumage/compare/0.7...master)
   * Remove legacy Google Analytics tracking code.
   * Rename `GOOGLE_ANALYTICS_UNIVERSAL` option by `GOOGLE_ANALYTICS` and
   `GOOGLE_ANALYTICS_UNIVERSAL_PROPERTY` by `GOOGLE_ANALYTICS_PROPERTY`.
   * Set default `GOOGLE_ANALYTICS_PROPERTY` value to `"auto"`.
   * Allow deactivation of zoom on article's images.
 
-* **0.7** (2015-12-28)
+* [**0.7**
+  (2015-12-28)](https://github.com/kdeldycke/plumage/compare/0.6...0.7)
   * Add option to bypass grabicon.com web service.
   * Add static search based on Tipue Search.
   * Add new `LINKS_WIDGET_NAME` and `SOCIAL_WIDGET_NAME` options to mirror
@@ -150,17 +152,20 @@ Changelog
   * Upgrade to Masonry 3.3.2.
   * Remove `PDF_PROCESSOR` option now that plugin is out of core.
 
-* **0.6** (2015-05-30)
+* [**0.6**
+  (2015-05-30)](https://github.com/kdeldycke/plumage/compare/0.5...0.6)
   * Fix favicon rendering.
 
-* **0.5** (2015-05-25)
+* [**0.5**
+  (2015-05-25)](https://github.com/kdeldycke/plumage/compare/0.4...0.5)
   * Add support for piwik.
   * Upgrade to jQuery 2.1.3.
   * Upgrade to Masonry 3.3.0.
   * Upgrade to fitvids 1.1.0.
   * Upgrade to Magnific Popup 1.0.0.
 
-* **0.4** (2014-02-15)
+* [**0.4**
+  (2014-02-15)](https://github.com/kdeldycke/plumage/compare/0.3...0.4)
   * Allow grouping of projects.
   * Add option to overide disclaimer notice.
   * Generate tags, categories and archives URLs depending on site
@@ -176,7 +181,8 @@ Changelog
   * Upgrade to ImagesLoaded 3.0.4.
   * Upgrade to Magnific Popup 0.9.9.
 
-* **0.3** (2013-08-16)
+* [**0.3**
+  (2013-08-16)](https://github.com/kdeldycke/plumage/compare/0.2...0.3)
   * Add auto-zoom of images based on Magnific Popup.
   * Let the content take the available width if there is no right or left
   sidebars.
@@ -186,19 +192,22 @@ Changelog
   * Escape and strip tags in all title attributes.
   * Style ampersands for those using typogrify.
 
-* **0.2** (2013-07-09)
+* [**0.2**
+  (2013-07-09)](https://github.com/kdeldycke/plumage/compare/0.1...0.2)
   * Make theme fully generic through the use of variables.
   * Replace custom navigation with Pelican's neighbors plugin.
   * Add screenshot.
   * Update documentation.
 
-* **0.1** (2013-07-07)
+* [**0.1**
+  (2013-07-07)](https://github.com/kdeldycke/plumage/compare/0.0...0.1)
   * Theme has now a name: Plumage.
   * Move the theme out of my [blog repository
   ](https://github.com/kdeldycke/kevin-deldycke-blog) to its own repository.
   * Theme is now generic enough. Update TODO-list accordingly.
 
-* **0.0** (2012-12-23)
+* [**0.0**
+  (2012-12-23)](https://github.com/kdeldycke/plumage/commit/70df9b)
   * First commit.
 
 
