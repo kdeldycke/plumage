@@ -130,8 +130,8 @@ Contributors
 Changelog
 ---------
 
-* [**0.8.dev**
-  (unreleased)](https://github.com/kdeldycke/plumage/compare/0.7...master)
+* [**0.8**
+  (2016-06-22)](https://github.com/kdeldycke/plumage/compare/0.7...0.8)
   * Remove legacy Google Analytics tracking code.
   * Rename `GOOGLE_ANALYTICS_UNIVERSAL` option by `GOOGLE_ANALYTICS` and
   `GOOGLE_ANALYTICS_UNIVERSAL_PROPERTY` by `GOOGLE_ANALYTICS_PROPERTY`.
