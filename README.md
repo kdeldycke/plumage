@@ -14,7 +14,7 @@ now the theme is supposed to be generic enough to have its own repository.
 Features
 --------
 
-  * Based on [Bootstrap v2](http://getbootstrap.com/2.3.2/).
+  * Based on [Bootstrap v3](http://getbootstrap.com).
   * [Solarized](http://ethanschoonover.com/solarized) code snippets via
     [Pygments](http://pygments.org/) for syntax highlighting.
   * Site-wide static search via [Tipue-search](http://www.tipue.com/search/).
@@ -132,7 +132,7 @@ Changelog
 
 * [**0.9.dev**
   (unreleased)](https://github.com/kdeldycke/plumage/compare/0.8...master)
-  * No changes yet.
+  * Upgrade Bootstrap from v2.3.2 to v3.3.6.
 
 * [**0.8**
   (2016-06-22)](https://github.com/kdeldycke/plumage/compare/0.7...0.8)
