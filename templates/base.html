@@ -81,8 +81,8 @@
 
         <div class="navbar">
           <div class="navbar-inner">
-            <a class="brand" href="{{ SITEURL }}" title="{{ SITESUBTITLE|e }}">{{ SITENAME }}</a>
-            <ul class="nav">
+            <a class="navbar-brand" href="{{ SITEURL }}" title="{{ SITESUBTITLE|e }}">{{ SITENAME }}</a>
+            <ul class="navbar-nav">
               {% for title, link in MENUITEMS %}
                 {% set active_page = page is defined and link == "/%s"|format(page.url) -%}
                 <li {% if active_page %} class="active" {% endif %}><a href="{{ link }}">{{ title }}</a></li>
@@ -95,7 +95,7 @@
             </ul>
             {% if GOOGLE_SEARCH %}
               <form class="navbar-search pull-right" action="http://www.google.com" target="_blank">
-                <input type="text" name="q" class="search-query span2" placeholder="Search"/>
+                <input type="text" name="q" class="search-query col-md-2" placeholder="Search"/>
                 <i class="fa fa-search fa-fw"></i>
                 <input type="hidden" name="cx" value="{{ GOOGLE_SEARCH }}" />
                 <input type="hidden" name="ie" value="UTF-8" />
@@ -103,7 +103,7 @@
             {% endif %}
             {% if TIPUE_SEARCH %}
               <form class="navbar-search pull-right" action="{{ SITEURL }}/search.html" onsubmit="return validateForm(this.elements['q'].value);">
-                <input type="text" name="q" id="tipue_search_input" class="search-query span2" placeholder="Search" required/>
+                <input type="text" name="q" id="tipue_search_input" class="search-query col-md-2" placeholder="Search" required/>
                 <i class="fa fa-search fa-fw"></i>
               </form>
             {% endif %}
@@ -116,7 +116,7 @@
         {% set has_right_content = has_right or RIGHT_SIDEBAR is defined %}
 
         <div class="row">
-          <div class="{% if (has_left_content and has_right_content) or LAYOUT == 'full-width' %} span6 {% elif has_left_content or has_right_content%} span9 {% else %} span12 {% endif %} {% if has_left_content %} offset3 {% endif %}">
+          <div class="{% if (has_left_content and has_right_content) or LAYOUT == 'full-width' %} col-md-6 {% elif has_left_content or has_right_content%} col-md-9 {% else %} col-md-12 {% endif %} {% if has_left_content %} col-md-offset-3 {% endif %}">
             {% block top_center %}
             {% endblock %}
           </div>
@@ -125,20 +125,20 @@
         <div class="row">
 
           {% if LAYOUT != 'full-width' and has_left_content %}
-            <div class="span3">
+            <div class="col-md-3">
               {% block left_sidebar %}
               {% endblock %}
               {{ LEFT_SIDEBAR }}
             </div>
           {% endif %}
 
-          <div class="{% if LAYOUT == 'full-width' %} offset1 {% elif has_left_content and has_right_content %} span6 {% elif has_left_content or has_right_content %} span9 {% else %} span12 {% endif %}" id="content" role="main">
+          <div class="{% if LAYOUT == 'full-width' %} col-md-offset-1 {% elif has_left_content and has_right_content %} col-md-6 {% elif has_left_content or has_right_content %} col-md-9 {% else %} col-md-12 {% endif %}" id="content" role="main">
             {% block content %}
             {% endblock %}
           </div>
 
           {% if LAYOUT != 'full-width' and has_right_content %}
-            <div class="span3">
+            <div class="col-md-3">
               {% block right_sidebar %}
               {% endblock %}
               {{ RIGHT_SIDEBAR }}
@@ -158,10 +158,10 @@
           {% set SOCIAL_WIDGET_NAME = SOCIAL_WIDGET_NAME or 'Social' %}
           {% set LINKS_WIDGET_NAME = LINKS_WIDGET_NAME or 'Links' %}
           {% for group_title, group_links in ((SOCIAL_WIDGET_NAME, SOCIAL), (LINKS_WIDGET_NAME, LINKS)) %}
-            <div class="span2">
+            <div class="col-md-2">
               {% if group_links %}
                 <h5>{{ group_title }}</h5>
-                <ul class="unstyled">
+                <ul class="list-unstyled">
                 {% for title, link in group_links %}
                   <li>{{ m.render_link_icon(link, title, FAVICON_LINKS) }}</li>
                 {% endfor %}
@@ -170,7 +170,7 @@
             </div>
           {% endfor %}
 
-          <div class="span2">
+          <div class="col-md-2">
             <h5>Browse content by</h5>
             <ul class="fa-ul">
               {% if CATEGORIES_SAVE_AS %}
@@ -199,7 +199,7 @@
             </ul>
           </div>
 
-          <div class="span2 muted">
+          <div class="col-md-2 text-muted">
             <h5>Copyright notice</h5>
             {% set date_start = dates[-1].date.year if dates else None %}
             {% set date_end   = dates[0].date.year if dates else None %}
@@ -209,7 +209,7 @@
             {% endif %}
           </div>
 
-          <div class="span2 muted">
+          <div class="col-md-2 text-muted">
             <h5>Disclaimer</h5>
             {% if DISCLAIMER %}
               <p>{{ DISCLAIMER }}</p>
@@ -218,7 +218,7 @@
             {% endif %}
           </div>
 
-          <div class="span2">
+          <div class="col-md-2">
             <h5 class="pull-right"><a href="#" class="fa fa-arrow-up"> Back to top</a></h5>
           </div>
 
@@ -226,7 +226,7 @@
       </div>
 
       <div class="container">
-        <div class="row span12 muted text-center">
+        <div class="row col-md-12 text-muted text-center">
           Site generated by <a href="http://getpelican.com"> Pelican</a>.<br/>
           <a href="https://github.com/kdeldycke/plumage"> Plumage</a> theme by <a href="http://kevin.deldycke.com">Kevin Deldycke</a>.
         </div>

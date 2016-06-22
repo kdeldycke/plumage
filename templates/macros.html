@@ -1,5 +1,5 @@
 {% macro render_tag(tag) -%}
-  <a href="{{ SITEURL }}/{{ tag.url }}" rel="tooltip" class="label" data-placement="right" data-original-title="{{ tag.articles }} article{{ 's' if tag.articles > 1 else '' }} with this tag">{{ tag.name }}</a>
+  <a href="{{ SITEURL }}/{{ tag.url }}" rel="tooltip" class="label label-default" data-placement="right" data-original-title="{{ tag.articles }} article{{ 's' if tag.articles > 1 else '' }} with this tag">{{ tag.name }}</a>
 {%- endmacro %}
 
 {% macro render_link_icon(link, label, favicon=True) -%}

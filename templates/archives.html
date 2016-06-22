@@ -23,7 +23,7 @@
 
   <div class="tabbable tabs-left">
 
-    <ul class="nav nav-tabs">
+    <ul class="navbar-nav nav-tabs">
       {% for year in year_range %}
         <li {% if loop.first %} class="active" {% endif %}><a href="#{{ year }}" data-toggle="tab">{{ year }}</a></li>
       {% endfor %}

@@ -38,7 +38,7 @@
 
 
 {% macro render_project(all_tags, project) %}
-  <div class="thumbnail span3">
+  <div class="thumbnail col-md-3">
     {% if project.inactive %}
       <div class="corner">Inactive</div>
     {% endif %}
@@ -72,7 +72,7 @@
           {% endfor %}
           {% for tool in project.tools %}
             {% if tool not in tag_names %}
-              <span class="label">{{ tool }}</span>
+              <span class="label label-default">{{ tool }}</span>
             {% endif %}
           {% endfor %}
         </p>
