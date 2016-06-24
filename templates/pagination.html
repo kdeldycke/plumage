@@ -1,17 +1,34 @@
 {% if DEFAULT_PAGINATION %}
-  <div class="pagination">
-    <ul>
+  <nav>
+    <ul class="pagination">
       {% if articles_page.has_previous() %}
         {% set num = articles_page.previous_page_number() %}
-        <li class="prev"><a href="{{ SITEURL }}/{{ page_name }}{{ num if num > 1 else '' }}.html" rel="prev">&larr; Previous</a></li>
+        <li>
+          <a href="{{ SITEURL }}/{{ page_name }}{{ num if num > 1 else '' }}.html"
+              aria-label="Previous">
+            <span aria-hidden="true">&larr;</span>
+          </a>
+        </li>
       {% else %}
-        <li class="prev disabled"><a rel="prev">&larr; Previous</a></li>
+        <li class="disabled">
+          <a aria-label="Previous">
+            <span aria-hidden="true">&larr;</span>
+          </a>
+        </li>
       {% endif %}
 
       {% set is_previous_ellipsis = False -%}
       {% for num in range(1, articles_paginator.num_pages + 1) %}
         {% if num in [1, 2, articles_page.number - 1, articles_page.number, articles_page.number + 1, articles_paginator.num_pages - 1, articles_paginator.num_pages] %}
-          <li class="{{ 'active' if num == articles_page.number else '' }}"><a href="{{ SITEURL }}/{{ page_name }}{{ num if num > 1 else '' }}.html">{{ num }}</a></li>
+          {% set is_current_page = (num == articles_page.number) -%}
+          <li class="{{ 'active' if is_current_page else '' }}">
+            <a href="{{ SITEURL }}/{{ page_name }}{{ num if num > 1 else ''}}.html">
+              {{ num }}
+              {% if is_current_page  %}
+                <span class="sr-only">(current)</span>
+              {% endif %}
+            </a>
+          </li>
           {% set is_previous_ellipsis = False -%}
         {% else %}
           {% if not is_previous_ellipsis %}
@@ -22,10 +39,19 @@
       {% endfor %}
 
       {% if articles_page.has_next() %}
-        <li class="next"><a href="{{ SITEURL }}/{{ page_name }}{{ articles_page.next_page_number() }}.html" rel="next">Next &rarr;</a></li>
+        <li>
+          <a href="{{ SITEURL }}/{{ page_name }}{{ articles_page.next_page_number() }}.html"
+              aria-label="Next">
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </li>
       {% else %}
-        <li class="next disabled"><a rel="next">&rarr; Next</a></li>
+        <li class="disabled">
+          <a aria-label="Next">
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </li>
       {% endif %}
     </ul>
-  </div>
+  </nav>
 {% endif %}
