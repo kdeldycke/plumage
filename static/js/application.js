@@ -4,7 +4,8 @@
     // Activate Bootstrap's tooltips
     $("[rel*=tooltip]").tooltip();
 
-    // Subnav fixing code from https://github.com/thomaspark/bootswatch/blob/gh-pages/js/application.js
+    // Subnav fixing code from
+    // https://github.com/thomaspark/bootswatch/blob/gh-pages/2/js/bootswatch.js
     var $win = $(window)
       , $nav = $('.navbar')
       , navTop = $('.navbar').length && $('.navbar').offset().top
