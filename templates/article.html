@@ -17,10 +17,10 @@
 {% block right_sidebar %}
   <div class="well">
 
-    <p><abbr class="fa fa-calendar" title="{{ article.date.isoformat() }}"> {{ article.locale_date }}</abbr></p>
+    <p><abbr title="{{ article.date.isoformat() }}"><i class="fa fa-calendar"></i> {{ article.locale_date }}</abbr></p>
 
     {% if AUTHOR_SAVE_AS and article.author %}
-      <p><address class="fa fa-user"> By <a href="{{ SITEURL }}/{{ article.author.url }}" rel="author">{{ article.author }}</a></address></p>
+      <p><address><i class="fa fa-user"></i> By <a href="{{ SITEURL }}/{{ article.author.url }}" rel="author">{{ article.author }}</a></address></p>
     {% endif %}
 
     <hr/>
