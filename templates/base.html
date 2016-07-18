@@ -63,54 +63,91 @@
   </head>
 
   <body>
+
     <div class="container">
 
-      <header>
-        <div class="page-header">
-          {% if SITE_THUMBNAIL %}
-            <a href="{{ SITEURL }}" class="avatar-container">
-              <div class="avatar {% if SITE_THUMBNAIL_TEXT %} animate {% endif %}">
-                <div class="side"><img src="{{ SITE_THUMBNAIL }}"/></div>
-                {% if SITE_THUMBNAIL_TEXT %}
-                  <div class="side back"><p class="text-center">{{ SITE_THUMBNAIL_TEXT }}</p></div>
-                {% endif %}
-              </div>
-            </a>
-          {% endif %}
-          <h1><a href="{{ SITEURL }}">{{ SITENAME }}</a> <small>{{ SITESUBTITLE }}</small></h1>
+      <div class="page-header">
+        {% if SITE_THUMBNAIL %}
+          <a href="{{ SITEURL }}" class="avatar-container pull-left">
+            <div class="avatar {% if SITE_THUMBNAIL_TEXT %} animate {% endif %}">
+              <div class="side"><img src="{{ SITE_THUMBNAIL }}" class="img-responsive"/></div>
+              {% if SITE_THUMBNAIL_TEXT %}
+                <div class="side back"><p class="text-center">{{ SITE_THUMBNAIL_TEXT }}</p></div>
+              {% endif %}
+            </div>
+          </a>
+        {% endif %}
+        <h1><a href="{{ SITEURL }}">{{ SITENAME }}</a> <small>{{ SITESUBTITLE }}</small></h1>
+      </div>
+
+      <nav class="navbar navbar-default">
+
+        <!-- Hamburger menu for mobile -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#plumage-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <i class="fa fa-ellipsis-v fa-lg"></i>
+          </button>
+          <a class="navbar-brand" href="{{ SITEURL }}" title="{{ SITESUBTITLE|e }}">{{ SITENAME }}</a>
         </div>
 
-        <div class="navbar">
-          <div class="navbar-inner">
-            <a class="navbar-brand" href="{{ SITEURL }}" title="{{ SITESUBTITLE|e }}">{{ SITENAME }}</a>
-            <ul class="navbar-nav">
-              {% for title, link in MENUITEMS %}
-                {% set active_page = page is defined and link == "/%s"|format(page.url) -%}
-                <li {% if active_page %} class="active" {% endif %}><a href="{{ link }}">{{ title }}</a></li>
+        <!-- Menus and search forms -->
+        <div class="collapse navbar-collapse" id="plumage-navbar-collapse-1">
+
+          <ul class="nav navbar-nav">
+            {% for title, link in MENUITEMS %}
+              {% set active_page = page is defined and link == "/%s"|format(page.url) -%}
+              <li {% if active_page %} class="active" {% endif %}>
+                <a href="{{ link }}">{{ title }}{% if active_page %} <span class="sr-only">(current)</span>{% endif %}</a>
+              </li>
+            {% endfor %}
+            {% if DISPLAY_PAGES_ON_MENU %}
+              {% for p in PAGES %}
+                {% set active_page = (p == page) -%}
+                <li {% if active_page %} class="active" {% endif %}>
+                  <a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}{% if active_page %} <span class="sr-only">(current)</span>{% endif %}</a>
+                </li>
               {% endfor %}
-              {% if DISPLAY_PAGES_ON_MENU %}
-                {% for p in PAGES %}
-                  <li {% if p == page %} class="active" {% endif %}><a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a></li>
-                {% endfor %}
-              {% endif %}
-            </ul>
-            {% if GOOGLE_SEARCH %}
-              <form class="navbar-search pull-right" action="http://www.google.com" target="_blank">
-                <input type="text" name="q" class="search-query col-md-2" placeholder="Search"/>
-                <i class="fa fa-search fa-fw"></i>
+            {% endif %}
+          </ul>
+
+          {% if GOOGLE_SEARCH %}
+            <form class="navbar-form navbar-right" role="search" action="http://www.google.com" target="_blank">
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text" name="q" class="form-control search-query" placeholder="Search" required />
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="button"><i class="fa fa-search fa-fw"></i></button>
+                  </span>
+                </div>
                 <input type="hidden" name="cx" value="{{ GOOGLE_SEARCH }}" />
                 <input type="hidden" name="ie" value="UTF-8" />
-              </form>
-            {% endif %}
-            {% if TIPUE_SEARCH %}
-              <form class="navbar-search pull-right" action="{{ SITEURL }}/search.html" onsubmit="return validateForm(this.elements['q'].value);">
-                <input type="text" name="q" id="tipue_search_input" class="search-query col-md-2" placeholder="Search" required/>
-                <i class="fa fa-search fa-fw"></i>
-              </form>
-            {% endif %}
-          </div>
+              </div>
+            </form>
+          {% endif %}
+
+          {% if TIPUE_SEARCH %}
+            <form class="navbar-form navbar-right" role="search" action="{{ SITEURL }}/search.html" onsubmit="return validateForm(this.elements['q'].value);">
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text" name="q" id="tipue_search_input" class="form-control search-query" placeholder="Search" required />
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><i class="fa
+                        fa-search fa-fw"></i></button>
+                  </span>
+                </div>
+              </div>
+            </form>
+          {% endif %}
+
         </div>
-      </header>
+
+      </nav>
+
+    </div>
+
+
+    <div class="container">
 
       <section>
         {% set has_left_content = has_left or LEFT_SIDEBAR is defined %}
