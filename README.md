@@ -133,6 +133,7 @@ Changelog
 * [**0.9.dev**
   (unreleased)](https://github.com/kdeldycke/plumage/compare/0.8...master)
   * Upgrade Bootstrap from v2.3.2 to v3.3.6.
+  * Fix display of pages in menu via the dedicated `DISPLAY_PAGES_ON_MENU`.
 
 * [**0.8**
   (2016-06-22)](https://github.com/kdeldycke/plumage/compare/0.7...0.8)

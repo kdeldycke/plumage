@@ -102,7 +102,7 @@
               </li>
             {% endfor %}
             {% if DISPLAY_PAGES_ON_MENU %}
-              {% for p in PAGES %}
+              {% for p in pages %}
                 {% set active_page = (p == page) -%}
                 <li {% if active_page %} class="active" {% endif %}>
                   <a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}{% if active_page %} <span class="sr-only">(current)</span>{% endif %}</a>
