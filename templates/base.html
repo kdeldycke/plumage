@@ -96,7 +96,7 @@
 
           <ul class="nav navbar-nav">
             {% for title, link in MENUITEMS %}
-              {% set active_page = page is defined and link == "/%s"|format(page.url) -%}
+              {% set active_page = link == ("/%s"|format(output_file)).strip('index.html') -%}
               <li {% if active_page %} class="active" {% endif %}>
                 <a href="{{ link }}">{{ title }}{% if active_page %} <span class="sr-only">(current)</span>{% endif %}</a>
               </li>

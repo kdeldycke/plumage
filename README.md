@@ -135,6 +135,7 @@ Changelog
   * Upgrade Bootstrap from v2.3.2 to v3.3.6.
   * Fix display of pages in menu via the dedicated `DISPLAY_PAGES_ON_MENU`
   option.
+  * Fix highlighting of current active item in navbar.
 
 * [**0.8**
   (2016-06-22)](https://github.com/kdeldycke/plumage/compare/0.7...0.8)
