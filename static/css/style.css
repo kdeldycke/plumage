@@ -129,7 +129,7 @@ body {
 h1, h2 {
   text-shadow: 1px 1px 1px #ddd;
 }
-section h1 {
+.main.container h1 {
   margin-bottom: 1em;
   margin-top: 1em;
 }
