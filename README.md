@@ -134,14 +134,14 @@ Changelog
   (unreleased)](https://github.com/kdeldycke/plumage/compare/0.8...master)
   * Upgrade Bootstrap from v2.3.2 to v3.3.6.
   * Fix display of pages in menu via the dedicated `DISPLAY_PAGES_ON_MENU`
-  option.
+    option.
   * Fix highlighting of current active item in navbar.
 
 * [**0.8**
   (2016-06-22)](https://github.com/kdeldycke/plumage/compare/0.7...0.8)
   * Remove legacy Google Analytics tracking code.
   * Rename `GOOGLE_ANALYTICS_UNIVERSAL` option by `GOOGLE_ANALYTICS` and
-  `GOOGLE_ANALYTICS_UNIVERSAL_PROPERTY` by `GOOGLE_ANALYTICS_PROPERTY`.
+    `GOOGLE_ANALYTICS_UNIVERSAL_PROPERTY` by `GOOGLE_ANALYTICS_PROPERTY`.
   * Set default `GOOGLE_ANALYTICS_PROPERTY` value to `"auto"`.
   * Allow deactivation of zoom on article's images.
   * Upgrade to Font Awesome 4.6.3.
@@ -150,7 +150,7 @@ Changelog
   * Upgrade to Magnific Popup 1.1.0.
   * Upgrade to jQuery 2.2.4.
   * Ditch `grabicon.com` in favor of the free [Favicon Finder
-  ](http://icons.better-idea.org) web service.
+    ](http://icons.better-idea.org) web service.
   * Rename `GRAB_ICONS` option to `FAVICON_LINKS`.
   * Enable favicon fetching by default.
   * Fallback on default external link icon if none found.
@@ -203,7 +203,7 @@ Changelog
   (2013-08-16)](https://github.com/kdeldycke/plumage/compare/0.2...0.3)
   * Add auto-zoom of images based on Magnific Popup.
   * Let the content take the available width if there is no right or left
-  sidebars.
+    sidebars.
   * Add an dynamic feed link in footer.
   * Do not wrap code in code blocks.
   * Fix code highlight for older Pelican versions.
@@ -221,7 +221,7 @@ Changelog
   (2013-07-07)](https://github.com/kdeldycke/plumage/compare/0.0...0.1)
   * Theme has now a name: Plumage.
   * Move the theme out of my [blog repository
-  ](https://github.com/kdeldycke/kevin-deldycke-blog) to its own repository.
+    ](https://github.com/kdeldycke/kevin-deldycke-blog) to its own repository.
   * Theme is now generic enough. Update TODO-list accordingly.
 
 * [**0.0**
