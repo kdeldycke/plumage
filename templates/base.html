@@ -149,42 +149,40 @@
 
     <div class="container">
 
-      <section>
-        {% set has_left_content = has_left or LEFT_SIDEBAR is defined %}
-        {% set has_right_content = has_right or RIGHT_SIDEBAR is defined %}
+      {% set has_left_content = has_left or LEFT_SIDEBAR is defined %}
+      {% set has_right_content = has_right or RIGHT_SIDEBAR is defined %}
 
-        <div class="row">
-          <div class="{% if (has_left_content and has_right_content) or LAYOUT == 'full-width' %} col-md-6 {% elif has_left_content or has_right_content%} col-md-9 {% else %} col-md-12 {% endif %} {% if has_left_content %} col-md-offset-3 {% endif %}">
-            {% block top_center %}
+      <div class="row">
+        <div class="{% if (has_left_content and has_right_content) or LAYOUT == 'full-width' %} col-md-6 {% elif has_left_content or has_right_content%} col-md-9 {% else %} col-md-12 {% endif %} {% if has_left_content %} col-md-offset-3 {% endif %}">
+          {% block top_center %}
+          {% endblock %}
+        </div>
+      </div>
+
+      <div class="row">
+
+        {% if LAYOUT != 'full-width' and has_left_content %}
+          <div class="col-md-3">
+            {% block left_sidebar %}
             {% endblock %}
+            {{ LEFT_SIDEBAR }}
           </div>
+        {% endif %}
+
+        <div class="{% if LAYOUT == 'full-width' %} col-md-offset-1 {% elif has_left_content and has_right_content %} col-md-6 {% elif has_left_content or has_right_content %} col-md-9 {% else %} col-md-12 {% endif %}" id="content" role="main">
+          {% block content %}
+          {% endblock %}
         </div>
 
-        <div class="row">
-
-          {% if LAYOUT != 'full-width' and has_left_content %}
-            <div class="col-md-3">
-              {% block left_sidebar %}
-              {% endblock %}
-              {{ LEFT_SIDEBAR }}
-            </div>
-          {% endif %}
-
-          <div class="{% if LAYOUT == 'full-width' %} col-md-offset-1 {% elif has_left_content and has_right_content %} col-md-6 {% elif has_left_content or has_right_content %} col-md-9 {% else %} col-md-12 {% endif %}" id="content" role="main">
-            {% block content %}
+        {% if LAYOUT != 'full-width' and has_right_content %}
+          <div class="col-md-3">
+            {% block right_sidebar %}
             {% endblock %}
+            {{ RIGHT_SIDEBAR }}
           </div>
+        {% endif %}
 
-          {% if LAYOUT != 'full-width' and has_right_content %}
-            <div class="col-md-3">
-              {% block right_sidebar %}
-              {% endblock %}
-              {{ RIGHT_SIDEBAR }}
-            </div>
-          {% endif %}
-
-        </div>
-      </section>
+      </div>
 
     </div>
 
