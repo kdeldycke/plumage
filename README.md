@@ -133,6 +133,8 @@ Changelog
 * [**0.9.dev**
   (unreleased)](https://github.com/kdeldycke/plumage/compare/0.8...master)
   * Upgrade Bootstrap from v2.3.2 to v3.3.6.
+  * Replace unsupported vertical tabs by collapsible panels in date-based index
+    page.
   * Fix display of pages in menu via the dedicated `DISPLAY_PAGES_ON_MENU`
     option.
   * Fix highlighting of current active item in navbar.
