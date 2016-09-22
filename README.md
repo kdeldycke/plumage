@@ -53,8 +53,8 @@ Setting name | Default value | Description
 `DISCLAIMER` | | Overide the Disclaimer notice that gets displayed at the fourth column of the footer.
 `DISQUS_SITENAME` | | Pelican can handle Disqus comments. Specify the Disqus sitename identifier here.
 `FAVICON_LINKS` | `True` | Fetch link's icons from the free [Favicon Finder](http://icons.better-idea.org) web service.
-`GOOGLE_ANALYTICS` | | Set to `UA-XXXXXXXX-Y` to activate Google Analytics.
-`GOOGLE_ANALYTICS_PROPERTY` | `"auto"` | Set property to fine-tune Google Analytics tracking code.
+`GOOGLE_ANALYTICS` | | Set to `UA-XXXXX-Y` Property's tracking ID to activate Google Analytics.
+`GA_COOKIE_DOMAIN` | `auto` | Set cookie domain field of Google Analytics tracking code.
 `GOOGLE_SEARCH` | | [Google's Custom Search Engine](https://www.google.com/cse/) ID (e.g. `partner-pub-0123456789098765:0123456789`) to activate blog specific search.
 `LEFT_SIDEBAR` | | HTML content to put as-is in the left sidebar.
 `LINKS_WIDGET_NAME` | `"Links"` | Allows override of the name of the links widget.
@@ -138,6 +138,7 @@ Changelog
   * Fix display of pages in menu via the dedicated `DISPLAY_PAGES_ON_MENU`
     option.
   * Fix highlighting of current active item in navbar.
+  * Rename `GOOGLE_ANALYTICS_PROPERTY` setting to `GA_COOKIE_DOMAIN`.
 
 * [**0.8**
   (2016-06-22)](https://github.com/kdeldycke/plumage/compare/0.7...0.8)
