@@ -125,6 +125,7 @@ Contributors
   * [Stratos Gerakakis](https://github.com/stratosgear)
   * [Renato Cunha](https://github.com/trovao)
   * [Florian Wilhelm](https://github.com/FlorianWilhelm)
+  * [Marcos Martínez](https://github.com/frommelmak)
 
 
 Changelog
