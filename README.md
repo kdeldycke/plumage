@@ -139,6 +139,7 @@ Changelog
     option.
   * Fix highlighting of current active item in navbar.
   * Rename `GOOGLE_ANALYTICS_PROPERTY` setting to `GA_COOKIE_DOMAIN`.
+  * Prevent mixed content when using Google search.
 
 * [**0.8**
   (2016-06-22)](https://github.com/kdeldycke/plumage/compare/0.7...0.8)
