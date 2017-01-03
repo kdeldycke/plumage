@@ -109,6 +109,14 @@
                 </li>
               {% endfor %}
             {% endif %}
+            {% if DISPLAY_CATEGORIES_ON_MENU %}
+              {% for c, null in categories %}
+                {% set active_category = (c == category) -%}
+                <li {% if active_category %} class="active" {% endif %}>
+                  <a href="{{ SITEURL }}/{{ c.url }}">{{ c.name }}{% if active_category %} <span class="sr-only">(current)</span>{% endif %}</a>
+                </li>
+              {% endfor %}
+            {% endif %}
           </ul>
 
           {% if GOOGLE_SEARCH %}

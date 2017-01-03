@@ -88,6 +88,7 @@ The theme is also sensible to this list of [standard Pelican parameters
   * `DEFAULT_LANG`
   * `DEFAULT_PAGINATION`
   * `DISPLAY_PAGES_ON_MENU`
+  * `DISPLAY_CATEGORIES_ON_MENU`
   * `FEED_ALL_ATOM`
   * `FEED_ALL_RSS`
   * `FEED_ATOM`
@@ -142,6 +143,7 @@ Changelog
   * Fix highlighting of current active item in navbar.
   * Rename `GOOGLE_ANALYTICS_PROPERTY` setting to `GA_COOKIE_DOMAIN`.
   * Prevent mixed content when using Google search.
+  * Add support for `DISPLAY_CATEGORIES_ON_MENU` setting.
 
 * [**0.8**
   (2016-06-22)](https://github.com/kdeldycke/plumage/compare/0.7...0.8)
