@@ -80,6 +80,7 @@ The theme is also sensible to this list of [standard Pelican parameters
 ](http://docs.getpelican.com/en/latest/settings.html):
 
   * `ARCHIVES_SAVE_AS`
+  * `AUTHOR`
   * `AUTHOR_SAVE_AS`
   * `CATEGORIES_SAVE_AS`
   * `CATEGORY_FEED_ATOM`
@@ -97,6 +98,7 @@ The theme is also sensible to this list of [standard Pelican parameters
   * `TAG_FEED_ATOM`
   * `TAG_FEED_RSS`
   * `TAGS_SAVE_AS`
+  * `TYPOGRIFY`
 
 
 FAQ
