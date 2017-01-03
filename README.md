@@ -84,7 +84,6 @@ The theme is also sensible to this list of [standard Pelican parameters
   * `CATEGORIES_SAVE_AS`
   * `CATEGORY_FEED_ATOM`
   * `CATEGORY_FEED_RSS`
-  * `CATEGORY_SAVE_AS`
   * `DEFAULT_LANG`
   * `DEFAULT_PAGINATION`
   * `DISPLAY_PAGES_ON_MENU`
