@@ -33,28 +33,28 @@
 
     <!-- Feeds -->
     {% if FEED_ALL_ATOM %}
-      <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME|e }} Full Atom Feed"/>
+      <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME|e }} - All posts - Atom Feed"/>
     {% endif %}
     {% if FEED_ALL_RSS %}
-      <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME|e }} Full RSS Feed"/>
+      <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME|e }} - All posts - RSS Feed"/>
     {% endif %}
     {% if FEED_ATOM %}
-      <link href="{{ FEED_DOMAIN }}/{{ FEED_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME|e }} Atom Feed"/>
+      <link href="{{ FEED_DOMAIN }}/{{ FEED_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME|e }} - Latest posts - Atom Feed"/>
     {% endif %}
     {% if FEED_RSS %}
-      <link href="{{ FEED_DOMAIN }}/{{ FEED_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME|e }} RSS Feed"/>
+      <link href="{{ FEED_DOMAIN }}/{{ FEED_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME|e }} - Latest posts - RSS Feed"/>
     {% endif %}
     {% if CATEGORY_FEED_ATOM and category is defined %}
-      <link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_ATOM|format(category.slug) }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME|e }} Categories Atom Feed"/>
+      <link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_ATOM|format(category.slug) }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME|e }} - Category: {{ category.name|e}} - Atom Feed"/>
     {% endif %}
     {% if CATEGORY_FEED_RSS and category is defined %}
-      <link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_RSS|format(category.slug) }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME|e }} Categories RSS Feed"/>
+      <link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_RSS|format(category.slug) }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME|e }} - Category: {{ category.name|e }} - RSS Feed"/>
     {% endif %}
     {% if TAG_FEED_ATOM and tag is defined %}
-      <link href="{{ FEED_DOMAIN }}/{{ TAG_FEED_ATOM|format(tag.slug) }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME|e }} Tags Atom Feed"/>
+      <link href="{{ FEED_DOMAIN }}/{{ TAG_FEED_ATOM|format(tag.slug) }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME|e }} - Tag: {{ tag.name|e }} - Atom Feed"/>
     {% endif %}
     {% if TAG_FEED_RSS and tag is defined %}
-      <link href="{{ FEED_DOMAIN }}/{{ TAG_FEED_RSS|format(tag.slug) }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME|e }} Tags RSS Feed"/>
+      <link href="{{ FEED_DOMAIN }}/{{ TAG_FEED_RSS|format(tag.slug) }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME|e }} - Tag: {{ tag.name|e }} - RSS Feed"/>
     {% endif %}
 
     {% block head %}

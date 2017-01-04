@@ -144,6 +144,7 @@ Changelog
   * Rename `GOOGLE_ANALYTICS_PROPERTY` setting to `GA_COOKIE_DOMAIN`.
   * Prevent mixed content when using Google search.
   * Add support for `DISPLAY_CATEGORIES_ON_MENU` setting.
+  * Update Atom and RSS link descriptions.
 
 * [**0.8**
   (2016-06-22)](https://github.com/kdeldycke/plumage/compare/0.7...0.8)
