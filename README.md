@@ -82,6 +82,7 @@ The theme is also sensible to this list of [standard Pelican parameters
   * `ARCHIVES_SAVE_AS`
   * `AUTHOR`
   * `AUTHOR_SAVE_AS`
+  * `AUTHORS_SAVE_AS`
   * `CATEGORIES_SAVE_AS`
   * `CATEGORY_FEED_ATOM`
   * `CATEGORY_FEED_RSS`
@@ -145,6 +146,8 @@ Changelog
   * Prevent mixed content when using Google search.
   * Add support for `DISPLAY_CATEGORIES_ON_MENU` setting.
   * Update Atom and RSS link descriptions.
+  * Add support for multiple authors.
+  * Add support for `AUTHORS_SAVE_AS` setting.
 
 * [**0.8**
   (2016-06-22)](https://github.com/kdeldycke/plumage/compare/0.7...0.8)

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+  All authors
+{% endblock %}
+
+
+{% block top_center %}
+  <h1>
+      <a href="{{ SITEURL }}/{{ AUTHORS_SAVE_AS }}" rel="bookmark" title="Permalink to author list">Authors</a>
+  </h1>
+{% endblock %}
+
+
+{% block content %}
+
+  {% set all_authors = [] %}
+  {% for author, articles in authors %}
+    {% if all_authors.append({'name': author.name, 'url': author.url, 'articles': articles|length()}) %}{% endif %}
+  {% endfor %}
+
+  <dl class="dl-horizontal">
+    {% for author in all_authors|sort(reverse = True, attribute = 'articles') %}
+      <dt><a href="{{ SITEURL }}/{{ author.url }}" class="label label-info">{{ author.name }}</a></dt>
+      <dd><a href="{{ SITEURL }}/{{ author.url }}">{{ author.articles }} article{{ 's' if author.articles > 1 else '' }}</a></dd>
+    {% endfor %}
+  </dl>
+
+{% endblock %}

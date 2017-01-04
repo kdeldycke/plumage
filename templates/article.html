@@ -19,8 +19,13 @@
 
     <p><abbr title="{{ article.date.isoformat() }}"><i class="fa fa-calendar"></i> {{ article.locale_date }}</abbr></p>
 
-    {% if AUTHOR_SAVE_AS and article.author %}
-      <p><address><i class="fa fa-user"></i> By <a href="{{ SITEURL }}/{{ article.author.url }}" rel="author">{{ article.author }}</a></address></p>
+    {% if AUTHOR_SAVE_AS and article.authors %}
+      <p><address>
+        <i class="fa fa-user"></i> By
+        {% for author in article.authors %}
+          <a href="{{ SITEURL }}/{{ author.url }}" rel="author">{{ author.name }}</a>
+        {% endfor %}
+      </address></p>
     {% endif %}
 
     <hr/>
