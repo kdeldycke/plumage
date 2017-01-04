@@ -24,10 +24,10 @@
           <li class="{{ 'active' if is_current_page else '' }}">
             <a href="{{ SITEURL }}/{{ page_name }}{{ num if num > 1 else ''}}.html"
               rel="
-                {% if num == 1 %}first{% endif %}
-                {% if num == articles_paginator.num_pages %}last{% endif %}
-                {% if num == (articles_page.number - 1) %}prev{% endif %}
-                {% if num == (articles_page.number + 1) %}next{% endif %}">
+                {% if num == 1 %} first {% endif %}
+                {% if num == articles_paginator.num_pages %} last {% endif %}
+                {% if num == (articles_page.number - 1) %} prev {% endif %}
+                {% if num == (articles_page.number + 1) %} next {% endif %}">
               {{ num }}
               {% if is_current_page  %}
                 <span class="sr-only">(current)</span>
