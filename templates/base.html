@@ -260,7 +260,7 @@
               <h5>Feeds</h5>
               <ul class="list-unstyled">
                 {% for feed in all_feeds %}
-                  <li><a href="{{ FEED_DOMAIN }}/{{ feed.url }}"><i class="fa fa-rss"></i> {{ feed.name }} ({{ feed.kind }})</a></li>
+                  <li><small><a href="{{ FEED_DOMAIN }}/{{ feed.url }}"><i class="fa fa-rss"></i> {{ feed.name }} ({{ feed.kind }})</a></small></li>
                 {% endfor %}
               </ul>
             {% endif %}
