@@ -22,7 +22,12 @@
         {% if num in [1, 2, articles_page.number - 1, articles_page.number, articles_page.number + 1, articles_paginator.num_pages - 1, articles_paginator.num_pages] %}
           {% set is_current_page = (num == articles_page.number) -%}
           <li class="{{ 'active' if is_current_page else '' }}">
-            <a href="{{ SITEURL }}/{{ page_name }}{{ num if num > 1 else ''}}.html">
+            <a href="{{ SITEURL }}/{{ page_name }}{{ num if num > 1 else ''}}.html"
+              rel="
+                {% if num == 1 %}first{% endif %}
+                {% if num == articles_paginator.num_pages %}last{% endif %}
+                {% if num == (articles_paginator.number - 1) %}prev{% endif %}
+                {% if num == (articles_paginator.number + 1) %}next{% endif %}">
               {{ num }}
               {% if is_current_page  %}
                 <span class="sr-only">(current)</span>
