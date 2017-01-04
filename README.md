@@ -148,6 +148,7 @@ Changelog
   * Update Atom and RSS link descriptions.
   * Add support for multiple authors.
   * Add support for `AUTHORS_SAVE_AS` setting.
+  * List all available Atom and RSS feeds on each page in the footer.
 
 * [**0.8**
   (2016-06-22)](https://github.com/kdeldycke/plumage/compare/0.7...0.8)
