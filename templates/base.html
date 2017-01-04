@@ -233,14 +233,6 @@
                 <li><a href="{{ SITEURL }}/{{ TAGS_SAVE_AS }}"><i class="fa fa-tag"></i> Tags</a></li>
               {% endif %}
             </ul>
-            {% if all_feeds %}
-              <h5>Feeds</h5>
-              <ul class="list-unstyled">
-                {% for feed in all_feeds %}
-                  <li><a href="{{ FEED_DOMAIN }}/{{ feed.url }}"><i class="fa fa-rss"></i> {{ feed.name }} ({{ feed.kind }})</a></li>
-                {% endfor %}
-              </ul>
-            {% endif %}
           </div>
 
           <div class="col-md-2 text-muted">
@@ -264,6 +256,14 @@
 
           <div class="col-md-2">
             <h5 class="pull-right"><a href="#"><i class="fa fa-arrow-up"></i> Back to top</a></h5>
+            {% if all_feeds %}
+              <h5>Feeds</h5>
+              <ul class="list-unstyled">
+                {% for feed in all_feeds %}
+                  <li><a href="{{ FEED_DOMAIN }}/{{ feed.url }}"><i class="fa fa-rss"></i> {{ feed.name }} ({{ feed.kind }})</a></li>
+                {% endfor %}
+              </ul>
+            {% endif %}
           </div>
 
         </div>
