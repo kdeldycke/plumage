@@ -39,7 +39,7 @@ body {
 }
 
 
-/* Card flip inspired by http://learn.shayhowe.com/advanced-html-css/transitions-animations */
+/* Card flip inspired by https://learn.shayhowe.com/advanced-html-css/transitions-animations */
 /* Possible alternative: use https://github.com/mintchaos/flippant.js */
 .page-header .avatar-container {
   z-index: 10;

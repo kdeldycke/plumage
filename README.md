@@ -1,10 +1,10 @@
 Plumage
 =======
 
-Plumage is a theme for [Pelican](http://getpelican.com), a static site
+Plumage is a theme for [Pelican](https://getpelican.com), a static site
 generator written in Python.
 
-I initially created this theme for [my blog](http://kevin.deldycke.com), but
+I initially created this theme for [my blog](https://kevin.deldycke.com), but
 now the theme is supposed to be generic enough to have its own repository.
 
 ![Plumage article view
@@ -14,10 +14,10 @@ now the theme is supposed to be generic enough to have its own repository.
 Features
 --------
 
-  * Based on [Bootstrap v3](http://getbootstrap.com).
-  * [Solarized](http://ethanschoonover.com/solarized) code snippets via
-    [Pygments](http://pygments.org/) for syntax highlighting.
-  * Site-wide static search via [Tipue-search](http://www.tipue.com/search/).
+  * Based on [Bootstrap v3](https://getbootstrap.com).
+  * [Solarized](https://ethanschoonover.com/solarized) code snippets via
+    [Pygments](https://pygments.org/) for syntax highlighting.
+  * Site-wide static search via [Tipue-search](https://www.tipue.com/search/).
   * Project template.
   * Tags grouped by tiers.
   * External assets (Bootstrap, Jquery, etc...) uses [CDNjs
@@ -52,7 +52,7 @@ Setting name | Default value | Description
 `COPYRIGHT` | | Additional copyright statement to add in the third column of the footer.
 `DISCLAIMER` | | Overide the Disclaimer notice that gets displayed at the fourth column of the footer.
 `DISQUS_SITENAME` | | Pelican can handle Disqus comments. Specify the Disqus sitename identifier here.
-`FAVICON_LINKS` | `True` | Fetch link's icons from the free [Favicon Finder](http://icons.better-idea.org) web service.
+`FAVICON_LINKS` | `True` | Fetch link's icons from the free [Favicon Finder](https://icons.better-idea.org) web service.
 `GOOGLE_ANALYTICS` | | Set to `UA-XXXXX-Y` Property's tracking ID to activate Google Analytics.
 `GA_COOKIE_DOMAIN` | `auto` | Set cookie domain field of Google Analytics tracking code.
 `GOOGLE_SEARCH` | | [Google's Custom Search Engine](https://www.google.com/cse/) ID (e.g. `partner-pub-0123456789098765:0123456789`) to activate blog specific search.
@@ -62,22 +62,22 @@ Setting name | Default value | Description
 `MENUITEMS`| | A list of tuples (Title, URL) for additional menu items to appear at the beginning of the main menu.
 `PIWIK_SITE_ID` | | ID for the monitored website. You can find the ID in the Piwik admin interface > Settings > Websites.
 `PIWIK_SSL_URL` | | If the SSL-URL differs from the normal Piwik-URL you have to include this setting too. (optional)
-`PIWIK_URL` | | URL to your [Piwik](http://piwik.org) server - without `http://` at the beginning.
+`PIWIK_URL` | | URL to your [Piwik](https://piwik.org) server - without `https://` at the beginning.
 `RIGHT_SIDEBAR` | | HTML content to put as-is in the right sidebar.
 `SITESUBTITLE` | | A subtitle to appear in the header.
 `SITE_THUMBNAIL_TEXT` | | Text displayed behind site's thumbnail.
 `SITE_THUMBNAIL` | | Site's thumbnail URL as displayed in the header. Should be a square image of at least 80x80 pixels.
 `SOCIAL_WIDGET_NAME` | `"Social"` | Allows override of the name of the “social” widget.
 `SOCIAL` | | A list of tuples (Title, URL) to appear in the first columns of the footer.
-`TIPUE_SEARCH` | `False` | Activate [Tipue Search](http://www.tipue.com/search) (javascript search engine) into the site. Requires the [`tipue_search`](https://github.com/getpelican/pelican-plugins/tree/master/tipue_search) plugin.
+`TIPUE_SEARCH` | `False` | Activate [Tipue Search](https://www.tipue.com/search) (javascript search engine) into the site. Requires the [`tipue_search`](https://github.com/getpelican/pelican-plugins/tree/master/tipue_search) plugin.
 
 Most of these [parameters are similar to `notmyidea`'s
-](http://docs.getpelican.com/en/latest/settings.html#themes) (Pelican's default
+](https://docs.getpelican.com/en/latest/settings.html#themes) (Pelican's default
 theme). For usage example, please have a look into [my own `pelicanconf.py`
 ](https://github.com/kdeldycke/kevin-deldycke-blog/blob/master/pelicanconf.py).
 
 The theme is also sensible to this list of [standard Pelican parameters
-](http://docs.getpelican.com/en/latest/settings.html):
+](https://docs.getpelican.com/en/latest/settings.html):
 
   * `ARCHIVES_SAVE_AS`
   * `AUTHOR`
@@ -149,6 +149,7 @@ Changelog
   * Add support for multiple authors.
   * Add support for `AUTHORS_SAVE_AS` setting.
   * List all available Atom and RSS feeds on each page in the footer.
+  * Load external resources via HTTPS when available.
 
 * [**0.8**
   (2016-06-22)](https://github.com/kdeldycke/plumage/compare/0.7...0.8)
@@ -163,7 +164,7 @@ Changelog
   * Upgrade to Magnific Popup 1.1.0.
   * Upgrade to jQuery 2.2.4.
   * Ditch `grabicon.com` in favor of the free [Favicon Finder
-    ](http://icons.better-idea.org) web service.
+    ](https://icons.better-idea.org) web service.
   * Rename `GRAB_ICONS` option to `FAVICON_LINKS`.
   * Enable favicon fetching by default.
   * Fallback on default external link icon if none found.
@@ -262,14 +263,14 @@ The theme uses external softwares, scripts, libraries and artworks:
     Solarized Pygment style v0.1.0
     Copyright (c) 2012 Shoji KUMAGAI
     Distributed under a MIT license
-    Source: http://pypi.python.org/pypi/pygments-style-solarized
+    Source: https://pypi.python.org/pypi/pygments-style-solarized
 
     Fabric (Plaid)
     Copyright (c) 2012 James Basoo
     Distributed under a Creative Commons Attribution-ShareAlike 3.0 Unported license
-    Source: http://subtlepatterns.com/fabric-plaid/
+    Source: https://subtlepatterns.com/fabric-plaid/
 
     Cream paper
     Copyright (c) 2012 Devin Holmes
     Distributed under a Creative Commons Attribution-ShareAlike 3.0 Unported license
-    Source: http://subtlepatterns.com/cream-paper/
+    Source: https://subtlepatterns.com/cream-paper/
