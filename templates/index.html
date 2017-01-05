@@ -3,25 +3,21 @@
 
 {% block content %}
 
-  <section>
+  {% block content_title %}
+    <h2>Articles</h2>
+  {% endblock %}
 
-    {% block content_title %}
-      <h2>Articles</h2>
-    {% endblock %}
+  {% for article in articles_page.object_list %}
+    <article>
+      <header>
+        <h2><a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags|e }}">{{ article.title }}</a></h2>
+      </header>
+      <div>{{ article.summary }}</div>
+      <div><a class="btn btn-primary" href="{{ SITEURL }}/{{ article.url }}"><strong>➟ Read more</strong></a></div>
+    </article>
+    <hr/>
+  {% endfor %}
 
-    {% for article in articles_page.object_list %}
-      <article>
-        <header>
-          <h2><a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags|e }}">{{ article.title }}</a></h2>
-        </header>
-        <div>{{ article.summary }}</div>
-        <div><a class="btn btn-primary" href="{{ SITEURL }}/{{ article.url }}"><strong>➟ Read more</strong></a></div>
-      </article>
-      <hr/>
-    {% endfor %}
-
-    {% include 'pagination.html' %}
-
-  </section>
+  {% include 'pagination.html' %}
 
 {% endblock content %}
