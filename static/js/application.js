@@ -23,8 +23,13 @@
       }
     };
 
-    // Add bootstrap table style to table elements
+    // TODO: this should be done server side with a Jinja or Markdown
+    // extension.
+    // Add bootstrap table style to table elements.
     $("#content table").addClass('table').addClass('table-hover');
+    // Make images responsive in article content, which was the default in
+    // Bootstrap 2.x. See: https://getbootstrap.com/css/#images-responsive
+    $("#content img").addClass('img-responsive');
 
     // Allow videos to take the full width of a page
     $(".container").fitVids();
