@@ -138,6 +138,8 @@ Changelog
   (unreleased)](https://github.com/kdeldycke/plumage/compare/0.8...master)
   * Upgrade Bootstrap from v2.3.2 to v3.3.7.
   * Upgrade to Font Awesome 4.7.0.
+  * Upgrade to ImagesLoaded 4.1.1.
+  * Upgrade to Masonry 4.1.1.
   * Replace unsupported vertical tabs by collapsible panels in date-based index
     page.
   * Fix display of pages in menu via the dedicated `DISPLAY_PAGES_ON_MENU`
