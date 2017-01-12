@@ -28,7 +28,7 @@
           <h4 class="panel-title">
             <a role="button" data-toggle="collapse" data-parent="#accordion"
                 href="#collapse{{ year }}"
-                {% if not loop.first %}class="collapsed"{% endif %}
+                class="btn-block {% if not loop.first %}collapsed{% endif %}"
                 aria-expanded="{% if loop.first %}true{% else %}false{% endif %}"
                 aria-controls="collapse{{ year }}">
               {{ year }}
