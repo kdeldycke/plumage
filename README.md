@@ -120,18 +120,6 @@ You have to use the following template to deactivate the zoom of an image:
     ![Image title](/folder/image.png){: .noZoom}
 
 
-Contributors
-------------
-
-  * [Kevin Deldycke](https://github.com/kdeldycke)
-  * [Cedric Bosdonnat](https://github.com/cbosdo)
-  * [Jeff Smith](https://github.com/jeffreyksmithjr)
-  * [Stratos Gerakakis](https://github.com/stratosgear)
-  * [Renato Cunha](https://github.com/trovao)
-  * [Florian Wilhelm](https://github.com/FlorianWilhelm)
-  * [Marcos Martínez](https://github.com/frommelmak)
-
-
 Changelog
 ---------
 
@@ -253,6 +241,10 @@ License
 
 This software is licensed under the [GNU General Public License v2 or later
 (GPLv2+)](https://github.com/kdeldycke/plumage/blob/master/LICENSE).
+
+Copyright (C) 2012-2017 [Kevin Deldycke](https://kevin.deldycke.com) and
+[contributors](https://github.com/kdeldycke/plumage/graphs/contributors). All
+Rights Reserved.
 
 
 Third-party assets
