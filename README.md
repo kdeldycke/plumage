@@ -51,24 +51,24 @@ Setting name | Default value | Description
 `ARTICLE_EDIT_LINK` | | Generate an edit link besides each article. Can use `%(slug)s` to include dynamic article's slug in the link.
 `COPYRIGHT` | | Additional copyright statement to add in the third column of the footer.
 `DISCLAIMER` | | Overide the Disclaimer notice that gets displayed at the fourth column of the footer.
-`DISQUS_SITENAME` | | Pelican can handle Disqus comments. Specify the Disqus sitename identifier here.
+[`DISQUS_SITENAME`](http://docs.getpelican.com/en/stable/settings.html#DISQUS_SITENAME) | | Pelican can handle Disqus comments. Specify the Disqus sitename identifier here.
 `FAVICON_LINKS` | `True` | Fetch link's icons from the free [Favicon Finder](https://icons.better-idea.org) web service.
-`GOOGLE_ANALYTICS` | | Set to `UA-XXXXX-Y` Property's tracking ID to activate Google Analytics.
-`GA_COOKIE_DOMAIN` | `auto` | Set cookie domain field of Google Analytics tracking code.
+[`GOOGLE_ANALYTICS`](http://docs.getpelican.com/en/stable/settings.html#GOOGLE_ANALYTICS) | | Set to `UA-XXXXX-Y` Property's tracking ID to activate Google Analytics.
+[`GA_COOKIE_DOMAIN`](http://docs.getpelican.com/en/stable/settings.html#GA_COOKIE_DOMAIN) | `auto` | Set cookie domain field of Google Analytics tracking code.
 `GOOGLE_SEARCH` | | [Google's Custom Search Engine](https://www.google.com/cse/) ID (e.g. `partner-pub-0123456789098765:0123456789`) to activate blog specific search.
 `LEFT_SIDEBAR` | | HTML content to put as-is in the left sidebar.
-`LINKS_WIDGET_NAME` | `"Links"` | Allows override of the name of the links widget.
-`LINKS` | | A list of tuples (Title, URL) for links to appear in the second column of the footer.
-`MENUITEMS`| | A list of tuples (Title, URL) for additional menu items to appear at the beginning of the main menu.
-`PIWIK_SITE_ID` | | ID for the monitored website. You can find the ID in the Piwik admin interface > Settings > Websites.
-`PIWIK_SSL_URL` | | If the SSL-URL differs from the normal Piwik-URL you have to include this setting too. (optional)
-`PIWIK_URL` | | URL to your [Piwik](https://piwik.org) server - without `https://` at the beginning.
+[`LINKS_WIDGET_NAME`](http://docs.getpelican.com/en/stable/settings.html#LINKS_WIDGET_NAME) | `"Links"` | Allows override of the name of the links widget.
+[`LINKS`](http://docs.getpelican.com/en/stable/settings.html#LINKS) | | A list of tuples (Title, URL) for links to appear in the second column of the footer.
+[`MENUITEMS`](http://docs.getpelican.com/en/stable/settings.html#MENUITEMS) | | A list of tuples (Title, URL) for additional menu items to appear at the beginning of the main menu.
+[`PIWIK_SITE_ID`](http://docs.getpelican.com/en/stable/settings.html#PIWIK_SITE_ID) | | ID for the monitored website. You can find the ID in the Piwik admin interface > Settings > Websites.
+[`PIWIK_SSL_URL`](http://docs.getpelican.com/en/stable/settings.html#PIWIK_SSL_URL) | | If the SSL-URL differs from the normal Piwik-URL you have to include this setting too. (optional)
+[`PIWIK_URL`](http://docs.getpelican.com/en/stable/settings.html#PIWIK_URL) | | URL to your [Piwik](https://piwik.org) server - without `https://` at the beginning.
 `RIGHT_SIDEBAR` | | HTML content to put as-is in the right sidebar.
-`SITESUBTITLE` | | A subtitle to appear in the header.
+[`SITESUBTITLE`](http://docs.getpelican.com/en/stable/settings.html#SITESUBTITLE) | | A subtitle to appear in the header.
 `SITE_THUMBNAIL_TEXT` | | Text displayed behind site's thumbnail.
 `SITE_THUMBNAIL` | | Site's thumbnail URL as displayed in the header. Should be a square image of at least 80x80 pixels.
-`SOCIAL_WIDGET_NAME` | `"Social"` | Allows override of the name of the “social” widget.
-`SOCIAL` | | A list of tuples (Title, URL) to appear in the first columns of the footer.
+[`SOCIAL_WIDGET_NAME`](http://docs.getpelican.com/en/stable/settings.html#SOCIAL_WIDGET_NAME) | `"Social"` | Allows override of the name of the “social” widget.
+[`SOCIAL`](http://docs.getpelican.com/en/stable/settings.html#SOCIAL) | | A list of tuples (Title, URL) to appear in the first columns of the footer.
 `TIPUE_SEARCH` | `False` | Activate [Tipue Search](https://www.tipue.com/search) (javascript search engine) into the site. Requires the [`tipue_search`](https://github.com/getpelican/pelican-plugins/tree/master/tipue_search) plugin.
 
 Most of these [parameters are similar to `notmyidea`'s
