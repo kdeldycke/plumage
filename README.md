@@ -53,6 +53,7 @@ Setting name | Default value | Description
 `DISCLAIMER` | | Overide the Disclaimer notice that gets displayed at the fourth column of the footer.
 [`DISQUS_SITENAME`](http://docs.getpelican.com/en/stable/settings.html#DISQUS_SITENAME) | | Pelican can handle Disqus comments. Specify the Disqus sitename identifier here.
 `FAVICON_LINKS` | `True` | Fetch link's icons from the free [Favicon Finder](https://icons.better-idea.org) web service.
+`FLAT_DESIGN` | `True` | Should we use the default Bootstrap theme, effectively rendering widgets in a flat-style design or not.
 [`GOOGLE_ANALYTICS`](http://docs.getpelican.com/en/stable/settings.html#GOOGLE_ANALYTICS) | | Set to `UA-XXXXX-Y` Property's tracking ID to activate Google Analytics.
 [`GA_COOKIE_DOMAIN`](http://docs.getpelican.com/en/stable/settings.html#GA_COOKIE_DOMAIN) | `auto` | Set cookie domain field of Google Analytics tracking code.
 `GOOGLE_SEARCH` | | [Google's Custom Search Engine](https://www.google.com/cse/) ID (e.g. `partner-pub-0123456789098765:0123456789`) to activate blog specific search.
@@ -137,6 +138,7 @@ Changelog
 * [**0.9.dev**
   (unreleased)](https://github.com/kdeldycke/plumage/compare/0.8...master)
   * Upgrade Bootstrap from v2.3.2 to v3.3.7.
+  * Add a new `FLAT_DESIGN` setting.
   * Upgrade to Font Awesome 4.7.0.
   * Upgrade to ImagesLoaded 4.1.1.
   * Upgrade to Masonry 4.1.1.

@@ -17,6 +17,9 @@
     <link rel="stylesheet" href="{{ SITEURL }}/theme/css/jquery.mglass.css"/>
     <link rel="stylesheet" href="{{ SITEURL }}/theme/css/pygment-solarized-dark.css"/>
     <link rel="stylesheet" href="{{ SITEURL }}/theme/css/style.css"/>
+    {% if not FLAT_DESIGN %}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap-theme.min.css"/>
+    {% endif %}
 
     <!-- Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
