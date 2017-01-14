@@ -160,7 +160,7 @@ a {
  */
 a.headerlink {
   font-size: .8em;
-  font-size: 0 .4em;
+  padding: 0 .4em;
   text-decoration: none;
   visibility: hidden;
 }
