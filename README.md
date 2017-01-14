@@ -143,6 +143,8 @@ Changelog
   * Add support for `AUTHORS_SAVE_AS` setting.
   * List all available Atom and RSS feeds on each page in the footer.
   * Load external resources via HTTPS when available.
+  * Support title anchor links as produced by [Markdown ToC
+  extension](https://pythonhosted.org/Markdown/extensions/toc.html).
 
 * [**0.8**
   (2016-06-22)](https://github.com/kdeldycke/plumage/compare/0.7...0.8)

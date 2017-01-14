@@ -155,7 +155,24 @@ a {
 .text-muted a {
   color: #999;
 }
-
+/* Style title headers anchors. Inspired by:
+ * https://github.com/waylan/Python-Markdown/blob/2.6.7-final/docs/basic.css#L157-L169
+ */
+a.headerlink {
+  font-size: .8em;
+  font-size: 0 .4em;
+  text-decoration: none;
+  visibility: hidden;
+}
+h1:hover > a.headerlink,
+h2:hover > a.headerlink,
+h3:hover > a.headerlink,
+h4:hover > a.headerlink,
+h5:hover > a.headerlink,
+h6:hover > a.headerlink,
+dt:hover > a.headerlink {
+  visibility: visible;
+}
 
 #content img {
   border: 1px solid #999;
