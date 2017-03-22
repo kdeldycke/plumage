@@ -123,8 +123,8 @@ You have to use the following template to deactivate the zoom of an image:
 Changelog
 ---------
 
-* [**0.9.dev**
-  (unreleased)](https://github.com/kdeldycke/plumage/compare/0.8...master)
+* [**0.9**
+  (2017-03-22)](https://github.com/kdeldycke/plumage/compare/0.8...0.9)
   * Upgrade Bootstrap from v2.3.2 to v3.3.7.
   * Add a new `FLAT_DESIGN` setting.
   * Upgrade to Font Awesome 4.7.0.
