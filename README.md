@@ -114,7 +114,7 @@ PLUGINS = ['tipue_search']
 TIPUE_SEARCH = True
 ```
 
-You'll need to declare additional template file,
+... you'll need to declare additional template file,
 by either adding this line to your `pelicanconf.py`:
 
 ```python
