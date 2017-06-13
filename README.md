@@ -104,6 +104,28 @@ The theme is also sensible to this list of [standard Pelican parameters
   * `TYPOGRIFY`
 
 
+### Common pitfalls
+
+Some plugins may need additional settings, for instance for **tipue_search**,
+after applying the standard options:
+
+```python
+PLUGINS = ['tipue_search']
+TIPUE_SEARCH = True
+```
+
+You'll need to declare additional template file,
+by either adding this line to your `pelicanconf.py`:
+
+```python
+TEMPLATE_PAGES = {
+        'search.html': 'search.html',
+        }
+```
+
+
+or using [this technique](https://github.com/kdeldycke/kevin-deldycke-blog/commit/cd4bf8d1f4c55d835d7bfe1d7233cffe48e67a8a).
+
 FAQ
 ---
 
