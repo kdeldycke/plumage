@@ -96,6 +96,7 @@ The theme is also sensible to this list of [standard Pelican parameters
   * `FEED_ATOM`
   * `FEED_DOMAIN`
   * `FEED_RSS`
+  * `PAGINATION_PATTERNS`
   * `SITENAME`
   * `SITEURL`
   * `TAG_FEED_ATOM`
@@ -147,7 +148,7 @@ Changelog
 
 * [**1.0.dev**
   (unreleased)](https://github.com/kdeldycke/plumage/compare/0.9...master)
-  * No changes yet.
+  * Add proper support of `PAGINATION_PATTERNS` setting.
 
 * [**0.9**
   (2017-03-22)](https://github.com/kdeldycke/plumage/compare/0.8...0.9)
