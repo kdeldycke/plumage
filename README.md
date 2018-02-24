@@ -52,7 +52,7 @@ Setting name | Default value | Description
 `COPYRIGHT` | | Additional copyright statement to add in the third column of the footer.
 `DISCLAIMER` | | Overide the Disclaimer notice that gets displayed at the fourth column of the footer.
 [`DISQUS_SITENAME`](http://docs.getpelican.com/en/stable/settings.html#DISQUS_SITENAME) | | Pelican can handle Disqus comments. Specify the Disqus sitename identifier here.
-`FAVICON_LINKS` | `True` | Fetch link's icons from the free [Favicon Finder](https://icons.better-idea.org) web service.
+`FAVICON_LINKS` | `True` | Fetch link's icons from the free [Favicon Finder](https://besticon-demo.herokuapp.com) web service.
 `FLAT_DESIGN` | `True` | Should we use the default Bootstrap theme, effectively rendering widgets in a flat-style design or not.
 [`GOOGLE_ANALYTICS`](http://docs.getpelican.com/en/stable/settings.html#GOOGLE_ANALYTICS) | | Set to `UA-XXXXX-Y` Property's tracking ID to activate Google Analytics.
 [`GA_COOKIE_DOMAIN`](http://docs.getpelican.com/en/stable/settings.html#GA_COOKIE_DOMAIN) | `auto` | Set cookie domain field of Google Analytics tracking code.
