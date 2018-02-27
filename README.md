@@ -149,6 +149,8 @@ Changelog
 * [**1.0.dev**
   (unreleased)](https://github.com/kdeldycke/plumage/compare/0.9...master)
   * Add proper support of `PAGINATION_PATTERNS` setting.
+  * Replace dead `better-idea.org` service by [`besticon`
+    ](https://besticon-demo.herokuapp.com).
 
 * [**0.9**
   (2017-03-22)](https://github.com/kdeldycke/plumage/compare/0.8...0.9)
