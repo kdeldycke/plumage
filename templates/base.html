@@ -215,9 +215,15 @@
               {% if group_links %}
                 <h5>{{ group_title }}</h5>
                 <ul class="list-unstyled">
-                {% for title, link in group_links %}
-                  <li>{{ m.render_link_icon(link, title, FAVICON_LINKS) }}</li>
-                {% endfor %}
+                  {% if MANUAL_LINKS%}
+                    {% for item in group_links %}
+                      <li>{{ item }}</li>
+                    {% endfor %}
+                  {% else %}
+                    {% for title, link in group_links %}
+                      <li>{{ m.render_link_icon(link, title, FAVICON_LINKS) }}</li>
+                    {% endfor %}
+                  {% endif%}
                 </ul>
               {% endif %}
             </div>

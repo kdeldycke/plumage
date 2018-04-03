@@ -60,6 +60,7 @@ Setting name | Default value | Description
 `LEFT_SIDEBAR` | | HTML content to put as-is in the left sidebar.
 [`LINKS_WIDGET_NAME`](http://docs.getpelican.com/en/stable/settings.html#LINKS_WIDGET_NAME) | `"Links"` | Allows override of the name of the links widget.
 [`LINKS`](http://docs.getpelican.com/en/stable/settings.html#LINKS) | | A list of tuples (Title, URL) for links to appear in the second column of the footer.
+[`MANUAL_LINKS`](http://docs.getpelican.com/en/stable/settings.html#MANUAL_LINKS) | | When enabling this, you must pass the links (in LINKS & SOCIAL settins) not as tuples anymore, but as list, where every entry is formatted as you like
 [`MENUITEMS`](http://docs.getpelican.com/en/stable/settings.html#MENUITEMS) | | A list of tuples (Title, URL) for additional menu items to appear at the beginning of the main menu.
 [`PIWIK_SITE_ID`](http://docs.getpelican.com/en/stable/settings.html#PIWIK_SITE_ID) | | ID for the monitored website. You can find the ID in the Piwik admin interface > Settings > Websites.
 [`PIWIK_SSL_URL`](http://docs.getpelican.com/en/stable/settings.html#PIWIK_SSL_URL) | | If the SSL-URL differs from the normal Piwik-URL you have to include this setting too. (optional)
