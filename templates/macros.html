@@ -38,7 +38,7 @@
     {% if icon %}
       <i class="fa {{ 'fa-%s' % icon[0] }}"></i>
     {% elif domain and favicon %}
-      <img src="https://besticon-demo.herokuapp.com/icon?url={{ domain }}&size=16" width="16" height="16" class="icon" alt="{{ domain }} icon"/>
+      <img src="https://www.google.com/s2/favicons?domain={{ domain }}" width="16" height="16" class="icon" alt="{{ domain }} icon"/>
     {% else %}
       <i class="fa fa-external-link"></i>
     {% endif %}
