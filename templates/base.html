@@ -49,16 +49,16 @@
       {% if all_feeds.append({'kind': 'RSS', 'url': FEED_RSS, 'name': 'Latest posts'}) %}{% endif %}
     {% endif %}
     {% if CATEGORY_FEED_ATOM and category is defined %}
-      {% if all_feeds.append({'kind': 'Atom', 'url': CATEGORY_FEED_ATOM|format(category.slug), 'name': 'Category: ' + category.name}) %}{% endif %}
+      {% if all_feeds.append({'kind': 'Atom', 'url': CATEGORY_FEED_ATOM.format(slug=category.slug), 'name': 'Category: ' + category.name}) %}{% endif %}
     {% endif %}
     {% if CATEGORY_FEED_RSS and category is defined %}
-      {% if all_feeds.append({'kind': 'RSS', 'url': CATEGORY_FEED_RSS|format(category.slug), 'name': 'Category: ' + category.name}) %}{% endif %}
+      {% if all_feeds.append({'kind': 'RSS', 'url': CATEGORY_FEED_RSS.format(slug=category.slug), 'name': 'Category: ' + category.name}) %}{% endif %}
     {% endif %}
     {% if TAG_FEED_ATOM and tag is defined %}
-      {% if all_feeds.append({'kind': 'Atom', 'url': TAG_FEED_ATOM|format(tag.slug), 'name': 'Tag: ' + tag.name}) %}{% endif %}
+      {% if all_feeds.append({'kind': 'Atom', 'url': TAG_FEED_ATOM.format(slug=tag.slug), 'name': 'Tag: ' + tag.name}) %}{% endif %}
     {% endif %}
     {% if TAG_FEED_RSS and tag is defined %}
-      {% if all_feeds.append({'kind': 'RSS', 'url': TAG_FEED_RSS|format(tag.slug), 'name': 'Tag: ' + tag.name}) %}{% endif %}
+      {% if all_feeds.append({'kind': 'RSS', 'url': TAG_FEED_RSS.format(slug=tag.slug), 'name': 'Tag: ' + tag.name}) %}{% endif %}
     {% endif %}
     {% for feed in all_feeds %}
       <link href="{{ FEED_DOMAIN }}/{{ feed.url }}" type="application/{{ feed.kind|lower }}+xml" rel="alternate" title="{{ SITENAME|e }} - {{ feed.name|e }} - {{ feed.kind }} Feed"/>
