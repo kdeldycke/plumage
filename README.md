@@ -148,6 +148,7 @@ Changelog
 
 * [**1.0.dev**
   (unreleased)](https://github.com/kdeldycke/plumage/compare/0.9...master)
+  * Fix issue with Pelican 4.x.
   * Add proper support of `PAGINATION_PATTERNS` setting.
   * Replace dead `better-idea.org` service by [`besticon`
     ](https://besticon-demo.herokuapp.com).
