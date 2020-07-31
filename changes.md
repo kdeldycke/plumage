@@ -4,6 +4,7 @@ Changelog
 * [**1.0.dev**
   (unreleased)](https://github.com/kdeldycke/plumage/compare/0.9...master)
   * Fix issue with Pelican 4.x.
+  * Update to Font Awesome 5.
   * Add proper support of `PAGINATION_PATTERNS` setting.
   * Replace dead `better-idea.org` service by [Google favicons service
     ](https://www.google.com/s2/favicons).
