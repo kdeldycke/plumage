@@ -7,6 +7,7 @@ Changelog
   * Add proper support of `PAGINATION_PATTERNS` setting.
   * Replace dead `better-idea.org` service by [`besticon`
     ](https://besticon-demo.herokuapp.com).
+  * Add support for Twitter icon in links.
 
 * [**0.9**
   (2017-03-22)](https://github.com/kdeldycke/plumage/compare/0.8...0.9)
