@@ -12,7 +12,7 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"/>
     <link rel="stylesheet" href="{{ SITEURL }}/theme/css/jquery.mglass.css"/>
     <link rel="stylesheet" href="{{ SITEURL }}/theme/css/pygment-solarized-dark.css"/>
@@ -227,13 +227,13 @@
             <h5>Browse content by</h5>
             <ul class="list-unstyled">
               {% if CATEGORIES_SAVE_AS %}
-                <li><a href="{{ SITEURL }}/{{ CATEGORIES_SAVE_AS }}"><i class="fa fa-tags"></i> Categories</a></li>
+                <li><a href="{{ SITEURL }}/{{ CATEGORIES_SAVE_AS }}"><i class="fas fa-th"></i> Categories</a></li>
               {% endif %}
               {% if ARCHIVES_SAVE_AS %}
-                <li><a href="{{ SITEURL }}/{{ ARCHIVES_SAVE_AS }}"><i class="fa fa-calendar"></i> Dates</a></li>
+                <li><a href="{{ SITEURL }}/{{ ARCHIVES_SAVE_AS }}"><i class="far fa-calendar-alt"></i> Dates</a></li>
               {% endif %}
               {% if TAGS_SAVE_AS %}
-                <li><a href="{{ SITEURL }}/{{ TAGS_SAVE_AS }}"><i class="fa fa-tag"></i> Tags</a></li>
+                <li><a href="{{ SITEURL }}/{{ TAGS_SAVE_AS }}"><i class="fas fa-tags"></i> Tags</a></li>
               {% endif %}
             </ul>
           </div>
