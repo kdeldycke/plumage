@@ -13,6 +13,8 @@ Changelog
     ](https://www.google.com/s2/favicons).
   * Add support for Twitter icon in links.
   * Keep GitHub labels in sync.
+  * Always test package builds on commit and PR events.
+  * Automate parts of package release.
 
 * [**0.9**
   (2017-03-22)](https://github.com/kdeldycke/plumage/compare/0.8...0.9)
