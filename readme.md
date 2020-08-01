@@ -145,8 +145,8 @@ TEMPLATE_PAGES = {
         }
 ```
 
-
 or using [this technique](https://github.com/kdeldycke/kevin-deldycke-blog/commit/cd4bf8d1f4c55d835d7bfe1d7233cffe48e67a8a).
+
 
 FAQ
 ---
