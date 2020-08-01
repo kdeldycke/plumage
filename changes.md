@@ -3,6 +3,8 @@ Changelog
 
 * [**1.0.dev**
   (unreleased)](https://github.com/kdeldycke/plumage/compare/0.9...master)
+  * Package Plumage in a python module.
+  * Distribute Plumage on PyPi.
   * Fix issue with Pelican 4.x.
   * Update to Font Awesome 5.
   * Add new `MANUAL_LINKS` setting.
