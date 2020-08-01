@@ -27,6 +27,7 @@ classifiers = [
     'Topic :: Text Processing :: Markup :: HTML']
 
 [tool.poetry.urls]
+"Funding" = "https://github.com/sponsors/kdeldycke"
 "Bug Tracker" = "https://github.com/kdeldycke/plumage/issues"
 
 [tool.poetry.dependencies]
