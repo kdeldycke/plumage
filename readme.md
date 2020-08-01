@@ -1,18 +1,18 @@
-Plumage
-=======
+# Plumage
 
-Plumage is a theme for [Pelican](https://getpelican.com), a static site
-generator written in Python.
+Plumage is a clean and tidy theme for [Pelican](https://getpelican.com) (a
+static site generator).
 
 I initially created this theme for [my blog](https://kevin.deldycke.com), but
-now the theme is supposed to be generic enough to have its own repository.
+it is now generic enough to be used by anyone.
+
+Here's how it renders an article:
 
 ![Plumage article view
 ](https://raw.githubusercontent.com/kdeldycke/plumage/master/plumage-article-screenshot.png)
 
 
-Features
---------
+## Features
 
   * Based on [Bootstrap v3](https://getbootstrap.com).
   * [Solarized](https://ethanschoonover.com/solarized) code snippets via
@@ -26,8 +26,7 @@ Features
   * Direct link to edit articles on Github.
 
 
-Plugins
--------
+## Plugins
 
 Plumage has built-in support for the following plugins:
 
@@ -40,8 +39,7 @@ Plumage has built-in support for the following plugins:
   * [`typogrify`](https://pypi.python.org/pypi/typogrify)
 
 
-Installation
-------------
+## Installation
 
 This package is [available on PyPi](https://pypi.python.org/pypi/plumage), so
 you can install the
@@ -60,8 +58,7 @@ THEME = plumage.get_path()
 ```
 
 
-Settings
---------
+## Settings
 
 Plumage can be customized by adding these optionnal parameters to your
 `pelicanconf.py` file:
@@ -126,7 +123,21 @@ The theme is also sensible to this list of [standard Pelican parameters
   * `TYPOGRIFY`
 
 
-### Common pitfalls
+## FAQ
+
+**How can I disable the zoom on images?**
+
+All images of an article are zoomable by default. You can deactivate the
+magnifying glass per-image by adding a `noZoom` CSS class. So instead of the
+following Markdown code:
+
+    ![Image title](/folder/image.png)
+
+You have to use the following template to deactivate the zoom of an image:
+
+    ![Image title](/folder/image.png){: .noZoom}
+
+**Why is the search not working?**
 
 Some plugins may need additional settings, for instance for **tipue_search**,
 after applying the standard options:
@@ -148,24 +159,7 @@ TEMPLATE_PAGES = {
 or using [this technique](https://github.com/kdeldycke/kevin-deldycke-blog/commit/cd4bf8d1f4c55d835d7bfe1d7233cffe48e67a8a).
 
 
-FAQ
----
-
-**How can I disable the zoom on images?**
-
-All images of an article are zoomable by default. You can deactivate the
-magnifying glass per-image by adding a `noZoom` CSS class. So instead of the
-following Markdown code:
-
-    ![Image title](/folder/image.png)
-
-You have to use the following template to deactivate the zoom of an image:
-
-    ![Image title](/folder/image.png){: .noZoom}
-
-
-License
--------
+## License
 
 This software is licensed under the [GNU General Public License v2 or later
 (GPLv2+)](https://github.com/kdeldycke/plumage/blob/master/LICENSE).
@@ -175,8 +169,7 @@ Copyright (C) 2012-2017 [Kevin Deldycke](https://kevin.deldycke.com) and
 Rights Reserved.
 
 
-Third-party assets
-------------------
+## Third-party assets
 
 The theme uses external softwares, scripts, libraries and artworks:
 
