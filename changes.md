@@ -12,6 +12,7 @@ Changelog
   * Replace dead `better-idea.org` service by [Google favicons service
     ](https://www.google.com/s2/favicons).
   * Add support for Twitter icon in links.
+  * Keep GitHub labels in sync.
 
 * [**0.9**
   (2017-03-22)](https://github.com/kdeldycke/plumage/compare/0.8...0.9)
