@@ -12,6 +12,7 @@ Changelog
   * Replace dead `better-idea.org` service by [Google favicons service
     ](https://www.google.com/s2/favicons).
   * Add support for Twitter icon in links.
+  * Keep Python dependencies up to date thanks to dependabot.
   * Keep GitHub labels in sync.
   * Always test package builds on commit and PR events.
   * Automate parts of package release.
