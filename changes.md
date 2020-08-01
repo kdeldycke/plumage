@@ -1,8 +1,8 @@
 Changelog
 =========
 
-* [**1.0.dev**
-  (unreleased)](https://github.com/kdeldycke/plumage/compare/0.9...master)
+* [**1.0.0**
+  (2020-08-01)](https://github.com/kdeldycke/plumage/compare/0.9...1.0.0)
   * Package Plumage in a python module.
   * Distribute Plumage on PyPi.
   * Fix issue with Pelican 4.x.
