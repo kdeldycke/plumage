@@ -40,6 +40,26 @@ Plumage has built-in support for the following plugins:
   * [`typogrify`](https://pypi.python.org/pypi/typogrify)
 
 
+Installation
+------------
+
+This package is [available on PyPi](https://pypi.python.org/pypi/plumage), so
+you can install the
+latest stable release and its dependencies with a simple ``pip`` call:
+
+```python
+$ pip install plumage
+```
+
+Then, update your `pelicanconf.py` file, with the module:
+
+```python
+import plumage
+
+THEME = plumage.get_path()
+```
+
+
 Settings
 --------
 

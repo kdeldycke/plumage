@@ -1,0 +1,40 @@
+[tool.poetry]
+# Docs: https://python-poetry.org/docs/pyproject/
+name = "plumage"
+version = "1.0.0"
+description = """Clean and tidy theme for Pelican."""
+license = 'GPL-2.0-or-later'
+authors = ["Kevin Deldycke <kevin@deldycke.com>"]
+readme = "readme.md"
+homepage = 'https://github.com/kdeldycke/plumage'
+repository = 'https://github.com/kdeldycke/plumage'
+documentation = 'https://github.com/kdeldycke/plumage#settings'
+keywords = [
+    'pelican', 'pelican-theme', 'tipue-search', 'masonry', 'theme',
+    'bootstrap', 'jquery', 'font-awesome']
+classifiers = [
+    # See: https://pypi.org/pypi?%3Aaction=list_classifiers
+    'Development Status :: 5 - Production/Stable',
+    'Environment :: Plugins',
+    'Environment :: Web Environment',
+    'Framework :: Pelican :: Themes',
+    'Intended Audience :: Developers',
+    'Intended Audience :: Information Technology',
+    'Operating System :: OS Independent',
+    'Programming Language :: JavaScript',
+    'Programming Language :: Other',
+    'Topic :: Internet :: WWW/HTTP',
+    'Topic :: Text Processing :: Markup :: HTML']
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/kdeldycke/plumage/issues"
+
+[tool.poetry.dependencies]
+# List of python versions and their support status:
+# https://en.wikipedia.org/wiki/CPython#Version_history
+python = "^3.7"
+pelican = "^4.2.0"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
