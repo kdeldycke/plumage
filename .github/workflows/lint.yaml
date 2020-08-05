@@ -17,7 +17,7 @@ jobs:
       - name: Install linter
         run: |
           python -m pip install --upgrade pip
-          pip install jinjalint
+          pip install curlylint
       - name: Lint
         run: |
-          jinjalint --verbose
+          curlylint --verbose .
