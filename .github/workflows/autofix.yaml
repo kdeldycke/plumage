@@ -78,7 +78,7 @@ jobs:
           branch: update-gitignore
 
   css:
-    name: Format & lint CSS .gitignore, and create a PR
+    name: Format & lint CSS, and create a PR
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.3.1
@@ -93,6 +93,9 @@ jobs:
           }
           EOF
       - name: Autofix CSS
+        # Allow that step to fail so we can proceed with creating the auto-fix
+        # PR below.
+        continue-on-error: true
         run: |
           npx stylelint "**/*.css" --fix
       - uses: peter-evans/create-pull-request@v3
@@ -106,3 +109,6 @@ jobs:
           labels: CI/CD
           assignees: kdeldycke
           branch: autofix-css
+      - name: Lint CSS
+        run: |
+          npx stylelint "**/*.css"
