@@ -3,7 +3,7 @@ Changelog
 
 * [**v1.0.1**
   (unreleased)](https://github.com/kdeldycke/plumage/compare/v1.0.0...develop)
-  * Lint Jinja content.
+  * Lint Jinja templates.
   * Lint CSS files.
 
 * [**v1.0.0**
