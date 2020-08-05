@@ -119,6 +119,13 @@ jobs:
           labels: CI/CD
           assignees: kdeldycke
           branch: autofix-css
+      - name: Re-generate config discarded above
+        run: |
+          tee -a ./.stylelintrc.json <<-EOF
+          {
+            "extends": "stylelint-config-standard"
+          }
+          EOF
       - name: Lint CSS
         run: |
           npx stylelint "**/*.css"
