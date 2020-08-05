@@ -64,7 +64,7 @@ jobs:
           sudo apt install -y git-extras
       - name: Generate .gitignore
         run: |
-          git ignore-io --replace emacs git linux macos nohup python vim virtualenv visualstudiocode windows
+          git ignore-io --replace emacs git linux macos node nohup python vim virtualenv visualstudiocode windows
       - uses: peter-evans/create-pull-request@v3
         with:
           author: "Kevin Deldycke <kevin@deldycke.com>"
@@ -76,3 +76,33 @@ jobs:
           labels: CI/CD
           assignees: kdeldycke
           branch: update-gitignore
+
+  css:
+    name: Format & lint CSS .gitignore, and create a PR
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.3.1
+      - name: Install stylelint
+        run: |
+          npm install --save-dev stylelint stylelint-config-standard
+      - name: Generate default config
+        run: |
+          tee -a ./.gitignore <<-EOF
+          {
+            "extends": "stylelint-config-standard"
+          }
+          EOF
+      - name: Autofix CSS
+        run: |
+          npx stylelint "**/*.css" --fix
+      - uses: peter-evans/create-pull-request@v3
+        with:
+          author: "Kevin Deldycke <kevin@deldycke.com>"
+          commit-message: "[autofix] Format CSS style"
+          title: "[autofix] Format CSS style"
+          body: >
+            [Auto-generated on run #${{ github.run_id }}](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+            as defined by [workflow action](https://github.com/${{ github.repository }}/blob/develop/.github/workflows/autofix.yaml).
+          labels: CI/CD
+          assignees: kdeldycke
+          branch: autofix-css
