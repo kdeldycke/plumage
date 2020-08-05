@@ -3,7 +3,7 @@ Changelog
 
 * [**v1.0.1**
   (unreleased)](https://github.com/kdeldycke/plumage/compare/v1.0.0...develop)
-  * No changes yet.
+  * Lint Jinja content.
 
 * [**v1.0.0**
   (2020-08-01)](https://github.com/kdeldycke/plumage/compare/v0.9.0...v1.0.0)
