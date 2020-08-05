@@ -6,7 +6,7 @@ Changelog
   * No changes yet.
 
 * [**v1.0.0**
-  (2020-08-01)](https://github.com/kdeldycke/plumage/compare/v0.9...v1.0.0)
+  (2020-08-01)](https://github.com/kdeldycke/plumage/compare/v0.9.0...v1.0.0)
   * Package Plumage in a python module.
   * Distribute Plumage on PyPi.
   * Fix issue with Pelican 4.x.
