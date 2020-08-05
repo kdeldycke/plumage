@@ -1,12 +1,12 @@
 Changelog
 =========
 
-* [**1.0.1**
-  (unreleased)](https://github.com/kdeldycke/plumage/compare/1.0.0...develop)
+* [**v1.0.1**
+  (unreleased)](https://github.com/kdeldycke/plumage/compare/v1.0.0...develop)
   * No changes yet.
 
-* [**1.0.0**
-  (2020-08-01)](https://github.com/kdeldycke/plumage/compare/0.9...1.0.0)
+* [**v1.0.0**
+  (2020-08-01)](https://github.com/kdeldycke/plumage/compare/v0.9...v1.0.0)
   * Package Plumage in a python module.
   * Distribute Plumage on PyPi.
   * Fix issue with Pelican 4.x.
@@ -21,8 +21,8 @@ Changelog
   * Always test package builds on commit and PR events.
   * Automate parts of package release.
 
-* [**0.9**
-  (2017-03-22)](https://github.com/kdeldycke/plumage/compare/0.8...0.9)
+* [**v0.9.0**
+  (2017-03-22)](https://github.com/kdeldycke/plumage/compare/v0.8.0...v0.9.0)
   * Upgrade Bootstrap from v2.3.2 to v3.3.7.
   * Add a new `FLAT_DESIGN` setting.
   * Upgrade to Font Awesome 4.7.0.
@@ -44,8 +44,8 @@ Changelog
   * Support title anchor links as produced by [Markdown ToC
   extension](https://pythonhosted.org/Markdown/extensions/toc.html).
 
-* [**0.8**
-  (2016-06-22)](https://github.com/kdeldycke/plumage/compare/0.7...0.8)
+* [**v0.8.0**
+  (2016-06-22)](https://github.com/kdeldycke/plumage/compare/v0.7.0...v0.8.0)
   * Remove legacy Google Analytics tracking code.
   * Rename `GOOGLE_ANALYTICS_UNIVERSAL` option by `GOOGLE_ANALYTICS` and
     `GOOGLE_ANALYTICS_UNIVERSAL_PROPERTY` by `GOOGLE_ANALYTICS_PROPERTY`.
@@ -63,8 +63,8 @@ Changelog
   * Fallback on default external link icon if none found.
   * Remove local copy of Tipue Search assets. Rely on CDNjs instead.
 
-* [**0.7**
-  (2015-12-28)](https://github.com/kdeldycke/plumage/compare/0.6...0.7)
+* [**v0.7.0**
+  (2015-12-28)](https://github.com/kdeldycke/plumage/compare/v0.6.0...v0.7.0)
   * Add option to bypass grabicon.com web service.
   * Add static search based on Tipue Search.
   * Add new `LINKS_WIDGET_NAME` and `SOCIAL_WIDGET_NAME` options to mirror
@@ -77,20 +77,20 @@ Changelog
   * Upgrade to Masonry 3.3.2.
   * Remove `PDF_PROCESSOR` option now that plugin is out of core.
 
-* [**0.6**
-  (2015-05-30)](https://github.com/kdeldycke/plumage/compare/0.5...0.6)
+* [**v0.6.0**
+  (2015-05-30)](https://github.com/kdeldycke/plumage/compare/v0.5.0...v0.6.0)
   * Fix favicon rendering.
 
-* [**0.5**
-  (2015-05-25)](https://github.com/kdeldycke/plumage/compare/0.4...0.5)
+* [**v0.5.0**
+  (2015-05-25)](https://github.com/kdeldycke/plumage/compare/v0.4.0...v0.5.0)
   * Add support for piwik.
   * Upgrade to jQuery 2.1.3.
   * Upgrade to Masonry 3.3.0.
   * Upgrade to fitvids 1.1.0.
   * Upgrade to Magnific Popup 1.0.0.
 
-* [**0.4**
-  (2014-02-15)](https://github.com/kdeldycke/plumage/compare/0.3...0.4)
+* [**v0.4.0**
+  (2014-02-15)](https://github.com/kdeldycke/plumage/compare/v0.3.0...v0.4.0)
   * Allow grouping of projects.
   * Add option to overide disclaimer notice.
   * Generate tags, categories and archives URLs depending on site
@@ -106,8 +106,8 @@ Changelog
   * Upgrade to ImagesLoaded 3.0.4.
   * Upgrade to Magnific Popup 0.9.9.
 
-* [**0.3**
-  (2013-08-16)](https://github.com/kdeldycke/plumage/compare/0.2...0.3)
+* [**v0.3.0**
+  (2013-08-16)](https://github.com/kdeldycke/plumage/compare/v0.2.0...v0.3.0)
   * Add auto-zoom of images based on Magnific Popup.
   * Let the content take the available width if there is no right or left
     sidebars.
@@ -117,20 +117,20 @@ Changelog
   * Escape and strip tags in all title attributes.
   * Style ampersands for those using typogrify.
 
-* [**0.2**
-  (2013-07-09)](https://github.com/kdeldycke/plumage/compare/0.1...0.2)
+* [**v0.2.0**
+  (2013-07-09)](https://github.com/kdeldycke/plumage/compare/v0.1.0...v0.2.0)
   * Make theme fully generic through the use of variables.
   * Replace custom navigation with Pelican's neighbors plugin.
   * Add screenshot.
   * Update documentation.
 
-* [**0.1**
-  (2013-07-07)](https://github.com/kdeldycke/plumage/compare/0.0...0.1)
+* [**v0.1.0**
+  (2013-07-07)](https://github.com/kdeldycke/plumage/compare/v0.0.0...v0.1.0)
   * Theme has now a name: Plumage.
   * Move the theme out of my [blog repository
     ](https://github.com/kdeldycke/kevin-deldycke-blog) to its own repository.
   * Theme is now generic enough. Update TODO-list accordingly.
 
-* [**0.0**
+* [**v0.0.0**
   (2012-12-23)](https://github.com/kdeldycke/plumage/commit/70df9b)
   * First commit.
