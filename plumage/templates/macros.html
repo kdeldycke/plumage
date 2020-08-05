@@ -1,16 +1,16 @@
 {% macro render_tag(tag) -%}
-  <a href="{{ SITEURL }}/{{ tag.url }}" data-toggle="tooltip"
-      class="label label-default"
-      title="{{ tag.articles }} article{{ 's' if tag.articles > 1 else '' }} with this tag">{{ tag.name }}</a>
+<a href="{{ SITEURL }}/{{ tag.url }}" data-toggle="tooltip"
+   class="label label-default"
+   title="{{ tag.articles }} article{{ 's' if tag.articles > 1 else '' }} with this tag">{{ tag.name }}</a>
 {%- endmacro %}
 
 {% macro render_link_icon(link, label, favicon=True) -%}
-  {% set icon = [] %}
-  {% set favicon = False if favicon == False else True %}
-  {% set protocol = link.split(':', 1)[0] %}
-  {% if protocol == 'mailto' %}
+{% set icon = [] %}
+{% set favicon = False if favicon == False else True %}
+{% set protocol = link.split(':', 1)[0] %}
+{% if protocol == 'mailto' %}
     {% if icon.append('envelope') %}{% endif %}
-  {% elif protocol.startswith('http') %}
+{% elif protocol.startswith('http') %}
     {% set domain = link.split('%s://' % protocol, 1)[1].split('/', 1)[0] %}
     {% set SITE_ICONS = {
           'apple': ['apple.com']
@@ -26,21 +26,21 @@
         }
     %}
     {% for (site_icon, site_domains) in SITE_ICONS.items() %}
-      {% for site_domain in site_domains %}
-        {% if domain.startswith(site_domain) %}
-          {% if icon.append(site_icon) %}{% endif %}
-        {% endif %}
-      {% endfor %}
+        {% for site_domain in site_domains %}
+            {% if domain.startswith(site_domain) %}
+                {% if icon.append(site_icon) %}{% endif %}
+            {% endif %}
+        {% endfor %}
     {% endfor %}
-  {% endif %}
-  <a href="{{ link }}">
+{% endif %}
+<a href="{{ link }}">
     {% if icon %}
-      <i class="fab {{ 'fa-%s' % icon[0] }}"></i>
+        <i class="fab {{ 'fa-%s' % icon[0] }}"></i>
     {% elif domain and favicon %}
-      <img src="https://www.google.com/s2/favicons?domain={{ domain }}" width="16" height="16" class="icon" alt="{{ domain }} icon"/>
+        <img src="https://www.google.com/s2/favicons?domain={{ domain }}" width="16" height="16" class="icon" alt="{{ domain }} icon"/>
     {% else %}
-      <i class="fa fa-external-link-alt"></i>
+        <i class="fa fa-external-link-alt"></i>
     {% endif %}
     {{ label }}
-  </a>
+</a>
 {%- endmacro %}

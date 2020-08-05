@@ -2,67 +2,67 @@
 
 
 {% block title %}
-  Archives
+    Archives
 {% endblock %}
 
 
 {% block top_center %}
-  <h1>
-    <a href="{{ SITEURL }}/{{ ARCHIVES_SAVE_AS }}" rel="bookmark" title="Permalink to archives">Archives</a>
-  </h1>
+    <h1>
+        <a href="{{ SITEURL }}/{{ ARCHIVES_SAVE_AS }}" rel="bookmark" title="Permalink to archives">Archives</a>
+    </h1>
 {% endblock %}
 
 
 {% block content %}
 
-  {% set year_range = [] %}
-  {% for year in range(dates[-1].date.year, dates[0].date.year + 1) %}
-    {% if year_range.append(year) %}{% endif %}
-  {% endfor %}
-  {% set year_range = year_range[::-1] %}
-
-  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-    {% for year in year_range %}
-      <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="heading{{ year }}">
-          <h4 class="panel-title">
-            <a role="button" data-toggle="collapse" data-parent="#accordion"
-                href="#collapse{{ year }}"
-                class="btn-block {% if not loop.first %}collapsed{% endif %}"
-                aria-expanded="{% if loop.first %}true{% else %}false{% endif %}"
-                aria-controls="collapse{{ year }}">
-              {{ year }}
-            </a>
-          </h4>
-        </div>
-        <div id="collapse{{ year }}" class="panel-collapse collapse {% if loop.first %}in{% endif %}"
-            role="tabpanel" aria-labelledby="heading{{ year }}">
-          <div class="panel-body">
-            {% set current_month = False %}
-            {% for article in dates %}
-              {% if article.date.year == year %}
-
-                {% if article.date.month != current_month %}
-                  {% set current_month = article.date.month %}
-                  {% if not loop.first %}
-                    </dl>
-                  {% endif %}
-                  <dl class="dl-horizontal">
-                {% endif %}
-
-                <dt><abbr class="published" title="{{ article.date.isoformat() }}">{{ article.date.strftime('%b. %d') }}</abbr></dt>
-                <dd><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></dd>
-
-                {% if loop.last %}
-                  </dl>
-                {% endif %}
-
-              {% endif %}
-            {% endfor %}
-          </div>
-        </div>
-      </div>
+    {% set year_range = [] %}
+    {% for year in range(dates[-1].date.year, dates[0].date.year + 1) %}
+        {% if year_range.append(year) %}{% endif %}
     {% endfor %}
-  </div>
+    {% set year_range = year_range[::-1] %}
+
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        {% for year in year_range %}
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading{{ year }}">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion"
+                           href="#collapse{{ year }}"
+                           class="btn-block {% if not loop.first %}collapsed{% endif %}"
+                           aria-expanded="{% if loop.first %}true{% else %}false{% endif %}"
+                           aria-controls="collapse{{ year }}">
+                            {{ year }}
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapse{{ year }}" class="panel-collapse collapse {% if loop.first %}in{% endif %}"
+                     role="tabpanel" aria-labelledby="heading{{ year }}">
+                    <div class="panel-body">
+                        {% set current_month = False %}
+                        {% for article in dates %}
+                            {% if article.date.year == year %}
+
+                                {% if article.date.month != current_month %}
+                                    {% set current_month = article.date.month %}
+                                    {% if not loop.first %}
+                                        </dl>
+                                    {% endif %}
+                                    <dl class="dl-horizontal">
+                                {% endif %}
+
+                                <dt><abbr class="published" title="{{ article.date.isoformat() }}">{{ article.date.strftime('%b. %d') }}</abbr></dt>
+                                <dd><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></dd>
+
+                                {% if loop.last %}
+                                    </dl>
+                                {% endif %}
+
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 
 {% endblock %}

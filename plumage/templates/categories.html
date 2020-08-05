@@ -2,29 +2,29 @@
 
 
 {% block title %}
-  All categories
+    All categories
 {% endblock %}
 
 
 {% block top_center %}
-  <h1>
-      <a href="{{ SITEURL }}/{{ CATEGORIES_SAVE_AS }}" rel="bookmark" title="Permalink to category list">Categories</a>
-  </h1>
+    <h1>
+        <a href="{{ SITEURL }}/{{ CATEGORIES_SAVE_AS }}" rel="bookmark" title="Permalink to category list">Categories</a>
+    </h1>
 {% endblock %}
 
 
 {% block content %}
 
-  {% set all_categories = [] %}
-  {% for category, articles in categories %}
-    {% if all_categories.append({'name': category.name, 'url': category.url, 'articles': articles|length()}) %}{% endif %}
-  {% endfor %}
-
-  <dl class="dl-horizontal">
-    {% for category in all_categories|sort(reverse = True, attribute = 'articles') %}
-      <dt><a href="{{ SITEURL }}/{{ category.url }}" class="label label-info">{{ category.name }}</a></dt>
-      <dd><a href="{{ SITEURL }}/{{ category.url }}">{{ category.articles }} article{{ 's' if category.articles > 1 else '' }}</a></dd>
+    {% set all_categories = [] %}
+    {% for category, articles in categories %}
+        {% if all_categories.append({'name': category.name, 'url': category.url, 'articles': articles|length()}) %}{% endif %}
     {% endfor %}
-  </dl>
+
+    <dl class="dl-horizontal">
+        {% for category in all_categories|sort(reverse = True, attribute = 'articles') %}
+            <dt><a href="{{ SITEURL }}/{{ category.url }}" class="label label-info">{{ category.name }}</a></dt>
+            <dd><a href="{{ SITEURL }}/{{ category.url }}">{{ category.articles }} article{{ 's' if category.articles > 1 else '' }}</a></dd>
+        {% endfor %}
+    </dl>
 
 {% endblock %}

@@ -1,42 +1,42 @@
 {% extends "base.html" %}
 
 {% block title %}
-  Seach {{ super() }}
+    Seach {{ super() }}
 {% endblock title %}
 
 {% block head_description %}
-  Search results:
+    Search results:
 {% endblock head_description %}
 
 {% block extra_css %}
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Tipue-Search/5.0.0/tipuesearch.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Tipue-Search/5.0.0/tipuesearch.css"/>
 {% endblock %}
 
 {% block extra_js %}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Tipue-Search/5.0.0/tipuesearch_content.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Tipue-Search/5.0.0/tipuesearch_set.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Tipue-Search/5.0.0/tipuesearch.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Tipue-Search/5.0.0/tipuesearch_content.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Tipue-Search/5.0.0/tipuesearch_set.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Tipue-Search/5.0.0/tipuesearch.min.js"></script>
 
-  <script>
-    $(document).ready(function() {
-      $('#tipue_search_input').tipuesearch({
-          'mode' : 'json',
-          'show': 10,
-          'newWindow': false,
-          'contentLocation': '{{ SITEURL }}/tipuesearch_content.json'
-      });
-    });
-  </script>
+    <script>
+        $(document).ready(function() {
+            $('#tipue_search_input').tipuesearch({
+                'mode' : 'json',
+                'show': 10,
+                'newWindow': false,
+                'contentLocation': '{{ SITEURL }}/tipuesearch_content.json'
+            });
+        });
+    </script>
 {% endblock extra_js %}
 
 {% block top_center %}
-  <h1>
-    Search Results
-  </h1>
+    <h1>
+        Search Results
+    </h1>
 {% endblock %}
 
 {% block content %}
-  <div>
-    <div id="tipue_search_content"></div>
-  </div>
+    <div>
+        <div id="tipue_search_content"></div>
+    </div>
 {% endblock content %}

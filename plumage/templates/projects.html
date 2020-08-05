@@ -3,8 +3,8 @@
 
 
 {% block extra_js %}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.1/imagesloaded.pkgd.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.1.1/masonry.pkgd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.1/imagesloaded.pkgd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.1.1/masonry.pkgd.min.js"></script>
 {% endblock %}
 
 
@@ -39,116 +39,116 @@
 
 
 {% macro render_project(all_tags, project) %}
-  <div class="thumbnail col-md-3">
+<div class="thumbnail col-md-3">
     {% if project.inactive %}
-      <div class="corner">Inactive</div>
+        <div class="corner">Inactive</div>
     {% endif %}
     {% if project.thumb %}
-      {% if project.thumb_link %}
-        <a href="{{ project.thumb_link }}">
-      {% endif %}
+        {% if project.thumb_link %}
+            <a href="{{ project.thumb_link }}">
+        {% endif %}
         <img alt="{{ project.name }} thumbnail" src="{{ project.thumb }}"/>
-      {% if project.thumb_link %}
-        </a>
-      {% endif %}
+        {% if project.thumb_link %}
+            </a>
+        {% endif %}
     {% endif %}
     <div class="details">
-      <h4>{{ project.name }}</h4>
-      {% if project.desc %}
-        <p>{{ project.desc }}</p>
-      {% endif %}
-      {% if project.roles or project.tools %}
-        <p>
-          {% for role in project.roles %}
-            <span class="label label-success">{{ role }}</span>
-          {% endfor %}
-          {% for tag in all_tags|sort(reverse=True, attribute='articles') %}
-            {% if tag.name in project.tools %}
-              {{ m.render_tag(tag) }}
-            {% endif %}
-          {% endfor %}
-          {% set tag_names = [] %}
-          {% for tag in all_tags %}
-            {% if tag_names.append(tag.name) %}{% endif %}
-          {% endfor %}
-          {% for tool in project.tools %}
-            {% if tool not in tag_names %}
-              <span class="label label-default">{{ tool }}</span>
-            {% endif %}
-          {% endfor %}
-        </p>
-      {% endif %}
-      {% if project.links %}
-        <p class="clearfix">
-          {% for link in project.links %}
-            {% set link_icon = ['fa-home'] %}
-            {% for (domain, icon) in ICONS.items() %}
-              {% if link.find(domain) != -1 %}
-                {% if link_icon.append(icon) %}{% endif %}
-              {% endif %}
-            {% endfor %}
-            {% set link_icon = link_icon[-1] %}
-            <a href="{{ link }}" class="pull-left link-circle" title="{{ LABELS.get(link_icon, 'Project home')|e }}">
-              <i class="fa {{ link_icon }}"></i>
-            </a>
-          {% endfor %}
-        </p>
-      {% endif %}
+        <h4>{{ project.name }}</h4>
+        {% if project.desc %}
+            <p>{{ project.desc }}</p>
+        {% endif %}
+        {% if project.roles or project.tools %}
+            <p>
+                {% for role in project.roles %}
+                    <span class="label label-success">{{ role }}</span>
+                {% endfor %}
+                {% for tag in all_tags|sort(reverse=True, attribute='articles') %}
+                    {% if tag.name in project.tools %}
+                        {{ m.render_tag(tag) }}
+                    {% endif %}
+                {% endfor %}
+                {% set tag_names = [] %}
+                {% for tag in all_tags %}
+                    {% if tag_names.append(tag.name) %}{% endif %}
+                {% endfor %}
+                {% for tool in project.tools %}
+                    {% if tool not in tag_names %}
+                        <span class="label label-default">{{ tool }}</span>
+                    {% endif %}
+                {% endfor %}
+            </p>
+        {% endif %}
+        {% if project.links %}
+            <p class="clearfix">
+                {% for link in project.links %}
+                    {% set link_icon = ['fa-home'] %}
+                    {% for (domain, icon) in ICONS.items() %}
+                        {% if link.find(domain) != -1 %}
+                            {% if link_icon.append(icon) %}{% endif %}
+                        {% endif %}
+                    {% endfor %}
+                    {% set link_icon = link_icon[-1] %}
+                    <a href="{{ link }}" class="pull-left link-circle" title="{{ LABELS.get(link_icon, 'Project home')|e }}">
+                        <i class="fa {{ link_icon }}"></i>
+                    </a>
+                {% endfor %}
+            </p>
+        {% endif %}
     </div>
-  </div>
+</div>
 {% endmacro %}
 
 
 {% macro render_projects(projects) %}
 
-  {% set all_tags = [] %}
-  {% for tag, articles in tags %}
+{% set all_tags = [] %}
+{% for tag, articles in tags %}
     {% if all_tags.append({'name': tag.name, 'url': tag.url, 'articles': articles|length()}) %}{% endif %}
-  {% endfor %}
+{% endfor %}
 
-  {% if projects is defined %}
+{% if projects is defined %}
     <div class="masonry">
-      {% block project_pre_content %}{% endblock %}
+        {% block project_pre_content %}{% endblock %}
 
-      {% set active_projects = [] %}
-      {% set inactive_projects = [] %}
-      {% for project in projects %}
-        {% if project.inactive %}
-          {% if inactive_projects.append(project) %}{% endif %}
-        {% else %}
-          {% if active_projects.append(project) %}{% endif %}
-        {% endif %}
-      {% endfor %}
-
-      {% for project_list in [active_projects, inactive_projects] %}
-        {% for project in project_list %}
-          {{ render_project(all_tags, project) }}
+        {% set active_projects = [] %}
+        {% set inactive_projects = [] %}
+        {% for project in projects %}
+            {% if project.inactive %}
+                {% if inactive_projects.append(project) %}{% endif %}
+            {% else %}
+                {% if active_projects.append(project) %}{% endif %}
+            {% endif %}
         {% endfor %}
-      {% endfor %}
 
-      {% block project_post_content %}{% endblock %}
+        {% for project_list in [active_projects, inactive_projects] %}
+            {% for project in project_list %}
+                {{ render_project(all_tags, project) }}
+            {% endfor %}
+        {% endfor %}
+
+        {% block project_post_content %}{% endblock %}
     </div>
-  {% endif %}
+{% endif %}
 
 {% endmacro %}
 
 
 {% macro render_project_group(group, projects) %}
-  {{ group.pre }}
-  {{ render_projects(projects) }}
-  {{ group.post }}
+{{ group.pre }}
+{{ render_projects(projects) }}
+{{ group.post }}
 {% endmacro %}
 
 
 {% block content %}
-  {% if PROJECT_GROUPS is defined %}
-    {% for group in PROJECT_GROUPS %}
-      {{ render_project_group(group, PROJECTS|selectattr("group", "sameas", group.id)) }}
-    {% endfor %}
+    {% if PROJECT_GROUPS is defined %}
+        {% for group in PROJECT_GROUPS %}
+            {{ render_project_group(group, PROJECTS|selectattr("group", "sameas", group.id)) }}
+        {% endfor %}
 
-    {{ render_projects(PROJECTS|rejectattr("group", "defined")) }}
+        {{ render_projects(PROJECTS|rejectattr("group", "defined")) }}
 
-  {% else %}
-    {{ render_projects(PROJECTS) }}
-  {% endif %}
+    {% else %}
+        {{ render_projects(PROJECTS) }}
+    {% endif %}
 {% endblock %}
