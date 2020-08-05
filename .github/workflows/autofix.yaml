@@ -87,7 +87,7 @@ jobs:
           npm install --save-dev stylelint stylelint-config-standard
       - name: Generate default config
         run: |
-          tee -a ./.gitignore <<-EOF
+          tee -a ./.stylelintrc.json <<-EOF
           {
             "extends": "stylelint-config-standard"
           }
