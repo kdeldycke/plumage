@@ -98,6 +98,16 @@ jobs:
         continue-on-error: true
         run: |
           npx stylelint "**/*.css" --fix
+      - name: Discard all local changes but CSS files
+        run: |
+          # Remove untracked directories and files.
+          git clean -fd
+          # Temporarily stash our target file.
+          find ./ -type f -name '*.css' -print -exec git stash -- "{}" \;
+          # Reset all repository.
+          git checkout --force
+          # Restore modified file. Do not fail if no file has been stashed.
+          git stash pop || true
       - uses: peter-evans/create-pull-request@v3
         with:
           author: "Kevin Deldycke <kevin@deldycke.com>"
