@@ -78,7 +78,7 @@ jobs:
           branch: update-gitignore
 
   css:
-    name: Format & lint CSS, and create a PR
+    name: Format CSS files and create a PR
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.3.1
@@ -119,13 +119,3 @@ jobs:
           labels: CI/CD
           assignees: kdeldycke
           branch: autofix-css
-      - name: Re-generate config discarded above
-        run: |
-          tee -a ./.stylelintrc.json <<-EOF
-          {
-            "extends": "stylelint-config-standard"
-          }
-          EOF
-      - name: Lint CSS
-        run: |
-          npx stylelint "**/*.css"
