@@ -38,6 +38,18 @@ body {
   background-color: transparent;
 }
 
+a {
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -ms-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+
+.text-muted a {
+  color: #999;
+}
+
 .page-header {
   margin: 0;
   padding-bottom: 0;
@@ -52,7 +64,6 @@ body {
   color: #005580;
   text-decoration: none;
 }
-
 
 /* Card flip inspired by https://learn.shayhowe.com/advanced-html-css/transitions-animations */
 
@@ -101,20 +112,6 @@ body {
   backface-visibility: hidden;
 }
 
-.page-header .avatar.animate:hover,
-.page-header .avatar.animate .back {
-  -webkit-transform: rotateY(180deg);
-  -moz-transform: rotateY(180deg);
-  -ms-transform: rotateY(180deg);
-  -o-transform: rotateY(180deg);
-  transform: rotateY(180deg);
-}
-
-.page-header .avatar .side:hover,
-.page-header .avatar .back {
-  border-color: #005580;
-}
-
 .page-header .avatar .back {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #eee), color-stop(100%, #ddd));
   background-image: -webkit-linear-gradient(#eee, #ddd);
@@ -126,6 +123,20 @@ body {
   box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.1);
   font-size: 13px;
   line-height: 20px;
+}
+
+.page-header .avatar .side:hover,
+.page-header .avatar .back {
+  border-color: #005580;
+}
+
+.page-header .avatar.animate:hover,
+.page-header .avatar.animate .back {
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  transform: rotateY(180deg);
 }
 
 .page-header .avatar .back p {
@@ -161,25 +172,13 @@ h2 {
 
 /* Typogrify's ampersands */
 span.amp {
-  font-family: 'Expletus Sans';
+  font-family: 'Expletus Sans', sans-serif;
 }
 
 code {
   color: inherit;
   background-color: rgb(236, 236, 236); /* same as body's background-color */
   border-color: rgb(224, 224, 235);
-}
-
-a {
-  -webkit-transition: all 0.2s ease-out;
-  -moz-transition: all 0.2s ease-out;
-  -ms-transition: all 0.2s ease-out;
-  -o-transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
-}
-
-.text-muted a {
-  color: #999;
 }
 
 /* Style title headers anchors. Inspired by:
@@ -202,9 +201,18 @@ dt:hover > a.headerlink {
   visibility: visible;
 }
 
+.thumbnail > img {
+  max-height: 180px;
+  box-shadow: 0 4px 10px -4px rgba(0, 0, 0, 0.3);
+}
+
 #content img {
   border: 1px solid #999;
   background: #fff;
+}
+
+#content .thumbnail img {
+  border: 0;
 }
 
 .mglass {
@@ -251,7 +259,6 @@ dt:hover > a.headerlink {
   opacity: 0;
 }
 
-
 /* a.label, a.badge, */ a.link-circle {
   background-color: rgb(228, 228, 228);
 }
@@ -281,15 +288,6 @@ dt:hover > a.headerlink {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
-
-#content .thumbnail img {
-  border: 0;
-}
-
-.thumbnail > img {
-  max-height: 180px;
-  box-shadow: 0 4px 10px -4px rgba(0, 0, 0, 0.3);
 }
 
 .masonry .thumbnail {
