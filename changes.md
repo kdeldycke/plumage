@@ -2,7 +2,7 @@ Changelog
 =========
 
 * [**v1.1.0**
-  (unreleased)](https://github.com/kdeldycke/plumage/compare/v1.0.0...develop)
+  (2020-08-12)](https://github.com/kdeldycke/plumage/compare/v1.0.0...v1.1.0)
   * Replace Droid Sans Mono font by Source Code Pro.
   * Remove support for Piwik as Pelican does.
   * Upgrade to Bootstrap 3.4.1.
