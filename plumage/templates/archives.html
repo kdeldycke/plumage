@@ -45,6 +45,9 @@
                                 {% if article.date.month != current_month %}
                                     {% set current_month = article.date.month %}
                                     {% if not loop.first %}
+                                        {# Triggers lint error with curlylint.
+                                        This is a bug, see:
+                                        https://github.com/thibaudcolas/curlylint/issues/14 #}
                                         </dl>
                                     {% endif %}
                                     <dl class="dl-horizontal">
