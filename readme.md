@@ -11,15 +11,15 @@ it is now generic enough to be used by anyone.
 
 * Standard Pelican views:
 
-![Plumage article view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/assets/article.png) | ![Plumage categories view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/assets/categories.png) | ![Plumage tiered tags view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/assets/tiered-tags.png)
-:-:|:-:|:-:
-Article | Categories | Tiered tags
+  ![Plumage article view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/assets/article.png) | ![Plumage categories view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/assets/categories.png) | ![Plumage tiered tags view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/assets/tiered-tags.png)
+  :-:|:-:|:-:
+  Article | Categories | Tiered tags
 
 * Projects template:
 
-![Plumage projects: code showcase](https://raw.githubusercontent.com/kdeldycke/plumage/develop/assets/projects-code.png) | ![Plumage projects: videos showcase](https://raw.githubusercontent.com/kdeldycke/plumage/develop/assets/projects-videos.png) | ![Plumage projects: themes showcase](https://raw.githubusercontent.com/kdeldycke/plumage/develop/assets/projects-themes.png)
-:-:|:-:|:-:
-Code showcase ([source](https://github.com/kdeldycke/kevin-deldycke-blog/blob/ebe0d17a59730457c3016dff77fdfa799a80d756/content/templates/code.html)) | Videos showcase ([source](https://github.com/kdeldycke/kevin-deldycke-blog/blob/f778998376fa5c68f1a02129884b89592b641777/content/templates/videos.html)) | Themes showcase ([source](https://github.com/kdeldycke/kevin-deldycke-blog/blob/f778998376fa5c68f1a02129884b89592b641777/content/templates/themes.html))
+  ![Plumage projects: code showcase](https://raw.githubusercontent.com/kdeldycke/plumage/develop/assets/projects-code.png) | ![Plumage projects: videos showcase](https://raw.githubusercontent.com/kdeldycke/plumage/develop/assets/projects-videos.png) | ![Plumage projects: themes showcase](https://raw.githubusercontent.com/kdeldycke/plumage/develop/assets/projects-themes.png)
+  :-:|:-:|:-:
+  Code showcase ([source](https://github.com/kdeldycke/kevin-deldycke-blog/blob/ebe0d17a59730457c3016dff77fdfa799a80d756/content/templates/code.html)) | Videos showcase ([source](https://github.com/kdeldycke/kevin-deldycke-blog/blob/f778998376fa5c68f1a02129884b89592b641777/content/templates/videos.html)) | Themes showcase ([source](https://github.com/kdeldycke/kevin-deldycke-blog/blob/f778998376fa5c68f1a02129884b89592b641777/content/templates/themes.html))
 
 * Based on [Bootstrap v3](https://getbootstrap.com).
 * [Solarized](https://ethanschoonover.com/solarized) code snippets via
