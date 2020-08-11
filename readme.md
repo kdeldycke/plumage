@@ -22,13 +22,24 @@ it is now generic enough to be used by anyone.
   Code showcase ([source](https://github.com/kdeldycke/kevin-deldycke-blog/blob/ebe0d17a59730457c3016dff77fdfa799a80d756/content/templates/code.html)) | Videos showcase ([source](https://github.com/kdeldycke/kevin-deldycke-blog/blob/f778998376fa5c68f1a02129884b89592b641777/content/templates/videos.html)) | Themes showcase ([source](https://github.com/kdeldycke/kevin-deldycke-blog/blob/f778998376fa5c68f1a02129884b89592b641777/content/templates/themes.html))
 
 * Based on [Bootstrap v3](https://getbootstrap.com).
+
 * [Solarized](https://ethanschoonover.com/solarized) code snippets via
-  [Pygments](https://pygments.org/) for syntax highlighting.
+  [Pygments](https://pygments.org/) for syntax highlighting:
+
+  ![Plumage Solarized syntax highlight](https://raw.githubusercontent.com/kdeldycke/plumage/develop/assets/syntax-highlight.png)
+
 * Site-wide static search via [Tipue-search](https://www.tipue.com/search/).
+
 * External assets (Bootstrap, Jquery, etc...) uses [CDNjs
 ](https://cdnjs.com/about).
-* YouTube links.
-* Direct link to edit articles on Github.
+
+* Bare YouTube links in articles gets rendered as embedded videos:
+
+  ![Plumage YouTube link](https://raw.githubusercontent.com/kdeldycke/plumage/develop/assets/youtube-link.png)
+
+* Direct link to edit articles on GitHub:
+
+  ![Plumage GitHub edit link](https://raw.githubusercontent.com/kdeldycke/plumage/develop/assets/github-edit-link.png)
 
 
 ## Plugins
