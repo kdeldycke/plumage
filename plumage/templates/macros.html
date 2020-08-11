@@ -20,7 +20,7 @@
         , 'dropbox': ['dropbox.com']
         , 'facebook-square': ['facebook.com']
         , 'bitbucket': ['bitbucket.org', 'bitbucket.com']
-        , 'linkedin-in': ['linkedin.com']
+        , 'linkedin': ['linkedin.com']
         , 'stack-overflow': ['stackoverflow.com']
         , 'stack-exchange': ['stackexchange.com']
         }
@@ -39,7 +39,7 @@
     {% elif domain and favicon %}
         <img src="https://www.google.com/s2/favicons?domain={{ domain }}" width="16" height="16" class="icon" alt="{{ domain }} icon"/>
     {% else %}
-        <i class="fa fa-external-link-alt"></i>
+        <i class="fas fa-external-link-alt"></i>
     {% endif %}
     {{ label }}
 </a>

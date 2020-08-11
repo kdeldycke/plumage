@@ -17,12 +17,12 @@
 {% block right_sidebar %}
     <div class="well">
 
-        <p><abbr title="{{ article.date.isoformat() }}"><i class="fa fa-calendar"></i> {{ article.locale_date }}</abbr></p>
+        <p><abbr title="{{ article.date.isoformat() }}"><i class="fas fa-calendar"></i> {{ article.locale_date }}</abbr></p>
 
         {% if AUTHOR_SAVE_AS and article.authors %}
             <p>
                 <address>
-                    <i class="fa fa-user"></i> By
+                    <i class="fas fa-user"></i> By
                     {% for author in article.authors %}
                         <a href="{{ SITEURL }}/{{ author.url }}" rel="author">{{ author.name }}</a>
                     {% endfor %}
@@ -63,7 +63,7 @@
 
         {% if ARTICLE_EDIT_LINK %}
             <p>Found a typo? Want to fix it?</p>
-            <a class="btn btn-info btn-block" href="{{ ARTICLE_EDIT_LINK % {'slug': article.slug} }}"><i class="fa fa-random fa-white fa-fw"></i> Edit article on GitHub</a>
+            <a class="btn btn-info btn-block" href="{{ ARTICLE_EDIT_LINK % {'slug': article.slug} }}"><i class="fas fa-edit fa-fw"></i> Edit article on GitHub</a>
             <hr/>
         {% endif %}
 

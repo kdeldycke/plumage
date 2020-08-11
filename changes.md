@@ -3,6 +3,7 @@ Changelog
 
 * [**v1.0.1**
   (unreleased)](https://github.com/kdeldycke/plumage/compare/v1.0.0...develop)
+  * Fix Font Awesome 5 icon rendering.
   * Lint Jinja templates.
   * Lint and autofix CSS files.
 
