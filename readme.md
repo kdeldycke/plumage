@@ -190,7 +190,7 @@ or using [this technique](https://github.com/kdeldycke/kevin-deldycke-blog/commi
 This software is licensed under the [GNU General Public License v2 or later
 (GPLv2+)](https://github.com/kdeldycke/plumage/blob/master/LICENSE).
 
-Copyright (C) 2012-2017 [Kevin Deldycke](https://kevin.deldycke.com) and
+Copyright (C) 2012-2020 [Kevin Deldycke](https://kevin.deldycke.com) and
 [contributors](https://github.com/kdeldycke/plumage/graphs/contributors). All
 Rights Reserved.
 
