@@ -4,6 +4,7 @@ Changelog
 * [**v1.1.0**
   (unreleased)](https://github.com/kdeldycke/plumage/compare/v1.0.0...develop)
   * Upgrade to Bootstrap v3.4.1.
+  * Upgrade to Font Awesome 5.14.0.
   * Upgrade to fitvids 1.2.0.
   * Upgrade to Masonry 4.2.2.
   * Upgrade to ImagesLoaded 4.1.4.
