@@ -4,9 +4,11 @@ Changelog
 * [**v1.0.1**
   (unreleased)](https://github.com/kdeldycke/plumage/compare/v1.0.0...develop)
   * Fix Font Awesome 5 icon rendering.
+  * Fix static search.
   * Document all features in the readme by the way of screenshots.
   * Lint Jinja templates.
   * Lint and autofix CSS files.
+  * Use 3-parts semantic versionning.
 
 * [**v1.0.0**
   (2020-08-01)](https://github.com/kdeldycke/plumage/compare/v0.9.0...v1.0.0)
