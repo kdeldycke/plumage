@@ -21,7 +21,7 @@ h6 {
 
 code,
 pre {
-  font-family: "Droid Sans Mono", Monaco, Menlo, Consolas, "Courier New", monospace;
+  font-family: 'Source Code Pro', Monaco, Menlo, Consolas, 'Courier New', monospace;
   font-size: 15px;
   line-height: 21px;
   white-space: pre;

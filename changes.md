@@ -3,6 +3,7 @@ Changelog
 
 * [**v1.1.0**
   (unreleased)](https://github.com/kdeldycke/plumage/compare/v1.0.0...develop)
+  * Replace Droid Sans Mono font by Source Code Pro.
   * Upgrade to Bootstrap 3.4.1.
   * Upgrade to Font Awesome 5.14.0.
   * Upgrade to fitvids 1.2.0.
