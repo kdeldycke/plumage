@@ -35,20 +35,20 @@ it is now generic enough to be used by anyone.
 
 Plumage has built-in support for the following plugins:
 
-  * [`tipue_search`
-  ](https://github.com/getpelican/pelican-plugins/tree/master/tipue_search)
-  * [`neighbors`
-  ](https://github.com/getpelican/pelican-plugins/tree/master/neighbors)
-  * [`related_posts`
-  ](https://github.com/getpelican/pelican-plugins/tree/master/related_posts)
-  * [`typogrify`](https://pypi.python.org/pypi/typogrify)
+* [`tipue_search`
+](https://github.com/getpelican/pelican-plugins/tree/master/tipue_search)
+* [`neighbors`
+](https://github.com/getpelican/pelican-plugins/tree/master/neighbors)
+* [`related_posts`
+](https://github.com/getpelican/pelican-plugins/tree/master/related_posts)
+* [`typogrify`](https://pypi.python.org/pypi/typogrify)
 
 
 ## Installation
 
 This package is [available on PyPi](https://pypi.python.org/pypi/plumage), so
-you can install the
-latest stable release and its dependencies with a simple ``pip`` call:
+you can install the latest stable release and its dependencies with a simple
+``pip`` call:
 
 ```python
 $ pip install plumage
