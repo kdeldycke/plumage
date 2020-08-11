@@ -14,15 +14,15 @@
     {% set domain = link.split('%s://' % protocol, 1)[1].split('/', 1)[0] %}
     {% set SITE_ICONS = {
           'apple': ['apple.com']
-        , 'github': ['github.com']
-        , 'twitter': ['twitter.com']
-        , 'youtube': ['youtube.com']
+        , 'bitbucket': ['bitbucket.org', 'bitbucket.com']
         , 'dropbox': ['dropbox.com']
         , 'facebook-square': ['facebook.com']
-        , 'bitbucket': ['bitbucket.org', 'bitbucket.com']
+        , 'github': ['github.com']
         , 'linkedin': ['linkedin.com']
         , 'stack-overflow': ['stackoverflow.com']
         , 'stack-exchange': ['stackexchange.com']
+        , 'twitter': ['twitter.com']
+        , 'youtube': ['youtube.com']
         }
     %}
     {% for (site_icon, site_domains) in SITE_ICONS.items() %}
