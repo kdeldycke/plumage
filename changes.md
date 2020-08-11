@@ -9,6 +9,7 @@ Changelog
   * Upgrade to fitvids 1.2.0.
   * Upgrade to Masonry 4.2.2.
   * Upgrade to ImagesLoaded 4.1.4.
+  * Bundle API calls to Google Fonts.
   * Fix Font Awesome 5 icon rendering.
   * Fix static search.
   * Document all features in the readme by the way of screenshots.

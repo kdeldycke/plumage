@@ -20,12 +20,7 @@
         {% endif %}
 
         <!-- Fonts -->
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
-        <link href='https://fonts.googleapis.com/css?family=Istok+Web' rel='stylesheet' type='text/css'/>
-        <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'/>
-        {% if TYPOGRIFY %}
-            <link href='https://fonts.googleapis.com/css?family=Expletus+Sans' rel='stylesheet' type='text/css'>
-        {% endif %}
+        <link href="https://fonts.googleapis.com/css2?{% if TYPOGRIFY %}family=Expletus+Sans&{% endif %}family=Istok+Web&family=Open+Sans&family=Source+Code+Pro&display=swap" rel="stylesheet">
 
         {% block extra_css %}{% endblock %}
 
