@@ -1,6 +1,10 @@
 Changelog
 =========
 
+* [**v1.1.1**
+  (unreleased)](https://github.com/kdeldycke/plumage/compare/v1.1.0...develop)
+  * No changes yet.
+
 * [**v1.1.0**
   (2020-08-12)](https://github.com/kdeldycke/plumage/compare/v1.0.0...v1.1.0)
   * Replace Droid Sans Mono font by Source Code Pro.
