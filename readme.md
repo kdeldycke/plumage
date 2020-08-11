@@ -6,24 +6,29 @@ static site generator).
 I initially created this theme for [my blog](https://kevin.deldycke.com), but
 it is now generic enough to be used by anyone.
 
-Here's how it renders an article:
-
-![Plumage article view
-](https://raw.githubusercontent.com/kdeldycke/plumage/master/plumage-article-screenshot.png)
-
 
 ## Features
 
-  * Based on [Bootstrap v3](https://getbootstrap.com).
-  * [Solarized](https://ethanschoonover.com/solarized) code snippets via
-    [Pygments](https://pygments.org/) for syntax highlighting.
-  * Site-wide static search via [Tipue-search](https://www.tipue.com/search/).
-  * Project template.
-  * Tags grouped by tiers.
-  * External assets (Bootstrap, Jquery, etc...) uses [CDNjs
-  ](https://cdnjs.com/about).
-  * YouTube links.
-  * Direct link to edit articles on Github.
+* Standard Pelican views:
+
+![Plumage article view](https://raw.githubusercontent.com/kdeldycke/plumage/master/assets/article.png) | ![Plumage categories view](https://raw.githubusercontent.com/kdeldycke/plumage/master/assets/categories.png) | ![Plumage tiered tags view](https://raw.githubusercontent.com/kdeldycke/plumage/master/assets/tiered-tags.png)
+---|---|---
+Article ([source]()) | Categories ([source]()) | Tiered tags ([source]())
+
+* Projects template:
+
+![Plumage projects: code showcase](https://raw.githubusercontent.com/kdeldycke/plumage/master/assets/projects-code.png) | ![Plumage projects: videos showcase](https://raw.githubusercontent.com/kdeldycke/plumage/master/assets/projects-videos.png) | ![Plumage projects: themes showcase](https://raw.githubusercontent.com/kdeldycke/plumage/master/assets/projects-themes.png)
+---|---|---
+Projects: code showcase ([source]()) | Projects: videos showcase ([source]()) | Projects: themes showcase ([source]())
+
+* Based on [Bootstrap v3](https://getbootstrap.com).
+* [Solarized](https://ethanschoonover.com/solarized) code snippets via
+  [Pygments](https://pygments.org/) for syntax highlighting.
+* Site-wide static search via [Tipue-search](https://www.tipue.com/search/).
+* External assets (Bootstrap, Jquery, etc...) uses [CDNjs
+](https://cdnjs.com/about).
+* YouTube links.
+* Direct link to edit articles on Github.
 
 
 ## Plugins
