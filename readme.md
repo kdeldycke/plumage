@@ -30,9 +30,6 @@ it is now generic enough to be used by anyone.
 
 * Site-wide static search via [Tipue-search](https://www.tipue.com/search/).
 
-* External assets (Bootstrap, Jquery, etc...) uses [CDNjs
-](https://cdnjs.com/about).
-
 * Bare YouTube links in articles gets rendered as embedded videos:
 
   ![Plumage YouTube link](https://raw.githubusercontent.com/kdeldycke/plumage/develop/assets/youtube-link.png)
@@ -40,6 +37,18 @@ it is now generic enough to be used by anyone.
 * Direct link to edit articles on GitHub:
 
   ![Plumage GitHub edit link](https://raw.githubusercontent.com/kdeldycke/plumage/develop/assets/github-edit-link.png)
+
+* Magnifying glass overlays on images and zoom:
+
+  ![Plumage image magnifying glass](https://raw.githubusercontent.com/kdeldycke/plumage/develop/assets/magnifying-glass.png)
+  ![Plumage image zoom](https://raw.githubusercontent.com/kdeldycke/plumage/develop/assets/zoom.png)
+
+* External assets (Bootstrap, Jquery, etc...) uses [CDNjs
+](https://cdnjs.com/about).
+
+* Disqus integration:
+
+  ![Plumage disqus comments](https://raw.githubusercontent.com/kdeldycke/plumage/develop/assets/disqus.png)
 
 
 ## Plugins
