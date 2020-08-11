@@ -10,6 +10,7 @@ Changelog
   * Lint and autofix CSS files.
   * Use 3-parts semantic versionning.
   * Add Hacker News to the list of recognized links.
+  * Add link to author list along tags, categories and dates.
   * Fix link icon alignment in footer.
 
 * [**v1.0.0**
