@@ -11,9 +11,13 @@ it is now generic enough to be used by anyone.
 
 * Standard Pelican views:
 
-  ![Plumage article view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/assets/article.png) | ![Plumage categories view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/assets/categories.png) | ![Plumage tiered tags view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/assets/tiered-tags.png)
+  ![Plumage article view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/assets/article.png) | ![Plumage categories view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/assets/categories.png) | ![Plumage tiered tag list view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/assets/tiered-tags.png)
   :-:|:-:|:-:
-  Article | Categories | Tiered tags
+  Article | Categories | Tiered tag list
+
+  ![Plumage archive view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/assets/archives.png) | ![Plumage tag view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/assets/tag.png) | ![Plumage authors view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/assets/authors.png)
+  :-:|:-:|:-:
+  Collapsable yearly archives | Tagged articles | Authors
 
 * Projects template:
 
