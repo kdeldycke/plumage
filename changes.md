@@ -4,6 +4,7 @@ Changelog
 * [**v1.1.0**
   (unreleased)](https://github.com/kdeldycke/plumage/compare/v1.0.0...develop)
   * Upgrade to Bootstrap v3.4.1.
+  * Upgrade to fitvids 1.2.0.
   * Fix Font Awesome 5 icon rendering.
   * Fix static search.
   * Document all features in the readme by the way of screenshots.
