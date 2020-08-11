@@ -36,11 +36,11 @@
 {% endif %}
 <a href="{{ link }}">
     {% if icon %}
-        <i class="fab {{ 'fa-%s' % icon[0] }}"></i>
+        <i class="fab {{ 'fa-%s' % icon[0] }} fa-fw"></i>
     {% elif domain and favicon %}
         <img src="https://www.google.com/s2/favicons?domain={{ domain }}" width="16" height="16" class="icon" alt="{{ domain }} icon"/>
     {% else %}
-        <i class="fas fa-external-link-alt"></i>
+        <i class="fas fa-external-link-alt fa-fw"></i>
     {% endif %}
     {{ label }}
 </a>

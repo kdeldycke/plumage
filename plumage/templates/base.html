@@ -231,13 +231,13 @@
                         <h5>Browse content by</h5>
                         <ul class="list-unstyled">
                             {% if CATEGORIES_SAVE_AS %}
-                                <li><a href="{{ SITEURL }}/{{ CATEGORIES_SAVE_AS }}"><i class="fas fa-th"></i> Categories</a></li>
+                                <li><a href="{{ SITEURL }}/{{ CATEGORIES_SAVE_AS }}"><i class="fas fa-th fa-fw"></i> Categories</a></li>
                             {% endif %}
                             {% if ARCHIVES_SAVE_AS %}
-                                <li><a href="{{ SITEURL }}/{{ ARCHIVES_SAVE_AS }}"><i class="far fa-calendar-alt"></i> Dates</a></li>
+                                <li><a href="{{ SITEURL }}/{{ ARCHIVES_SAVE_AS }}"><i class="far fa-calendar-alt fa-fw"></i> Dates</a></li>
                             {% endif %}
                             {% if TAGS_SAVE_AS %}
-                                <li><a href="{{ SITEURL }}/{{ TAGS_SAVE_AS }}"><i class="fas fa-tags"></i> Tags</a></li>
+                                <li><a href="{{ SITEURL }}/{{ TAGS_SAVE_AS }}"><i class="fas fa-tags fa-fw"></i> Tags</a></li>
                             {% endif %}
                         </ul>
                     </div>
@@ -266,7 +266,8 @@
                             <h5>Feeds</h5>
                             <ul class="list-unstyled">
                                 {% for feed in all_feeds %}
-                                    <li><small><a href="{{ FEED_DOMAIN }}/{{ feed.url }}"><i class="fas fa-rss"></i> {{ feed.name }} ({{ feed.kind }})</a></small></li>
+                                    <li><small><a href="{{ FEED_DOMAIN }}/{{
+                                                feed.url }}"><i class="fas fa-rss fa-fw"></i> {{ feed.name }} ({{ feed.kind }})</a></small></li>
                                 {% endfor %}
                             </ul>
                         {% endif %}
