@@ -9,6 +9,7 @@ Changelog
   * Lint Jinja templates.
   * Lint and autofix CSS files.
   * Use 3-parts semantic versionning.
+  * Add Hacker News to the list of recognized links.
   * Fix link icon alignment in footer.
 
 * [**v1.0.0**
