@@ -17,7 +17,7 @@ jobs:
         # Required by git-auto-commit-action. See:
         # https://github.com/stefanzweifel/git-auto-commit-action#checkout-the-correct-branch
         ref: ${{ github.head_ref }}
-    - uses: actions/setup-python@v2.1.1
+    - uses: actions/setup-python@v2.1.2
     - name: Install black
       run: |
         python -m pip install black
