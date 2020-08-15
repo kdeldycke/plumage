@@ -60,7 +60,7 @@
         {% if project.roles or project.tools %}
             <p>
                 {% for role in project.roles %}
-                    <span class="label label-success">{{ role }}</span>
+                    <span class="badge badge-success">{{ role }}</span>
                 {% endfor %}
                 {% for tag in all_tags|sort(reverse=True, attribute='articles') %}
                     {% if tag.name in project.tools %}
@@ -73,7 +73,7 @@
                 {% endfor %}
                 {% for tool in project.tools %}
                     {% if tool not in tag_names %}
-                        <span class="label label-default">{{ tool }}</span>
+                        <span class="badge badge-secondary">{{ tool }}</span>
                     {% endif %}
                 {% endfor %}
             </p>

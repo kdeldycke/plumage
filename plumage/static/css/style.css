@@ -258,10 +258,10 @@ dt:hover > a.headerlink {
   opacity: 0;
 }
 
-/* a.label, a.badge, */ a.link-circle {
+a.link-circle {
   background-color: rgb(228, 228, 228);
 }
-/* a.label:hover, a.badge:hover, */ a.link-circle:hover {
+a.link-circle:hover {
   background-color: #999;
 }
 

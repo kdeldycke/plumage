@@ -22,7 +22,7 @@
 
     <dl class="dl-horizontal">
         {% for author in all_authors|sort(reverse = True, attribute = 'articles') %}
-            <dt><a href="{{ SITEURL }}/{{ author.url }}" class="label label-info">{{ author.name }}</a></dt>
+            <dt><a href="{{ SITEURL }}/{{ author.url }}" class="badge badge-info">{{ author.name }}</a></dt>
             <dd><a href="{{ SITEURL }}/{{ author.url }}">{{ author.articles }} article{{ 's' if author.articles > 1 else '' }}</a></dd>
         {% endfor %}
     </dl>

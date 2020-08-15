@@ -39,7 +39,7 @@
                         {% if category.url == article.category.url %}
                             {% set article_counter = articles|length() %}
                             <a href="{{ SITEURL }}/{{ article.category.url }}" rel="tag"
-                               data-toggle="tooltip" class="label label-info"
+                               data-toggle="tooltip" class="badge badge-info"
                                title="{{ article_counter }} article{{ 's' if article_counter > 1 else '' }} in this category">{{ article.category }}</a>
                         {% endif %}
                     {% endfor %}
