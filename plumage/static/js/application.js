@@ -55,8 +55,8 @@
       return (url.match(p)) ? RegExp.$1 : false;
     };
 
-    // Activate zoom on content images in the main column and add an icon overlay (but ignore icons)
-    $("#content img:not(.icon)").each(function(){
+    // Activate zoom on content images in the main column and add an icon overlay (but ignore link icons from the footer produced by Jinja macros)
+    $("#content img:not(.link-icon)").each(function(){
       // Until we properly generate thumbnails and their links on Pelican's side, we just link an image to itself.
       if ($(this).parents('a').length == 0) {
         $(this).wrap(
