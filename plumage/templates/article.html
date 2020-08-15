@@ -96,9 +96,7 @@
     {% import 'translations.html' as translations with context %}
     {{ translations.translations_for(article) }}
 
-    <div>
-        {{ article.content }}
-    </div>
+    {{ article.content }}
 
     {% if article.related_posts %}
         <h3>Related content</h3>
