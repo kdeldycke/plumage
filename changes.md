@@ -7,6 +7,7 @@ Changelog
   * Upgrade to jQuery 3.5.1.
   * Add popper.js 2.4.4.
   * Remove `FLAT_DESIGN` option.
+  * Use latest Disqus reference code.
   * Do not display Disqus comments for draft articles.
 
 * [**v1.1.0**
