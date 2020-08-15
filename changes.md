@@ -6,6 +6,7 @@ Changelog
   * Upgrade to Bootstrap 4.5.2.
   * Upgrade to jQuery 3.5.1.
   * Add popper.js 2.4.4.
+  * Remove `FLAT_DESIGN` option.
 
 * [**v1.1.0**
   (2020-08-12)](https://github.com/kdeldycke/plumage/compare/v1.0.0...v1.1.0)
