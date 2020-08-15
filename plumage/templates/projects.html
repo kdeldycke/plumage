@@ -2,12 +2,6 @@
 {% extends "base.html" %}
 
 
-{% block extra_js %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha512-S5PZ9GxJZO16tT9r3WJp/Safn31eu8uWrzglMahDT4dsmgqWonRY9grk3j+3tfuPr9WJNsfooOR7Gi7HL5W2jw==" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js" integrity="sha512-JRlcvSZAXT8+5SQQAvklXGJuxXTouyq8oIMaYERZQasB8SBDHZaUbeASsJWpk0UUrf89DP3/aefPPrlMR1h1yQ==" crossorigin="anonymous"></script>
-{% endblock %}
-
-
 {% set ICONS =  { 'github.com': 'fab fa-github-alt'
                 , SITEURL: 'fas fa-bullhorn'
                 , 'type_of_search=mlists': 'fas fa-envelope-o'
@@ -38,27 +32,24 @@
 %}
 
 
-{% macro render_project(all_tags, project) %}
-<div class="thumbnail col-md-3">
+{% macro render_card(all_tags, project) %}
+<div class="card">
     {% if project.inactive %}
-        <div class="corner">Inactive</div>
+        <div class="corner-banner">Inactive</div>
     {% endif %}
     {% if project.thumb %}
         {% if project.thumb_link %}
             <a href="{{ project.thumb_link }}">
         {% endif %}
-        <img alt="{{ project.name }} thumbnail" src="{{ project.thumb }}"/>
+        <img class="card-img-top" alt="{{ project.name }} thumbnail" src="{{ project.thumb }}"/>
         {% if project.thumb_link %}
             </a>
         {% endif %}
     {% endif %}
-    <div class="details">
-        <h4>{{ project.name }}</h4>
-        {% if project.desc %}
-            <p>{{ project.desc }}</p>
-        {% endif %}
+    <div class="card-body">
+        <h4 class="card-title">{{ project.name }}</h4>
         {% if project.roles or project.tools %}
-            <p>
+            <p class="card-text">
                 {% for role in project.roles %}
                     <span class="badge badge-success">{{ role }}</span>
                 {% endfor %}
@@ -78,8 +69,11 @@
                 {% endfor %}
             </p>
         {% endif %}
+        {% if project.desc %}
+            <p class="card-text">{{ project.desc }}</p>
+        {% endif %}
         {% if project.links %}
-            <p class="clearfix">
+            <p class="card-text">
                 {% for link in project.links %}
                     {% set link_icon = ['fas fa-home'] %}
                     {% for (domain, icon) in ICONS.items() %}
@@ -88,8 +82,11 @@
                         {% endif %}
                     {% endfor %}
                     {% set link_icon = link_icon[-1] %}
-                    <a href="{{ link }}" class="pull-left link-circle" title="{{ LABELS.get(link_icon, 'Project home')|e }}">
-                        <i class="{{ link_icon }}"></i>
+                    <a href="{{ link }}" title="{{ LABELS.get(link_icon, 'Project home')|e }}">
+                        <span class="fa-stack" style="vertical-align: top;">
+                            <i class="fas fa-circle fa-stack-2x"></i>
+                            <i class="{{ link_icon }} fa-stack-1x fa-inverse"></i>
+                        </span>
                     </a>
                 {% endfor %}
             </p>
@@ -107,7 +104,7 @@
 {% endfor %}
 
 {% if projects is defined %}
-    <div class="masonry">
+    <div class="card-columns">
         {% block project_pre_content %}{% endblock %}
 
         {% set active_projects = [] %}
@@ -122,7 +119,7 @@
 
         {% for project_list in [active_projects, inactive_projects] %}
             {% for project in project_list %}
-                {{ render_project(all_tags, project) }}
+                {{ render_card(all_tags, project) }}
             {% endfor %}
         {% endfor %}
 

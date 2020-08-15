@@ -33,22 +33,6 @@
     // Allow videos to take the full width of a page
     $(".container").fitVids();
 
-    // Apply masonry smart layout, only when all images are loaded
-    // Source: https://stackoverflow.com/a/7257177
-    // TODO: try to hide re-pagination animation
-    // TODO: enhance with bottom animation. See:
-    // https://github.com/codrops/GridLoadingEffects/blob/master/index2.html
-    var masonryref = $('.masonry');
-    if (masonryref.size() > 0) {
-        // Make sure pages that do not define a masonry class continue working
-        var $container = masonryref.masonry();
-        $container.imagesLoaded(function(){
-            $container.masonry({
-                itemSelector: '.thumbnail',
-            });
-        });
-    }
-
     // YouTube URL parser. Source: https://stackoverflow.com/questions/2964678/jquery-youtube-url-validation-with-regex/10315969#10315969
     function parse_youtube_url(url) {
       var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;

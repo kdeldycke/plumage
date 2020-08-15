@@ -200,18 +200,9 @@ dt:hover > a.headerlink {
   visibility: visible;
 }
 
-.thumbnail > img {
-  max-height: 180px;
-  box-shadow: 0 4px 10px -4px rgba(0, 0, 0, 0.3);
-}
-
 #content img {
   border: 1px solid #999;
   background: #fff;
-}
-
-#content .thumbnail img {
-  border: 0;
 }
 
 .mglass {
@@ -258,20 +249,7 @@ dt:hover > a.headerlink {
   opacity: 0;
 }
 
-a.link-circle {
-  background-color: rgb(228, 228, 228);
-}
-a.link-circle:hover {
-  background-color: #999;
-}
-
-.thumbnail {
-  padding: 0;
-  background: #fff;
-  overflow: hidden;
-}
-
-.thumbnail .corner {
+.card .corner-banner {
   font-size: 13px;
   font-weight: bold;
   color: #fff;
@@ -287,33 +265,6 @@ a.link-circle:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
-
-.masonry .thumbnail {
-  margin-bottom: 20px;
-}
-
-.thumbnail .details {
-  font-size: 14px;
-  padding: 10.5px 10.5px 0;
-}
-
-.link-circle {
-  color: #fff;
-  display: block;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  font-size: 28px;
-  line-height: 42px;
-  text-align: center;
-  text-decoration: none;
-  margin-right: 10px;
-}
-
-.link-circle:hover {
-  color: #fff;
-  text-decoration: none;
 }
 
 .comments {

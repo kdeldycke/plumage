@@ -6,7 +6,10 @@ Changelog
   * Upgrade to Bootstrap 4.5.2.
   * Upgrade to jQuery 3.5.1.
   * Add popper.js 2.4.4.
+  * Remove dependency on Masonry.
+  * Remove dependency on ImagesLoaded.
   * Remove `FLAT_DESIGN` option.
+  * Move badges above description in project cards.
   * Use latest Disqus reference code.
   * Do not display Disqus comments for draft articles.
 
