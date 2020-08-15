@@ -3,7 +3,9 @@ Changelog
 
 * [**v1.1.1**
   (unreleased)](https://github.com/kdeldycke/plumage/compare/v1.1.0...develop)
-  * No changes yet.
+  * Upgrade to Bootstrap 4.5.2.
+  * Upgrade to jQuery 3.5.1.
+  * Add popper.js 2.4.4.
 
 * [**v1.1.0**
   (2020-08-12)](https://github.com/kdeldycke/plumage/compare/v1.0.0...v1.1.0)
