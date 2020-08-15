@@ -202,7 +202,7 @@
                     {% for group_title, group_links in ((SOCIAL_WIDGET_NAME, SOCIAL), (LINKS_WIDGET_NAME, LINKS)) %}
                         <div class="col-md-2">
                             {% if group_links %}
-                                <h5>{{ group_title }}</h5>
+                                <h6>{{ group_title }}</h6>
                                 <ul class="list-unstyled">
                                     {% if MANUAL_LINKS%}
                                         {% for item in group_links %}
@@ -219,7 +219,7 @@
                     {% endfor %}
 
                     <div class="col-md-2">
-                        <h5>Browse content by</h5>
+                        <h6>Browse content by</h6>
                         <ul class="list-unstyled">
                             {% if CATEGORIES_SAVE_AS %}
                                 <li><a href="{{ SITEURL }}/{{ CATEGORIES_SAVE_AS }}"><i class="fas fa-th fa-fw"></i> Categories</a></li>
@@ -237,7 +237,7 @@
                     </div>
 
                     <div class="col-md-2 text-muted">
-                        <h5>Copyright notice</h5>
+                        <h6>Copyright notice</h6>
                         {% set date_start = dates[-1].date.year if dates else None %}
                         {% set date_end   = dates[0].date.year if dates else None %}
                         <p>© Copyright {{ date_start if date_start }}{{ '-%s' % date_end if date_end and date_end != date_start }} {{ AUTHOR }}.</p>
@@ -247,7 +247,7 @@
                     </div>
 
                     <div class="col-md-2 text-muted">
-                        <h5>Disclaimer</h5>
+                        <h6>Disclaimer</h6>
                         {% if DISCLAIMER %}
                             <p>{{ DISCLAIMER }}</p>
                         {% else %}
@@ -257,7 +257,7 @@
 
                     <div class="col-md-2">
                         {% if all_feeds %}
-                            <h5>Feeds</h5>
+                            <h6>Feeds</h6>
                             <ul class="list-unstyled">
                                 {% for feed in all_feeds %}
                                     <li><small><a href="{{ FEED_DOMAIN }}/{{
@@ -270,7 +270,7 @@
                 </div>
             </div>
 
-            <h5 class="text-right"><a href="#"><i class="fas fa-arrow-up"></i> Back to top</a></h5>
+            <h6 class="text-right"><a href="#"><i class="fas fa-arrow-up"></i> Back to top</a></h6>
 
             <div class="container">
                 <div class="row col-md-12 text-muted text-center">
