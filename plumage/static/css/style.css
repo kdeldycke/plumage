@@ -142,23 +142,6 @@ a {
   padding-top: 8px;
 }
 
-.navbar {
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
-}
-
-/* Only display site's name in the navbar if the latter is fixed. */
-.navbar .navbar-brand {
-  display: none;
-}
-
-.navbar.navbar-fixed-top .navbar-brand {
-  display: block;
-}
-
-.navbar.navbar-fixed-top .navbar-right {
-  margin-right: inherit;
-}
-
 h1,
 h2 {
   text-shadow: 1px 1px 1px #ddd;

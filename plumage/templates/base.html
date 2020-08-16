@@ -77,57 +77,56 @@
                 <h1><a href="{{ SITEURL }}">{{ SITENAME }}</a> <small>{{ SITESUBTITLE }}</small></h1>
             </div>
 
-            <nav class="navbar navbar-default">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light shadow rounded">
 
-                <!-- Hamburger menu for mobile -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#plumage-navbar-collapse-1" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="{{ SITEURL }}" title="{{ SITESUBTITLE|e }}">{{ SITENAME }}</a>
-                </div>
+                <a class="navbar-brand d-none" href="{{ SITEURL }}" title="{{ SITESUBTITLE|e }}">{{ SITENAME }}</a>
+                <button class="navbar-toggler" type="button"
+                    data-toggle="collapse"
+                    data-target="#plumage-navbar-collapse-1" aria-controls="plumage-navbar-collapse-1"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                <!-- Menus and search forms -->
                 <div class="collapse navbar-collapse" id="plumage-navbar-collapse-1">
 
-                    <ul class="nav navbar-nav">
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                         {% for title, link in MENUITEMS %}
                             {% set active_page = link == ("/%s"|format(output_file)).strip('index.html') -%}
-                            <li {% if active_page %} class="active" {% endif %}>
-                                <a href="{{ link }}">{{ title }}{% if active_page %} <span class="sr-only">(current)</span>{% endif %}</a>
+                            <li class="nav-item {% if active_page %} active {%endif %}">
+                                <a class="nav-link" href="{{ link }}">
+                                    {{ title }}
+                                    {% if active_page %}<span class="sr-only">(current)</span>{% endif %}
+                                </a>
                             </li>
                         {% endfor %}
                         {% if DISPLAY_PAGES_ON_MENU %}
                             {% for p in pages %}
                                 {% set active_page = (p == page) -%}
-                                <li {% if active_page %} class="active" {% endif %}>
-                                    <a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}{% if active_page %} <span class="sr-only">(current)</span>{% endif %}</a>
+                                <li class="nav-item {% if active_page %} active {%endif %}">
+                                    <a class="nav-link" href="{{ SITEURL }}/{{ p.url }}">
+                                        {{ p.title }}
+                                        {% if active_page %}<span class="sr-only">(current)</span>{% endif %}
+                                    </a>
                                 </li>
                             {% endfor %}
                         {% endif %}
                         {% if DISPLAY_CATEGORIES_ON_MENU %}
                             {% for c, null in categories %}
                                 {% set active_category = (c == category) -%}
-                                <li {% if active_category %} class="active" {% endif %}>
-                                    <a href="{{ SITEURL }}/{{ c.url }}">{{ c.name }}{% if active_category %} <span class="sr-only">(current)</span>{% endif %}</a>
+                                <li class="nav-item {% if active_page %} active {%endif %}">
+                                    <a class="nav-link" href="{{ SITEURL }}/{{ c.url }}">
+                                        {{ c.name }}
+                                        {% if active_category %}<span class="sr-only">(current)</span>{% endif %}
+                                    </a>
                                 </li>
                             {% endfor %}
                         {% endif %}
                     </ul>
 
                     {% if TIPUE_SEARCH %}
-                        <form class="navbar-form navbar-right" role="search" action="{{ SITEURL }}/search.html" onsubmit="return validateForm(this.elements['q'].value);">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <input type="text" name="q" id="tipue_search_input" class="form-control search-query" placeholder="Search" required />
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" type="submit"><i class="fas fa-search fa-fw"></i></button>
-                                    </span>
-                                </div>
-                            </div>
+                        <form class="form-inline my-2 my-lg-0" role="search" action="{{ SITEURL }}/search.html" onsubmit="return validateForm(this.elements['q'].value);">
+                            <input type="search" name="q" id="tipue_search_input" class="form-control mr-sm-2" placeholder="Search" required />
+                            <button class="btn btn-default my-2 my-sm-0" type="submit"><i class="fas fa-search fa-fw"></i></button>
                         </form>
                     {% endif %}
 

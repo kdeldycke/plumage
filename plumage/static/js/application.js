@@ -4,10 +4,10 @@
     // Activate Bootstrap's tooltips
     $('[data-toggle="tooltip"]').tooltip()
 
-    // Subnav fixing code from
-    // https://github.com/thomaspark/bootswatch/blob/gh-pages/2/js/bootswatch.js
+    // Fix navigation to the top on scroll.
     var $win = $(window)
       , $nav = $('.navbar')
+      , $brand = $('.navbar-brand')
       , navTop = $('.navbar').length && $('.navbar').offset().top
       , isFixed = 0
     processScroll()
@@ -16,10 +16,12 @@
       var i, scrollTop = $win.scrollTop()
       if (scrollTop >= navTop && !isFixed) {
         isFixed = 1
-        $nav.addClass('navbar-fixed-top')
+        $nav.addClass('fixed-top').removeClass('rounded')
+        $navbrand.removeClass('d-none')
       } else if (scrollTop <= navTop && isFixed) {
         isFixed = 0
-        $nav.removeClass('navbar-fixed-top')
+        $nav.removeClass('fixed-top').addClass('rounded')
+        $navbrand.addClass('d-none')
       }
     };
 
