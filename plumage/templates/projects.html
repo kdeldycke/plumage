@@ -29,7 +29,7 @@ Sorted by priority: the first items takes precedence over those at the end. #}
 {% macro render_card(all_tags, project) %}
 <div class="card">
     {% if project.inactive %}
-        <div class="corner-banner">Inactive</div>
+        <div class="corner-banner shadow-sm bg-danger text-white font-weight-bold">Inactive</div>
     {% endif %}
     {% if project.thumb %}
         {% if project.thumb_link %}

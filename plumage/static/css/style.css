@@ -246,10 +246,7 @@ dt:hover > a.headerlink {
 
 .card .corner-banner {
   font-size: 13px;
-  font-weight: bold;
-  color: #fff;
   text-align: center;
-  background-color: rgb(155, 70, 70);
   position: absolute;
   right: -65px;
   top: 15px;
@@ -257,9 +254,6 @@ dt:hover > a.headerlink {
   transform: rotate(30deg);
   -moz-transform: rotate(30deg);
   -webkit-transform: rotate(30deg);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .comments {
