@@ -15,10 +15,26 @@
 
 {% block content %}
 
+    {# Compute the spanning years all articles covers #}
     {% set year_range = [] %}
     {% for year in range(dates[-1].date.year, dates[0].date.year + 1) %}
-        {% if year_range.append(year) %}{% endif %}
+
+        {# Count article in current year #}
+        {% set article_count = [] %}
+        {% for article in dates %}
+            {% if article.date.year == year %}
+                {% if article_count.append(1) %}{% endif %}
+            {% endif %}
+        {% endfor %}
+
+        {# Ignore empty years #}
+        {% if article_count|length > 0 %}
+            {% if year_range.append(year) %}{% endif %}
+        {% endif %}
+
     {% endfor %}
+
+    {# Reverse years in descending order #}
     {% set year_range = year_range[::-1] %}
 
     <div class="accordion" id="accordianArchives" role="tablist" aria-multiselectable="true">
