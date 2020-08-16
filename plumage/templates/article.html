@@ -70,19 +70,13 @@
 
             {% if article.prev_article or article.next_article %}
                 <li class="list-group-item">
-                    <nav>
-                        <ul class="pager">
-                            <li class="previous {% if not article.prev_article %} disabled {% endif %}">
-                                <a {% if article.prev_article %} href="{{ SITEURL }}/{{ article.prev_article.url }}" title="{{ article.prev_article.title|striptags|e }}" {% endif %} rel="prev">
-                                    <span aria-hidden="true">←</span> Older
-                                </a>
-                            </li>
-                            <li class="next {% if not article.next_article %} disabled {% endif %}">
-                                <a {% if article.next_article %} href="{{ SITEURL }}/{{ article.next_article.url }}" title="{{ article.next_article.title|striptags|e }}" {% endif %} rel="next">
-                                    Newer <span aria-hidden="true">→</span>
-                                </a>
-                            </li>
-                        </ul>
+                    <nav class="nav nav-pills nav-fill">
+                        <a class="nav-link btn btn-outline-primary {% if not article.prev_article %} disabled{% endif %}" {% if article.prev_article %} href="{{ SITEURL }}/{{ article.prev_article.url }}" title="{{ article.prev_article.title|striptags|e }}" {% endif %} rel="prev">
+                            <span aria-hidden="true">←</span> Older
+                        </a>
+                        <a class="nav-link btn btn-outline-primary {% if not article.next_article %} disabled{% endif %}" {% if article.next_article %} href="{{ SITEURL }}/{{ article.next_article.url }}" title="{{ article.next_article.title|striptags|e }}" {% endif %} rel="next">
+                            Newer <span aria-hidden="true">→</span>
+                        </a>
                     </nav>
                 </li>
             {% endif %}
