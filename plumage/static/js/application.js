@@ -28,7 +28,9 @@
     // TODO: this should be done server side with a Jinja or Markdown
     // extension.
     // Add bootstrap table style to table elements.
-    $("#content table").addClass('table').addClass('table-hover');
+    $("#content table").addClass('table table-hover');
+    $("#content table thead th").addattr('scope', 'col');
+
     // Make images responsive in article content.
     $("#content img").addClass('img-fluid border rounded shadow');
     $("#content .card img").removeClass('img-fluid border rounded shadow');
