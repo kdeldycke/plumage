@@ -14,10 +14,10 @@
 
 
 {% block content %}
-    <dl class="dl-horizontal">
+    <dl class="row">
         {% for article in articles %}
-            <dt><abbr class="published" title="{{ article.date.isoformat() }}">{{ article.locale_date }}</abbr></dt>
-            <dd><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></dd>
+            <dt class="col-sm-3"><abbr class="published" title="{{ article.date.isoformat() }}">{{ article.locale_date }}</abbr></dt>
+            <dd class="col-sm-9"><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></dd>
         {% endfor %}
     </dl>
 {% endblock %}

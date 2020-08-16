@@ -20,10 +20,10 @@
         {% if all_categories.append({'name': category.name, 'url': category.url, 'articles': articles|length()}) %}{% endif %}
     {% endfor %}
 
-    <dl class="dl-horizontal">
+    <dl class="row">
         {% for category in all_categories|sort(reverse = True, attribute = 'articles') %}
-            <dt><a href="{{ SITEURL }}/{{ category.url }}" class="badge badge-info">{{ category.name }}</a></dt>
-            <dd><a href="{{ SITEURL }}/{{ category.url }}">{{ category.articles }} article{{ 's' if category.articles > 1 else '' }}</a></dd>
+            <dt class="col-sm-2"><a href="{{ SITEURL }}/{{ category.url }}" class="badge badge-info">{{ category.name }}</a></dt>
+            <dd class="col-sm-10"><a href="{{ SITEURL }}/{{ category.url }}">{{ category.articles }} article{{ 's' if category.articles > 1 else '' }}</a></dd>
         {% endfor %}
     </dl>
 
