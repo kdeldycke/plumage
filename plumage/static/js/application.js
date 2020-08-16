@@ -28,7 +28,8 @@
     // Add bootstrap table style to table elements.
     $("#content table").addClass('table').addClass('table-hover');
     // Make images responsive in article content.
-    $("#content img").addClass('img-fluid');
+    $("#content img").addClass('img-fluid border rounded shadow');
+    $("#content .card img").removeClass('img-fluid border rounded shadow');
 
     // Allow videos to take the full width of a page
     $(".container").fitVids();
