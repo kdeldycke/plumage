@@ -2,33 +2,27 @@
 {% extends "base.html" %}
 
 
-{% set ICONS =  { 'github.com': 'fab fa-github-alt'
-                , SITEURL: 'fas fa-bullhorn'
-                , 'type_of_search=mlists': 'fas fa-envelope-o'
-                , 'gmane.org': 'fas fa-envelope-o'
-                , 'bitbucket.org': 'fab fa-bitbucket'
-                , 'youtube.com': 'fas fa-play'
-                , 'bugs.launchpad.net': 'fas fa-bug'
-                , 'trac.wordpress.org': 'fas fa-bug'
-                , 'sourceforge.net/apps/trac': 'fas fa-bug'
-                , 'bugs.debian.org': 'fas fa-bug'
-                , 'bugs.kde.org': 'fas fa-bug'
-                , 'mantis': 'fas fa-bug'
-                , 'ticket=on': 'fas fa-bug'
-                , 'ohloh.net': 'fas fa-bar-chart-o'
-                , 'stackoverflow.com': 'fab fa-stack-overflow'
-                , 'stackexchange.com': 'fab fa-stack-exchange'
-                , 'twitter.com': 'fab fa-twitter'
-                }
-%}
-{% set LABELS = { 'fab fa-github-alt': 'Git repository'
-                , 'fab fa-bitbucket': 'Mercurial repository'
-                , 'fas fa-bar-chart-o': 'Contribution statistics'
-                , 'fas fa-bug': 'Reported bugs'
-                , 'fas fa-bullhorn': 'Announcement on this blog'
-                , 'fas fa-envelope-o': 'Mailing-list participation'
-                , 'fas fa-play': 'Play video'
-                }
+{# Map URL substring matches to link's icon, then label.
+Sorted by priority: the first items takes precedence over those at the end. #}
+{% set ICONS =  [
+    ('github.com',                'fab fa-github-alt',     'Git repository'),
+    ('bitbucket.org',             'fab fa-bitbucket',      'Mercurial repository'),
+    ('youtube.com',               'fas fa-play',           'Play video'),
+    ('ohloh.net',                 'fas fa-bar-chart-o',    'Contribution statistics'),
+    ('stackoverflow.com',         'fab fa-stack-overflow', 'Community support'),
+    ('stackexchange.com',         'fab fa-stack-exchange', 'Community support'),
+    ('twitter.com',               'fab fa-twitter',        'Social media activities'),
+    ('bugs.launchpad.net',        'fas fa-bug',            'Reported bugs'),
+    ('trac.wordpress.org',        'fas fa-bug',            'Reported bugs'),
+    ('sourceforge.net/apps/trac', 'fas fa-bug',            'Reported bugs'),
+    ('bugs.debian.org',           'fas fa-bug',            'Reported bugs'),
+    ('bugs.kde.org',              'fas fa-bug',            'Reported bugs'),
+    ('mantis',                    'fas fa-bug',            'Reported bugs'),
+    ('ticket=on',                 'fas fa-bug',            'Reported bugs'),
+    ('gmane.org',                 'fas fa-envelope-o',     'Mailing-list participation'),
+    ('type_of_search=mlists',     'fas fa-envelope-o',     'Mailing-list participation'),
+    (SITEURL,                     'fas fa-bullhorn',       'Announcement on this blog'),
+    ]
 %}
 
 
@@ -75,17 +69,17 @@
         {% if project.links %}
             <p class="card-text">
                 {% for link in project.links %}
-                    {% set link_icon = ['fas fa-home'] %}
-                    {% for (domain, icon) in ICONS.items() %}
-                        {% if link.find(domain) != -1 %}
-                            {% if link_icon.append(icon) %}{% endif %}
+                    {# Default icon in case of no match #}
+                    {% set matches = [('', 'fas fa-home', 'Project home')] %}
+                    {% for rule in ICONS|reverse %}
+                        {% if rule[0] and link.find(rule[0]) != -1 %}
+                            {% if matches.append(rule) %}{% endif %}
                         {% endif %}
                     {% endfor %}
-                    {% set link_icon = link_icon[-1] %}
-                    <a href="{{ link }}" title="{{ LABELS.get(link_icon, 'Project home')|e }}">
+                    <a href="{{ link }}" title="{{ matches[-1][2]|e }}">
                         <span class="fa-stack" style="vertical-align: top;">
                             <i class="fas fa-circle fa-stack-2x"></i>
-                            <i class="{{ link_icon }} fa-stack-1x fa-inverse"></i>
+                            <i class="{{ matches[-1][1] }} fa-stack-1x fa-inverse"></i>
                         </span>
                     </a>
                 {% endfor %}
