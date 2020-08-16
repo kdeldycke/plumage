@@ -13,6 +13,7 @@ Changelog
   * Use latest Disqus reference code.
   * Do not display Disqus comments for draft articles.
   * Ignore empty years in archive page.
+  * Display number of articles per year in archive page.
 
 * [**v1.1.0**
   (2020-08-12)](https://github.com/kdeldycke/plumage/compare/v1.0.0...v1.1.0)

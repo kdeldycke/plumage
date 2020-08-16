@@ -19,66 +19,61 @@
     {% set year_range = [] %}
     {% for year in range(dates[-1].date.year, dates[0].date.year + 1) %}
 
-        {# Count article in current year #}
-        {% set article_count = [] %}
+        {# Gather all articles from current year #}
+        {% set yearly_articles = [] %}
         {% for article in dates %}
             {% if article.date.year == year %}
-                {% if article_count.append(1) %}{% endif %}
+                {% if yearly_articles.append(article) %}{% endif %}
             {% endif %}
         {% endfor %}
 
         {# Ignore empty years #}
-        {% if article_count|length > 0 %}
-            {% if year_range.append(year) %}{% endif %}
+        {% if yearly_articles|length > 0 %}
+            {% if year_range.append({'year': year, 'articles': yearly_articles}) %}{% endif %}
         {% endif %}
 
     {% endfor %}
 
-    {# Reverse years in descending order #}
-    {% set year_range = year_range[::-1] %}
-
     <div class="accordion" id="accordianArchives" role="tablist" aria-multiselectable="true">
-        {% for year in year_range %}
+        {% for yearly_group in year_range|sort(reverse = True, attribute = 'year')  %}
             <div class="card">
-                <div class="card-header" role="tab" id="heading{{ year }}">
-                    <h4>
-                        <button type="button" data-toggle="collapse"
-                           data-target="#collapse{{ year }}"
-                           class="btn btn-link btn-block text-left {% if not loop.first %}collapsed{% endif %}"
-                           aria-expanded="{% if loop.first %}true{% else %}false{% endif %}"
-                           aria-controls="collapse{{ year }}">
-                            {{ year }}
-                        </a>
-                    </h4>
-                </div>
-                <div id="collapse{{ year }}"
+                <h4 class="card-header" role="tab" id="heading{{ yearly_group.year }}">
+                    <button type="button" data-toggle="collapse"
+                       data-target="#collapse{{ yearly_group.year }}"
+                       class="btn btn-link btn-block text-left {% if not loop.first %}collapsed{% endif %}"
+                       aria-expanded="{% if loop.first %}true{% else %}false{% endif %}"
+                       aria-controls="collapse{{ yearly_group.year }}">
+                        {{ yearly_group.year }}
+                        <span class="badge badge-secondary float-right align-middle">{{ yearly_group.articles|length }}</span>
+                        <span class="sr-only">articles</span>
+                    </button>
+                </h4>
+                <div id="collapse{{ yearly_group.year }}"
                      class="collapse {% if loop.first %}show{% endif %}"
-                     role="tabpanel" aria-labelledby="heading{{ year }}"
+                     role="tabpanel" aria-labelledby="heading{{ yearly_group.year }}"
                      data-parent="#accordianArchives">
                     <div class="card-body">
                         {% set current_month = False %}
-                        {% for article in dates %}
-                            {% if article.date.year == year %}
+                        {% for article in yearly_group.articles %}
 
-                                {% if article.date.month != current_month %}
-                                    {% set current_month = article.date.month %}
-                                    {% if not loop.first %}
-                                        {# Triggers lint error with curlylint.
-                                        This is a bug, see:
-                                        https://github.com/thibaudcolas/curlylint/issues/14 #}
-                                        </dl>
-                                    {% endif %}
-                                    <dl class="dl-horizontal">
-                                {% endif %}
-
-                                <dt><abbr class="published" title="{{ article.date.isoformat() }}">{{ article.date.strftime('%b. %d') }}</abbr></dt>
-                                <dd><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></dd>
-
-                                {% if loop.last %}
+                            {% if article.date.month != current_month %}
+                                {% set current_month = article.date.month %}
+                                {% if not loop.first %}
+                                    {# Triggers lint error with curlylint.
+                                    This is a bug, see:
+                                    https://github.com/thibaudcolas/curlylint/issues/14 #}
                                     </dl>
                                 {% endif %}
-
+                                <dl class="dl-horizontal">
                             {% endif %}
+
+                            <dt><abbr class="published" title="{{ article.date.isoformat() }}">{{ article.date.strftime('%b. %d') }}</abbr></dt>
+                            <dd><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></dd>
+
+                            {% if loop.last %}
+                                </dl>
+                            {% endif %}
+
                         {% endfor %}
                     </div>
                 </div>
