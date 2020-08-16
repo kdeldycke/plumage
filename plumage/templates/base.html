@@ -118,21 +118,6 @@
                         {% endif %}
                     </ul>
 
-                    {% if GOOGLE_SEARCH %}
-                        <form class="navbar-form navbar-right" role="search" action="https://www.google.com" target="_blank">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <input type="text" name="q" class="form-control search-query" placeholder="Search" required />
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" type="button"><i class="fas fa-search fa-fw"></i></button>
-                                    </span>
-                                </div>
-                                <input type="hidden" name="cx" value="{{ GOOGLE_SEARCH }}" />
-                                <input type="hidden" name="ie" value="UTF-8" />
-                            </div>
-                        </form>
-                    {% endif %}
-
                     {% if TIPUE_SEARCH %}
                         <form class="navbar-form navbar-right" role="search" action="{{ SITEURL }}/search.html" onsubmit="return validateForm(this.elements['q'].value);">
                             <div class="form-group">
