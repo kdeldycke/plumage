@@ -144,7 +144,17 @@
             {% set has_right_content = has_right or RIGHT_SIDEBAR is defined %}
 
             <div class="row">
-                <div class="{% if (has_left_content and has_right_content) or LAYOUT == 'full-width' %} col-md-6 {% elif has_left_content or has_right_content%} col-md-9 {% else %} col-md-12 {% endif %} {% if has_left_content %} col-md-offset-3 {% endif %}">
+                <div class="
+                    {% if (has_left_content and has_right_content) or LAYOUT == 'full-width' %}
+                        col-md-6
+                    {% elif has_left_content or has_right_content %}
+                        col-md-9
+                    {% else %}
+                        col-md-12
+                    {% endif %}
+                    {% if has_left_content %}
+                        offset-md-3
+                    {% endif %}">
                     {% block top_center %}
                     {% endblock %}
                 </div>
@@ -160,7 +170,16 @@
                     </div>
                 {% endif %}
 
-                <div class="{% if LAYOUT == 'full-width' %} col-md-offset-1 {% elif has_left_content and has_right_content %} col-md-6 {% elif has_left_content or has_right_content %} col-md-9 {% else %} col-md-12 {% endif %}" id="content" role="main">
+                <div id="content" role="main" class="
+                    {% if LAYOUT == 'full-width' %}
+                        offset-md-1
+                    {% elif has_left_content and has_right_content %}
+                        col-md-6
+                    {% elif has_left_content or has_right_content %}
+                        col-md-9
+                    {% else %}
+                        col-md-12
+                    {% endif %}">
                     {% block content %}
                     {% endblock %}
                 </div>
