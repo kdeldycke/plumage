@@ -39,29 +39,10 @@ a {
   color: #999;
 }
 
-.page-header {
-  margin: 0;
-  padding-bottom: 0;
-  border-bottom: none;
-}
-
-.page-header a {
-  color: #2d2d2d;
-}
-
-.page-header a:hover {
-  color: #005580;
-  text-decoration: none;
-}
-
-/* Card flip inspired by https://learn.shayhowe.com/advanced-html-css/transitions-animations */
-
-/* Possible alternative: use https://github.com/mintchaos/flippant.js */
-.page-header .avatar-container {
+.avatar-container {
   z-index: 10;
   width: 80px;
   height: 80px;
-  margin: 0 20px;
   position: relative;
   -webkit-perspective: 600;
   -moz-perspective: 600;
@@ -70,7 +51,7 @@ a {
   perspective: 600;
 }
 
-.page-header .avatar {
+.avatar {
   height: 100%;
   width: 100%;
   position: absolute;
@@ -86,7 +67,7 @@ a {
   transition: all 0.3s ease-in-out;
 }
 
-.page-header .avatar .side {
+.avatar .side {
   border: solid 3px white;
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
   border-radius: 16px;
@@ -101,7 +82,7 @@ a {
   backface-visibility: hidden;
 }
 
-.page-header .avatar .back {
+.avatar .back {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #eee), color-stop(100%, #ddd));
   background-image: -webkit-linear-gradient(#eee, #ddd);
   background-image: -moz-linear-gradient(#eee, #ddd);
@@ -114,13 +95,13 @@ a {
   line-height: 20px;
 }
 
-.page-header .avatar .side:hover,
-.page-header .avatar .back {
+.avatar .side:hover,
+.avatar .back {
   border-color: #005580;
 }
 
-.page-header .avatar.animate:hover,
-.page-header .avatar.animate .back {
+.avatar.animate:hover,
+.avatar.animate .back {
   -webkit-transform: rotateY(180deg);
   -moz-transform: rotateY(180deg);
   -ms-transform: rotateY(180deg);
@@ -128,7 +109,7 @@ a {
   transform: rotateY(180deg);
 }
 
-.page-header .avatar .back p {
+.avatar .back p {
   padding-top: 8px;
 }
 

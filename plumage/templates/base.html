@@ -63,19 +63,17 @@
 
         <div class="container">
 
-            <div class="page-header">
-                {% if SITE_THUMBNAIL %}
-                    <a href="{{ SITEURL }}" class="avatar-container pull-left">
-                        <div class="avatar {% if SITE_THUMBNAIL_TEXT %} animate {% endif %}">
-                            <div class="side"><img src="{{ SITE_THUMBNAIL }}" class="img-responsive"/></div>
-                            {% if SITE_THUMBNAIL_TEXT %}
-                                <div class="side back"><p class="text-center">{{ SITE_THUMBNAIL_TEXT }}</p></div>
-                            {% endif %}
-                        </div>
-                    </a>
-                {% endif %}
-                <h1><a href="{{ SITEURL }}">{{ SITENAME }}</a> <small>{{ SITESUBTITLE }}</small></h1>
-            </div>
+            {% if SITE_THUMBNAIL %}
+                <a href="{{ SITEURL }}" class="avatar-container float-left mx-4">
+                    <div class="avatar {% if SITE_THUMBNAIL_TEXT %} animate {% endif %}">
+                        <div class="side"><img src="{{ SITE_THUMBNAIL }}" class="img-fluid"/></div>
+                        {% if SITE_THUMBNAIL_TEXT %}
+                            <div class="side back"><p class="text-center">{{ SITE_THUMBNAIL_TEXT }}</p></div>
+                        {% endif %}
+                    </div>
+                </a>
+            {% endif %}
+            <h1><a href="{{ SITEURL }}">{{ SITENAME }}</a> <small>{{ SITESUBTITLE }}</small></h1>
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light shadow rounded">
 
