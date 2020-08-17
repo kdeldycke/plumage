@@ -6,7 +6,6 @@ textarea,
 li,
 .navbar-form .search-query {
   font-family: 'Open Sans', sans-serif;
-  line-height: 24px;
 }
 
 h1,
@@ -21,10 +20,6 @@ h6 {
 code,
 pre {
   font-family: 'Source Code Pro', Monaco, Menlo, Consolas, 'Courier New', monospace;
-  font-size: 15px;
-  line-height: 21px;
-  white-space: pre;
-  overflow: auto;
 }
 
 html {
