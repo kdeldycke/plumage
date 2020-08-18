@@ -105,7 +105,7 @@ jobs:
   css:
     name: Format CSS files and create a PR
     runs-on: ubuntu-latest
-    need: pygments-styles
+    needs: pygments-styles
     steps:
       - uses: actions/checkout@v2.3.2
       - name: Install stylelint
