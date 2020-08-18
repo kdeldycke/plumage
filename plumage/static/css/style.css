@@ -211,10 +211,6 @@ dt:hover > a.headerlink {
   -webkit-transform: rotate(30deg);
 }
 
-.comments {
-  margin-top: 5em;
-}
-
 footer {
   background: url(/theme/img/creampaper.png);
   text-shadow: 0 1px 1px white;
