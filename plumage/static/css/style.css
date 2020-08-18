@@ -87,8 +87,6 @@ a {
   -webkit-box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.1);
   box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.1);
-  font-size: 13px;
-  line-height: 20px;
 }
 
 .avatar .side:hover,
@@ -103,10 +101,6 @@ a {
   -ms-transform: rotateY(180deg);
   -o-transform: rotateY(180deg);
   transform: rotateY(180deg);
-}
-
-.avatar .back p {
-  padding-top: 8px;
 }
 
 h1,

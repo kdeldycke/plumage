@@ -68,7 +68,9 @@
                     <div class="avatar {% if SITE_THUMBNAIL_TEXT %} animate {% endif %}">
                         <div class="side"><img src="{{ SITE_THUMBNAIL }}" class="img-fluid"/></div>
                         {% if SITE_THUMBNAIL_TEXT %}
-                            <div class="side back text-center"><p class="pt-4">{{ SITE_THUMBNAIL_TEXT }}</p></div>
+                            <div class="side back text-center pt-2 px-1 small">
+                                {{ SITE_THUMBNAIL_TEXT }}
+                            </div>
                         {% endif %}
                     </div>
                 </a>
