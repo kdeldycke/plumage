@@ -113,11 +113,6 @@ span.amp {
   font-family: 'Expletus Sans', cursive;
 }
 
-blockquote {
-  border-left: 0.3rem solid #08c;
-  padding-left: 1rem;
-}
-
 /* Style title headers anchors produced by Python's Markdown module. See:
  * https://python-markdown.github.io/extensions/toc/#usage
  * https://github.com/kdeldycke/kevin-deldycke-blog/blob/master/pelicanconf.py#L22
