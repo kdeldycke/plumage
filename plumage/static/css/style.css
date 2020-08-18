@@ -114,11 +114,6 @@ h2 {
   text-shadow: 1px 1px 1px #ddd;
 }
 
-.main.container h1 {
-  margin-bottom: 1em;
-  margin-top: 1em;
-}
-
 /* Typogrify's ampersands */
 span.amp {
   font-family: 'Expletus Sans', cursive;
