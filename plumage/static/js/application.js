@@ -16,12 +16,12 @@
       var i, scrollTop = $win.scrollTop()
       if (scrollTop >= navTop && !isFixed) {
         isFixed = 1
-        $nav.addClass('fixed-top').removeClass('rounded')
-        $navbrand.removeClass('d-none')
+        $nav.addClass('fixed-top').removeClass('rounded d-block')
+        $brand.removeClass('d-none')
       } else if (scrollTop <= navTop && isFixed) {
         isFixed = 0
-        $nav.removeClass('fixed-top').addClass('rounded')
-        $navbrand.addClass('d-none')
+        $nav.removeClass('fixed-top').addClass('rounded d-block')
+        $brand.addClass('d-none')
       }
     };
 
