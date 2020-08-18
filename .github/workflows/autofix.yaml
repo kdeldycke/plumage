@@ -89,8 +89,8 @@ jobs:
           poetry install
       - name: Run Pygments
         run: |
-          poetry run pygmentize -S solarized-dark  -f html > ./plumage/static/css/pygment-solarized-dark.css
-          poetry run pygmentize -S solarized-light -f html > ./plumage/static/css/pygment-solarized-light.css
+          poetry run pygmentize -S solarized-dark  -f html -a .codehilite > ./plumage/static/css/pygment-solarized-dark.css
+          poetry run pygmentize -S solarized-light -f html -a .codehilite > ./plumage/static/css/pygment-solarized-light.css
       - uses: peter-evans/create-pull-request@v3
         with:
           author: "Kevin Deldycke <kevin@deldycke.com>"
