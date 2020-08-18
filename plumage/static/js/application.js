@@ -38,6 +38,9 @@
     // Style blockquote in the way Bootstrap does.
     $("blockquote").addClass('blockquote border-left border-primary pl-3').css('border-left-width', 'thick');
 
+    // Tweak code rendering.
+    $(".codehilite pre").addClass('rounded shadow-sm p-2');
+
     // Allow videos to take the full width of a page
     $(".container").fitVids();
 
