@@ -8,6 +8,7 @@ Changelog
   * Remove dependency on Masonry.
   * Remove dependency on ImagesLoaded.
   * Remove `FLAT_DESIGN` option.
+  * Use list group to renders related content at the bottom of articles.
   * Move badges above description in project cards.
   * Use latest Disqus reference code.
   * Do not display Disqus comments for draft articles.
