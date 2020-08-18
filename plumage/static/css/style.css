@@ -124,13 +124,11 @@ code {
   border-color: rgb(224, 224, 235);
 }
 
-/* Style title headers anchors. Inspired by:
- * https://github.com/waylan/Python-Markdown/blob/2.6.7-final/docs/basic.css#L157-L169
+/* Style title headers anchors produced by Python's Markdown module. See:
+ * https://python-markdown.github.io/extensions/toc/#usage
+ * https://github.com/kdeldycke/kevin-deldycke-blog/blob/master/pelicanconf.py#L22
  */
 a.headerlink {
-  font-size: 0.8em;
-  padding: 0 0.4em;
-  text-decoration: none;
   visibility: hidden;
 }
 
