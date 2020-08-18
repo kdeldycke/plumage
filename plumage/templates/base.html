@@ -278,7 +278,7 @@
                             {% for feed in all_feeds %}
                                 <li>
                                     <a href="{{ FEED_DOMAIN }}/{{feed.url }}">
-                                        <i class="fas fa-rss fa-fw"></i> {{ feed.name }} ({{ feed.kind }})
+                                        <i class="fas fa-{{ feed.kind|lower }} fa-fw"></i> {{ feed.name }} ({{ feed.kind }})
                                     </a>
                                 </li>
                             {% endfor %}
