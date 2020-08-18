@@ -197,110 +197,107 @@
 
         </div>
 
-        <!-- TODO: make footer sticky -->
+        {# TODO: make footer sticky #}
         <footer class="container-fluid mt-5 p-4 small">
-            <div class="container">
-                <div class="row">
+            <div class="row mx-5">
 
-                    {% set SOCIAL_WIDGET_NAME = SOCIAL_WIDGET_NAME or 'Social' %}
-                    {% set LINKS_WIDGET_NAME = LINKS_WIDGET_NAME or 'Links' %}
-                    {% for group_title, group_links in ((SOCIAL_WIDGET_NAME, SOCIAL), (LINKS_WIDGET_NAME, LINKS)) %}
-                        <div class="col-md-2">
-                            {% if group_links %}
-                                <h6>{{ group_title }}</h6>
-                                <ul class="list-unstyled">
-                                    {% if MANUAL_LINKS%}
-                                        {% for item in group_links %}
-                                            <li>{{ item }}</li>
-                                        {% endfor %}
-                                    {% else %}
-                                        {% for title, link in group_links %}
-                                            <li>{{ m.render_link_icon(link, title, FAVICON_LINKS) }}</li>
-                                        {% endfor %}
-                                    {% endif%}
-                                </ul>
-                            {% endif %}
-                        </div>
-                    {% endfor %}
-
+                {% set SOCIAL_WIDGET_NAME = SOCIAL_WIDGET_NAME or 'Social' %}
+                {% set LINKS_WIDGET_NAME = LINKS_WIDGET_NAME or 'Links' %}
+                {% for group_title, group_links in ((SOCIAL_WIDGET_NAME, SOCIAL), (LINKS_WIDGET_NAME, LINKS)) %}
                     <div class="col-md-2">
-                        <h6>Browse content by</h6>
-                        <ul class="list-unstyled">
-                            {% if CATEGORIES_SAVE_AS %}
-                                <li><a href="{{ SITEURL }}/{{ CATEGORIES_SAVE_AS }}"><i class="fas fa-th fa-fw"></i> Categories</a></li>
-                            {% endif %}
-                            {% if AUTHORS_SAVE_AS %}
-                                <li><a href="{{ SITEURL }}/{{ AUTHORS_SAVE_AS }}"><i class="fas fa-users fa-fw"></i> Authors</a></li>
-                            {% endif %}
-                            {% if ARCHIVES_SAVE_AS %}
-                                <li><a href="{{ SITEURL }}/{{ ARCHIVES_SAVE_AS }}"><i class="far fa-calendar-alt fa-fw"></i> Dates</a></li>
-                            {% endif %}
-                            {% if TAGS_SAVE_AS %}
-                                <li><a href="{{ SITEURL }}/{{ TAGS_SAVE_AS }}"><i class="fas fa-tags fa-fw"></i> Tags</a></li>
-                            {% endif %}
-                        </ul>
-                    </div>
-
-                    <div class="col-md-2 text-muted">
-                        <h6>Copyright notice</h6>
-                        {% set date_start = dates[-1].date.year if dates else None %}
-                        {% set date_end = dates[0].date.year if dates else None %}
-                        <p class="small">
-                            © Copyright
-                            {{ date_start if date_start }}{{ '-%s' % date_end if date_end and date_end != date_start }}
-                            {{ AUTHOR }}.
-                            {% if COPYRIGHT %}
-                                {{ COPYRIGHT }}
-                            {% endif %}
-                        </p>
-                    </div>
-
-                    <div class="col-md-2 text-muted">
-                        <h6>Disclaimer</h6>
-                        <p class="small">
-                            {% if DISCLAIMER %}
-                                {{ DISCLAIMER }}
-                            {% else %}
-                                All opinions expressed in this site are my own
-                                personal opinions and are not endorsed by, nor
-                                do they represent the opinions of my previous,
-                                current and future employers or any of its
-                                affiliates, partners or customers.
-                            {% endif %}
-                        </p>
-                    </div>
-
-                    <div class="col-md-2">
-                        {% if all_feeds %}
-                            <h6>Feeds</h6>
-                            <ul class="list-unstyled small">
-                                {% for feed in all_feeds %}
-                                    <li>
-                                        <a href="{{ FEED_DOMAIN }}/{{feed.url }}">
-                                            <i class="fas fa-rss fa-fw"></i> {{ feed.name }} ({{ feed.kind }})
-                                        </a>
-                                    </li>
-                                {% endfor %}
+                        {% if group_links %}
+                            <h6>{{ group_title }}</h6>
+                            <ul class="list-unstyled">
+                                {% if MANUAL_LINKS%}
+                                    {% for item in group_links %}
+                                        <li>{{ item }}</li>
+                                    {% endfor %}
+                                {% else %}
+                                    {% for title, link in group_links %}
+                                        <li>{{ m.render_link_icon(link, title, FAVICON_LINKS) }}</li>
+                                    {% endfor %}
+                                {% endif%}
                             </ul>
                         {% endif %}
                     </div>
+                {% endfor %}
 
+                <div class="col-md-2">
+                    <h6>Browse content by</h6>
+                    <ul class="list-unstyled">
+                        {% if CATEGORIES_SAVE_AS %}
+                            <li><a href="{{ SITEURL }}/{{ CATEGORIES_SAVE_AS }}"><i class="fas fa-th fa-fw"></i> Categories</a></li>
+                        {% endif %}
+                        {% if AUTHORS_SAVE_AS %}
+                            <li><a href="{{ SITEURL }}/{{ AUTHORS_SAVE_AS }}"><i class="fas fa-users fa-fw"></i> Authors</a></li>
+                        {% endif %}
+                        {% if ARCHIVES_SAVE_AS %}
+                            <li><a href="{{ SITEURL }}/{{ ARCHIVES_SAVE_AS }}"><i class="far fa-calendar-alt fa-fw"></i> Dates</a></li>
+                        {% endif %}
+                        {% if TAGS_SAVE_AS %}
+                            <li><a href="{{ SITEURL }}/{{ TAGS_SAVE_AS }}"><i class="fas fa-tags fa-fw"></i> Tags</a></li>
+                        {% endif %}
+                    </ul>
                 </div>
-            </div>
 
-            <div class="container pt-3">
-                <div class="row">
-                    <div class="offset-3 col-6 small text-muted text-center">
-                        Site generated by <a class="text-dark" href="https://getpelican.com">Pelican</a>.<br/>
-                        <a class="text-dark" href="https://github.com/kdeldycke/plumage">Plumage</a>
-                        theme by <a class="text-dark" href="https://kevin.deldycke.com">Kevin Deldycke</a>.
-                    </div>
-                    <div class="col-3 text-right d-flex flex-column">
-                        <a class="mt-auto" href="#"><i class="fas fa-arrow-up"></i> Back to top</a>
-                    </div>
+                <div class="col-md-2 text-muted">
+                    <h6>Copyright notice</h6>
+                    {% set date_start = dates[-1].date.year if dates else None %}
+                    {% set date_end = dates[0].date.year if dates else None %}
+                    <p class="small">
+                        © Copyright
+                        {{ date_start if date_start }}{{ '-%s' % date_end if date_end and date_end != date_start }}
+                        {{ AUTHOR }}.
+                        {% if COPYRIGHT %}
+                            {{ COPYRIGHT }}
+                        {% endif %}
+                    </p>
                 </div>
-            </div>
 
+                <div class="col-md-2 text-muted">
+                    <h6>Disclaimer</h6>
+                    <p class="small">
+                        {% if DISCLAIMER %}
+                            {{ DISCLAIMER }}
+                        {% else %}
+                            All opinions expressed in this site are my own
+                            personal opinions and are not endorsed by, nor
+                            do they represent the opinions of my previous,
+                            current and future employers or any of its
+                            affiliates, partners or customers.
+                        {% endif %}
+                    </p>
+                </div>
+
+                <div class="col-md-2">
+                    {% if all_feeds %}
+                        <h6>Feeds</h6>
+                        <ul class="list-unstyled small">
+                            {% for feed in all_feeds %}
+                                <li>
+                                    <a href="{{ FEED_DOMAIN }}/{{feed.url }}">
+                                        <i class="fas fa-rss fa-fw"></i> {{ feed.name }} ({{ feed.kind }})
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+
+            </div>
+            <div class="row mt-3">
+
+                <div class="offset-3 col-6 small text-muted text-center">
+                    Site generated by <a class="text-dark" href="https://getpelican.com">Pelican</a>.<br/>
+                    <a class="text-dark" href="https://github.com/kdeldycke/plumage">Plumage</a>
+                    theme by <a class="text-dark" href="https://kevin.deldycke.com">Kevin Deldycke</a>.
+                </div>
+
+                <div class="col-3 text-right d-flex flex-column">
+                    <a class="mt-auto" href="#"><i class="fas fa-arrow-up"></i> Back to top</a>
+                </div>
+
+            </div>
         </footer>
 
         {% include "analytics.html" %}
