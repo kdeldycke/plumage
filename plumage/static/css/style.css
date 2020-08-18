@@ -35,10 +35,6 @@ a {
   transition: all 0.2s ease-out;
 }
 
-.text-muted a {
-  color: #999;
-}
-
 .avatar-container {
   z-index: 10;
   width: 80px;
@@ -215,25 +211,9 @@ dt:hover > a.headerlink {
 }
 
 footer {
-  margin-top: 50px;
   background: url(/theme/img/creampaper.png);
-  padding: 20px;
   text-shadow: 0 1px 1px white;
   box-shadow: inset 0 30px 30px -30px rgba(0, 0, 0, 0.5);
-}
-
-footer .container .col-md-12 {
-  margin-top: 20px;
-}
-
-footer,
-footer li {
-  font-size: 14px;
-}
-
-footer .text-muted {
-  font-size: 12px;
-  line-height: 13px;
 }
 
 blockquote {
