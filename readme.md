@@ -204,11 +204,6 @@ The theme uses external softwares, scripts, libraries and artworks:
     Distributed under a MIT license
     Source: https://github.com/younes0/jQuery-MGlass
 
-    Solarized Pygment style v0.1.0
-    Copyright (c) 2012 Shoji KUMAGAI
-    Distributed under a MIT license
-    Source: https://pypi.python.org/pypi/pygments-style-solarized
-
     Fabric (Plaid)
     Copyright (c) 2012 James Basoo
     Distributed under a Creative Commons Attribution-ShareAlike 3.0 Unported license
