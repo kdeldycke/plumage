@@ -35,6 +35,9 @@
     $("#content img").addClass('img-fluid border rounded shadow');
     $("#content .card img").removeClass('img-fluid border rounded shadow');
 
+    // Style blockquote in the way Bootstrap does.
+    $("blockquote").addClass('blockquote');
+
     // Allow videos to take the full width of a page
     $(".container").fitVids();
 
