@@ -1,7 +1,7 @@
 Changelog
 =========
 
-* [**v1.1.1**
+* [**v2.0.0**
   (unreleased)](https://github.com/kdeldycke/plumage/compare/v1.1.0...develop)
   * Upgrade to Bootstrap 4.5.2 with bundled popper.js.
   * Upgrade to jQuery 3.5.1.
