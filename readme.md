@@ -79,6 +79,8 @@ Plumage has built-in support for the following plugins and extensions:
       adds permalink anchors to article's subtitles.
     * [`pymdownx.emoji`](https://facelessuser.github.io/pymdown-extensions/extensions/emoji/#default-emoji-generators):
       style `emojione` set for proper integration into text.
+    * [`pymdownx.highlight`](https://facelessuser.github.io/pymdown-extensions/extensions/highlight/):
+      style highlighted code with Pygment style.
 
 
 ## Installation
