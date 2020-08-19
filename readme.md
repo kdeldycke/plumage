@@ -71,6 +71,8 @@ Plumage has built-in support for the following plugins and extensions:
       ](https://github.com/getpelican/pelican-plugins/tree/master/related_posts)
 
 * Markdown extensions:
+    * [`markdown.extensions.admonition`](https://python-markdown.github.io/extensions/admonition/):
+      re-style admonitions into [alerts](https://getbootstrap.com/docs/4.5/components/alerts/).
     * [`markdown.extensions.codehilite`](https://python-markdown.github.io/extensions/code_hilite/):
       style highlighted code with Pygment style.
     * [`markdown.extensions.toc`](https://python-markdown.github.io/extensions/toc/#usage),

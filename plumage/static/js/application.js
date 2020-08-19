@@ -41,6 +41,22 @@
     // Tweak code rendering.
     $(".codehilite pre").addClass('rounded shadow-sm p-2');
 
+    // Style admonition produced by Python Markdown into alerts.
+    $(".admonition").addClass('alert shadow').attr('role', 'alert');
+    $(".admonition-title").addClass('alert-heading h4');
+
+    // Translate types inherited from rST and suggested in the documentation:
+    // https://python-markdown.github.io/extensions/admonition/#syntax
+    $(".admonition.danger").addClass('alert-danger');
+    $(".admonition.error").addClass('alert-danger');
+    $(".admonition.warning").addClass('alert-warning');
+    $(".admonition.attention").addClass('alert-warning');
+    $(".admonition.caution").addClass('alert-warning');
+    $(".admonition.important").addClass('alert-warning');
+    $(".admonition.hint").addClass('alert-info');
+    $(".admonition.note").addClass('alert-info');
+    $(".admonition.tip").addClass('alert-info');
+
     // Allow videos to take the full width of a page
     $(".container").fitVids();
 
