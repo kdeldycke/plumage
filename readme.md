@@ -75,6 +75,8 @@ Plumage has built-in support for the following plugins and extensions:
     * Highlight code produced by [`codehilite`](https://python-markdown.github.io/extensions/code_hilite/).
     * [`toc` extension](https://python-markdown.github.io/extensions/toc/#usage),
       which adds permalink anchors to article's subtitles.
+    * [`pymdown-extensions`'s `emojione`
+    * set](https://facelessuser.github.io/pymdown-extensions/extensions/emoji/#default-emoji-generators).
 
 
 ## Installation
