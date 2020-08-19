@@ -29,7 +29,7 @@
     // extension.
     // Add bootstrap table style to table elements.
     $("#content table").addClass('table table-hover');
-    $("#content table thead th").addattr('scope', 'col');
+    $("#content table thead th").attr('scope', 'col');
 
     // Make images responsive in article content.
     $("#content img").addClass('img-fluid border rounded shadow');
