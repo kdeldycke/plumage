@@ -47,15 +47,21 @@
 
     // Translate types inherited from rST and suggested in the documentation:
     // https://python-markdown.github.io/extensions/admonition/#syntax
+    $(".admonition.primary").addClass('alert-primary');
+    $(".admonition.secondary").addClass('alert-secondary');
+    $(".admonition.success").addClass('alert-success');
     $(".admonition.danger").addClass('alert-danger');
     $(".admonition.error").addClass('alert-danger');
     $(".admonition.warning").addClass('alert-warning');
     $(".admonition.attention").addClass('alert-warning');
     $(".admonition.caution").addClass('alert-warning');
     $(".admonition.important").addClass('alert-warning');
+    $(".admonition.info").addClass('alert-info');
     $(".admonition.hint").addClass('alert-info');
     $(".admonition.note").addClass('alert-info');
     $(".admonition.tip").addClass('alert-info');
+    $(".admonition.light").addClass('alert-light');
+    $(".admonition.dark").addClass('alert-dark');
 
     // Allow videos to take the full width of a page
     $(".container").fitVids();
