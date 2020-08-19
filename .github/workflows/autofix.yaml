@@ -91,6 +91,17 @@ jobs:
         run: |
           poetry run pygmentize -S solarized-dark  -f html -a .codehilite > ./plumage/static/css/pygment-solarized-dark.css
           poetry run pygmentize -S solarized-light -f html -a .codehilite > ./plumage/static/css/pygment-solarized-light.css
+      - name: Force CSS linting
+        # Same as "css" step below
+        continue-on-error: true
+        run: |
+          npm install --save-dev stylelint stylelint-config-standard
+          tee -a ./.stylelintrc.json <<-EOF
+          {
+            "extends": "stylelint-config-standard"
+          }
+          EOF
+          npx stylelint "**/pygment-*.css" --fix
       - uses: peter-evans/create-pull-request@v3
         with:
           author: "Kevin Deldycke <kevin@deldycke.com>"
