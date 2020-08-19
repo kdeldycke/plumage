@@ -60,8 +60,7 @@ it is now generic enough to be used by anyone.
 Plumage has built-in support for the following plugins and extensions:
 
 * Pelican builtins:
-    * Style ampersands produced by
-      [`typogrify`](https://pypi.python.org/pypi/typogrify).
+    * [`typogrify`](https://pypi.python.org/pypi/typogrify): style ampersands.
 
 * Pelican third-party plugins:
     * [`tipue_search`
@@ -72,11 +71,12 @@ Plumage has built-in support for the following plugins and extensions:
       ](https://github.com/getpelican/pelican-plugins/tree/master/related_posts)
 
 * Markdown extensions:
-    * Highlight code produced by [`codehilite`](https://python-markdown.github.io/extensions/code_hilite/).
-    * [`toc` extension](https://python-markdown.github.io/extensions/toc/#usage),
-      which adds permalink anchors to article's subtitles.
-    * [`pymdown-extensions`'s `emojione`
-    * set](https://facelessuser.github.io/pymdown-extensions/extensions/emoji/#default-emoji-generators).
+    * [`markdown.extensions.codehilite`](https://python-markdown.github.io/extensions/code_hilite/):
+      style highlighted code with Pygment style.
+    * [`markdown.extensions.toc`](https://python-markdown.github.io/extensions/toc/#usage),
+      adds permalink anchors to article's subtitles.
+    * [`pymdownx.emoji`](https://facelessuser.github.io/pymdown-extensions/extensions/emoji/#default-emoji-generators):
+      style `emojione` set for proper integration into text.
 
 
 ## Installation
