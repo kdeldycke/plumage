@@ -57,15 +57,24 @@ it is now generic enough to be used by anyone.
 
 ## Plugins
 
-Plumage has built-in support for the following plugins:
+Plumage has built-in support for the following plugins and extensions:
 
-* [`tipue_search`
-](https://github.com/getpelican/pelican-plugins/tree/master/tipue_search)
-* [`neighbors`
-](https://github.com/getpelican/pelican-plugins/tree/master/neighbors)
-* [`related_posts`
-](https://github.com/getpelican/pelican-plugins/tree/master/related_posts)
-* [`typogrify`](https://pypi.python.org/pypi/typogrify)
+* Pelican builtins:
+    * Style ampersands produced by
+      [`typogrify`](https://pypi.python.org/pypi/typogrify).
+
+* Pelican third-party plugins:
+    * [`tipue_search`
+      ](https://github.com/getpelican/pelican-plugins/tree/master/tipue_search)
+    * [`neighbors`
+      ](https://github.com/getpelican/pelican-plugins/tree/master/neighbors)
+    * [`related_posts`
+      ](https://github.com/getpelican/pelican-plugins/tree/master/related_posts)
+
+* Markdown extensions:
+    * Highlight code produced by [`codehilite`](https://python-markdown.github.io/extensions/code_hilite/).
+    * [`toc` extension](https://python-markdown.github.io/extensions/toc/#usage),
+      which adds permalink anchors to article's subtitles.
 
 
 ## Installation
