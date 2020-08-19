@@ -16,6 +16,7 @@ Changelog
   * Display number of articles per year in archive page.
   * Remove support for Google Search.
   * Add style support for ``pymdown-extensions``'s emoji.
+  * Auto upgrade pygment styles.
 
 * [**v1.1.0**
   (2020-08-12)](https://github.com/kdeldycke/plumage/compare/v1.0.0...v1.1.0)
