@@ -2,65 +2,50 @@
 {% extends "base.html" %}
 
 
-{% block extra_js %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha512-S5PZ9GxJZO16tT9r3WJp/Safn31eu8uWrzglMahDT4dsmgqWonRY9grk3j+3tfuPr9WJNsfooOR7Gi7HL5W2jw==" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js" integrity="sha512-JRlcvSZAXT8+5SQQAvklXGJuxXTouyq8oIMaYERZQasB8SBDHZaUbeASsJWpk0UUrf89DP3/aefPPrlMR1h1yQ==" crossorigin="anonymous"></script>
-{% endblock %}
-
-
-{% set ICONS =  { 'github.com': 'fab fa-github-alt'
-                , SITEURL: 'fas fa-bullhorn'
-                , 'type_of_search=mlists': 'fas fa-envelope-o'
-                , 'gmane.org': 'fas fa-envelope-o'
-                , 'bitbucket.org': 'fab fa-bitbucket'
-                , 'youtube.com': 'fas fa-play'
-                , 'bugs.launchpad.net': 'fas fa-bug'
-                , 'trac.wordpress.org': 'fas fa-bug'
-                , 'sourceforge.net/apps/trac': 'fas fa-bug'
-                , 'bugs.debian.org': 'fas fa-bug'
-                , 'bugs.kde.org': 'fas fa-bug'
-                , 'mantis': 'fas fa-bug'
-                , 'ticket=on': 'fas fa-bug'
-                , 'ohloh.net': 'fas fa-bar-chart-o'
-                , 'stackoverflow.com': 'fab fa-stack-overflow'
-                , 'stackexchange.com': 'fab fa-stack-exchange'
-                , 'twitter.com': 'fab fa-twitter'
-                }
-%}
-{% set LABELS = { 'fab fa-github-alt': 'Git repository'
-                , 'fab fa-bitbucket': 'Mercurial repository'
-                , 'fas fa-bar-chart-o': 'Contribution statistics'
-                , 'fas fa-bug': 'Reported bugs'
-                , 'fas fa-bullhorn': 'Announcement on this blog'
-                , 'fas fa-envelope-o': 'Mailing-list participation'
-                , 'fas fa-play': 'Play video'
-                }
+{# Map URL substring matches to link's icon, then label.
+Sorted by priority: the first items takes precedence over those at the end. #}
+{% set ICONS =  [
+    ('github.com',                'fab fa-github-alt',     'Git repository'),
+    ('bitbucket.org',             'fab fa-bitbucket',      'Mercurial repository'),
+    ('youtube.com',               'fas fa-play',           'Play video'),
+    ('ohloh.net',                 'fas fa-bar-chart-o',    'Contribution statistics'),
+    ('stackoverflow.com',         'fab fa-stack-overflow', 'Community support'),
+    ('stackexchange.com',         'fab fa-stack-exchange', 'Community support'),
+    ('twitter.com',               'fab fa-twitter',        'Social media activities'),
+    ('bugs.launchpad.net',        'fas fa-bug',            'Reported bugs'),
+    ('trac.wordpress.org',        'fas fa-bug',            'Reported bugs'),
+    ('sourceforge.net/apps/trac', 'fas fa-bug',            'Reported bugs'),
+    ('bugs.debian.org',           'fas fa-bug',            'Reported bugs'),
+    ('bugs.kde.org',              'fas fa-bug',            'Reported bugs'),
+    ('mantis',                    'fas fa-bug',            'Reported bugs'),
+    ('ticket=on',                 'fas fa-bug',            'Reported bugs'),
+    ('gmane.org',                 'fas fa-envelope-o',     'Mailing-list participation'),
+    ('type_of_search=mlists',     'fas fa-envelope-o',     'Mailing-list participation'),
+    (SITEURL,                     'fas fa-bullhorn',       'Announcement on this blog'),
+    ]
 %}
 
 
-{% macro render_project(all_tags, project) %}
-<div class="thumbnail col-md-3">
+{% macro render_card(all_tags, project) %}
+<div class="card">
     {% if project.inactive %}
-        <div class="corner">Inactive</div>
+        <div class="corner-banner shadow-sm bg-danger text-white font-weight-bold">Inactive</div>
     {% endif %}
     {% if project.thumb %}
         {% if project.thumb_link %}
             <a href="{{ project.thumb_link }}">
         {% endif %}
-        <img alt="{{ project.name }} thumbnail" src="{{ project.thumb }}"/>
+        <img class="card-img-top" alt="{{ project.name }} thumbnail" src="{{ project.thumb }}"/>
         {% if project.thumb_link %}
             </a>
         {% endif %}
     {% endif %}
-    <div class="details">
-        <h4>{{ project.name }}</h4>
-        {% if project.desc %}
-            <p>{{ project.desc }}</p>
-        {% endif %}
+    <div class="card-body">
+        <h4 class="card-title">{{ project.name }}</h4>
         {% if project.roles or project.tools %}
-            <p>
+            <p class="card-text">
                 {% for role in project.roles %}
-                    <span class="label label-success">{{ role }}</span>
+                    <span class="badge badge-success">{{ role }}</span>
                 {% endfor %}
                 {% for tag in all_tags|sort(reverse=True, attribute='articles') %}
                     {% if tag.name in project.tools %}
@@ -73,23 +58,29 @@
                 {% endfor %}
                 {% for tool in project.tools %}
                     {% if tool not in tag_names %}
-                        <span class="label label-default">{{ tool }}</span>
+                        <span class="badge badge-secondary">{{ tool }}</span>
                     {% endif %}
                 {% endfor %}
             </p>
         {% endif %}
+        {% if project.desc %}
+            <p class="card-text">{{ project.desc }}</p>
+        {% endif %}
         {% if project.links %}
-            <p class="clearfix">
+            <p class="card-text">
                 {% for link in project.links %}
-                    {% set link_icon = ['fas fa-home'] %}
-                    {% for (domain, icon) in ICONS.items() %}
-                        {% if link.find(domain) != -1 %}
-                            {% if link_icon.append(icon) %}{% endif %}
+                    {# Default icon in case of no match #}
+                    {% set matches = [('', 'fas fa-home', 'Project home')] %}
+                    {% for rule in ICONS|reverse %}
+                        {% if rule[0] and link.find(rule[0]) != -1 %}
+                            {% if matches.append(rule) %}{% endif %}
                         {% endif %}
                     {% endfor %}
-                    {% set link_icon = link_icon[-1] %}
-                    <a href="{{ link }}" class="pull-left link-circle" title="{{ LABELS.get(link_icon, 'Project home')|e }}">
-                        <i class="{{ link_icon }}"></i>
+                    <a href="{{ link }}" title="{{ matches[-1][2]|e }}">
+                        <span class="fa-stack" style="vertical-align: top;">
+                            <i class="fas fa-circle fa-stack-2x"></i>
+                            <i class="{{ matches[-1][1] }} fa-stack-1x fa-inverse"></i>
+                        </span>
                     </a>
                 {% endfor %}
             </p>
@@ -107,7 +98,7 @@
 {% endfor %}
 
 {% if projects is defined %}
-    <div class="masonry">
+    <div class="card-columns">
         {% block project_pre_content %}{% endblock %}
 
         {% set active_projects = [] %}
@@ -122,7 +113,7 @@
 
         {% for project_list in [active_projects, inactive_projects] %}
             {% for project in project_list %}
-                {{ render_project(all_tags, project) }}
+                {{ render_card(all_tags, project) }}
             {% endfor %}
         {% endfor %}
 

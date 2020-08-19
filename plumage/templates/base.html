@@ -9,15 +9,12 @@
 
         <meta name="author" content="{{ AUTHOR|e }}"/>
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha512-Dop/vW3iOtayerlYAqCgkVr2aTr2ErwwTYOvRFUpzl2VhCMJyjQF0Q9TjUXIo6JhuM/3i0vVEt2e/7QQmnHQqw==" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha512-MoRNloxbStBcD8z3M/2BmnT+rg4IsMxPkXaGh2zD6LGNNFE80W3onsAhRcMAMrSoyWL9xD7Ert0men7vR8LUZg==" crossorigin="anonymous" />
         <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/js/all.min.js" integrity="sha512-YSdqvJoZr83hj76AIVdOcvLWYMWzy6sJyIMic2aQz5kh2bPTd9dzY3NtdeEAzPp/PhgZqr4aJObB3ym/vsItMg==" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" integrity="sha512-+EoPw+Fiwh6eSeRK7zwIKG2MA8i3rV/DGa3tdttQGgWyatG/SkncT53KHQaS5Jh9MNOT3dmFL0FjTY08And/Cw==" crossorigin="anonymous" />
         <link rel="stylesheet" href="{{ SITEURL }}/theme/css/jquery.mglass.css"/>
         <link rel="stylesheet" href="{{ SITEURL }}/theme/css/pygment-solarized-dark.css"/>
         <link rel="stylesheet" href="{{ SITEURL }}/theme/css/style.css"/>
-        {% if FLAT_DESIGN is defined and not FLAT_DESIGN %}
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha512-iy8EXLW01a00b26BaqJWaCmk9fJ4PsMdgNRqV96KwMPSH+blO82OHzisF/zQbRIIi8m0PiO10dpS0QxrcXsisw==" crossorigin="anonymous" />
-        {% endif %}
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?{% if TYPOGRIFY %}family=Expletus+Sans&{% endif %}family=Istok+Web&family=Open+Sans&family=Source+Code+Pro&display=swap" rel="stylesheet">
@@ -62,90 +59,78 @@
 
     </head>
 
-    <body>
+    <body class="bg-transparent pt-4">
 
         <div class="container">
 
-            <div class="page-header">
-                {% if SITE_THUMBNAIL %}
-                    <a href="{{ SITEURL }}" class="avatar-container pull-left">
-                        <div class="avatar {% if SITE_THUMBNAIL_TEXT %} animate {% endif %}">
-                            <div class="side"><img src="{{ SITE_THUMBNAIL }}" class="img-responsive"/></div>
-                            {% if SITE_THUMBNAIL_TEXT %}
-                                <div class="side back"><p class="text-center">{{ SITE_THUMBNAIL_TEXT }}</p></div>
-                            {% endif %}
-                        </div>
-                    </a>
-                {% endif %}
-                <h1><a href="{{ SITEURL }}">{{ SITENAME }}</a> <small>{{ SITESUBTITLE }}</small></h1>
-            </div>
+            {% if SITE_THUMBNAIL %}
+                <a href="{{ SITEURL }}" class="avatar-container float-left mx-4">
+                    <div class="avatar {% if SITE_THUMBNAIL_TEXT %} animate {% endif %}">
+                        <div class="side"><img src="{{ SITE_THUMBNAIL }}" class="img-fluid"/></div>
+                        {% if SITE_THUMBNAIL_TEXT %}
+                            <div class="side back text-center pt-2 px-1 small">
+                                {{ SITE_THUMBNAIL_TEXT }}
+                            </div>
+                        {% endif %}
+                    </div>
+                </a>
+            {% endif %}
 
-            <nav class="navbar navbar-default">
+            <h1>
+                <a href="{{ SITEURL }}" class="text-dark text-decoration-none">{{ SITENAME }}</a>
+                <small class="text-secondary"><small>{{ SITESUBTITLE }}</small></small>
+            </h1>
 
-                <!-- Hamburger menu for mobile -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#plumage-navbar-collapse-1" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="{{ SITEURL }}" title="{{ SITESUBTITLE|e }}">{{ SITENAME }}</a>
-                </div>
+            <nav class="navbar d-block navbar-expand-lg navbar-light bg-light shadow rounded">
 
-                <!-- Menus and search forms -->
+                <a class="navbar-brand d-none" href="{{ SITEURL }}" title="{{ SITESUBTITLE|e }}">{{ SITENAME }}</a>
+                <button class="navbar-toggler" type="button"
+                    data-toggle="collapse"
+                    data-target="#plumage-navbar-collapse-1" aria-controls="plumage-navbar-collapse-1"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
                 <div class="collapse navbar-collapse" id="plumage-navbar-collapse-1">
 
-                    <ul class="nav navbar-nav">
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                         {% for title, link in MENUITEMS %}
                             {% set active_page = link == ("/%s"|format(output_file)).strip('index.html') -%}
-                            <li {% if active_page %} class="active" {% endif %}>
-                                <a href="{{ link }}">{{ title }}{% if active_page %} <span class="sr-only">(current)</span>{% endif %}</a>
+                            <li class="nav-item {% if active_page %} active {%endif %}">
+                                <a class="nav-link" href="{{ link }}">
+                                    {{ title }}
+                                    {% if active_page %}<span class="sr-only">(current)</span>{% endif %}
+                                </a>
                             </li>
                         {% endfor %}
                         {% if DISPLAY_PAGES_ON_MENU %}
                             {% for p in pages %}
                                 {% set active_page = (p == page) -%}
-                                <li {% if active_page %} class="active" {% endif %}>
-                                    <a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}{% if active_page %} <span class="sr-only">(current)</span>{% endif %}</a>
+                                <li class="nav-item {% if active_page %} active {%endif %}">
+                                    <a class="nav-link" href="{{ SITEURL }}/{{ p.url }}">
+                                        {{ p.title }}
+                                        {% if active_page %}<span class="sr-only">(current)</span>{% endif %}
+                                    </a>
                                 </li>
                             {% endfor %}
                         {% endif %}
                         {% if DISPLAY_CATEGORIES_ON_MENU %}
                             {% for c, null in categories %}
                                 {% set active_category = (c == category) -%}
-                                <li {% if active_category %} class="active" {% endif %}>
-                                    <a href="{{ SITEURL }}/{{ c.url }}">{{ c.name }}{% if active_category %} <span class="sr-only">(current)</span>{% endif %}</a>
+                                <li class="nav-item {% if active_page %} active {%endif %}">
+                                    <a class="nav-link" href="{{ SITEURL }}/{{ c.url }}">
+                                        {{ c.name }}
+                                        {% if active_category %}<span class="sr-only">(current)</span>{% endif %}
+                                    </a>
                                 </li>
                             {% endfor %}
                         {% endif %}
                     </ul>
 
-                    {% if GOOGLE_SEARCH %}
-                        <form class="navbar-form navbar-right" role="search" action="https://www.google.com" target="_blank">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <input type="text" name="q" class="form-control search-query" placeholder="Search" required />
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" type="button"><i class="fas fa-search fa-fw"></i></button>
-                                    </span>
-                                </div>
-                                <input type="hidden" name="cx" value="{{ GOOGLE_SEARCH }}" />
-                                <input type="hidden" name="ie" value="UTF-8" />
-                            </div>
-                        </form>
-                    {% endif %}
-
                     {% if TIPUE_SEARCH %}
-                        <form class="navbar-form navbar-right" role="search" action="{{ SITEURL }}/search.html" onsubmit="return validateForm(this.elements['q'].value);">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <input type="text" name="q" id="tipue_search_input" class="form-control search-query" placeholder="Search" required />
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" type="submit"><i class="fas fa-search fa-fw"></i></button>
-                                    </span>
-                                </div>
-                            </div>
+                        <form class="form-inline my-2 my-lg-0" role="search" action="{{ SITEURL }}/search.html" onsubmit="return validateForm(this.elements['q'].value);">
+                            <input type="search" name="q" id="tipue_search_input" class="form-control mr-sm-2" placeholder="Search" required />
+                            <button class="btn btn-default my-2 my-sm-0" type="submit"><i class="fas fa-search fa-fw"></i></button>
                         </form>
                     {% endif %}
 
@@ -156,13 +141,23 @@
         </div>
 
 
-        <div class="container main">
+        <div class="container mt-5">
 
             {% set has_left_content = has_left or LEFT_SIDEBAR is defined %}
             {% set has_right_content = has_right or RIGHT_SIDEBAR is defined %}
 
             <div class="row">
-                <div class="{% if (has_left_content and has_right_content) or LAYOUT == 'full-width' %} col-md-6 {% elif has_left_content or has_right_content%} col-md-9 {% else %} col-md-12 {% endif %} {% if has_left_content %} col-md-offset-3 {% endif %}">
+                <div class="
+                    {% if (has_left_content and has_right_content) or LAYOUT == 'full-width' %}
+                        col-md-6
+                    {% elif has_left_content or has_right_content %}
+                        col-md-9
+                    {% else %}
+                        col-md-12
+                    {% endif %}
+                    {% if has_left_content %}
+                        offset-md-3
+                    {% endif %}">
                     {% block top_center %}
                     {% endblock %}
                 </div>
@@ -178,7 +173,16 @@
                     </div>
                 {% endif %}
 
-                <div class="{% if LAYOUT == 'full-width' %} col-md-offset-1 {% elif has_left_content and has_right_content %} col-md-6 {% elif has_left_content or has_right_content %} col-md-9 {% else %} col-md-12 {% endif %}" id="content" role="main">
+                <div id="content" role="main" class="
+                    {% if LAYOUT == 'full-width' %}
+                        offset-md-1
+                    {% elif has_left_content and has_right_content %}
+                        col-md-6
+                    {% elif has_left_content or has_right_content %}
+                        col-md-9
+                    {% else %}
+                        col-md-12
+                    {% endif %}">
                     {% block content %}
                     {% endblock %}
                 </div>
@@ -195,99 +199,112 @@
 
         </div>
 
-        <!-- TODO: make footer sticky -->
-        <footer class="container-fluid">
-            <div class="container">
-                <div class="row">
+        {# TODO: make footer sticky #}
+        <footer class="container-fluid mt-5 p-4 small">
+            <div class="row mx-5">
 
-                    {% set SOCIAL_WIDGET_NAME = SOCIAL_WIDGET_NAME or 'Social' %}
-                    {% set LINKS_WIDGET_NAME = LINKS_WIDGET_NAME or 'Links' %}
-                    {% for group_title, group_links in ((SOCIAL_WIDGET_NAME, SOCIAL), (LINKS_WIDGET_NAME, LINKS)) %}
-                        <div class="col-md-2">
-                            {% if group_links %}
-                                <h5>{{ group_title }}</h5>
-                                <ul class="list-unstyled">
-                                    {% if MANUAL_LINKS%}
-                                        {% for item in group_links %}
-                                            <li>{{ item }}</li>
-                                        {% endfor %}
-                                    {% else %}
-                                        {% for title, link in group_links %}
-                                            <li>{{ m.render_link_icon(link, title, FAVICON_LINKS) }}</li>
-                                        {% endfor %}
-                                    {% endif%}
-                                </ul>
-                            {% endif %}
-                        </div>
-                    {% endfor %}
-
+                {% set SOCIAL_WIDGET_NAME = SOCIAL_WIDGET_NAME or 'Social' %}
+                {% set LINKS_WIDGET_NAME = LINKS_WIDGET_NAME or 'Links' %}
+                {% for group_title, group_links in ((SOCIAL_WIDGET_NAME, SOCIAL), (LINKS_WIDGET_NAME, LINKS)) %}
                     <div class="col-md-2">
-                        <h5>Browse content by</h5>
-                        <ul class="list-unstyled">
-                            {% if CATEGORIES_SAVE_AS %}
-                                <li><a href="{{ SITEURL }}/{{ CATEGORIES_SAVE_AS }}"><i class="fas fa-th fa-fw"></i> Categories</a></li>
-                            {% endif %}
-                            {% if AUTHORS_SAVE_AS %}
-                                <li><a href="{{ SITEURL }}/{{ AUTHORS_SAVE_AS }}"><i class="fas fa-users fa-fw"></i> Authors</a></li>
-                            {% endif %}
-                            {% if ARCHIVES_SAVE_AS %}
-                                <li><a href="{{ SITEURL }}/{{ ARCHIVES_SAVE_AS }}"><i class="far fa-calendar-alt fa-fw"></i> Dates</a></li>
-                            {% endif %}
-                            {% if TAGS_SAVE_AS %}
-                                <li><a href="{{ SITEURL }}/{{ TAGS_SAVE_AS }}"><i class="fas fa-tags fa-fw"></i> Tags</a></li>
-                            {% endif %}
-                        </ul>
-                    </div>
-
-                    <div class="col-md-2 text-muted">
-                        <h5>Copyright notice</h5>
-                        {% set date_start = dates[-1].date.year if dates else None %}
-                        {% set date_end   = dates[0].date.year if dates else None %}
-                        <p>© Copyright {{ date_start if date_start }}{{ '-%s' % date_end if date_end and date_end != date_start }} {{ AUTHOR }}.</p>
-                        {% if COPYRIGHT %}
-                            <p>{{ COPYRIGHT }}</p>
-                        {% endif %}
-                    </div>
-
-                    <div class="col-md-2 text-muted">
-                        <h5>Disclaimer</h5>
-                        {% if DISCLAIMER %}
-                            <p>{{ DISCLAIMER }}</p>
-                        {% else %}
-                            <p>All opinions expressed in this site are my own personal opinions and are not endorsed by, nor do they represent the opinions of my previous, current and future employers or any of its affiliates, partners or customers.</p>
-                        {% endif %}
-                    </div>
-
-                    <div class="col-md-2">
-                        {% if all_feeds %}
-                            <h5>Feeds</h5>
+                        {% if group_links %}
+                            <h6>{{ group_title }}</h6>
                             <ul class="list-unstyled">
-                                {% for feed in all_feeds %}
-                                    <li><small><a href="{{ FEED_DOMAIN }}/{{
-                                                feed.url }}"><i class="fas fa-rss fa-fw"></i> {{ feed.name }} ({{ feed.kind }})</a></small></li>
-                                {% endfor %}
+                                {% if MANUAL_LINKS%}
+                                    {% for item in group_links %}
+                                        <li>{{ item }}</li>
+                                    {% endfor %}
+                                {% else %}
+                                    {% for title, link in group_links %}
+                                        <li>{{ m.render_link_icon(link, title, FAVICON_LINKS) }}</li>
+                                    {% endfor %}
+                                {% endif%}
                             </ul>
                         {% endif %}
                     </div>
+                {% endfor %}
 
+                <div class="col-md-2">
+                    <h6>Browse content by</h6>
+                    <ul class="list-unstyled">
+                        {% if CATEGORIES_SAVE_AS %}
+                            <li><a href="{{ SITEURL }}/{{ CATEGORIES_SAVE_AS }}"><i class="fas fa-th fa-fw"></i> Categories</a></li>
+                        {% endif %}
+                        {% if AUTHORS_SAVE_AS %}
+                            <li><a href="{{ SITEURL }}/{{ AUTHORS_SAVE_AS }}"><i class="fas fa-users fa-fw"></i> Authors</a></li>
+                        {% endif %}
+                        {% if ARCHIVES_SAVE_AS %}
+                            <li><a href="{{ SITEURL }}/{{ ARCHIVES_SAVE_AS }}"><i class="far fa-calendar-alt fa-fw"></i> Dates</a></li>
+                        {% endif %}
+                        {% if TAGS_SAVE_AS %}
+                            <li><a href="{{ SITEURL }}/{{ TAGS_SAVE_AS }}"><i class="fas fa-tags fa-fw"></i> Tags</a></li>
+                        {% endif %}
+                    </ul>
                 </div>
-            </div>
 
-            <h5 class="text-right"><a href="#"><i class="fas fa-arrow-up"></i> Back to top</a></h5>
-
-            <div class="container">
-                <div class="row col-md-12 text-muted text-center">
-                    Site generated by <a href="https://getpelican.com"> Pelican</a>.<br/>
-                    <a href="https://github.com/kdeldycke/plumage"> Plumage</a> theme by <a href="https://kevin.deldycke.com">Kevin Deldycke</a>.
+                <div class="col-md-2 text-muted">
+                    <h6>Copyright notice</h6>
+                    {% set date_start = dates[-1].date.year if dates else None %}
+                    {% set date_end = dates[0].date.year if dates else None %}
+                    <p class="small">
+                        © Copyright
+                        {{ date_start if date_start }}{{ '-%s' % date_end if date_end and date_end != date_start }}
+                        {{ AUTHOR }}.
+                        {% if COPYRIGHT %}
+                            {{ COPYRIGHT }}
+                        {% endif %}
+                    </p>
                 </div>
-            </div>
 
+                <div class="col-md-2 text-muted">
+                    <h6>Disclaimer</h6>
+                    <p class="small">
+                        {% if DISCLAIMER %}
+                            {{ DISCLAIMER }}
+                        {% else %}
+                            All opinions expressed in this site are my own
+                            personal opinions and are not endorsed by, nor
+                            do they represent the opinions of my previous,
+                            current and future employers or any of its
+                            affiliates, partners or customers.
+                        {% endif %}
+                    </p>
+                </div>
+
+                <div class="col-md-2">
+                    {% if all_feeds %}
+                        <h6>Feeds</h6>
+                        <ul class="list-unstyled small">
+                            {% for feed in all_feeds %}
+                                <li>
+                                    <a href="{{ FEED_DOMAIN }}/{{feed.url }}">
+                                        <i class="fas fa-{{ feed.kind|lower }} fa-fw"></i> {{ feed.name }} ({{ feed.kind }})
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+
+            </div>
+            <div class="row mt-3">
+
+                <div class="offset-3 col-6 small text-muted text-center">
+                    Site generated by <a class="text-dark" href="https://getpelican.com">Pelican</a>.<br/>
+                    <a class="text-dark" href="https://github.com/kdeldycke/plumage">Plumage</a>
+                    theme by <a class="text-dark" href="https://kevin.deldycke.com">Kevin Deldycke</a>.
+                </div>
+
+                <div class="col-3 text-right d-flex flex-column">
+                    <a class="mt-auto" href="#"><i class="fas fa-arrow-up"></i> Back to top</a>
+                </div>
+
+            </div>
         </footer>
 
         {% include "analytics.html" %}
-        <!-- jQuery is stuck at 2.2.4 because of the magnific-popup library is broken on jQuery 3.x -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha512-DUC8yqWf7ez3JD1jszxCWSVB0DMP78eOyBpMa5aJki1bIRARykviOuImIczkxlj1KhVSyS16w2FSQetkD4UU2w==" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha512-oBTprMeNEKCnqfuqKd6sbvFzmFQtlXS3e0C/RGFV0hD6QzhHV+ODfaQbAlmY6/q0ubbwlAM/nCJjkrgA3waLzg==" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha512-kBFfSXuTKZcABVouRYGnUo35KKa1FBrYgwG4PAx7Z2Heroknm0ca2Fm2TosdrrI356EDHMW383S3ISrwKcVPUw==" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js" integrity="sha512-IsNh5E3eYy3tr/JiX2Yx4vsCujtkhwl7SLqgnwLNgf04Hrt9BT9SXlLlZlWx+OK4ndzAoALhsMNcCmkggjZB1w==" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/fitvids/1.2.0/jquery.fitvids.min.js" integrity="sha512-/2sZKAsHDmHNoevKR/xsUKe+Bpf692q4tHNQs9VWWz0ujJ9JBM67iFYbIEdfDV9I2BaodgT5MIg/FTUmUv3oyQ==" crossorigin="anonymous"></script>
 

@@ -57,15 +57,26 @@ it is now generic enough to be used by anyone.
 
 ## Plugins
 
-Plumage has built-in support for the following plugins:
+Plumage has built-in support for the following plugins and extensions:
 
-* [`tipue_search`
-](https://github.com/getpelican/pelican-plugins/tree/master/tipue_search)
-* [`neighbors`
-](https://github.com/getpelican/pelican-plugins/tree/master/neighbors)
-* [`related_posts`
-](https://github.com/getpelican/pelican-plugins/tree/master/related_posts)
-* [`typogrify`](https://pypi.python.org/pypi/typogrify)
+* Pelican builtins:
+    * Style ampersands produced by
+      [`typogrify`](https://pypi.python.org/pypi/typogrify).
+
+* Pelican third-party plugins:
+    * [`tipue_search`
+      ](https://github.com/getpelican/pelican-plugins/tree/master/tipue_search)
+    * [`neighbors`
+      ](https://github.com/getpelican/pelican-plugins/tree/master/neighbors)
+    * [`related_posts`
+      ](https://github.com/getpelican/pelican-plugins/tree/master/related_posts)
+
+* Markdown extensions:
+    * Highlight code produced by [`codehilite`](https://python-markdown.github.io/extensions/code_hilite/).
+    * [`toc` extension](https://python-markdown.github.io/extensions/toc/#usage),
+      which adds permalink anchors to article's subtitles.
+    * [`pymdown-extensions`'s `emojione`
+    * set](https://facelessuser.github.io/pymdown-extensions/extensions/emoji/#default-emoji-generators).
 
 
 ## Installation
@@ -99,10 +110,8 @@ Setting name | Default value | Description
 `DISCLAIMER` | | Overide the Disclaimer notice that gets displayed at the fourth column of the footer.
 [`DISQUS_SITENAME`](http://docs.getpelican.com/en/stable/settings.html#DISQUS_SITENAME) | | Pelican can handle Disqus comments. Specify the Disqus sitename identifier here.
 `FAVICON_LINKS` | `True` | Fetch link's icons from [Google's favicons webservice](https://www.google.com/s2/favicons).
-`FLAT_DESIGN` | `True` | Should we use the default Bootstrap theme, effectively rendering widgets in a flat-style design or not.
 [`GOOGLE_ANALYTICS`](http://docs.getpelican.com/en/stable/settings.html#GOOGLE_ANALYTICS) | | Set to `UA-XXXXX-Y` Property's tracking ID to activate Google Analytics.
 [`GA_COOKIE_DOMAIN`](http://docs.getpelican.com/en/stable/settings.html#GA_COOKIE_DOMAIN) | `auto` | Set cookie domain field of Google Analytics tracking code.
-`GOOGLE_SEARCH` | | [Google's Custom Search Engine](https://www.google.com/cse/) ID (e.g. `partner-pub-0123456789098765:0123456789`) to activate blog specific search.
 `LEFT_SIDEBAR` | | HTML content to put as-is in the left sidebar.
 [`LINKS_WIDGET_NAME`](http://docs.getpelican.com/en/stable/settings.html#LINKS_WIDGET_NAME) | `"Links"` | Allows override of the name of the links widget.
 [`LINKS`](http://docs.getpelican.com/en/stable/settings.html#LINKS) | | A list of tuples (Title, URL) for links to appear in the second column of the footer.

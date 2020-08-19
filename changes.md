@@ -3,6 +3,19 @@ Changelog
 
 * [**v1.1.1**
   (unreleased)](https://github.com/kdeldycke/plumage/compare/v1.1.0...develop)
+  * Upgrade to Bootstrap 4.5.2 with bundled popper.js.
+  * Upgrade to jQuery 3.5.1.
+  * Remove dependency on Masonry.
+  * Remove dependency on ImagesLoaded.
+  * Remove `FLAT_DESIGN` option.
+  * Use list group to renders related content at the bottom of articles.
+  * Move badges above description in project cards.
+  * Use latest Disqus reference code.
+  * Do not display Disqus comments for draft articles.
+  * Ignore empty years in archive page.
+  * Display number of articles per year in archive page.
+  * Remove support for Google Search.
+  * Add style support for ``pymdown-extensions``'s emoji.
   * Auto upgrade pygment styles.
 
 * [**v1.1.0**

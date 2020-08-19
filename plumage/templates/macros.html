@@ -1,6 +1,6 @@
 {% macro render_tag(tag) -%}
 <a href="{{ SITEURL }}/{{ tag.url }}" data-toggle="tooltip"
-   class="label label-default"
+   class="badge badge-secondary"
    title="{{ tag.articles }} article{{ 's' if tag.articles > 1 else '' }} with this tag">{{ tag.name }}</a>
 {%- endmacro %}
 
@@ -18,7 +18,7 @@
         , 'dropbox': ['dropbox.com']
         , 'facebook-square': ['facebook.com']
         , 'github': ['github.com']
-        , 'hacker-news': ['ycombinator.com']
+        , 'hacker-news': ['news.ycombinator.com']
         , 'linkedin': ['linkedin.com']
         , 'stack-overflow': ['stackoverflow.com']
         , 'stack-exchange': ['stackexchange.com']
@@ -38,7 +38,7 @@
     {% if icon %}
         <i class="fab {{ 'fa-%s' % icon[0] }} fa-fw"></i>
     {% elif domain and favicon %}
-        <img src="https://www.google.com/s2/favicons?domain={{ domain }}" width="16" height="16" class="icon" alt="{{ domain }} icon"/>
+        <img src="https://www.google.com/s2/favicons?domain={{ domain }}" width="16" height="16" class="link-icon" alt="{{ domain }} icon"/>
     {% else %}
         <i class="fas fa-external-link-alt fa-fw"></i>
     {% endif %}
