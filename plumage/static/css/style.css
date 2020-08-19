@@ -35,6 +35,14 @@ a {
   transition: all 0.2s ease-out;
 }
 
+/* Style to support pymdown-extensions' emoji:
+ * https://facelessuser.github.io/pymdown-extensions/extensions/emoji/#default-emoji-generators
+ */
+img.emojione {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+
 .avatar-container {
   z-index: 10;
   width: 6rem;
