@@ -15,7 +15,8 @@ Changelog
   * Ignore empty years in archive page.
   * Display number of articles per year in archive page.
   * Remove support for Google Search.
-  * Add style support for ``pymdown-extensions``'s emoji.
+  * Add style support for `pymdownx.emoji`.
+  * Add style support for `markdown.extentions.admonition`.
   * Auto upgrade pygment styles.
 
 * [**v1.1.0**
