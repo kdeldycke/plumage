@@ -16,9 +16,10 @@ Changelog
   * Display number of articles per year in archive page.
   * Upgrade to latest Google Analytics code snippet.
   * Remove `GA_COOKIE_DOMAIN` option.
-  * Remove support for Google Search.
+  * Remove support for Google Search and `GOOGLE_SEARCH` option.
   * Add style support for `pymdownx.emoji`.
   * Add style support for `markdown.extensions.admonition`.
+  * Add direct dependency on pygments.
   * Auto upgrade pygment styles.
 
 * [**v1.1.0**
