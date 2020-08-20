@@ -40,6 +40,7 @@
 
     // Tweak code rendering.
     $(".codehilite pre").addClass('rounded shadow-sm p-2');
+    $(".highlight pre").addClass('rounded shadow-sm p-2');
 
     // Style admonition produced by Python Markdown into alerts.
     $(".admonition").addClass('alert shadow').attr('role', 'alert');
