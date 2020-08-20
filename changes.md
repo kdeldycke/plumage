@@ -14,6 +14,8 @@ Changelog
   * Do not display Disqus comments for draft articles.
   * Ignore empty years in archive page.
   * Display number of articles per year in archive page.
+  * Upgrade to latest Google Analytics code snippet.
+  * Remove `GA_COOKIE_DOMAIN` option.
   * Remove support for Google Search.
   * Add style support for `pymdownx.emoji`.
   * Add style support for `markdown.extensions.admonition`.
