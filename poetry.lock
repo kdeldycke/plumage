@@ -241,17 +241,16 @@ description = "Static site generator supporting reStructuredText and Markdown so
 name = "pelican"
 optional = false
 python-versions = "*"
-version = "4.2.0"
+version = "4.5.0"
 
 [package.dependencies]
 blinker = "*"
-docutils = "*"
+docutils = ">=0.15"
 feedgenerator = ">=1.9"
-jinja2 = ">=2.7"
+jinja2 = ">=2.11"
 pygments = "*"
 python-dateutil = "*"
 pytz = ">=0a"
-six = ">=1.4"
 unidecode = "*"
 
 [package.extras]
@@ -521,8 +520,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "3eba7dd0c29d9bf88f0f26aa24bcb2244bca802880bbd7f3ef9bcd60120205b3"
-lock-version = "1.0"
+content-hash = "4d9284b423f4b6e8024fa679a69d3f4f2c7e12cf2176a8a68b6e508293cc3ac8"
 python-versions = "^3.7"
 
 [metadata.files]
@@ -680,8 +678,8 @@ packaging = [
     {file = "packaging-20.4.tar.gz", hash = "sha256:4357f74f47b9c12db93624a82154e9b120fa8293699949152b22065d556079f8"},
 ]
 pelican = [
-    {file = "pelican-4.2.0-py2.py3-none-any.whl", hash = "sha256:656d8ff9f778951f4e317c9e6530e92b02698c5961ebf019c583775a30f857f6"},
-    {file = "pelican-4.2.0.tar.gz", hash = "sha256:be7ea9a09311374322b5579c88975ae003409e40c833e761780a0d0dbd84e756"},
+    {file = "pelican-4.5.0-py2.py3-none-any.whl", hash = "sha256:2c5c721bc95caa406673d74a5b906f42289930dabee598b41930a18cf98742a5"},
+    {file = "pelican-4.5.0.tar.gz", hash = "sha256:d08119a3ed3eb7d3f2d0a9a5b929be648ad3c84d018b19517ecc608383b824e6"},
 ]
 pkginfo = [
     {file = "pkginfo-1.5.0.1-py2.py3-none-any.whl", hash = "sha256:a6d9e40ca61ad3ebd0b72fbadd4fba16e4c0e4df0428c041e01e06eb6ee71f32"},
