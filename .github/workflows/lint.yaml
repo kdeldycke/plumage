@@ -20,7 +20,9 @@ jobs:
           pip install curlylint
       - name: Lint
         run: |
-          curlylint --verbose .
+          # Excludes archives.html while we wait for
+          # https://github.com/thibaudcolas/curlylint/issues/14
+          curlylint --verbose --exclude "plumage/templates/archives.html" .
 
   lint-css:
     name: Lint CSS files
