@@ -209,7 +209,13 @@ Rights Reserved.
 
 ## Third-party assets
 
-The theme uses external softwares, scripts, libraries and artworks:
+The theme embed copies of some external softwares, scripts, libraries and
+artworks:
+
+    Tipue Search v7.1
+    Copyright (c) 2019 Tipue
+    Distributed under a MIT license
+    Source: https://web.archive.org/web/20200703134724/https://www.tipue.com/search/tipuesearch.zip
 
     jQuery MGlass v1.1
     Copyright (c) 2012 Younès El Biache
