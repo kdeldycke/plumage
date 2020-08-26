@@ -15,6 +15,7 @@ Changelog
   * Move badges above description in project cards.
   * Use latest Disqus reference code.
   * Do not display Disqus comments for draft articles.
+  * Sort tags, categories and authors by frequency first, then alphabeticcaly.
   * Ignore empty years in archive page.
   * Display number of articles per year in archive page.
   * Upgrade to latest Google Analytics code snippet.

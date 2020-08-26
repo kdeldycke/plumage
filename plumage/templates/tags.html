@@ -24,7 +24,8 @@
     {% set tier_2 = [] %}
     {% set tier_3 = [] %}
     {% set total_tags = all_tags|sum(attribute = 'articles') %}
-    {% for tag in all_tags|sort(reverse = True, attribute = 'articles') %}
+    {# Sort by tag frequency, then alphabetically #}
+    {% for tag in all_tags|sort(attribute='name')|sort(reverse=True, attribute='articles') %}
         {% if tier_1|sum(attribute = 'articles') < total_tags / 3.0 or tier_1[-1].articles == tag.articles %}
             {% if tier_1.append(tag) %}{% endif %}
         {% elif tier_2|sum(attribute = 'articles') < total_tags / 3.0 or tier_2[-1].articles == tag.articles %}

@@ -54,7 +54,8 @@
                                 {% endif %}
                             {% endfor %}
                         {% endfor %}
-                        {% for tag in article_tags|sort(reverse = True, attribute = 'articles') %}
+                        {# Sort by tag frequency, then alphabetically #}
+                        {% for tag in article_tags|sort(attribute='name')|sort(reverse=True, attribute='articles') %}
                             {{ m.render_tag(tag) }}
                         {% endfor %}
                     {% endif %}

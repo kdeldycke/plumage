@@ -21,7 +21,8 @@
     {% endfor %}
 
     <dl class="row">
-        {% for author in all_authors|sort(reverse = True, attribute = 'articles') %}
+        {# Sort by number of articles, then alphabetically #}
+        {% for author in all_authors|sort(attribute='name')|sort(reverse=True, attribute='articles') %}
             <dt class="col-sm-2"><a href="{{ SITEURL }}/{{ author.url }}" class="badge badge-info">{{ author.name }}</a></dt>
             <dd class="col-sm-10"><a href="{{ SITEURL }}/{{ author.url }}">{{ author.articles }} article{{ 's' if author.articles > 1 else '' }}</a></dd>
         {% endfor %}
