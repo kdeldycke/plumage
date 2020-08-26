@@ -2,7 +2,7 @@ Changelog
 =========
 
 * [**v2.0.0**
-  (unreleased)](https://github.com/kdeldycke/plumage/compare/v1.1.0...develop)
+  (2020-08-26)](https://github.com/kdeldycke/plumage/compare/v1.1.0...v2.0.0)
   * Upgrade to Bootstrap 4.5.2 with bundled popper.js.
   * Upgrade to jQuery 3.5.1.
   * Upgrade to Tipue Search v7.1.
