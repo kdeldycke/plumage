@@ -27,10 +27,6 @@ var tipuesearch_replace = {'words': [
 // Weighting
 
 var tipuesearch_weight = {'weight': [
-     {'url': 'http://www.tipue.com', 'score': 60},
-     {'url': 'http://www.tipue.com/search', 'score': 60},
-     {'url': 'http://www.tipue.com/tipr', 'score': 30},
-     {'url': 'http://www.tipue.com/support', 'score': 20}
 ]};
 
 
@@ -46,12 +42,6 @@ var tipuesearch_stem = {'words': [
 // Related
 
 var tipuesearch_related = {'Related': [
-     {'search': 'tipue', 'related': 'Search', 'include': 1},
-     {'search': 'tipue', 'related': 'jQuery'},
-     {'search': 'tipue', 'related': 'Blog'},
-     {'search': 'tipue', 'related': 'Support'},
-     {'search': 'tipue search', 'related': 'Demo', 'include': 1},
-     {'search': 'tipue search', 'related': 'Support'}
 ]};
 
 
