@@ -20,11 +20,19 @@ h6 {
 code,
 pre {
   font-family: 'Source Code Pro', Monaco, Menlo, Consolas, 'Courier New', monospace;
+}
 
-  /* Disable default Bootstrap code blocks color which interfers with Pygment's
-   * styles.
-   */
+/* Disable default Bootstrap code blocks color which interfers with Pygment's
+ * styles.
+ */
+.codehilite pre,
+.highlight pre {
   color: inherit;
+  line-height: 1rem;
+}
+
+[data-linenos]:before {
+  content: attr(data-linenos);
 }
 
 html {
