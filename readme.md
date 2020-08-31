@@ -14,10 +14,10 @@ it is now generic enough to be used by anyone.
   ![Plumage article view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/article.png) | ![Plumage categories view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/categories.png) | ![Plumage tiered tag list view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/tiered-tags.png)
   :-:|:-:|:-:
   Article | Categories | Tiered tag list
-
   ![Plumage archive view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/archives.png) | ![Plumage tag view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/tag.png) | ![Plumage authors view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/authors.png)
-  :-:|:-:|:-:
   Collapsable yearly archives | Tagged articles | Authors
+  ![Plumage archive view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/browse-content-by.png) | |
+  Faceted article browsing | |
 
 * Projects template:
 
