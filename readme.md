@@ -32,7 +32,7 @@ it is now generic enough to be used by anyone.
 
   ![Plumage Solarized syntax highlight](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/syntax-highlight.png)
 
-* Site-wide static search via [Tipue-search](https://www.tipue.com/search/).
+* Site-wide static search via [Tipue-search](https://web.archive.org/web/20200703134724/https://tipue.com/search/).
 
 * Bare YouTube links in articles gets rendered as embedded videos:
 
@@ -126,7 +126,7 @@ Setting name | Default value | Description
 `SITE_THUMBNAIL` | | Site's thumbnail URL as displayed in the header. Should be a square image of at least 80x80 pixels.
 [`SOCIAL_WIDGET_NAME`](http://docs.getpelican.com/en/stable/settings.html#SOCIAL_WIDGET_NAME) | `"Social"` | Allows override of the name of the “social” widget.
 [`SOCIAL`](http://docs.getpelican.com/en/stable/settings.html#SOCIAL) | | A list of tuples (Title, URL) to appear in the first columns of the footer.
-`TIPUE_SEARCH` | `False` | Activate [Tipue Search](https://www.tipue.com/search) (javascript search engine) into the site. Requires the [`tipue_search`](https://github.com/getpelican/pelican-plugins/tree/master/tipue_search) plugin.
+`TIPUE_SEARCH` | `False` | Activate [Tipue Search](https://web.archive.org/web/20200703134724/https://tipue.com/search/) (javascript static search engine) into the site. Requires the [`tipue_search`](https://github.com/getpelican/pelican-plugins/tree/master/tipue_search) plugin.
 
 Most of these [parameters are similar to `notmyidea`'s
 ](https://docs.getpelican.com/en/latest/settings.html#themes) (Pelican's default
