@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+
+{% macro period_label() %}
+    {{ period | reverse | join(' ') }}
+{% endmacro %}
+
+
+{% macro period_url() -%}
+    {% set url_parts = output_file.split('index.html', 1) %}
+    {{- url_parts[0] -}}
+{%- endmacro %}
+
+
+{% block title %}
+    {{ period_label() }} archives
+{% endblock %}
+
+
+{% block top_center %}
+    <h1>
+        <a href="{{ SITEURL }}/{{ period_url() }}" rel="bookmark"
+            title="Permalink to {{ period_label() | e }} archives">
+            {{ period_label() }} archives
+        </a>
+    </h1>
+{% endblock %}
+
+
+{% block content %}
+    <dl class="row">
+        {% for article in dates %}
+            <dt class="col-sm-3"><abbr class="published" title="{{ article.date.isoformat() }}">{{ article.locale_date }}</abbr></dt>
+            <dd class="col-sm-9"><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></dd>
+        {% endfor %}
+    </dl>
+{% endblock %}
