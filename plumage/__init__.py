@@ -34,7 +34,7 @@ __version__ = "2.1.0"
 
 
 def get_path():
-    """ Returns installation path of the theme.
+    """Returns installation path of the theme.
 
     Used in ``pelicanconf.py`` to dynamiccaly fetch theme location on the
     system.
