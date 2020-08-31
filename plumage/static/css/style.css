@@ -20,6 +20,11 @@ h6 {
 code,
 pre {
   font-family: 'Source Code Pro', Monaco, Menlo, Consolas, 'Courier New', monospace;
+
+  /* Disable default Bootstrap code blocks color which interfers with Pygment's
+   * styles.
+   */
+  color: inherit;
 }
 
 html {
