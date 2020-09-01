@@ -174,25 +174,28 @@ You have to use the following template to deactivate the zoom of an image:
 
 **Why is the search not working?**
 
-Some plugins may need additional settings, for instance for **tipue_search**,
-after applying the standard options:
+The [`tipue-search`](https://github.com/pelican-plugins/tipue-search) needs to
+be installed then have an additional template file registered in your
+`pelicanconf.py`.
 
-```python
-PLUGINS = ['tipue_search']
-TIPUE_SEARCH = True
-```
+There are two alternatives:
 
-... you'll need to declare additional template file,
-by either adding this line to your `pelicanconf.py`:
+* update the `TEMPLATE_PAGES` variable:
 
-```python
-TEMPLATE_PAGES = {
-        'search.html': 'search.html',
-        }
-```
+    ```python
+    TEMPLATE_PAGES = {
+        (…)
+        "search.html": "search.html",
+        (…)
+     }
+    ```
 
-or using [this technique](https://github.com/kdeldycke/kevin-deldycke-blog/commit/cd4bf8d1f4c55d835d7bfe1d7233cffe48e67a8a).
+* or `DIRECT_TEMPLATES`:
+  ([example](https://github.com/kdeldycke/kevin-deldycke-blog/commit/cd4bf8d1f4c55d835d7bfe1d7233cffe48e67a8a)):
 
+    ```python
+    DIRECT_TEMPLATES = [(…), "search"]
+    ```
 
 ## License
 
