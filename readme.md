@@ -211,34 +211,30 @@ Rights Reserved.
 The theme embed copies of some external softwares, scripts, libraries and
 artworks:
 
-*
-    ```text
-    Tipue Search v7.1
-    Copyright (c) 2019 Tipue
-    Distributed under a MIT license
-    Source: https://web.archive.org/web/20200703134724/https://www.tipue.com/search/tipuesearch.zip
-    ```
+```text
+Tipue Search v7.1
+Copyright (c) 2019 Tipue
+Distributed under a MIT license
+Source: https://web.archive.org/web/20200703134724/https://www.tipue.com/search/tipuesearch.zip
+```
 
-*
-    ```text
-    jQuery MGlass v1.1
-    Copyright (c) 2012 Younès El Biache
-    Distributed under a MIT license
-    Source: https://github.com/younes0/jQuery-MGlass
-    ```
+```text
+jQuery MGlass v1.1
+Copyright (c) 2012 Younès El Biache
+Distributed under a MIT license
+Source: https://github.com/younes0/jQuery-MGlass
+```
 
-*
-    ```text
-    Fabric (Plaid)
-    Copyright (c) 2012 James Basoo
-    Distributed under a Creative Commons Attribution-ShareAlike 3.0 Unported license
-    Source: https://subtlepatterns.com/fabric-plaid/
-    ```
+```text
+Fabric (Plaid)
+Copyright (c) 2012 James Basoo
+Distributed under a Creative Commons Attribution-ShareAlike 3.0 Unported license
+Source: https://subtlepatterns.com/fabric-plaid/
+```
 
-*
-    ```text
-    Cream paper
-    Copyright (c) 2012 Devin Holmes
-    Distributed under a Creative Commons Attribution-ShareAlike 3.0 Unported license
-    Source: https://subtlepatterns.com/cream-paper/
-    ```
+```text
+Cream paper
+Copyright (c) 2012 Devin Holmes
+Distributed under a Creative Commons Attribution-ShareAlike 3.0 Unported license
+Source: https://subtlepatterns.com/cream-paper/
+```
