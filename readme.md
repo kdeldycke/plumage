@@ -6,7 +6,6 @@ static site generator).
 I initially created this theme for [my blog](https://kevin.deldycke.com), but
 it is now generic enough to be used by anyone.
 
-
 ## Features
 
 * Standard Pelican views:
@@ -55,13 +54,12 @@ it is now generic enough to be used by anyone.
 
   ![Plumage disqus comments](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/disqus.png)
 
-
 ## Plugins
 
 Plumage has built-in support for the following plugins and extensions:
 
 * Pelican builtins:
-    * [`typogrify`](https://pypi.python.org/pypi/typogrify): style ampersands.
+  * [`typogrify`](https://pypi.python.org/pypi/typogrify): style ampersands.
 
 * Pelican third-party plugins:
     * [`tipue_search`
@@ -72,17 +70,16 @@ Plumage has built-in support for the following plugins and extensions:
       ](https://github.com/getpelican/pelican-plugins/tree/master/related_posts)
 
 * Markdown extensions:
-    * [`markdown.extensions.admonition`](https://python-markdown.github.io/extensions/admonition/):
-      re-style admonitions into [alerts](https://getbootstrap.com/docs/4.5/components/alerts/).
-    * [`markdown.extensions.codehilite`](https://python-markdown.github.io/extensions/code_hilite/):
-      style highlighted code with Pygment style.
-    * [`markdown.extensions.toc`](https://python-markdown.github.io/extensions/toc/#usage),
-      adds permalink anchors to article's subtitles.
-    * [`pymdownx.emoji`](https://facelessuser.github.io/pymdown-extensions/extensions/emoji/#default-emoji-generators):
-      style `emojione` set for proper integration into text.
-    * [`pymdownx.highlight`](https://facelessuser.github.io/pymdown-extensions/extensions/highlight/):
-      style highlighted code with Pygment style.
-
+  * [`markdown.extensions.admonition`](https://python-markdown.github.io/extensions/admonition/):
+    re-style admonitions into [alerts](https://getbootstrap.com/docs/4.5/components/alerts/).
+  * [`markdown.extensions.codehilite`](https://python-markdown.github.io/extensions/code_hilite/):
+    style highlighted code with Pygment style.
+  * [`markdown.extensions.toc`](https://python-markdown.github.io/extensions/toc/#usage),
+    adds permalink anchors to article's subtitles.
+  * [`pymdownx.emoji`](https://facelessuser.github.io/pymdown-extensions/extensions/emoji/#default-emoji-generators):
+    style `emojione` set for proper integration into text.
+  * [`pymdownx.highlight`](https://facelessuser.github.io/pymdown-extensions/extensions/highlight/):
+    style highlighted code with Pygment style.
 
 ## Installation
 
@@ -90,7 +87,7 @@ This package is [available on PyPi](https://pypi.python.org/pypi/plumage), so
 you can install the latest stable release and its dependencies with a simple
 ``pip`` call:
 
-```python
+```shell-session
 $ pip install plumage
 ```
 
@@ -101,7 +98,6 @@ import plumage
 
 THEME = plumage.get_path()
 ```
-
 
 ## Settings
 
@@ -137,30 +133,29 @@ theme). For usage example, please have a look into [my own `pelicanconf.py`
 The theme is also sensible to this list of [standard Pelican parameters
 ](https://docs.getpelican.com/en/latest/settings.html):
 
-  * `ARCHIVES_SAVE_AS`
-  * `AUTHOR`
-  * `AUTHOR_SAVE_AS`
-  * `AUTHORS_SAVE_AS`
-  * `CATEGORIES_SAVE_AS`
-  * `CATEGORY_FEED_ATOM`
-  * `CATEGORY_FEED_RSS`
-  * `DEFAULT_LANG`
-  * `DEFAULT_PAGINATION`
-  * `DISPLAY_PAGES_ON_MENU`
-  * `DISPLAY_CATEGORIES_ON_MENU`
-  * `FEED_ALL_ATOM`
-  * `FEED_ALL_RSS`
-  * `FEED_ATOM`
-  * `FEED_DOMAIN`
-  * `FEED_RSS`
-  * `PAGINATION_PATTERNS`
-  * `SITENAME`
-  * `SITEURL`
-  * `TAG_FEED_ATOM`
-  * `TAG_FEED_RSS`
-  * `TAGS_SAVE_AS`
-  * `TYPOGRIFY`
-
+* `ARCHIVES_SAVE_AS`
+* `AUTHOR`
+* `AUTHOR_SAVE_AS`
+* `AUTHORS_SAVE_AS`
+* `CATEGORIES_SAVE_AS`
+* `CATEGORY_FEED_ATOM`
+* `CATEGORY_FEED_RSS`
+* `DEFAULT_LANG`
+* `DEFAULT_PAGINATION`
+* `DISPLAY_PAGES_ON_MENU`
+* `DISPLAY_CATEGORIES_ON_MENU`
+* `FEED_ALL_ATOM`
+* `FEED_ALL_RSS`
+* `FEED_ATOM`
+* `FEED_DOMAIN`
+* `FEED_RSS`
+* `PAGINATION_PATTERNS`
+* `SITENAME`
+* `SITEURL`
+* `TAG_FEED_ATOM`
+* `TAG_FEED_RSS`
+* `TAGS_SAVE_AS`
+* `TYPOGRIFY`
 
 ## FAQ
 
@@ -170,11 +165,15 @@ All images of an article are zoomable by default. You can deactivate the
 magnifying glass per-image by adding a `noZoom` CSS class. So instead of the
 following Markdown code:
 
-    ![Image title](/folder/image.png)
+```markdown
+![Image title](/folder/image.png)
+```
 
 You have to use the following template to deactivate the zoom of an image:
 
-    ![Image title](/folder/image.png){: .noZoom}
+```markdown
+![Image title](/folder/image.png){: .noZoom}
+```
 
 **Why is the search not working?**
 
@@ -206,7 +205,6 @@ This software is licensed under the [GNU General Public License v2 or later
 Copyright (C) 2012-2020 [Kevin Deldycke](https://kevin.deldycke.com) and
 [contributors](https://github.com/kdeldycke/plumage/graphs/contributors). All
 Rights Reserved.
-
 
 ## Third-party assets
 
