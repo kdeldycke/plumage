@@ -1,5 +1,4 @@
-Changelog
-=========
+# Changelog
 
 * [**v2.1.0**
   (unreleased)](https://github.com/kdeldycke/plumage/compare/v2.0.0...develop)
