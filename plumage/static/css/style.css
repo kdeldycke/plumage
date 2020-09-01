@@ -31,7 +31,7 @@ pre {
   line-height: 1rem;
 }
 
-[data-linenos]:before {
+[data-linenos]::before {
   content: attr(data-linenos);
 }
 
