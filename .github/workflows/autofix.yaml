@@ -91,11 +91,14 @@ jobs:
         run: |
           # Support both markdown.extensions.codehilite and pymdownx.highlight
           # default CSS class.
+          poetry run pygmentize -S monokai         -f html -a .codehilite >  ./plumage/static/css/pygment-monokai.css
+          poetry run pygmentize -S monokai         -f html -a .highlight  >> ./plumage/static/css/pygment-monokai.css
           poetry run pygmentize -S solarized-dark  -f html -a .codehilite >  ./plumage/static/css/pygment-solarized-dark.css
           poetry run pygmentize -S solarized-dark  -f html -a .highlight  >> ./plumage/static/css/pygment-solarized-dark.css
           poetry run pygmentize -S solarized-light -f html -a .codehilite >  ./plumage/static/css/pygment-solarized-light.css
           poetry run pygmentize -S solarized-light -f html -a .highlight  >> ./plumage/static/css/pygment-solarized-light.css
           # Crappy split of side-by-side declarations to please styleint.
+          sed -i "s/; /; \n/g" ./plumage/static/css/pygment-monokai.css
           sed -i "s/; /; \n/g" ./plumage/static/css/pygment-solarized-dark.css
           sed -i "s/; /; \n/g" ./plumage/static/css/pygment-solarized-light.css
       - name: Install stylelint

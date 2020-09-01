@@ -5,6 +5,8 @@ Changelog
   (unreleased)](https://github.com/kdeldycke/plumage/compare/v2.0.0...develop)
   * Add `period_archives.html` template.
   * Fix code block color that made them unreadable.
+  * Add Monokai style to render code block to increase contrast and
+    readability. Set as new default instead of Solarized dark.
 
 * [**v2.0.0**
   (2020-08-26)](https://github.com/kdeldycke/plumage/compare/v1.1.0...v2.0.0)
