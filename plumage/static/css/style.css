@@ -136,7 +136,7 @@ span.amp {
 
 /* Style title headers anchors produced by Python's Markdown module. See:
  * https://python-markdown.github.io/extensions/toc/#usage
- * https://github.com/kdeldycke/kevin-deldycke-blog/blob/master/pelicanconf.py#L22
+ * https://github.com/kdeldycke/kevin-deldycke-blog/blob/main/pelicanconf.py#L22
  */
 a.headerlink {
   visibility: hidden;

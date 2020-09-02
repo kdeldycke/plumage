@@ -126,7 +126,7 @@ Setting name | Default value | Description
 Most of these [parameters are similar to `notmyidea`'s
 ](https://docs.getpelican.com/en/latest/settings.html#themes) (Pelican's default
 theme). For usage example, please have a look into [my own `pelicanconf.py`
-](https://github.com/kdeldycke/kevin-deldycke-blog/blob/master/pelicanconf.py).
+](https://github.com/kdeldycke/kevin-deldycke-blog/blob/main/pelicanconf.py).
 
 The theme is also sensible to this list of [standard Pelican parameters
 ](https://docs.getpelican.com/en/latest/settings.html):
@@ -201,7 +201,7 @@ There are two alternatives:
 ## License
 
 This software is licensed under the [GNU General Public License v2 or later
-(GPLv2+)](https://github.com/kdeldycke/plumage/blob/master/LICENSE).
+(GPLv2+)](https://github.com/kdeldycke/plumage/blob/main/LICENSE).
 
 Copyright (C) 2012-2020 [Kevin Deldycke](https://kevin.deldycke.com) and
 [contributors](https://github.com/kdeldycke/plumage/graphs/contributors). All
