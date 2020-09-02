@@ -3,6 +3,7 @@
 * [**v2.1.0**
   (unreleased)](https://github.com/kdeldycke/plumage/compare/v2.0.0...develop)
   * Add `period_archives.html` template.
+  * Add support for `similar_posts` plugin.
   * Fix code block color that made them unreadable.
   * Add Monokai style to render code block to increase contrast and
     readability. Set as new default instead of Solarized dark.

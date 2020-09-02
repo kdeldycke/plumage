@@ -65,6 +65,7 @@ Plumage has built-in support for the following plugins and extensions:
   * [`tipue-search`](https://github.com/pelican-plugins/tipue-search)
   * [`neighbors`](https://github.com/pelican-plugins/neighbors)
   * [`related-posts`](https://github.com/pelican-plugins/related-posts)
+  * [`similar_posts`](https://github.com/davidlesieur/similar_posts)
 
 * Markdown extensions:
   * [`markdown.extensions.admonition`](https://python-markdown.github.io/extensions/admonition/):

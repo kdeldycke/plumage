@@ -93,12 +93,21 @@
 
     {{ article.content }}
 
-    {% if article.related_posts %}
+    {# Fetch content related to the current article from either related-posts
+    or simila-posts plugin. The latter teakes precedence as it produces more
+    robust results. #}
+    {% set related = None %}
+    {% if article.similar_posts %}
+        {% set related = article.similar_posts %}
+    {% elif article.related_posts %}
+        {% set related = article.related_posts %}
+    {% endif %}
+    {% if related %}
         <h3 class="mt-3">Related content</h3>
         {# TODO: Use fancier related layout with images, as in:
         https://kevin.deldycke.com/2012/04/beautify-contextual-related-posts-wordpress-plugin/ #}
         <div class="list-group bg-light text-dark">
-            {% for related_post in article.related_posts %}
+            {% for related_post in related %}
                 <a class="list-group-item list-group-item-action" href="{{ SITEURL }}/{{ related_post.url }}">
                     <div class="d-flex w-100 justify-content-between">
                         <h5>{{ related_post.title }}</h5>
@@ -106,7 +115,7 @@
                             {{ related_post.date.strftime('%Y') }}
                         </abbr>
                     </div>
-                    <small>{{ related_post.summary|striptags|e }}</small>
+                    <small>{{ related_post.summary | striptags | e }}</small>
                 </a>
             {% endfor %}
         </div>
