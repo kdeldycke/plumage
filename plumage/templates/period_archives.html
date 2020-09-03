@@ -7,6 +7,9 @@
 
 
 {% macro period_url() -%}
+    {# Ugly hack to get period archive URL. The {{ url }} variable doesn't return what I expected.
+    The issue is being discussed at: https://github.com/getpelican/pelican/issues/2773
+    #}
     {% set url_parts = output_file.split('index.html', 1) %}
     {{- url_parts[0] -}}
 {%- endmacro %}
