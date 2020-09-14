@@ -34,7 +34,7 @@ classifiers = [
 # https://en.wikipedia.org/wiki/CPython#Version_history
 python = "^3.7"
 pelican = "^4.2.0"
-pygments = "^2.6"
+pygments = "^2.7.0"
 
 [tool.poetry.dev-dependencies]
 check-wheel-contents = "^0.1.0"
