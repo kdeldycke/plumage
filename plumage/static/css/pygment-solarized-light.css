@@ -1,3 +1,31 @@
+pre {
+  line-height: 125%;
+  margin: 0;
+}
+
+td.linenos pre {
+  color: #93a1a1;
+  background-color: #eee8d5;
+  padding: 0 5px 0 5px;
+}
+
+span.linenos {
+  color: #93a1a1;
+  background-color: #eee8d5;
+  padding: 0 5px 0 5px;
+}
+
+td.linenos pre.special {
+  color: #000;
+  background-color: #ffffc0;
+  padding: 0 5px 0 5px;
+}
+
+span.linenos.special {
+  color: #000;
+  background-color: #ffffc0;
+  padding: 0 5px 0 5px;
+}
 .codehilite .hll { background-color: #eee8d5; }
 
 .codehilite {
@@ -111,6 +139,34 @@
 .codehilite .vi { color: #268bd2; } /* Name.Variable.Instance */
 .codehilite .vm { color: #268bd2; } /* Name.Variable.Magic */
 .codehilite .il { color: #2aa198; } /* Literal.Number.Integer.Long */
+pre {
+  line-height: 125%;
+  margin: 0;
+}
+
+td.linenos pre {
+  color: #93a1a1;
+  background-color: #eee8d5;
+  padding: 0 5px 0 5px;
+}
+
+span.linenos {
+  color: #93a1a1;
+  background-color: #eee8d5;
+  padding: 0 5px 0 5px;
+}
+
+td.linenos pre.special {
+  color: #000;
+  background-color: #ffffc0;
+  padding: 0 5px 0 5px;
+}
+
+span.linenos.special {
+  color: #000;
+  background-color: #ffffc0;
+  padding: 0 5px 0 5px;
+}
 .highlight .hll { background-color: #eee8d5; }
 
 .highlight {
