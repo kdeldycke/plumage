@@ -1,5 +1,8 @@
 # Changelog
 
+* [**v2.1.1**
+  (unreleased)](https://github.com/kdeldycke/plumage/compare/v2.1.0...develop)
+
 * [**v2.1.0**
   (2020-10-17)](https://github.com/kdeldycke/plumage/compare/v2.0.0...v2.1.0)
   * Add `period_archives.html` template.
