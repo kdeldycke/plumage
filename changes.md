@@ -9,6 +9,7 @@
   * Add Monokai style to render code block to increase contrast and
     readability. Set as new default instead of Solarized dark.
   * Rename `master` branch to `main`.
+  * Upgrade to `Poetry >= 1.1.0`.
 
 * [**v2.0.0**
   (2020-08-26)](https://github.com/kdeldycke/plumage/compare/v1.1.0...v2.0.0)
