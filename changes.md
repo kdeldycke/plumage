@@ -1,7 +1,7 @@
 # Changelog
 
 * [**v2.1.0**
-  (unreleased)](https://github.com/kdeldycke/plumage/compare/v2.0.0...develop)
+  (2020-10-17)](https://github.com/kdeldycke/plumage/compare/v2.0.0...v2.1.0)
   * Add `period_archives.html` template.
   * Add support for `similar_posts` plugin.
   * Upgrade to `pygment >= 2.7`.
