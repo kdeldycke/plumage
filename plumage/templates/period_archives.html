@@ -2,7 +2,7 @@
 
 
 {% macro period_label() %}
-    {{ period | reverse | join(' ') }}
+    {{ period|reverse|join(' ') }}
 {% endmacro %}
 
 
@@ -23,7 +23,7 @@
 {% block top_center %}
     <h1>
         <a href="{{ SITEURL }}/{{ period_url() }}" rel="bookmark"
-            title="Permalink to {{ period_label() | e }} archives">
+            title="Permalink to {{ period_label()|e }} archives">
             {{ period_label() }} archives
         </a>
     </h1>

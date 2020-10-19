@@ -115,7 +115,7 @@
                             {{ related_post.date.strftime('%Y') }}
                         </abbr>
                     </div>
-                    <small>{{ related_post.summary | striptags | e }}</small>
+                    <small>{{ related_post.summary|striptags|e }}</small>
                 </a>
             {% endfor %}
         </div>
