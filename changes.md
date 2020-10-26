@@ -2,6 +2,7 @@
 
 * [**v2.1.1**
   (unreleased)](https://github.com/kdeldycke/plumage/compare/v2.1.0...develop)
+  * Upgrade to Bootstrap 4.5.3.
 
 * [**v2.1.0**
   (2020-10-17)](https://github.com/kdeldycke/plumage/compare/v2.0.0...v2.1.0)
