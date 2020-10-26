@@ -6,25 +6,29 @@ pre {
 td.linenos pre {
   color: #586e75;
   background-color: #073642;
-  padding: 0 5px 0 5px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 span.linenos {
   color: #586e75;
   background-color: #073642;
-  padding: 0 5px 0 5px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 td.linenos pre.special {
   color: #000;
   background-color: #ffffc0;
-  padding: 0 5px 0 5px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 span.linenos.special {
   color: #000;
   background-color: #ffffc0;
-  padding: 0 5px 0 5px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 .codehilite .hll { background-color: #073642; }
 
@@ -147,25 +151,29 @@ pre {
 td.linenos pre {
   color: #586e75;
   background-color: #073642;
-  padding: 0 5px 0 5px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 span.linenos {
   color: #586e75;
   background-color: #073642;
-  padding: 0 5px 0 5px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 td.linenos pre.special {
   color: #000;
   background-color: #ffffc0;
-  padding: 0 5px 0 5px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 span.linenos.special {
   color: #000;
   background-color: #ffffc0;
-  padding: 0 5px 0 5px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 .highlight .hll { background-color: #073642; }
 
