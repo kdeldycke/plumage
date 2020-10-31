@@ -4,6 +4,7 @@
   (unreleased)](https://github.com/kdeldycke/plumage/compare/v2.1.0...develop)
   * Upgrade to Bootstrap 4.5.3.
   * Upgrade to Font Awesome 5.15.1.
+  * Add support for line numbers and highlights in code samples.
 
 * [**v2.1.0**
   (2020-10-17)](https://github.com/kdeldycke/plumage/compare/v2.0.0...v2.1.0)

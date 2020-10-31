@@ -39,10 +39,11 @@
     $("blockquote").addClass('blockquote border-left border-primary pl-3').css('border-left-width', 'thick');
 
     // Tweak code rendering.
-    $(".codehilite").addClass('rounded shadow-sm mb-2');
-    $(".highlight").addClass('rounded shadow-sm mb-2');
-    $(".codehilite pre").addClass('codehilite p-2');
-    $(".highlight pre").addClass('highlight p-2');
+    $(".codehilite").addClass('rounded shadow-sm mb-3');
+    $(".highlight").addClass('rounded shadow-sm mb-3');
+    // Fix code block color conflicts with Bootstrap.
+    $(".codehilite pre").addClass('codehilite');
+    $(".highlight pre").addClass('highlight');
 
     // Style admonition produced by Python Markdown into alerts.
     $(".admonition").addClass('alert shadow').attr('role', 'alert');
