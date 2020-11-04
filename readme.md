@@ -200,8 +200,8 @@ extra options to [Pygments' HTML formatter](https://pygments.org/docs/formatters
 
 This will render this:
 
-  ```markdown
-  \`\`\`{.shell-session hl_lines="11" linenospecial="3" filename="~/code/foo.log"}
+  ````markdown
+  ```{.shell-session hl_lines="11" linenospecial="3" filename="~/code/foo.log"}
   $ cat ./example.markdown
   This is the content of the file:
   → java
@@ -223,8 +223,8 @@ This will render this:
 
   This is extra content.
 
-  \`\`\`
   ```
+  ````
 
 Into this:
 
