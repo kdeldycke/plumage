@@ -173,7 +173,7 @@ Filename | ✅ | ❌
 Long line wraps | ✅ | ❌
 Long line overflow (scrollbar) | ❌ | ✅
 Sticky left gutter | ❌ | ✅
-Line anchors | ❌ | ❌
+Line anchors | [WIP @ Pygments](https://github.com/pygments/pygments/pull/1591) | ❌
 
 ### [Python Markdown CodeHilite](https://python-markdown.github.io/extensions/code_hilite/)
 
