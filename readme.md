@@ -163,16 +163,16 @@ differences:
 
 Feature | CodeHilite | Highlight
 :--- |:---: |:---:
-Filename | ✅ | TODO
+Clean copy and paste | ✅ | ✅
 Line numbering | ✅ | ✅
 Right justified numbers | ✅ | ✅
-Single line highlight | ✅ |
-Nth line highlight | ✅ | TODO
-Clean copy and paste | ✅ | ✅
-Line anchors | ? |
-Long line wraps | ✅ | TODO
-Long line overflow | | ✅
-Sticky left gutter | | ✅
+Single line highlight | ✅ | ❌
+Nth line highlight | ✅ | ❌
+Filename | ✅ | ❌
+Long line wraps | ✅ | ❌
+Long line overflow (scrollbar) | ❌ | ✅
+Sticky left gutter | ❌ | ✅
+Line anchors | ❌ | ❌
 
 ### [Python Markdown CodeHilite](https://python-markdown.github.io/extensions/code_hilite/)
 
@@ -250,9 +250,31 @@ Just add this configuration to your `pelicanconf.py`:
 
 This will render this:
 
-  ```markdown
+  ````markdown
+  ```{.shell-session hl_lines="11" linenospecial="3" filename="~/code/foo.log"}
+  $ cat ./example.markdown
+  This is the content of the file:
+  → java
+  → rust
+  → haskell
+  → javascript
+
+  $ cat ./addendum.txt
+  This is extra content.
+
+  $ find ./ -iname "*.markdown" -print -exec bash -c 'cat ./addendum.txt >> "{}"' \;
+  ./example.markdown
+  $ cat ./example.markdown
+  This is the content of the file:
+  → java
+  → rust
+  → haskell
+  → javascript
+
+  This is extra content.
 
   ```
+  ````
 
 Into this:
 
