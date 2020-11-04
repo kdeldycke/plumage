@@ -155,6 +155,109 @@ The theme is also sensible to this list of [standard Pelican parameters
 * `TAGS_SAVE_AS`
 * `TYPOGRIFY`
 
+## Code Syntax Highlighting
+
+There is two alternatives, all relying on [Pygments syntax
+highlighter](https://pygments.org), sharing most features, with some
+differences:
+
+Feature | CodeHilite | Highlight
+:--- |:---: |:---:
+Filename | ✅ | TODO
+Line numbering | ✅ | ✅
+Right justified numbers | ✅ | ✅
+Single line highlight | ✅ |
+Nth line highlight | ✅ | TODO
+Clean copy and paste | ✅ | ✅
+Line anchors | ? |
+Long line wraps | ✅ | TODO
+Long line overflow | | ✅
+Sticky left gutter | | ✅
+
+### [Python Markdown CodeHilite](https://python-markdown.github.io/extensions/code_hilite/)
+
+Just add this configuration to `pelicanconf.py`, which allows us to pass
+extra options to [Pygments' HTML formatter](https://pygments.org/docs/formatters/#HtmlFormatter):
+
+  ```python
+  MARKDOWN = {
+      "extension_configs": {
+          (…)
+          "markdown.extensions.codehilite": {
+              "css_class": "codehilite",  # Defaults
+              "linenums": True,
+              "linenos": "inline",
+              "linespans": "coderow",
+              "lineanchors": "l",
+              "anchorlinenos": True,
+              "wrapcode": True,
+          },
+          "markdown.extensions.fenced_code": {},
+          (…)
+      },
+  }
+  ```
+
+This will render this:
+
+  ```markdown
+  \`\`\`{.shell-session hl_lines="11" linenospecial="3" filename="~/code/foo.log"}
+  $ cat ./example.markdown
+  This is the content of the file:
+  → java
+  → rust
+  → haskell
+  → javascript
+
+  $ cat ./addendum.txt
+  This is extra content.
+
+  $ find ./ -iname "*.markdown" -print -exec bash -c 'cat ./addendum.txt >> "{}"' \;
+  ./example.markdown
+  $ cat ./example.markdown
+  This is the content of the file:
+  → java
+  → rust
+  → haskell
+  → javascript
+
+  This is extra content.
+
+  \`\`\`
+  ```
+
+Into this:
+
+![Plumage Python Markdown CodeHilite rendering](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/codehilite-rendering.png)
+
+### [PyMdown Extensions' Highlight](https://facelessuser.github.io/pymdown-extensions/extensions/highlight/)
+
+Just add this configuration to your `pelicanconf.py`:
+
+  ```python
+  MARKDOWN = {
+      "extension_configs": {
+          (…)
+          "pymdownx.highlight": {
+              "linenums": True,
+              "linenums_style": "pymdownx-inline",
+          },
+          "pymdownx.superfences": {},
+          (…)
+      },
+  }
+  ```
+
+This will render this:
+
+  ```markdown
+
+  ```
+
+Into this:
+
+![Plumage PyMdown Extensions' Highlight rendering](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/highlight-rendering.png)
+
 ## FAQ
 
 **How can I disable the zoom on images?**

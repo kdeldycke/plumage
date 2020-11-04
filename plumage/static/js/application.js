@@ -42,8 +42,6 @@
     $(".codehilite").addClass('rounded shadow-sm mb-3');
     $(".highlight").addClass('rounded shadow-sm mb-3');
     // Fix code block color conflicts with Bootstrap.
-    $(".codehilite pre").addClass('codehilite');
-    $(".highlight pre").addClass('highlight');
 
     // Style admonition produced by Python Markdown into alerts.
     $(".admonition").addClass('alert shadow').attr('role', 'alert');
