@@ -282,7 +282,7 @@ Into this:
 
 ## FAQ
 
-**How can I disable the zoom on images?**
+### How can I disable the zoom on images?
 
 All images of an article are zoomable by default. You can deactivate the
 magnifying glass per-image by adding a `noZoom` CSS class. So instead of the
@@ -298,7 +298,7 @@ You have to use the following template to deactivate the zoom of an image:
 ![Image title](/folder/image.png){: .noZoom}
 ```
 
-**Why is the search not working?**
+### Why is the search not working?
 
 The [`tipue-search`](https://github.com/pelican-plugins/tipue-search) needs to
 be installed then have an additional template file registered in your
