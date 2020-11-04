@@ -166,8 +166,9 @@ Feature | [CodeHilite](https://python-markdown.github.io/extensions/code_hilite/
 Clean copy and paste | ✅ | ✅
 Line numbering | ✅ | ✅
 Right justified numbers | ✅ | ✅
-Single line highlight | ✅ | ❌
-Nth line highlight | ✅ | ❌
+Line start offset | ✅ | ✅
+Multiple line highlight | ✅ | ✅
+Nth line highlight | ✅ | ✅
 Filename | ✅ | ❌
 Long line wraps | ✅ | ❌
 Long line overflow (scrollbar) | ❌ | ✅
@@ -188,7 +189,7 @@ extra options to [Pygments' HTML formatter](https://pygments.org/docs/formatters
               "linenums": True,
               "linenos": "inline",
               "linespans": "coderow",
-              "lineanchors": "l",
+              "lineanchors": "L",
               "anchorlinenos": True,
               "wrapcode": True,
           },
@@ -201,7 +202,7 @@ extra options to [Pygments' HTML formatter](https://pygments.org/docs/formatters
 This will render this:
 
   ````markdown
-  ```{.shell-session hl_lines="11" linenospecial="3" filename="~/code/foo.log"}
+  ```{.shell-session hl_lines="8 11" linenostart="5" linenospecial="3" filename="~/code/foo.log"}
   $ cat ./example.markdown
   This is the content of the file:
   → java
@@ -251,7 +252,7 @@ Just add this configuration to your `pelicanconf.py`:
 This will render this:
 
   ````markdown
-  ```{.shell-session hl_lines="11" linenospecial="3" filename="~/code/foo.log"}
+  ```{.shell-session hl_lines="8 11" linenums="5 1 3" filename="~/code/foo.log"}
   $ cat ./example.markdown
   This is the content of the file:
   → java
