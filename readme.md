@@ -161,7 +161,7 @@ There is two alternatives, all relying on [Pygments syntax
 highlighter](https://pygments.org), sharing most features, with some
 differences:
 
-Feature | CodeHilite | Highlight
+Feature | [CodeHilite](https://python-markdown.github.io/extensions/code_hilite/) | [Highlight](https://facelessuser.github.io/pymdown-extensions/extensions/highlight/)
 :--- |:---: |:---:
 Clean copy and paste | ✅ | ✅
 Line numbering | ✅ | ✅
