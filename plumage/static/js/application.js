@@ -38,10 +38,9 @@
     // Style blockquote in the way Bootstrap does.
     $("blockquote").addClass('blockquote border-left border-primary pl-3').css('border-left-width', 'thick');
 
-    // Tweak code rendering.
+    // Style code box.
     $(".codehilite").addClass('rounded shadow-sm mb-3');
     $(".highlight").addClass('rounded shadow-sm mb-3');
-    // Fix code block color conflicts with Bootstrap.
 
     // Style admonition produced by Python Markdown into alerts.
     $(".admonition").addClass('alert shadow').attr('role', 'alert');
