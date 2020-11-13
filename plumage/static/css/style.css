@@ -120,7 +120,7 @@ span.linenos.special {
 }
 
 html {
-  background: rgb(236, 236, 236) url(/theme/img/fabric_plaid.png);
+  background: rgb(236, 236, 236) url(/theme/img/fabric_plaid.jpeg);
   box-shadow: inset 0 10px 100px -30px rgba(0, 0, 0, 0.5);
 }
 
@@ -293,7 +293,7 @@ dt:hover > a.headerlink {
 }
 
 footer {
-  background: url(/theme/img/creampaper.png);
+  background: url(/theme/img/creampaper.jpeg);
   text-shadow: 0 1px 1px white;
   box-shadow: inset 0 30px 30px -30px rgba(0, 0, 0, 0.5);
 }
