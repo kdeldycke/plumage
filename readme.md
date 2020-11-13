@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/kdeldycke/plumage/">
-    <img src="https://github.com/kdeldycke/plumage/raw/main/screenshots/plumage-header-logo.jpeg" alt="Plumage, a Pelican theme">
+    <img src="https://github.com/kdeldycke/plumage/raw/develop/screenshots/plumage-header-logo.jpeg" alt="Plumage, a Pelican theme">
   </a>
 </p>
 
