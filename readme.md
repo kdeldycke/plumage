@@ -1,7 +1,11 @@
-# Plumage
+<p align="center">
+  <a href="https://github.com/kdeldycke/plumage/">
+    <img src="https://github.com/kdeldycke/plumage/raw/main/screenshots/plumage-header-logo.jpg" alt="Plumage, a Pelican theme">
+  </a>
+</p>
 
-Plumage is a clean and tidy theme for [Pelican](https://getpelican.com) (a
-static site generator).
+Plumage is a clean and tidy theme for [Pelican](https://getpelican.com), a
+static site generator.
 
 I initially created this theme for [my blog](https://kevin.deldycke.com), but
 it is now generic enough to be used by anyone.
@@ -364,4 +368,16 @@ Cream paper
 Copyright (c) 2012 Devin Holmes
 Distributed under a Creative Commons Attribution-ShareAlike 3.0 Unported license
 Source: https://subtlepatterns.com/cream-paper/
+```
+
+```text
+Feather-alt icon v5.1.0
+Copyright (c) 2020 Font Awesome project
+Distributed under a Creative Commons Attribution 4.0 International license
+Source: https://fontawesome.com/icons/feather-alt?style=solid
+```
+
+```text
+Macro shot of White Feather
+Source: https://unsplash.com/photos/Sw7f58YJbc0
 ```
