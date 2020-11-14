@@ -6,6 +6,7 @@
   * Upgrade to Font Awesome 5.15.1.
   * Reduce image size by converting most assets from PNG to JPEG.
   * Add support for line numbers and highlights in code samples.
+  * Add keywords meta tag in articles' header.
   * Add project header image and logo.
 
 * [**v2.1.0**
