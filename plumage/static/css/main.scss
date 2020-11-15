@@ -39,62 +39,62 @@ img.emojione {
   -ms-perspective: 600;
   -o-perspective: 600;
   perspective: 600;
-}
 
-.avatar {
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  -webkit-transform-style: preserve-3d;
-  -moz-transform-style: preserve-3d;
-  -ms-transform-style: preserve-3d;
-  -o-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-}
+  .avatar {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 
-.avatar .side {
-  border: solid 3px white;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
-  border-radius: 16px;
-  overflow: hidden;
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  -ms-backface-visibility: hidden;
-  -o-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
+    .side {
+      border: solid 3px white;
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
+      border-radius: 16px;
+      overflow: hidden;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      -webkit-backface-visibility: hidden;
+      -moz-backface-visibility: hidden;
+      -ms-backface-visibility: hidden;
+      -o-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
 
-.avatar .back {
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #eee), color-stop(100%, #ddd));
-  background-image: -webkit-linear-gradient(#eee, #ddd);
-  background-image: -moz-linear-gradient(#eee, #ddd);
-  background-image: -o-linear-gradient(#eee, #ddd);
-  background-image: linear-gradient(#eee, #ddd);
-  -webkit-box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.1);
-  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.1);
-}
+    .back {
+      background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #eee), color-stop(100%, #ddd));
+      background-image: -webkit-linear-gradient(#eee, #ddd);
+      background-image: -moz-linear-gradient(#eee, #ddd);
+      background-image: -o-linear-gradient(#eee, #ddd);
+      background-image: linear-gradient(#eee, #ddd);
+      -webkit-box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.1);
+      -moz-box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.1);
+      box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.1);
+    }
 
-.avatar .side:hover,
-.avatar .back {
-  border-color: #005580;
-}
+    .side:hover,
+    .back {
+      border-color: #005580;
+    }
 
-.avatar.animate:hover,
-.avatar.animate .back {
-  -webkit-transform: rotateY(180deg);
-  -moz-transform: rotateY(180deg);
-  -ms-transform: rotateY(180deg);
-  -o-transform: rotateY(180deg);
-  transform: rotateY(180deg);
+    &.animate:hover,
+    &.animate .back {
+      -webkit-transform: rotateY(180deg);
+      -moz-transform: rotateY(180deg);
+      -ms-transform: rotateY(180deg);
+      -o-transform: rotateY(180deg);
+      transform: rotateY(180deg);
+    }
+  }
 }
 
 h1,
