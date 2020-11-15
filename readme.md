@@ -158,7 +158,6 @@ The theme is also sensible to this list of [standard Pelican parameters
 * `TAG_FEED_ATOM`
 * `TAG_FEED_RSS`
 * `TAGS_SAVE_AS`
-* `TYPOGRIFY`
 
 ## Code Syntax Highlighting
 

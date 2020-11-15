@@ -206,7 +206,7 @@ h2 {
 
 /* Typogrify's ampersands */
 span.amp {
-  font-family: 'Expletus Sans', cursive;
+  font-family: cursive;
 }
 
 /* Style title headers anchors produced by Python's Markdown module. See:
