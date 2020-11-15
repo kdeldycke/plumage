@@ -40,6 +40,7 @@ Markdown = "^3.3.3"
 pelican-webassets = "^1.0.0"
 cssmin = "^0.2.0"
 libsass = "^0.20.1"
+closure = "^20191111"
 
 [tool.poetry.dev-dependencies]
 check-wheel-contents = "^0.2.0"

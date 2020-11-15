@@ -7,9 +7,9 @@
   * Reduce image size by converting most assets from PNG to JPEG.
   * Add support for line numbers and highlights in code samples.
   * Add keywords meta tag in articles' header.
-  * Compile all local CSS files into a minified style.
+  * Compile all local CSS and JS files into a single minified file.
   * Add support for `.scss` style files. Add dependency on `libsass`.
-  * Add dependency on `pelican-webassets` and `cssmin` package.
+  * Add dependency on `pelican-webassets`, `cssmin` and `closure` packages.
   * Remove `extra_css` block in base template.
   * Add project header image and logo.
   * Remove special font only used for titles, headers and Typogrify ampersands.

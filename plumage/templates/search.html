@@ -10,8 +10,10 @@
 
 {% block extra_js %}
     <script type="text/javascript" src="{{ SITEURL }}/tipuesearch_content.js"></script>
-    <script type="text/javascript" src="{{ SITEURL }}/theme/js/tipuesearch_set.js"></script>
-    <script type="text/javascript" src="{{ SITEURL }}/theme/js/tipuesearch.min.js"></script>
+
+    {% assets filters="closure_js", output="js/search.min.js", "js/tipuesearch_set.js", "js/tipuesearch.js" %}
+        <script src="{{ SITEURL }}/{{ ASSET_URL }}"></script>
+    {% endassets %}
 
     <script>
         $(document).ready(function() {
