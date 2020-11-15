@@ -9,7 +9,7 @@
 
 {% block head %}
     {% if article.tags %}
-        <meta name="keywords" content="{{ article.tags|join(', ', attribute='name') }}">
+        <meta name="keywords" content="{{ article.tags|join(', ', attribute='name')|e }}">
     {% endif %}
 {% endblock %}
 
