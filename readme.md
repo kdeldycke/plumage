@@ -66,11 +66,11 @@ Plumage has built-in support for the following plugins and extensions:
   * [`typogrify`](https://pypi.python.org/pypi/typogrify): style ampersands.
 
 * Pelican third-party plugins, that need to be installed with `pip`:
-  * [`tipue-search`](https://github.com/pelican-plugins/tipue-search)
   * [`neighbors`](https://github.com/pelican-plugins/neighbors)
   * [`pelican-webassets`](https://pypi.org/project/pelican-webassets)
   * [`related-posts`](https://github.com/pelican-plugins/related-posts)
   * [`similar_posts`](https://github.com/davidlesieur/similar_posts)
+  * [`tipue-search`](https://github.com/pelican-plugins/tipue-search)
 
 * Markdown extensions:
   * [`markdown.extensions.admonition`](https://python-markdown.github.io/extensions/admonition/):
