@@ -68,6 +68,7 @@ Plumage has built-in support for the following plugins and extensions:
 * Pelican third-party plugins, that need to be installed with `pip`:
   * [`tipue-search`](https://github.com/pelican-plugins/tipue-search)
   * [`neighbors`](https://github.com/pelican-plugins/neighbors)
+  * [`pelican-webassets`](https://pypi.org/project/pelican-webassets)
   * [`related-posts`](https://github.com/pelican-plugins/related-posts)
   * [`similar_posts`](https://github.com/davidlesieur/similar_posts)
 
