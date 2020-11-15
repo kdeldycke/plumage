@@ -11,6 +11,7 @@
   * Add dependency on `pelican-webassets` and `cssmin` package.
   * Remove `extra_css` block in base template.
   * Add project header image and logo.
+  * Remove special font only used for titles and headers.
 
 * [**v2.1.0**
   (2020-10-17)](https://github.com/kdeldycke/plumage/compare/v2.0.0...v2.1.0)
