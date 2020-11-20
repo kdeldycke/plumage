@@ -10,7 +10,7 @@ jobs:
 
   python:
     name: Format Python code and create a PR
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2.3.4
       with:
@@ -38,7 +38,7 @@ jobs:
 
   typos:
     name: Fix typos and create a PR
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2.3.4
       - uses: sobolevn/misspell-fixer-action@0.1.0
@@ -56,7 +56,7 @@ jobs:
 
   gitignore:
     name: Generate .gitignore and create a PR
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2.3.4
       - name: Install git-extras package
@@ -79,7 +79,7 @@ jobs:
 
   css:
     name: Generate Pygment styles, format CSS files and create a PR
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2.3.4
       - uses: actions/setup-python@v2.1.4
