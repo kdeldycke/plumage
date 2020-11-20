@@ -94,12 +94,17 @@ you can install the latest stable release and its dependencies with a simple
 $ pip install plumage
 ```
 
-Then, update your `pelicanconf.py` file, with the module:
+Then, update your `pelicanconf.py` file, to reference the module and extra plugins:
 
 ```python
 import plumage
 
 THEME = plumage.get_path()
+
+PLUGINS = [
+    (…)
+    "pelican_webassets",
+]
 ```
 
 ## Settings
@@ -317,7 +322,6 @@ There are two alternatives:
     TEMPLATE_PAGES = {
         (…)
         "search.html": "search.html",
-        (…)
      }
     ```
 
