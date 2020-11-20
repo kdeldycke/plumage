@@ -1,7 +1,7 @@
 # Changelog
 
 * [**v2.2.0**
-  (unreleased)](https://github.com/kdeldycke/plumage/compare/v2.1.0...develop)
+  (2020-11-20)](https://github.com/kdeldycke/plumage/compare/v2.1.0...v2.2.0)
   * Upgrade to Bootstrap 4.5.3.
   * Upgrade to Font Awesome 5.15.1.
   * Reduce image size by converting most assets from PNG to JPEG.
