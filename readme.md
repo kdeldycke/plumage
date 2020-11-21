@@ -69,7 +69,7 @@ Plumage has built-in support for the following plugins and extensions:
   * [`neighbors`](https://github.com/pelican-plugins/neighbors)
   * [`pelican-webassets`](https://pypi.org/project/pelican-webassets)
   * [`related-posts`](https://github.com/pelican-plugins/related-posts)
-  * [`similar_posts`](https://github.com/davidlesieur/similar_posts)
+  * [`similar-posts`](https://github.com/pelican-plugins/similar-posts)
   * [`tipue-search`](https://github.com/pelican-plugins/tipue-search)
 
 * Markdown extensions:
