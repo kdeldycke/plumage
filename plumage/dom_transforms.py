@@ -30,7 +30,9 @@ def transform(path, context):
         doc("#content table thead th").attr("scope", "col")
 
         # Make images responsive in article content.
-        doc("#content img").not_(".link-icon").not_(".emojione").add_class("img-fluid border rounded shadow")
+        doc("#content img").not_(".link-icon").not_(".emojione").add_class(
+            "img-fluid border rounded shadow"
+        )
         doc("#content .card img").remove_class("img-fluid border rounded shadow")
 
         # Style blockquotes in the way Bootstrap does.
@@ -41,8 +43,8 @@ def transform(path, context):
             doc(code_class).add_class("rounded shadow-sm mb-3")
 
         # Style admonitions produced by Python Markdown into alerts.
-        doc(".admonition").add_class('alert shadow').attr('role', 'alert')
-        doc(".admonition-title").add_class('alert-heading h4')
+        doc(".admonition").add_class("alert shadow").attr("role", "alert")
+        doc(".admonition-title").add_class("alert-heading h4")
         # Map rST's admonition types to Bootstrap's:
         # https://python-markdown.github.io/extensions/admonition/#syntax
         admo_map = {
@@ -60,14 +62,16 @@ def transform(path, context):
                 doc(f".admonition.{admo_class}").add_class(f"alert-{bootstrap_class}")
 
         # Tipue Search results styling.
-        doc("#tipue_search_results_count").add_class('text-muted small float-right')
-        doc("#tipue_search_image_modal").add_class('d-none')
-        doc(".tipue_search_result").add_class('border-bottom border-secondary mb-4 pb-3')
-        doc(".tipue_search_content_title").add_class('h3')
-        doc(".tipue_search_content_bold").add_class('bg-warning rounded px-1')
-        doc(".tipue_search_content_url").add_class('small text-info')
-        doc(".tipue_search_image").add_class('float-left border rounded')
-        doc(".tipue_search_note").add_class('d-none')
+        doc("#tipue_search_results_count").add_class("text-muted small float-right")
+        doc("#tipue_search_image_modal").add_class("d-none")
+        doc(".tipue_search_result").add_class(
+            "border-bottom border-secondary mb-4 pb-3"
+        )
+        doc(".tipue_search_content_title").add_class("h3")
+        doc(".tipue_search_content_bold").add_class("bg-warning rounded px-1")
+        doc(".tipue_search_content_url").add_class("small text-info")
+        doc(".tipue_search_image").add_class("float-left border rounded")
+        doc(".tipue_search_note").add_class("d-none")
 
         # Save result.
         source.seek(0)
