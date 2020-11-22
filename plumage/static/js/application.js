@@ -25,45 +25,6 @@
       }
     };
 
-    // TODO: this should be done server side with a Jinja or Markdown
-    // extension.
-    // Add bootstrap table style to table elements.
-    $("#content table").addClass('table table-hover');
-    $("#content table thead th").attr('scope', 'col');
-
-    // Make images responsive in article content.
-    $("#content img:not(.link-icon,.emojione)").addClass('img-fluid border rounded shadow');
-    $("#content .card img").removeClass('img-fluid border rounded shadow');
-
-    // Style blockquote in the way Bootstrap does.
-    $("blockquote").addClass('blockquote border-left border-primary pl-3');
-
-    // Style code box.
-    $(".codehilite").addClass('rounded shadow-sm mb-3');
-    $(".highlight").addClass('rounded shadow-sm mb-3');
-
-    // Style admonition produced by Python Markdown into alerts.
-    $(".admonition").addClass('alert shadow').attr('role', 'alert');
-    $(".admonition-title").addClass('alert-heading h4');
-
-    // Translate types inherited from rST and suggested in the documentation:
-    // https://python-markdown.github.io/extensions/admonition/#syntax
-    $(".admonition.primary").addClass('alert-primary');
-    $(".admonition.secondary").addClass('alert-secondary');
-    $(".admonition.success").addClass('alert-success');
-    $(".admonition.danger").addClass('alert-danger');
-    $(".admonition.error").addClass('alert-danger');
-    $(".admonition.warning").addClass('alert-warning');
-    $(".admonition.attention").addClass('alert-warning');
-    $(".admonition.caution").addClass('alert-warning');
-    $(".admonition.important").addClass('alert-warning');
-    $(".admonition.info").addClass('alert-info');
-    $(".admonition.hint").addClass('alert-info');
-    $(".admonition.note").addClass('alert-info');
-    $(".admonition.tip").addClass('alert-info');
-    $(".admonition.light").addClass('alert-light');
-    $(".admonition.dark").addClass('alert-dark');
-
     // Tipue Search results styling.
     $("#tipue_search_results_count").addClass('text-muted small float-right');
     $("#tipue_search_image_modal").addClass('d-none');

@@ -19,6 +19,11 @@
 
 from pathlib import Path
 
+from pelican import signals
+
+from .dom_transforms import transform
+
+
 __version__ = "2.2.1"
 
 """ Examples of valid version strings according :pep:`440#version-scheme`:
@@ -40,3 +45,6 @@ def get_path():
     system.
     """
     return str(Path(__file__).resolve().parent)
+
+
+signals.content_written.connect(transform)
