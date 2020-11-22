@@ -36,7 +36,7 @@
     $("#content .card img").removeClass('img-fluid border rounded shadow');
 
     // Style blockquote in the way Bootstrap does.
-    $("blockquote").addClass('blockquote border-left border-primary pl-3').css('border-left-width', 'thick');
+    $("blockquote").addClass('blockquote border-left border-primary pl-3');
 
     // Style code box.
     $(".codehilite").addClass('rounded shadow-sm mb-3');

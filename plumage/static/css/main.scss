@@ -125,6 +125,14 @@ dt:hover > a.headerlink {
   visibility: visible;
 }
 
+/* Overrides default border-left 1px width set by Bootstrap:
+ * https://github.com/twbs/bootstrap/blob/bfb773d64be5f3c07628bb6e3f1295fd854c4514/scss/utilities/_borders.scss#L11
+ * https://github.com/twbs/bootstrap/blob/bfb773d64be5f3c07628bb6e3f1295fd854c4514/scss/_variables.scss#L237
+ * */
+blockquote.border-left {
+  border-left-width: thick !important;
+}
+
 .mglass {
   box-shadow: 0 0 100px 0 #000 inset;
   background-color: rgba(0, 0, 0, 0.3);
