@@ -19,20 +19,35 @@ a {
   -ms-transition: all 0.2s ease-out;
   -o-transition: all 0.2s ease-out;
   transition: all 0.2s ease-out;
+
+  /* Style title headers anchors produced by Python's Markdown module. See:
+   * https://python-markdown.github.io/extensions/toc/#usage
+   * https://github.com/kdeldycke/kevin-deldycke-blog/blob/main/pelicanconf.py#L22
+   */
+  &.headerlink {
+    visibility: hidden;
+    @each $tag in "h1", "h2", "h3", "h4", "h5", "h6", "dt" {
+      #{$tag}:hover > & {
+        visibility: visible;
+      }
+    }
+  }
 }
 
 /* Style to support pymdown-extensions' emoji:
  * https://facelessuser.github.io/pymdown-extensions/extensions/emoji/#default-emoji-generators
  */
 img.emojione {
-  width: 1.3rem;
-  height: 1.3rem;
+  $size: 1.3rem;
+  width: $size;
+  height: $size;
 }
 
 .avatar-container {
+  $size: 6rem;
+  width: $size;
+  height: $size;
   z-index: 10;
-  width: 6rem;
-  height: 6rem;
   position: relative;
   -webkit-perspective: 600;
   -moz-perspective: 600;
@@ -41,8 +56,9 @@ img.emojione {
   perspective: 600;
 
   .avatar {
-    height: 100%;
-    width: 100%;
+    $size: 100%;
+    width: $size;
+    height: $size;
     position: absolute;
     -webkit-transform-style: preserve-3d;
     -moz-transform-style: preserve-3d;
@@ -56,12 +72,14 @@ img.emojione {
     transition: all 0.3s ease-in-out;
 
     .side {
-      border: solid 3px white;
+      border: solid 3px white {
+        radius: 16px;
+      }
       box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
-      border-radius: 16px;
       overflow: hidden;
-      height: 100%;
-      width: 100%;
+      $size: 100%;
+      width: $size;
+      height: $size;
       position: absolute;
       -webkit-backface-visibility: hidden;
       -moz-backface-visibility: hidden;
@@ -107,24 +125,6 @@ span.amp {
   font-family: cursive;
 }
 
-/* Style title headers anchors produced by Python's Markdown module. See:
- * https://python-markdown.github.io/extensions/toc/#usage
- * https://github.com/kdeldycke/kevin-deldycke-blog/blob/main/pelicanconf.py#L22
- */
-a.headerlink {
-  visibility: hidden;
-}
-
-h1:hover > a.headerlink,
-h2:hover > a.headerlink,
-h3:hover > a.headerlink,
-h4:hover > a.headerlink,
-h5:hover > a.headerlink,
-h6:hover > a.headerlink,
-dt:hover > a.headerlink {
-  visibility: visible;
-}
-
 /* Overrides default border-left 1px width set by Bootstrap:
  * https://github.com/twbs/bootstrap/blob/bfb773d64be5f3c07628bb6e3f1295fd854c4514/scss/utilities/_borders.scss#L11
  * https://github.com/twbs/bootstrap/blob/bfb773d64be5f3c07628bb6e3f1295fd854c4514/scss/_variables.scss#L237
@@ -139,42 +139,45 @@ blockquote.border-left {
   cursor: -webkit-zoom-in;
   cursor: -moz-zoom-in;
   cursor: zoom-in;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  #content .video & {
+    background-image: url(/theme/img/play-button.png);
+  }
 }
 
-.mglass:hover {
-  opacity: 1;
-}
+.mfp-with-zoom {
+  .mfp-container, &.mfp-bg {
+    opacity: 0;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+  }
 
-#content .video .mglass {
-  background-image: url(/theme/img/play-button.png);
-}
+  &.mfp-ready {
+    .mfp-container {
+      opacity: 1;
+    }
+    &.mfp-bg {
+      opacity: 0.8;
+    }
+  }
 
-.mfp-with-zoom .mfp-container,
-.mfp-with-zoom.mfp-bg {
-  opacity: 0;
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  -ms-backface-visibility: hidden;
-  -o-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -webkit-transition: all 0.3s ease-out;
-  -moz-transition: all 0.3s ease-out;
-  -ms-transition: all 0.3s ease-out;
-  -o-transition: all 0.3s ease-out;
-  transition: all 0.3s ease-out;
-}
-
-.mfp-with-zoom.mfp-ready .mfp-container {
-  opacity: 1;
-}
-
-.mfp-with-zoom.mfp-ready.mfp-bg {
-  opacity: 0.8;
-}
-
-.mfp-with-zoom.mfp-removing .mfp-container,
-.mfp-with-zoom.mfp-removing.mfp-bg {
-  opacity: 0;
+  &.mfp-removing {
+    .mfp-container, &.mfp-bg {
+      opacity: 0;
+    }
+  }
 }
 
 .card .corner-banner {
