@@ -1,6 +1,6 @@
 # Changelog
 
-* [**v2.2.1**
+* [**v2.3.0**
   (unreleased)](https://github.com/kdeldycke/plumage/compare/v2.2.0...develop)
   * Replace client-side jQuery calls by server-side Python post-processing to
     apply Bootstrap's CSS utility classes.
