@@ -5,6 +5,7 @@
   * Replace client-side jQuery calls by server-side Python post-processing to
     apply Bootstrap's CSS utility classes.
   * Add dependency on `pyquery`.
+  * Fix blockquote border rendering.
 
 * [**v2.2.0**
   (2020-11-20)](https://github.com/kdeldycke/plumage/compare/v2.1.0...v2.2.0)
