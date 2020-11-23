@@ -40,8 +40,7 @@ def transform(path, context):
         doc("blockquote").add_class("blockquote border-left border-primary pl-3")
 
         # Style code boxes.
-        for code_class in (".codehilite", ".highlight"):
-            doc(code_class).add_class("rounded shadow-sm mb-3")
+        doc(".codehilite, .highlight").add_class("rounded shadow-sm mb-3")
 
         # Style admonitions produced by Python Markdown into alerts.
         doc(".admonition").add_class("alert shadow").attr("role", "alert")
