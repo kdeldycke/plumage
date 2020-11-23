@@ -32,9 +32,9 @@ def transform(path, context):
         # Make images responsive and styled in article content, but ignore
         # images in cards (like those from project template), images attached to
         # links, and emojis rendered as images.
-        doc("#content").not_(".card").filter("img").not_(".link-icon").not_(".emojione").add_class(
-            "img-fluid border rounded shadow"
-        )
+        doc("#content").not_(".card").filter("img").not_(".link-icon").not_(
+            ".emojione"
+        ).add_class("img-fluid border rounded shadow")
 
         # Style blockquotes in the way Bootstrap does.
         doc("blockquote").add_class("blockquote border-left border-primary pl-3")
