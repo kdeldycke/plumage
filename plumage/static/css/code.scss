@@ -12,6 +12,19 @@ pre {
 
 .codehilite, .highlight {
 
+  /* Disable global Bootstrap box-sizing value locally. See:
+   * https://github.com/twbs/bootstrap/blob/v4-dev/site/content/docs/4.5/getting-started/introduction.md#box-sizing
+   * https://stackoverflow.com/a/53746125
+   * */
+  &,
+  *,
+  *:before,
+  *:after {
+    -webkit-box-sizing: content-box !important;
+    -moz-box-sizing: content-box !important;
+    box-sizing: content-box !important;
+  }
+
   .filename {
     display: block;
     padding: $pad $pad 0 $pad;
