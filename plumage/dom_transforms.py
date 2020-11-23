@@ -29,6 +29,10 @@ def transform(path, context):
         doc("#content table").add_class("table table-hover")
         doc("#content table thead th").attr("scope", "col")
 
+        # Style TOC permalinks produced by Python's markdown.extensions.toc:
+        # https://python-markdown.github.io/extensions/toc/
+        doc(".headerlink").add_class("invisible text-decoration-none small pl-2")
+
         # Make images responsive and styled in article content, but ignore
         # images in cards (like those from project template), images attached to
         # links, and emojis rendered as images.

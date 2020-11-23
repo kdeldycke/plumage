@@ -22,14 +22,10 @@ a {
 
   /* Style title headers anchors produced by Python's Markdown module. See:
    * https://python-markdown.github.io/extensions/toc/#usage
-   * https://github.com/kdeldycke/kevin-deldycke-blog/blob/main/pelicanconf.py#L22
    */
-  &.headerlink {
-    visibility: hidden;
-    @each $tag in "h1", "h2", "h3", "h4", "h5", "h6", "dt" {
-      #{$tag}:hover > & {
-        visibility: visible;
-      }
+  @each $tag in "h1", "h2", "h3", "h4", "h5", "h6", "dt" {
+    #{$tag}:hover > &.headerlink {
+      visibility: visible !important;
     }
   }
 }
