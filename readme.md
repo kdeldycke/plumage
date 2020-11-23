@@ -30,11 +30,7 @@ it is now generic enough to be used by anyone.
 
 * Based on [Bootstrap v4](https://getbootstrap.com).
 
-* [Solarized](https://ethanschoonover.com/solarized) (light and dark flavor)
-  and [Monokai](https://web.archive.org/web/20161107090516/http://www.monokai.nl/blog/2006/07/)
-  (default) code snippets via [Pygments](https://pygments.org/) for syntax highlighting:
-
-  ![Plumage Solarized syntax highlight](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/syntax-highlight.jpeg)
+* [Code syntax highlighting](#code-syntax-highlighting).
 
 * Site-wide static search via [Tipue-search](https://web.archive.org/web/20200703134724/https://tipue.com/search/).
 
