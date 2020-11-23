@@ -5,6 +5,7 @@
   * Replace client-side jQuery calls by server-side Python post-processing to
     apply Bootstrap's CSS utility classes.
   * Add dependency on `pyquery`.
+  * Lint all SCSS and SASS files.
   * Style TOC permalinks produced by Python's `markdown.extensions.toc`.
   * Fix blockquote border rendering.
 
