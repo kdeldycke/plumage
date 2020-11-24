@@ -19,9 +19,12 @@ a {
   /* Style title headers anchors produced by Python's Markdown module. See:
    * https://python-markdown.github.io/extensions/toc/#usage
    */
-  @each $tag in "h1", "h2", "h3", "h4", "h5", "h6", "dt" {
-    #{$tag}:hover > &.headerlink {
-      visibility: visible !important;
+  &.headerlink {
+    visibility: hidden;
+    @each $tag in "h1", "h2", "h3", "h4", "h5", "h6", "dt" {
+      #{$tag}:hover > & {
+        visibility: visible !important;
+      }
     }
   }
 }
