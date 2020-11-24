@@ -95,14 +95,15 @@ span.linenos {
   }
 }
 
-/* Display line numbers with PyMdown Extensions' syntax:
- * https://facelessuser.github.io/pymdown-extensions/extensions/highlight/#line-number-styles
- * */
-.highlight [data-linenos]::before {
-  content: attr(data-linenos);
-}
-
 .highlight {
+
+  /* Display line numbers with PyMdown Extensions' syntax:
+   * https://facelessuser.github.io/pymdown-extensions/extensions/highlight/#line-number-styles
+   * */
+  [data-linenos]::before {
+    content: attr(data-linenos);
+  }
+
   /* Disable global Bootstrap box-sizing value locally. See:
    * https://github.com/twbs/bootstrap/blob/v4-dev/site/content/docs/4.5/getting-started/introduction.md#box-sizing
    * https://stackoverflow.com/a/53746125
