@@ -9,6 +9,7 @@
   * Keep images optimized.
   * Style TOC permalinks produced by Python's `markdown.extensions.toc`.
   * Fix blockquote border rendering.
+  * Test publishing to PyPi in dry-run mode by the way of Poetry.
 
 * [**v2.2.0**
   (2020-11-20)](https://github.com/kdeldycke/plumage/compare/v2.1.0...v2.2.0)
