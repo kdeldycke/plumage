@@ -129,53 +129,6 @@ blockquote.border-left {
   border-left-width: thick !important;
 }
 
-.mglass {
-  box-shadow: 0 0 100px 0 #000 inset;
-  background-color: rgba(0, 0, 0, 0.3);
-  cursor: -webkit-zoom-in;
-  cursor: -moz-zoom-in;
-  cursor: zoom-in;
-
-  &:hover {
-    opacity: 1;
-  }
-
-  #content .video & {
-    background-image: url(/theme/img/play-button.png);
-  }
-}
-
-.mfp-with-zoom {
-  .mfp-container, &.mfp-bg {
-    opacity: 0;
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
-    -ms-backface-visibility: hidden;
-    -o-backface-visibility: hidden;
-    backface-visibility: hidden;
-    -webkit-transition: all 0.3s ease-out;
-    -moz-transition: all 0.3s ease-out;
-    -ms-transition: all 0.3s ease-out;
-    -o-transition: all 0.3s ease-out;
-    transition: all 0.3s ease-out;
-  }
-
-  &.mfp-ready {
-    .mfp-container {
-      opacity: 1;
-    }
-    &.mfp-bg {
-      opacity: 0.8;
-    }
-  }
-
-  &.mfp-removing {
-    .mfp-container, &.mfp-bg {
-      opacity: 0;
-    }
-  }
-}
-
 .card .corner-banner {
   font-size: 13px;
   text-align: center;
