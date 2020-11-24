@@ -3,10 +3,10 @@ $back_color: #272822;
 /* Code block inner padding */
 $pad: 0.5rem;
 
-.codehilite,
-.highlight,
+pre,
 code,
-pre {
+kbd,
+samp {
   font-family: 'Source Code Pro', var(--font-family-monospace);
 }
 
