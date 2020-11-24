@@ -23,19 +23,20 @@ samp {
     padding-top: $pad;
     padding-bottom: $pad;
     color: inherit;
+
+    code {
+      word-break: break-word;
+      /* Highlight whole lines */
+      span.hll {
+        display: block;
+      }
+    }
   }
 
   code {
     word-wrap: normal;
   }
 
-  pre code {
-    word-break: normal;
-    /* Highlight whole lines */
-    span.hll {
-      display: block;
-    }
-  }
 }
 
 .codehilite {
@@ -56,8 +57,16 @@ samp {
   }
 }
 
+/* Reset Pygments default padding */
+%reset-pygment-padding {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 /* Prevents line numbers to be selected */
 span.linenos {
+  @extend %reset-pygment-padding;
+
   /* Same as Bootstrap's .user-select-none class */
   -webkit-user-select: none !important;
   -moz-user-select: none !important;
@@ -69,9 +78,12 @@ span.linenos {
 
   background-color: $back_color;
   color: var(--secondary);
+  word-break: normal;
 
-  /* Highlight every every Nth line number in the gutter */
   &.special {
+    @extend %reset-pygment-padding;
+
+    /* Highlight every every Nth line number in the gutter */
     background-clip: padding-box;
     background-color: var(--secondary);
   }
@@ -81,7 +93,7 @@ span.linenos {
     display: table-cell;
     /* Simulates right margin, which has no effect on table cells */
     border-right: $pad solid transparent;
-    padding-left: $pad;
+    padding: 0 $pad;
   }
 
   .highlight & {
