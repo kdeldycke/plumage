@@ -92,7 +92,7 @@ jobs:
       - name: Generate .gitignore
         run: |
           git ignore-io --replace emacs git linux macos node nohup python vim virtualenv visualstudiocode windows
-      - uses: peter-evans/create-pull-request@v3
+      - uses: peter-evans/create-pull-request@v3.5.0
         with:
           author: "Kevin Deldycke <kevin@deldycke.com>"
           commit-message: "[autofix] Regenerate .gitignore"
