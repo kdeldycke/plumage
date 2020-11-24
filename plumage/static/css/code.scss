@@ -25,7 +25,6 @@ samp {
     color: inherit;
 
     code {
-      word-break: break-word;
       /* Highlight whole lines */
       span.hll {
         display: block;
@@ -45,6 +44,10 @@ samp {
     table-layout: fixed;
     width: 100%;
     white-space: pre-wrap;
+
+    code {
+      word-break: break-word;
+    }
 
     span[id^="coderow-"] {
       display: table-row;
@@ -128,4 +131,11 @@ span.linenos {
     -moz-box-sizing: content-box !important;
     box-sizing: content-box !important;
   }
+
+  pre {
+    code {
+      word-break: normal;
+    }
+  }
+
 }
