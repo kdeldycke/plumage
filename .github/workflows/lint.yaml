@@ -1,7 +1,8 @@
+---
 name: Lint
-on:
+"on":
   push:
-    # QA on main branch is too late: we shouldn't mess with the code at this point.
+    # QA on main is too late: we shouldn't mess with the code at this point.
     branches-ignore:
       - 'main'
   pull_request:

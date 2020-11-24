@@ -1,5 +1,6 @@
+---
 name: Build
-on:
+"on":
   push:
   pull_request:
 
@@ -9,51 +10,51 @@ jobs:
     name: Build, check and publish package on release
     runs-on: ubuntu-20.04
     steps:
-    - uses: actions/checkout@v2.3.4
-    - uses: actions/setup-python@v2.1.4
-    - name: Build package
-      run: |
-        python -m pip install --upgrade pip
-        python -m pip install --upgrade poetry
-        poetry install
-        poetry build
-    - name: Attach packages to workflow run for later inspection and debugging
-      uses: actions/upload-artifact@v2.2.1
-      with:
-        name: python-packages
-        path: ./dist/*
-    - name: Validates package metadata
-      run: |
-        poetry check
-        poetry run twine check ./dist/*
-        poetry run check-wheel-contents ./dist/*.whl
-    - name: Test publishing
-      run: |
-        poetry publish --dry-run --no-interaction
-    - name: Extract version
-      id: get_version
-      run: echo ::set-output name=TAG_VERSION::${GITHUB_REF#refs/tags/v}
-    - name: Create a release on GitHub
-      # Only triggers on version tagging.
-      if: startsWith(github.ref, 'refs/tags/v')
-      uses: softprops/action-gh-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        files: ./dist/*
-        body: |
-          🐍 [Available on PyPi](https://pypi.org/project/plumage/${{ steps.get_version.outputs.TAG_VERSION }}/).
+      - uses: actions/checkout@v2.3.4
+      - uses: actions/setup-python@v2.1.4
+      - name: Build package
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --upgrade poetry
+          poetry install
+          poetry build
+      - name: Attach packages to workflow run for later inspection and debugging
+        uses: actions/upload-artifact@v2.2.1
+        with:
+          name: python-packages
+          path: ./dist/*
+      - name: Validates package metadata
+        run: |
+          poetry check
+          poetry run twine check ./dist/*
+          poetry run check-wheel-contents ./dist/*.whl
+      - name: Test publishing
+        run: |
+          poetry publish --dry-run --no-interaction
+      - name: Extract version
+        id: get_version
+        run: echo ::set-output name=TAG_VERSION::${GITHUB_REF#refs/tags/v}
+      - name: Create a release on GitHub
+        # Only triggers on version tagging.
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          files: ./dist/*
+          body: |
+            🐍 [Available on
+            PyPi](https://pypi.org/project/meta-package-manager/${{
+            steps.get_version.outputs.TAG_VERSION }}/).
+            Changelog:
+              * <TODO>
+              * <TODO>
+              * <TODO>
 
-          Changelog:
-
-            * <TODO>
-            * <TODO>
-            * <TODO>
-
-    - name: Push package to public PyPi repository
-      # Only triggers on version tagging.
-      if: startsWith(github.ref, 'refs/tags/v')
-      uses: pypa/gh-action-pypi-publish@v1.4.1
-      with:
-        user: __token__
-        password: ${{ secrets.PYPI_TOKEN }}
+      - name: Push package to public PyPi repository
+        # Only triggers on version tagging.
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: pypa/gh-action-pypi-publish@v1.4.1
+        with:
+          user: __token__
+          password: ${{ secrets.PYPI_TOKEN }}
