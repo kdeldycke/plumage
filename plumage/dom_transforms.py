@@ -80,4 +80,4 @@ def transform(path, context):
         # Save result.
         source.seek(0)
         source.truncate()
-        source.write(doc.html())
+        source.write(doc.__html__())
