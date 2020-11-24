@@ -7,6 +7,8 @@
   * Add dependency on `pyquery`.
   * Lint all SCSS and SASS files.
   * Lint all YAML files. Add dependency on `yamllint` package.
+  * Aligns minimal Python version to 3.6, i.e. the one Pelican depends on.
+  * Add dependency on `black`.
   * Keep images optimized.
   * Style TOC permalinks produced by Python's `markdown.extensions.toc`.
   * Fix blockquote border rendering.
