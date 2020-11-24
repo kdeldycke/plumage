@@ -46,6 +46,7 @@ pyquery = "^1.4.3"
 [tool.poetry.dev-dependencies]
 check-wheel-contents = "^0.2.0"
 twine = "^3.1"
+yamllint = "^1.25.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

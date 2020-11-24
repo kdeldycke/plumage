@@ -6,6 +6,7 @@
     apply Bootstrap's CSS utility classes.
   * Add dependency on `pyquery`.
   * Lint all SCSS and SASS files.
+  * Lint all YAML files. Add dependency on `yamllint` package.
   * Keep images optimized.
   * Style TOC permalinks produced by Python's `markdown.extensions.toc`.
   * Fix blockquote border rendering.
