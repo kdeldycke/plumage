@@ -45,6 +45,13 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2.3.4
-      - uses: actions-hub/stylelint@v1.1.3
-        env:
-          PATTERN: "**/*.{css,scss,sass}"
+      - name: Insall stylelint
+        run: >
+          npm install --save-dev
+          stylelint stylelint-config-standard stylelint-config-sass-guidelines
+      - name: Lint CSS
+        run: |
+          npx stylelint --config stylelint-config-standard "**/*.css"
+      - name: Lint SCSS
+        run: |
+          npx stylelint --config stylelint-config-sass-guidelines "**/*.scss"
