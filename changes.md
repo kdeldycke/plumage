@@ -1,7 +1,7 @@
 # Changelog
 
 * [**v2.3.0**
-  (unreleased)](https://github.com/kdeldycke/plumage/compare/v2.2.0...develop)
+  (2020-11-26)](https://github.com/kdeldycke/plumage/compare/v2.2.0...v2.3.0)
   * Replace client-side jQuery calls by server-side Python post-processing to
     apply Bootstrap's CSS utility classes.
   * Add dependency on `pyquery`.
