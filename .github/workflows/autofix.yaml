@@ -154,12 +154,11 @@ jobs:
       - name: Autofix CSS
         # Allow that step to fail so we can proceed with creating the auto-fix
         # PR below.
-        continue-on-error: true
         run: |
           npx stylelint --fix --config stylelint-config-standard \
-            "**/*.css"
+            "**/*.css" || true
           npx stylelint --fix --config stylelint-config-sass-guidelines \
-            "**/*.scss"
+            "**/*.scss" || true
       - name: Discard all local changes but CSS files
         run: |
           # Remove untracked directories and files.
