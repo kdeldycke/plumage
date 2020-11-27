@@ -5,13 +5,10 @@
   background-repeat: no-repeat;
 
   box-shadow: 0 0 10rem 0 #000 inset;
+  cursor: zoom-in;
   opacity: 0;
   position: absolute;
   z-index: 10;
-
-  cursor: -webkit-zoom-in;
-  cursor: -moz-zoom-in;
-  cursor: zoom-in;
 
   &:hover {
     opacity: 1;
@@ -23,17 +20,9 @@
 }
 
 .mfp-with-zoom {
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
-    -ms-backface-visibility: hidden;
-    -o-backface-visibility: hidden;
   .mfp-container,
   &.mfp-bg {
     backface-visibility: hidden;
-    -webkit-transition: all 0.3s ease-out;
-    -moz-transition: all 0.3s ease-out;
-    -ms-transition: all 0.3s ease-out;
-    -o-transition: all 0.3s ease-out;
     opacity: 0;
     transition: all 0.3s ease-out;
   }
