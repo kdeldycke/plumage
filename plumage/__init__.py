@@ -24,7 +24,7 @@ import pelican
 from .dom_transforms import transform
 
 
-__version__ = "2.3.1"
+__version__ = "2.4.0"
 
 """ Examples of valid version strings according :pep:`440#version-scheme`:
 

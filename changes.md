@@ -1,6 +1,6 @@
 # Changelog
 
-* [**v2.3.1**
+* [**v2.4.0**
   (unreleased)](https://github.com/kdeldycke/plumage/compare/v2.3.0...develop)
   * Add new `CODE_STYLE` option to select code rendering among 30+ styles from
     Pygments.
