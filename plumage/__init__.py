@@ -57,7 +57,7 @@ def get_path():
 def check_config(sender):
     """ Validates and setup Plumage configuration. """
     # Keep some metadata around.
-    sender.settings['PELICAN_VERSION'] = pelican.__version__
+    sender.settings["PELICAN_VERSION"] = pelican.__version__
     # Defaults code style to Monokai.
     if not sender.settings.get("CODE_STYLE"):
         sender.settings["CODE_STYLE"] = "monokai"
