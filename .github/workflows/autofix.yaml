@@ -130,10 +130,13 @@ jobs:
       - name: Generate Pygments styles
         run: |
           for STYLE in $(poetry run pygmentize -L styles | grep -E '^\* .*\:$' \
-              | cut -d ' ' -f 2 | cut -d ':' -f 1);
-            do poetry run pygmentize -f html -S "$STYLE" \
-              -a ".pygments-style-$STYLE" \
-              > "./plumage/static/css/pygments/$STYLE.css";
+            | cut -d ' ' -f 2 | cut -d ':' -f 1);
+          do
+            CSS_FILE="./plumage/static/css/pygments/$STYLE.css"
+            poetry run pygmentize -f html -S "$STYLE" \
+              -a ".pygments-style-$STYLE" > "$CSS_FILE";
+            # Crappy split of side-by-side declarations to please styleint.
+            sed -i "s/; /; \n/g" "$CSS_FILE"
           done
       - name: Install stylelint
         run: >
