@@ -3,11 +3,12 @@
   background-image: url(/theme/img/magnifier.png);
   background-position: center;
   background-repeat: no-repeat;
+
+  box-shadow: 0 0 10rem 0 #000 inset;
   opacity: 0;
   position: absolute;
   z-index: 10;
 
-  box-shadow: 0 0 10rem 0 #000 inset;
   cursor: -webkit-zoom-in;
   cursor: -moz-zoom-in;
   cursor: zoom-in;
@@ -22,17 +23,18 @@
 }
 
 .mfp-with-zoom {
-  .mfp-container, &.mfp-bg {
-    opacity: 0;
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
     -ms-backface-visibility: hidden;
     -o-backface-visibility: hidden;
+  .mfp-container,
+  &.mfp-bg {
     backface-visibility: hidden;
     -webkit-transition: all 0.3s ease-out;
     -moz-transition: all 0.3s ease-out;
     -ms-transition: all 0.3s ease-out;
     -o-transition: all 0.3s ease-out;
+    opacity: 0;
     transition: all 0.3s ease-out;
   }
 
@@ -40,13 +42,15 @@
     .mfp-container {
       opacity: 1;
     }
+
     &.mfp-bg {
       opacity: 0.8;
     }
   }
 
   &.mfp-removing {
-    .mfp-container, &.mfp-bg {
+    .mfp-container,
+    &.mfp-bg {
       opacity: 0;
     }
   }

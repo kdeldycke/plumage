@@ -11,20 +11,20 @@ samp {
   font-family: $code_font;
 }
 
-.codehilite, .highlight {
+.codehilite,
+.highlight {
 
   .filename {
     display: block;
     font-family: $code_font;
+    font-size: 87.5%; // Same as Bootstrap's <pre> default value
     padding: $pad $pad 0 $pad;
-    /* Same as Bootstrap's <pre> default value */
-    font-size: 87.5%;
   }
 
   pre {
-    padding-top: $pad;
-    padding-bottom: $pad;
     color: inherit;
+    padding-bottom: $pad;
+    padding-top: $pad;
 
     code {
       /* Highlight whole lines */
@@ -44,14 +44,14 @@ samp {
   pre {
     overflow: inherit;
     table-layout: fixed;
-    width: 100%;
     white-space: pre-wrap;
+    width: 100%;
 
     code {
       word-break: break-word;
     }
 
-    span[id^="coderow-"] {
+    span[id^='coderow-'] {
       display: table-row;
     }
   }
@@ -94,21 +94,21 @@ span.linenos {
   }
 
   .codehilite & {
-    /* Prevents the long lines to wrap below the line number gitter on the left */
-    display: table-cell;
     /* Simulates right margin, which has no effect on table cells */
     border-right: $pad solid transparent;
+    /* Prevents the long lines to wrap below the line number gitter on the left */
+    display: table-cell;
     padding: 0 $pad;
   }
 
   .highlight & {
-    /* Makes the left-side line number gutter sticky */
-    position: sticky;
     float: left;
     left: (-$pad);
-    padding: 0 0 0 $pad*2;
     margin-left: (-$pad);
     margin-right: $pad;
+    padding: 0 0 0 $pad*2;
+    position: sticky; // Makes the left-side line number gutter sticky.
+
   }
 }
 
@@ -127,8 +127,8 @@ span.linenos {
    * */
   &,
   *,
-  *:before,
-  *:after {
+  *::before,
+  *::after {
     -webkit-box-sizing: content-box !important;
     -moz-box-sizing: content-box !important;
     box-sizing: content-box !important;
