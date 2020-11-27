@@ -38,13 +38,34 @@ __version__ = "2.3.1"
 """
 
 
+PLUMAGE_ROOT = Path(__file__).resolve().parent
+
+ALL_CODE_STYLES = {
+    f.stem for f in
+    PLUMAGE_ROOT.joinpath("static/css/pygments/").resolve().iterdir()
+}
+
+
 def get_path():
     """Returns installation path of the theme.
 
     Used in ``pelicanconf.py`` to dynamiccaly fetch theme location on the
     system.
     """
-    return str(Path(__file__).resolve().parent)
+    return str(PLUMAGE_ROOT)
 
 
+def check_config(sender):
+    """ Check Plumage configuration. """
+    # Defaults code style to Monokai.
+    if not sender.settings.get("CODE_STYLE"):
+        sender.settings["CODE_STYLE"] = "monokai"
+    code_style = sender.settings["CODE_STYLE"]
+
+    if code_style not in ALL_CODE_STYLES:
+        raise ValueError(
+            f"{code_style} not recognized among {sorted(ALL_CODE_STYLES)}.")
+
+
+signals.initialized.connect(check_config)
 signals.content_written.connect(transform)

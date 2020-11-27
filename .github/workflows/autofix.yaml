@@ -129,24 +129,12 @@ jobs:
           poetry install
       - name: Generate Pygments styles
         run: |
-          # Support both markdown.extensions.codehilite and pymdownx.highlight
-          # default CSS class.
-          poetry run pygmentize -S monokai         -f html -a .codehilite >  \
-            ./plumage/static/css/pygment-monokai.css
-          poetry run pygmentize -S monokai         -f html -a .highlight  >> \
-            ./plumage/static/css/pygment-monokai.css
-          poetry run pygmentize -S solarized-dark  -f html -a .codehilite >  \
-            ./plumage/static/css/pygment-solarized-dark.css
-          poetry run pygmentize -S solarized-dark  -f html -a .highlight  >> \
-            ./plumage/static/css/pygment-solarized-dark.css
-          poetry run pygmentize -S solarized-light -f html -a .codehilite >  \
-            ./plumage/static/css/pygment-solarized-light.css
-          poetry run pygmentize -S solarized-light -f html -a .highlight  >> \
-            ./plumage/static/css/pygment-solarized-light.css
-          # Crappy split of side-by-side declarations to please styleint.
-          sed -i "s/; /; \n/g" ./plumage/static/css/pygment-monokai.css
-          sed -i "s/; /; \n/g" ./plumage/static/css/pygment-solarized-dark.css
-          sed -i "s/; /; \n/g" ./plumage/static/css/pygment-solarized-light.css
+          for STYLE in $(poetry run pygmentize -L styles | grep -E '^\* .*\:$' \
+              | cut -d ' ' -f 2 | cut -d ':' -f 1);
+            do poetry run pygmentize -f html -S "$STYLE" \
+              -a ".pygments-style-$STYLE" \
+              > "./plumage/static/css/pygments/$STYLE.css";
+          done
       - name: Install stylelint
         run: >
           npm install --save-dev

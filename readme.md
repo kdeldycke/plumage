@@ -30,7 +30,7 @@ it is now generic enough to be used by anyone.
 
 * Based on [Bootstrap v4](https://getbootstrap.com).
 
-* [Code syntax highlighting](#code-syntax-highlighting).
+* [Code syntax highlighting](#code-syntax-highlighting) with [30+ styles](https://github.com/pygments/pygments/tree/master/pygments/styles).
 
 * Site-wide static search via [Tipue-search](https://web.archive.org/web/20200703134724/https://tipue.com/search/).
 
@@ -111,6 +111,7 @@ Plumage can be customized by adding these optionnal parameters to your
 Setting name | Default value | Description
 :--- |:--- |:---
 `ARTICLE_EDIT_LINK` | | Generate an edit link besides each article. Can use `%(slug)s` to include dynamic article's slug in the link.
+`CODE_STYLE` | `"monokai"` | Pygments' style ID. Choose one from `poetry run pygmentize -L styles`.
 `COPYRIGHT` | | Additional copyright statement to add in the third column of the footer.
 `DISCLAIMER` | | Overide the Disclaimer notice that gets displayed at the fourth column of the footer.
 [`DISQUS_SITENAME`](http://docs.getpelican.com/en/stable/settings.html#DISQUS_SITENAME) | | Pelican can handle Disqus comments. Specify the Disqus sitename identifier here.

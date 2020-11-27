@@ -1,0 +1,57 @@
+pre { line-height: 125%; margin: 0; }
+td.linenos pre { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
+td.linenos pre.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.pygments-style-borland .hll { background-color: #ffffcc }
+.pygments-style-borland { background: #ffffff; }
+.pygments-style-borland .c { color: #008800; font-style: italic } /* Comment */
+.pygments-style-borland .err { color: #a61717; background-color: #e3d2d2 } /* Error */
+.pygments-style-borland .k { color: #000080; font-weight: bold } /* Keyword */
+.pygments-style-borland .ch { color: #008800; font-style: italic } /* Comment.Hashbang */
+.pygments-style-borland .cm { color: #008800; font-style: italic } /* Comment.Multiline */
+.pygments-style-borland .cp { color: #008080 } /* Comment.Preproc */
+.pygments-style-borland .cpf { color: #008800; font-style: italic } /* Comment.PreprocFile */
+.pygments-style-borland .c1 { color: #008800; font-style: italic } /* Comment.Single */
+.pygments-style-borland .cs { color: #008800; font-weight: bold } /* Comment.Special */
+.pygments-style-borland .gd { color: #000000; background-color: #ffdddd } /* Generic.Deleted */
+.pygments-style-borland .ge { font-style: italic } /* Generic.Emph */
+.pygments-style-borland .gr { color: #aa0000 } /* Generic.Error */
+.pygments-style-borland .gh { color: #999999 } /* Generic.Heading */
+.pygments-style-borland .gi { color: #000000; background-color: #ddffdd } /* Generic.Inserted */
+.pygments-style-borland .go { color: #888888 } /* Generic.Output */
+.pygments-style-borland .gp { color: #555555 } /* Generic.Prompt */
+.pygments-style-borland .gs { font-weight: bold } /* Generic.Strong */
+.pygments-style-borland .gu { color: #aaaaaa } /* Generic.Subheading */
+.pygments-style-borland .gt { color: #aa0000 } /* Generic.Traceback */
+.pygments-style-borland .kc { color: #000080; font-weight: bold } /* Keyword.Constant */
+.pygments-style-borland .kd { color: #000080; font-weight: bold } /* Keyword.Declaration */
+.pygments-style-borland .kn { color: #000080; font-weight: bold } /* Keyword.Namespace */
+.pygments-style-borland .kp { color: #000080; font-weight: bold } /* Keyword.Pseudo */
+.pygments-style-borland .kr { color: #000080; font-weight: bold } /* Keyword.Reserved */
+.pygments-style-borland .kt { color: #000080; font-weight: bold } /* Keyword.Type */
+.pygments-style-borland .m { color: #0000FF } /* Literal.Number */
+.pygments-style-borland .s { color: #0000FF } /* Literal.String */
+.pygments-style-borland .na { color: #FF0000 } /* Name.Attribute */
+.pygments-style-borland .nt { color: #000080; font-weight: bold } /* Name.Tag */
+.pygments-style-borland .ow { font-weight: bold } /* Operator.Word */
+.pygments-style-borland .w { color: #bbbbbb } /* Text.Whitespace */
+.pygments-style-borland .mb { color: #0000FF } /* Literal.Number.Bin */
+.pygments-style-borland .mf { color: #0000FF } /* Literal.Number.Float */
+.pygments-style-borland .mh { color: #0000FF } /* Literal.Number.Hex */
+.pygments-style-borland .mi { color: #0000FF } /* Literal.Number.Integer */
+.pygments-style-borland .mo { color: #0000FF } /* Literal.Number.Oct */
+.pygments-style-borland .sa { color: #0000FF } /* Literal.String.Affix */
+.pygments-style-borland .sb { color: #0000FF } /* Literal.String.Backtick */
+.pygments-style-borland .sc { color: #800080 } /* Literal.String.Char */
+.pygments-style-borland .dl { color: #0000FF } /* Literal.String.Delimiter */
+.pygments-style-borland .sd { color: #0000FF } /* Literal.String.Doc */
+.pygments-style-borland .s2 { color: #0000FF } /* Literal.String.Double */
+.pygments-style-borland .se { color: #0000FF } /* Literal.String.Escape */
+.pygments-style-borland .sh { color: #0000FF } /* Literal.String.Heredoc */
+.pygments-style-borland .si { color: #0000FF } /* Literal.String.Interpol */
+.pygments-style-borland .sx { color: #0000FF } /* Literal.String.Other */
+.pygments-style-borland .sr { color: #0000FF } /* Literal.String.Regex */
+.pygments-style-borland .s1 { color: #0000FF } /* Literal.String.Single */
+.pygments-style-borland .ss { color: #0000FF } /* Literal.String.Symbol */
+.pygments-style-borland .il { color: #0000FF } /* Literal.Number.Integer.Long */

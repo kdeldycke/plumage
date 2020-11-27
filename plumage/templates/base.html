@@ -16,8 +16,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" integrity="sha512-+EoPw+Fiwh6eSeRK7zwIKG2MA8i3rV/DGa3tdttQGgWyatG/SkncT53KHQaS5Jh9MNOT3dmFL0FjTY08And/Cw==" crossorigin="anonymous" />
 
         {% assets filters="libsass,cssmin", output="css/main.min.css",
-            "css/mglass.scss", "css/pygment-monokai.css", "css/main.scss",
-            "css/code.scss" %}
+            "css/mglass.scss", "css/main.scss", "css/pygments/" + CODE_STYLE + ".css", "css/code.scss" %}
             <link rel="stylesheet" href="{{ SITEURL }}/{{ ASSET_URL }}"/>
         {% endassets %}
 

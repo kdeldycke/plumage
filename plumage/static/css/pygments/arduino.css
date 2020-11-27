@@ -1,0 +1,66 @@
+pre { line-height: 125%; margin: 0; }
+td.linenos pre { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
+td.linenos pre.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.pygments-style-arduino .hll { background-color: #ffffcc }
+.pygments-style-arduino { background: #ffffff; }
+.pygments-style-arduino .c { color: #95a5a6 } /* Comment */
+.pygments-style-arduino .err { color: #a61717 } /* Error */
+.pygments-style-arduino .k { color: #728E00 } /* Keyword */
+.pygments-style-arduino .n { color: #434f54 } /* Name */
+.pygments-style-arduino .o { color: #728E00 } /* Operator */
+.pygments-style-arduino .ch { color: #95a5a6 } /* Comment.Hashbang */
+.pygments-style-arduino .cm { color: #95a5a6 } /* Comment.Multiline */
+.pygments-style-arduino .cp { color: #728E00 } /* Comment.Preproc */
+.pygments-style-arduino .cpf { color: #95a5a6 } /* Comment.PreprocFile */
+.pygments-style-arduino .c1 { color: #95a5a6 } /* Comment.Single */
+.pygments-style-arduino .cs { color: #95a5a6 } /* Comment.Special */
+.pygments-style-arduino .kc { color: #00979D } /* Keyword.Constant */
+.pygments-style-arduino .kd { color: #728E00 } /* Keyword.Declaration */
+.pygments-style-arduino .kn { color: #728E00 } /* Keyword.Namespace */
+.pygments-style-arduino .kp { color: #00979D } /* Keyword.Pseudo */
+.pygments-style-arduino .kr { color: #00979D } /* Keyword.Reserved */
+.pygments-style-arduino .kt { color: #00979D } /* Keyword.Type */
+.pygments-style-arduino .m { color: #8A7B52 } /* Literal.Number */
+.pygments-style-arduino .s { color: #7F8C8D } /* Literal.String */
+.pygments-style-arduino .na { color: #434f54 } /* Name.Attribute */
+.pygments-style-arduino .nb { color: #728E00 } /* Name.Builtin */
+.pygments-style-arduino .nc { color: #434f54 } /* Name.Class */
+.pygments-style-arduino .no { color: #434f54 } /* Name.Constant */
+.pygments-style-arduino .nd { color: #434f54 } /* Name.Decorator */
+.pygments-style-arduino .ni { color: #434f54 } /* Name.Entity */
+.pygments-style-arduino .ne { color: #434f54 } /* Name.Exception */
+.pygments-style-arduino .nf { color: #D35400 } /* Name.Function */
+.pygments-style-arduino .nl { color: #434f54 } /* Name.Label */
+.pygments-style-arduino .nn { color: #434f54 } /* Name.Namespace */
+.pygments-style-arduino .nx { color: #728E00 } /* Name.Other */
+.pygments-style-arduino .py { color: #434f54 } /* Name.Property */
+.pygments-style-arduino .nt { color: #434f54 } /* Name.Tag */
+.pygments-style-arduino .nv { color: #434f54 } /* Name.Variable */
+.pygments-style-arduino .ow { color: #728E00 } /* Operator.Word */
+.pygments-style-arduino .mb { color: #8A7B52 } /* Literal.Number.Bin */
+.pygments-style-arduino .mf { color: #8A7B52 } /* Literal.Number.Float */
+.pygments-style-arduino .mh { color: #8A7B52 } /* Literal.Number.Hex */
+.pygments-style-arduino .mi { color: #8A7B52 } /* Literal.Number.Integer */
+.pygments-style-arduino .mo { color: #8A7B52 } /* Literal.Number.Oct */
+.pygments-style-arduino .sa { color: #7F8C8D } /* Literal.String.Affix */
+.pygments-style-arduino .sb { color: #7F8C8D } /* Literal.String.Backtick */
+.pygments-style-arduino .sc { color: #7F8C8D } /* Literal.String.Char */
+.pygments-style-arduino .dl { color: #7F8C8D } /* Literal.String.Delimiter */
+.pygments-style-arduino .sd { color: #7F8C8D } /* Literal.String.Doc */
+.pygments-style-arduino .s2 { color: #7F8C8D } /* Literal.String.Double */
+.pygments-style-arduino .se { color: #7F8C8D } /* Literal.String.Escape */
+.pygments-style-arduino .sh { color: #7F8C8D } /* Literal.String.Heredoc */
+.pygments-style-arduino .si { color: #7F8C8D } /* Literal.String.Interpol */
+.pygments-style-arduino .sx { color: #7F8C8D } /* Literal.String.Other */
+.pygments-style-arduino .sr { color: #7F8C8D } /* Literal.String.Regex */
+.pygments-style-arduino .s1 { color: #7F8C8D } /* Literal.String.Single */
+.pygments-style-arduino .ss { color: #7F8C8D } /* Literal.String.Symbol */
+.pygments-style-arduino .bp { color: #728E00 } /* Name.Builtin.Pseudo */
+.pygments-style-arduino .fm { color: #D35400 } /* Name.Function.Magic */
+.pygments-style-arduino .vc { color: #434f54 } /* Name.Variable.Class */
+.pygments-style-arduino .vg { color: #434f54 } /* Name.Variable.Global */
+.pygments-style-arduino .vi { color: #434f54 } /* Name.Variable.Instance */
+.pygments-style-arduino .vm { color: #434f54 } /* Name.Variable.Magic */
+.pygments-style-arduino .il { color: #8A7B52 } /* Literal.Number.Integer.Long */
