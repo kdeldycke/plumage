@@ -19,7 +19,7 @@
 
 from pathlib import Path
 
-from pelican import signals
+import pelican
 
 from .dom_transforms import transform
 
@@ -55,17 +55,18 @@ def get_path():
 
 
 def check_config(sender):
-    """ Check Plumage configuration. """
+    """ Validates and setup Plumage configuration. """
+    # Keep some metadata around.
+    sender.settings['PELICAN_VERSION'] = pelican.__version__
     # Defaults code style to Monokai.
     if not sender.settings.get("CODE_STYLE"):
         sender.settings["CODE_STYLE"] = "monokai"
     code_style = sender.settings["CODE_STYLE"]
-
     if code_style not in ALL_CODE_STYLES:
         raise ValueError(
             f"{code_style} not recognized among {sorted(ALL_CODE_STYLES)}."
         )
 
 
-signals.initialized.connect(check_config)
-signals.content_written.connect(transform)
+pelican.signals.initialized.connect(check_config)
+pelican.signals.content_written.connect(transform)

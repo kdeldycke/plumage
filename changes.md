@@ -5,6 +5,7 @@
   * Add new `CODE_STYLE` option to select code rendering among 30+ styles from
     Pygments.
   * Embed and auto-generate all Pygments styles.
+  * Add Pelican version in HTML headers.
 
 * [**v2.3.0**
   (2020-11-26)](https://github.com/kdeldycke/plumage/compare/v2.2.0...v2.3.0)
