@@ -113,7 +113,7 @@ Setting name | Default value | Description
 `ARTICLE_EDIT_LINK` | | Generate an edit link besides each article. Can use `%(slug)s` to include dynamic article's slug in the link.
 `CODE_STYLE` | `"monokai"` | Pygments' style ID. Choose one from `poetry run pygmentize -L styles`.
 `COPYRIGHT` | | Additional copyright statement to add in the third column of the footer.
-`DISCLAIMER` | | Overide the Disclaimer notice that gets displayed at the fourth column of the footer.
+`DISCLAIMER` | | Overide the disclaimer notice that gets displayed at the fourth column of the footer.
 [`DISQUS_SITENAME`](http://docs.getpelican.com/en/stable/settings.html#DISQUS_SITENAME) | | Pelican can handle Disqus comments. Specify the Disqus sitename identifier here.
 `FAVICON_LINKS` | `True` | Fetch link's icons from [Google's favicons webservice](https://www.google.com/s2/favicons).
 [`GOOGLE_ANALYTICS`](http://docs.getpelican.com/en/stable/settings.html#GOOGLE_ANALYTICS) | | Set to `UA-XXXXXX-Y` Property's tracking ID to activate Google Analytics.
@@ -191,7 +191,7 @@ extra options to [Pygments' HTML formatter](https://pygments.org/docs/formatters
       "extension_configs": {
           (…)
           "markdown.extensions.codehilite": {
-              "css_class": "codehilite",  # Defaults
+              "css_class": "codehilite",  # Default
               "linenums": True,
               "linenos": "inline",
               "linespans": "coderow",
