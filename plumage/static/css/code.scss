@@ -72,25 +72,22 @@ samp {
 span.linenos {
   @extend %reset-pygment-padding;
 
+  background-color: inherit;
+  color: inherit;
+
+  /* Gutter's border separating numbers from code */
+  box-shadow: -0.05rem 0 var(--secondary) inset;
+
   /* Same as Bootstrap's .user-select-none class */
   -webkit-user-select: none !important;
   -moz-user-select: none !important;
   -ms-user-select: none !important;
   user-select: none !important;
-
-  /* Gutter's border separating numbers from code */
-  box-shadow: -0.05rem 0 #6c757d inset;
-
-  background-color: $back_color;
-  color: var(--secondary);
   word-break: normal;
 
   &.special {
     @extend %reset-pygment-padding;
-
-    /* Highlight every every Nth line number in the gutter */
     background-clip: padding-box;
-    background-color: var(--secondary);
   }
 
   .codehilite & {
@@ -109,6 +106,13 @@ span.linenos {
     padding: 0 0 0 $pad*2;
     position: sticky; // Makes the left-side line number gutter sticky.
 
+    // Set solid background color to prevent transparent one messing up with
+    // code lines sliding under the sticky gutter.
+    background-color: $back_color;
+
+    &.special {
+      background-color: var(--secondary); // Highlight every every Nth line number in the gutter
+    }
   }
 }
 
