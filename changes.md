@@ -5,6 +5,7 @@
   * Add new `CODE_STYLE` option to select code rendering among 30+ styles from
     Pygments.
   * Embed and auto-generate all Pygments styles.
+  * Remove custom default font.
   * Add Pelican version in HTML headers.
 
 * [**v2.3.0**
