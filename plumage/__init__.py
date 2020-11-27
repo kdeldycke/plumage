@@ -41,8 +41,7 @@ __version__ = "2.3.1"
 PLUMAGE_ROOT = Path(__file__).resolve().parent
 
 ALL_CODE_STYLES = {
-    f.stem for f in
-    PLUMAGE_ROOT.joinpath("static/css/pygments/").resolve().iterdir()
+    f.stem for f in PLUMAGE_ROOT.joinpath("static/css/pygments/").resolve().iterdir()
 }
 
 
@@ -64,7 +63,8 @@ def check_config(sender):
 
     if code_style not in ALL_CODE_STYLES:
         raise ValueError(
-            f"{code_style} not recognized among {sorted(ALL_CODE_STYLES)}.")
+            f"{code_style} not recognized among {sorted(ALL_CODE_STYLES)}."
+        )
 
 
 signals.initialized.connect(check_config)
