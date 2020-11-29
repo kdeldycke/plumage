@@ -17,10 +17,14 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+from urllib.parse import urlparse
+
 from pyquery import PyQuery as pq
 
 
 def transform(path, context):
+
+    BASE_URL = urlparse(context.get("SITEURL", ""))
 
     with open(path, "r+", encoding="utf-8") as source:
         doc = pq(source.read())
@@ -36,9 +40,24 @@ def transform(path, context):
         # Make images responsive and styled in article content, but ignore
         # images in cards (like those from project template), images attached to
         # links, and emojis rendered as images.
-        doc("#content img:not(.card-img-top):not(.link-icon):not(.emojione)").add_class(
-            "img-fluid border rounded shadow"
-        )
+        main_images_selector = \
+            "#content img:not(.card-img-top):not(.link-icon):not(.emojione)"
+        doc(main_images_selector).add_class("img-fluid border rounded shadow")
+
+        # Process all images from the main content to create a reduced set with
+        # lower dimensions.
+        # XXX Hack to bypass the bug on extenal images from image-process
+        # plugin: https://github.com/pelican-plugins/image-process/issues/33
+
+        def exclude_external_images(_, this):
+            source = urlparse(this.get("src", ""))
+            if (source.scheme and BASE_URL.scheme) and \
+                    (source.netloc != BASE_URL.netloc):
+                return False
+            return True
+
+        doc(main_images_selector).filter(exclude_external_images).add_class(
+            "image-process-article-photo")
 
         # Style blockquotes in the way Bootstrap does.
         doc("blockquote").add_class("blockquote border-left border-primary pl-3")
