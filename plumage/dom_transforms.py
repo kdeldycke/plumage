@@ -40,8 +40,9 @@ def transform(path, context):
         # Make images responsive and styled in article content, but ignore
         # images in cards (like those from project template), images attached to
         # links, and emojis rendered as images.
-        main_images_selector = \
+        main_images_selector = (
             "#content img:not(.card-img-top):not(.link-icon):not(.emojione)"
+        )
         doc(main_images_selector).add_class("img-fluid border rounded shadow")
 
         # Process all images from the main content to create a reduced set with
@@ -51,13 +52,15 @@ def transform(path, context):
 
         def exclude_external_images(_, this):
             source = urlparse(this.get("src", ""))
-            if (source.scheme and BASE_URL.scheme) and \
-                    (source.netloc != BASE_URL.netloc):
+            if (source.scheme and BASE_URL.scheme) and (
+                source.netloc != BASE_URL.netloc
+            ):
                 return False
             return True
 
         doc(main_images_selector).filter(exclude_external_images).add_class(
-            "image-process-article-photo")
+            "image-process-article-photo"
+        )
 
         # Style blockquotes in the way Bootstrap does.
         doc("blockquote").add_class("blockquote border-left border-primary pl-3")
