@@ -60,17 +60,17 @@ Plumage has built-in support for the following plugins and extensions:
 
 Plugin name | Type | Status | Notes
 :--- |:--- |:--- |:---
-[`typogrify`](https://pypi.python.org/pypi/typogrify) | Pelican builtin | Optional | Style ampersands.
 [`pelican-neighbors`](https://github.com/pelican-plugins/neighbors) | Pelican plugin | Optional |
-[`pelican-webassets`](https://pypi.org/project/pelican-webassets) | Pelican plugin | Required |
 [`pelican-related-posts`](https://github.com/pelican-plugins/related-posts) | Pelican plugin | Optional |
 [`pelican-similar-posts`](https://github.com/pelican-plugins/similar-posts) | Pelican plugin | Optional |
 [`pelican-tipue-search`](https://github.com/pelican-plugins/tipue-search) | Pelican plugin | Optional |
+[`pelican-webassets`](https://pypi.org/project/pelican-webassets) | Pelican plugin | Required |
 [`markdown.extensions.admonition`](https://python-markdown.github.io/extensions/admonition/) | Markdown extension | Optional | Re-style admonitions into [alerts](https://getbootstrap.com/docs/4.5/components/alerts/).
 [`markdown.extensions.codehilite`](https://python-markdown.github.io/extensions/code_hilite/) | Markdown extension | Optional | Style highlighted code with Pygment style.
 [`markdown.extensions.toc`](https://python-markdown.github.io/extensions/toc/#usage) | Markdown extension | Optional | Adds permalink anchors to article's subtitles.
 [`pymdownx.emoji`](https://facelessuser.github.io/pymdown-extensions/extensions/emoji/#default-emoji-generators) | Markdown extension | Optional | Style `emojione` set for proper integration into text.
 [`pymdownx.highlight`](https://facelessuser.github.io/pymdown-extensions/extensions/highlight/) | Markdown extension | Optional | Style highlighted code with Pygment style.
+[`typogrify`](https://pypi.python.org/pypi/typogrify) | Pelican builtin | Optional | Style ampersands.
 
 ## Installation
 
