@@ -7,7 +7,7 @@
   * Add default favicon.
   * Embed and auto-generate all Pygments styles.
   * Improve styling of code blocks.
-  * Remove custom default font.
+  * Remove all custom default and code fonts. Rely on [Bootstrap's native font stack](https://getbootstrap.com/docs/4.1/content/reboot/#native-font-stack).
   * Add Pelican version in HTML headers.
 
 * [**v2.3.0**
