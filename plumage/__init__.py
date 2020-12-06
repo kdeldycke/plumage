@@ -26,7 +26,7 @@ from pelican.contents import Static
 from .dom_transforms import transform
 
 
-__version__ = "2.4.0"
+__version__ = "2.4.1"
 
 """ Examples of valid version strings according :pep:`440#version-scheme`:
 

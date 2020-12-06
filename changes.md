@@ -1,5 +1,9 @@
 # Changelog
 
+* [**v2.4.1**
+  (unreleased)](https://github.com/kdeldycke/plumage/compare/v2.4.0...develop)
+  * No changes yet.
+
 * [**v2.4.0**
   (2020-12-06)](https://github.com/kdeldycke/plumage/compare/v2.3.0...v2.4.0)
   * Add new `CODE_STYLE` option to select code rendering among 30+ styles from
