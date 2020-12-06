@@ -44,7 +44,7 @@ jobs:
           files: ./dist/*
           body: |
             🐍 [Available on
-            PyPi](https://pypi.org/project/meta-package-manager/${{
+            PyPi](https://pypi.org/project/plumage/${{
             steps.get_version.outputs.TAG_VERSION }}/).
             Changelog:
               * <TODO>
