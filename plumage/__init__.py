@@ -69,8 +69,9 @@ def check_config(sender):
             f"{code_style} not recognized among {sorted(ALL_CODE_STYLES)}."
         )
 
+
 def add_favicon_assets(sender):
-    """ Copy all individual files found in /static/favicon theme's folder
+    """Copy all individual files found in /static/favicon theme's folder
     to the root of the generated site.
 
     Favicons were generated with RealFaviconGenerator v0.16:
@@ -80,26 +81,31 @@ def add_favicon_assets(sender):
     # See: https://docs.getpelican.com/en/latest/settings.html#themes
     assert "static" in sender.settings["THEME_STATIC_PATHS"]
 
-    for asset in (PLUMAGE_ROOT / 'static' / 'favicon').iterdir():
+    for asset in (PLUMAGE_ROOT / "static" / "favicon").iterdir():
         assert asset.is_file()
 
         # Add static file to generator context, as Pelican does natively at:
         # https://github.com/getpelican/pelican/blob/8033162ba4393db60791b201fb100d1be0f04431/pelican/generators.py#L811-L817
         static = sender.readers.read_file(
-                base_path=asset.parent, path=asset.name, content_class=Static,
-                fmt='static', context=sender.context,
-                preread_signal=signals.static_generator_preread,
-                preread_sender=sender,
-                context_signal=signals.static_generator_context,
-                context_sender=sender)
+            base_path=asset.parent,
+            path=asset.name,
+            content_class=Static,
+            fmt="static",
+            context=sender.context,
+            preread_signal=signals.static_generator_preread,
+            preread_sender=sender,
+            context_signal=signals.static_generator_context,
+            context_sender=sender,
+        )
 
         # Forces the asset to be saved at the root of the output folder.
         # See: https://github.com/getpelican/pelican/blob/8033162ba4393db60791b201fb100d1be0f04431/pelican/contents.py#L55-L59
-        static.metadata['save_as'] = asset.name
-        setattr(static, 'override_save_as', asset.name)
+        static.metadata["save_as"] = asset.name
+        setattr(static, "override_save_as", asset.name)
 
         # Register asset along other static files.
-        sender.context['staticfiles'].append(static)
+        sender.context["staticfiles"].append(static)
+
 
 signals.initialized.connect(check_config)
 signals.static_generator_finalized.connect(add_favicon_assets)
