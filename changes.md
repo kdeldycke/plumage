@@ -4,6 +4,7 @@
   (unreleased)](https://github.com/kdeldycke/plumage/compare/v2.3.0...develop)
   * Add new `CODE_STYLE` option to select code rendering among 30+ styles from
     Pygments.
+  * Add default favicon.
   * Embed and auto-generate all Pygments styles.
   * Improve styling of code blocks.
   * Remove custom default font.
