@@ -71,9 +71,6 @@ span.linenos {
   box-shadow: -0.05rem 0 var(--secondary) inset;
 
   /* Same as Bootstrap's .user-select-none class */
-  -webkit-user-select: none !important;
-  -moz-user-select: none !important;
-  -ms-user-select: none !important;
   user-select: none !important;
   word-break: normal;
 
@@ -125,8 +122,6 @@ span.linenos {
   *,
   *::before,
   *::after {
-    -webkit-box-sizing: content-box !important;
-    -moz-box-sizing: content-box !important;
     box-sizing: content-box !important;
   }
 

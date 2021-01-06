@@ -25,6 +25,11 @@ classifiers = [
     'Programming Language :: Other',
     'Topic :: Internet :: WWW/HTTP',
     'Topic :: Text Processing :: Markup :: HTML']
+include = [
+    "package.json",
+    "package-lock.json",
+    "postcss.config.js",
+]
 
 [tool.poetry.urls]
 "Funding" = "https://github.com/sponsors/kdeldycke"

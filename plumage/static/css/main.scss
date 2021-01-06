@@ -31,10 +31,6 @@ img.emojione {
 .avatar-container {
   $size: 6rem;
   height: $size;
-  -webkit-perspective: 600;
-  -moz-perspective: 600;
-  -ms-perspective: 600;
-  -o-perspective: 600;
   perspective: 600;
   position: relative;
   width: $size;
@@ -44,15 +40,7 @@ img.emojione {
     $size: 100%;
     height: $size;
     position: absolute;
-    -webkit-transform-style: preserve-3d;
-    -moz-transform-style: preserve-3d;
-    -ms-transform-style: preserve-3d;
-    -o-transform-style: preserve-3d;
     transform-style: preserve-3d;
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -ms-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
     width: $size;
 
@@ -65,22 +53,12 @@ img.emojione {
       height: $size;
       overflow: hidden;
       position: absolute;
-      -webkit-backface-visibility: hidden;
-      -moz-backface-visibility: hidden;
-      -ms-backface-visibility: hidden;
-      -o-backface-visibility: hidden;
       backface-visibility: hidden;
       width: $size;
     }
 
     .back {
-      background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #eee), color-stop(100%, #ddd));
-      background-image: -webkit-linear-gradient(#eee, #ddd);
-      background-image: -moz-linear-gradient(#eee, #ddd);
-      background-image: -o-linear-gradient(#eee, #ddd);
       background-image: linear-gradient(#eee, #ddd);
-      -webkit-box-shadow: inset 0 0 1.5rem rgba(0, 0, 0, 0.1);
-      -moz-box-shadow: inset 0 0 1.5rem rgba(0, 0, 0, 0.1);
       box-shadow: inset 0 0 1.5rem rgba(0, 0, 0, 0.1);
     }
 
@@ -91,10 +69,6 @@ img.emojione {
 
     &.animate:hover,
     &.animate .back {
-      -webkit-transform: rotateY(180deg);
-      -moz-transform: rotateY(180deg);
-      -ms-transform: rotateY(180deg);
-      -o-transform: rotateY(180deg);
       transform: rotateY(180deg);
     }
   }

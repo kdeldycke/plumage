@@ -13,6 +13,15 @@ updates:
     assignees:
       - "kdeldycke"
 
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    labels:
+      - "CI/CD"
+    assignees:
+      - "kdeldycke"
+
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
