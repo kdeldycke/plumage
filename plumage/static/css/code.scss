@@ -5,7 +5,6 @@ $pad: 0.5rem;
 
 .codehilite,
 .highlight {
-
   .filename {
     display: block;
     font-family: var(--font-family-monospace);
@@ -65,10 +64,10 @@ span.linenos {
   @extend %reset-pygment-padding;
 
   background-color: inherit;
-  color: inherit;
 
   /* Gutter's border separating numbers from code */
   box-shadow: -0.05rem 0 var(--secondary) inset;
+  color: inherit;
 
   /* Same as Bootstrap's .user-select-none class */
   user-select: none !important;
@@ -88,16 +87,16 @@ span.linenos {
   }
 
   .highlight & {
+
+    // Set solid background color to prevent transparent one messing up with
+    // code lines sliding under the sticky gutter.
+    background-color: $back_color;
     float: left;
     left: (-$pad);
     margin-left: (-$pad);
     margin-right: $pad;
     padding: 0 0 0 $pad*2;
     position: sticky; // Makes the left-side line number gutter sticky.
-
-    // Set solid background color to prevent transparent one messing up with
-    // code lines sliding under the sticky gutter.
-    background-color: $back_color;
 
     &.special {
       background-color: var(--secondary); // Highlight every every Nth line number in the gutter

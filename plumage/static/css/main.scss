@@ -46,6 +46,7 @@ img.emojione {
 
     .side {
       $size: 100%;
+      backface-visibility: hidden;
       border: solid 0.2rem white {
         radius: 1rem;
       }
@@ -53,7 +54,6 @@ img.emojione {
       height: $size;
       overflow: hidden;
       position: absolute;
-      backface-visibility: hidden;
       width: $size;
     }
 
