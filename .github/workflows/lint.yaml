@@ -50,8 +50,10 @@ jobs:
           npm install --save-dev
           stylelint stylelint-config-standard stylelint-config-sass-guidelines
       - name: Lint CSS
-        run: |
-          npx stylelint --config stylelint-config-standard "plumage/**/*.css"
+        run: >
+          npx stylelint --config stylelint-config-standard
+          "plumage/**/*.css"
       - name: Lint SCSS
-        run: |
-          npx stylelint --config stylelint-config-sass-guidelines "plumage/**/*.scss"
+        run: >
+          npx stylelint --config stylelint-config-sass-guidelines
+          "plumage/**/*.scss"
