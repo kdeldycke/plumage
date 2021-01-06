@@ -1,83 +1,137 @@
-pre { line-height: 125%; margin: 0; }
-td.linenos pre { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
-span.linenos { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
-td.linenos pre.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
-span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
-.pygments-style-vim .hll { background-color: #222222 }
-.pygments-style-vim { background: #000000; color: #cccccc }
-.pygments-style-vim .c { color: #000080 } /* Comment */
-.pygments-style-vim .err { color: #cccccc; border: 1px solid #FF0000 } /* Error */
-.pygments-style-vim .esc { color: #cccccc } /* Escape */
-.pygments-style-vim .g { color: #cccccc } /* Generic */
-.pygments-style-vim .k { color: #cdcd00 } /* Keyword */
-.pygments-style-vim .l { color: #cccccc } /* Literal */
-.pygments-style-vim .n { color: #cccccc } /* Name */
-.pygments-style-vim .o { color: #3399cc } /* Operator */
-.pygments-style-vim .x { color: #cccccc } /* Other */
-.pygments-style-vim .p { color: #cccccc } /* Punctuation */
-.pygments-style-vim .ch { color: #000080 } /* Comment.Hashbang */
-.pygments-style-vim .cm { color: #000080 } /* Comment.Multiline */
-.pygments-style-vim .cp { color: #000080 } /* Comment.Preproc */
-.pygments-style-vim .cpf { color: #000080 } /* Comment.PreprocFile */
-.pygments-style-vim .c1 { color: #000080 } /* Comment.Single */
-.pygments-style-vim .cs { color: #cd0000; font-weight: bold } /* Comment.Special */
-.pygments-style-vim .gd { color: #cd0000 } /* Generic.Deleted */
-.pygments-style-vim .ge { color: #cccccc; font-style: italic } /* Generic.Emph */
-.pygments-style-vim .gr { color: #FF0000 } /* Generic.Error */
-.pygments-style-vim .gh { color: #000080; font-weight: bold } /* Generic.Heading */
-.pygments-style-vim .gi { color: #00cd00 } /* Generic.Inserted */
-.pygments-style-vim .go { color: #888888 } /* Generic.Output */
-.pygments-style-vim .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
-.pygments-style-vim .gs { color: #cccccc; font-weight: bold } /* Generic.Strong */
-.pygments-style-vim .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
-.pygments-style-vim .gt { color: #0044DD } /* Generic.Traceback */
-.pygments-style-vim .kc { color: #cdcd00 } /* Keyword.Constant */
-.pygments-style-vim .kd { color: #00cd00 } /* Keyword.Declaration */
-.pygments-style-vim .kn { color: #cd00cd } /* Keyword.Namespace */
-.pygments-style-vim .kp { color: #cdcd00 } /* Keyword.Pseudo */
-.pygments-style-vim .kr { color: #cdcd00 } /* Keyword.Reserved */
-.pygments-style-vim .kt { color: #00cd00 } /* Keyword.Type */
-.pygments-style-vim .ld { color: #cccccc } /* Literal.Date */
-.pygments-style-vim .m { color: #cd00cd } /* Literal.Number */
-.pygments-style-vim .s { color: #cd0000 } /* Literal.String */
-.pygments-style-vim .na { color: #cccccc } /* Name.Attribute */
-.pygments-style-vim .nb { color: #cd00cd } /* Name.Builtin */
-.pygments-style-vim .nc { color: #00cdcd } /* Name.Class */
-.pygments-style-vim .no { color: #cccccc } /* Name.Constant */
-.pygments-style-vim .nd { color: #cccccc } /* Name.Decorator */
-.pygments-style-vim .ni { color: #cccccc } /* Name.Entity */
-.pygments-style-vim .ne { color: #666699; font-weight: bold } /* Name.Exception */
-.pygments-style-vim .nf { color: #cccccc } /* Name.Function */
-.pygments-style-vim .nl { color: #cccccc } /* Name.Label */
-.pygments-style-vim .nn { color: #cccccc } /* Name.Namespace */
-.pygments-style-vim .nx { color: #cccccc } /* Name.Other */
-.pygments-style-vim .py { color: #cccccc } /* Name.Property */
-.pygments-style-vim .nt { color: #cccccc } /* Name.Tag */
-.pygments-style-vim .nv { color: #00cdcd } /* Name.Variable */
-.pygments-style-vim .ow { color: #cdcd00 } /* Operator.Word */
-.pygments-style-vim .w { color: #cccccc } /* Text.Whitespace */
-.pygments-style-vim .mb { color: #cd00cd } /* Literal.Number.Bin */
-.pygments-style-vim .mf { color: #cd00cd } /* Literal.Number.Float */
-.pygments-style-vim .mh { color: #cd00cd } /* Literal.Number.Hex */
-.pygments-style-vim .mi { color: #cd00cd } /* Literal.Number.Integer */
-.pygments-style-vim .mo { color: #cd00cd } /* Literal.Number.Oct */
-.pygments-style-vim .sa { color: #cd0000 } /* Literal.String.Affix */
-.pygments-style-vim .sb { color: #cd0000 } /* Literal.String.Backtick */
-.pygments-style-vim .sc { color: #cd0000 } /* Literal.String.Char */
-.pygments-style-vim .dl { color: #cd0000 } /* Literal.String.Delimiter */
-.pygments-style-vim .sd { color: #cd0000 } /* Literal.String.Doc */
-.pygments-style-vim .s2 { color: #cd0000 } /* Literal.String.Double */
-.pygments-style-vim .se { color: #cd0000 } /* Literal.String.Escape */
-.pygments-style-vim .sh { color: #cd0000 } /* Literal.String.Heredoc */
-.pygments-style-vim .si { color: #cd0000 } /* Literal.String.Interpol */
-.pygments-style-vim .sx { color: #cd0000 } /* Literal.String.Other */
-.pygments-style-vim .sr { color: #cd0000 } /* Literal.String.Regex */
-.pygments-style-vim .s1 { color: #cd0000 } /* Literal.String.Single */
-.pygments-style-vim .ss { color: #cd0000 } /* Literal.String.Symbol */
-.pygments-style-vim .bp { color: #cd00cd } /* Name.Builtin.Pseudo */
-.pygments-style-vim .fm { color: #cccccc } /* Name.Function.Magic */
-.pygments-style-vim .vc { color: #00cdcd } /* Name.Variable.Class */
-.pygments-style-vim .vg { color: #00cdcd } /* Name.Variable.Global */
-.pygments-style-vim .vi { color: #00cdcd } /* Name.Variable.Instance */
-.pygments-style-vim .vm { color: #00cdcd } /* Name.Variable.Magic */
-.pygments-style-vim .il { color: #cd00cd } /* Literal.Number.Integer.Long */
+pre {
+  line-height: 125%;
+}
+
+td.linenos pre {
+  color: #000;
+  background-color: #f0f0f0;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+span.linenos {
+  color: #000;
+  background-color: #f0f0f0;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+td.linenos pre.special {
+  color: #000;
+  background-color: #ffffc0;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+span.linenos.special {
+  color: #000;
+  background-color: #ffffc0;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.pygments-style-vim .hll { background-color: #222; }
+
+.pygments-style-vim {
+  background: #000;
+  color: #ccc;
+}
+.pygments-style-vim .c { color: #000080; } /* Comment */
+.pygments-style-vim .err {
+  color: #ccc;
+  border: 1px solid #f00;
+} /* Error */
+.pygments-style-vim .esc { color: #ccc; } /* Escape */
+.pygments-style-vim .g { color: #ccc; } /* Generic */
+.pygments-style-vim .k { color: #cdcd00; } /* Keyword */
+.pygments-style-vim .l { color: #ccc; } /* Literal */
+.pygments-style-vim .n { color: #ccc; } /* Name */
+.pygments-style-vim .o { color: #39c; } /* Operator */
+.pygments-style-vim .x { color: #ccc; } /* Other */
+.pygments-style-vim .p { color: #ccc; } /* Punctuation */
+.pygments-style-vim .ch { color: #000080; } /* Comment.Hashbang */
+.pygments-style-vim .cm { color: #000080; } /* Comment.Multiline */
+.pygments-style-vim .cp { color: #000080; } /* Comment.Preproc */
+.pygments-style-vim .cpf { color: #000080; } /* Comment.PreprocFile */
+.pygments-style-vim .c1 { color: #000080; } /* Comment.Single */
+.pygments-style-vim .cs {
+  color: #cd0000;
+  font-weight: bold;
+} /* Comment.Special */
+.pygments-style-vim .gd { color: #cd0000; } /* Generic.Deleted */
+.pygments-style-vim .ge {
+  color: #ccc;
+  font-style: italic;
+} /* Generic.Emph */
+.pygments-style-vim .gr { color: #f00; } /* Generic.Error */
+.pygments-style-vim .gh {
+  color: #000080;
+  font-weight: bold;
+} /* Generic.Heading */
+.pygments-style-vim .gi { color: #00cd00; } /* Generic.Inserted */
+.pygments-style-vim .go { color: #888; } /* Generic.Output */
+.pygments-style-vim .gp {
+  color: #000080;
+  font-weight: bold;
+} /* Generic.Prompt */
+.pygments-style-vim .gs {
+  color: #ccc;
+  font-weight: bold;
+} /* Generic.Strong */
+.pygments-style-vim .gu {
+  color: #800080;
+  font-weight: bold;
+} /* Generic.Subheading */
+.pygments-style-vim .gt { color: #04d; } /* Generic.Traceback */
+.pygments-style-vim .kc { color: #cdcd00; } /* Keyword.Constant */
+.pygments-style-vim .kd { color: #00cd00; } /* Keyword.Declaration */
+.pygments-style-vim .kn { color: #cd00cd; } /* Keyword.Namespace */
+.pygments-style-vim .kp { color: #cdcd00; } /* Keyword.Pseudo */
+.pygments-style-vim .kr { color: #cdcd00; } /* Keyword.Reserved */
+.pygments-style-vim .kt { color: #00cd00; } /* Keyword.Type */
+.pygments-style-vim .ld { color: #ccc; } /* Literal.Date */
+.pygments-style-vim .m { color: #cd00cd; } /* Literal.Number */
+.pygments-style-vim .s { color: #cd0000; } /* Literal.String */
+.pygments-style-vim .na { color: #ccc; } /* Name.Attribute */
+.pygments-style-vim .nb { color: #cd00cd; } /* Name.Builtin */
+.pygments-style-vim .nc { color: #00cdcd; } /* Name.Class */
+.pygments-style-vim .no { color: #ccc; } /* Name.Constant */
+.pygments-style-vim .nd { color: #ccc; } /* Name.Decorator */
+.pygments-style-vim .ni { color: #ccc; } /* Name.Entity */
+.pygments-style-vim .ne {
+  color: #669;
+  font-weight: bold;
+} /* Name.Exception */
+.pygments-style-vim .nf { color: #ccc; } /* Name.Function */
+.pygments-style-vim .nl { color: #ccc; } /* Name.Label */
+.pygments-style-vim .nn { color: #ccc; } /* Name.Namespace */
+.pygments-style-vim .nx { color: #ccc; } /* Name.Other */
+.pygments-style-vim .py { color: #ccc; } /* Name.Property */
+.pygments-style-vim .nt { color: #ccc; } /* Name.Tag */
+.pygments-style-vim .nv { color: #00cdcd; } /* Name.Variable */
+.pygments-style-vim .ow { color: #cdcd00; } /* Operator.Word */
+.pygments-style-vim .w { color: #ccc; } /* Text.Whitespace */
+.pygments-style-vim .mb { color: #cd00cd; } /* Literal.Number.Bin */
+.pygments-style-vim .mf { color: #cd00cd; } /* Literal.Number.Float */
+.pygments-style-vim .mh { color: #cd00cd; } /* Literal.Number.Hex */
+.pygments-style-vim .mi { color: #cd00cd; } /* Literal.Number.Integer */
+.pygments-style-vim .mo { color: #cd00cd; } /* Literal.Number.Oct */
+.pygments-style-vim .sa { color: #cd0000; } /* Literal.String.Affix */
+.pygments-style-vim .sb { color: #cd0000; } /* Literal.String.Backtick */
+.pygments-style-vim .sc { color: #cd0000; } /* Literal.String.Char */
+.pygments-style-vim .dl { color: #cd0000; } /* Literal.String.Delimiter */
+.pygments-style-vim .sd { color: #cd0000; } /* Literal.String.Doc */
+.pygments-style-vim .s2 { color: #cd0000; } /* Literal.String.Double */
+.pygments-style-vim .se { color: #cd0000; } /* Literal.String.Escape */
+.pygments-style-vim .sh { color: #cd0000; } /* Literal.String.Heredoc */
+.pygments-style-vim .si { color: #cd0000; } /* Literal.String.Interpol */
+.pygments-style-vim .sx { color: #cd0000; } /* Literal.String.Other */
+.pygments-style-vim .sr { color: #cd0000; } /* Literal.String.Regex */
+.pygments-style-vim .s1 { color: #cd0000; } /* Literal.String.Single */
+.pygments-style-vim .ss { color: #cd0000; } /* Literal.String.Symbol */
+.pygments-style-vim .bp { color: #cd00cd; } /* Name.Builtin.Pseudo */
+.pygments-style-vim .fm { color: #ccc; } /* Name.Function.Magic */
+.pygments-style-vim .vc { color: #00cdcd; } /* Name.Variable.Class */
+.pygments-style-vim .vg { color: #00cdcd; } /* Name.Variable.Global */
+.pygments-style-vim .vi { color: #00cdcd; } /* Name.Variable.Instance */
+.pygments-style-vim .vm { color: #00cdcd; } /* Name.Variable.Magic */
+.pygments-style-vim .il { color: #cd00cd; } /* Literal.Number.Integer.Long */
