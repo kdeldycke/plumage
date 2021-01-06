@@ -77,7 +77,7 @@ Plugin name | Type | Status | Notes
 
 This package is [available on PyPi](https://pypi.python.org/pypi/plumage), so
 you can install the latest stable release and its dependencies with a simple
-``pip`` call:
+`pip` call:
 
 ```shell-session
 $ pip install plumage
