@@ -58,17 +58,20 @@ def get_path():
 
 def check_config(sender):
     """ Validates and setup Plumage configuration. """
+    conf = sender.settings
+
     # Keep some metadata around.
-    sender.settings["PELICAN_VERSION"] = pelican.__version__
+    conf["PELICAN_VERSION"] = pelican.__version__
     # Defaults code style to Monokai.
-    if not sender.settings.get("CODE_STYLE"):
-        sender.settings["CODE_STYLE"] = "monokai"
-    code_style = sender.settings["CODE_STYLE"]
+    if not conf.get("CODE_STYLE"):
+        conf["CODE_STYLE"] = "monokai"
+    code_style = conf["CODE_STYLE"]
     if code_style not in ALL_CODE_STYLES:
         raise ValueError(
             f"{code_style} not recognized among {sorted(ALL_CODE_STYLES)}."
         )
 
+    sender.settings = conf
 
 def add_favicon_assets(sender):
     """Copy all individual files found in /static/favicon theme's folder
