@@ -40,7 +40,7 @@ cssmin = "^0.2.0"
 libsass = "^0.20.1"
 Markdown = "^3.3.3"
 pelican = "^4.2.0"
-pelican-webassets = "^1.0.0"
+pelican-webassets = {git = "https://github.com/pelican-plugins/webassets.git", branch = "main"}
 pygments = "^2.7.0"
 pymdown-extensions = "^8.0.1"
 pyquery = "^1.4.3"

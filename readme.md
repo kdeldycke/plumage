@@ -65,7 +65,7 @@ Plugin name | Type | Status | Notes
 [`pelican-related-posts`](https://github.com/pelican-plugins/related-posts) | Pelican plugin | Optional |
 [`pelican-similar-posts`](https://github.com/pelican-plugins/similar-posts) | Pelican plugin | Optional |
 [`pelican-tipue-search`](https://github.com/pelican-plugins/tipue-search) | Pelican plugin | Optional |
-[`pelican-webassets`](https://pypi.org/project/pelican-webassets) | Pelican plugin | Required |
+[`pelican-webassets`](https://github.com/pelican-plugins/webassets) | Pelican plugin | Required |
 [`markdown.extensions.admonition`](https://python-markdown.github.io/extensions/admonition/) | Markdown extension | Optional | Re-style admonitions into [alerts](https://getbootstrap.com/docs/4.5/components/alerts/).
 [`markdown.extensions.codehilite`](https://python-markdown.github.io/extensions/code_hilite/) | Markdown extension | Optional | Style highlighted code with Pygment style.
 [`markdown.extensions.toc`](https://python-markdown.github.io/extensions/toc/#usage) | Markdown extension | Optional | Adds permalink anchors to article's subtitles.
@@ -92,7 +92,7 @@ THEME = plumage.get_path()
 
 PLUGINS = [
     (…)
-    "pelican_webassets",
+    "webassets",
 ]
 ```
 
