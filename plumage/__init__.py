@@ -156,7 +156,7 @@ def add_favicon_assets(sender):
         static.metadata["save_as"] = asset.name
         setattr(static, "override_save_as", asset.name)
 
-        # Register asset along other static files.
+        # Register the new asset along other static files.
         sender.context["staticfiles"].append(static)
 
 
