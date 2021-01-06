@@ -93,7 +93,8 @@ def check_config(sender):
         deps_file = PLUMAGE_ROOT.joinpath("package.json").resolve()
         logger.info(
             f"Install Plumage's Node.js dependencies from {deps_file}:\n"
-            f"{indent(deps_file.read_text(), ' ' * 2)}")
+            f"{indent(deps_file.read_text(), ' ' * 2)}"
+        )
 
         # Install Node dependencies.
         pkg = NPMPackage(deps_file)
@@ -103,8 +104,7 @@ def check_config(sender):
             logger.error("npm CLI not found.")
             raise
 
-        postcss_bin = deps_file.parent.joinpath(
-            f"./node_modules/.bin/{cli_name}")
+        postcss_bin = deps_file.parent.joinpath(f"./node_modules/.bin/{cli_name}")
 
         assert postcss_bin.exists() and os.access(postcss_bin, os.X_OK)
 
@@ -112,16 +112,17 @@ def check_config(sender):
     logger.info(f"{cli_name} CLI found at {postcss_bin}")
     if "POSTCSS_BIN" not in webassets_conf_keys:
         conf["WEBASSETS_CONFIG"].append(
-            ('POSTCSS_BIN', postcss_bin),
+            ("POSTCSS_BIN", postcss_bin),
         )
 
     # Force usage of autoprefixer via PostCSS.
     if "POSTCSS_EXTRA_ARGS" not in webassets_conf_keys:
         conf["WEBASSETS_CONFIG"].append(
-            ('POSTCSS_EXTRA_ARGS', ["--use", "autoprefixer"]),
+            ("POSTCSS_EXTRA_ARGS", ["--use", "autoprefixer"]),
         )
 
     sender.settings = conf
+
 
 def add_favicon_assets(sender):
     """Copy all individual files found in /static/favicon theme's folder
