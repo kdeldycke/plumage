@@ -51,7 +51,7 @@ jobs:
           stylelint stylelint-config-standard stylelint-config-sass-guidelines
       - name: Lint CSS
         run: |
-          npx stylelint --config stylelint-config-standard "**/*.css"
+          npx stylelint --config stylelint-config-standard "plumage/**/*.css"
       - name: Lint SCSS
         run: |
-          npx stylelint --config stylelint-config-sass-guidelines "**/*.scss"
+          npx stylelint --config stylelint-config-sass-guidelines "plumage/**/*.scss"
