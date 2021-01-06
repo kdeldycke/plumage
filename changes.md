@@ -4,6 +4,8 @@
   (unreleased)](https://github.com/kdeldycke/plumage/compare/v2.4.0...develop)
   * Let `autoprefixer` generates vendor prefixes in CSS.
   * Add dependency on `postcss-cli` Node package.
+  * Auto-install Node.js dependencies via `npm`.
+  * Auto-configure `webassets` plugins on theme load.
 
 * [**v2.4.0**
   (2020-12-06)](https://github.com/kdeldycke/plumage/compare/v2.3.0...v2.4.0)

@@ -14,7 +14,7 @@ updates:
       - "kdeldycke"
 
   - package-ecosystem: "npm"
-    directory: "/"
+    directory: "/plumage"
     schedule:
       interval: "daily"
     labels:

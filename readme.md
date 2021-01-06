@@ -92,8 +92,31 @@ THEME = plumage.get_path()
 
 PLUGINS = [
     (…)
-    "webassets",
+    "pelican.plugins.webassets",
 ]
+```
+
+On first run, Plumage will try to install [Node.js package dependencies](https://github.com/kdeldycke/plumage/blob/develop/plumage/package.json) via the `npm` CLI:
+
+```shell-session
+$ poetry run pelican --verbose ./content
+(…)
+WARNING: postcss CLI not found.
+-> Install Plumage's Node.js dependencies from (…)/plumage/package.json:
+  |   {
+  |     "name": "plumage-webassets-pipeline",
+  |     "description": "Plumage depdencies for the webassets compilation pipeline.",
+  |     "dependencies": {
+  |       "postcss-cli": "^8.3.1"
+  |     }
+  |   }
+  |
+
+up to date, audited 96 packages in 984ms
+
+found 0 vulnerabilities
+-> postcss CLI found at (…)/plumage/node_modules/.bin/postcss
+(…)
 ```
 
 ## Settings

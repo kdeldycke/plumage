@@ -1,6 +1,6 @@
 {
   "name": "plumage-webassets-pipeline",
-  "description": "Plumage depdencies for the web assets compilation pipeline.",
+  "description": "Plumage depdencies for the webassets compilation pipeline.",
   "dependencies": {
     "postcss-cli": "^8.3.1"
   }

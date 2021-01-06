@@ -52,8 +52,8 @@ jobs:
       - name: Lint CSS
         run: >
           npx stylelint --config stylelint-config-standard
-          "plumage/**/*.css"
+          "plumage/static/**/*.css"
       - name: Lint SCSS
         run: >
           npx stylelint --config stylelint-config-sass-guidelines
-          "plumage/**/*.scss"
+          "plumage/static/**/*.scss"

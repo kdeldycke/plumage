@@ -147,9 +147,9 @@ jobs:
         # PR below.
         run: |
           npx stylelint --fix --config stylelint-config-standard \
-            "plumage/**/*.css" || true
+            "plumage/static/**/*.css" || true
           npx stylelint --fix --config stylelint-config-sass-guidelines \
-            "plumage/**/*.scss" || true
+            "plumage/static/**/*.scss" || true
       - name: Discard all local changes but CSS files
         run: |
           # Remove untracked directories and files.

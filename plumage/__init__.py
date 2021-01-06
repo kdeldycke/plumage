@@ -17,11 +17,16 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+import logging
+import os
 from pathlib import Path
+from shutil import which
+from textwrap import indent
 
 import pelican
 from pelican import signals
 from pelican.contents import Static
+from pynpm import NPMPackage
 
 from .dom_transforms import transform
 
@@ -39,6 +44,8 @@ __version__ = "2.5.0"
     __version__ = '1.2.3.post1'  # Post Release 1
 """
 
+
+logger = logging.getLogger(__name__)
 
 PLUMAGE_ROOT = Path(__file__).resolve().parent
 
@@ -69,6 +76,49 @@ def check_config(sender):
     if code_style not in ALL_CODE_STYLES:
         raise ValueError(
             f"{code_style} not recognized among {sorted(ALL_CODE_STYLES)}."
+        )
+
+    # Setup Pelican Webassets plugin.
+    if not conf.get("WEBASSETS_CONFIG"):
+        conf["WEBASSETS_CONFIG"] = []
+    webassets_conf_keys = {i[0] for i in conf.get("WEBASSETS_CONFIG")}
+
+    # Search for PostCSS binary location.
+    cli_name = "postcss"
+    postcss_bin = which(cli_name)
+    if not postcss_bin:
+        logger.warning(f"{cli_name} CLI not found.")
+
+        # Locate dependency definition file.
+        deps_file = PLUMAGE_ROOT.joinpath("package.json").resolve()
+        logger.info(
+            f"Install Plumage's Node.js dependencies from {deps_file}:\n"
+            f"{indent(deps_file.read_text(), ' ' * 2)}")
+
+        # Install Node dependencies.
+        pkg = NPMPackage(deps_file)
+        try:
+            pkg.install()
+        except FileNotFoundError:
+            logger.error("npm CLI not found.")
+            raise
+
+        postcss_bin = deps_file.parent.joinpath(
+            f"./node_modules/.bin/{cli_name}")
+
+        assert postcss_bin.exists() and os.access(postcss_bin, os.X_OK)
+
+    # Register PostCSS to webassets plugin.
+    logger.info(f"{cli_name} CLI found at {postcss_bin}")
+    if "POSTCSS_BIN" not in webassets_conf_keys:
+        conf["WEBASSETS_CONFIG"].append(
+            ('POSTCSS_BIN', postcss_bin),
+        )
+
+    # Force usage of autoprefixer via PostCSS.
+    if "POSTCSS_EXTRA_ARGS" not in webassets_conf_keys:
+        conf["WEBASSETS_CONFIG"].append(
+            ('POSTCSS_EXTRA_ARGS', ["--use", "autoprefixer"]),
         )
 
     sender.settings = conf

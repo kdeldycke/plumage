@@ -369,14 +369,24 @@ markdown = ["markdown (>=3.1.1,<3.2.0)"]
 [[package]]
 name = "pelican-webassets"
 version = "1.0.0"
-description = "A Pelican plugin so you can use webassets"
+description = "Use the webassets module to manage assets such as CSS and JS files"
 category = "main"
 optional = false
-python-versions = "*"
+python-versions = "^3.6"
+develop = false
 
 [package.dependencies]
-pelican = "*"
-webassets = "*"
+pelican = "^4.5"
+webassets = "^2.0"
+
+[package.extras]
+markdown = ["markdown (>=3.2.2,<4.0.0)"]
+
+[package.source]
+type = "git"
+url = "https://github.com/pelican-plugins/webassets.git"
+reference = "main"
+resolved_reference = "c39a93d8265fb174e53f3efe310690df70a20742"
 
 [[package]]
 name = "pkginfo"
@@ -427,6 +437,19 @@ python-versions = ">=3.6"
 
 [package.dependencies]
 Markdown = ">=3.2"
+
+[[package]]
+name = "pynpm"
+version = "0.1.2"
+description = "Python interface to your NPM and package.json."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.extras]
+all = ["Sphinx (>=1.5.1)", "check-manifest (>=0.25)", "coverage (>=4.0)", "isort (>=4.2.2)", "pydocstyle (>=1.0.0)", "pytest-cache (>=1.0)", "pytest-cov (>=1.8.0)", "pytest-pep8 (>=1.0.6)", "pytest (>=2.8.0)"]
+docs = ["Sphinx (>=1.5.1)"]
+tests = ["check-manifest (>=0.25)", "coverage (>=4.0)", "isort (>=4.2.2)", "pydocstyle (>=1.0.0)", "pytest-cache (>=1.0)", "pytest-cov (>=1.8.0)", "pytest-pep8 (>=1.0.6)", "pytest (>=2.8.0)"]
 
 [[package]]
 name = "pyparsing"
@@ -968,10 +991,7 @@ pelican = [
     {file = "pelican-4.5.0-py2.py3-none-any.whl", hash = "sha256:2c5c721bc95caa406673d74a5b906f42289930dabee598b41930a18cf98742a5"},
     {file = "pelican-4.5.0.tar.gz", hash = "sha256:d08119a3ed3eb7d3f2d0a9a5b929be648ad3c84d018b19517ecc608383b824e6"},
 ]
-pelican-webassets = [
-    {file = "pelican-webassets-1.0.0.tar.gz", hash = "sha256:c2234d49ef049807969ecf5bbc011a9d1c7066b23952e7d4a160ebba5bc7c3e9"},
-    {file = "pelican_webassets-1.0.0-py3-none-any.whl", hash = "sha256:58a3322db2c6a74cd2ff230679730a9f3aa3a3ef7fd4016293d136389d39d359"},
-]
+pelican-webassets = []
 pkginfo = [
     {file = "pkginfo-1.6.1-py2.py3-none-any.whl", hash = "sha256:ce14d7296c673dc4c61c759a0b6c14bae34e34eb819c0017bb6ca5b7292c56e9"},
     {file = "pkginfo-1.6.1.tar.gz", hash = "sha256:a6a4ac943b496745cec21f14f021bbd869d5e9b4f6ec06918cffea5a2f4b9193"},
@@ -991,6 +1011,10 @@ pygments = [
 pymdown-extensions = [
     {file = "pymdown-extensions-8.1.tar.gz", hash = "sha256:565583c5964ac8253896ef4a7f14023075503ca6514d7d470b343290b96fc6da"},
     {file = "pymdown_extensions-8.1-py2.py3-none-any.whl", hash = "sha256:c0b285fdd6e8438895b0c4422847af012f32a487ae083ffafa4c21a151b4983b"},
+]
+pynpm = [
+    {file = "pynpm-0.1.2-py2.py3-none-any.whl", hash = "sha256:3f03fbf667549f8b8b7e0419eef88d1b21833ce288f96de66fbb761b9f4c4061"},
+    {file = "pynpm-0.1.2.tar.gz", hash = "sha256:8a6d3f9423760cf3c142db3bf9bda5a075e8a91837e7d2e2b0a3de5be5e26da2"},
 ]
 pyparsing = [
     {file = "pyparsing-2.4.7-py2.py3-none-any.whl", hash = "sha256:ef9d7589ef3c200abe66653d3f1ab1033c3c419ae9b9bdb1240a85b024efc88b"},

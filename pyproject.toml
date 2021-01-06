@@ -25,11 +25,6 @@ classifiers = [
     'Programming Language :: Other',
     'Topic :: Internet :: WWW/HTTP',
     'Topic :: Text Processing :: Markup :: HTML']
-include = [
-    "package.json",
-    "package-lock.json",
-    "postcss.config.js",
-]
 
 [tool.poetry.urls]
 "Funding" = "https://github.com/sponsors/kdeldycke"
@@ -47,6 +42,7 @@ pyquery = "^1.4.3"
 # List of python versions and their support status:
 # https://en.wikipedia.org/wiki/CPython#Version_history
 python = "^3.6"
+pynpm = "^0.1.2"
 
 [tool.poetry.dev-dependencies]
 black = "^20.8b1"
