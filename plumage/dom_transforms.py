@@ -98,4 +98,4 @@ def transform(path, context):
 
     # Save result.
     with open(path, "w") as source:
-        source.write(doc.__html__())
+        source.write(doc.outerHtml())
