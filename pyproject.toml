@@ -38,11 +38,11 @@ pelican = "^4.2.0"
 pelican-webassets = {git = "https://github.com/pelican-plugins/webassets.git", branch = "main"}
 pygments = "^2.7.0"
 pymdown-extensions = "^8.0.1"
+pynpm = "^0.1.2"
 pyquery = "^1.4.3"
 # List of python versions and their support status:
 # https://en.wikipedia.org/wiki/CPython#Version_history
 python = "^3.6"
-pynpm = "^0.1.2"
 
 [tool.poetry.dev-dependencies]
 black = "^20.8b1"
