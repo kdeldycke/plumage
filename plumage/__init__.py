@@ -90,7 +90,7 @@ def check_config(sender):
     node_deps_file = PLUMAGE_ROOT.joinpath("package.json").resolve()
     node_bin_path = node_deps_file.parent / "node_modules" / ".bin"
     cli_search_path = [
-        node_bin_path
+        str(node_bin_path),
     ]
 
     # Check if the path exist in any of the environment locations.
@@ -112,9 +112,8 @@ def check_config(sender):
             logger.error("npm CLI not found.")
             raise
 
-        postcss_bin = node_bin_path / f"{cli_name}"
-
-    assert postcss_bin.exists() and os.access(postcss_bin, os.X_OK)
+        postcss_bin = which(cli_name, path=env_path)
+        assert postcss_bin
 
     # Register PostCSS to webassets plugin.
     logger.info(f"{cli_name} CLI found at {postcss_bin}")
