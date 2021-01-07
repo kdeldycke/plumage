@@ -26,6 +26,8 @@ def transform(path, context):
 
     BASE_URL = urlparse(context.get("SITEURL", ""))
 
+    # XXX This direct construct is stripping the "<!DOCTYPE>" heading. See:
+    # https://github.com/gawel/pyquery/issues/199
     doc = pq(filename=path)
 
     # Add bootstrap table style to table elements.
