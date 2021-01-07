@@ -85,28 +85,36 @@ def check_config(sender):
 
     # Search for PostCSS binary location.
     cli_name = "postcss"
-    postcss_bin = which(cli_name)
+
+    # The dependency definition file relative to Plumage's install path takes precedence.
+    node_deps_file = PLUMAGE_ROOT.joinpath("package.json").resolve()
+    node_bin_path = node_deps_file.parent / "node_modules" / ".bin"
+    cli_search_path = [
+        node_bin_path
+    ]
+
+    # Check if the path exist in any of the environment locations.
+    env_path = ":".join(cli_search_path + [os.getenv("PATH")])
+    postcss_bin = which(cli_name, path=env_path)
+
     if not postcss_bin:
         logger.warning(f"{cli_name} CLI not found.")
 
-        # Locate dependency definition file.
-        deps_file = PLUMAGE_ROOT.joinpath("package.json").resolve()
-        logger.info(
-            f"Install Plumage's Node.js dependencies from {deps_file}:\n"
-            f"{indent(deps_file.read_text(), ' ' * 2)}"
-        )
-
         # Install Node dependencies.
-        pkg = NPMPackage(deps_file)
+        logger.info(
+            f"Install Plumage's Node.js dependencies from {node_deps_file}:\n"
+            f"{indent(node_deps_file.read_text(), ' ' * 2)}"
+        )
+        pkg = NPMPackage(node_deps_file)
         try:
             pkg.install()
         except FileNotFoundError:
             logger.error("npm CLI not found.")
             raise
 
-        postcss_bin = deps_file.parent.joinpath(f"./node_modules/.bin/{cli_name}")
+        postcss_bin = node_bin_path / f"{cli_name}"
 
-        assert postcss_bin.exists() and os.access(postcss_bin, os.X_OK)
+    assert postcss_bin.exists() and os.access(postcss_bin, os.X_OK)
 
     # Register PostCSS to webassets plugin.
     logger.info(f"{cli_name} CLI found at {postcss_bin}")
