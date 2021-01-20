@@ -41,7 +41,7 @@ pymdown-extensions = "^8.0.1"
 pynpm = "^0.1.2"
 pyquery = "^1.4.3"
 # List of python versions and their support status:
-# https://en.wikipedia.org/wiki/CPython#Version_history
+# https://en.wikipedia.org/wiki/History_of_Python#Support
 python = "^3.6"
 
 [tool.poetry.dev-dependencies]
