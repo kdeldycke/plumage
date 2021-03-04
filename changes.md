@@ -5,6 +5,7 @@
   * Upgrade to Bootstrap 4.6.0.
   * Upgrade to Font Awesome 5.15.2.
   * Upgrade to jQuery 3.6.0.
+  * Update dependency to `pelican-webassets` 2.0.0.
   * Let `autoprefixer` generates vendor prefixes in CSS.
   * Add dependency on `postcss-cli` and `autoprefixer` Node package.
   * Auto-install Node.js dependencies via `npm`.
