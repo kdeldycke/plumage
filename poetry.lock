@@ -348,24 +348,24 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [[package]]
 name = "pelican"
-version = "4.5.0"
-description = "Static site generator supporting reStructuredText and Markdown source content."
+version = "4.6.0"
+description = "Static site generator supporting Markdown and reStructuredText"
 category = "main"
 optional = false
-python-versions = "*"
+python-versions = ">=3.6,<4.0"
 
 [package.dependencies]
-blinker = "*"
-docutils = ">=0.15"
+blinker = ">=1.4"
+docutils = ">=0.16"
 feedgenerator = ">=1.9"
-jinja2 = ">=2.11"
-pygments = "*"
-python-dateutil = "*"
-pytz = ">=0a"
-unidecode = "*"
+jinja2 = ">=2.7"
+pygments = ">=2.6"
+python-dateutil = ">=2.8"
+pytz = ">=2020.1"
+unidecode = ">=1.1"
 
 [package.extras]
-markdown = ["markdown (>=3.1.1,<3.2.0)"]
+markdown = ["markdown (>=3.1)"]
 
 [[package]]
 name = "pelican-webassets"
@@ -1002,8 +1002,8 @@ pathspec = [
     {file = "pathspec-0.8.1.tar.gz", hash = "sha256:86379d6b86d75816baba717e64b1a3a3469deb93bb76d613c9ce79edc5cb68fd"},
 ]
 pelican = [
-    {file = "pelican-4.5.0-py2.py3-none-any.whl", hash = "sha256:2c5c721bc95caa406673d74a5b906f42289930dabee598b41930a18cf98742a5"},
-    {file = "pelican-4.5.0.tar.gz", hash = "sha256:d08119a3ed3eb7d3f2d0a9a5b929be648ad3c84d018b19517ecc608383b824e6"},
+    {file = "pelican-4.6.0-py3-none-any.whl", hash = "sha256:7ffedec818fb1bc80fc3735782859858052479a99fc083546d9947c1adfe8156"},
+    {file = "pelican-4.6.0.tar.gz", hash = "sha256:bff507e454b62b7157001031edca259a40c72225778f6ea8221c201915e41f24"},
 ]
 pelican-webassets = []
 pkginfo = [
