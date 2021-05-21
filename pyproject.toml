@@ -32,7 +32,7 @@ classifiers = [
 [tool.poetry.dependencies]
 closure = "^20191111"
 cssmin = "^0.2.0"
-libsass = "^0.20.1"
+libsass = ">=0.20.1,<0.22.0"
 Markdown = "^3.3.3"
 pelican = "^4.2.0"
 pelican-webassets = "^2.0.0"
