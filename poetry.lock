@@ -93,7 +93,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [[package]]
 name = "check-wheel-contents"
-version = "0.3.0"
+version = "0.3.1"
 description = "Check your wheels have the right contents"
 category = "dev"
 optional = false
@@ -105,7 +105,7 @@ click = ">=7.0"
 packaging = "*"
 property-manager = ">=3.0,<4.0"
 pydantic = ">=1.7,<2.0"
-toml = "*"
+tomli = ">=1.0,<2.0"
 wheel-filename = ">=1.1,<2.0"
 
 [[package]]
@@ -626,6 +626,14 @@ optional = false
 python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
 
 [[package]]
+name = "tomli"
+version = "1.0.4"
+description = "A lil' TOML parser"
+category = "dev"
+optional = false
+python-versions = ">=3.6"
+
+[[package]]
 name = "tqdm"
 version = "4.55.1"
 description = "Fast, Extensible Progress Meter"
@@ -752,7 +760,7 @@ testing = ["pytest (>=3.5,!=3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "99b6538d83d88bbe186cc6c012e80f4022d7e12d88f0aea67aea49ebec4df59d"
+content-hash = "15ba571f2b86400787a0751bfbbb3148959884f030f3525120c238993c4db1b0"
 
 [metadata.files]
 appdirs = [
@@ -821,8 +829,8 @@ chardet = [
     {file = "chardet-4.0.0.tar.gz", hash = "sha256:0d6f53a15db4120f2b08c94f11e7d93d2c911ee118b6b30a04ec3ee8310179fa"},
 ]
 check-wheel-contents = [
-    {file = "check-wheel-contents-0.3.0.tar.gz", hash = "sha256:d84e6ce47344555aee480d729fe94b6e66bdd7fc29dcfa8d6b78468809e1677d"},
-    {file = "check_wheel_contents-0.3.0-py3-none-any.whl", hash = "sha256:f6986c85f8f57da1c25fdf3fbeb51acd99330ddd27de23a93117412ad77cf442"},
+    {file = "check-wheel-contents-0.3.1.tar.gz", hash = "sha256:2f0c870408ffe4fb60f72b9f0cf094b07ffa5f459f8c9340de3fff03433d6ce5"},
+    {file = "check_wheel_contents-0.3.1-py3-none-any.whl", hash = "sha256:96a40119ec75ded7cc0f90a5d7f913a7381b0b27c3fbf30c8f6f1afb3bddc39f"},
 ]
 click = [
     {file = "click-7.1.2-py2.py3-none-any.whl", hash = "sha256:dacca89f4bfadd5de3d7489b7c8a566eee0d3676333fbb50030263894c38c0dc"},
@@ -1177,6 +1185,10 @@ six = [
 toml = [
     {file = "toml-0.10.2-py2.py3-none-any.whl", hash = "sha256:806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"},
     {file = "toml-0.10.2.tar.gz", hash = "sha256:b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f"},
+]
+tomli = [
+    {file = "tomli-1.0.4-py3-none-any.whl", hash = "sha256:0713b16ff91df8638a6a694e295c8159ab35ba93e3424a626dd5226d386057be"},
+    {file = "tomli-1.0.4.tar.gz", hash = "sha256:be670d0d8d7570fd0ea0113bd7bb1ba3ac6706b4de062cc4c952769355c9c268"},
 ]
 tqdm = [
     {file = "tqdm-4.55.1-py2.py3-none-any.whl", hash = "sha256:b8b46036fd00176d0870307123ef06bb851096964fa7fc578d789f90ce82c3e4"},
