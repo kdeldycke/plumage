@@ -65,6 +65,14 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "cached-property"
+version = "1.5.2"
+description = "A decorator for caching properties in classes."
+category = "dev"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "certifi"
 version = "2020.12.5"
 description = "Python package for providing Mozilla's CA Bundle."
@@ -93,7 +101,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [[package]]
 name = "check-wheel-contents"
-version = "0.3.1"
+version = "0.3.2"
 description = "Check your wheels have the right contents"
 category = "dev"
 optional = false
@@ -101,9 +109,9 @@ python-versions = "~=3.6"
 
 [package.dependencies]
 attrs = ">=18.1"
+cached-property = {version = ">=1.5,<2.0", markers = "python_version < \"3.8\""}
 click = ">=7.0"
 packaging = "*"
-property-manager = ">=3.0,<4.0"
 pydantic = ">=1.7,<2.0"
 tomli = ">=1.0,<2.0"
 wheel-filename = ">=1.1,<2.0"
@@ -194,17 +202,6 @@ python-versions = "*"
 [package.dependencies]
 pytz = ">=0a"
 six = "*"
-
-[[package]]
-name = "humanfriendly"
-version = "9.1"
-description = "Human friendly output for text interfaces using Python"
-category = "dev"
-optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
-
-[package.dependencies]
-pyreadline = {version = "*", markers = "sys_platform == \"win32\""}
 
 [[package]]
 name = "idna"
@@ -402,18 +399,6 @@ python-versions = "*"
 testing = ["nose", "coverage"]
 
 [[package]]
-name = "property-manager"
-version = "3.0"
-description = "Useful property variants for Python programming (required properties, writable properties, cached properties, etc)"
-category = "dev"
-optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
-
-[package.dependencies]
-humanfriendly = ">=8.0"
-verboselogs = ">=1.1"
-
-[[package]]
 name = "pycparser"
 version = "2.20"
 description = "C parser in Python"
@@ -488,14 +473,6 @@ python-versions = "*"
 [package.dependencies]
 cssselect = ">0.7.9"
 lxml = ">=2.1"
-
-[[package]]
-name = "pyreadline"
-version = "2.1"
-description = "A python implmementation of GNU readline."
-category = "dev"
-optional = false
-python-versions = "*"
 
 [[package]]
 name = "python-dateutil"
@@ -702,14 +679,6 @@ secure = ["pyOpenSSL (>=0.14)", "cryptography (>=1.3.4)", "idna (>=2.0.0)", "cer
 socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 
 [[package]]
-name = "verboselogs"
-version = "1.7"
-description = "Verbose logging level for Python's logging module"
-category = "dev"
-optional = false
-python-versions = "*"
-
-[[package]]
 name = "webassets"
 version = "2.0"
 description = "Media asset management for Python, with glue code for various web frameworks"
@@ -760,7 +729,7 @@ testing = ["pytest (>=3.5,!=3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "15ba571f2b86400787a0751bfbbb3148959884f030f3525120c238993c4db1b0"
+content-hash = "136ff8828e384a0cd8207efb2c1f899ff0a7c35ad8c3708d538a5ec4e6603e64"
 
 [metadata.files]
 appdirs = [
@@ -780,6 +749,10 @@ bleach = [
 ]
 blinker = [
     {file = "blinker-1.4.tar.gz", hash = "sha256:471aee25f3992bd325afa3772f1063dbdbbca947a041b8b89466dc00d606f8b6"},
+]
+cached-property = [
+    {file = "cached-property-1.5.2.tar.gz", hash = "sha256:9fa5755838eecbb2d234c3aa390bd80fbd3ac6b6869109bfc1b499f7bd89a130"},
+    {file = "cached_property-1.5.2-py2.py3-none-any.whl", hash = "sha256:df4f613cf7ad9a588cc381aaf4a512d26265ecebd5eb9e1ba12f1319eb85a6a0"},
 ]
 certifi = [
     {file = "certifi-2020.12.5-py2.py3-none-any.whl", hash = "sha256:719a74fb9e33b9bd44cc7f3a8d94bc35e4049deebe19ba7d8e108280cfd59830"},
@@ -829,8 +802,8 @@ chardet = [
     {file = "chardet-4.0.0.tar.gz", hash = "sha256:0d6f53a15db4120f2b08c94f11e7d93d2c911ee118b6b30a04ec3ee8310179fa"},
 ]
 check-wheel-contents = [
-    {file = "check-wheel-contents-0.3.1.tar.gz", hash = "sha256:2f0c870408ffe4fb60f72b9f0cf094b07ffa5f459f8c9340de3fff03433d6ce5"},
-    {file = "check_wheel_contents-0.3.1-py3-none-any.whl", hash = "sha256:96a40119ec75ded7cc0f90a5d7f913a7381b0b27c3fbf30c8f6f1afb3bddc39f"},
+    {file = "check-wheel-contents-0.3.2.tar.gz", hash = "sha256:1489b22b5ca2bc3ffbb1c32c0d1360f3e8d7f97b2a565e740dc451df5537c68d"},
+    {file = "check_wheel_contents-0.3.2-py3-none-any.whl", hash = "sha256:109c381b7014c69b5872dec4c545207747c11846dbe78684461a723571e9914d"},
 ]
 click = [
     {file = "click-7.1.2-py2.py3-none-any.whl", hash = "sha256:dacca89f4bfadd5de3d7489b7c8a566eee0d3676333fbb50030263894c38c0dc"},
@@ -877,10 +850,6 @@ docutils = [
 feedgenerator = [
     {file = "feedgenerator-1.9.1-py3-none-any.whl", hash = "sha256:a81d240a2c74a2ae80c393cfe374aff1a19ed3fe41a488eacc66edbe46d3f422"},
     {file = "feedgenerator-1.9.1.tar.gz", hash = "sha256:a28a5add781509390d1a6a52d017829853ee4bef1d2e7b4d5da0e9d1b395ce54"},
-]
-humanfriendly = [
-    {file = "humanfriendly-9.1-py2.py3-none-any.whl", hash = "sha256:d5c731705114b9ad673754f3317d9fa4c23212f36b29bdc4272a892eafc9bc72"},
-    {file = "humanfriendly-9.1.tar.gz", hash = "sha256:066562956639ab21ff2676d1fda0b5987e985c534fc76700a19bd54bcb81121d"},
 ]
 idna = [
     {file = "idna-2.10-py2.py3-none-any.whl", hash = "sha256:b97d804b1e9b523befed77c48dacec60e6dcb0b5391d57af6a65a312a90648c0"},
@@ -1031,10 +1000,6 @@ pkginfo = [
     {file = "pkginfo-1.6.1-py2.py3-none-any.whl", hash = "sha256:ce14d7296c673dc4c61c759a0b6c14bae34e34eb819c0017bb6ca5b7292c56e9"},
     {file = "pkginfo-1.6.1.tar.gz", hash = "sha256:a6a4ac943b496745cec21f14f021bbd869d5e9b4f6ec06918cffea5a2f4b9193"},
 ]
-property-manager = [
-    {file = "property-manager-3.0.tar.gz", hash = "sha256:93e76da9ae7af13cccc2cd1e3b47219950c56c125cd962aaed693894af267c54"},
-    {file = "property_manager-3.0-py2.py3-none-any.whl", hash = "sha256:d5d648053e669cf9cb2f157e4a41ef46174eaa8ee13bfa49e1530c17d65bfe45"},
-]
 pycparser = [
     {file = "pycparser-2.20-py2.py3-none-any.whl", hash = "sha256:7582ad22678f0fcd81102833f60ef8d0e57288b6b5fb00323d101be910e35705"},
     {file = "pycparser-2.20.tar.gz", hash = "sha256:2d475327684562c3a96cc71adf7dc8c4f0565175cf86b6d7a404ff4c771f15f0"},
@@ -1082,11 +1047,6 @@ pyparsing = [
 pyquery = [
     {file = "pyquery-1.4.3-py3-none-any.whl", hash = "sha256:1fc33b7699455ed25c75282bc8f80ace1ac078b0dda5a933dacbd8b1c1f83963"},
     {file = "pyquery-1.4.3.tar.gz", hash = "sha256:a388eefb6bc4a55350de0316fbd97cda999ae669b6743ae5b99102ba54f5aa72"},
-]
-pyreadline = [
-    {file = "pyreadline-2.1.win-amd64.exe", hash = "sha256:9ce5fa65b8992dfa373bddc5b6e0864ead8f291c94fbfec05fbd5c836162e67b"},
-    {file = "pyreadline-2.1.win32.exe", hash = "sha256:65540c21bfe14405a3a77e4c085ecfce88724743a4ead47c66b84defcf82c32e"},
-    {file = "pyreadline-2.1.zip", hash = "sha256:4530592fc2e85b25b1a9f79664433da09237c1a270e4d78ea5aa3a2c7229e2d1"},
 ]
 python-dateutil = [
     {file = "python-dateutil-2.8.1.tar.gz", hash = "sha256:73ebfe9dbf22e832286dafa60473e4cd239f8592f699aa5adaf10050e6e1823c"},
@@ -1242,10 +1202,6 @@ unidecode = [
 urllib3 = [
     {file = "urllib3-1.26.2-py2.py3-none-any.whl", hash = "sha256:d8ff90d979214d7b4f8ce956e80f4028fc6860e4431f731ea4a8c08f23f99473"},
     {file = "urllib3-1.26.2.tar.gz", hash = "sha256:19188f96923873c92ccb987120ec4acaa12f0461fa9ce5d3d0772bc965a39e08"},
-]
-verboselogs = [
-    {file = "verboselogs-1.7-py2.py3-none-any.whl", hash = "sha256:d63f23bf568295b95d3530c6864a0b580cec70e7ff974177dead1e4ffbc6ff49"},
-    {file = "verboselogs-1.7.tar.gz", hash = "sha256:e33ddedcdfdafcb3a174701150430b11b46ceb64c2a9a26198c76a156568e427"},
 ]
 webassets = [
     {file = "webassets-2.0-py3-none-any.whl", hash = "sha256:a31a55147752ba1b3dc07dee0ad8c8efff274464e08bbdb88c1fd59ffd552724"},
