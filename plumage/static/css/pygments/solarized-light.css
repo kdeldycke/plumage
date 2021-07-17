@@ -2,7 +2,7 @@ pre {
   line-height: 125%;
 }
 
-td.linenos pre {
+td.linenos .normal {
   color: #93a1a1;
   background-color: #eee8d5;
   padding-left: 5px;
@@ -16,7 +16,7 @@ span.linenos {
   padding-right: 5px;
 }
 
-td.linenos pre.special {
+td.linenos .special {
   color: #000;
   background-color: #ffffc0;
   padding-left: 5px;
@@ -82,7 +82,10 @@ span.linenos.special {
 } /* Generic.Heading */
 .pygments-style-solarized-light .gi { color: #859900; } /* Generic.Inserted */
 .pygments-style-solarized-light .go { color: #657b83; } /* Generic.Output */
-.pygments-style-solarized-light .gp { color: #657b83; } /* Generic.Prompt */
+.pygments-style-solarized-light .gp {
+  color: #268bd2;
+  font-weight: bold;
+} /* Generic.Prompt */
 .pygments-style-solarized-light .gs {
   color: #657b83;
   font-weight: bold;
