@@ -704,11 +704,11 @@ python-versions = "~=3.6"
 
 [[package]]
 name = "yamllint"
-version = "1.26.1"
+version = "1.26.2"
 description = "A linter for YAML files."
 category = "dev"
 optional = false
-python-versions = ">=3.5.*"
+python-versions = ">=3.5"
 
 [package.dependencies]
 pathspec = ">=0.5.3"
@@ -729,7 +729,7 @@ testing = ["pytest (>=3.5,!=3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "136ff8828e384a0cd8207efb2c1f899ff0a7c35ad8c3708d538a5ec4e6603e64"
+content-hash = "e27a77739bb3ff8ece9776d3ab288ee972c90ea140949e19a93e220be0cf3d60"
 
 [metadata.files]
 appdirs = [
@@ -1216,7 +1216,7 @@ wheel-filename = [
     {file = "wheel_filename-1.2.0-py3-none-any.whl", hash = "sha256:0aab092d824560d93d6b8999519bfa363743c27e00806131690577f03f5dbc8d"},
 ]
 yamllint = [
-    {file = "yamllint-1.26.1.tar.gz", hash = "sha256:87d9462b3ed7e9dfa19caa177f7a77cd9888b3dc4044447d6ae0ab233bcd1324"},
+    {file = "yamllint-1.26.2.tar.gz", hash = "sha256:0b08a96750248fdf21f1e8193cb7787554ef75ed57b27f621cd6b3bf09af11a1"},
 ]
 zipp = [
     {file = "zipp-3.4.0-py3-none-any.whl", hash = "sha256:102c24ef8f171fd729d46599845e95c7ab894a4cf45f5de11a44cc7444fb1108"},
