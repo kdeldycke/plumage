@@ -75,15 +75,26 @@ Plugin name | Type | Status | Notes
 
 ## Installation
 
-This package is [available on PyPi](https://pypi.python.org/pypi/plumage), so
-you can install the latest stable release and its dependencies with a simple
-`pip` call:
+Install this theme using the `develop` branch of this Github repo.
+
+If you're already using `poetry` to manage dependency of Pelican project, you need to run just 
 
 ```shell-session
-$ pip install plumage
+poetry add git+https://github.com/kdeldycke/plumage#develop
 ```
 
-Then, update your `pelicanconf.py` file, to reference the module and extra plugins:
+Or, can manually add the following line in the  `[tool.poetry.dependencies]` section of the `pyproject.toml` file.
+```
+plumage = {git = "https://github.com/kdeldycke/plumage", rev = "develop"}
+```
+
+Once added, run `poetry update` to reflect this new dependency.
+
+**Note:** If you haven't used `poetry` in the project yet, you need to do so before adding `plumage`. 
+You can do that by first [installing `poetry`](https://python-poetry.org/docs/#installation) on your system and then running `poetry init` inside the project folder.
+
+
+Then, once you're done installing the `plumage` module, update your `pelicanconf.py` file to reference the module and requied extra plugins:
 
 ```python
 import plumage
