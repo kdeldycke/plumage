@@ -28,7 +28,7 @@ from pelican import signals
 from pelican.contents import Static
 from pynpm import NPMPackage
 
-from . import logger
+from . import logger, PLUMAGE_ROOT
 from .dom_transforms import transform
 
 
