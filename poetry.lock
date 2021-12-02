@@ -389,14 +389,14 @@ resolved_reference = "3f52f112615d994c47eab80a545ae05719d3b358"
 
 [[package]]
 name = "pkginfo"
-version = "1.6.1"
+version = "1.8.2"
 description = "Query metadatdata from sdists / bdists / installed packages."
 category = "dev"
 optional = false
 python-versions = "*"
 
 [package.extras]
-testing = ["nose", "coverage"]
+testing = ["coverage", "nose"]
 
 [[package]]
 name = "pycparser"
@@ -624,7 +624,7 @@ telegram = ["requests"]
 
 [[package]]
 name = "twine"
-version = "3.4.2"
+version = "3.7.0"
 description = "Collection of utilities for publishing packages on PyPI"
 category = "dev"
 optional = false
@@ -634,7 +634,7 @@ python-versions = ">=3.6"
 colorama = ">=0.4.3"
 importlib-metadata = ">=3.6"
 keyring = ">=15.1"
-pkginfo = ">=1.4.2"
+pkginfo = ">=1.8.1"
 readme-renderer = ">=21.0"
 requests = ">=2.20"
 requests-toolbelt = ">=0.8.0,<0.9.0 || >0.9.0"
@@ -729,7 +729,7 @@ testing = ["pytest (>=3.5,!=3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "48178abd08dd5741a59e5268a1fbdb0b4aa91b884f37f6b08883bb15ec6dc734"
+content-hash = "b5dcc7c7eef48ca7fe87da7d5589783a22784b8d35aec8cfa6d3d9c9c30c21e1"
 
 [metadata.files]
 appdirs = [
@@ -880,6 +880,7 @@ libsass = [
     {file = "libsass-0.21.0-cp36-abi3-manylinux_2_5_x86_64.manylinux1_x86_64.whl", hash = "sha256:e2b1a7d093f2e76dc694c17c0c285e846d0b0deb0e8b21dc852ba1a3a4e2f1d6"},
     {file = "libsass-0.21.0-cp36-abi3-win32.whl", hash = "sha256:abc29357ee540849faf1383e1746d40d69ed5cb6d4c346df276b258f5aa8977a"},
     {file = "libsass-0.21.0-cp36-abi3-win_amd64.whl", hash = "sha256:659ae41af8708681fa3ec73f47b9735a6725e71c3b66ff570bfce78952f2314e"},
+    {file = "libsass-0.21.0-cp38-abi3-macosx_12_0_arm64.whl", hash = "sha256:c9ec490609752c1d81ff6290da33485aa7cb6d7365ac665b74464c1b7d97f7da"},
     {file = "libsass-0.21.0.tar.gz", hash = "sha256:d5ba529d9ce668be9380563279f3ffe988f27bc5b299c5a28453df2e0b0fbaf2"},
 ]
 lxml = [
@@ -1008,8 +1009,8 @@ pelican = [
 ]
 pelican-webassets = []
 pkginfo = [
-    {file = "pkginfo-1.6.1-py2.py3-none-any.whl", hash = "sha256:ce14d7296c673dc4c61c759a0b6c14bae34e34eb819c0017bb6ca5b7292c56e9"},
-    {file = "pkginfo-1.6.1.tar.gz", hash = "sha256:a6a4ac943b496745cec21f14f021bbd869d5e9b4f6ec06918cffea5a2f4b9193"},
+    {file = "pkginfo-1.8.2-py2.py3-none-any.whl", hash = "sha256:c24c487c6a7f72c66e816ab1796b96ac6c3d14d49338293d2141664330b55ffc"},
+    {file = "pkginfo-1.8.2.tar.gz", hash = "sha256:542e0d0b6750e2e21c20179803e40ab50598d8066d51097a0e382cba9eb02bff"},
 ]
 pycparser = [
     {file = "pycparser-2.20-py2.py3-none-any.whl", hash = "sha256:7582ad22678f0fcd81102833f60ef8d0e57288b6b5fb00323d101be910e35705"},
@@ -1174,8 +1175,8 @@ tqdm = [
     {file = "tqdm-4.55.1.tar.gz", hash = "sha256:556c55b081bd9aa746d34125d024b73f0e2a0e62d5927ff0e400e20ee0a03b9a"},
 ]
 twine = [
-    {file = "twine-3.4.2-py3-none-any.whl", hash = "sha256:087328e9bb405e7ce18527a2dca4042a84c7918658f951110b38bc135acab218"},
-    {file = "twine-3.4.2.tar.gz", hash = "sha256:4caec0f1ed78dc4c9b83ad537e453d03ce485725f2aea57f1bb3fdde78dae936"},
+    {file = "twine-3.7.0-py3-none-any.whl", hash = "sha256:5a3e3fb52b926827c99e050f0c1e5d8ae599848f3eb27764f19b886c09134590"},
+    {file = "twine-3.7.0.tar.gz", hash = "sha256:8d6a0ad895576c97e9ad4a5da2d6adea37fd5434ecabace0054013d537ddbc6c"},
 ]
 typed-ast = [
     {file = "typed_ast-1.4.2-cp35-cp35m-manylinux1_i686.whl", hash = "sha256:7703620125e4fb79b64aa52427ec192822e9f45d37d4b6625ab37ef403e1df70"},
