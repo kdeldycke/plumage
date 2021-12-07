@@ -48,7 +48,7 @@ python = "^3.6"
 black = "^20.8b1"
 check-wheel-contents = "^0.3.3"
 twine = "^3.7"
-yamllint = "^1.26.1"
+yamllint = "^1.26.3"
 
 [tool.black]
 # TODO: add py39 on next black release.
