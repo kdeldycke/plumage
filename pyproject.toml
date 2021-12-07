@@ -37,7 +37,7 @@ Markdown = "^3.3.3"
 pelican = "^4.2.0"
 pelican-webassets = "^2.0.0"
 pygments = "^2.7.0"
-pymdown-extensions = "^8.0.1"
+pymdown-extensions = ">=8.0.1,<10.0.0"
 pynpm = "^0.1.2"
 pyquery = "^1.4.3"
 # List of python versions and their support status:
