@@ -23,7 +23,7 @@ jobs:
       - name: Run black
         run: |
           poetry run black .
-      - uses: peter-evans/create-pull-request@v3.11.0
+      - uses: peter-evans/create-pull-request@v3.12.0
         with:
           author: "Kevin Deldycke <kevin@deldycke.com>"
           commit-message: "[autofix] Format Python code"
@@ -44,7 +44,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2.4.0
       - uses: sobolevn/misspell-fixer-action@0.1.0
-      - uses: peter-evans/create-pull-request@v3.11.0
+      - uses: peter-evans/create-pull-request@v3.12.0
         with:
           author: "Kevin Deldycke <kevin@deldycke.com>"
           commit-message: "[autofix] Typo"
@@ -69,7 +69,7 @@ jobs:
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           compressOnly: true
-      - uses: peter-evans/create-pull-request@v3.11.0
+      - uses: peter-evans/create-pull-request@v3.12.0
         with:
           author: "Kevin Deldycke <kevin@deldycke.com>"
           commit-message: "[autofix] Optimize images"
@@ -98,7 +98,7 @@ jobs:
         run: >
           git ignore-io --replace emacs git linux macos node nohup python vim
           virtualenv visualstudiocode windows
-      - uses: peter-evans/create-pull-request@v3.11.0
+      - uses: peter-evans/create-pull-request@v3.12.0
         with:
           author: "Kevin Deldycke <kevin@deldycke.com>"
           commit-message: "[autofix] Regenerate .gitignore"
@@ -157,7 +157,7 @@ jobs:
           git checkout --force
           # Restore modified files. Do not fail if no file has been stashed.
           git stash pop || true
-      - uses: peter-evans/create-pull-request@v3.11.0
+      - uses: peter-evans/create-pull-request@v3.12.0
         with:
           author: "Kevin Deldycke <kevin@deldycke.com>"
           commit-message: "[autofix] Upgrade and format CSS style"
