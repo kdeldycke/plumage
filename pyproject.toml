@@ -47,7 +47,7 @@ python = "^3.6"
 [tool.poetry.dev-dependencies]
 black = "^20.8b1"
 check-wheel-contents = "^0.3.3"
-twine = "^3.7"
+twine = "^3.8"
 yamllint = "^1.26.1"
 
 [tool.black]
