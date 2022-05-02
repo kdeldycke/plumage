@@ -2,7 +2,7 @@
   "name": "plumage-webassets-pipeline",
   "description": "Plumage depdencies for the webassets compilation pipeline.",
   "dependencies": {
-    "autoprefixer": "^10.4.0",
+    "autoprefixer": "^10.4.6",
     "postcss-cli": "^9.0.2"
   }
 }
