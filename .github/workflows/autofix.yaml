@@ -13,7 +13,7 @@ jobs:
     name: Format Python code and create a PR
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2.4.0
+      - uses: actions/checkout@v3.1.0
       - uses: actions/setup-python@v2.2.2
       - name: Install black
         run: |
@@ -42,7 +42,7 @@ jobs:
     name: Fix typos and create a PR
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2.4.0
+      - uses: actions/checkout@v3.1.0
       - uses: sobolevn/misspell-fixer-action@0.1.0
       - uses: peter-evans/create-pull-request@v3.11.0
         with:
@@ -63,7 +63,7 @@ jobs:
     name: Optimize images
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2.4.0
+      - uses: actions/checkout@v3.1.0
       - uses: calibreapp/image-actions@1.1.0
         id: image_actions
         with:
@@ -90,7 +90,7 @@ jobs:
     name: Generate .gitignore and create a PR
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2.4.0
+      - uses: actions/checkout@v3.1.0
       - name: Install git-extras package
         run: |
           sudo apt install -y git-extras
@@ -117,7 +117,7 @@ jobs:
     name: Generate Pygment styles, format CSS files and create a PR
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2.4.0
+      - uses: actions/checkout@v3.1.0
       - uses: actions/setup-python@v2.2.2
       - name: Install Pygments
         run: |
