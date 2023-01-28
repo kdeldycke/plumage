@@ -362,8 +362,7 @@ This software is licensed under the [GNU General Public License v2 or later
 (GPLv2+)](https://github.com/kdeldycke/plumage/blob/main/LICENSE).
 
 Copyright (C) 2012-2020 [Kevin Deldycke](https://kevin.deldycke.com) and
-[contributors](https://github.com/kdeldycke/plumage/graphs/contributors). All
-Rights Reserved.
+[contributors](https://github.com/kdeldycke/plumage/graphs/contributors).
 
 ## Third-party assets
 
