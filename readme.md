@@ -12,45 +12,45 @@ it is now generic enough to be used by anyone.
 
 ## Features
 
-* Standard Pelican views:
+- Standard Pelican views:
 
-  ![Plumage article view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/article.jpeg) | ![Plumage categories view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/categories.jpeg) | ![Plumage tiered tag list view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/tiered-tags.jpeg)
-  :-:|:-:|:-:
-  Article | Categories | Tiered tag list
-  ![Plumage archive view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/archives.jpeg) | ![Plumage tag view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/tag.jpeg) | ![Plumage authors view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/authors.jpeg)
-  Collapsable yearly archives | Tagged articles | Authors
-  ![Plumage archive view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/browse-content-by.jpeg) | |
-  Faceted article browsing | |
+  |      ![Plumage article view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/article.jpeg)      | ![Plumage categories view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/categories.jpeg) | ![Plumage tiered tag list view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/tiered-tags.jpeg) |
+  | :---------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------: |
+  |                                                         Article                                                         |                                                     Categories                                                      |                                                      Tiered tag list                                                      |
+  |     ![Plumage archive view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/archives.jpeg)      |        ![Plumage tag view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/tag.jpeg)        |       ![Plumage authors view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/authors.jpeg)       |
+  |                                               Collapsable yearly archives                                               |                                                   Tagged articles                                                   |                                                          Authors                                                          |
+  | ![Plumage archive view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/browse-content-by.jpeg) |                                                                                                                     |                                                                                                                           |
+  |                                                Faceted article browsing                                                 |                                                                                                                     |                                                                                                                           |
 
-* Projects template:
+- Projects template:
 
-  ![Plumage projects: code showcase](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/projects-code.jpeg) | ![Plumage projects: videos showcase](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/projects-videos.jpeg) | ![Plumage projects: themes showcase](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/projects-themes.jpeg)
-  :-:|:-:|:-:
-  Code showcase ([source](https://github.com/kdeldycke/kevin-deldycke-blog/blob/ebe0d17a59730457c3016dff77fdfa799a80d756/content/templates/code.html)) | Videos showcase ([source](https://github.com/kdeldycke/kevin-deldycke-blog/blob/f778998376fa5c68f1a02129884b89592b641777/content/templates/videos.html)) | Themes showcase ([source](https://github.com/kdeldycke/kevin-deldycke-blog/blob/f778998376fa5c68f1a02129884b89592b641777/content/templates/themes.html))
+  |            ![Plumage projects: code showcase](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/projects-code.jpeg)            |            ![Plumage projects: videos showcase](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/projects-videos.jpeg)            |            ![Plumage projects: themes showcase](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/projects-themes.jpeg)            |
+  | :--------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------: |
+  | Code showcase ([source](https://github.com/kdeldycke/kevin-deldycke-blog/blob/ebe0d17a59730457c3016dff77fdfa799a80d756/content/templates/code.html)) | Videos showcase ([source](https://github.com/kdeldycke/kevin-deldycke-blog/blob/f778998376fa5c68f1a02129884b89592b641777/content/templates/videos.html)) | Themes showcase ([source](https://github.com/kdeldycke/kevin-deldycke-blog/blob/f778998376fa5c68f1a02129884b89592b641777/content/templates/themes.html)) |
 
-* Based on [Bootstrap v4](https://getbootstrap.com).
+- Based on [Bootstrap v4](https://getbootstrap.com).
 
-* [Code syntax highlighting](#code-syntax-highlighting) with [30+ styles](https://github.com/pygments/pygments/tree/master/pygments/styles).
+- [Code syntax highlighting](#code-syntax-highlighting) with [30+ styles](https://github.com/pygments/pygments/tree/master/pygments/styles).
 
-* Site-wide static search via [Tipue-search](https://web.archive.org/web/20200703134724/https://tipue.com/search/).
+- Site-wide static search via [Tipue-search](https://web.archive.org/web/20200703134724/https://tipue.com/search/).
 
-* Bare YouTube links in articles gets rendered as embedded videos:
+- Bare YouTube links in articles gets rendered as embedded videos:
 
   ![Plumage YouTube link](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/youtube-link.jpeg)
 
-* Direct link to edit articles on GitHub:
+- Direct link to edit articles on GitHub:
 
   ![Plumage GitHub edit link](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/github-edit-link.jpeg)
 
-* Magnifying glass overlays on images and zoom:
+- Magnifying glass overlays on images and zoom:
 
   ![Plumage image magnifying glass](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/magnifying-glass.jpeg)
   ![Plumage image zoom](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/zoom.jpeg)
 
-* External assets (Bootstrap, Jquery, etc...) uses [CDNjs
-](https://cdnjs.com/about).
+- External assets (Bootstrap, Jquery, etc...) uses [CDNjs
+  ](https://cdnjs.com/about).
 
-* Disqus integration:
+- Disqus integration:
 
   ![Plumage disqus comments](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/disqus.jpeg)
 
@@ -58,20 +58,20 @@ it is now generic enough to be used by anyone.
 
 Plumage has built-in support for the following plugins and extensions:
 
-Plugin name | Type | Status | Notes
-:--- |:--- |:--- |:---
-[`pelican-image-process`](https://github.com/pelican-plugins/image-process) | Pelican plugin | Optional | Embed a hack to [fix parsing of external images](https://github.com/pelican-plugins/image-process/issues/33).
-[`pelican-neighbors`](https://github.com/pelican-plugins/neighbors) | Pelican plugin | Optional |
-[`pelican-related-posts`](https://github.com/pelican-plugins/related-posts) | Pelican plugin | Optional |
-[`pelican-similar-posts`](https://github.com/pelican-plugins/similar-posts) | Pelican plugin | Optional |
-[`pelican-tipue-search`](https://github.com/pelican-plugins/tipue-search) | Pelican plugin | Optional |
-[`pelican-webassets`](https://github.com/pelican-plugins/webassets) | Pelican plugin | Required |
-[`markdown.extensions.admonition`](https://python-markdown.github.io/extensions/admonition/) | Markdown extension | Optional | Re-style admonitions into [alerts](https://getbootstrap.com/docs/4.5/components/alerts/).
-[`markdown.extensions.codehilite`](https://python-markdown.github.io/extensions/code_hilite/) | Markdown extension | Optional | Style highlighted code with Pygment style.
-[`markdown.extensions.toc`](https://python-markdown.github.io/extensions/toc/#usage) | Markdown extension | Optional | Adds permalink anchors to article's subtitles.
-[`pymdownx.emoji`](https://facelessuser.github.io/pymdown-extensions/extensions/emoji/#default-emoji-generators) | Markdown extension | Optional | Style `emojione` set for proper integration into text.
-[`pymdownx.highlight`](https://facelessuser.github.io/pymdown-extensions/extensions/highlight/) | Markdown extension | Optional | Style highlighted code with Pygment style.
-[`typogrify`](https://pypi.python.org/pypi/typogrify) | Pelican builtin | Optional | Style ampersands.
+| Plugin name                                                                                                      | Type               | Status   | Notes                                                                                                         |
+| :--------------------------------------------------------------------------------------------------------------- | :----------------- | :------- | :------------------------------------------------------------------------------------------------------------ |
+| [`pelican-image-process`](https://github.com/pelican-plugins/image-process)                                      | Pelican plugin     | Optional | Embed a hack to [fix parsing of external images](https://github.com/pelican-plugins/image-process/issues/33). |
+| [`pelican-neighbors`](https://github.com/pelican-plugins/neighbors)                                              | Pelican plugin     | Optional |                                                                                                               |
+| [`pelican-related-posts`](https://github.com/pelican-plugins/related-posts)                                      | Pelican plugin     | Optional |                                                                                                               |
+| [`pelican-similar-posts`](https://github.com/pelican-plugins/similar-posts)                                      | Pelican plugin     | Optional |                                                                                                               |
+| [`pelican-tipue-search`](https://github.com/pelican-plugins/tipue-search)                                        | Pelican plugin     | Optional |                                                                                                               |
+| [`pelican-webassets`](https://github.com/pelican-plugins/webassets)                                              | Pelican plugin     | Required |                                                                                                               |
+| [`markdown.extensions.admonition`](https://python-markdown.github.io/extensions/admonition/)                     | Markdown extension | Optional | Re-style admonitions into [alerts](https://getbootstrap.com/docs/4.5/components/alerts/).                     |
+| [`markdown.extensions.codehilite`](https://python-markdown.github.io/extensions/code_hilite/)                    | Markdown extension | Optional | Style highlighted code with Pygment style.                                                                    |
+| [`markdown.extensions.toc`](https://python-markdown.github.io/extensions/toc/#usage)                             | Markdown extension | Optional | Adds permalink anchors to article's subtitles.                                                                |
+| [`pymdownx.emoji`](https://facelessuser.github.io/pymdown-extensions/extensions/emoji/#default-emoji-generators) | Markdown extension | Optional | Style `emojione` set for proper integration into text.                                                        |
+| [`pymdownx.highlight`](https://facelessuser.github.io/pymdown-extensions/extensions/highlight/)                  | Markdown extension | Optional | Style highlighted code with Pygment style.                                                                    |
+| [`typogrify`](https://pypi.python.org/pypi/typogrify)                                                            | Pelican builtin    | Optional | Style ampersands.                                                                                             |
 
 ## Installation
 
@@ -84,6 +84,7 @@ poetry add git+https://github.com/kdeldycke/plumage#develop
 ```
 
 Or, can manually add the following line in the  `[tool.poetry.dependencies]` section of the `pyproject.toml` file.
+
 ```
 plumage = {git = "https://github.com/kdeldycke/plumage", rev = "develop"}
 ```
@@ -92,7 +93,6 @@ Once added, run `poetry update` to reflect this new dependency.
 
 **Note:** If you haven't used `poetry` in the project yet, you need to do so before adding `plumage`.
 You can do that by first [installing `poetry`](https://python-poetry.org/docs/#installation) on your system and then running `poetry init` inside the project folder.
-
 
 Then, once you're done installing the `plumage` module, update your `pelicanconf.py` file to reference the module and requied extra plugins:
 
@@ -135,27 +135,27 @@ found 0 vulnerabilities
 Plumage can be customized by adding these optionnal parameters to your
 `pelicanconf.py` file:
 
-Setting name | Default value | Description
-:--- |:--- |:---
-`ARTICLE_EDIT_LINK` | | Generate an edit link besides each article. Can use `%(slug)s` to include dynamic article's slug in the link.
-`CODE_STYLE` | `"monokai"` | Pygments' style ID. Choose one from `poetry run pygmentize -L styles`.
-`COPYRIGHT` | | Additional copyright statement to add in the third column of the footer.
-`DISCLAIMER` | | Overide the disclaimer notice that gets displayed at the fourth column of the footer.
-[`DISQUS_SITENAME`](http://docs.getpelican.com/en/stable/settings.html#DISQUS_SITENAME) | | Pelican can handle Disqus comments. Specify the Disqus sitename identifier here.
-`FAVICON_LINKS` | `True` | Fetch link's icons from [Google's favicons webservice](https://www.google.com/s2/favicons).
-[`GOOGLE_ANALYTICS`](http://docs.getpelican.com/en/stable/settings.html#GOOGLE_ANALYTICS) | | Set to `UA-XXXXXX-Y` Property's tracking ID to activate Google Analytics.
-`LEFT_SIDEBAR` | | HTML content to put as-is in the left sidebar.
-[`LINKS_WIDGET_NAME`](http://docs.getpelican.com/en/stable/settings.html#LINKS_WIDGET_NAME) | `"Links"` | Allows override of the name of the links widget.
-[`LINKS`](http://docs.getpelican.com/en/stable/settings.html#LINKS) | | A list of tuples (Title, URL) for links to appear in the second column of the footer.
-[`MANUAL_LINKS`](http://docs.getpelican.com/en/stable/settings.html#MANUAL_LINKS) | | When enabling this, you must pass the links (in LINKS & SOCIAL settins) not as tuples anymore, but as list, where every entry is formatted as you like
-[`MENUITEMS`](http://docs.getpelican.com/en/stable/settings.html#MENUITEMS) | | A list of tuples (Title, URL) for additional menu items to appear at the beginning of the main menu.
-`RIGHT_SIDEBAR` | | HTML content to put as-is in the right sidebar.
-[`SITESUBTITLE`](http://docs.getpelican.com/en/stable/settings.html#SITESUBTITLE) | | A subtitle to appear in the header.
-`SITE_THUMBNAIL_TEXT` | | Text displayed behind site's thumbnail.
-`SITE_THUMBNAIL` | | Site's thumbnail URL as displayed in the header. Should be a square image of at least 80x80 pixels.
-[`SOCIAL_WIDGET_NAME`](http://docs.getpelican.com/en/stable/settings.html#SOCIAL_WIDGET_NAME) | `"Social"` | Allows override of the name of the “social” widget.
-[`SOCIAL`](http://docs.getpelican.com/en/stable/settings.html#SOCIAL) | | A list of tuples (Title, URL) to appear in the first columns of the footer.
-`TIPUE_SEARCH` | `False` | Activate [Tipue Search](https://web.archive.org/web/20200703134724/https://tipue.com/search/) (javascript static search engine) into the site. Requires the [`tipue_search`](https://github.com/pelican-plugins/tipue-search) plugin.
+| Setting name                                                                                  | Default value | Description                                                                                                                                                                                                                           |
+| :-------------------------------------------------------------------------------------------- | :------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `ARTICLE_EDIT_LINK`                                                                           |               | Generate an edit link besides each article. Can use `%(slug)s` to include dynamic article's slug in the link.                                                                                                                         |
+| `CODE_STYLE`                                                                                  | `"monokai"`   | Pygments' style ID. Choose one from `poetry run pygmentize -L styles`.                                                                                                                                                                |
+| `COPYRIGHT`                                                                                   |               | Additional copyright statement to add in the third column of the footer.                                                                                                                                                              |
+| `DISCLAIMER`                                                                                  |               | Overide the disclaimer notice that gets displayed at the fourth column of the footer.                                                                                                                                                 |
+| [`DISQUS_SITENAME`](http://docs.getpelican.com/en/stable/settings.html#DISQUS_SITENAME)       |               | Pelican can handle Disqus comments. Specify the Disqus sitename identifier here.                                                                                                                                                      |
+| `FAVICON_LINKS`                                                                               | `True`        | Fetch link's icons from [Google's favicons webservice](https://www.google.com/s2/favicons).                                                                                                                                           |
+| [`GOOGLE_ANALYTICS`](http://docs.getpelican.com/en/stable/settings.html#GOOGLE_ANALYTICS)     |               | Set to `UA-XXXXXX-Y` Property's tracking ID to activate Google Analytics.                                                                                                                                                             |
+| `LEFT_SIDEBAR`                                                                                |               | HTML content to put as-is in the left sidebar.                                                                                                                                                                                        |
+| [`LINKS_WIDGET_NAME`](http://docs.getpelican.com/en/stable/settings.html#LINKS_WIDGET_NAME)   | `"Links"`     | Allows override of the name of the links widget.                                                                                                                                                                                      |
+| [`LINKS`](http://docs.getpelican.com/en/stable/settings.html#LINKS)                           |               | A list of tuples (Title, URL) for links to appear in the second column of the footer.                                                                                                                                                 |
+| [`MANUAL_LINKS`](http://docs.getpelican.com/en/stable/settings.html#MANUAL_LINKS)             |               | When enabling this, you must pass the links (in LINKS & SOCIAL settins) not as tuples anymore, but as list, where every entry is formatted as you like                                                                                |
+| [`MENUITEMS`](http://docs.getpelican.com/en/stable/settings.html#MENUITEMS)                   |               | A list of tuples (Title, URL) for additional menu items to appear at the beginning of the main menu.                                                                                                                                  |
+| `RIGHT_SIDEBAR`                                                                               |               | HTML content to put as-is in the right sidebar.                                                                                                                                                                                       |
+| [`SITESUBTITLE`](http://docs.getpelican.com/en/stable/settings.html#SITESUBTITLE)             |               | A subtitle to appear in the header.                                                                                                                                                                                                   |
+| `SITE_THUMBNAIL_TEXT`                                                                         |               | Text displayed behind site's thumbnail.                                                                                                                                                                                               |
+| `SITE_THUMBNAIL`                                                                              |               | Site's thumbnail URL as displayed in the header. Should be a square image of at least 80x80 pixels.                                                                                                                                   |
+| [`SOCIAL_WIDGET_NAME`](http://docs.getpelican.com/en/stable/settings.html#SOCIAL_WIDGET_NAME) | `"Social"`    | Allows override of the name of the “social” widget.                                                                                                                                                                                   |
+| [`SOCIAL`](http://docs.getpelican.com/en/stable/settings.html#SOCIAL)                         |               | A list of tuples (Title, URL) to appear in the first columns of the footer.                                                                                                                                                           |
+| `TIPUE_SEARCH`                                                                                | `False`       | Activate [Tipue Search](https://web.archive.org/web/20200703134724/https://tipue.com/search/) (javascript static search engine) into the site. Requires the [`tipue_search`](https://github.com/pelican-plugins/tipue-search) plugin. |
 
 Most of these [parameters are similar to `notmyidea`'s
 ](https://docs.getpelican.com/en/latest/settings.html#themes) (Pelican's default
@@ -165,28 +165,28 @@ theme). For usage example, please have a look into [my own `pelicanconf.py`
 The theme is also sensible to this list of [standard Pelican parameters
 ](https://docs.getpelican.com/en/latest/settings.html):
 
-* `ARCHIVES_SAVE_AS`
-* `AUTHOR`
-* `AUTHOR_SAVE_AS`
-* `AUTHORS_SAVE_AS`
-* `CATEGORIES_SAVE_AS`
-* `CATEGORY_FEED_ATOM`
-* `CATEGORY_FEED_RSS`
-* `DEFAULT_LANG`
-* `DEFAULT_PAGINATION`
-* `DISPLAY_PAGES_ON_MENU`
-* `DISPLAY_CATEGORIES_ON_MENU`
-* `FEED_ALL_ATOM`
-* `FEED_ALL_RSS`
-* `FEED_ATOM`
-* `FEED_DOMAIN`
-* `FEED_RSS`
-* `PAGINATION_PATTERNS`
-* `SITENAME`
-* `SITEURL`
-* `TAG_FEED_ATOM`
-* `TAG_FEED_RSS`
-* `TAGS_SAVE_AS`
+- `ARCHIVES_SAVE_AS`
+- `AUTHOR`
+- `AUTHOR_SAVE_AS`
+- `AUTHORS_SAVE_AS`
+- `CATEGORIES_SAVE_AS`
+- `CATEGORY_FEED_ATOM`
+- `CATEGORY_FEED_RSS`
+- `DEFAULT_LANG`
+- `DEFAULT_PAGINATION`
+- `DISPLAY_PAGES_ON_MENU`
+- `DISPLAY_CATEGORIES_ON_MENU`
+- `FEED_ALL_ATOM`
+- `FEED_ALL_RSS`
+- `FEED_ATOM`
+- `FEED_DOMAIN`
+- `FEED_RSS`
+- `PAGINATION_PATTERNS`
+- `SITENAME`
+- `SITEURL`
+- `TAG_FEED_ATOM`
+- `TAG_FEED_RSS`
+- `TAGS_SAVE_AS`
 
 ## Code Syntax Highlighting
 
@@ -194,71 +194,71 @@ There is two alternatives, all relying on [Pygments syntax
 highlighter](https://pygments.org), sharing most features, with some
 differences:
 
-Feature | [CodeHilite](https://python-markdown.github.io/extensions/code_hilite/) | [Highlight](https://facelessuser.github.io/pymdown-extensions/extensions/highlight/)
-:--- |:---: |:---:
-Clean copy and paste | ✅ | ✅
-Line numbering | ✅ | ✅
-Right justified numbers | ✅ | ✅
-Line start offset | ✅ | ✅
-Multiple line highlight | ✅ | ✅
-Nth line highlight | ✅ | ✅
-Filename | ✅ | ❌
-Long line wraps | ✅ | ❌
-Long line overflow (scrollbar) | ❌ | ✅
-Sticky left gutter | ❌ | ✅
-Line anchors | [WIP @ Pygments](https://github.com/pygments/pygments/pull/1591) | ❌
+| Feature                        | [CodeHilite](https://python-markdown.github.io/extensions/code_hilite/) | [Highlight](https://facelessuser.github.io/pymdown-extensions/extensions/highlight/) |
+| :----------------------------- | :---------------------------------------------------------------------: | :----------------------------------------------------------------------------------: |
+| Clean copy and paste           |                                    ✅                                    |                                          ✅                                           |
+| Line numbering                 |                                    ✅                                    |                                          ✅                                           |
+| Right justified numbers        |                                    ✅                                    |                                          ✅                                           |
+| Line start offset              |                                    ✅                                    |                                          ✅                                           |
+| Multiple line highlight        |                                    ✅                                    |                                          ✅                                           |
+| Nth line highlight             |                                    ✅                                    |                                          ✅                                           |
+| Filename                       |                                    ✅                                    |                                          ❌                                           |
+| Long line wraps                |                                    ✅                                    |                                          ❌                                           |
+| Long line overflow (scrollbar) |                                    ❌                                    |                                          ✅                                           |
+| Sticky left gutter             |                                    ❌                                    |                                          ✅                                           |
+| Line anchors                   |    [WIP @ Pygments](https://github.com/pygments/pygments/pull/1591)     |                                          ❌                                           |
 
 ### [Python Markdown CodeHilite](https://python-markdown.github.io/extensions/code_hilite/)
 
 Just add this configuration to `pelicanconf.py`, which allows us to pass
 extra options to [Pygments' HTML formatter](https://pygments.org/docs/formatters/#HtmlFormatter):
 
-  ```python
-  MARKDOWN = {
-      "extension_configs": {
-          (…)
-          "markdown.extensions.codehilite": {
-              "css_class": "codehilite",  # Default
-              "linenums": True,
-              "linenos": "inline",
-              "linespans": "coderow",
-              "lineanchors": "L",
-              "anchorlinenos": True,
-              "wrapcode": True,
-          },
-          "markdown.extensions.fenced_code": {},
-          (…)
-      },
-  }
-  ```
+```python
+MARKDOWN = {
+    "extension_configs": {
+        (…)
+        "markdown.extensions.codehilite": {
+            "css_class": "codehilite",  # Default
+            "linenums": True,
+            "linenos": "inline",
+            "linespans": "coderow",
+            "lineanchors": "L",
+            "anchorlinenos": True,
+            "wrapcode": True,
+        },
+        "markdown.extensions.fenced_code": {},
+        (…)
+    },
+}
+```
 
 This will render this:
 
-  ````markdown
-  ```{.shell-session hl_lines="8 11" linenostart="5" linenospecial="3" filename="~/code/foo.log"}
-  $ cat ./example.markdown
-  This is the content of the file:
-  → java
-  → rust
-  → haskell
-  → javascript
+````markdown
+```{.shell-session hl_lines="8 11" linenostart="5" linenospecial="3" filename="~/code/foo.log"}
+$ cat ./example.markdown
+This is the content of the file:
+→ java
+→ rust
+→ haskell
+→ javascript
 
-  $ cat ./addendum.txt
-  This is extra content.
+$ cat ./addendum.txt
+This is extra content.
 
-  $ find ./ -iname "*.markdown" -print -exec bash -c 'cat ./addendum.txt >> "{}"' \;
-  ./example.markdown
-  $ cat ./example.markdown
-  This is the content of the file:
-  → java
-  → rust
-  → haskell
-  → javascript
+$ find ./ -iname "*.markdown" -print -exec bash -c 'cat ./addendum.txt >> "{}"' \;
+./example.markdown
+$ cat ./example.markdown
+This is the content of the file:
+→ java
+→ rust
+→ haskell
+→ javascript
 
-  This is extra content.
+This is extra content.
 
-  ```
-  ````
+```
+````
 
 Into this:
 
@@ -268,47 +268,47 @@ Into this:
 
 Just add this configuration to your `pelicanconf.py`:
 
-  ```python
-  MARKDOWN = {
-      "extension_configs": {
-          (…)
-          "pymdownx.highlight": {
-              "linenums": True,
-              "linenums_style": "pymdownx-inline",
-          },
-          "pymdownx.superfences": {},
-          (…)
-      },
-  }
-  ```
+```python
+MARKDOWN = {
+    "extension_configs": {
+        (…)
+        "pymdownx.highlight": {
+            "linenums": True,
+            "linenums_style": "pymdownx-inline",
+        },
+        "pymdownx.superfences": {},
+        (…)
+    },
+}
+```
 
 This will render this:
 
-  ````markdown
-  ```{.shell-session hl_lines="8 11" linenums="5 1 3" filename="~/code/foo.log"}
-  $ cat ./example.markdown
-  This is the content of the file:
-  → java
-  → rust
-  → haskell
-  → javascript
+````markdown
+```{.shell-session hl_lines="8 11" linenums="5 1 3" filename="~/code/foo.log"}
+$ cat ./example.markdown
+This is the content of the file:
+→ java
+→ rust
+→ haskell
+→ javascript
 
-  $ cat ./addendum.txt
-  This is extra content.
+$ cat ./addendum.txt
+This is extra content.
 
-  $ find ./ -iname "*.markdown" -print -exec bash -c 'cat ./addendum.txt >> "{}"' \;
-  ./example.markdown
-  $ cat ./example.markdown
-  This is the content of the file:
-  → java
-  → rust
-  → haskell
-  → javascript
+$ find ./ -iname "*.markdown" -print -exec bash -c 'cat ./addendum.txt >> "{}"' \;
+./example.markdown
+$ cat ./example.markdown
+This is the content of the file:
+→ java
+→ rust
+→ haskell
+→ javascript
 
-  This is extra content.
+This is extra content.
 
-  ```
-  ````
+```
+````
 
 Into this:
 
@@ -340,21 +340,21 @@ be installed then have an additional template file registered in your
 
 There are two alternatives:
 
-* update the `TEMPLATE_PAGES` variable:
+- update the `TEMPLATE_PAGES` variable:
 
-    ```python
-    TEMPLATE_PAGES = {
-        (…)
-        "search.html": "search.html",
-     }
-    ```
+  ```python
+  TEMPLATE_PAGES = {
+      (…)
+      "search.html": "search.html",
+   }
+  ```
 
-* or `DIRECT_TEMPLATES`:
+- or `DIRECT_TEMPLATES`:
   ([example](https://github.com/kdeldycke/kevin-deldycke-blog/commit/cd4bf8d1f4c55d835d7bfe1d7233cffe48e67a8a)):
 
-    ```python
-    DIRECT_TEMPLATES = [(…), "search"]
-    ```
+  ```python
+  DIRECT_TEMPLATES = [(…), "search"]
+  ```
 
 ## License
 
