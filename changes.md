@@ -1,6 +1,6 @@
 # Changelog
 
-* [**v2.5.0**
+* [**v3.0.0**
   (unreleased)](https://github.com/kdeldycke/plumage/compare/v2.4.0...develop)
   * Upgrade to Bootstrap 4.6.0.
   * Upgrade to Font Awesome 5.15.2.

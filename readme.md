@@ -77,7 +77,7 @@ Plugin name | Type | Status | Notes
 
 Install this theme using the `develop` branch of this Github repo.
 
-If you're already using `poetry` to manage dependency of Pelican project, you need to run just 
+If you're already using `poetry` to manage dependency of Pelican project, you need to run just
 
 ```shell-session
 poetry add git+https://github.com/kdeldycke/plumage#develop
@@ -90,7 +90,7 @@ plumage = {git = "https://github.com/kdeldycke/plumage", rev = "develop"}
 
 Once added, run `poetry update` to reflect this new dependency.
 
-**Note:** If you haven't used `poetry` in the project yet, you need to do so before adding `plumage`. 
+**Note:** If you haven't used `poetry` in the project yet, you need to do so before adding `plumage`.
 You can do that by first [installing `poetry`](https://python-poetry.org/docs/#installation) on your system and then running `poetry init` inside the project folder.
 
 

@@ -2,120 +2,19 @@
 name: Autofix
 "on":
   push:
-    # Only targets develop branch to avoid amplification effects of auto-fixing
+    # Only targets main branch to avoid amplification effects of auto-fixing
     # the exact same stuff in multiple non-rebased branches.
     branches:
-      - 'develop'
+      - main
 
 jobs:
 
-  python:
-    name: Format Python code and create a PR
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v2.4.0
-      - uses: actions/setup-python@v2.2.2
-      - name: Install black
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install --upgrade poetry
-          poetry install
-      - name: Run black
-        run: |
-          poetry run black .
-      - uses: peter-evans/create-pull-request@v3.11.0
-        with:
-          author: "Kevin Deldycke <kevin@deldycke.com>"
-          commit-message: "[autofix] Format Python code"
-          title: "[autofix] Format Python code"
-          body: >
-            [Auto-generated on run
-            #${{ github.run_id }}](https://github.com/${{ github.repository
-            }}/actions/runs/${{ github.run_id }}) as defined by [workflow
-            action](https://github.com/${{ github.repository
-            }}/blob/${{ github.base_ref }}/.github/workflows/autofix.yaml).
-          labels: CI/CD
-          assignees: kdeldycke
-          branch: format-python
-
-  typos:
-    name: Fix typos and create a PR
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v2.4.0
-      - uses: sobolevn/misspell-fixer-action@0.1.0
-      - uses: peter-evans/create-pull-request@v3.11.0
-        with:
-          author: "Kevin Deldycke <kevin@deldycke.com>"
-          commit-message: "[autofix] Typo"
-          title: "[autofix] Typo"
-          body: >
-            [Auto-generated on run
-            #${{ github.run_id }}](https://github.com/${{ github.repository
-            }}/actions/runs/${{ github.run_id }}) as defined by [workflow
-            action](https://github.com/${{ github.repository
-            }}/blob/${{ github.base_ref }}/.github/workflows/autofix.yaml).
-          labels: CI/CD, documentation
-          assignees: kdeldycke
-          branch: autofix-typo
-
-  images:
-    name: Optimize images
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v2.4.0
-      - uses: calibreapp/image-actions@1.1.0
-        id: image_actions
-        with:
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
-          compressOnly: true
-      - uses: peter-evans/create-pull-request@v3.11.0
-        with:
-          author: "Kevin Deldycke <kevin@deldycke.com>"
-          commit-message: "[autofix] Optimize images"
-          title: "[autofix] Optimize images"
-          body: >
-            [Auto-generated on run
-            #${{ github.run_id }}](https://github.com/${{ github.repository
-            }}/actions/runs/${{ github.run_id }}) as defined by [workflow
-            action](https://github.com/${{ github.repository
-            }}/blob/${{ github.base_ref }}/.github/workflows/autofix.yaml).
-            %0A
-            ${{ steps.image_actions.outputs.markdown }}
-          labels: CI/CD, documentation
-          assignees: kdeldycke
-          branch: optimize-images
-
-  gitignore:
-    name: Generate .gitignore and create a PR
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v2.4.0
-      - name: Install git-extras package
-        run: |
-          sudo apt install -y git-extras
-      - name: Generate .gitignore
-        run: >
-          git ignore-io --replace emacs git linux macos node nohup python vim
-          virtualenv visualstudiocode windows
-      - uses: peter-evans/create-pull-request@v3.11.0
-        with:
-          author: "Kevin Deldycke <kevin@deldycke.com>"
-          commit-message: "[autofix] Regenerate .gitignore"
-          title: "[autofix] Regenerate .gitignore"
-          body: >
-            [Auto-generated on run
-            #${{ github.run_id }}](https://github.com/${{ github.repository
-            }}/actions/runs/${{ github.run_id }}) as defined by [workflow
-            action](https://github.com/${{ github.repository
-            }}/blob/${{ github.base_ref }}/.github/workflows/autofix.yaml).
-          labels: CI/CD
-          assignees: kdeldycke
-          branch: update-gitignore
+  autofix:
+    uses: kdeldycke/workflows/.github/workflows/autofix.yaml@v2.8.0
 
   css:
     name: Generate Pygment styles, format CSS files and create a PR
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v2.4.0
       - uses: actions/setup-python@v2.2.2
@@ -125,27 +24,22 @@ jobs:
           poetry install
       - name: Generate Pygments styles
         run: |
-          for STYLE in $(poetry run pygmentize -L styles | grep -E '^\* .*\:$' \
-            | cut -d ' ' -f 2 | cut -d ':' -f 1);
+          for STYLE in $(poetry run pygmentize -L styles | grep -E '^\* .*\:$' | cut -d ' ' -f 2 | cut -d ':' -f 1);
           do
             CSS_FILE="./plumage/static/css/pygments/$STYLE.css"
-            poetry run pygmentize -f html -S "$STYLE" \
-              -a ".pygments-style-$STYLE" > "$CSS_FILE";
+            poetry run pygmentize -f html -S "$STYLE" -a ".pygments-style-$STYLE" > "$CSS_FILE"
             # Crappy split of side-by-side declarations to please styleint.
             sed -i "s/; /; \n/g" "$CSS_FILE"
           done
       - name: Install stylelint
-        run: >
-          npm install --save-dev
-          stylelint stylelint-config-standard stylelint-config-sass-guidelines
+        run: |
+          npm install --save-dev stylelint stylelint-config-standard stylelint-config-sass-guidelines
       - name: Autofix CSS
         # Allow that step to fail so we can proceed with creating the auto-fix
         # PR below.
         run: |
-          npx stylelint --fix --config stylelint-config-standard \
-            "plumage/static/**/*.css" || true
-          npx stylelint --fix --config stylelint-config-sass-guidelines \
-            "plumage/static/**/*.scss" || true
+          npx stylelint --fix --config stylelint-config-standard "plumage/static/**/*.css" || true
+          npx stylelint --fix --config stylelint-config-sass-guidelines "plumage/static/**/*.scss" || true
       - name: Discard all local changes but CSS files
         run: |
           # Remove untracked directories and files.
@@ -157,17 +51,20 @@ jobs:
           git checkout --force
           # Restore modified files. Do not fail if no file has been stashed.
           git stash pop || true
-      - uses: peter-evans/create-pull-request@v3.11.0
+      - uses: peter-evans/create-pull-request@v4.2.3
         with:
-          author: "Kevin Deldycke <kevin@deldycke.com>"
+          assignees: ${{ github.actor }}
           commit-message: "[autofix] Upgrade and format CSS style"
           title: "[autofix] Upgrade and format CSS style"
           body: >
-            [Auto-generated on run
-            #${{ github.run_id }}](https://github.com/${{ github.repository
-            }}/actions/runs/${{ github.run_id }}) as defined by [workflow
-            action](https://github.com/${{ github.repository
-            }}/blob/${{ github.base_ref }}/.github/workflows/autofix.yaml).
-          labels: CI/CD
-          assignees: kdeldycke
+            <details><summary><code>Workflow metadata</code></summary>
+
+
+            > [Auto-generated on run `#${{ github.run_id }}`](${{ github.event.repository.html_url }}/actions/runs/${{
+            github.run_id }}) by `${{ github.job }}` job from [`autofix.yaml`](${{ github.event.repository.html_url
+            }}/blob/${{ github.sha }}/.github/workflows/autofix.yaml) workflow.
+
+
+            </details>
+          labels: "🤖 ci"
           branch: autofix-css
