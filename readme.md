@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/kdeldycke/plumage/">
-    <img src="https://github.com/kdeldycke/plumage/raw/develop/screenshots/plumage-header-logo.jpeg" alt="Plumage, a Pelican theme">
+    <img src="https://github.com/kdeldycke/plumage/raw/main/screenshots/plumage-header-logo.jpeg" alt="Plumage, a Pelican theme">
   </a>
 </p>
 
@@ -14,17 +14,17 @@ it is now generic enough to be used by anyone.
 
 - Standard Pelican views:
 
-  |      ![Plumage article view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/article.jpeg)      | ![Plumage categories view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/categories.jpeg) | ![Plumage tiered tag list view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/tiered-tags.jpeg) |
+  |      ![Plumage article view](https://raw.githubusercontent.com/kdeldycke/plumage/main/screenshots/article.jpeg)      | ![Plumage categories view](https://raw.githubusercontent.com/kdeldycke/plumage/main/screenshots/categories.jpeg) | ![Plumage tiered tag list view](https://raw.githubusercontent.com/kdeldycke/plumage/main/screenshots/tiered-tags.jpeg) |
   | :---------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------: |
   |                                                         Article                                                         |                                                     Categories                                                      |                                                      Tiered tag list                                                      |
-  |     ![Plumage archive view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/archives.jpeg)      |        ![Plumage tag view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/tag.jpeg)        |       ![Plumage authors view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/authors.jpeg)       |
+  |     ![Plumage archive view](https://raw.githubusercontent.com/kdeldycke/plumage/main/screenshots/archives.jpeg)      |        ![Plumage tag view](https://raw.githubusercontent.com/kdeldycke/plumage/main/screenshots/tag.jpeg)        |       ![Plumage authors view](https://raw.githubusercontent.com/kdeldycke/plumage/main/screenshots/authors.jpeg)       |
   |                                               Collapsable yearly archives                                               |                                                   Tagged articles                                                   |                                                          Authors                                                          |
-  | ![Plumage archive view](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/browse-content-by.jpeg) |                                                                                                                     |                                                                                                                           |
+  | ![Plumage archive view](https://raw.githubusercontent.com/kdeldycke/plumage/main/screenshots/browse-content-by.jpeg) |                                                                                                                     |                                                                                                                           |
   |                                                Faceted article browsing                                                 |                                                                                                                     |                                                                                                                           |
 
 - Projects template:
 
-  |            ![Plumage projects: code showcase](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/projects-code.jpeg)            |            ![Plumage projects: videos showcase](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/projects-videos.jpeg)            |            ![Plumage projects: themes showcase](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/projects-themes.jpeg)            |
+  |            ![Plumage projects: code showcase](https://raw.githubusercontent.com/kdeldycke/plumage/main/screenshots/projects-code.jpeg)            |            ![Plumage projects: videos showcase](https://raw.githubusercontent.com/kdeldycke/plumage/main/screenshots/projects-videos.jpeg)            |            ![Plumage projects: themes showcase](https://raw.githubusercontent.com/kdeldycke/plumage/main/screenshots/projects-themes.jpeg)            |
   | :--------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------: |
   | Code showcase ([source](https://github.com/kdeldycke/kevin-deldycke-blog/blob/ebe0d17a59730457c3016dff77fdfa799a80d756/content/templates/code.html)) | Videos showcase ([source](https://github.com/kdeldycke/kevin-deldycke-blog/blob/f778998376fa5c68f1a02129884b89592b641777/content/templates/videos.html)) | Themes showcase ([source](https://github.com/kdeldycke/kevin-deldycke-blog/blob/f778998376fa5c68f1a02129884b89592b641777/content/templates/themes.html)) |
 
@@ -36,23 +36,23 @@ it is now generic enough to be used by anyone.
 
 - Bare YouTube links in articles gets rendered as embedded videos:
 
-  ![Plumage YouTube link](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/youtube-link.jpeg)
+  ![Plumage YouTube link](https://raw.githubusercontent.com/kdeldycke/plumage/main/screenshots/youtube-link.jpeg)
 
 - Direct link to edit articles on GitHub:
 
-  ![Plumage GitHub edit link](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/github-edit-link.jpeg)
+  ![Plumage GitHub edit link](https://raw.githubusercontent.com/kdeldycke/plumage/main/screenshots/github-edit-link.jpeg)
 
 - Magnifying glass overlays on images and zoom:
 
-  ![Plumage image magnifying glass](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/magnifying-glass.jpeg)
-  ![Plumage image zoom](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/zoom.jpeg)
+  ![Plumage image magnifying glass](https://raw.githubusercontent.com/kdeldycke/plumage/main/screenshots/magnifying-glass.jpeg)
+  ![Plumage image zoom](https://raw.githubusercontent.com/kdeldycke/plumage/main/screenshots/zoom.jpeg)
 
 - External assets (Bootstrap, Jquery, etc...) uses [CDNjs
   ](https://cdnjs.com/about).
 
 - Disqus integration:
 
-  ![Plumage disqus comments](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/disqus.jpeg)
+  ![Plumage disqus comments](https://raw.githubusercontent.com/kdeldycke/plumage/main/screenshots/disqus.jpeg)
 
 ## Plugins
 
@@ -75,18 +75,18 @@ Plumage has built-in support for the following plugins and extensions:
 
 ## Installation
 
-Install this theme using the `develop` branch of this Github repo.
+Install this theme using the `main` branch of this Github repo.
 
 If you're already using `poetry` to manage dependency of Pelican project, you need to run just
 
 ```shell-session
-poetry add git+https://github.com/kdeldycke/plumage#develop
+poetry add git+https://github.com/kdeldycke/plumage#main
 ```
 
 Or, can manually add the following line in the  `[tool.poetry.dependencies]` section of the `pyproject.toml` file.
 
 ```
-plumage = {git = "https://github.com/kdeldycke/plumage", rev = "develop"}
+plumage = {git = "https://github.com/kdeldycke/plumage", rev = "main"}
 ```
 
 Once added, run `poetry update` to reflect this new dependency.
@@ -107,7 +107,7 @@ PLUGINS = [
 ]
 ```
 
-On first run, Plumage will try to install [Node.js package dependencies](https://github.com/kdeldycke/plumage/blob/develop/plumage/package.json) via the `npm` CLI:
+On first run, Plumage will try to install [Node.js package dependencies](https://github.com/kdeldycke/plumage/blob/main/plumage/package.json) via the `npm` CLI:
 
 ```shell-session
 $ poetry run pelican --verbose ./content
@@ -262,7 +262,7 @@ This is extra content.
 
 Into this:
 
-![Plumage Python Markdown CodeHilite rendering](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/codehilite-rendering.jpeg)
+![Plumage Python Markdown CodeHilite rendering](https://raw.githubusercontent.com/kdeldycke/plumage/main/screenshots/codehilite-rendering.jpeg)
 
 ### [PyMdown Extensions' Highlight](https://facelessuser.github.io/pymdown-extensions/extensions/highlight/)
 
@@ -312,7 +312,7 @@ This is extra content.
 
 Into this:
 
-![Plumage PyMdown Extensions' Highlight rendering](https://raw.githubusercontent.com/kdeldycke/plumage/develop/screenshots/highlight-rendering.jpeg)
+![Plumage PyMdown Extensions' Highlight rendering](https://raw.githubusercontent.com/kdeldycke/plumage/main/screenshots/highlight-rendering.jpeg)
 
 ## FAQ
 

@@ -38,7 +38,7 @@ classifiers = [
 [tool.poetry.urls]
 "Funding" = "https://github.com/sponsors/kdeldycke"
 "Issues" = "https://github.com/kdeldycke/plumage/issues"
-"Changelog" = "https://github.com/kdeldycke/plumage/blob/develop/changes.md#changelog"
+"Changelog" = "https://github.com/kdeldycke/plumage/blob/main/changes.md#changelog"
 
 [tool.poetry.dependencies]
 # List of python versions and their support status:

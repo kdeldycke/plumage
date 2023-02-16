@@ -1,7 +1,7 @@
 # Changelog
 
 - [**v3.0.0**
-  (unreleased)](https://github.com/kdeldycke/plumage/compare/v2.4.0...develop)
+  (unreleased)](https://github.com/kdeldycke/plumage/compare/v2.4.0...main)
 
   - Upgrade to Bootstrap 4.6.0.
   - Upgrade to Font Awesome 5.15.2.
@@ -11,6 +11,7 @@
   - Add dependency on `postcss-cli` and `autoprefixer` Node package.
   - Auto-install Node.js dependencies via `npm`.
   - Auto-configure `webassets` plugins on theme load.
+  - Simplify project management: only use the `main` branch, delete `develop`.
 
 - [**v2.4.0**
   (2020-12-06)](https://github.com/kdeldycke/plumage/compare/v2.3.0...v2.4.0)
