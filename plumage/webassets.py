@@ -17,18 +17,16 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 import os
-from pathlib import Path
 from shutil import which
 from textwrap import indent
 
-from pelican.contents import Static
 from pynpm import NPMPackage
 
 from . import logger, PLUMAGE_ROOT
 
 
 def setup_webassets(conf):
-    """ Setup pelican-webassets plugin configuration. """
+    """Setup pelican-webassets plugin configuration."""
     if not conf.get("WEBASSETS_CONFIG"):
         conf["WEBASSETS_CONFIG"] = []
     webassets_conf_keys = {i[0] for i in conf.get("WEBASSETS_CONFIG")}
@@ -36,7 +34,8 @@ def setup_webassets(conf):
     # Search for PostCSS binary location.
     cli_name = "postcss"
 
-    # The dependency definition file relative to Plumage's install path takes precedence.
+    # The dependency definition file relative to Plumage's install path takes
+    # precedence.
     node_deps_file = PLUMAGE_ROOT.joinpath("package.json").resolve()
     node_bin_path = node_deps_file.parent / "node_modules" / ".bin"
     cli_search_path = [

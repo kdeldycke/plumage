@@ -16,24 +16,16 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-import logging
-import os
-from pathlib import Path
-from shutil import which
-from textwrap import indent
 
-import pelican
 from pelican import signals
 from pelican.contents import Static
-from pynpm import NPMPackage
 
-from . import logger, PLUMAGE_ROOT
-from .dom_transforms import transform
+from . import PLUMAGE_ROOT
 
 
 def add_favicon_assets(sender):
-    """Copy all individual files found in /static/favicon theme's folder
-    to the root of the generated site.
+    """Copy all individual files found in /static/favicon theme's folder to the root of
+    the generated site.
 
     Favicons were generated with RealFaviconGenerator v0.16:
     https://realfavicongenerator.net
@@ -60,7 +52,8 @@ def add_favicon_assets(sender):
         )
 
         # Forces the asset to be saved at the root of the output folder.
-        # See: https://github.com/getpelican/pelican/blob/8033162ba4393db60791b201fb100d1be0f04431/pelican/contents.py#L55-L59
+        # See:
+        # https://github.com/getpelican/pelican/blob/8033162ba4393db60791b201fb100d1be0f04431/pelican/contents.py#L55-L59
         static.metadata["save_as"] = asset.name
         setattr(static, "override_save_as", asset.name)
 
