@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v2.4.0
-      - uses: actions/setup-python@v2.2.2
+      - uses: actions/setup-python@v4.5.0
       - name: Install Pygments
         run: |
           python -m pip install --upgrade pip poetry
