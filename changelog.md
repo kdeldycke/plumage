@@ -19,7 +19,7 @@ This version is not released yet and is under active development.
 ## [2.4.0 (2020-12-06)](https://github.com/kdeldycke/plumage/compare/v2.3.0...v2.4.0)
 
 - Add new `CODE_STYLE` option to select code rendering among 30+ styles from
-    Pygments.
+  Pygments.
 - Add default favicon.
 - Embed and auto-generate all Pygments styles.
 - Improve styling of code blocks.
@@ -29,7 +29,7 @@ This version is not released yet and is under active development.
 ## [2.3.0 (2020-11-26)](https://github.com/kdeldycke/plumage/compare/v2.2.0...v2.3.0)
 
 - Replace client-side jQuery calls by server-side Python post-processing to
-    apply Bootstrap's CSS utility classes.
+  apply Bootstrap's CSS utility classes.
 - Add dependency on `pyquery`.
 - Lint all SCSS and SASS files.
 - Lint all YAML files. Add dependency on `yamllint` package.
@@ -61,7 +61,7 @@ This version is not released yet and is under active development.
 - Upgrade to `pygment >= 2.7`.
 - Fix code block color that made them unreadable.
 - Add Monokai style to render code block to increase contrast and
-    readability. Set as new default instead of Solarized dark.
+  readability. Set as new default instead of Solarized dark.
 - Rename `master` branch to `main`.
 - Upgrade to `Poetry >= 1.1.0`.
 
@@ -71,7 +71,7 @@ This version is not released yet and is under active development.
 - Upgrade to jQuery 3.5.1.
 - Upgrade to Tipue Search v7.1.
 - Reintroduce local copy of Tipue Search since the project has been
-    abandonned.
+  abandonned.
 - Remove dependency on Masonry.
 - Remove dependency on ImagesLoaded.
 - Remove `FLAT_DESIGN` option.
@@ -134,9 +134,9 @@ This version is not released yet and is under active development.
 - Upgrade to ImagesLoaded 4.1.1.
 - Upgrade to Masonry 4.1.1.
 - Replace unsupported vertical tabs by collapsible panels in date-based index
-    page.
+  page.
 - Fix display of pages in menu via the dedicated `DISPLAY_PAGES_ON_MENU`
-    option.
+  option.
 - Fix highlighting of current active item in navbar.
 - Rename `GOOGLE_ANALYTICS_PROPERTY` setting to `GA_COOKIE_DOMAIN`.
 - Prevent mixed content when using Google search.
@@ -152,7 +152,7 @@ This version is not released yet and is under active development.
 
 - Remove legacy Google Analytics tracking code.
 - Rename `GOOGLE_ANALYTICS_UNIVERSAL` option by `GOOGLE_ANALYTICS` and
-    `GOOGLE_ANALYTICS_UNIVERSAL_PROPERTY` by `GOOGLE_ANALYTICS_PROPERTY`.
+  `GOOGLE_ANALYTICS_UNIVERSAL_PROPERTY` by `GOOGLE_ANALYTICS_PROPERTY`.
 - Set default `GOOGLE_ANALYTICS_PROPERTY` value to `"auto"`.
 - Allow deactivation of zoom on article's images.
 - Upgrade to Font Awesome 4.6.3.
@@ -161,7 +161,7 @@ This version is not released yet and is under active development.
 - Upgrade to Magnific Popup 1.1.0.
 - Upgrade to jQuery 2.2.4.
 - Ditch `grabicon.com` in favor of the free [Favicon Finder
-    ](https://icons.better-idea.org) web service.
+  ](https://icons.better-idea.org) web service.
 - Rename `GRAB_ICONS` option to `FAVICON_LINKS`.
 - Enable favicon fetching by default.
 - Fallback on default external link icon if none found.
@@ -172,11 +172,11 @@ This version is not released yet and is under active development.
 - Add option to bypass grabicon.com web service.
 - Add static search based on Tipue Search.
 - Add new `LINKS_WIDGET_NAME` and `SOCIAL_WIDGET_NAME` options to mirror
-    upcoming Pelican 3.7.
+  upcoming Pelican 3.7.
 - Align Piwik and Google Analytics code to Pelican's `notmyidea` theme.
 - Add support for newer Google Analytics Universal embed code, via new
-    `GOOGLE_ANALYTICS_UNIVERSAL` and `GOOGLE_ANALYTICS_UNIVERSAL_PROPERTY`
-    options.
+  `GOOGLE_ANALYTICS_UNIVERSAL` and `GOOGLE_ANALYTICS_UNIVERSAL_PROPERTY`
+  options.
 - Upgrade to jQuery 2.1.4.
 - Upgrade to Masonry 3.3.2.
 - Remove `PDF_PROCESSOR` option now that plugin is out of core.
@@ -198,13 +198,13 @@ This version is not released yet and is under active development.
 - Allow grouping of projects.
 - Add option to overide disclaimer notice.
 - Generate tags, categories and archives URLs depending on site
-    configuration.
+  configuration.
 - Sort out inactive projects to the bottom of the project list.
 - Drop support of old browsers.
 - Move from jQuery 1.x to 2.x.
 - Use [latest Google Analytics
-    ](https://developers.google.com/analytics/devguides/collection/upgrade/)
-    tracking code.
+  ](https://developers.google.com/analytics/devguides/collection/upgrade/)
+  tracking code.
 - Upgrade to Font Awesome 4.0.3.
 - Upgrade to Masonry 3.1.2.
 - Upgrade to ImagesLoaded 3.0.4.
@@ -214,7 +214,7 @@ This version is not released yet and is under active development.
 
 - Add auto-zoom of images based on Magnific Popup.
 - Let the content take the available width if there is no right or left
-    sidebars.
+  sidebars.
 - Add an dynamic feed link in footer.
 - Do not wrap code in code blocks.
 - Fix code highlight for older Pelican versions.
