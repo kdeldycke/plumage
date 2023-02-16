@@ -11,6 +11,9 @@ jobs:
 
   autofix:
     uses: kdeldycke/workflows/.github/workflows/autofix.yaml@v2.8.0
+    with:
+      gitignore-extra-categories: >
+        node
 
   css:
     name: Generate Pygment styles, format CSS files and create a PR
