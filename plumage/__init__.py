@@ -24,12 +24,12 @@ __version__ = "3.0.0"
 """ Examples of valid version strings according :pep:`440#version-scheme`:
 
 .. code-block:: python
-    __version__ = '1.2.3.dev1'   # Development release 1
-    __version__ = '1.2.3a1'      # Alpha Release 1
-    __version__ = '1.2.3b1'      # Beta Release 1
-    __version__ = '1.2.3rc1'     # RC Release 1
-    __version__ = '1.2.3'        # Final Release
-    __version__ = '1.2.3.post1'  # Post Release 1
+    __version__ = "1.2.3.dev1"  # Development release 1
+    __version__ = "1.2.3a1"  # Alpha Release 1
+    __version__ = "1.2.3b1"  # Beta Release 1
+    __version__ = "1.2.3rc1"  # RC Release 1
+    __version__ = "1.2.3"  # Final Release
+    __version__ = "1.2.3.post1"  # Post Release 1
 """
 
 
@@ -41,8 +41,7 @@ PLUMAGE_ROOT = Path(__file__).resolve().parent
 def get_path():
     """Returns installation path of the theme.
 
-    Used in ``pelicanconf.py`` to dynamiccaly fetch theme location on the
-    system.
+    Used in ``pelicanconf.py`` to dynamiccaly fetch theme location on the system.
     """
     return str(PLUMAGE_ROOT)
 

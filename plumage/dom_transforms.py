@@ -22,7 +22,6 @@ from pyquery import PyQuery as pq
 
 
 def transform(path, context):
-
     BASE_URL = urlparse(context.get("SITEURL", ""))
 
     # XXX This direct construct is stripping the "<!DOCTYPE>" heading. See:

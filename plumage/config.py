@@ -16,18 +16,11 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-import logging
-import os
-from pathlib import Path
-from shutil import which
-from textwrap import indent
 
 import pelican
 from pelican import signals
-from pelican.contents import Static
-from pynpm import NPMPackage
 
-from . import logger, PLUMAGE_ROOT
+from . import PLUMAGE_ROOT
 from .dom_transforms import transform
 from .favicon import add_favicon_assets
 from .webassets import setup_webassets
@@ -45,7 +38,7 @@ def register_signals():
 
 
 def check_config(sender):
-    """ Validates and setup Plumage configuration. """
+    """Validates and setup Plumage configuration."""
     conf = sender.settings
 
     # Keep some metadata around.
