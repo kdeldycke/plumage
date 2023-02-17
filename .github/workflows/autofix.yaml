@@ -35,6 +35,9 @@ jobs:
             # Crappy split of side-by-side declarations to please styleint.
             sed -i "s/; /; \n/g" "$CSS_FILE"
           done
+      - name: Install npm
+        run: |
+          sudo apt --quiet --yes install npm
       - name: Install stylelint
         run: |
           npm install --save-dev stylelint stylelint-config-standard stylelint-config-sass-guidelines
