@@ -47,6 +47,6 @@ def get_path():
 
 
 # Workaround circular dependencies.
-from .config import register_signals
+from .config import register_signals  # noqa: E402
 
 register_signals()
