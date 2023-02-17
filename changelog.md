@@ -16,6 +16,7 @@ This version is not released yet and is under active development.
 - Auto-configure `webassets` plugins on theme load.
 - Simplify project management: only use the `main` branch, delete `develop`.
 - Runs workflows on latest `ubuntu-22.04` and Python `3.11`.
+- Add minimal typing.
 
 ## [2.4.0 (2020-12-06)](https://github.com/kdeldycke/plumage/compare/v2.3.0...v2.4.0)
 
