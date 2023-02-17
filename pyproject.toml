@@ -53,7 +53,7 @@ pelican-webassets = "^2.0.0"
 pygments = "^2.7.0"
 pymdown-extensions = "^8.0.1"
 pynpm = "^0.1.2"
-pyquery = "^1.4.3"
+pyquery = ">=1.4.3,<3.0.0"
 
 [tool.poetry.dev-dependencies]
 bump2version = "^1.0.1"
