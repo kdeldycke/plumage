@@ -16,6 +16,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+from typing import Any
 
 import pelican
 from pelican import signals
@@ -25,19 +26,18 @@ from .dom_transforms import transform
 from .favicon import add_favicon_assets
 from .webassets import setup_webassets
 
-
-ALL_CODE_STYLES = {
+ALL_CODE_STYLES: set[str] = {
     f.stem for f in PLUMAGE_ROOT.joinpath("static/css/pygments/").resolve().iterdir()
 }
 
 
-def register_signals():
+def register_signals() -> None:
     signals.initialized.connect(check_config)
     signals.static_generator_finalized.connect(add_favicon_assets)
     signals.content_written.connect(transform)
 
 
-def check_config(sender):
+def check_config(sender) -> None:
     """Validates and setup Plumage configuration."""
     conf = sender.settings
 
@@ -53,7 +53,7 @@ def check_config(sender):
     sender.settings = conf
 
 
-def check_codestyle(conf):
+def check_codestyle(conf: dict[str, Any]) -> dict[str, Any]:
     """Check selected code color scheme ID is recognized by Pygments.
 
     Defaults to "monokai" if none set in Pelican's conf.

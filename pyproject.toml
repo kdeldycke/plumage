@@ -58,6 +58,7 @@ pyquery = "^1.4.3"
 [tool.poetry.dev-dependencies]
 bump2version = "^1.0.1"
 mypy = "^1.0"
+types-Pygments = "^2.14.0"
 
 [tool.mypy]
 warn_unused_configs = true
@@ -69,7 +70,7 @@ pretty = true
 
 [[tool.mypy.overrides]]
 ignore_missing_imports = true
-module = []
+module = ["pyquery", "pynpm", "pelican.*"]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
