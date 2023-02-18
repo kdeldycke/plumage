@@ -21,3 +21,12 @@ updates:
       - "📦 dependencies"
     assignees:
       - "kdeldycke"
+
+  - package-ecosystem: "npm"
+    directory: "/plumage"
+    schedule:
+      interval: "daily"
+    labels:
+      - "📦 dependencies"
+    assignees:
+      - "kdeldycke"
