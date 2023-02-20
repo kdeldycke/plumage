@@ -1,5 +1,5 @@
 !function ($) {
-  $(function(){
+  $(function () {
 
     // Activate Bootstrap's tooltips
     $('[data-toggle="tooltip"]').tooltip()
@@ -43,7 +43,7 @@
 
     // Activate zoom on content images in the main column and add an icon overlay
     // (but ignore link icons from the footer and emoji).
-    $("#content img:not(.link-icon,.emojione)").each(function(){
+    $("#content img:not(.link-icon,.emojione)").each(function () {
       // Until we properly generate thumbnails and their links on Pelican's side, we just link an image to itself.
       if ($(this).parents('a').length == 0) {
         $(this).wrap(
@@ -57,7 +57,7 @@
         return;
       }
       // No zoom popup for class noZoom
-      if ($(this).hasClass( "noZoom" )) {
+      if ($(this).hasClass("noZoom")) {
         return;
       }
 
@@ -75,7 +75,7 @@
       });
 
       // Add overlay zoom icon
-      $(this).mglass({opacity: 1,});
+      $(this).mglass({ opacity: 1, });
     });
 
   });
