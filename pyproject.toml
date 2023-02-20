@@ -44,16 +44,16 @@ classifiers = [
 # List of python versions and their support status:
 # https://en.wikipedia.org/wiki/History_of_Python#Support
 python = "^3.11"
-closure = "^20191111"
-cssmin = "^0.2.0"
-libsass = ">=0.20.1,<0.22.0"
-Markdown = "^3.3.3"
-pelican = "^4.2.0"
+closure = "^20191111"         # XXX Unmaintained!
+cssmin = "^0.2.0"             # XXX Unmaintained!
+libsass = "^0.22.0"
+Markdown = "^3.4.1"
+pelican = "^4.8.0"
 pelican-webassets = "^2.0.0"
-pygments = "^2.7.0"
-pymdown-extensions = "^8.0.1"
+pygments = "^2.14.0"
+pymdown-extensions = "^9.9.2"
 pynpm = "^0.1.2"
-pyquery = "^1.4.3"
+pyquery = "^2.0.0"
 
 [tool.poetry.dev-dependencies]
 bump2version = "^1.0.1"
