@@ -53,25 +53,20 @@
                         {% for article in yearly_group.articles %}
                             {% if article.date.month != current_month %}
                                 {% set current_month = article.date.month %}
-                                {% if not loop.first %}
-                                    {# Triggers lint error with curlylint.
-                                    This is a bug, see:
-                                    https://github.com/thibaudcolas/curlylint/issues/14 #}
-                                </dl>
-                            {% endif %}
-                            <dl class="row">
-                            {% endif %}
-                            <dt class="col-sm-2">
-                                <abbr class="published" title="{{ article.date.isoformat() }}">{{ article.date.strftime('%b. %d') }}</abbr>
-                            </dt>
-                            <dd class="col-sm-10">
-                                <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
-                            </dd>
-                            {% if loop.last %}</dl>{% endif %}
-                        {% endfor %}
+                                {% if not loop.first %}</dl>{% endif %}
+                                <dl class="row">
+                                {% endif %}
+                                <dt class="col-sm-2">
+                                    <abbr class="published" title="{{ article.date.isoformat() }}">{{ article.date.strftime('%b. %d') }}</abbr>
+                                </dt>
+                                <dd class="col-sm-10">
+                                    <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
+                                </dd>
+                                {% if loop.last %}</dl>{% endif %}
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
-    </div>
-{% endblock %}
+            {% endfor %}
+        </div>
+    {% endblock %}
