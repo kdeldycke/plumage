@@ -1,34 +1,23 @@
 {% extends "base.html" %}
-
 {% set has_right = True %}
-
-{% block title %}
-    {{ article.title|striptags|e }}
-{% endblock %}
-
-
+{% block title %}{{ article.title|striptags|e }}{% endblock %}
 {% block head %}
-    {% if article.tags %}
-        <meta name="keywords" content="{{ article.tags|join(', ', attribute='name')|e }}">
-    {% endif %}
+    {% if article.tags %}<meta name="keywords"
+      content="{{ article.tags|join(', ', attribute='name')|e }}">{% endif %}
 {% endblock %}
-
-
 {% block top_center %}
     <h1>
-        <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags|e }}">{{ article.title }}</a>
+        <a href="{{ SITEURL }}/{{ article.url }}"
+           rel="bookmark"
+           title="Permalink to {{ article.title|striptags|e }}">{{ article.title }}</a>
     </h1>
 {% endblock %}
-
-
 {% block right_sidebar %}
     <div class="card bg-light text-dark">
         <ul class="list-group list-group-flush">
-
             <li class="list-group-item">
                 <abbr title="{{ article.date.isoformat() }}"><i class="fas fa-calendar"></i> {{ article.locale_date }}</abbr>
             </li>
-
             {% if AUTHOR_SAVE_AS and article.authors %}
                 <li class="list-group-item">
                     <address>
@@ -39,15 +28,16 @@
                     </address>
                 </li>
             {% endif %}
-
             {% if article.category or article.tags %}
                 <li class="list-group-item">
                     {% if article.category %}
                         {% for category, articles in categories %}
                             {% if category.url == article.category.url %}
                                 {% set article_counter = articles|length() %}
-                                <a href="{{ SITEURL }}/{{ article.category.url }}" rel="tag"
-                                   data-toggle="tooltip" class="badge badge-info"
+                                <a href="{{ SITEURL }}/{{ article.category.url }}"
+                                   rel="tag"
+                                   data-toggle="tooltip"
+                                   class="badge badge-info"
                                    title="{{ article_counter }} article{{ 's' if article_counter > 1 else '' }} in this category">{{ article.category }}</a>
                             {% endif %}
                         {% endfor %}
@@ -57,7 +47,8 @@
                         {% for tag, articles in tags %}
                             {% for t in article.tags %}
                                 {% if tag.url == t.url %}
-                                    {% if article_tags.append({'name': tag.name, 'url': tag.url, 'articles': articles|length()}) %}{% endif %}
+                                    {% if article_tags.append({'name': tag.name, 'url': tag.url, 'articles': articles|length()}) %}
+                                    {% endif %}
                                 {% endif %}
                             {% endfor %}
                         {% endfor %}
@@ -68,38 +59,36 @@
                     {% endif %}
                 </li>
             {% endif %}
-
             {% if ARTICLE_EDIT_LINK %}
                 <li class="list-group-item">
                     <p>Found a typo? Fix it now:</p>
-                    <a class="btn btn-info btn-block" href="{{ ARTICLE_EDIT_LINK % {'slug': article.slug} }}"><i class="fas fa-edit fa-fw"></i> Edit article on GitHub</a>
+                    <a class="btn btn-info btn-block"
+                       href="{{ ARTICLE_EDIT_LINK % {'slug': article.slug} }}"><i class="fas fa-edit fa-fw"></i> Edit article on GitHub</a>
                 </li>
             {% endif %}
-
             {% if article.prev_article or article.next_article %}
                 <li class="list-group-item">
                     <nav class="nav nav-pills nav-fill">
-                        <a class="nav-link btn btn-outline-primary border-0 {% if not article.prev_article %} disabled{% endif %}" {% if article.prev_article %} href="{{ SITEURL }}/{{ article.prev_article.url }}" title="{{ article.prev_article.title|striptags|e }}" {% endif %} rel="prev">
+                        <a class="nav-link btn btn-outline-primary border-0 {% if not article.prev_article %} disabled{% endif %}"
+                           {% if article.prev_article %} href="{{ SITEURL }}/{{ article.prev_article.url }}" title="{{ article.prev_article.title|striptags|e }}" {% endif %}
+                           rel="prev">
                             <span aria-hidden="true">←</span> Older
                         </a>
-                        <a class="nav-link btn btn-outline-primary border-0 {% if not article.next_article %} disabled{% endif %}" {% if article.next_article %} href="{{ SITEURL }}/{{ article.next_article.url }}" title="{{ article.next_article.title|striptags|e }}" {% endif %} rel="next">
+                        <a class="nav-link btn btn-outline-primary border-0 {% if not article.next_article %} disabled{% endif %}"
+                           {% if article.next_article %} href="{{ SITEURL }}/{{ article.next_article.url }}" title="{{ article.next_article.title|striptags|e }}" {% endif %}
+                           rel="next">
                             Newer <span aria-hidden="true">→</span>
                         </a>
                     </nav>
                 </li>
             {% endif %}
-
         </ul>
     </div>
 {% endblock %}
-
-
 {% block content %}
     {% import 'translations.html' as translations with context %}
     {{ translations.translations_for(article) }}
-
     {{ article.content }}
-
     {# Fetch content related to the current article from either related-posts
     or simila-posts plugin. The latter teakes precedence as it produces more
     robust results. #}
@@ -115,7 +104,8 @@
         https://kevin.deldycke.com/2012/04/beautify-contextual-related-posts-wordpress-plugin/ #}
         <div class="list-group bg-light text-dark">
             {% for related_post in related %}
-                <a class="list-group-item list-group-item-action" href="{{ SITEURL }}/{{ related_post.url }}">
+                <a class="list-group-item list-group-item-action"
+                   href="{{ SITEURL }}/{{ related_post.url }}">
                     <div class="d-flex w-100 justify-content-between">
                         <h5>{{ related_post.title }}</h5>
                         <abbr class="small published" title="{{ related_post.date.isoformat() }}">
@@ -127,17 +117,17 @@
             {% endfor %}
         </div>
     {% endif %}
-
     {% if DISQUS_SITENAME and SITEURL and article.status != "draft" %}
         <div class="comments mt-5">
             <div id="disqus_thread"></div>
             <script>
-                var disqus_config = function () {
+                var disqus_config = function() {
                     this.page.url = "{{ SITEURL }}/{{ article.url }}";
                     this.page.identifier = "{{ article.url }}";
                 };
                 (function() {
-                    var d = document, s = d.createElement('script');
+                    var d = document,
+                        s = d.createElement('script');
                     s.src = 'https://{{ DISQUS_SITENAME }}.disqus.com/embed.js';
                     s.setAttribute('data-timestamp', +new Date());
                     (d.head || d.body).appendChild(s);
@@ -146,5 +136,4 @@
             <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus</a>.</noscript>
         </div>
     {% endif %}
-
 {% endblock %}

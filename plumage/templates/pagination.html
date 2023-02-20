@@ -3,8 +3,10 @@
         <ul class="pagination justify-content-center">
             {% if articles_page.has_previous() %}
                 <li class="page-item">
-                    <a class="page-link" href="{{ SITEURL }}/{{ articles_previous_page.url }}"
-                       aria-label="Previous" rel="prev">
+                    <a class="page-link"
+                       href="{{ SITEURL }}/{{ articles_previous_page.url }}"
+                       aria-label="Previous"
+                       rel="prev">
                         <span aria-hidden="true">&larr;</span>
                     </a>
                 </li>
@@ -15,37 +17,34 @@
                     </span>
                 </li>
             {% endif %}
-
             {% for num in articles_paginator.page_range %}
                 {% set linked_pages = [
-                    1, 2, articles_page.number - 1, articles_page.number,
-                    articles_page.number + 1, articles_paginator.num_pages - 1,
-                    articles_paginator.num_pages] %}
+                1, 2, articles_page.number - 1, articles_page.number,
+                articles_page.number + 1, articles_paginator.num_pages - 1,
+                articles_paginator.num_pages] %}
                 {% if num in linked_pages %}
                     {% set is_current_page = (num == articles_page.number) -%}
                     <li class="page-item {% if is_current_page %}active{% endif %}"
                         {% if is_current_page %}aria-current="page"{% endif %}>
-                        <a class="page-link" href="{{ SITEURL }}/{{ articles_paginator.page(num).url }}"
-                           rel="
-                                {% if num == 1 %} first {% endif %}
-                                {% if num == articles_paginator.num_pages %} last {% endif %}
-                                {% if num == (articles_page.number - 1) %} prev {% endif %}
-                                {% if num == (articles_page.number + 1) %} next {% endif %}">
+                        <a class="page-link"
+                           href="{{ SITEURL }}/{{ articles_paginator.page(num).url }}"
+                           rel=" {% if num == 1 %} first{% endif %} {% if num == articles_paginator.num_pages %} last{% endif %} {% if num == (articles_page.number - 1) %} prev {% endif %} {% if num == (articles_page.number + 1) %} next {% endif %}">
                             {{ num }}
-                            {% if is_current_page %}
-                                <span class="sr-only">(current)</span>
-                            {% endif %}
+                            {% if is_current_page %}<span class="sr-only">(current)</span>{% endif %}
                         </a>
                     </li>
                 {% elif (num - 1) in linked_pages %}
-                    <li class="page-item disabled"><span class="page-link">…</span></li>
+                    <li class="page-item disabled">
+                        <span class="page-link">…</span>
+                    </li>
                 {% endif %}
             {% endfor %}
-
             {% if articles_page.has_next() %}
                 <li class="page-item">
-                    <a class="page-link" href="{{ SITEURL }}/{{ articles_next_page.url }}"
-                       aria-label="Next" rel="next">
+                    <a class="page-link"
+                       href="{{ SITEURL }}/{{ articles_next_page.url }}"
+                       aria-label="Next"
+                       rel="next">
                         <span aria-hidden="true">&rarr;</span>
                     </a>
                 </li>
