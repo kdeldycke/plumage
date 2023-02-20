@@ -2,7 +2,7 @@
 {% import 'macros.html' as m %}
 <html lang="{{ DEFAULT_LANG }}">
     <head>
-        <meta charset="utf-8"/>
+        <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>
@@ -10,7 +10,7 @@
                 Home
             {% endblock title %}
         | {{ SITENAME|e }}</title>
-        <meta name="author" content="{{ AUTHOR|e }}"/>
+        <meta name="author" content="{{ AUTHOR|e }}" />
         <meta name="generator" content="Pelican v{{ PELICAN_VERSION }}" />
         <link rel="stylesheet"
               href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css"
@@ -26,7 +26,7 @@
               crossorigin="anonymous"/>
         {% assets filters="libsass,postcss,cssmin", output="css/main.min.css",
             "css/mglass.scss", "css/main.scss", "css/pygments/" + CODE_STYLE + ".css", "css/code.scss" %}
-            <link rel="stylesheet" href="{{ SITEURL }}/{{ ASSET_URL }}"/>
+            <link rel="stylesheet" href="{{ SITEURL }}/{{ ASSET_URL }}" />
         {% endassets %}
         {% include "analytics.html" %}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
@@ -100,7 +100,7 @@
                 <a href="{{ SITEURL }}" class="avatar-container float-left mx-4">
                     <div class="avatar {% if SITE_THUMBNAIL_TEXT %} animate{% endif %}">
                         <div class="side">
-                            <img src="{{ SITE_THUMBNAIL }}" class="img-fluid"/>
+                            <img src="{{ SITE_THUMBNAIL }}" class="img-fluid" />
                         </div>
                         {% if SITE_THUMBNAIL_TEXT %}
                             <div class="side back text-center pt-2 px-1 small">{{ SITE_THUMBNAIL_TEXT }}</div>
@@ -129,7 +129,7 @@
                     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                         {% for title, link in MENUITEMS %}
                             {% set active_page = link == ("/%s"|format(output_file)).strip('index.html') -%}
-                            <li class="nav-item {% if active_page %} active {% endif %}">
+                            <li class="nav-item {% if active_page %} active{% endif %}">
                                 <a class="nav-link" href="{{ link }}">
                                     {{ title }}
                                     {% if active_page %}<span class="sr-only">(current)</span>{% endif %}
@@ -139,7 +139,7 @@
                         {% if DISPLAY_PAGES_ON_MENU %}
                             {% for p in pages %}
                                 {% set active_page = (p == page) -%}
-                                <li class="nav-item {% if active_page %} active {% endif %}">
+                                <li class="nav-item {% if active_page %} active{% endif %}">
                                     <a class="nav-link" href="{{ SITEURL }}/{{ p.url }}">
                                         {{ p.title }}
                                         {% if active_page %}<span class="sr-only">(current)</span>{% endif %}
@@ -150,7 +150,7 @@
                         {% if DISPLAY_CATEGORIES_ON_MENU %}
                             {% for c, null in categories %}
                                 {% set active_category = (c == category) -%}
-                                <li class="nav-item {% if active_page %} active {% endif %}">
+                                <li class="nav-item {% if active_page %} active{% endif %}">
                                     <a class="nav-link" href="{{ SITEURL }}/{{ c.url }}">
                                         {{ c.name }}
                                         {% if active_category %}<span class="sr-only">(current)</span>{% endif %}
@@ -230,17 +230,26 @@
                     <ul class="list-unstyled">
                         {% if CATEGORIES_SAVE_AS %}
                             <li>
-                                <a href="{{ SITEURL }}/{{ CATEGORIES_SAVE_AS }}"><i class="fas fa-th fa-fw"></i> Categories</a>
+                                <a href="{{ SITEURL }}/{{ CATEGORIES_SAVE_AS }}">
+                                    <i class="fas fa-th fa-fw"></i>
+                                    Categories
+                                </a>
                             </li>
                         {% endif %}
                         {% if AUTHORS_SAVE_AS %}
                             <li>
-                                <a href="{{ SITEURL }}/{{ AUTHORS_SAVE_AS }}"><i class="fas fa-users fa-fw"></i> Authors</a>
+                                <a href="{{ SITEURL }}/{{ AUTHORS_SAVE_AS }}">
+                                    <i class="fas fa-users fa-fw"></i>
+                                    Authors
+                                </a>
                             </li>
                         {% endif %}
                         {% if ARCHIVES_SAVE_AS %}
                             <li>
-                                <a href="{{ SITEURL }}/{{ ARCHIVES_SAVE_AS }}"><i class="far fa-calendar-alt fa-fw"></i> Dates</a>
+                                <a href="{{ SITEURL }}/{{ ARCHIVES_SAVE_AS }}">
+                                    <i class="far fa-calendar-alt fa-fw"></i>
+                                    Dates
+                                </a>
                             </li>
                         {% endif %}
                         {% if TAGS_SAVE_AS %}
