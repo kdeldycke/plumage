@@ -75,3 +75,42 @@ jobs:
             </details>
           labels: "🤖 ci"
           branch: autofix-css
+
+  format-jinja:
+    name: Format Jinja
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3.3.0
+      - uses: actions/setup-python@v4.5.0
+        with:
+          python-version: "3.11"
+      - name: Install djlint
+        run: |
+          python -m pip install --upgrade pip poetry
+          poetry install
+      - name: Autofix Jinja
+        run: >
+          poetry run djlint
+          --reformat
+          --profile jinja
+          --preserve-blank-lines
+          --format-css
+          --format-js
+          plumage/templates/*.html
+      - uses: peter-evans/create-pull-request@v4.2.3
+        with:
+          assignees: ${{ github.actor }}
+          commit-message: "[autofix] Format Jinja"
+          title: "[autofix] Format Jinja"
+          body: >
+            <details><summary><code>Workflow metadata</code></summary>
+
+
+            > [Auto-generated on run `#${{ github.run_id }}`](${{ github.event.repository.html_url }}/actions/runs/${{
+            github.run_id }}) by `${{ github.job }}` job from [`autofix.yaml`](${{ github.event.repository.html_url
+            }}/blob/${{ github.sha }}/.github/workflows/autofix.yaml) workflow.
+
+
+            </details>
+          labels: "🤖 ci"
+          branch: autofix-jinja

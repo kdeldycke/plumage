@@ -14,6 +14,7 @@ This version is not released yet and is under active development.
 - Add dependency on `postcss-cli` and `autoprefixer` Node package.
 - Auto-install Node.js dependencies via `npm`.
 - Auto-configure `webassets` plugins on theme load.
+- Auto-format Jinja templates. Add dependency on `djlint`.
 - Simplify project management: only use the `main` branch, delete `develop`.
 - Runs workflows on latest `ubuntu-22.04` and Python `3.11`.
 - Add minimal typing.
