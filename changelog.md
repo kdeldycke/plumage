@@ -6,9 +6,9 @@
 This version is not released yet and is under active development.
 ```
 
-- Upgrade to Bootstrap 4.6.0.
-- Upgrade to Font Awesome 5.15.2.
-- Upgrade to jQuery 3.6.0.
+- Upgrade to Bootstrap 5.2.3.
+- Upgrade to Font Awesome 6.3.0.
+- Upgrade to jQuery 3.6.3.
 - Update dependency to `pelican-webassets` 2.0.0.
 - Let `autoprefixer` generates vendor prefixes in CSS.
 - Add dependency on `postcss-cli` and `autoprefixer` Node package.
