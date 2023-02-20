@@ -1,25 +1,18 @@
 {% extends "base.html" %}
-
-
-{% block title %}
-    All tags
-{% endblock %}
-
-
+{% block title %}All tags{% endblock %}
 {% block top_center %}
     <h1>
-        <a href="{{ SITEURL }}/{{ TAGS_SAVE_AS }}" rel="bookmark" title="Permalink to tag list">Tags</a>
+        <a href="{{ SITEURL }}/{{ TAGS_SAVE_AS }}"
+           rel="bookmark"
+           title="Permalink to tag list">Tags</a>
     </h1>
 {% endblock %}
-
-
 {% block content %}
-
     {% set all_tags = [] %}
     {% for tag, articles in tags %}
-        {% if all_tags.append({'name': tag.name, 'url': tag.url, 'articles': articles|length()}) %}{% endif %}
+        {% if all_tags.append({'name': tag.name, 'url': tag.url, 'articles': articles|length()}) %}
+        {% endif %}
     {% endfor %}
-
     {% set tier_1 = [] %}
     {% set tier_2 = [] %}
     {% set tier_3 = [] %}
@@ -27,21 +20,20 @@
     {# Sort by tag frequency, then alphabetically #}
     {% for tag in all_tags|sort(attribute='name')|sort(reverse=True, attribute='articles') %}
         {% if tier_1|sum(attribute = 'articles') < total_tags / 3.0 or tier_1[-1].articles == tag.articles %}
-            {% if tier_1.append(tag) %}{% endif %}
+            {% if tier_1.append(tag) %}
+            {% endif %}
         {% elif tier_2|sum(attribute = 'articles') < total_tags / 3.0 or tier_2[-1].articles == tag.articles %}
-            {% if tier_2.append(tag) %}{% endif %}
+            {% if tier_2.append(tag) %}
+            {% endif %}
         {% else %}
-            {% if tier_3.append(tag) %}{% endif %}
+            {% if tier_3.append(tag) %}
+            {% endif %}
         {% endif %}
     {% endfor %}
-
     {% for (tier_name, tier_tags) in [("Top", tier_1), ("Middle", tier_2), ("Lower", tier_3)] %}
         <h2>{{ tier_name }} tier</h2>
         <p>
-            {% for tag in tier_tags %}
-                {{ m.render_tag(tag) }}
-            {% endfor %}
+            {% for tag in tier_tags %}{{ m.render_tag(tag) }}{% endfor %}
         </p>
     {% endfor %}
-
 {% endblock %}

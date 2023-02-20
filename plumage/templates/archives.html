@@ -1,48 +1,43 @@
 {% extends "base.html" %}
-
-
-{% block title %}
-    Archives
-{% endblock %}
-
-
+{% block title %}Archives{% endblock %}
 {% block top_center %}
     <h1>
-        <a href="{{ SITEURL }}/{{ ARCHIVES_SAVE_AS }}" rel="bookmark" title="Permalink to archives">Archives</a>
+        <a href="{{ SITEURL }}/{{ ARCHIVES_SAVE_AS }}"
+           rel="bookmark"
+           title="Permalink to archives">Archives</a>
     </h1>
 {% endblock %}
-
-
 {% block content %}
-
     {# Compute the spanning years all articles covers #}
     {% set year_range = [] %}
     {% for year in range(dates[-1].date.year, dates[0].date.year + 1) %}
-
         {# Gather all articles from current year #}
         {% set yearly_articles = [] %}
         {% for article in dates %}
             {% if article.date.year == year %}
-                {% if yearly_articles.append(article) %}{% endif %}
+                {% if yearly_articles.append(article) %}
+                {% endif %}
             {% endif %}
         {% endfor %}
-
         {# Ignore empty years #}
         {% if yearly_articles|length > 0 %}
-            {% if year_range.append({'year': year, 'articles': yearly_articles}) %}{% endif %}
+            {% if year_range.append({'year': year, 'articles': yearly_articles}) %}
+            {% endif %}
         {% endif %}
-
     {% endfor %}
-
-    <div class="accordion" id="accordianArchives" role="tablist" aria-multiselectable="true">
+    <div class="accordion"
+         id="accordianArchives"
+         role="tablist"
+         aria-multiselectable="true">
         {% for yearly_group in year_range|sort(reverse = True, attribute = 'year')  %}
             <div class="card">
                 <h4 class="card-header" role="tab" id="heading{{ yearly_group.year }}">
-                    <button type="button" data-toggle="collapse"
-                       data-target="#collapse{{ yearly_group.year }}"
-                       class="btn btn-link btn-block text-left {% if not loop.first %}collapsed{% endif %}"
-                       aria-expanded="{% if loop.first %}true{% else %}false{% endif %}"
-                       aria-controls="collapse{{ yearly_group.year }}">
+                    <button type="button"
+                            data-toggle="collapse"
+                            data-target="#collapse{{ yearly_group.year }}"
+                            class="btn btn-link btn-block text-left {% if not loop.first %}collapsed{% endif %}"
+                            aria-expanded="{% if loop.first %}true{% else %}false{% endif %}"
+                            aria-controls="collapse{{ yearly_group.year }}">
                         {{ yearly_group.year }}
                         <span class="badge badge-secondary float-right align-middle">{{ yearly_group.articles|length }}</span>
                         <span class="sr-only">articles</span>
@@ -50,35 +45,33 @@
                 </h4>
                 <div id="collapse{{ yearly_group.year }}"
                      class="collapse {% if loop.first %}show{% endif %}"
-                     role="tabpanel" aria-labelledby="heading{{ yearly_group.year }}"
+                     role="tabpanel"
+                     aria-labelledby="heading{{ yearly_group.year }}"
                      data-parent="#accordianArchives">
                     <div class="card-body">
                         {% set current_month = False %}
                         {% for article in yearly_group.articles %}
-
                             {% if article.date.month != current_month %}
                                 {% set current_month = article.date.month %}
                                 {% if not loop.first %}
                                     {# Triggers lint error with curlylint.
                                     This is a bug, see:
                                     https://github.com/thibaudcolas/curlylint/issues/14 #}
-                                    </dl>
-                                {% endif %}
-                                <dl class="row">
-                            {% endif %}
-
-                            <dt class="col-sm-2"><abbr class="published" title="{{ article.date.isoformat() }}">{{ article.date.strftime('%b. %d') }}</abbr></dt>
-                            <dd class="col-sm-10"><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></dd>
-
-                            {% if loop.last %}
                                 </dl>
                             {% endif %}
-
+                            <dl class="row">
+                            {% endif %}
+                            <dt class="col-sm-2">
+                                <abbr class="published" title="{{ article.date.isoformat() }}">{{ article.date.strftime('%b. %d') }}</abbr>
+                            </dt>
+                            <dd class="col-sm-10">
+                                <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
+                            </dd>
+                            {% if loop.last %}</dl>{% endif %}
                         {% endfor %}
                     </div>
                 </div>
             </div>
         {% endfor %}
     </div>
-
 {% endblock %}

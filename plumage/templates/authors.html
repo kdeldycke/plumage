@@ -1,31 +1,27 @@
 {% extends "base.html" %}
-
-
-{% block title %}
-    All authors
-{% endblock %}
-
-
+{% block title %}All authors{% endblock %}
 {% block top_center %}
     <h1>
-        <a href="{{ SITEURL }}/{{ AUTHORS_SAVE_AS }}" rel="bookmark" title="Permalink to author list">Authors</a>
+        <a href="{{ SITEURL }}/{{ AUTHORS_SAVE_AS }}"
+           rel="bookmark"
+           title="Permalink to author list">Authors</a>
     </h1>
 {% endblock %}
-
-
 {% block content %}
-
     {% set all_authors = [] %}
     {% for author, articles in authors %}
-        {% if all_authors.append({'name': author.name, 'url': author.url, 'articles': articles|length()}) %}{% endif %}
+        {% if all_authors.append({'name': author.name, 'url': author.url, 'articles': articles|length()}) %}
+        {% endif %}
     {% endfor %}
-
     <dl class="row">
         {# Sort by number of articles, then alphabetically #}
         {% for author in all_authors|sort(attribute='name')|sort(reverse=True, attribute='articles') %}
-            <dt class="col-sm-2"><a href="{{ SITEURL }}/{{ author.url }}" class="badge badge-info">{{ author.name }}</a></dt>
-            <dd class="col-sm-10"><a href="{{ SITEURL }}/{{ author.url }}">{{ author.articles }} article{{ 's' if author.articles > 1 else '' }}</a></dd>
+            <dt class="col-sm-2">
+                <a href="{{ SITEURL }}/{{ author.url }}" class="badge badge-info">{{ author.name }}</a>
+            </dt>
+            <dd class="col-sm-10">
+                <a href="{{ SITEURL }}/{{ author.url }}">{{ author.articles }} article{{ 's' if author.articles > 1 else '' }}</a>
+            </dd>
         {% endfor %}
     </dl>
-
 {% endblock %}

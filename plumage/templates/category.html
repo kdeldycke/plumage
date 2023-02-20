@@ -1,23 +1,21 @@
 {% extends "base.html" %}
-
-
-{% block title %}
-    {{ category }}
-{% endblock %}
-
-
+{% block title %}{{ category }}{% endblock %}
 {% block top_center %}
     <h1>
-        <a  href="{{ SITEURL }}/{{ category.url }}" rel="bookmark" title="Permalink to {{ category|e }} articles">{{ category }} articles</a>
+        <a href="{{ SITEURL }}/{{ category.url }}"
+           rel="bookmark"
+           title="Permalink to {{ category|e }} articles">{{ category }} articles</a>
     </h1>
 {% endblock %}
-
-
 {% block content %}
     <dl class="row">
         {% for article in articles %}
-            <dt class="col-sm-3"><abbr class="published" title="{{ article.date.isoformat() }}">{{ article.locale_date }}</abbr></dt>
-            <dd class="col-sm-9"><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></dd>
+            <dt class="col-sm-3">
+                <abbr class="published" title="{{ article.date.isoformat() }}">{{ article.locale_date }}</abbr>
+            </dt>
+            <dd class="col-sm-9">
+                <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
+            </dd>
         {% endfor %}
     </dl>
 {% endblock %}

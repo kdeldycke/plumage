@@ -1,23 +1,21 @@
 {% extends "base.html" %}
-
-
 {% block content %}
-
-    {% block content_title %}
-        <h2>Articles</h2>
-    {% endblock %}
-
+    {% block content_title %}<h2>Articles</h2>{% endblock %}
     {% for article in articles_page.object_list %}
         <article>
             <header>
-                <h2><a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags|e }}">{{ article.title }}</a></h2>
+                <h2>
+                    <a href="{{ SITEURL }}/{{ article.url }}"
+                       rel="bookmark"
+                       title="Permalink to {{ article.title|striptags|e }}">{{ article.title }}</a>
+                </h2>
             </header>
             <div>{{ article.summary|striptags }}</div>
-            <div><a class="btn btn-primary" href="{{ SITEURL }}/{{ article.url }}"><strong>➟ Read more</strong></a></div>
+            <div>
+                <a class="btn btn-primary" href="{{ SITEURL }}/{{ article.url }}"><strong>➟ Read more</strong></a>
+            </div>
         </article>
         <hr/>
     {% endfor %}
-
     {% include 'pagination.html' %}
-
 {% endblock content %}
