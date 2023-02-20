@@ -14,7 +14,7 @@ jobs:
     with:
       gitignore-extra-categories: node
 
-  css:
+  format-css:
     name: Generate Pygment styles, format CSS files and create a PR
     runs-on: ubuntu-22.04
     steps:
