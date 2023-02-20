@@ -15,6 +15,7 @@ This version is not released yet and is under active development.
 - Auto-install Node.js dependencies via `npm`.
 - Auto-configure `webassets` plugins on theme load.
 - Auto-format Jinja templates. Add dependency on `djlint`.
+- Lint Jinja files with `djlint` instead of `curlylint`.
 - Simplify project management: only use the `main` branch, delete `develop`.
 - Runs workflows on latest `ubuntu-22.04` and Python `3.11`.
 - Add minimal typing.
