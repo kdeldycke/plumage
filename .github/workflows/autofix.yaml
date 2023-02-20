@@ -93,9 +93,9 @@ jobs:
           poetry run djlint
           --reformat
           --profile jinja
-          --preserve-blank-lines
           --format-css
           --format-js
+          --warn
           plumage/templates/*.html
       - uses: peter-evans/create-pull-request@v4.2.3
         with:
