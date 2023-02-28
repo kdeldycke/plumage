@@ -18,20 +18,44 @@ import os
 from pathlib import Path
 from shutil import which
 from textwrap import indent
+from typing import Any
 
 from pynpm import NPMPackage
 
-from . import logger, PLUMAGE_ROOT
+from . import PLUMAGE_ROOT, logger
+
+"""Setup the `webassets <https://github.com/miracle2k/webassets>`_ plugin for Pelican.
+
+Takes care of:
+
+    - Installing PostCSS CLI and its dependency with ``npm``.
+    - Locating the PostCSS CLI binary on the filesystem.
+    - Registering PostCSS to the webassets plugin.
+"""
 
 
-def setup_webassets(conf):
+CONFIG_DEFAULTS: dict[str, str] = {
+    # No need to force a compressed rendering, a minification pass is applied
+    # at the end of the pipeline. See:
+    # https://webassets.readthedocs.io/en/latest/builtin_filters.html#webassets.filter.libsass.LibSass
+    # "LIBSASS_STYLE": "compressed",
+}
+"""Default configuration for `webassets <https://github.com/miracle2k/webassets>`_.
+
+See the `list of configuration parameters for each filter
+<https://webassets.readthedocs.io/en/latest/builtin_filters.html>`_.
+"""
+
+
+CLI_NAME = "postcss"
+"""Name of the PostCSS CLI binary."""
+
+
+def setup_webassets(conf: dict[str, Any]) -> dict[str, Any]:
     """Setup pelican-webassets plugin configuration."""
-    if not conf.get("WEBASSETS_CONFIG"):
-        conf["WEBASSETS_CONFIG"] = []
-    webassets_conf_keys = {i[0] for i in conf.get("WEBASSETS_CONFIG")}
-
-    # Search for PostCSS binary location.
-    cli_name = "postcss"
+    # Update the default configuration with user-defined values.
+    webassets_conf = CONFIG_DEFAULTS.copy()
+    webassets_conf.update(dict(conf.get("WEBASSETS_CONFIG", {})))
 
     # The dependency definition file relative to Plumage's install path takes
     # precedence.
@@ -42,11 +66,11 @@ def setup_webassets(conf):
     ]
 
     # Check if the path exist in any of the environment locations.
-    env_path = ":".join(cli_search_path + [os.getenv("PATH")])
-    postcss_bin = which(cli_name, path=env_path)
+    env_path = os.pathsep.join(cli_search_path + [os.getenv("PATH")])
+    postcss_bin = which(CLI_NAME, path=env_path)
 
     if not postcss_bin:
-        logger.warning(f"{cli_name} CLI not found.")
+        logger.warning(f"{CLI_NAME} CLI not found.")
 
         # Install Node dependencies.
         logger.info(
@@ -60,21 +84,22 @@ def setup_webassets(conf):
             logger.error("npm CLI not found.")
             raise
 
-        postcss_bin = which(cli_name, path=env_path)
+        postcss_bin = which(CLI_NAME, path=env_path)
         assert postcss_bin
 
     # Register PostCSS to webassets plugin.
     postcss_bin = Path(postcss_bin).resolve()
-    logger.info(f"{cli_name} CLI found at {postcss_bin}")
-    if "POSTCSS_BIN" not in webassets_conf_keys:
-        conf["WEBASSETS_CONFIG"].append(
-            ("POSTCSS_BIN", str(postcss_bin)),
-        )
+    logger.info(f"{CLI_NAME} CLI found at {postcss_bin}")
+    if "POSTCSS_BIN" not in webassets_conf:
+        webassets_conf["POSTCSS_BIN"] = str(postcss_bin)
 
     # Force usage of autoprefixer via PostCSS.
-    if "POSTCSS_EXTRA_ARGS" not in webassets_conf_keys:
-        conf["WEBASSETS_CONFIG"].append(
-            ("POSTCSS_EXTRA_ARGS", ["--use", "autoprefixer"]),
-        )
+    if "POSTCSS_EXTRA_ARGS" not in webassets_conf:
+        webassets_conf["POSTCSS_EXTRA_ARGS"] = ["--use", "autoprefixer"]
+
+    # Save updated configuration in Pelican settings in the form of ``(key, value)``
+    # instead of a ``dict`` as expected by ``webassets`` plugin. See:
+    # https://github.com/pelican-plugins/webassets/blob/2.0.0/README.md#webassets_config
+    conf["WEBASSETS_CONFIG"] = list(webassets_conf.items())
 
     return conf
