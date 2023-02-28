@@ -15,6 +15,7 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 import os
+from pathlib import Path
 from shutil import which
 from textwrap import indent
 
@@ -63,10 +64,11 @@ def setup_webassets(conf):
         assert postcss_bin
 
     # Register PostCSS to webassets plugin.
+    postcss_bin = Path(postcss_bin).resolve()
     logger.info(f"{cli_name} CLI found at {postcss_bin}")
     if "POSTCSS_BIN" not in webassets_conf_keys:
         conf["WEBASSETS_CONFIG"].append(
-            ("POSTCSS_BIN", postcss_bin),
+            ("POSTCSS_BIN", str(postcss_bin)),
         )
 
     # Force usage of autoprefixer via PostCSS.
