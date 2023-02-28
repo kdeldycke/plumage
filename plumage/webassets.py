@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-#
 # Copyright Kevin Deldycke <kevin@deldycke.com> and contributors.
 #
 # This program is Free Software; you can redistribute it and/or
