@@ -6,6 +6,7 @@
 This version is not released yet and is under active development.
 ```
 
+- Add `robots` directives to ignore search engine indexing of drafts & hidden articles and pages.
 - Upgrade to Bootstrap 5.2.3.
 - Upgrade to Font Awesome 6.3.0.
 - Upgrade to jQuery 3.6.3.
