@@ -35,7 +35,7 @@
                     <button type="button"
                             data-toggle="collapse"
                             data-target="#collapse{{ yearly_group.year }}"
-                            class="btn btn-link btn-block text-left {% if not loop.first %}collapsed{% endif %}"
+                            class="btn btn-link text-left {% if not loop.first %}collapsed{% endif %}"
                             aria-expanded="{% if loop.first %}true{% else %}false{% endif %}"
                             aria-controls="collapse{{ yearly_group.year }}">
                         {{ yearly_group.year }}
