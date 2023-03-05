@@ -9,7 +9,7 @@ a {
   /* Do not underline links */
   text-decoration: none;
 
-  :hover {
+  &:hover {
     text-decoration: underline;
   }
 
