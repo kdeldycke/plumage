@@ -214,7 +214,7 @@
             </div>
         </div>
         {# TODO: make footer sticky #}
-        <footer class="container-fluid mt-5 p-4 small">
+        <footer class="container-fluid mt-5 p-4 small fw-light">
             <div class="row mx-5">
                 {% set SOCIAL_WIDGET_NAME = SOCIAL_WIDGET_NAME or 'Social' %}
                 {% set LINKS_WIDGET_NAME = LINKS_WIDGET_NAME or 'Links' %}
@@ -238,7 +238,7 @@
                         {% if CATEGORIES_SAVE_AS %}
                             <li>
                                 <a href="{{ SITEURL }}/{{ CATEGORIES_SAVE_AS }}">
-                                    <i class="fas fa-th fa-fw"></i>
+                                    <i class="fas fa-th-list fa-fw"></i>
                                     Categories
                                 </a>
                             </li>
