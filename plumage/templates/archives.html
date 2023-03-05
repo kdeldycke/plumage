@@ -39,7 +39,7 @@
                             aria-expanded="{% if loop.first %}true{% else %}false{% endif %}"
                             aria-controls="collapse{{ yearly_group.year }}">
                         {{ yearly_group.year }}
-                        <span class="badge badge-secondary float-right align-middle">{{ yearly_group.articles|length }}</span>
+                        <span class="badge text-bg-secondary float-right align-middle">{{ yearly_group.articles|length }}</span>
                         <span class="sr-only">articles</span>
                     </button>
                 </h4>

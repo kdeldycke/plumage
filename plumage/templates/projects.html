@@ -38,7 +38,7 @@ Sorted by priority: the first items takes precedence over those at the end. #}
             <h4 class="card-title">{{ project.name }}</h4>
             {% if project.roles or project.tools %}
                 <p class="card-text">
-                    {% for role in project.roles %}<span class="badge badge-success">{{ role }}</span>{% endfor %}
+                    {% for role in project.roles %}<span class="badge text-bg-success">{{ role }}</span>{% endfor %}
                     {# Sort by tag frequency, then alphabetically #}
                     {% for tag in all_tags|sort(attribute='name')|sort(reverse=True, attribute='articles') %}
                         {% if tag.name in project.tools %}{{ m.render_tag(tag) }}{% endif %}
@@ -49,7 +49,7 @@ Sorted by priority: the first items takes precedence over those at the end. #}
                         {% endif %}
                     {% endfor %}
                     {% for tool in project.tools %}
-                        {% if tool not in tag_names %}<span class="badge badge-secondary">{{ tool }}</span>{% endif %}
+                        {% if tool not in tag_names %}<span class="badge text-bg-secondary">{{ tool }}</span>{% endif %}
                     {% endfor %}
                 </p>
             {% endif %}

@@ -1,6 +1,6 @@
 {% macro render_tag(tag) -%}
     <a href="{{ SITEURL }}/{{ tag.url }}"
-       class="badge badge-secondary"
+       class="badge text-bg-secondary"
        data-bs-toggle="tooltip"
        title="{{ tag.articles }} article{{ 's' if tag.articles > 1 else '' }} with this tag">{{ tag.name }}</a>
 {%- endmacro %}
