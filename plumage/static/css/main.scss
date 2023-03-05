@@ -18,8 +18,15 @@ a {
    */
   &.headerlink {
     visibility: hidden;
-    @each $tag in 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'dt' {
-      #{$tag}:hover > & {
+
+    @each $tag in 'h1',
+    'h2',
+    'h3',
+    'h4',
+    'h5',
+    'h6',
+    'dt' {
+      #{$tag}:hover>& {
         visibility: visible !important;
       }
     }
@@ -54,9 +61,11 @@ img.emojione {
     .side {
       $size: 100%;
       backface-visibility: hidden;
+
       border: solid 0.2rem white {
         radius: 1rem;
       }
+
       box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.25);
       height: $size;
       overflow: hidden;
