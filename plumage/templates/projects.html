@@ -38,19 +38,31 @@ Sorted by priority: the first items takes precedence over those at the end. #}
             <h4 class="card-title">{{ project.name }}</h4>
             {% if project.roles or project.tools %}
                 <p class="card-text">
-                    {% for role in project.roles %}<span class="badge text-bg-success">{{ role }}</span>{% endfor %}
-                    {# Sort by tag frequency, then alphabetically #}
-                    {% for tag in all_tags|sort(attribute='name')|sort(reverse=True, attribute='articles') %}
-                        {% if tag.name in project.tools %}{{ m.render_tag(tag) }}{% endif %}
-                    {% endfor %}
-                    {% set tag_names = [] %}
-                    {% for tag in all_tags %}
-                        {% if tag_names.append(tag.name) %}
-                        {% endif %}
-                    {% endfor %}
-                    {% for tool in project.tools %}
-                        {% if tool not in tag_names %}<span class="badge text-bg-secondary">{{ tool }}</span>{% endif %}
-                    {% endfor %}
+                    <ul class="list-inline">
+                        {% for role in project.roles %}
+                            <li class="list-inline-item">
+                                <span class="badge text-bg-success">{{ role }}</span>
+                            </li>
+                        {% endfor %}
+                        {# Sort by tag frequency, then alphabetically #}
+                        {% for tag in all_tags|sort(attribute='name')|sort(reverse=True, attribute='articles') %}
+                            {% if tag.name in project.tools %}
+                                <li class="list-inline-item">{{ m.render_tag(tag) }}</li>
+                            {% endif %}
+                        {% endfor %}
+                        {% set tag_names = [] %}
+                        {% for tag in all_tags %}
+                            {% if tag_names.append(tag.name) %}
+                            {% endif %}
+                        {% endfor %}
+                        {% for tool in project.tools %}
+                            {% if tool not in tag_names %}
+                                <li class="list-inline-item">
+                                    <span class="badge text-bg-secondary">{{ tool }}</span>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
                 </p>
             {% endif %}
             {% if project.desc %}<p class="card-text">{{ project.desc }}</p>{% endif %}

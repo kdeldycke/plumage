@@ -29,34 +29,42 @@
                 </li>
             {% endif %}
             {% if article.category or article.tags %}
-                <li class="list-group-item">
-                    {% if article.category %}
-                        {% for category, articles in categories %}
-                            {% if category.url == article.category.url %}
-                                {% set article_counter = articles|length() %}
-                                <a href="{{ SITEURL }}/{{ article.category.url }}"
-                                   rel="tag"
-                                   class="badge text-bg-info"
-                                   data-bs-toggle="tooltip"
-                                   title="{{ article_counter }} article{{ 's' if article_counter > 1 else '' }} in this category">{{ article.category }}</a>
-                            {% endif %}
-                        {% endfor %}
-                    {% endif %}
-                    {% if article.tags %}
-                        {% set article_tags = [] %}
-                        {% for tag, articles in tags %}
-                            {% for t in article.tags %}
-                                {% if tag.url == t.url %}
-                                    {% if article_tags.append({'name': tag.name, 'url': tag.url, 'articles': articles|length()}) %}
-                                    {% endif %}
+                <li class="list-group-item bg-transparent">
+                    <ul class="list-inline">
+                        {% if article.category %}
+                            {% for category, articles in categories %}
+                                {% if category.url == article.category.url %}
+                                    {% set article_counter = articles|length() %}
+                                    <li class="list-inline-item">
+                                        <a href="{{ SITEURL }}/{{ article.category.url }}"
+                                           rel="tag"
+                                           class="badge text-bg-info"
+                                           data-bs-toggle="tooltip"
+                                           title="{{ article_counter }} article{{ 's' if article_counter > 1 else '' }} in this category">
+                                                {{ article.category }}
+                                        </a>
+                                    </li>
                                 {% endif %}
                             {% endfor %}
-                        {% endfor %}
-                        {# Sort by tag frequency, then alphabetically #}
-                        {% for tag in article_tags|sort(attribute='name')|sort(reverse=True, attribute='articles') %}
-                            {{ m.render_tag(tag) }}
-                        {% endfor %}
-                    {% endif %}
+                        {% endif %}
+                        {% if article.tags %}
+                            {% set article_tags = [] %}
+                            {% for tag, articles in tags %}
+                                {% for t in article.tags %}
+                                    {% if tag.url == t.url %}
+                                        {% if article_tags.append({'name': tag.name, 'url': tag.url, 'articles': articles|length()}) %}
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                            {# Sort by tag frequency, then alphabetically #}
+                            {% for tag in article_tags|sort(attribute='name')|sort(reverse=True, attribute='articles') %}
+                                <li class="list-inline-item">
+                                    {{ m.render_tag(tag) }}
+                                </li>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
                 </li>
             {% endif %}
             {% if ARTICLE_EDIT_LINK %}

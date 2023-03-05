@@ -32,8 +32,10 @@
     {% endfor %}
     {% for (tier_name, tier_tags) in [("Top", tier_1), ("Middle", tier_2), ("Lower", tier_3)] %}
         <h2>{{ tier_name }} tier</h2>
-        <p>
-            {% for tag in tier_tags %}{{ m.render_tag(tag) }}{% endfor %}
-        </p>
+        <ul class="list-inline">
+            {% for tag in tier_tags %}
+                <li class="list-inline-item">{{ m.render_tag(tag) }}</li>
+            {% endfor %}
+        </ul>
     {% endfor %}
 {% endblock %}
