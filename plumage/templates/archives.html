@@ -33,21 +33,21 @@
             <div class="card">
                 <h4 class="card-header" role="tab" id="heading{{ yearly_group.year }}">
                     <button type="button"
-                            data-toggle="collapse"
-                            data-target="#collapse{{ yearly_group.year }}"
-                            class="btn btn-link text-left {% if not loop.first %}collapsed{% endif %}"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#collapse{{ yearly_group.year }}"
+                            class="btn btn-link text-start {% if not loop.first %}collapsed{% endif %}"
                             aria-expanded="{% if loop.first %}true{% else %}false{% endif %}"
                             aria-controls="collapse{{ yearly_group.year }}">
                         {{ yearly_group.year }}
-                        <span class="badge text-bg-secondary float-right align-middle">{{ yearly_group.articles|length }}</span>
-                        <span class="sr-only">articles</span>
+                        <span class="badge text-bg-secondary float-end align-middle">{{ yearly_group.articles|length }}</span>
+                        <span class="visually-hidden">articles</span>
                     </button>
                 </h4>
                 <div id="collapse{{ yearly_group.year }}"
                      class="collapse {% if loop.first %}show{% endif %}"
                      role="tabpanel"
                      aria-labelledby="heading{{ yearly_group.year }}"
-                     data-parent="#accordianArchives">
+                     data-bs-parent="#accordianArchives">
                     <div class="card-body">
                         {% set current_month = False %}
                         {% for article in yearly_group.articles %}

@@ -104,7 +104,7 @@
     <body class="bg-transparent pt-4">
         <div class="container">
             {% if SITE_THUMBNAIL %}
-                <a href="{{ SITEURL }}" class="avatar-container float-left mx-4">
+                <a href="{{ SITEURL }}" class="avatar-container float-start mx-4">
                     <div class="avatar {% if SITE_THUMBNAIL_TEXT %} animate{% endif %}">
                         <div class="side">
                             <img src="{{ SITE_THUMBNAIL }}" class="img-fluid" />
@@ -119,27 +119,27 @@
                 <a href="{{ SITEURL }}" class="text-dark text-decoration-none">{{ SITENAME }}</a>
                 <small class="text-secondary"><small>{{ SITESUBTITLE }}</small></small>
             </h1>
-            <nav class="navbar d-block navbar-expand-lg navbar-light bg-light shadow rounded-lg">
+            <nav class="navbar d-block navbar-expand-lg navbar-light bg-light shadow rounded-3">
                 <a class="navbar-brand d-none"
                    href="{{ SITEURL }}"
                    title="{{ SITESUBTITLE|e }}">{{ SITENAME }}</a>
                 <button class="navbar-toggler"
                         type="button"
-                        data-toggle="collapse"
-                        data-target="#plumage-navbar-collapse-1"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#plumage-navbar-collapse-1"
                         aria-controls="plumage-navbar-collapse-1"
                         aria-expanded="false"
                         aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="plumage-navbar-collapse-1">
-                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <ul class="navbar-nav me-auto mt-2 mt-lg-0">
                         {% for title, link in MENUITEMS %}
                             {% set active_page = link == ("/%s"|format(output_file)).strip('index.html') -%}
                             <li class="nav-item {% if active_page %} active{% endif %}">
                                 <a class="nav-link" href="{{ link }}">
                                     {{ title }}
-                                    {% if active_page %}<span class="sr-only">(current)</span>{% endif %}
+                                    {% if active_page %}<span class="visually-hidden">(current)</span>{% endif %}
                                 </a>
                             </li>
                         {% endfor %}
@@ -149,7 +149,7 @@
                                 <li class="nav-item {% if active_page %} active{% endif %}">
                                     <a class="nav-link" href="{{ SITEURL }}/{{ p.url }}">
                                         {{ p.title }}
-                                        {% if active_page %}<span class="sr-only">(current)</span>{% endif %}
+                                        {% if active_page %}<span class="visually-hidden">(current)</span>{% endif %}
                                     </a>
                                 </li>
                             {% endfor %}
@@ -160,7 +160,7 @@
                                 <li class="nav-item {% if active_page %} active{% endif %}">
                                     <a class="nav-link" href="{{ SITEURL }}/{{ c.url }}">
                                         {{ c.name }}
-                                        {% if active_category %}<span class="sr-only">(current)</span>{% endif %}
+                                        {% if active_category %}<span class="visually-hidden">(current)</span>{% endif %}
                                     </a>
                                 </li>
                             {% endfor %}
@@ -174,7 +174,7 @@
                             <input type="search"
                                    name="q"
                                    id="tipue_search_input"
-                                   class="form-control mr-sm-2"
+                                   class="form-control me-sm-2"
                                    placeholder="Search"
                                    required/>
                             <button class="btn btn-default my-2 my-sm-0" type="submit">

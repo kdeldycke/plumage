@@ -30,7 +30,7 @@
                            href="{{ SITEURL }}/{{ articles_paginator.page(num).url }}"
                            rel=" {% if num == 1 %} first{% endif %} {% if num == articles_paginator.num_pages %} last{% endif %} {% if num == (articles_page.number - 1) %} prev {% endif %} {% if num == (articles_page.number + 1) %} next {% endif %}">
                             {{ num }}
-                            {% if is_current_page %}<span class="sr-only">(current)</span>{% endif %}
+                            {% if is_current_page %}<span class="visually-hidden">(current)</span>{% endif %}
                         </a>
                     </li>
                 {% elif (num - 1) in linked_pages %}

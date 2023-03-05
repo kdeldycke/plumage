@@ -17,23 +17,23 @@
       var i, scrollTop = $win.scrollTop()
       if (scrollTop >= navTop && !isFixed) {
         isFixed = 1
-        $nav.addClass('fixed-top').removeClass('rounded-lg d-block')
+        $nav.addClass('fixed-top').removeClass('rounded-3 d-block')
         $brand.removeClass('d-none')
       } else if (scrollTop <= navTop && isFixed) {
         isFixed = 0
-        $nav.removeClass('fixed-top').addClass('rounded-lg d-block')
+        $nav.removeClass('fixed-top').addClass('rounded-3 d-block')
         $brand.addClass('d-none')
       }
     };
 
     // Tipue Search results styling.
-    $("#tipue_search_results_count").addClass('text-muted small float-right');
+    $("#tipue_search_results_count").addClass('text-body-secondary small float-end');
     $("#tipue_search_image_modal").addClass('d-none');
     $(".tipue_search_result").addClass('border-bottom border-secondary mb-4 pb-3');
     $(".tipue_search_content_title").addClass('h3');
     $(".tipue_search_content_bold").addClass('bg-warning rounded px-1');
     $(".tipue_search_content_url").addClass('small text-info');
-    $(".tipue_search_image").addClass('float-left border rounded');
+    $(".tipue_search_image").addClass('float-start border rounded');
     $(".tipue_search_note").addClass('d-none');
 
     // YouTube URL parser. Source: https://stackoverflow.com/questions/2964678/jquery-youtube-url-validation-with-regex/10315969#10315969

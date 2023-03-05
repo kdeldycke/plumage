@@ -32,7 +32,7 @@ def transform(path, context):
 
     # Style TOC permalinks produced by Python's markdown.extensions.toc:
     # https://python-markdown.github.io/extensions/toc/
-    doc(".headerlink").add_class("text-decoration-none small pl-2")
+    doc(".headerlink").add_class("text-decoration-none small ps-2")
 
     # Make images responsive and styled in article content, but ignore
     # images in cards (like those from project template), images attached to
@@ -58,7 +58,7 @@ def transform(path, context):
     )
 
     # Style blockquotes in the way Bootstrap does.
-    doc("blockquote").add_class("blockquote border-left border-primary pl-3")
+    doc("blockquote").add_class("blockquote border-start border-primary border-5 ps-3")
 
     # Style code boxes.
     doc(".codehilite, .highlight").add_class(
@@ -85,13 +85,13 @@ def transform(path, context):
             doc(f".admonition.{admo_class}").add_class(f"alert-{bootstrap_class}")
 
     # Tipue Search results styling.
-    doc("#tipue_search_results_count").add_class("text-muted small float-right")
+    doc("#tipue_search_results_count").add_class("text-body-secondary small float-end")
     doc("#tipue_search_image_modal").add_class("d-none")
     doc(".tipue_search_result").add_class("border-bottom border-secondary mb-4 pb-3")
     doc(".tipue_search_content_title").add_class("h3")
     doc(".tipue_search_content_bold").add_class("bg-warning rounded px-1")
     doc(".tipue_search_content_url").add_class("small text-info")
-    doc(".tipue_search_image").add_class("float-left border rounded")
+    doc(".tipue_search_image").add_class("float-start border rounded")
     doc(".tipue_search_note").add_class("d-none")
 
     # Save result.
