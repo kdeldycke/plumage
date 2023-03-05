@@ -84,7 +84,7 @@ Sorted by priority: the first items takes precedence over those at the end. #}
         {% endif %}
     {% endfor %}
     {% if projects is defined %}
-        <div class="card-columns">
+        <div class="row" data-masonry='{"percentPosition": true }'>
             {% block project_pre_content %}{% endblock %}
             {% set active_projects = [] %}
             {% set inactive_projects = [] %}
@@ -98,7 +98,11 @@ Sorted by priority: the first items takes precedence over those at the end. #}
                 {% endif %}
             {% endfor %}
             {% for project_list in [active_projects, inactive_projects] %}
-                {% for project in project_list %}{{ render_card(all_tags, project) }}{% endfor %}
+                {% for project in project_list %}
+                    <div class="col-sm-6 col-lg-4 mb-4">
+                        {{ render_card(all_tags, project) }}
+                    </div>
+                {% endfor %}
             {% endfor %}
             {% block project_post_content %}{% endblock %}
         </div>
@@ -109,6 +113,12 @@ Sorted by priority: the first items takes precedence over those at the end. #}
     {{ render_projects(projects) }}
     {{ group.post }}
 {% endmacro %}
+{% block extra_js %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"
+            integrity="sha512-JRlcvSZAXT8+5SQQAvklXGJuxXTouyq8oIMaYERZQasB8SBDHZaUbeASsJWpk0UUrf89DP3/aefPPrlMR1h1yQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"></script>
+{% endblock extra_js %}
 {% block content %}
     {% if PROJECT_GROUPS is defined %}
         {% for group in PROJECT_GROUPS %}

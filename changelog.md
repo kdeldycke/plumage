@@ -10,6 +10,7 @@ This version is not released yet and is under active development.
 - Upgrade to Bootstrap 5.2.3.
 - Upgrade to Font Awesome 6.3.0.
 - Upgrade to jQuery 3.6.3.
+- Re-introduce dependency on Masonry 4.2.2.
 - Remove `fitvids`. It's unmaintained and the modern web stack should not requires it.
 - Update dependency to `pelican-webassets` 2.0.0.
 - Let `autoprefixer` generates vendor prefixes in CSS.
