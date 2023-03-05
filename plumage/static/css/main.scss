@@ -6,6 +6,13 @@ html {
 a {
   transition: all 0.2s ease-out;
 
+  /* Do not underline links */
+  text-decoration: none;
+
+  :hover {
+    text-decoration: underline;
+  }
+
   /* Style title headers anchors produced by Python's Markdown module. See:
    * https://python-markdown.github.io/extensions/toc/#usage
    */
