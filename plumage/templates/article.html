@@ -13,13 +13,13 @@
     </h1>
 {% endblock %}
 {% block right_sidebar %}
-    <div class="card bg-light text-dark">
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">
+
+        <ul class="list-group list-group-flush small fw-light">
+            <li class="list-group-item bg-transparent">
                 <abbr title="{{ article.date.isoformat() }}"><i class="fas fa-calendar"></i> {{ article.locale_date }}</abbr>
             </li>
             {% if AUTHOR_SAVE_AS and article.authors %}
-                <li class="list-group-item">
+                <li class="list-group-item bg-transparent">
                     <address>
                         <i class="fas fa-user"></i> By
                         {% for author in article.authors %}
@@ -68,14 +68,14 @@
                 </li>
             {% endif %}
             {% if ARTICLE_EDIT_LINK %}
-                <li class="list-group-item">
-                    <p>Found a typo? Fix it now:</p>
-                    <a class="btn btn-info"
+                <li class="list-group-item bg-transparent text-center">
+                    Found a typo? Fix it now:<br/>
+                    <a class="btn btn-outline-info btn-sm border-0 d-block stretched-link"
                        href="{{ ARTICLE_EDIT_LINK % {'slug': article.slug} }}"><i class="fas fa-edit fa-fw"></i> Edit article on GitHub</a>
                 </li>
             {% endif %}
             {% if article.prev_article or article.next_article %}
-                <li class="list-group-item">
+                <li class="list-group-item bg-transparent">
                     <nav class="nav nav-pills nav-fill">
                         <a class="nav-link btn btn-outline-primary border-0 {% if not article.prev_article %} disabled{% endif %}"
                            {% if article.prev_article %} href="{{ SITEURL }}/{{ article.prev_article.url }}" title="{{ article.prev_article.title|striptags|e }}" {% endif %}
@@ -91,7 +91,7 @@
                 </li>
             {% endif %}
         </ul>
-    </div>
+
 {% endblock %}
 {% block content %}
     {% import 'translations.html' as translations with context %}
