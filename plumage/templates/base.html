@@ -132,8 +132,8 @@
                         aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="plumage-navbar-collapse-1">
-                    <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+                <div class="collapse navbar-collapse mx-4" id="plumage-navbar-collapse-1">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         {% for title, link in MENUITEMS %}
                             {% set active_page = link == ("/%s"|format(output_file)).strip('index.html') -%}
                             <li class="nav-item {% if active_page %} active{% endif %}">
@@ -167,19 +167,24 @@
                         {% endif %}
                     </ul>
                     {% if TIPUE_SEARCH %}
-                        <form class="form-inline my-2 my-lg-0"
+                        <form class="d-flex my-lg-0"
                               role="search"
                               action="{{ SITEURL }}/search.html"
                               onsubmit="return validateForm(this.elements['q'].value);">
-                            <input type="search"
-                                   name="q"
-                                   id="tipue_search_input"
-                                   class="form-control me-sm-2"
-                                   placeholder="Search"
-                                   required/>
-                            <button class="btn btn-default my-2 my-sm-0" type="submit">
-                                <i class="fas fa-search fa-fw"></i>
-                            </button>
+                            <div class="input-group">
+                                <input
+                                    type="search"
+                                    name="q"
+                                    class="form-control border-secondary-subtle"
+                                    id="tipue_search_input"
+                                    placeholder="Search"
+                                    aria-label="Search"
+                                    aria-describedby="tipue_search_submit"
+                                    required/>
+                                <button class="btn btn-outline-secondary border-secondary-subtle" id="tipue_search_submit" type="submit">
+                                    <i class="fas fa-search fa-fw"></i>
+                                </button>
+                            </div>
                         </form>
                     {% endif %}
                 </div>
