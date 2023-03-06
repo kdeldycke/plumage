@@ -116,10 +116,10 @@
                 </a>
             {% endif %}
             <h1>
-                <a href="{{ SITEURL }}" class="text-dark text-decoration-none">{{ SITENAME }}</a>
-                <small class="text-secondary"><small>{{ SITESUBTITLE }}</small></small>
+                <a href="{{ SITEURL }}" class="text-body-emphasis text-decoration-none">{{ SITENAME }}</a>
+                <small class="text-body-tertiary"><small>{{ SITESUBTITLE }}</small></small>
             </h1>
-            <nav class="navbar d-block navbar-expand-lg navbar-light bg-light shadow rounded-3">
+            <nav class="navbar d-block navbar-expand-lg bg-body-tertiary shadow rounded-3">
                 <a class="navbar-brand d-none"
                    href="{{ SITEURL }}"
                    title="{{ SITESUBTITLE|e }}">{{ SITENAME }}</a>
@@ -266,7 +266,7 @@
                         {% endif %}
                     </ul>
                 </div>
-                <div class="col-md-2 text-muted">
+                <div class="col-md-2 text-body-tertiary">
                     <h6>Copyright notice</h6>
                     {% set date_start = dates[-1].date.year if dates else None %}
                     {% set date_end = dates[0].date.year if dates else None %}
@@ -277,7 +277,7 @@
                         {% if COPYRIGHT %}{{ COPYRIGHT }}{% endif %}
                     </p>
                 </div>
-                <div class="col-md-2 text-muted">
+                <div class="col-md-2 text-body-tertiary">
                     <h6>Disclaimer</h6>
                     <p class="small">
                         {% if DISCLAIMER %}

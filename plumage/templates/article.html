@@ -14,7 +14,7 @@
 {% endblock %}
 {% block right_sidebar %}
 
-        <ul class="list-group list-group-flush small fw-light">
+        <ul class="list-group list-group-flush list-group-item-dark small fw-light">
             <li class="list-group-item bg-transparent">
                 <abbr title="{{ article.date.isoformat() }}"><i class="fas fa-calendar"></i> {{ article.locale_date }}</abbr>
             </li>
@@ -110,7 +110,7 @@
         <h3 class="mt-3">Related content</h3>
         {# TODO: Use fancier related layout with images, as in:
         https://kevin.deldycke.com/2012/04/beautify-contextual-related-posts-wordpress-plugin/ #}
-        <div class="list-group bg-light text-dark">
+        <div class="list-group bg-body-tertiary">
             {% for related_post in related %}
                 <a class="list-group-item list-group-item-action"
                    href="{{ SITEURL }}/{{ related_post.url }}">
