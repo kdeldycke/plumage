@@ -43,7 +43,7 @@ classifiers = [
 [tool.poetry.dependencies]
 # List of python versions and their support status:
 # https://en.wikipedia.org/wiki/History_of_Python#Support
-python = "^3.11"
+python = "^3.7"
 closure = "^20191111"         # XXX Unmaintained!
 cssmin = "^0.2.0"             # XXX Unmaintained!
 libsass = "^0.22.0"
