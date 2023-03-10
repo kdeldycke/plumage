@@ -32,7 +32,7 @@ it is now generic enough to be used by anyone.
 
 - [Code syntax highlighting](#code-syntax-highlighting) with [30+ styles](https://github.com/pygments/pygments/tree/master/pygments/styles).
 
-- Site-wide static search via [Tipue-search](https://web.archive.org/web/20200703134724/https://tipue.com/search/).
+- Site-wide static search via [Stork](https://stork-search.net).
 
 - Bare YouTube links in articles gets rendered as embedded videos:
 
@@ -64,7 +64,7 @@ Plumage has built-in support for the following plugins and extensions:
 | [`pelican-neighbors`](https://github.com/pelican-plugins/neighbors)                                              | Pelican plugin     | Optional |                                                                                                               |
 | [`pelican-related-posts`](https://github.com/pelican-plugins/related-posts)                                      | Pelican plugin     | Optional |                                                                                                               |
 | [`pelican-similar-posts`](https://github.com/pelican-plugins/similar-posts)                                      | Pelican plugin     | Optional |                                                                                                               |
-| [`pelican-tipue-search`](https://github.com/pelican-plugins/tipue-search)                                        | Pelican plugin     | Optional |                                                                                                               |
+| [`pelican-search`](https://github.com/pelican-plugins/search)                                        | Pelican plugin     | Optional |                                                                                                               |
 | [`pelican-webassets`](https://github.com/pelican-plugins/webassets)                                              | Pelican plugin     | Required |                                                                                                               |
 | [`markdown.extensions.admonition`](https://python-markdown.github.io/extensions/admonition/)                     | Markdown extension | Optional | Re-style admonitions into [alerts](https://getbootstrap.com/docs/4.5/components/alerts/).                     |
 | [`markdown.extensions.codehilite`](https://python-markdown.github.io/extensions/code_hilite/)                    | Markdown extension | Optional | Style highlighted code with Pygment style.                                                                    |
@@ -155,7 +155,7 @@ Plumage can be customized by adding these optionnal parameters to your
 | `SITE_THUMBNAIL`                                                                              |               | Site's thumbnail URL as displayed in the header. Should be a square image of at least 80x80 pixels.                                                                                                                                   |
 | [`SOCIAL_WIDGET_NAME`](http://docs.getpelican.com/en/stable/settings.html#SOCIAL_WIDGET_NAME) | `"Social"`    | Allows override of the name of the “social” widget.                                                                                                                                                                                   |
 | [`SOCIAL`](http://docs.getpelican.com/en/stable/settings.html#SOCIAL)                         |               | A list of tuples (Title, URL) to appear in the first columns of the footer.                                                                                                                                                           |
-| `TIPUE_SEARCH`                                                                                | `False`       | Activate [Tipue Search](https://web.archive.org/web/20200703134724/https://tipue.com/search/) (javascript static search engine) into the site. Requires the [`tipue_search`](https://github.com/pelican-plugins/tipue-search) plugin. |
+| `STORK_SEARCH`                                                                                | `False`       | Activate [Stork](https://stork-search.net) static search engine. Requires the [official Pelican's `search` plugin](https://github.com/pelican-plugins/search). |
 
 Most of these [parameters are similar to `notmyidea`'s
 ](https://docs.getpelican.com/en/latest/settings.html#themes) (Pelican's default
@@ -334,27 +334,10 @@ You have to use the following template to deactivate the zoom of an image:
 
 ### Why is the search not working?
 
-The [`tipue-search`](https://github.com/pelican-plugins/tipue-search) needs to
-be installed then have an additional template file registered in your
-`pelicanconf.py`.
+The [official Pelican's `search` plugin](https://github.com/pelican-plugins/search) needs to
+be installed.
 
-There are two alternatives:
-
-- update the `TEMPLATE_PAGES` variable:
-
-  ```python
-  TEMPLATE_PAGES = {
-      (…)
-      "search.html": "search.html",
-   }
-  ```
-
-- or `DIRECT_TEMPLATES`:
-  ([example](https://github.com/kdeldycke/kevin-deldycke-blog/commit/cd4bf8d1f4c55d835d7bfe1d7233cffe48e67a8a)):
-
-  ```python
-  DIRECT_TEMPLATES = [(…), "search"]
-  ```
+TODO: Activate search field automaticcaly if the plugin is present.
 
 ## License
 
@@ -368,13 +351,6 @@ Copyright (C) 2012-2020 [Kevin Deldycke](https://kevin.deldycke.com) and
 
 The theme embed copies of some external softwares, scripts, libraries and
 artworks:
-
-```text
-Tipue Search v7.1
-Copyright (c) 2019 Tipue
-Distributed under a MIT license
-Source: https://web.archive.org/web/20200703134724/https://www.tipue.com/search/tipuesearch.zip
-```
 
 ```text
 jQuery MGlass v1.1

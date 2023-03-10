@@ -1,16 +1,25 @@
+// Import thw whole Bootstrap framework.
+// See: https://getbootstrap.com/docs/5.3/customize/sass/#importing
+@import "../../node_modules/bootstrap/scss/bootstrap";
+// Custom Plumage CSS is below.
+
+// TODO: replace hard-coded styling with bootstrap's own class names for consistency.
+
+
 html {
   background: rgb(236, 236, 236) url(/theme/img/fabric_plaid.jpeg);
   box-shadow: inset 0 1rem 6rem -2rem rgba(0, 0, 0, 0.5);
 }
 
+
 a {
   transition: all 0.2s ease-out;
 
-  /* Do not underline links */
-  text-decoration: none;
+  // Do not underline links but on hover.
+  @extend .text-decoration-none;
 
   &:hover {
-    text-decoration: underline;
+    @extend .text-decoration-underline;
   }
 
   /* Style title headers anchors produced by Python's Markdown module. See:
@@ -33,6 +42,7 @@ a {
   }
 }
 
+
 /* Style to support pymdown-extensions' emoji:
  * https://facelessuser.github.io/pymdown-extensions/extensions/emoji/#default-emoji-generators
  */
@@ -41,6 +51,7 @@ img.emojione {
   height: $size;
   width: $size;
 }
+
 
 .avatar-container {
   $size: 6rem;
@@ -90,15 +101,135 @@ img.emojione {
   }
 }
 
+
+/* Custom styling of the DOM produced by Stork's default Javascript.
+ * See: https://github.com/jameslittle230/stork/blob/master/js/entityDom.ts
+ *
+ * All customization is performed by aliasing the default Stork classes to Bootstrap's own default classes.
+ */
+
+.stork-close-button {
+  // Place the reset button on the right side of the search box.
+  @extend .position-absolute, .top-50, .end-0, .translate-middle-y;
+  // Use Bootstrap's default SVG-based close button.
+  @extend .btn-close;
+  // Shape the button into a circle.
+  @extend .rounded-circle;
+  // Work around the default close button styling.
+  // XXX btn-close-white is deprecated in Bootstrap 5.3.0.
+  // XXX Try playing with --bs-btn-close-color: $white; or something.
+  @extend .btn-close-white, .bg-dark-subtle;
+  // Reduce button's size.
+  @extend .me-2, .p-1;
+  @extend .btn; // Required to override the font size below.
+  --bs-btn-font-size: .3rem;
+
+  // Hide default SVG close button.
+  &>svg {
+    @extend .invisible;
+  }
+}
+
+
+// Special customization for the search box.
+.navbar .dropdown {
+
+  .dropdown-menu {
+    --bs-dropdown-link-hover-bg: var(--bs-primary-bg-subtle);
+    width: 40em;
+  }
+
+  // Reduce text size for any kind of dropdown item.
+  .dropdown-item,
+  .dropdown-item-text {
+    @extend .small;
+  }
+
+  .dropdown-item {
+    @extend .text-wrap;
+  }
+
+  .stork-message {
+    // Do not make the message box selectable.
+    @extend .dropdown-item-text;
+    // Separate the sticky message from the results.
+    @extend .border-bottom;
+    // Add visual clue that the message is sticky.
+    // TODO: find a way to only have the bottom shadow visible, as the box shadow bleeds at the top of the message.
+    @extend .shadow-sm;
+  }
+
+  ul.stork-results {
+    // Let the results list scroll.
+    @extend .overflow-y-scroll;
+
+    // Hard-code the max-height of the results list.
+    max-height: 25em;
+    //max-width: 200px;
+
+    // Neutralize effects of <ul> default spacing.
+    @extend .list-unstyled, .m-0;
+
+    // Remove paragraph extra-spacing.
+    p {
+      @extend .m-0;
+    }
+
+    li.stork-result {
+      // Separate each result item.
+      @extend .border-bottom;
+
+      // Reduce content size to increase density of results.
+      //@extend .small, .lh-1;
+
+      // Eliminate the default item padding to have it re-applied to the children <a> link below.
+      //@extend .p-0;
+
+      a {
+        // Allow each result item to be highlighted on hover.
+        @extend .dropdown-item;
+
+        //padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x);
+
+        .stork-title {
+          @extend .fw-semibold;
+        }
+
+        .stork-excerpt-container {
+          // Make the excerpt text even smaller than the title.
+          @extend .small;
+        }
+
+        &:hover {
+          // Do not underline the linked excerpts text.
+          @extend .text-decoration-none;
+
+          .stork-title {
+            @extend .text-decoration-underline;
+          }
+        }
+      }
+    }
+  }
+
+  .stork-attribution {
+    // Silence the search engine self-ads.
+    @extend .d-none;
+  }
+}
+
+
 h1,
 h2 {
   text-shadow: 0.1rem 0.1rem 0.1rem #ddd;
 }
 
+
 /* Typogrify's ampersands */
 span.amp {
   font-family: cursive;
 }
+
 
 .card .corner-banner {
   font-size: 1rem;
@@ -109,6 +240,7 @@ span.amp {
   transform: rotate(30deg);
   width: 12rem;
 }
+
 
 footer {
   background: url(/theme/img/creampaper.jpeg);

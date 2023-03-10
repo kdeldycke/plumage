@@ -17,11 +17,10 @@
         | {{ SITENAME|e }}</title>
         <meta name="author" content="{{ AUTHOR|e }}" />
         <meta name="generator" content="Pelican v{{ PELICAN_VERSION }}" />
-        <link rel="stylesheet"
-              href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/css/bootstrap.min.css"
-              integrity="sha512-72OVeAaPeV8n3BdZj7hOkaPSEk/uwpDkaGyP4W2jSzAC8tfiO4LMEDWoL3uFp5mcZu+8Eehb4GhZWFwvrss69Q=="
-              crossorigin="anonymous"
-              referrerpolicy="no-referrer" />
+        {% assets filters="libsass,postcss,cssmin", output="css/main.min.css",
+            "css/mglass.scss", "css/main.scss", "css/pygments/" + CODE_STYLE + ".css", "css/code.scss" %}
+            <link rel="stylesheet" href="{{ SITEURL }}/{{ ASSET_URL }}" />
+        {% endassets %}
         <link rel="stylesheet"
               href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
               integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
@@ -32,10 +31,7 @@
               integrity="sha512-+EoPw+Fiwh6eSeRK7zwIKG2MA8i3rV/DGa3tdttQGgWyatG/SkncT53KHQaS5Jh9MNOT3dmFL0FjTY08And/Cw=="
               crossorigin="anonymous"
               referrerpolicy="no-referrer"/>
-        {% assets filters="libsass,postcss,cssmin", output="css/main.min.css",
-            "css/mglass.scss", "css/main.scss", "css/pygments/" + CODE_STYLE + ".css", "css/code.scss" %}
-            <link rel="stylesheet" href="{{ SITEURL }}/{{ ASSET_URL }}" />
-        {% endassets %}
+        {% block extra_css %}{% endblock %}
         {% include "analytics.html" %}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
                 integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
@@ -166,26 +162,11 @@
                             {% endfor %}
                         {% endif %}
                     </ul>
-                    {% if TIPUE_SEARCH %}
-                        <form class="d-flex my-lg-0"
-                              role="search"
-                              action="{{ SITEURL }}/search.html"
-                              onsubmit="return validateForm(this.elements['q'].value);">
-                            <div class="input-group">
-                                <input
-                                    type="search"
-                                    name="q"
-                                    class="form-control border-secondary-subtle"
-                                    id="tipue_search_input"
-                                    placeholder="Search"
-                                    aria-label="Search"
-                                    aria-describedby="tipue_search_submit"
-                                    required/>
-                                <button class="btn btn-outline-secondary border-secondary-subtle" id="tipue_search_submit" type="submit">
-                                    <i class="fas fa-search fa-fw"></i>
-                                </button>
-                            </div>
-                        </form>
+                    {% if STORK_SEARCH %}
+                        <div class="position-relative dropdown">
+                            <input data-stork="sitesearch" class="form-control dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" />
+                            <div data-stork="sitesearch-output" class="dropdown-menu dropdown-menu-end shadow"></div>
+                        </div>
                     {% endif %}
                 </div>
             </nav>
@@ -205,11 +186,11 @@
                         {{ LEFT_SIDEBAR }}
                     </div>
                 {% endif %}
-                <div id="content"
+                <main id="content"
                      role="main"
                      class=" {% if LAYOUT == 'full-width' %} offset-md-1 {% elif has_left_content and has_right_content %} col-md-6 {% elif has_left_content or has_right_content %} col-md-9 {% else %} col-md-12 {% endif %}">
                     {% block content %}{% endblock %}
-                </div>
+                </main>
                 {% if LAYOUT != 'full-width' and has_right_content %}
                     <div class="col-md-3">
                         {% block right_sidebar %}{% endblock %}
@@ -323,5 +304,11 @@
                 </div>
             </div>
         </footer>
+        {% if STORK_SEARCH %}
+            <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
+            <script>
+                stork.register("sitesearch", "{{ SITEURL }}/search-index.st")
+            </script>
+        {% endif %}
     </body>
 </html>

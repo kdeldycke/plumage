@@ -6,6 +6,10 @@
 This version is not released yet and is under active development.
 ```
 
+- Replace Tipue Search with Stork. Closes #49.
+- Replace remote cdnjs version of Bootstrap with local one. Add new NPM dependency on Bootstrap.
+- Remove dedicated `search.html` template.
+- Reintroduce the `extra_css` block in base template for local customizations.
 - Relax Python requirements to `>=3.7` to aligns to Pelican's.
 
 ## [3.0.0 (2023-03-06)](https://github.com/kdeldycke/plumage/compare/v2.4.0...v3.0.0)

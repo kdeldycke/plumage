@@ -85,16 +85,6 @@ def transform(path, context):
         for admo_class in admo_classes:
             doc(f".admonition.{admo_class}").add_class(f"alert-{bootstrap_class}")
 
-    # Tipue Search results styling.
-    doc("#tipue_search_results_count").add_class("text-body-secondary small float-end")
-    doc("#tipue_search_image_modal").add_class("d-none")
-    doc(".tipue_search_result").add_class("border-bottom border-secondary mb-4 pb-3")
-    doc(".tipue_search_content_title").add_class("h3")
-    doc(".tipue_search_content_bold").add_class("bg-warning rounded px-1")
-    doc(".tipue_search_content_url").add_class("small text-info")
-    doc(".tipue_search_image").add_class("float-start border rounded")
-    doc(".tipue_search_note").add_class("d-none")
-
     # Save result.
     with open(path, "w") as source:
         source.write(doc.outerHtml())

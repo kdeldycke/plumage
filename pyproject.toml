@@ -12,7 +12,8 @@ documentation = 'https://github.com/kdeldycke/plumage#settings'
 keywords = [
     'pelican',
     'pelican-theme',
-    'tipue-search',
+    'stork',
+    'static-search',
     'masonry',
     'theme',
     'bootstrap',
