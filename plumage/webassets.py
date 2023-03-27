@@ -42,8 +42,8 @@ CONFIG_DEFAULTS: dict[str, str] = {
 }
 """Default configuration for `webassets <https://github.com/miracle2k/webassets>`_.
 
-See the `list of configuration parameters for each filter
-<https://webassets.readthedocs.io/en/latest/builtin_filters.html>`_.
+See the
+`list of configuration parameters for each filter<https://webassets.readthedocs.io/en/latest/builtin_filters.html>`_.
 """
 
 
