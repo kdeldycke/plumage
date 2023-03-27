@@ -58,7 +58,9 @@ def transform(path, context):
     )
 
     # Style blockquotes in the way Bootstrap does.
-    doc("blockquote").add_class("blockquote border-start border-primary-subtle bg-dark-subtle fs-6 border-4 ps-2")
+    doc("blockquote").add_class(
+        "blockquote border-start border-primary-subtle bg-dark-subtle fs-6 border-4 ps-2"
+    )
     doc("blockquote p").add_class("p-2")
 
     # Style code boxes.
