@@ -1,6 +1,6 @@
 .mglass {
   background-color: rgba(0, 0, 0, 0.3);
-  background-image: url(/theme/img/magnifier.png);
+  background-image: url("/theme/img/magnifier.png");
   background-position: center;
   background-repeat: no-repeat;
 
@@ -15,7 +15,7 @@
   }
 
   #content .video & {
-    background-image: url(/theme/img/play-button.png);
+    background-image: url("/theme/img/play-button.png");
   }
 }
 
