@@ -1,5 +1,13 @@
-# Created by https://www.toptal.com/developers/gitignore/api/node,emacs,git,linux,macos,nohup,python,vim,virtualenv,visualstudiocode,windows
-# Edit at https://www.toptal.com/developers/gitignore?templates=node,emacs,git,linux,macos,nohup,python,vim,virtualenv,visualstudiocode,windows
+# Created by https://www.toptal.com/developers/gitignore/api/node,certificates,emacs,git,gpg,linux,macos,nohup,python,ssh,vim,virtualenv,visualstudiocode,windows
+# Edit at https://www.toptal.com/developers/gitignore?templates=node,certificates,emacs,git,gpg,linux,macos,nohup,python,ssh,vim,virtualenv,visualstudiocode,windows
+
+### certificates ###
+*.pem
+*.key
+*.crt
+*.cer
+*.der
+*.priv
 
 ### Emacs ###
 # -*- mode: gitignore; -*-
@@ -66,6 +74,10 @@ flycheck_*.el
 *_BASE_*.txt
 *_LOCAL_*.txt
 *_REMOTE_*.txt
+
+### GPG ###
+secring.*
+
 
 ### Linux ###
 
@@ -421,6 +433,14 @@ poetry.toml
 # ruff
 .ruff_cache/
 
+# LSP config files
+pyrightconfig.json
+
+### SSH ###
+**/.ssh/id_*
+**/.ssh/*_id_*
+**/.ssh/known_hosts
+
 ### Vim ###
 # Swap
 [._]*.s[a-v][a-z]
@@ -498,4 +518,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/node,emacs,git,linux,macos,nohup,python,vim,virtualenv,visualstudiocode,windows
+# End of https://www.toptal.com/developers/gitignore/api/node,certificates,emacs,git,gpg,linux,macos,nohup,python,ssh,vim,virtualenv,visualstudiocode,windows
