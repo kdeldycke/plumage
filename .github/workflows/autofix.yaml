@@ -58,7 +58,7 @@ jobs:
           git checkout --force
           # Restore modified files. Do not fail if no file has been stashed.
           git stash pop || true
-      - uses: peter-evans/create-pull-request@v5.0.0
+      - uses: peter-evans/create-pull-request@v5.0.1
         with:
           assignees: ${{ github.actor }}
           commit-message: "[autofix] Upgrade and format CSS style"
@@ -97,7 +97,7 @@ jobs:
           --format-js
           --warn
           plumage/templates/*.html
-      - uses: peter-evans/create-pull-request@v5.0.0
+      - uses: peter-evans/create-pull-request@v5.0.1
         with:
           assignees: ${{ github.actor }}
           commit-message: "[autofix] Format Jinja"
