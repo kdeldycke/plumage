@@ -13,8 +13,6 @@ html {
 
 
 a {
-  transition: all 0.2s ease-out;
-
   // Do not underline links but on hover.
   @extend .text-decoration-none;
 
