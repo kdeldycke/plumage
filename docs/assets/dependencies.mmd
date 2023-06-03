@@ -1,28 +1,29 @@
 flowchart TD
     classDef missing stroke-dasharray: 5
-    blinker["blinker\n1.5"]
+    blinker["blinker\n1.6.2"]
     closure["closure\n20191111"]
     cssmin["cssmin\n0.2.0"]
     cssselect["cssselect\n1.2.0"]
-    docutils["docutils\n0.19"]
-    feedgenerator["feedgenerator\n2.0.0"]
+    docutils["docutils\n0.20.1"]
+    feedgenerator["feedgenerator\n2.1.0"]
     jinja2["Jinja2\n3.1.2"]
     libsass["libsass\n0.22.0"]
     lxml["lxml\n4.9.2"]
     markdown-it-py["markdown-it-py\n2.2.0"]
-    markdown["Markdown\n3.4.1"]
-    markupsafe["MarkupSafe\n2.1.2"]
+    markdown["Markdown\n3.4.3"]
+    markupsafe["MarkupSafe\n2.1.3"]
     mdurl["mdurl\n0.1.2"]
     pelican-webassets["pelican-webassets\n2.0.0"]
     pelican["pelican\n4.8.0"]
     plumage["plumage\n3.1.0"]
-    pygments["Pygments\n2.14.0"]
-    pymdown-extensions["pymdown-extensions\n9.9.2"]
+    pygments["Pygments\n2.15.1"]
+    pymdown-extensions["pymdown-extensions\n10.0.1"]
     pynpm["pynpm\n0.1.2"]
     pyquery["pyquery\n2.0.0"]
     python-dateutil["python-dateutil\n2.8.2"]
-    pytz["pytz\n2022.7.1"]
-    rich["rich\n13.3.2"]
+    pytz["pytz\n2023.3"]
+    pyyaml["PyYAML\n6.0"]
+    rich["rich\n13.4.1"]
     six["six\n1.16.0"]
     unidecode["Unidecode\n1.3.6"]
     webassets["webassets\n2.0"]
@@ -43,14 +44,15 @@ flowchart TD
     plumage -- ">=0.1.2,<0.2.0" --> pynpm
     plumage -- ">=0.2.0,<0.3.0" --> cssmin
     plumage -- ">=0.22.0,<0.23.0" --> libsass
+    plumage -- ">=10.0.1,<11.0.0" --> pymdown-extensions
     plumage -- ">=2.0.0,<3.0.0" --> pelican-webassets
     plumage -- ">=2.0.0,<3.0.0" --> pyquery
     plumage -- ">=2.14.0,<3.0.0" --> pygments
     plumage -- ">=20191111,<20191112" --> closure
     plumage -- ">=3.4.1,<4.0.0" --> markdown
     plumage -- ">=4.8.0,<5.0.0" --> pelican
-    plumage -- ">=9.9.2,<10.0.0" --> pymdown-extensions
     pymdown-extensions -- ">=3.2" --> markdown
+    pymdown-extensions -- "any" --> pyyaml
     pyquery -- ">=1.2.0" --> cssselect
     pyquery -- ">=2.1" --> lxml
     python-dateutil -- ">=1.5" --> six
