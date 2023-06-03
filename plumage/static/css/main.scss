@@ -128,12 +128,17 @@ img.emojione {
   }
 }
 
+.stork-progress {
+  @extend .progress, .progress-bar;
+  height: 2px;
+}
 
 // Special customization for the search box.
 .navbar .dropdown {
   .dropdown-menu {
+    --bs-dropdown-padding-y: 0;
     --bs-dropdown-link-hover-bg: var(--bs-primary-bg-subtle);
-    width: 40em;
+    width: 50em;
   }
 
   // Reduce text size for any kind of dropdown item.
@@ -149,6 +154,7 @@ img.emojione {
   .stork-message {
     // Do not make the message box selectable.
     @extend .dropdown-item-text;
+    @extend .text-body-secondary;
     // Separate the sticky message from the results.
     @extend .border-bottom;
     // Add visual clue that the message is sticky.
@@ -161,7 +167,7 @@ img.emojione {
     @extend .overflow-y-scroll;
 
     // Hard-code the max-height of the results list.
-    max-height: 25em;
+    max-height: 30em;
     //max-width: 200px;
 
     // Neutralize effects of <ul> default spacing.
@@ -169,7 +175,7 @@ img.emojione {
 
     // Remove paragraph extra-spacing.
     p {
-      @extend .m-0;
+      @extend .mb-1;
     }
 
     li.stork-result {
@@ -177,19 +183,17 @@ img.emojione {
       @extend .border-bottom;
 
       // Reduce content size to increase density of results.
-      //@extend .small, .lh-1;
-
-      // Eliminate the default item padding to have it re-applied to the children <a> link below.
-      //@extend .p-0;
+      //@extend .lh-1;
 
       a {
         // Allow each result item to be highlighted on hover.
         @extend .dropdown-item;
 
-        //padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x);
+        // Aligns vertical padding to horizontal padding.
+        --bs-dropdown-item-padding-y: var(--bs-dropdown-item-padding-x);
 
         .stork-title {
-          @extend .fw-semibold;
+          @extend .fw-bold;
         }
 
         .stork-excerpt-container {
@@ -200,10 +204,6 @@ img.emojione {
         &:hover {
           // Do not underline the linked excerpts text.
           @extend .text-decoration-none;
-
-          .stork-title {
-            @extend .text-decoration-underline;
-          }
         }
       }
     }
