@@ -45,14 +45,14 @@ classifiers = [
 # List of python versions and their support status:
 # https://en.wikipedia.org/wiki/History_of_Python#Support
 python = "^3.8"
-closure = "^20191111"         # XXX Unmaintained!
-cssmin = "^0.2.0"             # XXX Unmaintained!
+closure = "^20191111"          # XXX Unmaintained!
+cssmin = "^0.2.0"              # XXX Unmaintained!
 libsass = "^0.22.0"
 Markdown = "^3.4.1"
 pelican = "^4.8.0"
 pelican-webassets = "^2.0.0"
 pygments = "^2.14.0"
-pymdown-extensions = "^9.9.2"
+pymdown-extensions = "^10.0.1"
 pynpm = "^0.1.2"
 pyquery = "^2.0.0"
 
