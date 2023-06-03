@@ -44,7 +44,7 @@ classifiers = [
 [tool.poetry.dependencies]
 # List of python versions and their support status:
 # https://en.wikipedia.org/wiki/History_of_Python#Support
-python = "^3.7"
+python = "^3.8"
 closure = "^20191111"         # XXX Unmaintained!
 cssmin = "^0.2.0"             # XXX Unmaintained!
 libsass = "^0.22.0"
@@ -58,7 +58,7 @@ pyquery = "^2.0.0"
 
 [tool.poetry.group.dev.dependencies]
 bump2version = "^1.0.1"
-djlint = "^1.19.16"
+djlint = "^1.30.2"
 mypy = "^1.1"
 types-Pygments = "^2.14.0"
 
