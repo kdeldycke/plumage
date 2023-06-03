@@ -1,10 +1,6 @@
 # Changelog
 
-## [3.1.0 (unreleased)](https://github.com/kdeldycke/plumage/compare/v3.0.0...main)
-
-```{important}
-This version is not released yet and is under active development.
-```
+## [3.1.0 (2023-06-03)](https://github.com/kdeldycke/plumage/compare/v3.0.0...v3.1.0)
 
 - Replace Tipue Search with Stork. Closes #49.
 - Replace remote cdnjs version of Bootstrap with local one. Add new NPM dependency on Bootstrap.
