@@ -57,7 +57,6 @@ pynpm = "^0.1.2"
 pyquery = "^2.0.0"
 
 [tool.poetry.group.dev.dependencies]
-bump2version = "^1.0.1"
 djlint = "^1.30.2"
 mypy = "^1.1"
 types-Pygments = "^2.14.0"
