@@ -1,8 +1,11 @@
-{% macro render_tag(tag) -%}
+{% macro render_tag(tag, counter, kind='tag') -%}
+    {# A tag or a category can be pass as argument as they share the same data structure #}
+    {% set kind = 'tag' if kind == 'tag' else 'category' %}
     <a href="{{ SITEURL }}/{{ tag.url }}"
-       class="badge text-bg-secondary"
+       rel="tag"
+       class="badge {{ kind }}"
        data-bs-toggle="tooltip"
-       title="{{ tag.articles }} article{{ 's' if tag.articles > 1 else '' }} with this tag">{{ tag.name }}</a>
+       {% if counter is defined %} title="{{ counter }} article{{ 's' if counter > 1 else '' }} with this {{ kind }}" {% endif %}>{{ tag.name }}</a>
 {%- endmacro %}
 {% macro render_link_icon(link, label, favicon=True) -%}
     {% set icon = [] %}

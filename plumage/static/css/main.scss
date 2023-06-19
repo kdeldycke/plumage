@@ -53,7 +53,7 @@ a {
     height: $size;
     position: absolute;
     transform-style: preserve-3d;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.2s ease-in-out;
     width: $size;
 
     .side {
@@ -78,7 +78,7 @@ a {
 
     .side:hover,
     .back {
-      border-color: #005580;
+      @extend .border-primary;
     }
 
     &.animate:hover,
@@ -204,6 +204,37 @@ a {
 }
 
 
+// Custom style for the article's right sidebar
+.list-group.list-group-flush {
+  // Reduce text size and weight
+  @extend .small, .fw-light;
+  // Add a thick border on the left side of the sidebar
+  @extend .border-start, .border-5;
+
+  .list-group-item {
+    // Reduce text color
+    @extend .text-body-secondary;
+    // Remove the default white background
+    @extend .bg-transparent;
+    // Remove the default border
+    @extend .border-0;
+    // Aligns vertical padding to horizontal padding to double the top and bottom padding
+    --bs-list-group-item-padding-y: var(--bs-list-group-item-padding-x);
+
+    // Align the bottom of the sidebar with the bottom of the last item.
+    &:last-child {
+      @extend .pb-0;
+    }
+  }
+
+  // Do not underline the older and newer article links
+  .nav a:hover {
+    @extend .text-decoration-none;
+  }
+
+}
+
+
 h1,
 h2 {
   text-shadow: 0.1rem 0.1rem 0.1rem #ddd;
@@ -213,6 +244,18 @@ h2 {
 // Typogrify's ampersands
 span.amp {
   font-family: cursive;
+}
+
+.badge {
+  @extend .btn, .btn-light, .rounded-pill;
+
+  &.category {
+    @extend .bg-primary-subtle, .text-primary-emphasis;
+  }
+
+  &.tag {
+    @extend .bg-secondary-subtle, .text-secondary-emphasis;
+  }
 }
 
 

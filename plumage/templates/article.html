@@ -15,85 +15,75 @@
     </h1>
 {% endblock %}
 {% block right_sidebar %}
-
-        <ul class="list-group list-group-flush list-group-item-dark small fw-light">
-            <li class="list-group-item bg-transparent">
-                <abbr title="{{ article.date.isoformat() }}"><i class="fas fa-calendar"></i> {{ article.locale_date }}</abbr>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            <abbr title="{{ article.date.isoformat() }}">
+                <i class="bi bi-calendar-event-fill"></i>
+                {{ article.locale_date }}
+            </abbr>
+        </li>
+        {% if AUTHOR_SAVE_AS and article.authors %}
+            <li class="list-group-item">
+                <address>
+                    <i class="bi bi-person-circle"></i> By
+                    {% for author in article.authors %}
+                        <a href="{{ SITEURL }}/{{ author.url }}" rel="author">{{ author.name }}</a>
+                    {% endfor %}
+                </address>
             </li>
-            {% if AUTHOR_SAVE_AS and article.authors %}
-                <li class="list-group-item bg-transparent">
-                    <address>
-                        <i class="fas fa-user"></i> By
-                        {% for author in article.authors %}
-                            <a href="{{ SITEURL }}/{{ author.url }}" rel="author">{{ author.name }}</a>
+        {% endif %}
+        {% if article.category or article.tags %}
+            <li class="list-group-item">
+                <ul class="list-inline">
+                    {% if article.category %}
+                        {% for category, articles in categories %}
+                            {% if category.url == article.category.url %}
+                                <li class="list-inline-item">{{ m.render_tag(category, counter=articles|length() , kind='category') }}</li>
+                            {% endif %}
                         {% endfor %}
-                    </address>
-                </li>
-            {% endif %}
-            {% if article.category or article.tags %}
-                <li class="list-group-item bg-transparent">
-                    <ul class="list-inline">
-                        {% if article.category %}
-                            {% for category, articles in categories %}
-                                {% if category.url == article.category.url %}
-                                    {% set article_counter = articles|length() %}
-                                    <li class="list-inline-item">
-                                        <a href="{{ SITEURL }}/{{ article.category.url }}"
-                                           rel="tag"
-                                           class="badge text-bg-info"
-                                           data-bs-toggle="tooltip"
-                                           title="{{ article_counter }} article{{ 's' if article_counter > 1 else '' }} in this category">
-                                                {{ article.category }}
-                                        </a>
-                                    </li>
+                    {% endif %}
+                    {% if article.tags %}
+                        {% set article_tags = [] %}
+                        {% for tag, articles in tags %}
+                            {% for t in article.tags %}
+                                {% if tag.url == t.url %}
+                                    {% if article_tags.append({'name': tag.name, 'url': tag.url, 'articles': articles|length()}) %}{% endif %}
                                 {% endif %}
                             {% endfor %}
-                        {% endif %}
-                        {% if article.tags %}
-                            {% set article_tags = [] %}
-                            {% for tag, articles in tags %}
-                                {% for t in article.tags %}
-                                    {% if tag.url == t.url %}
-                                        {% if article_tags.append({'name': tag.name, 'url': tag.url, 'articles': articles|length()}) %}
-                                        {% endif %}
-                                    {% endif %}
-                                {% endfor %}
-                            {% endfor %}
-                            {# Sort by tag frequency, then alphabetically #}
-                            {% for tag in article_tags|sort(attribute='name')|sort(reverse=True, attribute='articles') %}
-                                <li class="list-inline-item">
-                                    {{ m.render_tag(tag) }}
-                                </li>
-                            {% endfor %}
-                        {% endif %}
-                    </ul>
-                </li>
-            {% endif %}
-            {% if ARTICLE_EDIT_LINK %}
-                <li class="list-group-item bg-transparent text-center">
-                    Found a typo? Fix it now:<br/>
-                    <a class="btn btn-outline-info btn-sm border-0 d-block stretched-link"
-                       href="{{ ARTICLE_EDIT_LINK % {'slug': article.slug} }}"><i class="fas fa-edit fa-fw"></i> Edit article on GitHub</a>
-                </li>
-            {% endif %}
-            {% if article.prev_article or article.next_article %}
-                <li class="list-group-item bg-transparent">
-                    <nav class="nav nav-pills nav-fill">
-                        <a class="nav-link btn btn-outline-primary border-0 {% if not article.prev_article %} disabled{% endif %}"
-                           {% if article.prev_article %} href="{{ SITEURL }}/{{ article.prev_article.url }}" title="{{ article.prev_article.title|striptags|e }}" {% endif %}
-                           rel="prev">
-                            <span aria-hidden="true">←</span> Older
-                        </a>
-                        <a class="nav-link btn btn-outline-primary border-0 {% if not article.next_article %} disabled{% endif %}"
-                           {% if article.next_article %} href="{{ SITEURL }}/{{ article.next_article.url }}" title="{{ article.next_article.title|striptags|e }}" {% endif %}
-                           rel="next">
-                            Newer <span aria-hidden="true">→</span>
-                        </a>
-                    </nav>
-                </li>
-            {% endif %}
-        </ul>
-
+                        {% endfor %}
+                        {# Sort by tag frequency, then alphabetically #}
+                        {% for tag in article_tags|sort(attribute='name')|sort(reverse=True, attribute='articles') %}
+                            <li class="list-inline-item">{{ m.render_tag(tag, counter=articles|length() ) }}</li>
+                        {% endfor %}
+                    {% endif %}
+                </ul>
+            </li>
+        {% endif %}
+        {% if ARTICLE_EDIT_LINK %}
+            <li class="list-group-item">
+                Found a typo? Fix it now:
+                <br />
+                <a href="{{ ARTICLE_EDIT_LINK % {'slug': article.slug} }}">
+                    <i class="bi bi-pencil-square"></i> Edit article on GitHub</a>
+            </li>
+        {% endif %}
+        {% if article.prev_article or article.next_article %}
+            <li class="list-group-item">
+                <nav class="nav nav-underline nav-justified">
+                    <a class="nav-link {% if not article.prev_article %}disabled{% endif %}"
+                       {% if article.prev_article %} href="{{ SITEURL }}/{{ article.prev_article.url }}" title="{{ article.prev_article.title|striptags|e }}" {% endif %}
+                       rel="prev">
+                        <span aria-hidden="true">←</span> Older
+                    </a>
+                    <a class="nav-link {% if not article.next_article %}disabled{% endif %}"
+                       {% if article.next_article %} href="{{ SITEURL }}/{{ article.next_article.url }}" title="{{ article.next_article.title|striptags|e }}" {% endif %}
+                       rel="next">
+                        Newer <span aria-hidden="true">→</span>
+                    </a>
+                </nav>
+            </li>
+        {% endif %}
+    </ul>
 {% endblock %}
 {% block content %}
     {% import 'translations.html' as translations with context %}
