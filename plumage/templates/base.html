@@ -102,7 +102,9 @@
                             <img src="{{ SITE_THUMBNAIL }}" class="img-fluid" />
                         </div>
                         {% if SITE_THUMBNAIL_TEXT %}
-                            <div class="side back text-center pt-2 px-1 small">{{ SITE_THUMBNAIL_TEXT }}</div>
+                            <div class="side back position-relative text-center pt-2 px-1 small">
+                                <span class="position-absolute top-50 start-0 translate-middle-y">{{ SITE_THUMBNAIL_TEXT }}</span>
+                            </div>
                         {% endif %}
                     </div>
                 </a>
