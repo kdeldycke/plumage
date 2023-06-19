@@ -73,6 +73,23 @@ pretty = true
 ignore_missing_imports = true
 module = ["pyquery", "pynpm", "pelican.*"]
 
+[tool.bumpversion]
+current_version = "3.1.1"
+allow_dirty = true
+
+[[tool.bumpversion.files]]
+filename = "./plumage/__init__.py"
+
+[[tool.bumpversion.files]]
+filename = "./pyproject.toml"
+search = 'version = "{current_version}"'
+replace = 'version = "{new_version}"'
+
+[[tool.bumpversion.files]]
+filename = "./changelog.md"
+search = "[{current_version} (unreleased)]("
+replace = "[{new_version} (unreleased)]("
+
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
