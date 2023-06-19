@@ -10,8 +10,7 @@
 {% block content %}
     {% set all_categories = [] %}
     {% for category, articles in categories %}
-        {% if all_categories.append({'name': category.name, 'url': category.url, 'articles': articles|length()}) %}
-        {% endif %}
+        {% if all_categories.append({'name': category.name, 'url': category.url, 'articles': articles|length()}) %}{% endif %}
     {% endfor %}
     <dl class="row">
         {# Sort by category frequency, then alphabetically #}
