@@ -35,10 +35,10 @@ def transform(path, context):
     doc(".headerlink").add_class("text-decoration-none small ps-2")
 
     # Make images responsive and styled in article content, but ignore
-    # images in cards (like those from project template), images attached to
-    # links, and emojis rendered as images.
+    # images in cards (like those from project template), and images attached to
+    # links.
     main_images_selector = (
-        "#content img:not(.card-img-top):not(.link-icon):not(.emojione)"
+        "#content img:not(.card-img-top):not(.link-icon)"
     )
     doc(main_images_selector).add_class("img-fluid border rounded shadow")
 

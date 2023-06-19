@@ -40,15 +40,6 @@ a {
 }
 
 
-// Style to support pymdown-extensions' emoji:
-// https://facelessuser.github.io/pymdown-extensions/extensions/emoji/#default-emoji-generators
-img.emojione {
-  $size: 1.3rem;
-  height: $size;
-  width: $size;
-}
-
-
 .avatar-container {
   $size: 6rem;
   height: $size;

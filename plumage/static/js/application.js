@@ -33,8 +33,8 @@
     };
 
     // Activate zoom on content images in the main column and add an icon overlay
-    // (but ignore link icons from the footer and emoji).
-    $("#content img:not(.link-icon,.emojione)").each(function () {
+    // (but ignore link icons from the footer).
+    $("#content img:not(.link-icon)").each(function () {
       // Until we properly generate thumbnails and their links on Pelican's side, we just link an image to itself.
       if ($(this).parents('a').length == 0) {
         $(this).wrap(
