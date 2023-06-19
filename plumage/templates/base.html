@@ -22,8 +22,8 @@
             <link rel="stylesheet" href="{{ SITEURL }}/{{ ASSET_URL }}" />
         {% endassets %}
         <link rel="stylesheet"
-              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
-              integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+              href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"
+              integrity="sha512-ZnR2wlLbSbr8/c9AgLg3jQPAattCUImNsae6NHYnS9KrIwRdcY9DxFotXhNAKIKbAXlRnujIqUWoXXwqyFOeIQ=="
               crossorigin="anonymous"
               referrerpolicy="no-referrer"/>
         <link rel="stylesheet"
@@ -227,7 +227,7 @@
                         {% if CATEGORIES_SAVE_AS %}
                             <li>
                                 <a href="{{ SITEURL }}/{{ CATEGORIES_SAVE_AS }}">
-                                    <i class="fas fa-th-list fa-fw"></i>
+                                    <i class="bi bi-list-task"></i>
                                     Categories
                                 </a>
                             </li>
@@ -235,7 +235,7 @@
                         {% if AUTHORS_SAVE_AS %}
                             <li>
                                 <a href="{{ SITEURL }}/{{ AUTHORS_SAVE_AS }}">
-                                    <i class="fas fa-users fa-fw"></i>
+                                    <i class="bi bi-people-fill"></i>
                                     Authors
                                 </a>
                             </li>
@@ -243,14 +243,17 @@
                         {% if ARCHIVES_SAVE_AS %}
                             <li>
                                 <a href="{{ SITEURL }}/{{ ARCHIVES_SAVE_AS }}">
-                                    <i class="far fa-calendar-alt fa-fw"></i>
+                                    <i class="bi bi-calendar3"></i>
                                     Dates
                                 </a>
                             </li>
                         {% endif %}
                         {% if TAGS_SAVE_AS %}
                             <li>
-                                <a href="{{ SITEURL }}/{{ TAGS_SAVE_AS }}"><i class="fas fa-tags fa-fw"></i> Tags</a>
+                                <a href="{{ SITEURL }}/{{ TAGS_SAVE_AS }}">
+                                    <i class="bi bi-tags-fill"></i>
+                                    Tags
+                                </a>
                             </li>
                         {% endif %}
                     </ul>
@@ -287,7 +290,8 @@
                             {% for feed in all_feeds %}
                                 <li>
                                     <a href="{{ FEED_DOMAIN }}/{{ feed.url }}">
-                                        <i class="fas fa-{{ feed.kind|lower }} fa-fw"></i> {{ feed.name }} ({{ feed.kind }})
+                                        <i class="bi {% if feed.kind == 'RSS' %} bi-rss-fill {% else %} bi-rss {% endif %}"></i>
+                                        {{ feed.name }} ({{ feed.kind }})
                                     </a>
                                 </li>
                             {% endfor %}
@@ -303,7 +307,7 @@
                     theme by <a class="text-dark" href="https://kevin.deldycke.com">Kevin Deldycke</a>.
                 </div>
                 <div class="col-3 text-end d-flex flex-column">
-                    <a class="mt-auto" href="#"><i class="fas fa-arrow-up"></i> Back to top</a>
+                    <a class="mt-auto" href="#"><i class="bi bi-arrow-bar-up"></i> Back to top</a>
                 </div>
             </div>
         </footer>

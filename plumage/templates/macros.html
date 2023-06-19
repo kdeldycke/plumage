@@ -9,36 +9,47 @@
     {% set favicon = False if favicon == False else True %}
     {% set protocol = link.split(':', 1)[0] %}
     {% if protocol == 'mailto' %}
-        {% if icon.append('envelope') %}
-        {% endif %}
+        {% if icon.append('envelope-fill') %}{% endif %}
     {% elif protocol.startswith('http') %}
         {% set domain = link.split('%s://' % protocol, 1)[1].split('/', 1)[0] %}
         {% set SITE_ICONS = {
-        'apple': ['apple.com']
-        , 'bitbucket': ['bitbucket.org', 'bitbucket.com']
-        , 'dropbox': ['dropbox.com']
-        , 'facebook-square': ['facebook.com']
-        , 'github': ['github.com']
-        , 'hacker-news': ['news.ycombinator.com']
-        , 'linkedin': ['linkedin.com']
-        , 'stack-overflow': ['stackoverflow.com']
-        , 'stack-exchange': ['stackexchange.com']
-        , 'twitter': ['twitter.com']
-        , 'youtube': ['youtube.com']
-        }
-        %}
+            "apple": [
+                "apple.com"
+            ],
+            "dropbox": [
+                "dropbox.com"
+            ],
+            "facebook": [
+                "facebook.com"
+            ],
+            "github": [
+                "github.com"
+            ],
+            "linkedin": [
+                "linkedin.com"
+            ],
+            "stack-overflow": [
+                "stackexchange.com",
+                "stackoverflow.com"
+            ],
+            "twitter": [
+                "twitter.com"
+            ],
+            "youtube": [
+                "youtube.com"
+            ]
+        } %}
         {% for (site_icon, site_domains) in SITE_ICONS.items() %}
             {% for site_domain in site_domains %}
                 {% if domain.startswith(site_domain) %}
-                    {% if icon.append(site_icon) %}
-                    {% endif %}
+                    {% if icon.append(site_icon) %}{% endif %}
                 {% endif %}
             {% endfor %}
         {% endfor %}
     {% endif %}
     <a href="{{ link }}">
         {% if icon %}
-            <i class="fab {{ 'fa-%s' % icon[0] }} fa-fw"></i>
+            <i class="bi {{ 'bi-%s' % icon[0] }}"></i>
         {% elif domain and favicon %}
             <img src="https://www.google.com/s2/favicons?domain={{ domain }}"
                  width="16"
@@ -46,7 +57,7 @@
                  class="link-icon"
                  alt="{{ domain }} icon"/>
         {% else %}
-            <i class="fas fa-external-link-alt fa-fw"></i>
+            <i class="bi bi-box-arrow-up-right"></i>
         {% endif %}
         {{ label }}
     </a>

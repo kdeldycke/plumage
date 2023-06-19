@@ -6,6 +6,7 @@
 This version is not released yet and is under active development.
 ```
 
+- Replace Font Awesome by Bootstrap Icons.
 - Add support for MyST Markdown. Add new dependency on `pelican-myst-reader`.
 - Remove support for `pymdownx` and dependency on `pymdown-extensions`.
 - Remove direct dependency on `Markdown`, `pygments`.
