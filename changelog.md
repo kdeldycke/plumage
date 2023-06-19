@@ -5,6 +5,8 @@
 ```{important}
 This version is not released yet and is under active development.
 ```
+- Move `bump-my-version` configuration to `pyproject.toml`.
+- Remove `bump2version` from dev dependencies, and let the external workflows install it.
 
 ## [3.1.0 (2023-06-03)](https://github.com/kdeldycke/plumage/compare/v3.0.0...v3.1.0)
 
