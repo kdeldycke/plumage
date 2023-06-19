@@ -7,7 +7,7 @@
 
 
 html {
-  background: rgb(236, 236, 236) url("/theme/img/fabric_plaid.jpeg");
+  background: rgb(236, 236, 236) url(/theme/img/fabric_plaid.jpeg);
   box-shadow: inset 0 1rem 6rem -2rem rgba(0, 0, 0, 0.5);
 }
 
@@ -20,9 +20,8 @@ a {
     @extend .text-decoration-underline;
   }
 
-  /* Style title headers anchors produced by Python's Markdown module. See:
-   * https://python-markdown.github.io/extensions/toc/#usage
-   */
+  // Style title headers anchors produced by Python's Markdown module. See:
+  // https://python-markdown.github.io/extensions/toc/#usage
   &.headerlink {
     visibility: hidden;
 
@@ -41,9 +40,8 @@ a {
 }
 
 
-/* Style to support pymdown-extensions' emoji:
- * https://facelessuser.github.io/pymdown-extensions/extensions/emoji/#default-emoji-generators
- */
+// Style to support pymdown-extensions' emoji:
+// https://facelessuser.github.io/pymdown-extensions/extensions/emoji/#default-emoji-generators
 img.emojione {
   $size: 1.3rem;
   height: $size;
@@ -100,12 +98,10 @@ img.emojione {
 }
 
 
-/* Custom styling of the DOM produced by Stork's default Javascript.
- * See: https://github.com/jameslittle230/stork/blob/master/js/entityDom.ts
- *
- * All customization is performed by aliasing the default Stork classes to Bootstrap's own default classes.
- */
-
+// Custom styling of the DOM produced by Stork's default Javascript.
+// See: https://github.com/jameslittle230/stork/blob/master/js/entityDom.ts
+//
+// All customization is performed by aliasing the default Stork classes to Bootstrap's own default classes.
 .stork-close-button {
   // Place the reset button on the right side of the search box.
   @extend .position-absolute, .top-50, .end-0, .translate-middle-y;
@@ -135,6 +131,7 @@ img.emojione {
 
 // Special customization for the search box.
 .navbar .dropdown {
+
   .dropdown-menu {
     --bs-dropdown-padding-y: 0;
     --bs-dropdown-link-hover-bg: var(--bs-primary-bg-subtle);
@@ -222,7 +219,7 @@ h2 {
 }
 
 
-/* Typogrify's ampersands */
+// Typogrify's ampersands
 span.amp {
   font-family: cursive;
 }
@@ -240,7 +237,7 @@ span.amp {
 
 
 footer {
-  background: url("/theme/img/creampaper.jpeg");
+  background: url(/theme/img/creampaper.jpeg);
   box-shadow: inset 0 2rem 2rem -2rem rgba(0, 0, 0, 0.5);
   text-shadow: 0 0.1rem 0.1rem white;
 }
