@@ -19,10 +19,10 @@ a {
     @extend .text-decoration-underline;
   }
 
-  // Style title headers anchors produced by Python's Markdown module. See:
-  // https://python-markdown.github.io/extensions/toc/#usage
+  // Style title headers anchors
   &.headerlink {
     visibility: hidden;
+    @extend .fs-4;
 
     @each $tag in 'h1',
     'h2',
