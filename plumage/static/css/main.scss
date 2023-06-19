@@ -1,10 +1,9 @@
-// Import thw whole Bootstrap framework.
+// Import the whole Bootstrap framework.
 // See: https://getbootstrap.com/docs/5.3/customize/sass/#importing
 @import "../../node_modules/bootstrap/scss/bootstrap";
+
 // Custom Plumage CSS is below.
-
 // TODO: replace hard-coded styling with bootstrap's own class names for consistency.
-
 
 html {
   background: rgb(236, 236, 236) url(/theme/img/fabric_plaid.jpeg);
