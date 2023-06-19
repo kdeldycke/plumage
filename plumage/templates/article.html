@@ -2,8 +2,10 @@
 {% set has_right = True %}
 {% block title %}{{ article.title|striptags|e }}{% endblock %}
 {% block head %}
-    {% if article.tags %}<meta name="keywords"
-      content="{{ article.tags|join(', ', attribute='name')|e }}">{% endif %}
+    {% if article.tags %}
+        <meta name="keywords"
+              content="{{ article.tags|join(', ', attribute='name') |e }}">
+    {% endif %}
 {% endblock %}
 {% block top_center %}
     <h1>
@@ -117,7 +119,7 @@
                     <div class="d-flex w-100 justify-content-between">
                         <h5>{{ related_post.title }}</h5>
                         <abbr class="small published" title="{{ related_post.date.isoformat() }}">
-                            {{ related_post.date.strftime('%Y') }}
+                            {{ related_post.date.strftime("%Y") }}
                         </abbr>
                     </div>
                     <small>{{ related_post.summary|striptags|e }}</small>

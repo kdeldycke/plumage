@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 {% import 'macros.html' as m %}
 <html lang="{{ DEFAULT_LANG }}">
     <head>
@@ -25,12 +25,12 @@
               href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"
               integrity="sha512-ZnR2wlLbSbr8/c9AgLg3jQPAattCUImNsae6NHYnS9KrIwRdcY9DxFotXhNAKIKbAXlRnujIqUWoXXwqyFOeIQ=="
               crossorigin="anonymous"
-              referrerpolicy="no-referrer"/>
+              referrerpolicy="no-referrer" />
         <link rel="stylesheet"
               href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"
               integrity="sha512-+EoPw+Fiwh6eSeRK7zwIKG2MA8i3rV/DGa3tdttQGgWyatG/SkncT53KHQaS5Jh9MNOT3dmFL0FjTY08And/Cw=="
               crossorigin="anonymous"
-              referrerpolicy="no-referrer"/>
+              referrerpolicy="no-referrer" />
         {% block extra_css %}{% endblock %}
         {% include "analytics.html" %}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
@@ -58,20 +58,16 @@
         <!-- Feeds -->
         {% set all_feeds = [] %}
         {% if FEED_ALL_ATOM %}
-            {% if all_feeds.append({'kind': 'Atom', 'url': FEED_ALL_ATOM, 'name': 'All posts'}) %}
-            {% endif %}
+            {% if all_feeds.append({'kind': 'Atom', 'url': FEED_ALL_ATOM, 'name': 'All posts'}) %}{% endif %}
         {% endif %}
         {% if FEED_ALL_RSS %}
-            {% if all_feeds.append({'kind': 'RSS', 'url': FEED_ALL_RSS, 'name': 'All posts'}) %}
-            {% endif %}
+            {% if all_feeds.append({'kind': 'RSS', 'url': FEED_ALL_RSS, 'name': 'All posts'}) %}{% endif %}
         {% endif %}
         {% if FEED_ATOM %}
-            {% if all_feeds.append({'kind': 'Atom', 'url': FEED_ATOM, 'name': 'Latest posts'}) %}
-            {% endif %}
+            {% if all_feeds.append({'kind': 'Atom', 'url': FEED_ATOM, 'name': 'Latest posts'}) %}{% endif %}
         {% endif %}
         {% if FEED_RSS %}
-            {% if all_feeds.append({'kind': 'RSS', 'url': FEED_RSS, 'name': 'Latest posts'}) %}
-            {% endif %}
+            {% if all_feeds.append({'kind': 'RSS', 'url': FEED_RSS, 'name': 'Latest posts'}) %}{% endif %}
         {% endif %}
         {% if CATEGORY_FEED_ATOM and category is defined %}
             {% if all_feeds.append({'kind': 'Atom', 'url': CATEGORY_FEED_ATOM.format(slug=category.slug), 'name': 'Category: ' + category.name}) %}
@@ -93,7 +89,7 @@
             <link href="{{ FEED_DOMAIN }}/{{ feed.url }}"
                   type="application/{{ feed.kind|lower }}+xml"
                   rel="alternate"
-                  title="{{ SITENAME|e }} - {{ feed.name|e }} - {{ feed.kind }} Feed"/>
+                  title="{{ SITENAME|e }} - {{ feed.name|e }} - {{ feed.kind }} Feed" />
         {% endfor %}
         {% block head %}{% endblock %}
     </head>
@@ -101,7 +97,7 @@
         <div class="container">
             {% if SITE_THUMBNAIL %}
                 <a href="{{ SITEURL }}" class="avatar-container float-start mx-4">
-                    <div class="avatar {% if SITE_THUMBNAIL_TEXT %} animate{% endif %}">
+                    <div class="avatar {% if SITE_THUMBNAIL_TEXT %}animate{% endif %}">
                         <div class="side">
                             <img src="{{ SITE_THUMBNAIL }}" class="img-fluid" />
                         </div>
@@ -132,7 +128,7 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         {% for title, link in MENUITEMS %}
                             {% set active_page = link == ("/%s"|format(output_file)).strip('index.html') -%}
-                            <li class="nav-item {% if active_page %} active{% endif %}">
+                            <li class="nav-item {% if active_page %}active{% endif %}">
                                 <a class="nav-link" href="{{ link }}">
                                     {{ title }}
                                     {% if active_page %}<span class="visually-hidden">(current)</span>{% endif %}
@@ -142,7 +138,7 @@
                         {% if DISPLAY_PAGES_ON_MENU %}
                             {% for p in pages %}
                                 {% set active_page = (p == page) -%}
-                                <li class="nav-item {% if active_page %} active{% endif %}">
+                                <li class="nav-item {% if active_page %}active{% endif %}">
                                     <a class="nav-link" href="{{ SITEURL }}/{{ p.url }}">
                                         {{ p.title }}
                                         {% if active_page %}<span class="visually-hidden">(current)</span>{% endif %}
@@ -153,7 +149,7 @@
                         {% if DISPLAY_CATEGORIES_ON_MENU %}
                             {% for c, null in categories %}
                                 {% set active_category = (c == category) -%}
-                                <li class="nav-item {% if active_page %} active{% endif %}">
+                                <li class="nav-item {% if active_page %}active{% endif %}">
                                     <a class="nav-link" href="{{ SITEURL }}/{{ c.url }}">
                                         {{ c.name }}
                                         {% if active_category %}<span class="visually-hidden">(current)</span>{% endif %}
@@ -178,7 +174,7 @@
             {% set has_left_content = has_left or LEFT_SIDEBAR is defined %}
             {% set has_right_content = has_right or RIGHT_SIDEBAR is defined %}
             <div class="row">
-                <div class=" {% if (has_left_content and has_right_content) or LAYOUT == 'full-width' %} col-md-6 {% elif has_left_content or has_right_content %} col-md-9 {% else %} col-md-12 {% endif %} {% if has_left_content %} offset-md-3{% endif %}">
+                <div class=" {% if (has_left_content and has_right_content) or LAYOUT == 'full-width' %} col-md-6 {% elif has_left_content or has_right_content %} col-md-9 {% else %} col-md-12 {% endif %} {% if has_left_content %}offset-md-3{% endif %}">
                     {% block top_center %}{% endblock %}
                 </div>
             </div>

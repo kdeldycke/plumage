@@ -1,4 +1,4 @@
-{% set LAYOUT = 'full-width' %}
+{% set LAYOUT = "full-width" %}
 {% extends "base.html" %}
 {# Map URL substring matches to link's icon, then label.
 Sorted by priority: the first items takes precedence over those at the end. #}
@@ -24,15 +24,13 @@ Sorted by priority: the first items takes precedence over those at the end. #}
 %}
 {% macro render_card(all_tags, project) %}
     <div class="card">
-        {% if project.inactive %}
-            <div class="corner-banner shadow-sm bg-danger text-white fw-bold">Inactive</div>
-        {% endif %}
+        {% if project.inactive %}<div class="corner-banner shadow-sm bg-danger text-white fw-bold">Inactive</div>{% endif %}
         {% if project.thumb %}
             {% if project.thumb_link %}<a href="{{ project.thumb_link }}">{% endif %}
-            <img class="card-img-top"
-                 alt="{{ project.name }} thumbnail"
-                 src="{{ project.thumb }}"/>
-            {% if project.thumb_link %}</a>{% endif %}
+                <img class="card-img-top"
+                     alt="{{ project.name }} thumbnail"
+                     src="{{ project.thumb }}" />
+                {% if project.thumb_link %}</a>{% endif %}
         {% endif %}
         <div class="card-body">
             <h4 class="card-title">{{ project.name }}</h4>
@@ -46,14 +44,11 @@ Sorted by priority: the first items takes precedence over those at the end. #}
                         {% endfor %}
                         {# Sort by tag frequency, then alphabetically #}
                         {% for tag in all_tags|sort(attribute='name')|sort(reverse=True, attribute='articles') %}
-                            {% if tag.name in project.tools %}
-                                <li class="list-inline-item">{{ m.render_tag(tag) }}</li>
-                            {% endif %}
+                            {% if tag.name in project.tools %}<li class="list-inline-item">{{ m.render_tag(tag) }}</li>{% endif %}
                         {% endfor %}
                         {% set tag_names = [] %}
                         {% for tag in all_tags %}
-                            {% if tag_names.append(tag.name) %}
-                            {% endif %}
+                            {% if tag_names.append(tag.name) %}{% endif %}
                         {% endfor %}
                         {% for tool in project.tools %}
                             {% if tool not in tag_names %}
@@ -73,8 +68,7 @@ Sorted by priority: the first items takes precedence over those at the end. #}
                         {% set matches = [('', 'fas fa-home', 'Project home')] %}
                         {% for rule in ICONS|reverse %}
                             {% if rule[0] and link.find(rule[0]) != -1 %}
-                                {% if matches.append(rule) %}
-                                {% endif %}
+                                {% if matches.append(rule) %}{% endif %}
                             {% endif %}
                         {% endfor %}
                         <a href="{{ link }}" title="{{ matches[-1][2]|e }}">
@@ -92,8 +86,7 @@ Sorted by priority: the first items takes precedence over those at the end. #}
 {% macro render_projects(projects) %}
     {% set all_tags = [] %}
     {% for tag, articles in tags %}
-        {% if all_tags.append({'name': tag.name, 'url': tag.url, 'articles': articles|length()}) %}
-        {% endif %}
+        {% if all_tags.append({'name': tag.name, 'url': tag.url, 'articles': articles|length()}) %}{% endif %}
     {% endfor %}
     {% if projects is defined %}
         <div class="row" data-masonry='{"percentPosition": true }'>
@@ -102,18 +95,14 @@ Sorted by priority: the first items takes precedence over those at the end. #}
             {% set inactive_projects = [] %}
             {% for project in projects %}
                 {% if project.inactive %}
-                    {% if inactive_projects.append(project) %}
-                    {% endif %}
+                    {% if inactive_projects.append(project) %}{% endif %}
                 {% else %}
-                    {% if active_projects.append(project) %}
-                    {% endif %}
+                    {% if active_projects.append(project) %}{% endif %}
                 {% endif %}
             {% endfor %}
             {% for project_list in [active_projects, inactive_projects] %}
                 {% for project in project_list %}
-                    <div class="col-sm-6 col-lg-4 mb-4">
-                        {{ render_card(all_tags, project) }}
-                    </div>
+                    <div class="col-sm-6 col-lg-4 mb-4">{{ render_card(all_tags, project) }}</div>
                 {% endfor %}
             {% endfor %}
             {% block project_post_content %}{% endblock %}
@@ -134,9 +123,9 @@ Sorted by priority: the first items takes precedence over those at the end. #}
 {% block content %}
     {% if PROJECT_GROUPS is defined %}
         {% for group in PROJECT_GROUPS %}
-            {{ render_project_group(group, PROJECTS|selectattr("group", "sameas", group.id)) }}
+            {{ render_project_group(group, PROJECTS|selectattr("group", "sameas", group.id) ) }}
         {% endfor %}
-        {{ render_projects(PROJECTS|rejectattr("group", "defined")) }}
+        {{ render_projects(PROJECTS|rejectattr("group", "defined") ) }}
     {% else %}
         {{ render_projects(PROJECTS) }}
     {% endif %}
