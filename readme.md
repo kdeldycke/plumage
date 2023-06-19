@@ -314,6 +314,17 @@ Into this:
 
 ![Plumage PyMdown Extensions' Highlight rendering](https://raw.githubusercontent.com/kdeldycke/plumage/main/screenshots/highlight-rendering.jpeg)
 
+
+## CSS customization
+
+TODO: document all kind customization below
+
+### Python code transforms at generation via `pyquery`
+
+### Use of `extra_css`
+
+### Custom `main.scss`
+
 ## FAQ
 
 ### How can I disable the zoom on images?
