@@ -93,17 +93,12 @@ Once added, run `poetry update` to reflect this new dependency.
 **Note:** If you haven't used `poetry` in the project yet, you need to do so before adding `plumage`.
 You can do that by first [installing `poetry`](https://python-poetry.org/docs/#installation) on your system and then running `poetry init` inside the project folder.
 
-Then, once you're done installing the `plumage` module, update your `pelicanconf.py` file to reference the module and requied extra plugins:
+Then, once you're done installing the `plumage` module, update your `pelicanconf.py` file to reference the module:
 
 ```python
 import plumage
 
 THEME = plumage.get_path()
-
-PLUGINS = [
-    (…)
-    "pelican.plugins.webassets",
-]
 ```
 
 On first run, Plumage will try to install [Node.js package dependencies](https://github.com/kdeldycke/plumage/blob/main/plumage/package.json) via the `npm` CLI:
