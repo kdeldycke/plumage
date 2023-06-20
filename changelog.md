@@ -186,7 +186,7 @@ This version is not released yet and is under active development.
 - Upgrade to Masonry 4.1.0.
 - Upgrade to Magnific Popup 1.1.0.
 - Upgrade to jQuery 2.2.4.
-- Ditch `grabicon.com` in favor of the free [Favicon Finder
+- Ditch `grabicon` in favor of the free [Favicon Finder
   ](https://icons.better-idea.org) web service.
 - Rename `GRAB_ICONS` option to `FAVICON_LINKS`.
 - Enable favicon fetching by default.
