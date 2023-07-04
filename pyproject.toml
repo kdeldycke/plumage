@@ -51,7 +51,8 @@ closure = "^20191111"            # XXX Unmaintained!
 cssmin = "^0.2.0"                # XXX Unmaintained!
 libsass = "^0.22.0"
 pelican = "^4.8.0"
-pelican-myst-reader = { git = "https://github.com/ashwinvis/myst-reader.git", branch = "main" }
+pelican-myst-reader = "^1.3.0b1"
+# pelican-myst-reader = { git = "https://github.com/ashwinvis/myst-reader.git", branch = "main" }
 # pelican-myst-reader = { path = "../myst-reader/", develop = false } # XXX Dev!
 pelican-webassets = "^2.0.0"
 pynpm = "^0.1.2"
