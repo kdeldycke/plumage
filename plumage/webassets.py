@@ -66,7 +66,7 @@ def setup_webassets(conf: dict[str, Any]) -> dict[str, Any]:
     ]
 
     # Check if the path exist in any of the environment locations.
-    env_path = os.pathsep.join(cli_search_path + [os.getenv("PATH")])
+    env_path = os.pathsep.join([*cli_search_path, os.getenv("PATH")])
     postcss_bin = which(CLI_NAME, path=env_path)
 
     if not postcss_bin:
@@ -75,7 +75,7 @@ def setup_webassets(conf: dict[str, Any]) -> dict[str, Any]:
         # Install Node dependencies.
         logger.info(
             f"Install Plumage's Node.js dependencies from {node_deps_file}:\n"
-            f"{indent(node_deps_file.read_text(), ' ' * 2)}"
+            f"{indent(node_deps_file.read_text(), ' ' * 2)}",
         )
         pkg = NPMPackage(node_deps_file)
         try:

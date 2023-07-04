@@ -62,8 +62,9 @@ def check_codestyle(conf: dict[str, Any]) -> dict[str, Any]:
 
     code_style = conf["CODE_STYLE"]
     if code_style not in ALL_CODE_STYLES:
+        msg = f"{code_style} not recognized among {sorted(ALL_CODE_STYLES)}."
         raise ValueError(
-            f"{code_style} not recognized among {sorted(ALL_CODE_STYLES)}."
+            msg,
         )
 
     return conf
