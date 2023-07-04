@@ -58,19 +58,19 @@ it is now generic enough to be used by anyone.
 
 Plumage has built-in support for the following plugins and extensions:
 
-| Plugin name                                                                                                      | Type               | Status   | Notes                                                                                                         |
-| :--------------------------------------------------------------------------------------------------------------- | :----------------- | :------- | :------------------------------------------------------------------------------------------------------------ |
-| [`pelican-image-process`](https://github.com/pelican-plugins/image-process)                                      | Pelican plugin     | Optional | Embed a hack to [fix parsing of external images](https://github.com/pelican-plugins/image-process/issues/33). |
-| [`pelican-neighbors`](https://github.com/pelican-plugins/neighbors)                                              | Pelican plugin     | Optional |                                                                                                               |
-| [`pelican-related-posts`](https://github.com/pelican-plugins/related-posts)                                      | Pelican plugin     | Optional |                                                                                                               |
-| [`pelican-similar-posts`](https://github.com/pelican-plugins/similar-posts)                                      | Pelican plugin     | Optional |                                                                                                               |
-| [`pelican-search`](https://github.com/pelican-plugins/search)                                                    | Pelican plugin     | Optional |                                                                                                               |
-| [`pelican-webassets`](https://github.com/pelican-plugins/webassets)                                              | Pelican plugin     | Required |                                                                                                               |
-| [`markdown.extensions.admonition`](https://python-markdown.github.io/extensions/admonition/)                     | Markdown extension | Optional | Re-style admonitions into [alerts](https://getbootstrap.com/docs/4.5/components/alerts/).                     |
-| [`markdown.extensions.codehilite`](https://python-markdown.github.io/extensions/code_hilite/)                    | Markdown extension | Optional | Style highlighted code with Pygment style.                                                                    |
-| [`markdown.extensions.toc`](https://python-markdown.github.io/extensions/toc/#usage)                             | Markdown extension | Optional | Adds permalink anchors to article's subtitles.                                                                |
-| [`pymdownx.highlight`](https://facelessuser.github.io/pymdown-extensions/extensions/highlight/)                  | Markdown extension | Optional | Style highlighted code with Pygment style.                                                                    |
-| [`typogrify`](https://pypi.python.org/pypi/typogrify)                                                            | Pelican builtin    | Optional | Style ampersands.                                                                                             |
+| Plugin name                                                                                     | Type               | Status   | Notes                                                                                                         |
+| :---------------------------------------------------------------------------------------------- | :----------------- | :------- | :------------------------------------------------------------------------------------------------------------ |
+| [`pelican-image-process`](https://github.com/pelican-plugins/image-process)                     | Pelican plugin     | Optional | Embed a hack to [fix parsing of external images](https://github.com/pelican-plugins/image-process/issues/33). |
+| [`pelican-neighbors`](https://github.com/pelican-plugins/neighbors)                             | Pelican plugin     | Optional |                                                                                                               |
+| [`pelican-related-posts`](https://github.com/pelican-plugins/related-posts)                     | Pelican plugin     | Optional |                                                                                                               |
+| [`pelican-similar-posts`](https://github.com/pelican-plugins/similar-posts)                     | Pelican plugin     | Optional |                                                                                                               |
+| [`pelican-search`](https://github.com/pelican-plugins/search)                                   | Pelican plugin     | Optional |                                                                                                               |
+| [`pelican-webassets`](https://github.com/pelican-plugins/webassets)                             | Pelican plugin     | Required |                                                                                                               |
+| [`markdown.extensions.admonition`](https://python-markdown.github.io/extensions/admonition/)    | Markdown extension | Optional | Re-style admonitions into [alerts](https://getbootstrap.com/docs/4.5/components/alerts/).                     |
+| [`markdown.extensions.codehilite`](https://python-markdown.github.io/extensions/code_hilite/)   | Markdown extension | Optional | Style highlighted code with Pygment style.                                                                    |
+| [`markdown.extensions.toc`](https://python-markdown.github.io/extensions/toc/#usage)            | Markdown extension | Optional | Adds permalink anchors to article's subtitles.                                                                |
+| [`pymdownx.highlight`](https://facelessuser.github.io/pymdown-extensions/extensions/highlight/) | Markdown extension | Optional | Style highlighted code with Pygment style.                                                                    |
+| [`typogrify`](https://pypi.python.org/pypi/typogrify)                                           | Pelican builtin    | Optional | Style ampersands.                                                                                             |
 
 ## Installation
 
@@ -307,7 +307,6 @@ This is extra content.
 Into this:
 
 ![Plumage PyMdown Extensions' Highlight rendering](https://raw.githubusercontent.com/kdeldycke/plumage/main/screenshots/highlight-rendering.jpeg)
-
 
 ## CSS customization
 
