@@ -6,7 +6,7 @@
 // TODO: replace hard-coded styling with bootstrap's own class names for consistency.
 
 html {
-  background: rgb(236, 236, 236) url(/theme/img/fabric_plaid.jpeg);
+  background: rgb(236, 236, 236) url("/theme/img/fabric_plaid.jpeg");
   box-shadow: inset 0 1rem 6rem -2rem rgba(0, 0, 0, 0.5);
 }
 
@@ -121,7 +121,6 @@ a {
 
 // Special customization for the search box.
 .navbar .dropdown {
-
   .dropdown-menu {
     --bs-dropdown-padding-y: 0;
     --bs-dropdown-link-hover-bg: var(--bs-primary-bg-subtle);
@@ -270,7 +269,7 @@ span.amp {
 
 
 footer {
-  background: url(/theme/img/creampaper.jpeg);
+  background: url("/theme/img/creampaper.jpeg");
   box-shadow: inset 0 2rem 2rem -2rem rgba(0, 0, 0, 0.5);
   text-shadow: 0 0.1rem 0.1rem white;
 }
