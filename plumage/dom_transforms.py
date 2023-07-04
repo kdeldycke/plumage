@@ -33,9 +33,7 @@ def transform(path, context):
     # Make images responsive and styled in article content, but ignore
     # images in cards (like those from project template), and images attached to
     # links.
-    main_images_selector = (
-        "#content img:not(.card-img-top):not(.link-icon)"
-    )
+    main_images_selector = "#content img:not(.card-img-top):not(.link-icon)"
     doc(main_images_selector).add_class("img-fluid border rounded shadow")
 
     # Process all images from the main content to create a reduced set with
@@ -50,18 +48,18 @@ def transform(path, context):
         return True
 
     doc(main_images_selector).filter(exclude_external_images).add_class(
-        "image-process-article-photo"
+        "image-process-article-photo",
     )
 
     # Style blockquotes in the way Bootstrap does.
     doc("blockquote").add_class(
-        "blockquote border-start border-primary-subtle bg-dark-subtle fs-6 border-4 ps-2"
+        "blockquote border-start border-primary-subtle bg-dark-subtle fs-6 border-4 ps-2",
     )
     doc("blockquote p").add_class("p-2")
 
     # Style code boxes.
     doc(".codehilite, .highlight").add_class(
-        f"pygments-style-{context.get('CODE_STYLE')} rounded shadow-sm mb-3"
+        f"pygments-style-{context.get('CODE_STYLE')} rounded shadow-sm mb-3",
     )
 
     # Style admonitions produced by Python Markdown into alerts.

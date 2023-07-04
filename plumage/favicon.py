@@ -53,7 +53,7 @@ def add_favicon_assets(sender):
         # See:
         # https://github.com/getpelican/pelican/blob/8033162ba4393db60791b201fb100d1be0f04431/pelican/contents.py#L55-L59
         static.metadata["save_as"] = asset.name
-        setattr(static, "override_save_as", asset.name)
+        static.override_save_as = asset.name
 
         # Register the new asset along other static files.
         sender.context["staticfiles"].append(static)
