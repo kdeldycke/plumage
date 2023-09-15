@@ -3,7 +3,7 @@
   "description": "Plumage depdencies for the webassets compilation pipeline.",
   "dependencies": {
     "autoprefixer": "^10.4.14",
-    "bootstrap": "^5.3.0",
+    "bootstrap": "^5.3.2",
     "postcss": "^8.4.24",
     "postcss-cli": "^10.1.0"
   }
