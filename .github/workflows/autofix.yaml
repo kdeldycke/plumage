@@ -18,7 +18,7 @@ jobs:
     name: Generate Pygment styles, format CSS files and create a PR
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3.5.3
+      - uses: actions/checkout@v4.1.2
       - uses: actions/setup-python@v5.1.0
         with:
           python-version: "3.12"
@@ -80,7 +80,7 @@ jobs:
     name: Format Jinja
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3.5.3
+      - uses: actions/checkout@v4.1.2
       - uses: actions/setup-python@v5.1.0
         with:
           python-version: "3.12"
