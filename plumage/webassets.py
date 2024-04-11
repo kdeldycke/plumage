@@ -19,6 +19,7 @@ from pathlib import Path
 from shutil import which
 from textwrap import indent
 from typing import Any
+import importlib
 
 from pynpm import NPMPackage
 
@@ -41,8 +42,11 @@ See the `list of configuration parameters for each filter
 """
 
 
-CLI_NAME = "postcss"
+POSTCSS_CLI_NAME = "postcss"
 """Name of the PostCSS CLI binary."""
+
+CLOSURE_JAR_NAME = "closure.jar"
+"""Name of the Closure CLI jar file."""
 
 
 def postcss_config():
@@ -54,8 +58,6 @@ def postcss_config():
         - Locating the PostCSS CLI binary on the filesystem.
         - Registering PostCSS to the webassets plugin.
     """
-    conf = {}
-
     # The dependency definition file relative to Plumage's install path takes
     # precedence.
     node_deps_file = PLUMAGE_ROOT.joinpath("package.json").resolve()
@@ -66,10 +68,10 @@ def postcss_config():
 
     # Check if the path exist in any of the environment locations.
     env_path = os.pathsep.join([*cli_search_path, os.getenv("PATH")])
-    postcss_bin = which(CLI_NAME, path=env_path)
+    postcss_bin = which(POSTCSS_CLI_NAME, path=env_path)
 
     if not postcss_bin:
-        logger.warning(f"{CLI_NAME} CLI not found.")
+        logger.warning(f"{POSTCSS_CLI_NAME} CLI not found.")
 
         # Install Node dependencies.
         logger.info(
@@ -83,26 +85,47 @@ def postcss_config():
             logger.error("npm CLI not found.")
             raise
 
-        postcss_bin = which(CLI_NAME, path=env_path)
+        postcss_bin = which(POSTCSS_CLI_NAME, path=env_path)
         assert postcss_bin
 
-    # Register PostCSS to webassets plugin.
     postcss_bin = Path(postcss_bin).resolve()
-    logger.info(f"{CLI_NAME} CLI found at {postcss_bin}")
-    conf["POSTCSS_BIN"] = str(postcss_bin)
+    logger.info(f"{POSTCSS_CLI_NAME} CLI found at {postcss_bin}")
 
-    # Force usage of autoprefixer via PostCSS.
-    conf["POSTCSS_EXTRA_ARGS"] = ["--use", "autoprefixer"]
+    return {
+        "POSTCSS": str(postcss_bin),
+        # Force usage of autoprefixer via PostCSS.
+        "POSTCSS_EXTRA_ARGS": ["--use", "autoprefixer"],
+    }
 
-    return conf
+
+def closure_config():
+    """Locate the Closure CLI jar file provided by the ``closure`` package.
+
+    .. warning::
+
+        We need to locate the ``closure`` Python package without loading it, as it is
+        old and unmaintained and produce the following error on calling
+        ``import closure``:
+
+            .. code-block:: pytb
+                Traceback (most recent call last):
+                File "<string>", line 1, in <module>
+                File ".../python3.12/site-packages/closure/__init__.py", line 3, in <module>
+                    from pkg_resources import resource_filename
+                ModuleNotFoundError: No module named 'pkg_resources'
+    """
+    package = importlib.util.find_spec("closure")
+    closure_jar = (Path(package.origin).parent / CLOSURE_JAR_NAME).resolve()
+    logger.info(f"{CLOSURE_JAR_NAME} JAR file found at {closure_jar}")
+    return {
+        "CLOSURE_COMPRESSOR_PATH": str(closure_jar),
+    }
 
 
 def setup_webassets(conf: dict[str, Any]) -> dict[str, Any]:
     """Setup pelican-webassets plugin configuration."""
-    # Produce the default configuration for webassets.
-    default_conf = CONFIG_DEFAULTS.copy()
-    # Get dynamic PostCSS configuration.
-    default_conf.update(postcss_config())
+    # Merge static and dynamic configurations to produce webassets' defaults.
+    default_conf = CONFIG_DEFAULTS.copy() | postcss_config() | closure_config()
 
     # Update the default configuration with user-defined values.
     webassets_conf = default_conf | dict(conf.get("WEBASSETS_CONFIG", {}))

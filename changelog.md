@@ -10,6 +10,7 @@ This version is not released yet and is under active development.
 - Add support for MyST Markdown. Add new dependency on `pelican-myst-reader`.
 - Remove support for `pymdownx` and dependency on `pymdown-extensions`.
 - Remove direct dependency on `Markdown`, `pygments`.
+- Auto-detect location of `closure.jar` file for `webassets`.
 - Move `bump-my-version` configuration to `pyproject.toml`.
 - Remove `bump2version` from dev dependencies, and let the external workflows install it.
 
