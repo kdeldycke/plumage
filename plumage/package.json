@@ -1,6 +1,6 @@
 {
   "name": "plumage-webassets-pipeline",
-  "description": "Plumage depdencies for the webassets compilation pipeline.",
+  "description": "Plumage dependencies for the webassets compilation pipeline.",
   "dependencies": {
     "autoprefixer": "^10.4.19",
     "bootstrap": "^5.3.3",

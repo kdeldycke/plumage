@@ -26,7 +26,7 @@
         {% endif %}
     {% endfor %}
     <div class="accordion"
-         id="accordianArchives"
+         id="accordionArchives"
          role="tablist"
          aria-multiselectable="true">
         {% for yearly_group in year_range|sort(reverse = True, attribute = 'year')  %}
@@ -47,7 +47,7 @@
                      class="collapse {% if loop.first %}show{% endif %}"
                      role="tabpanel"
                      aria-labelledby="heading{{ yearly_group.year }}"
-                     data-bs-parent="#accordianArchives">
+                     data-bs-parent="#accordionArchives">
                     <div class="card-body">
                         {% set current_month = False %}
                         {% for article in yearly_group.articles %}
