@@ -98,7 +98,7 @@ This version is not released yet and is under active development.
 - Upgrade to jQuery 3.5.1.
 - Upgrade to Tipue Search v7.1.
 - Reintroduce local copy of Tipue Search since the project has been
-  abandonned.
+  abandoned.
 - Remove dependency on Masonry.
 - Remove dependency on ImagesLoaded.
 - Remove `FLAT_DESIGN` option.
@@ -133,7 +133,7 @@ This version is not released yet and is under active development.
 - Document all features in the readme by the way of screenshots.
 - Lint Jinja templates.
 - Lint and autofix CSS files.
-- Use 3-parts semantic versionning.
+- Use 3-parts semantic versioning.
 - Add Hacker News to the list of recognized links.
 - Add link to author list along tags, categories and dates.
 - Fix link icon alignment in footer.
@@ -223,7 +223,7 @@ This version is not released yet and is under active development.
 ## [0.4.0 (2014-02-15)](https://github.com/kdeldycke/plumage/compare/v0.3.0...v0.4.0)
 
 - Allow grouping of projects.
-- Add option to overide disclaimer notice.
+- Add option to override disclaimer notice.
 - Generate tags, categories and archives URLs depending on site
   configuration.
 - Sort out inactive projects to the bottom of the project list.

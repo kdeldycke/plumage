@@ -38,7 +38,7 @@ def transform(path, context):
 
     # Process all images from the main content to create a reduced set with
     # lower dimensions.
-    # XXX Hack to bypass the bug on extenal images from image-process
+    # XXX Hack to bypass the bug on external images from image-process
     # plugin: https://github.com/pelican-plugins/image-process/issues/33
 
     def exclude_external_images(_, this):

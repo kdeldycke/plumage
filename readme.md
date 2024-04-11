@@ -18,7 +18,7 @@ it is now generic enough to be used by anyone.
   | :------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------: |
   |                                                       Article                                                        |                                                    Categories                                                    |                                                    Tiered tag list                                                     |
   |     ![Plumage archive view](https://raw.githubusercontent.com/kdeldycke/plumage/main/screenshots/archives.jpeg)      |        ![Plumage tag view](https://raw.githubusercontent.com/kdeldycke/plumage/main/screenshots/tag.jpeg)        |       ![Plumage authors view](https://raw.githubusercontent.com/kdeldycke/plumage/main/screenshots/authors.jpeg)       |
-  |                                             Collapsable yearly archives                                              |                                                 Tagged articles                                                  |                                                        Authors                                                         |
+  |                                             Collapsible yearly archives                                              |                                                 Tagged articles                                                  |                                                        Authors                                                         |
   | ![Plumage archive view](https://raw.githubusercontent.com/kdeldycke/plumage/main/screenshots/browse-content-by.jpeg) |                                                                                                                  |                                                                                                                        |
   |                                               Faceted article browsing                                               |                                                                                                                  |                                                                                                                        |
 
@@ -110,7 +110,7 @@ WARNING: postcss CLI not found.
 -> Install Plumage's Node.js dependencies from (…)/plumage/package.json:
   |   {
   |     "name": "plumage-webassets-pipeline",
-  |     "description": "Plumage depdencies for the webassets compilation pipeline.",
+  |     "description": "Plumage dependencies for the webassets compilation pipeline.",
   |     "dependencies": {
   |       "postcss-cli": "^8.3.1"
   |     }
@@ -126,7 +126,7 @@ found 0 vulnerabilities
 
 ## Settings
 
-Plumage can be customized by adding these optionnal parameters to your
+Plumage can be customized by adding these optional parameters to your
 `pelicanconf.py` file:
 
 | Setting name                                                                                  | Default value | Description                                                                                                                                                    |
@@ -134,14 +134,14 @@ Plumage can be customized by adding these optionnal parameters to your
 | `ARTICLE_EDIT_LINK`                                                                           |               | Generate an edit link besides each article. Can use `%(slug)s` to include dynamic article's slug in the link.                                                  |
 | `CODE_STYLE`                                                                                  | `"monokai"`   | Pygments' style ID. Choose one from `poetry run pygmentize -L styles`.                                                                                         |
 | `COPYRIGHT`                                                                                   |               | Additional copyright statement to add in the third column of the footer.                                                                                       |
-| `DISCLAIMER`                                                                                  |               | Overide the disclaimer notice that gets displayed at the fourth column of the footer.                                                                          |
+| `DISCLAIMER`                                                                                  |               | Override the disclaimer notice that gets displayed at the fourth column of the footer.                                                                          |
 | [`DISQUS_SITENAME`](http://docs.getpelican.com/en/stable/settings.html#DISQUS_SITENAME)       |               | Pelican can handle Disqus comments. Specify the Disqus sitename identifier here.                                                                               |
 | `FAVICON_LINKS`                                                                               | `True`        | Fetch link's icons from [Google's favicons webservice](https://www.google.com/s2/favicons).                                                                    |
 | [`GOOGLE_ANALYTICS`](http://docs.getpelican.com/en/stable/settings.html#GOOGLE_ANALYTICS)     |               | Set to `UA-XXXXXX-Y` Property's tracking ID to activate Google Analytics.                                                                                      |
 | `LEFT_SIDEBAR`                                                                                |               | HTML content to put as-is in the left sidebar.                                                                                                                 |
 | [`LINKS_WIDGET_NAME`](http://docs.getpelican.com/en/stable/settings.html#LINKS_WIDGET_NAME)   | `"Links"`     | Allows override of the name of the links widget.                                                                                                               |
 | [`LINKS`](http://docs.getpelican.com/en/stable/settings.html#LINKS)                           |               | A list of tuples (Title, URL) for links to appear in the second column of the footer.                                                                          |
-| [`MANUAL_LINKS`](http://docs.getpelican.com/en/stable/settings.html#MANUAL_LINKS)             |               | When enabling this, you must pass the links (in LINKS & SOCIAL settins) not as tuples anymore, but as list, where every entry is formatted as you like         |
+| [`MANUAL_LINKS`](http://docs.getpelican.com/en/stable/settings.html#MANUAL_LINKS)             |               | When enabling this, you must pass the links (in LINKS & SOCIAL settings) not as tuples anymore, but as list, where every entry is formatted as you like         |
 | [`MENUITEMS`](http://docs.getpelican.com/en/stable/settings.html#MENUITEMS)                   |               | A list of tuples (Title, URL) for additional menu items to appear at the beginning of the main menu.                                                           |
 | `RIGHT_SIDEBAR`                                                                               |               | HTML content to put as-is in the right sidebar.                                                                                                                |
 | [`SITESUBTITLE`](http://docs.getpelican.com/en/stable/settings.html#SITESUBTITLE)             |               | A subtitle to appear in the header.                                                                                                                            |
@@ -353,7 +353,7 @@ Copyright (C) 2012-2020 [Kevin Deldycke](https://kevin.deldycke.com) and
 
 ## Third-party assets
 
-The theme embed copies of some external softwares, scripts, libraries and
+The theme embed copies of some external software, scripts, libraries and
 artworks:
 
 ```text
