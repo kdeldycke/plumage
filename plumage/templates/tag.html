@@ -1,12 +1,12 @@
 {% extends "base.html" %}
-{% block title %}{{ tag }}{% endblock %}
+{% block title %}{{ tag }}{% endblock title %}
 {% block top_center %}
     <h1>
         <a href="{{ SITEURL }}/{{ tag.url }}"
            rel="bookmark"
            title="Permalink to {{ tag|e }} articles">{{ tag }} articles</a>
     </h1>
-{% endblock %}
+{% endblock top_center %}
 {% block content %}
     <dl class="row">
         {% for article in articles %}
@@ -18,4 +18,4 @@
             </dd>
         {% endfor %}
     </dl>
-{% endblock %}
+{% endblock content %}

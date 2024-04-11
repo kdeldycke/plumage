@@ -87,7 +87,7 @@ Sorted by priority: the first items takes precedence over those at the end. #}
     {% endfor %}
     {% if projects is defined %}
         <div class="row" data-masonry='{"percentPosition": true }'>
-            {% block project_pre_content %}{% endblock %}
+            {% block project_pre_content %}{% endblock project_pre_content %}
             {% set active_projects = [] %}
             {% set inactive_projects = [] %}
             {% for project in projects %}
@@ -102,7 +102,7 @@ Sorted by priority: the first items takes precedence over those at the end. #}
                     <div class="col-sm-6 col-lg-4 mb-4">{{ render_card(all_tags, project) }}</div>
                 {% endfor %}
             {% endfor %}
-            {% block project_post_content %}{% endblock %}
+            {% block project_post_content %}{% endblock project_post_content %}
         </div>
     {% endif %}
 {% endmacro %}
@@ -126,4 +126,4 @@ Sorted by priority: the first items takes precedence over those at the end. #}
     {% else %}
         {{ render_projects(PROJECTS) }}
     {% endif %}
-{% endblock %}
+{% endblock content %}

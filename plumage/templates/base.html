@@ -31,7 +31,7 @@
               integrity="sha512-+EoPw+Fiwh6eSeRK7zwIKG2MA8i3rV/DGa3tdttQGgWyatG/SkncT53KHQaS5Jh9MNOT3dmFL0FjTY08And/Cw=="
               crossorigin="anonymous"
               referrerpolicy="no-referrer" />
-        {% block extra_css %}{% endblock %}
+        {% block extra_css %}{% endblock extra_css %}
         {% include "analytics.html" %}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
                 integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
@@ -47,7 +47,7 @@
         {% assets filters="closure_js", output="js/main.min.js", "js/jquery.mglass.js", "js/application.js" %}
             <script src="{{ SITEURL }}/{{ ASSET_URL }}"></script>
         {% endassets %}
-        {% block extra_js %}{% endblock %}
+        {% block extra_js %}{% endblock extra_js %}
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -91,7 +91,7 @@
                   rel="alternate"
                   title="{{ SITENAME|e }} - {{ feed.name|e }} - {{ feed.kind }} Feed" />
         {% endfor %}
-        {% block head %}{% endblock %}
+        {% block head %}{% endblock head %}
     </head>
     <body class="bg-transparent pt-4">
         <div class="container">
@@ -177,13 +177,13 @@
             {% set has_right_content = has_right or RIGHT_SIDEBAR is defined %}
             <div class="row">
                 <div class=" {% if (has_left_content and has_right_content) or LAYOUT == 'full-width' %} col-md-6 {% elif has_left_content or has_right_content %} col-md-9 {% else %} col-md-12 {% endif %} {% if has_left_content %}offset-md-3{% endif %}">
-                    {% block top_center %}{% endblock %}
+                    {% block top_center %}{% endblock top_center %}
                 </div>
             </div>
             <div class="row">
                 {% if LAYOUT != 'full-width' and has_left_content %}
                     <div class="col-md-3">
-                        {% block left_sidebar %}{% endblock %}
+                        {% block left_sidebar %}{% endblock left_sidebar %}
                         {{ LEFT_SIDEBAR }}
                     </div>
                 {% endif %}
@@ -194,7 +194,7 @@
                 </main>
                 {% if LAYOUT != 'full-width' and has_right_content %}
                     <div class="col-md-3">
-                        {% block right_sidebar %}{% endblock %}
+                        {% block right_sidebar %}{% endblock right_sidebar %}
                         {{ RIGHT_SIDEBAR }}
                     </div>
                 {% endif %}

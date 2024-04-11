@@ -1,12 +1,12 @@
 {% extends "base.html" %}
-{% block title %}All authors{% endblock %}
+{% block title %}All authors{% endblock title %}
 {% block top_center %}
     <h1>
         <a href="{{ SITEURL }}/{{ AUTHORS_SAVE_AS }}"
            rel="bookmark"
            title="Permalink to author list">Authors</a>
     </h1>
-{% endblock %}
+{% endblock top_center %}
 {% block content %}
     {% set all_authors = [] %}
     {% for author, articles in authors %}
@@ -24,4 +24,4 @@
             </dd>
         {% endfor %}
     </dl>
-{% endblock %}
+{% endblock content %}

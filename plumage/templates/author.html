@@ -1,9 +1,9 @@
 {% extends "index.html" %}
-{% block title %}Articles by {{ author.name }}{% endblock %}
+{% block title %}Articles by {{ author.name }}{% endblock title %}
 {% block top_center %}
     <h1>
         <a href="{{ SITEURL }}/{{ author.url }}"
            rel="bookmark"
            title="Permalink to {{ author.name|e }}'s articles">Articles by {{ author.name }}</a>
     </h1>
-{% endblock %}
+{% endblock top_center %}

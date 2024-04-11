@@ -9,7 +9,7 @@
     {% set url_parts = output_file.split('index.html', 1) %}
     {{- url_parts[0] -}}
 {%- endmacro %}
-{% block title %}{{ period_label() }} archives{% endblock %}
+{% block title %}{{ period_label() }} archives{% endblock title %}
 {% block top_center %}
     <h1>
         <a href="{{ SITEURL }}/{{ period_url() }}"
@@ -18,7 +18,7 @@
             {{ period_label() }} archives
         </a>
     </h1>
-{% endblock %}
+{% endblock top_center %}
 {% block content %}
     <dl class="row">
         {% for article in dates %}
@@ -30,4 +30,4 @@
             </dd>
         {% endfor %}
     </dl>
-{% endblock %}
+{% endblock content %}

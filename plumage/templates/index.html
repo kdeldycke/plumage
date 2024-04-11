@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-    {% block content_title %}<h2>Articles</h2>{% endblock %}
+    {% block content_title %}<h2>Articles</h2>{% endblock content_title %}
     {% for article in articles_page.object_list %}
         <article>
             <header>
@@ -17,5 +17,5 @@
         </article>
         <hr/>
     {% endfor %}
-    {% include 'pagination.html' %}
+    {% include "pagination.html" %}
 {% endblock content %}

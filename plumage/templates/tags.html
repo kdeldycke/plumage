@@ -1,12 +1,12 @@
 {% extends "base.html" %}
-{% block title %}All tags{% endblock %}
+{% block title %}All tags{% endblock title %}
 {% block top_center %}
     <h1>
         <a href="{{ SITEURL }}/{{ TAGS_SAVE_AS }}"
            rel="bookmark"
            title="Permalink to tag list">Tags</a>
     </h1>
-{% endblock %}
+{% endblock top_center %}
 {% block content %}
     {% set all_tags = [] %}
     {% for tag, articles in tags %}
@@ -32,4 +32,4 @@
             {% for tag in tier_tags %}<li class="list-inline-item">{{ m.render_tag(tag, counter=tag.articles) }}</li>{% endfor %}
         </ul>
     {% endfor %}
-{% endblock %}
+{% endblock content %}

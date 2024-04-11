@@ -1,12 +1,12 @@
 {% extends "base.html" %}
-{% block title %}All categories{% endblock %}
+{% block title %}All categories{% endblock title %}
 {% block top_center %}
     <h1>
         <a href="{{ SITEURL }}/{{ CATEGORIES_SAVE_AS }}"
            rel="bookmark"
            title="Permalink to category list">Categories</a>
     </h1>
-{% endblock %}
+{% endblock top_center %}
 {% block content %}
     {% set all_categories = [] %}
     {% for category, articles in categories %}
@@ -23,4 +23,4 @@
             </dd>
         {% endfor %}
     </dl>
-{% endblock %}
+{% endblock content %}
