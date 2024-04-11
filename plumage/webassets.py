@@ -25,12 +25,6 @@ from pynpm import NPMPackage
 from . import PLUMAGE_ROOT, logger
 
 """Setup the `webassets <https://github.com/miracle2k/webassets>`_ plugin for Pelican.
-
-Takes care of:
-
-    - Installing PostCSS CLI and its dependency with ``npm``.
-    - Locating the PostCSS CLI binary on the filesystem.
-    - Registering PostCSS to the webassets plugin.
 """
 
 
@@ -42,8 +36,8 @@ CONFIG_DEFAULTS: dict[str, str] = {
 }
 """Default configuration for `webassets <https://github.com/miracle2k/webassets>`_.
 
-See the
-`list of configuration parameters for each filter<https://webassets.readthedocs.io/en/latest/builtin_filters.html>`_.
+See the `list of configuration parameters for each filter
+<https://webassets.readthedocs.io/en/latest/builtin_filters.html>`_.
 """
 
 
@@ -51,11 +45,16 @@ CLI_NAME = "postcss"
 """Name of the PostCSS CLI binary."""
 
 
-def setup_webassets(conf: dict[str, Any]) -> dict[str, Any]:
-    """Setup pelican-webassets plugin configuration."""
-    # Update the default configuration with user-defined values.
-    webassets_conf = CONFIG_DEFAULTS.copy()
-    webassets_conf.update(dict(conf.get("WEBASSETS_CONFIG", {})))
+def postcss_config():
+    """Produce the default configuration for PostCSS.
+
+    Takes care of:
+
+        - Installing PostCSS CLI and its dependency with ``npm``.
+        - Locating the PostCSS CLI binary on the filesystem.
+        - Registering PostCSS to the webassets plugin.
+    """
+    conf = {}
 
     # The dependency definition file relative to Plumage's install path takes
     # precedence.
@@ -90,12 +89,23 @@ def setup_webassets(conf: dict[str, Any]) -> dict[str, Any]:
     # Register PostCSS to webassets plugin.
     postcss_bin = Path(postcss_bin).resolve()
     logger.info(f"{CLI_NAME} CLI found at {postcss_bin}")
-    if "POSTCSS_BIN" not in webassets_conf:
-        webassets_conf["POSTCSS_BIN"] = str(postcss_bin)
+    conf["POSTCSS_BIN"] = str(postcss_bin)
 
     # Force usage of autoprefixer via PostCSS.
-    if "POSTCSS_EXTRA_ARGS" not in webassets_conf:
-        webassets_conf["POSTCSS_EXTRA_ARGS"] = ["--use", "autoprefixer"]
+    conf["POSTCSS_EXTRA_ARGS"] = ["--use", "autoprefixer"]
+
+    return conf
+
+
+def setup_webassets(conf: dict[str, Any]) -> dict[str, Any]:
+    """Setup pelican-webassets plugin configuration."""
+    # Produce the default configuration for webassets.
+    default_conf = CONFIG_DEFAULTS.copy()
+    # Get dynamic PostCSS configuration.
+    default_conf.update(postcss_config())
+
+    # Update the default configuration with user-defined values.
+    webassets_conf = default_conf | dict(conf.get("WEBASSETS_CONFIG", {}))
 
     # Save updated configuration in Pelican settings in the form of ``(key, value)``
     # instead of a ``dict`` as expected by ``webassets`` plugin. See:
