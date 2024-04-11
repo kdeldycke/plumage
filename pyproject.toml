@@ -79,17 +79,21 @@ current_version = "4.0.0"
 allow_dirty = true
 
 [[tool.bumpversion.files]]
-filename = "./plumage/__init__.py"
+# Update Python package version in any __init__.py file.
+glob = "./**/__init__.py"
+ignore_missing_version = true
 
 [[tool.bumpversion.files]]
+# Update version in Poetry section.
 filename = "./pyproject.toml"
 search = 'version = "{current_version}"'
 replace = 'version = "{new_version}"'
 
 [[tool.bumpversion.files]]
+# Update the version in standard Markdown changelog.
 filename = "./changelog.md"
-search = "[{current_version} (unreleased)]("
-replace = "[{new_version} (unreleased)]("
+search = "## [{current_version} (unreleased)]("
+replace = "## [{new_version} (unreleased)]("
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
