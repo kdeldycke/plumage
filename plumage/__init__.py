@@ -32,7 +32,7 @@ __version__ = "4.0.0"
 
 logger = logging.getLogger(__name__)
 
-PLUMAGE_ROOT = Path(__file__).resolve().parent
+PLUMAGE_ROOT: Path = Path(__file__).resolve().parent
 
 
 def get_path() -> str:
