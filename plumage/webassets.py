@@ -88,11 +88,10 @@ def postcss_config():
         postcss_bin = which(POSTCSS_CLI_NAME, path=env_path)
         assert postcss_bin
 
-    postcss_bin = Path(postcss_bin).resolve()
     logger.info(f"{POSTCSS_CLI_NAME} CLI found at {postcss_bin}")
 
     return {
-        "POSTCSS": str(postcss_bin),
+        "POSTCSS": postcss_bin,
         # Force usage of autoprefixer via PostCSS.
         "POSTCSS_EXTRA_ARGS": ["--use", "autoprefixer"],
     }
