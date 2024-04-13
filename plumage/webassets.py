@@ -14,12 +14,12 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+import importlib
 import os
 from pathlib import Path
 from shutil import which
 from textwrap import indent
 from typing import Any
-import importlib
 
 from pynpm import NPMPackage
 
@@ -91,7 +91,7 @@ def postcss_config():
     logger.info(f"{POSTCSS_CLI_NAME} CLI found at {postcss_bin}")
 
     return {
-        "POSTCSS": postcss_bin,
+        "POSTCSS_BIN": postcss_bin,
         # Force usage of autoprefixer via PostCSS.
         "POSTCSS_EXTRA_ARGS": ["--use", "autoprefixer"],
     }
