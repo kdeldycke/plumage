@@ -1,5 +1,11 @@
 # Changelog
 
+## [4.0.1 (unreleased)](https://github.com/kdeldycke/plumage/compare/v4.0.0...main)
+
+```{important}
+This version is not released yet and is under active development.
+```
+
 ## [4.0.0 (2024-05-17)](https://github.com/kdeldycke/plumage/compare/v3.1.0...v4.0.0)
 
 - Replace Font Awesome by Bootstrap Icons.
