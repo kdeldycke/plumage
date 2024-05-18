@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% macro period_label() %}
-    {{ period|reverse|join(' ') }}
+    {{ period|reverse|join(" ") }}
 {% endmacro %}
 {% macro period_url() -%}
     {# Ugly hack to get period archive URL. The {{ url }} variable doesn't return what I expected.
@@ -9,14 +9,14 @@
     {% set url_parts = output_file.split('index.html', 1) %}
     {{- url_parts[0] -}}
 {%- endmacro %}
-{% block title %}{{ period_label() }} archives{% endblock title %}
+{% block title %}
+    {{ period_label() }} archives
+{% endblock title %}
 {% block top_center %}
     <h1>
         <a href="{{ SITEURL }}/{{ period_url() }}"
            rel="bookmark"
-           title="Permalink to {{ period_label()|e }} archives">
-            {{ period_label() }} archives
-        </a>
+           title="Permalink to {{ period_label() |e }} archives">{{ period_label() }} archives</a>
     </h1>
 {% endblock top_center %}
 {% block content %}
