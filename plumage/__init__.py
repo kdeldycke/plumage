@@ -17,7 +17,7 @@
 import logging
 from pathlib import Path
 
-__version__ = "4.0.1"
+__version__ = "4.1.0"
 """ Examples of valid version strings according :pep:`440#version-scheme`:
 
 .. code-block:: python
