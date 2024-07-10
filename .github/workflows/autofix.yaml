@@ -10,7 +10,7 @@ name: Autofix
 jobs:
 
   autofix:
-    uses: kdeldycke/workflows/.github/workflows/autofix.yaml@v3.4.7
+    uses: kdeldycke/workflows/.github/workflows/autofix.yaml@v4.1.4
     with:
       gitignore-extra-categories: node
 
@@ -22,16 +22,19 @@ jobs:
       - uses: actions/setup-python@v5.1.0
         with:
           python-version: "3.12"
+      - name: Install uv
+        run: |
+          python -m pip install -r https://raw.githubusercontent.com/kdeldycke/workflows/v4.1.4/requirements/uv.txt
       - name: Install Pygments
         run: |
-          python -m pip install --upgrade pip poetry
-          poetry install
+          uv venv --system
+          uv pip install .
       - name: Generate Pygments styles
         run: |
-          for STYLE in $(poetry run pygmentize -L styles | grep -E '^\* .*\:$' | cut -d ' ' -f 2 | cut -d ':' -f 1);
+          for STYLE in $(uv run pygmentize -L styles | grep -E '^\* .*\:$' | cut -d ' ' -f 2 | cut -d ':' -f 1);
           do
             CSS_FILE="./plumage/static/css/pygments/$STYLE.css"
-            poetry run pygmentize -f html -S "$STYLE" -a ".pygments-style-$STYLE" > "$CSS_FILE"
+            uv run pygmentize -f html -S "$STYLE" -a ".pygments-style-$STYLE" > "$CSS_FILE"
             # Crappy split of side-by-side declarations to please styleint.
             sed -i "s/; /; \n/g" "$CSS_FILE"
           done
@@ -84,13 +87,16 @@ jobs:
       - uses: actions/setup-python@v5.1.0
         with:
           python-version: "3.12"
+      - name: Install uv
+        run: |
+          python -m pip install -r https://raw.githubusercontent.com/kdeldycke/workflows/v4.1.4/requirements/uv.txt
       - name: Install djlint
         run: |
-          python -m pip install --upgrade pip poetry
-          poetry install
+          uv venv --system
+          uv pip install ".[test]"
       - name: Autofix Jinja
         run: >
-          poetry run djlint
+          uv run djlint
           --reformat
           --profile jinja
           --format-css
