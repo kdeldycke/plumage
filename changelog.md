@@ -2,9 +2,8 @@
 
 ## [4.0.1 (unreleased)](https://github.com/kdeldycke/plumage/compare/v4.0.0...main)
 
-```{important}
-This version is not released yet and is under active development.
-```
+> \[!IMPORTANT\]
+> This version is not released yet and is under active development.
 
 - Switch from Poetry to `uv`.
 
