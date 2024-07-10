@@ -74,24 +74,12 @@ Plumage has built-in support for the following plugins and extensions:
 
 ## Installation
 
-Install this theme using the `main` branch of this Github repo.
-
-If you're already using `poetry` to manage dependency of Pelican project, you need to run just
-
 ```shell-session
-poetry add git+https://github.com/kdeldycke/plumage#main
+$ python -m pip install uv
+$ uv venv
+$ source .venv/bin/activate
+$ uv pip install .
 ```
-
-Or, can manually add the following line in the  `[tool.poetry.dependencies]` section of the `pyproject.toml` file.
-
-```
-plumage = {git = "https://github.com/kdeldycke/plumage", rev = "main"}
-```
-
-Once added, run `poetry update` to reflect this new dependency.
-
-**Note:** If you haven't used `poetry` in the project yet, you need to do so before adding `plumage`.
-You can do that by first [installing `poetry`](https://python-poetry.org/docs/#installation) on your system and then running `poetry init` inside the project folder.
 
 Then, once you're done installing the `plumage` module, update your `pelicanconf.py` file to reference the module:
 
@@ -104,7 +92,7 @@ THEME = plumage.get_path()
 On first run, Plumage will try to install [Node.js package dependencies](https://github.com/kdeldycke/plumage/blob/main/plumage/package.json) via the `npm` CLI:
 
 ```shell-session
-$ poetry run pelican --verbose ./content
+$ uv run pelican --verbose ./content
 (…)
 WARNING: postcss CLI not found.
 -> Install Plumage's Node.js dependencies from (…)/plumage/package.json:
@@ -132,7 +120,7 @@ Plumage can be customized by adding these optional parameters to your
 | Setting name                                                                                  | Default value | Description                                                                                                                                                    |
 | :-------------------------------------------------------------------------------------------- | :------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `ARTICLE_EDIT_LINK`                                                                           |               | Generate an edit link besides each article. Can use `%(slug)s` to include dynamic article's slug in the link.                                                  |
-| `CODE_STYLE`                                                                                  | `"monokai"`   | Pygments' style ID. Choose one from `poetry run pygmentize -L styles`.                                                                                         |
+| `CODE_STYLE`                                                                                  | `"monokai"`   | Pygments' style ID. Choose one from `uv run pygmentize -L styles`.                                                                                         |
 | `COPYRIGHT`                                                                                   |               | Additional copyright statement to add in the third column of the footer.                                                                                       |
 | `DISCLAIMER`                                                                                  |               | Override the disclaimer notice that gets displayed at the fourth column of the footer.                                                                         |
 | [`DISQUS_SITENAME`](http://docs.getpelican.com/en/stable/settings.html#DISQUS_SITENAME)       |               | Pelican can handle Disqus comments. Specify the Disqus sitename identifier here.                                                                               |
