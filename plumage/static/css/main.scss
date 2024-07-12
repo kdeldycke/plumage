@@ -1,12 +1,12 @@
 // Import the whole Bootstrap framework.
 // See: https://getbootstrap.com/docs/5.3/customize/sass/#importing
-@import "../../node_modules/bootstrap/scss/bootstrap";
+@import '../../node_modules/bootstrap/scss/bootstrap';
 
 // Custom Plumage CSS is below.
 // TODO: replace hard-coded styling with bootstrap's own class names for consistency.
 
 html {
-  background: rgb(236, 236, 236) url("/theme/img/fabric_plaid.jpeg");
+  background: rgb(236, 236, 236) url('/theme/img/fabric_plaid.jpeg');
   box-shadow: inset 0 1rem 6rem -2rem rgba(0, 0, 0, 0.5);
 }
 
@@ -25,7 +25,7 @@ a {
     @extend .fs-4;
 
     @each $tag in 'h1',
-    'h2',
+      'h2',
     'h3',
     'h4',
     'h5',
@@ -59,7 +59,7 @@ a {
       $size: 100%;
       backface-visibility: hidden;
 
-      border: solid 0.2rem white {
+      border: solid 0.2rem white{
         radius: 1rem;
       }
 
@@ -106,7 +106,7 @@ a {
   // Reduce button's size.
   @extend .me-2, .p-1;
   @extend .btn; // Required to override the font size below.
-  --bs-btn-font-size: .3rem;
+  --bs-btn-font-size: 0.3rem;
 
   // Hide default SVG close button.
   &>svg {
@@ -269,7 +269,7 @@ span.amp {
 
 
 footer {
-  background: url("/theme/img/creampaper.jpeg");
+  background: url('/theme/img/creampaper.jpeg');
   box-shadow: inset 0 2rem 2rem -2rem rgba(0, 0, 0, 0.5);
   text-shadow: 0 0.1rem 0.1rem white;
 }
