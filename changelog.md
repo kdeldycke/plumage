@@ -6,6 +6,7 @@
 > This version is not released yet and is under active development.
 
 - Switch from Poetry to `uv`.
+- Add missing static assets in Python packages.
 
 ## [4.0.0 (2024-05-17)](https://github.com/kdeldycke/plumage/compare/v3.1.0...v4.0.0)
 

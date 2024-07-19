@@ -55,6 +55,14 @@ dependencies = [
     "pyquery ~= 2.0.0",
 ]
 
+[tool.setuptools.package-data]
+# Add all content found within the plumage folder.
+plumage = ["**"]
+
+[tool.setuptools.exclude-package-data]
+# Exclude the locked JS dependencies file.
+plumage = ["package-lock.json"]
+
 [project.optional-dependencies]
 test = ["djlint ~= 1.34.1"]
 
