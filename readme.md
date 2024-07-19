@@ -92,7 +92,7 @@ THEME = plumage.get_path()
 On first run, Plumage will try to install [Node.js package dependencies](https://github.com/kdeldycke/plumage/blob/main/plumage/package.json) via the `npm` CLI:
 
 ```shell-session
-$ uv run pelican --verbose ./content
+$ uv run -- pelican --verbose ./content
 (…)
 WARNING: postcss CLI not found.
 -> Install Plumage's Node.js dependencies from (…)/plumage/package.json:
@@ -120,7 +120,7 @@ Plumage can be customized by adding these optional parameters to your
 | Setting name                                                                                  | Default value | Description                                                                                                                                                    |
 | :-------------------------------------------------------------------------------------------- | :------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `ARTICLE_EDIT_LINK`                                                                           |               | Generate an edit link besides each article. Can use `%(slug)s` to include dynamic article's slug in the link.                                                  |
-| `CODE_STYLE`                                                                                  | `"monokai"`   | Pygments' style ID. Choose one from `uv run pygmentize -L styles`.                                                                                         |
+| `CODE_STYLE`                                                                                  | `"monokai"`   | Pygments' style ID. Choose one from `uv run -- pygmentize -L styles`.                                                                                         |
 | `COPYRIGHT`                                                                                   |               | Additional copyright statement to add in the third column of the footer.                                                                                       |
 | `DISCLAIMER`                                                                                  |               | Override the disclaimer notice that gets displayed at the fourth column of the footer.                                                                         |
 | [`DISQUS_SITENAME`](http://docs.getpelican.com/en/stable/settings.html#DISQUS_SITENAME)       |               | Pelican can handle Disqus comments. Specify the Disqus sitename identifier here.                                                                               |
