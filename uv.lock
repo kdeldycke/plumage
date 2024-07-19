@@ -146,6 +146,12 @@ wheels = [
 ]
 
 [[distribution]]
+name = "closure"
+version = "20191111"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/56/17/03cf2f770316f55601135d19c1532417b0dac1dbcc6f1678cce79e2daced/closure-20191111.tar.gz", hash = "sha256:a133ac625c55697645b1c41745e167572633982128ee7f06e401fd76cb4e292f", size = 7488210 }
+
+[[distribution]]
 name = "colorama"
 version = "0.4.6"
 source = { registry = "https://pypi.org/simple" }
@@ -636,6 +642,7 @@ name = "plumage"
 version = "4.1.0"
 source = { editable = "." }
 dependencies = [
+    { name = "closure" },
     { name = "cssmin" },
     { name = "libsass" },
     { name = "pelican" },
