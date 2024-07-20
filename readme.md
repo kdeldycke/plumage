@@ -331,6 +331,61 @@ be installed.
 
 TODO: Activate search field automaticcaly if the plugin is present.
 
+## Development
+
+If you need to work both on the content of your website and the theme, you need to:
+
+- Get a local copy of the theme outside your website virtualenv:
+
+  ```shell-session
+  $ cd ..
+  $ git clone https://github.com/kdeldycke/plumage.git
+  $ cd ./my-pelican-website
+  ```
+
+- Change the `plumage` dependency in you website's `pyproject.toml` from:
+
+  ```toml
+  dependencies = [
+      ...
+      "plumage <anything>",
+      ...
+  ]
+  ```
+
+  To:
+
+  ```toml
+  dependencies = [
+      ...
+      "plumage",
+      ...
+  ]
+  ```
+
+- Also add this new section in the same `pyproject.toml`:
+
+  ```toml
+  [tool.uv.sources]
+  plumage = { path = "../plumage" }
+  ```
+
+- Always build the content by [forcing `uv` to pick up the latest version](https://github.com/astral-sh/uv/issues/2844#issuecomment-2241073879) of your local changes from `../plumage`:
+
+  ```shell-session
+  $ uv run --reinstall-package plumage -- pelican
+  warning: `uv run` is experimental and may change without warning.
+  ⠙ Resolving dependencies...
+  Resolved 77 packages in 39ms
+    Built plumage @ file:///Users/kde/plumage
+  Prepared 1 package in 651ms
+  Uninstalled 1 package in 6ms
+  Installed 1 package in 2ms
+  - plumage==4.1.0 (from file:///Users/kde/plumage)
+  + plumage==4.1.0 (from file:///Users/kde/plumage)
+  ⠦ Generating...
+  ```
+
 ## License
 
 This software is licensed under the [GNU General Public License v2 or later
