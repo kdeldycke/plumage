@@ -10,6 +10,7 @@
 - Remove inlining and minification of javascript assets.
 - Remove unmaintained `closure` dependency.
 - Remove auto-detection of the `closure` CLI jar file and auto-configuration for `webassets` plugin.
+- Remove hack fixing external images bug from `pelican-image-process` plugin.
 
 ## [4.0.0 (2024-05-17)](https://github.com/kdeldycke/plumage/compare/v3.1.0...v4.0.0)
 

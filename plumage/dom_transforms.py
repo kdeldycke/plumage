@@ -14,14 +14,10 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-from urllib.parse import urlparse
-
 from pyquery import PyQuery as pq
 
 
 def transform(path, context):
-    BASE_URL = urlparse(context.get("SITEURL", ""))
-
     # XXX This direct construct is stripping the "<!DOCTYPE>" heading. See:
     # https://github.com/gawel/pyquery/issues/199
     doc = pq(filename=path)
@@ -35,21 +31,6 @@ def transform(path, context):
     # links.
     main_images_selector = "#content img:not(.card-img-top):not(.link-icon)"
     doc(main_images_selector).add_class("img-fluid border rounded shadow")
-
-    # Process all images from the main content to create a reduced set with
-    # lower dimensions.
-    # XXX Hack to bypass the bug on external images from image-process
-    # plugin: https://github.com/pelican-plugins/image-process/issues/33
-
-    def exclude_external_images(_, this):
-        source = urlparse(this.get("src", ""))
-        if (source.scheme and BASE_URL.scheme) and (source.netloc != BASE_URL.netloc):
-            return False
-        return True
-
-    doc(main_images_selector).filter(exclude_external_images).add_class(
-        "image-process-article-photo",
-    )
 
     # Style blockquotes in the way Bootstrap does.
     doc("blockquote").add_class(
