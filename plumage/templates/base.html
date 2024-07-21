@@ -46,9 +46,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"
                 integrity="sha512-IsNh5E3eYy3tr/JiX2Yx4vsCujtkhwl7SLqgnwLNgf04Hrt9BT9SXlLlZlWx+OK4ndzAoALhsMNcCmkggjZB1w=="
                 crossorigin="anonymous"></script>
-        {% assets filters="closure_js", output="js/main.min.js", "js/jquery.mglass.js", "js/application.js" %}
-            <script src="{{ SITEURL }}/{{ ASSET_URL }}"></script>
-        {% endassets %}
+        <script src="{{ SITEURL }}/theme/js/jquery.mglass.js"></script>
+        <script src="{{ SITEURL }}/theme/js/application.js"></script>
         {% block extra_js %}
         {% endblock extra_js %}
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">

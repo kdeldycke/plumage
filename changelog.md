@@ -7,13 +7,16 @@
 
 - Switch from Poetry to `uv`.
 - Add missing static assets in Python packages.
+- Remove inlining and minification of javascript assets.
+- Remove unmaintained `closure` dependency.
+- Remove auto-detection of the `closure` CLI jar file and auto-configuration for `webassets` plugin.
 
 ## [4.0.0 (2024-05-17)](https://github.com/kdeldycke/plumage/compare/v3.1.0...v4.0.0)
 
 - Replace Font Awesome by Bootstrap Icons.
 - Add support for MyST Markdown. Add new dependency on `pelican-myst-reader`.
 - Remove support for `pymdownx` and dependency on `pymdown-extensions`.
-- Remove direct dependency on `Markdown`, `pygments`.
+- Remove direct dependency on `Markdown` and `pygments`.
 - Auto-detect location of `closure.jar` file for `webassets`.
 - Move `bump-my-version` configuration to `pyproject.toml`.
 - Remove `bump2version` from dev dependencies, and let the external workflows install it.

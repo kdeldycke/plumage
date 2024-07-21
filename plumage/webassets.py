@@ -14,9 +14,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-import importlib
 import os
-from pathlib import Path
 from shutil import which
 from textwrap import indent
 from typing import Any
@@ -44,9 +42,6 @@ See the `list of configuration parameters for each filter
 
 POSTCSS_CLI_NAME = "postcss"
 """Name of the PostCSS CLI binary."""
-
-CLOSURE_JAR_NAME = "closure.jar"
-"""Name of the Closure CLI jar file."""
 
 
 def postcss_config():
@@ -97,34 +92,10 @@ def postcss_config():
     }
 
 
-def closure_config():
-    """Locate the Closure CLI jar file provided by the ``closure`` package.
-
-    .. warning::
-
-        We need to locate the ``closure`` Python package without loading it, as it is
-        old and unmaintained and produce the following error on calling
-        ``import closure``:
-
-            .. code-block:: pytb
-                Traceback (most recent call last):
-                File "<string>", line 1, in <module>
-                File ".../python3.12/site-packages/closure/__init__.py", line 3, in <module>
-                    from pkg_resources import resource_filename
-                ModuleNotFoundError: No module named 'pkg_resources'
-    """
-    package = importlib.util.find_spec("closure")
-    closure_jar = (Path(package.origin).parent / CLOSURE_JAR_NAME).resolve()
-    logger.info(f"{CLOSURE_JAR_NAME} JAR file found at {closure_jar}")
-    return {
-        "CLOSURE_COMPRESSOR_PATH": str(closure_jar),
-    }
-
-
 def setup_webassets(conf: dict[str, Any]) -> dict[str, Any]:
     """Setup pelican-webassets plugin configuration."""
     # Merge static and dynamic configurations to produce webassets' defaults.
-    default_conf = CONFIG_DEFAULTS.copy() | postcss_config() | closure_config()
+    default_conf = CONFIG_DEFAULTS.copy() | postcss_config()
 
     # Update the default configuration with user-defined values.
     webassets_conf = default_conf | dict(conf.get("WEBASSETS_CONFIG", {}))

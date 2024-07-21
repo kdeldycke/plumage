@@ -43,7 +43,6 @@ classifiers = [
     'Typing :: Typed',
 ]
 dependencies = [
-    "closure == 20191111",          # XXX Unmaintained!
     "cssmin ~= 0.2.0",              # XXX Unmaintained!
     "libsass ~= 0.23.0",
     "pelican >= 4.8.0",
