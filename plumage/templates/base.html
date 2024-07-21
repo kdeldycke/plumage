@@ -34,13 +34,8 @@
         {% block extra_css %}
         {% endblock extra_css %}
         {% include "analytics.html" %}
-        <!-- TODO: move scripts to the bottom of the page, as per Bootstrap canonical example -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
                 integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-                crossorigin="anonymous"
-                referrerpolicy="no-referrer"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"
-                integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg=="
                 crossorigin="anonymous"
                 referrerpolicy="no-referrer"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"
@@ -315,6 +310,11 @@
                 </div>
             </div>
         </footer>
+        <!-- Scripts moved to the bottom of the page, as per Bootstrap and Stork canonical example -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"
+                integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg=="
+                crossorigin="anonymous"
+                referrerpolicy="no-referrer"></script>
         {% if STORK_SEARCH %}
             <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
             <script>
