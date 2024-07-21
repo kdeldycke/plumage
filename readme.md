@@ -306,6 +306,19 @@ TODO: document all kind customization below
 
 ### Custom `main.scss`
 
+## Performances
+
+The theme does not try to implements tricks and optimization beyond reasonable efforts.
+
+This was attempted in the past which limited success. That's because it is hard to find up-to-date and maintained projects in the Python ecosystem.
+
+Instead, I advise relying on external all-in-one optimization tools like [Jampack](https://jampack.divriots.com).
+
+After a build, just call it on the generated static content like so:
+```shell-session
+$ npx @divriots/jampack ./output
+```
+
 ## FAQ
 
 ### How can I disable the zoom on images?
