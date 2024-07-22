@@ -47,8 +47,7 @@ it is now generic enough to be used by anyone.
   ![Plumage image magnifying glass](https://raw.githubusercontent.com/kdeldycke/plumage/main/docs/assets/magnifying-glass.jpeg)
   ![Plumage image zoom](https://raw.githubusercontent.com/kdeldycke/plumage/main/docs/assets/zoom.jpeg)
 
-- External assets (Bootstrap, Jquery, etc...) uses [CDNjs
-  ](https://cdnjs.com/about).
+- External assets (Bootstrap, Jquery, …) uses [CDNjs](https://cdnjs.com/about).
 
 - Disqus integration:
 
@@ -320,22 +319,6 @@ $ npx @divriots/jampack ./output
 
 ## FAQ
 
-### How can I disable the zoom on images?
-
-All images of an article are zoomable by default. You can deactivate the
-magnifying glass per-image by adding a `noZoom` CSS class. So instead of the
-following Markdown code:
-
-```markdown
-![Image title](/folder/image.png)
-```
-
-You have to use the following template to deactivate the zoom of an image:
-
-```markdown
-![Image title](/folder/image.png){: .noZoom}
-```
-
 ### Why is the search not working?
 
 The [official Pelican's `search` plugin](https://github.com/pelican-plugins/search) needs to
@@ -403,7 +386,7 @@ If you need to work both on the content of your website and the theme, you need 
 This software is licensed under the [GNU General Public License v2 or later
 (GPLv2+)](https://github.com/kdeldycke/plumage/blob/main/LICENSE).
 
-Copyright (C) 2012-2020 [Kevin Deldycke](https://kevin.deldycke.com) and
+Copyright © 2012-2024 [Kevin Deldycke](https://kevin.deldycke.com) and
 [contributors](https://github.com/kdeldycke/plumage/graphs/contributors).
 
 ## Third-party assets
@@ -412,29 +395,22 @@ The theme embed copies of some external software, scripts, libraries and
 artworks:
 
 ```text
-jQuery MGlass v1.1
-Copyright (c) 2012 Younès El Biache
-Distributed under a MIT license
-Source: https://github.com/younes0/jQuery-MGlass
-```
-
-```text
 Fabric (Plaid)
-Copyright (c) 2012 James Basoo
+Copyright © 2012 James Basoo
 Distributed under a Creative Commons Attribution-ShareAlike 3.0 Unported license
 Source: https://subtlepatterns.com/fabric-plaid/
 ```
 
 ```text
 Cream paper
-Copyright (c) 2012 Devin Holmes
+Copyright © 2012 Devin Holmes
 Distributed under a Creative Commons Attribution-ShareAlike 3.0 Unported license
 Source: https://subtlepatterns.com/cream-paper/
 ```
 
 ```text
 Feather-alt icon v5.1.0
-Copyright (c) 2020 Font Awesome project
+Copyright © 2020 Font Awesome project
 Distributed under a Creative Commons Attribution 4.0 International license
 Source: https://fontawesome.com/icons/feather-alt?style=solid
 ```
