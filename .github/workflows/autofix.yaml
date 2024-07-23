@@ -14,8 +14,8 @@ jobs:
     with:
       gitignore-extra-categories: node
 
-  format-css:
-    name: Generate Pygment styles, format CSS files and create a PR
+  pygments-styles:
+    name: Generate Pygment styles
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4.1.7
@@ -35,9 +35,32 @@ jobs:
           do
             CSS_FILE="./plumage/static/css/pygments/$STYLE.css"
             uv --no-progress run -- pygmentize -f html -S "$STYLE" -a ".highlight" > "$CSS_FILE"
-            # Crappy split of side-by-side declarations to please styleint.
-            sed -i "s/; /; \n/g" "$CSS_FILE"
           done
+      - uses: peter-evans/create-pull-request@v6.1.0
+        with:
+          assignees: ${{ github.actor }}
+          commit-message: "[autofix] Update Pygments styles"
+          title: "[autofix] Update Pygments styles"
+          body: >
+            <details><summary><code>Workflow metadata</code></summary>
+
+
+            > [Auto-generated on run `#${{ github.run_id }}`](${{ github.event.repository.html_url }}/actions/runs/${{
+            github.run_id }}) by `${{ github.job }}` job from [`autofix.yaml`](${{ github.event.repository.html_url
+            }}/blob/${{ github.sha }}/.github/workflows/autofix.yaml) workflow.
+
+
+            </details>
+          labels: "🤖 ci"
+          branch: update-pygments-styles"
+          add-paths: |
+            plumage/static/css/pygments/*.css
+
+  format-css:
+    name: Generate format CSS files and create a PR
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4.1.7
       - name: Install npm
         run: |
           sudo apt --quiet --yes install npm
@@ -45,27 +68,15 @@ jobs:
         run: |
           npm install --save-dev stylelint stylelint-config-standard stylelint-config-sass-guidelines
       - name: Autofix CSS
-        # Allow that step to fail so we can proceed with creating the auto-fix
-        # PR below.
+        # Allow that step to fail so we can proceed with creating the auto-fix PR below.
         run: |
           npx stylelint --fix --config stylelint-config-standard "plumage/static/**/*.css" || true
           npx stylelint --fix --config stylelint-config-sass-guidelines "plumage/static/**/*.scss" || true
-      - name: Discard all local changes but CSS files
-        run: |
-          # Remove untracked directories and files.
-          git clean -fd
-          # Temporarily stash our target files.
-          git stash -- '*.css'
-          git stash -- '*.scss'
-          # Reset all repository.
-          git checkout --force
-          # Restore modified files. Do not fail if no file has been stashed.
-          git stash pop || true
       - uses: peter-evans/create-pull-request@v6.1.0
         with:
           assignees: ${{ github.actor }}
-          commit-message: "[autofix] Upgrade and format CSS style"
-          title: "[autofix] Upgrade and format CSS style"
+          commit-message: "[autofix] Format CSS style"
+          title: "[autofix] Format CSS style"
           body: >
             <details><summary><code>Workflow metadata</code></summary>
 
@@ -78,6 +89,10 @@ jobs:
             </details>
           labels: "🤖 ci"
           branch: autofix-css
+          # Only commit css and scss files at any depth of the plumage/static/ subtree.
+          add-paths: |
+            plumage/static/*.css
+            plumage/static/*.scss
 
   format-jinja:
     name: Format Jinja
