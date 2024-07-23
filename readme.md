@@ -47,7 +47,7 @@ it is now generic enough to be used by anyone.
   ![Plumage image magnifying glass](https://raw.githubusercontent.com/kdeldycke/plumage/main/docs/assets/magnifying-glass.jpeg)
   ![Plumage image zoom](https://raw.githubusercontent.com/kdeldycke/plumage/main/docs/assets/zoom.jpeg)
 
-- External assets (Bootstrap, Jquery, …) uses [CDNjs](https://cdnjs.com/about).
+- External assets (Bootstrap, …) relies on [CDNjs](https://cdnjs.com/about).
 
 - Disqus integration:
 
