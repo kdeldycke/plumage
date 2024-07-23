@@ -205,11 +205,11 @@ wheels = [
 
 [[distribution]]
 name = "docutils"
-version = "0.20.1"
+version = "0.21.2"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/1f/53/a5da4f2c5739cf66290fac1431ee52aff6851c7c8ffd8264f13affd7bcdd/docutils-0.20.1.tar.gz", hash = "sha256:f08a4e276c3a1583a86dce3e34aba3fe04d02bba2dd51ed16106244e8a923e3b", size = 2058365 }
+sdist = { url = "https://files.pythonhosted.org/packages/ae/ed/aefcc8cd0ba62a0560c3c18c33925362d46c6075480bfa4df87b28e169a9/docutils-0.21.2.tar.gz", hash = "sha256:3a6b18732edf182daa3cd12775bbb338cf5691468f91eeeb109deff6ebfa986f", size = 2204444 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/26/87/f238c0670b94533ac0353a4e2a1a771a0cc73277b88bff23d3ae35a256c1/docutils-0.20.1-py3-none-any.whl", hash = "sha256:96f387a2c5562db4476f09f13bbab2192e764cac08ebbf3a34a95d9b1e4a59d6", size = 572666 },
+    { url = "https://files.pythonhosted.org/packages/8f/d7/9322c609343d929e75e7e5e6255e614fcc67572cfd083959cdef3b7aad79/docutils-0.21.2-py3-none-any.whl", hash = "sha256:dafca5b9e384f0e419294eb4d2ff9fa826435bf15f15b7bd45723e8ad76811b2", size = 587408 },
 ]
 
 [[distribution]]
@@ -277,14 +277,14 @@ wheels = [
 
 [[distribution]]
 name = "importlib-metadata"
-version = "8.0.0"
+version = "8.1.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "zipp" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/20/ff/bd28f70283b9cca0cbf0c2a6082acbecd822d1962ae7b2a904861b9965f8/importlib_metadata-8.0.0.tar.gz", hash = "sha256:188bd24e4c346d3f0a933f275c2fec67050326a856b9a359881d7c2a697e8812", size = 52667 }
+sdist = { url = "https://files.pythonhosted.org/packages/d6/b2/c1d251caf629375d0dcced2c4fe6a7e2c38395c1f8438fd63e6cebfdb7ca/importlib_metadata-8.1.0.tar.gz", hash = "sha256:fcdcb1d5ead7bdf3dd32657bb94ebe9d2aabfe89a19782ddc32da5041d6ebfb4", size = 53881 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/dc/ef/38766b2edb096260d9b1b6ad35adaa0bce3b0567abb452b21eb074af88c4/importlib_metadata-8.0.0-py3-none-any.whl", hash = "sha256:15584cf2b1bf449d98ff8a6ff1abef57bf20f3ac6454f431736cd3e660921b2f", size = 24769 },
+    { url = "https://files.pythonhosted.org/packages/c7/f3/6bd738acf4e03b2cd8360521cf5edd398866acc1b4bc95fa9fced218e52b/importlib_metadata-8.1.0-py3-none-any.whl", hash = "sha256:3cd29f739ed65973840b068e3132135ce954c254d48b5b640484467ef7ab3c8c", size = 25913 },
 ]
 
 [[distribution]]
@@ -458,11 +458,11 @@ wheels = [
 
 [[distribution]]
 name = "markdown-word-count"
-version = "0.0.1"
+version = "0.1.0"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/52/4a/d1d215bc6fe7a07a8b47125b1de26a07c360d4b29932e50e1beb49785501/markdown-word-count-0.0.1.tar.gz", hash = "sha256:c360b90aade0d6c893f92dec1767427d6ddf51d4b553230a5d3b3a611d515e2d", size = 2750 }
+sdist = { url = "https://files.pythonhosted.org/packages/50/4d/a747bf3756fb0a7f24920e864b104d417e636daadd23ffbe032dcd2ce152/markdown_word_count-0.1.0.tar.gz", hash = "sha256:56095ce1b1934a988b8dbe7dd5d9bb3f3ffcf353afa3f46adc8c26ea56501d31", size = 4576 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/61/76/1de1a6ea98b645152f33b5fc40d285e08464db32516033b5acf4fab821ff/markdown_word_count-0.0.1-py3-none-any.whl", hash = "sha256:f716134f29cdde33b6f9c18d692690f7901ed9d911c1f3ccd6036bd5aacd17cf", size = 4134 },
+    { url = "https://files.pythonhosted.org/packages/c8/d3/ea8588b925d4de53b76ddd80739332daeb6b1eebe459e3e397739142ce08/markdown_word_count-0.1.0-py3-none-any.whl", hash = "sha256:d2cec5ee5ed04ea439651c732cfd8a610c8f676657749453819561639af83d94", size = 4397 },
 ]
 
 [[distribution]]
@@ -536,7 +536,7 @@ wheels = [
 
 [[distribution]]
 name = "myst-parser"
-version = "2.0.0"
+version = "3.0.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "docutils" },
@@ -546,9 +546,9 @@ dependencies = [
     { name = "pyyaml" },
     { name = "sphinx" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/e8/c1/48ea47b78ade0bb0281f34c9e343e3ea0c681fbc81464dbfd134e983954f/myst_parser-2.0.0.tar.gz", hash = "sha256:ea929a67a6a0b1683cdbe19b8d2e724cd7643f8aa3e7bb18dd65beac3483bead", size = 85800 }
+sdist = { url = "https://files.pythonhosted.org/packages/49/64/e2f13dac02f599980798c01156393b781aec983b52a6e4057ee58f07c43a/myst_parser-3.0.1.tar.gz", hash = "sha256:88f0cb406cb363b077d176b51c476f62d60604d68a8dcdf4832e080441301a87", size = 92392 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/1d/f6/6d61a023d758f488e36638076e8a4ec4447a2cdf86938cf6c60cf1c860e6/myst_parser-2.0.0-py3-none-any.whl", hash = "sha256:7c36344ae39c8e740dad7fdabf5aa6fc4897a813083c6cc9990044eb93656b14", size = 77158 },
+    { url = "https://files.pythonhosted.org/packages/e2/de/21aa8394f16add8f7427f0a1326ccd2b3a2a8a3245c9252bc5ac034c6155/myst_parser-3.0.1-py3-none-any.whl", hash = "sha256:6457aaa33a5d474aca678b8ead9b3dc298e89c68e67012e73146ea6fd54babf1", size = 83163 },
 ]
 
 [[distribution]]
@@ -603,7 +603,7 @@ wheels = [
 [[distribution]]
 name = "pelican-myst-reader"
 version = "1.3.0"
-source = { registry = "https://pypi.org/simple" }
+source = { git = "https://github.com/kdeldycke/myst-reader.git?rev=myst-parser-3#2bbce3bec8abd135b230259a4953401e37c1d587" }
 dependencies = [
     { name = "beautifulsoup4" },
     { name = "docutils" },
@@ -611,11 +611,8 @@ dependencies = [
     { name = "myst-parser" },
     { name = "pelican" },
     { name = "pyyaml" },
+    { name = "setuptools" },
     { name = "sphinxcontrib-bibtex" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/71/01/503463a7a4c396944b632005177b5dbdbbca0c109f22a229b062e479aebd/pelican_myst_reader-1.3.0.tar.gz", hash = "sha256:cd33b0c9469669b9a96ca0272966e5bfeb4d4c13310d08402863aaf0cc8ddcbe", size = 25465 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/98/32/b4e391aabc9e01432d9d01601b1fbdd82ee0bf51d823678f04f30ab784d3/pelican_myst_reader-1.3.0-py3-none-any.whl", hash = "sha256:03600015dea5e91a94edf5a6d93888f11508bcfc10ed9552a79714f74fa8bb16", size = 24034 },
 ]
 
 [[distribution]]
@@ -641,6 +638,7 @@ dependencies = [
     { name = "pelican" },
     { name = "pelican-myst-reader" },
     { name = "pelican-webassets" },
+    { name = "pygments" },
     { name = "pynpm" },
     { name = "pyquery" },
 ]
@@ -867,6 +865,15 @@ wheels = [
 ]
 
 [[distribution]]
+name = "setuptools"
+version = "71.1.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/32/c0/5b8013b5a812701c72e3b1e2b378edaa6514d06bee6704a5ab0d7fa52931/setuptools-71.1.0.tar.gz", hash = "sha256:032d42ee9fb536e33087fb66cac5f840eb9391ed05637b3f2a76a7c8fb477936", size = 2422233 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/51/a0/ee460cc54e68afcf33190d198299c9579a5eafeadef0016ae8563237ccb6/setuptools-71.1.0-py3-none-any.whl", hash = "sha256:33874fdc59b3188304b2e7c80d9029097ea31627180896fb549c578ceb8a0855", size = 2341722 },
+]
+
+[[distribution]]
 name = "six"
 version = "1.16.0"
 source = { registry = "https://pypi.org/simple" }
@@ -942,18 +949,14 @@ wheels = [
 
 [[distribution]]
 name = "sphinxcontrib-bibtex"
-version = "2.5.0"
-source = { registry = "https://pypi.org/simple" }
+version = "2.6.3a1"
+source = { git = "https://github.com/mcmtroffaes/sphinxcontrib-bibtex.git?rev=3dc7c2e#3dc7c2e81999c35c9e722deb28b2aeed62c2187f" }
 dependencies = [
     { name = "docutils" },
     { name = "importlib-metadata", marker = "python_version < '3.10'" },
     { name = "pybtex" },
     { name = "pybtex-docutils" },
     { name = "sphinx" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/eb/54/94fbcd5eb0532eaa91580d09795c4b6c562b72d5638c2ed5b5cc31d2b1f8/sphinxcontrib-bibtex-2.5.0.tar.gz", hash = "sha256:71b42e5db0e2e284f243875326bf9936aa9a763282277d75048826fef5b00eaa", size = 113310 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/b2/17/3be04de2ed752996654895558db01a30d64759b2c7120e7692402b8d4e19/sphinxcontrib_bibtex-2.5.0-py3-none-any.whl", hash = "sha256:748f726eaca6efff7731012103417ef130ecdcc09501b4d0c54283bf5f059f76", size = 39752 },
 ]
 
 [[distribution]]
