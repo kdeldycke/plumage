@@ -51,8 +51,8 @@ jobs:
 
 
             </details>
-          labels: "🤖 ci"
-          branch: update-pygments-styles"
+          labels: "📦 dependencies"
+          branch: update-pygments-styles
           add-paths: |
             plumage/static/css/pygments/*.css
 
