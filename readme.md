@@ -30,7 +30,7 @@ it is now generic enough to be used by anyone.
 
 - Based on [Bootstrap v5](https://getbootstrap.com).
 
-- [Code syntax highlighting](#code-syntax-highlighting) with [30+ styles](https://github.com/pygments/pygments/tree/master/pygments/styles).
+- [Code syntax highlighting](#code-syntax-highlighting) with [30+ styles](https://github.com/kdeldycke/plumage/tree/main/plumage/static/css/pygments).
 
 - Site-wide static search via [Stork](https://stork-search.net).
 
@@ -65,9 +65,7 @@ Plumage has built-in support for the following plugins and extensions:
 | [`pelican-search`](https://github.com/pelican-plugins/search)                                   | Pelican plugin     | Optional |                                                                                                               |
 | [`pelican-webassets`](https://github.com/pelican-plugins/webassets)                             | Pelican plugin     | Required |                                                                                                               |
 | [`markdown.extensions.admonition`](https://python-markdown.github.io/extensions/admonition/)    | Markdown extension | Optional | Re-style admonitions into [alerts](https://getbootstrap.com/docs/4.5/components/alerts/).                     |
-| [`markdown.extensions.codehilite`](https://python-markdown.github.io/extensions/code_hilite/)   | Markdown extension | Optional | Style highlighted code with Pygment style.                                                                    |
 | [`markdown.extensions.toc`](https://python-markdown.github.io/extensions/toc/#usage)            | Markdown extension | Optional | Adds permalink anchors to article's subtitles.                                                                |
-| [`pymdownx.highlight`](https://facelessuser.github.io/pymdown-extensions/extensions/highlight/) | Markdown extension | Optional | Style highlighted code with Pygment style.                                                                    |
 | [`typogrify`](https://pypi.python.org/pypi/typogrify)                                           | Pelican builtin    | Optional | Style ampersands.                                                                                             |
 
 ## Installation
@@ -170,129 +168,9 @@ The theme is also sensible to this list of [standard Pelican parameters
 
 ## Code Syntax Highlighting
 
-There is two alternatives, all relying on [Pygments syntax
-highlighter](https://pygments.org), sharing most features, with some
-differences:
+Syntax highlighting is produced by [Pygments](https://pygments.org).
 
-| Feature                        | [CodeHilite](https://python-markdown.github.io/extensions/code_hilite/) | [Highlight](https://facelessuser.github.io/pymdown-extensions/extensions/highlight/) |
-| :----------------------------- | :---------------------------------------------------------------------: | :----------------------------------------------------------------------------------: |
-| Clean copy and paste           |                                    ✅                                    |                                          ✅                                           |
-| Line numbering                 |                                    ✅                                    |                                          ✅                                           |
-| Right justified numbers        |                                    ✅                                    |                                          ✅                                           |
-| Line start offset              |                                    ✅                                    |                                          ✅                                           |
-| Multiple line highlight        |                                    ✅                                    |                                          ✅                                           |
-| Nth line highlight             |                                    ✅                                    |                                          ✅                                           |
-| Filename                       |                                    ✅                                    |                                          ❌                                           |
-| Long line wraps                |                                    ✅                                    |                                          ❌                                           |
-| Long line overflow (scrollbar) |                                    ❌                                    |                                          ✅                                           |
-| Sticky left gutter             |                                    ❌                                    |                                          ✅                                           |
-| Line anchors                   |    [WIP @ Pygments](https://github.com/pygments/pygments/pull/1591)     |                                          ❌                                           |
-
-### [Python Markdown CodeHilite](https://python-markdown.github.io/extensions/code_hilite/)
-
-Just add this configuration to `pelicanconf.py`, which allows us to pass
-extra options to [Pygments' HTML formatter](https://pygments.org/docs/formatters/#HtmlFormatter):
-
-```python
-MARKDOWN = {
-    "extension_configs": {
-        (…)
-        "markdown.extensions.codehilite": {
-            "css_class": "codehilite",  # Default
-            "linenums": True,
-            "linenos": "inline",
-            "linespans": "coderow",
-            "lineanchors": "L",
-            "anchorlinenos": True,
-            "wrapcode": True,
-        },
-        "markdown.extensions.fenced_code": {},
-        (…)
-    },
-}
-```
-
-This will render this:
-
-````markdown
-```{.shell-session hl_lines="8 11" linenostart="5" linenospecial="3" filename="~/code/foo.log"}
-$ cat ./example.markdown
-This is the content of the file:
-→ java
-→ rust
-→ haskell
-→ javascript
-
-$ cat ./addendum.txt
-This is extra content.
-
-$ find ./ -iname "*.markdown" -print -exec bash -c 'cat ./addendum.txt >> "{}"' \;
-./example.markdown
-$ cat ./example.markdown
-This is the content of the file:
-→ java
-→ rust
-→ haskell
-→ javascript
-
-This is extra content.
-
-```
-````
-
-Into this:
-
-![Plumage Python Markdown CodeHilite rendering](https://raw.githubusercontent.com/kdeldycke/plumage/main/docs/assets/codehilite-rendering.jpeg)
-
-### [PyMdown Extensions' Highlight](https://facelessuser.github.io/pymdown-extensions/extensions/highlight/)
-
-Just add this configuration to your `pelicanconf.py`:
-
-```python
-MARKDOWN = {
-    "extension_configs": {
-        (…)
-        "pymdownx.highlight": {
-            "linenums": True,
-            "linenums_style": "pymdownx-inline",
-        },
-        "pymdownx.superfences": {},
-        (…)
-    },
-}
-```
-
-This will render this:
-
-````markdown
-```{.shell-session hl_lines="8 11" linenums="5 1 3" filename="~/code/foo.log"}
-$ cat ./example.markdown
-This is the content of the file:
-→ java
-→ rust
-→ haskell
-→ javascript
-
-$ cat ./addendum.txt
-This is extra content.
-
-$ find ./ -iname "*.markdown" -print -exec bash -c 'cat ./addendum.txt >> "{}"' \;
-./example.markdown
-$ cat ./example.markdown
-This is the content of the file:
-→ java
-→ rust
-→ haskell
-→ javascript
-
-This is extra content.
-
-```
-````
-
-Into this:
-
-![Plumage PyMdown Extensions' Highlight rendering](https://raw.githubusercontent.com/kdeldycke/plumage/main/docs/assets/highlight-rendering.jpeg)
+See [MyST Markdown code syntax](https://mystmd.org/guide/code) for more details.
 
 ## CSS customization
 

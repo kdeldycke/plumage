@@ -3,7 +3,6 @@ $back_color: #272822;
 /* Code block inner padding */
 $pad: 0.5rem;
 
-.codehilite,
 .highlight {
   .filename {
     display: block;
@@ -18,6 +17,7 @@ $pad: 0.5rem;
     padding-top: $pad;
 
     code {
+
       /* Highlight whole lines */
       span.hll {
         display: block;
@@ -29,28 +29,6 @@ $pad: 0.5rem;
     word-wrap: normal;
   }
 
-}
-
-.codehilite {
-  pre {
-    overflow: inherit;
-    table-layout: fixed;
-    white-space: pre-wrap;
-    width: 100%;
-
-    code {
-      word-break: break-word;
-    }
-
-    span[id^='coderow-'] {
-      display: table-row;
-    }
-  }
-
-  span.hll {
-    margin-left: (-$pad);
-    padding-left: $pad;
-  }
 }
 
 /* Reset Pygments default padding */
@@ -76,14 +54,6 @@ span.linenos {
   &.special {
     @extend %reset-pygment-padding;
     background-clip: padding-box;
-  }
-
-  .codehilite & {
-    /* Simulates right margin, which has no effect on table cells */
-    border-right: $pad solid transparent;
-    /* Prevents the long lines to wrap below the line number gitter on the left */
-    display: table-cell;
-    padding: 0 $pad;
   }
 
   .highlight & {

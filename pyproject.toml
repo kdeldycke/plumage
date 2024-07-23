@@ -50,6 +50,7 @@ dependencies = [
     # "pelican-myst-reader @ git+https://github.com/ashwinvis/myst-reader.git@main",
     # "pelican-myst-reader @ ../myst-reader/",  # XXX Dev!
     "pelican-webassets ~= 2.0.0",
+    "pygments ~= 2.18.0",
     "pynpm ~= 0.2.0",
     "pyquery ~= 2.0.0",
 ]

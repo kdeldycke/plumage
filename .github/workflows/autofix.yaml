@@ -31,10 +31,10 @@ jobs:
           uv --no-progress pip install .
       - name: Generate Pygments styles
         run: |
-          for STYLE in $( uv --no-progress run -- pygmentize -L styles | grep -E '^\* .*\:$' | cut -d ' ' -f 2 | cut -d ':' -f 1 );
+          for STYLE in $( uv --no-progress run -- pygmentize -L styles --json | jq -r '.["styles"] | keys[]' );
           do
             CSS_FILE="./plumage/static/css/pygments/$STYLE.css"
-            uv --no-progress run -- pygmentize -f html -S "$STYLE" -a ".pygments-style-$STYLE" > "$CSS_FILE"
+            uv --no-progress run -- pygmentize -f html -S "$STYLE" -a ".highlight" > "$CSS_FILE"
             # Crappy split of side-by-side declarations to please styleint.
             sed -i "s/; /; \n/g" "$CSS_FILE"
           done

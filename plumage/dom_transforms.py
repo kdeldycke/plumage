@@ -39,9 +39,7 @@ def transform(path, context):
     doc("blockquote p").add_class("p-2")
 
     # Style code boxes.
-    doc(".codehilite, .highlight").add_class(
-        f"pygments-style-{context.get('CODE_STYLE')} rounded shadow-sm mb-3",
-    )
+    doc(".highlight").add_class("rounded shadow-sm mb-3")
 
     # Style admonitions produced by Python Markdown into alerts.
     doc(".admonition").add_class("alert shadow").attr("role", "alert")
