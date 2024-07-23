@@ -236,27 +236,11 @@ If you need to work both on the content of your website and the theme, you need 
   ]
   ```
 
-- Also add this new section in the same `pyproject.toml`:
+- Also add this new section in the same `pyproject.toml`, to [force `uv` to pick up the latest local copy](https://github.com/astral-sh/uv/issues/2844#issuecomment-2241196371):
 
   ```toml
   [tool.uv.sources]
-  plumage = { path = "../plumage" }
-  ```
-
-- Always build the content by [forcing `uv` to pick up the latest version](https://github.com/astral-sh/uv/issues/2844#issuecomment-2241073879) of your local changes from `../plumage`:
-
-  ```shell-session
-  $ uv run --reinstall-package plumage -- pelican
-  warning: `uv run` is experimental and may change without warning.
-  ⠙ Resolving dependencies...
-  Resolved 77 packages in 39ms
-    Built plumage @ file:///Users/kde/plumage
-  Prepared 1 package in 651ms
-  Uninstalled 1 package in 6ms
-  Installed 1 package in 2ms
-  - plumage==4.1.0 (from file:///Users/kde/plumage)
-  + plumage==4.1.0 (from file:///Users/kde/plumage)
-  ⠦ Generating...
+  plumage = { path = "../plumage", editable = true }
   ```
 
 ## License
