@@ -57,7 +57,7 @@ jobs:
             plumage/static/css/pygments/*.css
 
   format-css:
-    name: Generate format CSS files and create a PR
+    name: Format CSS files and create a PR
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4.1.7
