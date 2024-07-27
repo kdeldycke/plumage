@@ -277,14 +277,14 @@ wheels = [
 
 [[distribution]]
 name = "importlib-metadata"
-version = "8.1.0"
+version = "8.2.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "zipp" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/d6/b2/c1d251caf629375d0dcced2c4fe6a7e2c38395c1f8438fd63e6cebfdb7ca/importlib_metadata-8.1.0.tar.gz", hash = "sha256:fcdcb1d5ead7bdf3dd32657bb94ebe9d2aabfe89a19782ddc32da5041d6ebfb4", size = 53881 }
+sdist = { url = "https://files.pythonhosted.org/packages/f6/a1/db39a513aa99ab3442010a994eef1cb977a436aded53042e69bee6959f74/importlib_metadata-8.2.0.tar.gz", hash = "sha256:72e8d4399996132204f9a16dcc751af254a48f8d1b20b9ff0f98d4a8f901e73d", size = 53907 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/c7/f3/6bd738acf4e03b2cd8360521cf5edd398866acc1b4bc95fa9fced218e52b/importlib_metadata-8.1.0-py3-none-any.whl", hash = "sha256:3cd29f739ed65973840b068e3132135ce954c254d48b5b640484467ef7ab3c8c", size = 25913 },
+    { url = "https://files.pythonhosted.org/packages/82/47/bb25ec04985d0693da478797c3d8c1092b140f3a53ccb984fbbd38affa5b/importlib_metadata-8.2.0-py3-none-any.whl", hash = "sha256:11901fa0c2f97919b288679932bb64febaeacf289d18ac84dd68cb2e74213369", size = 25920 },
 ]
 
 [[distribution]]
@@ -603,15 +603,15 @@ wheels = [
 [[distribution]]
 name = "pelican-myst-reader"
 version = "1.3.0"
-source = { git = "https://github.com/kdeldycke/myst-reader.git?rev=myst-parser-3#2bbce3bec8abd135b230259a4953401e37c1d587" }
+source = { git = "https://github.com/kdeldycke/myst-reader.git?rev=myst-parser-3#3c27a06a30bf0d6cd9720f1070de396bc62e9cf5" }
 dependencies = [
     { name = "beautifulsoup4" },
     { name = "docutils" },
     { name = "markdown-word-count" },
     { name = "myst-parser" },
     { name = "pelican" },
+    { name = "pybtex" },
     { name = "pyyaml" },
-    { name = "setuptools" },
     { name = "sphinxcontrib-bibtex" },
 ]
 
@@ -651,15 +651,11 @@ test = [
 [[distribution]]
 name = "pybtex"
 version = "0.24.0"
-source = { registry = "https://pypi.org/simple" }
+source = { git = "https://bitbucket.org/pybtex-devs/pybtex.git?rev=7066984c8776e3115ae8c78c22c695a184233ef5#7066984c8776e3115ae8c78c22c695a184233ef5" }
 dependencies = [
+    { name = "importlib-metadata", marker = "python_version < '3.10'" },
     { name = "latexcodec" },
     { name = "pyyaml" },
-    { name = "six" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/46/9b/fd39836a6397fb363446d83075a7b9c2cc562f4c449292e039ed36084376/pybtex-0.24.0.tar.gz", hash = "sha256:818eae35b61733e5c007c3fcd2cfb75ed1bc8b4173c1f70b56cc4c0802d34755", size = 402879 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/ad/5f/40d8e90f985a05133a8895fc454c6127ecec3de8b095dd35bba91382f803/pybtex-0.24.0-py2.py3-none-any.whl", hash = "sha256:e1e0c8c69998452fea90e9179aa2a98ab103f3eed894405b7264e517cc2fcc0f", size = 561354 },
 ]
 
 [[distribution]]
@@ -862,15 +858,6 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/b3/01/c954e134dc440ab5f96952fe52b4fdc64225530320a910473c1fe270d9aa/rich-13.7.1.tar.gz", hash = "sha256:9be308cb1fe2f1f57d67ce99e95af38a1e2bc71ad9813b0e247cf7ffbcc3a432", size = 221248 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/87/67/a37f6214d0e9fe57f6ae54b2956d550ca8365857f42a1ce0392bb21d9410/rich-13.7.1-py3-none-any.whl", hash = "sha256:4edbae314f59eb482f54e9e30bf00d33350aaa94f4bfcd4e9e3110e64d0d7222", size = 240681 },
-]
-
-[[distribution]]
-name = "setuptools"
-version = "71.1.0"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/32/c0/5b8013b5a812701c72e3b1e2b378edaa6514d06bee6704a5ab0d7fa52931/setuptools-71.1.0.tar.gz", hash = "sha256:032d42ee9fb536e33087fb66cac5f840eb9391ed05637b3f2a76a7c8fb477936", size = 2422233 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/51/a0/ee460cc54e68afcf33190d198299c9579a5eafeadef0016ae8563237ccb6/setuptools-71.1.0-py3-none-any.whl", hash = "sha256:33874fdc59b3188304b2e7c80d9029097ea31627180896fb549c578ceb8a0855", size = 2341722 },
 ]
 
 [[distribution]]
