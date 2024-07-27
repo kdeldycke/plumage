@@ -1,9 +1,11 @@
 # Changelog
 
-## [5.0.0 (unreleased)](https://github.com/kdeldycke/plumage/compare/v4.0.0...main)
+## [5.0.1 (unreleased)](https://github.com/kdeldycke/plumage/compare/v5.0.0...main)
 
 > \[!IMPORTANT\]
 > This version is not released yet and is under active development.
+
+## [5.0.0 (2024-07-27)](https://github.com/kdeldycke/plumage/compare/v4.0.0...v5.0.0)
 
 - Switch from Poetry to `uv`.
 - Add missing static assets in Python packages.
