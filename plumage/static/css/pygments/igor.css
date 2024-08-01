@@ -1,24 +1,24 @@
 pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
-td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
-span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
-.highlight .hll { background-color: #ffffcc }
-.highlight { background: #ffffff; }
-.highlight .c { color: #FF0000; font-style: italic } /* Comment */
-.highlight .k { color: #0000FF } /* Keyword */
-.highlight .ch { color: #FF0000; font-style: italic } /* Comment.Hashbang */
-.highlight .cm { color: #FF0000; font-style: italic } /* Comment.Multiline */
-.highlight .cp { color: #FF0000; font-style: italic } /* Comment.Preproc */
-.highlight .cpf { color: #FF0000; font-style: italic } /* Comment.PreprocFile */
-.highlight .c1 { color: #FF0000; font-style: italic } /* Comment.Single */
-.highlight .cs { color: #FF0000; font-style: italic } /* Comment.Special */
-.highlight .kc { color: #0000FF } /* Keyword.Constant */
-.highlight .kd { color: #0000FF } /* Keyword.Declaration */
-.highlight .kn { color: #0000FF } /* Keyword.Namespace */
-.highlight .kp { color: #0000FF } /* Keyword.Pseudo */
-.highlight .kr { color: #0000FF } /* Keyword.Reserved */
-.highlight .kt { color: #0000FF } /* Keyword.Type */
+td.linenos .special { color: #000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #ffc }
+.highlight { background: #fff; }
+.highlight .c { color: #F00; font-style: italic } /* Comment */
+.highlight .k { color: #00F } /* Keyword */
+.highlight .ch { color: #F00; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #F00; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #F00; font-style: italic } /* Comment.Preproc */
+.highlight .cpf { color: #F00; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #F00; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #F00; font-style: italic } /* Comment.Special */
+.highlight .kc { color: #00F } /* Keyword.Constant */
+.highlight .kd { color: #00F } /* Keyword.Declaration */
+.highlight .kn { color: #00F } /* Keyword.Namespace */
+.highlight .kp { color: #00F } /* Keyword.Pseudo */
+.highlight .kr { color: #00F } /* Keyword.Reserved */
+.highlight .kt { color: #00F } /* Keyword.Type */
 .highlight .s { color: #009C00 } /* Literal.String */
 .highlight .nc { color: #007575 } /* Name.Class */
 .highlight .nd { color: #CC00A3 } /* Name.Decorator */
