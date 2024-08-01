@@ -1,19 +1,19 @@
 pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
-td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
-span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
-.highlight .hll { background-color: #ffffcc }
-.highlight { background: #ffffff; color: #111111 }
-.highlight .c { color: #008800; font-style: italic } /* Comment */
+td.linenos .special { color: #000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #ffc }
+.highlight { background: #fff; color: #111 }
+.highlight .c { color: #080; font-style: italic } /* Comment */
 .highlight .err { color: #a61717; background-color: #e3d2d2 } /* Error */
 .highlight .k { color: #353580; font-weight: bold } /* Keyword */
-.highlight .ch { color: #008800; font-style: italic } /* Comment.Hashbang */
-.highlight .cm { color: #008800; font-style: italic } /* Comment.Multiline */
-.highlight .cp { color: #008800; font-style: italic } /* Comment.Preproc */
-.highlight .cpf { color: #008800; font-style: italic } /* Comment.PreprocFile */
-.highlight .c1 { color: #008800; font-style: italic } /* Comment.Single */
-.highlight .cs { color: #008800; font-style: italic } /* Comment.Special */
+.highlight .ch { color: #080; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #080; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #080; font-style: italic } /* Comment.Preproc */
+.highlight .cpf { color: #080; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #080; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #080; font-style: italic } /* Comment.Special */
 .highlight .kc { color: #353580; font-weight: bold } /* Keyword.Constant */
 .highlight .kd { color: #353580; font-weight: bold } /* Keyword.Declaration */
 .highlight .kn { color: #353580; font-weight: bold } /* Keyword.Namespace */
@@ -25,7 +25,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .nf { color: #2c2cff } /* Name.Function */
 .highlight .nx { color: #be646c } /* Name.Other */
 .highlight .nv { color: #35baba; font-weight: bold } /* Name.Variable */
-.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .w { color: #bbb } /* Text.Whitespace */
 .highlight .mb { color: #2c2cff } /* Literal.Number.Bin */
 .highlight .mf { color: #2c2cff } /* Literal.Number.Float */
 .highlight .mh { color: #2c2cff } /* Literal.Number.Hex */

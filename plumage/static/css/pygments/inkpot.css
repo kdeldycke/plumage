@@ -1,15 +1,15 @@
 pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
-td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
-span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
-.highlight .hll { background-color: #ffffcc }
+td.linenos .special { color: #000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #ffc }
 .highlight { background: #1e1e27; color: #cfbfad }
 .highlight .c { color: #cd8b00 } /* Comment */
-.highlight .err { color: #ffffff; background-color: #6e2e2e } /* Error */
+.highlight .err { color: #fff; background-color: #6e2e2e } /* Error */
 .highlight .k { color: #808bed } /* Keyword */
 .highlight .n { color: #cfbfad } /* Name */
-.highlight .o { color: #666666 } /* Operator */
+.highlight .o { color: #666 } /* Operator */
 .highlight .x { color: #cfbfad } /* Other */
 .highlight .p { color: #cfbfad } /* Punctuation */
 .highlight .ch { color: #cd8b00 } /* Comment.Hashbang */
@@ -21,14 +21,14 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .gd { color: #A00000 } /* Generic.Deleted */
 .highlight .ge { font-style: italic } /* Generic.Emph */
 .highlight .ges { font-weight: bold; font-style: italic } /* Generic.EmphStrong */
-.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gr { color: #F00 } /* Generic.Error */
 .highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
 .highlight .gi { color: #00A000 } /* Generic.Inserted */
-.highlight .go { color: #888888 } /* Generic.Output */
+.highlight .go { color: #888 } /* Generic.Output */
 .highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
 .highlight .gs { font-weight: bold } /* Generic.Strong */
 .highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
-.highlight .gt { color: #0044DD } /* Generic.Traceback */
+.highlight .gt { color: #04D } /* Generic.Traceback */
 .highlight .kc { color: #808bed } /* Keyword.Constant */
 .highlight .kd { color: #808bed } /* Keyword.Declaration */
 .highlight .kn { color: #808bed } /* Keyword.Namespace */
@@ -43,15 +43,15 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .no { color: #409090 } /* Name.Constant */
 .highlight .nd { color: #409090 } /* Name.Decorator */
 .highlight .ni { color: #cfbfad } /* Name.Entity */
-.highlight .ne { color: #ff0000 } /* Name.Exception */
+.highlight .ne { color: #f00 } /* Name.Exception */
 .highlight .nf { color: #c080d0 } /* Name.Function */
 .highlight .nl { color: #808bed } /* Name.Label */
-.highlight .nn { color: #ff0000 } /* Name.Namespace */
+.highlight .nn { color: #f00 } /* Name.Namespace */
 .highlight .nx { color: #cfbfad } /* Name.Other */
 .highlight .py { color: #cfbfad } /* Name.Property */
 .highlight .nt { color: #cfbfad } /* Name.Tag */
 .highlight .nv { color: #cfbfad } /* Name.Variable */
-.highlight .ow { color: #666666 } /* Operator.Word */
+.highlight .ow { color: #666 } /* Operator.Word */
 .highlight .pm { color: #cfbfad } /* Punctuation.Marker */
 .highlight .w { color: #434357 } /* Text.Whitespace */
 .highlight .mb { color: #f0ad6d } /* Literal.Number.Bin */
@@ -72,7 +72,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .sr { color: #ffcd8b; background-color: #404040 } /* Literal.String.Regex */
 .highlight .s1 { color: #ffcd8b; background-color: #404040 } /* Literal.String.Single */
 .highlight .ss { color: #ffcd8b; background-color: #404040 } /* Literal.String.Symbol */
-.highlight .bp { color: #ffff00 } /* Name.Builtin.Pseudo */
+.highlight .bp { color: #ff0 } /* Name.Builtin.Pseudo */
 .highlight .fm { color: #c080d0 } /* Name.Function.Magic */
 .highlight .vc { color: #cfbfad } /* Name.Variable.Class */
 .highlight .vg { color: #cfbfad } /* Name.Variable.Global */
