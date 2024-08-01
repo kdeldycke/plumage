@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% set has_right = True %}
-{% block title %}{{ article.title|striptags|e }}{% endblock title %}
+{% block title %}
+    {{ article.title|striptags|e }}
+{% endblock title %}
 {% block head %}
     {% if article.tags %}
         <meta name="keywords"
