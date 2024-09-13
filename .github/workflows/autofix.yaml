@@ -36,7 +36,7 @@ jobs:
             CSS_FILE="./plumage/static/css/pygments/$STYLE.css"
             uv --no-progress run -- pygmentize -f html -S "$STYLE" -a ".highlight" > "$CSS_FILE"
           done
-      - uses: peter-evans/create-pull-request@v6.1.0
+      - uses: peter-evans/create-pull-request@v7.0.2
         with:
           assignees: ${{ github.actor }}
           commit-message: "[autofix] Update Pygments styles"
@@ -72,7 +72,7 @@ jobs:
         run: |
           npx stylelint --fix --config stylelint-config-standard "plumage/static/**/*.css" || true
           npx stylelint --fix --config stylelint-config-sass-guidelines "plumage/static/**/*.scss" || true
-      - uses: peter-evans/create-pull-request@v6.1.0
+      - uses: peter-evans/create-pull-request@v7.0.2
         with:
           assignees: ${{ github.actor }}
           commit-message: "[autofix] Format CSS style"
@@ -118,7 +118,7 @@ jobs:
           --format-js
           --warn
           plumage/templates/*.html
-      - uses: peter-evans/create-pull-request@v6.1.0
+      - uses: peter-evans/create-pull-request@v7.0.2
         with:
           assignees: ${{ github.actor }}
           commit-message: "[autofix] Format Jinja"
