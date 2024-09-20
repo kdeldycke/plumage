@@ -57,16 +57,16 @@ it is now generic enough to be used by anyone.
 
 Plumage has built-in support for the following plugins and extensions:
 
-| Plugin name                                                                                     | Type               | Status   | Notes                                                                                                         |
-| :---------------------------------------------------------------------------------------------- | :----------------- | :------- | :------------------------------------------------------------------------------------------------------------ |
-| [`pelican-neighbors`](https://github.com/pelican-plugins/neighbors)                             | Pelican plugin     | Optional |                                                                                                               |
-| [`pelican-related-posts`](https://github.com/pelican-plugins/related-posts)                     | Pelican plugin     | Optional |                                                                                                               |
-| [`pelican-similar-posts`](https://github.com/pelican-plugins/similar-posts)                     | Pelican plugin     | Optional |                                                                                                               |
-| [`pelican-search`](https://github.com/pelican-plugins/search)                                   | Pelican plugin     | Optional |                                                                                                               |
-| [`pelican-webassets`](https://github.com/pelican-plugins/webassets)                             | Pelican plugin     | Required |                                                                                                               |
-| [`markdown.extensions.admonition`](https://python-markdown.github.io/extensions/admonition/)    | Markdown extension | Optional | Re-style admonitions into [alerts](https://getbootstrap.com/docs/4.5/components/alerts/).                     |
-| [`markdown.extensions.toc`](https://python-markdown.github.io/extensions/toc/#usage)            | Markdown extension | Optional | Adds permalink anchors to article's subtitles.                                                                |
-| [`typogrify`](https://pypi.python.org/pypi/typogrify)                                           | Pelican builtin    | Optional | Style ampersands.                                                                                             |
+| Plugin name                                                                                  | Type               | Status   | Notes                                                                                     |
+| :------------------------------------------------------------------------------------------- | :----------------- | :------- | :---------------------------------------------------------------------------------------- |
+| [`pelican-neighbors`](https://github.com/pelican-plugins/neighbors)                          | Pelican plugin     | Optional |                                                                                           |
+| [`pelican-related-posts`](https://github.com/pelican-plugins/related-posts)                  | Pelican plugin     | Optional |                                                                                           |
+| [`pelican-similar-posts`](https://github.com/pelican-plugins/similar-posts)                  | Pelican plugin     | Optional |                                                                                           |
+| [`pelican-search`](https://github.com/pelican-plugins/search)                                | Pelican plugin     | Optional |                                                                                           |
+| [`pelican-webassets`](https://github.com/pelican-plugins/webassets)                          | Pelican plugin     | Required |                                                                                           |
+| [`markdown.extensions.admonition`](https://python-markdown.github.io/extensions/admonition/) | Markdown extension | Optional | Re-style admonitions into [alerts](https://getbootstrap.com/docs/4.5/components/alerts/). |
+| [`markdown.extensions.toc`](https://python-markdown.github.io/extensions/toc/#usage)         | Markdown extension | Optional | Adds permalink anchors to article's subtitles.                                            |
+| [`typogrify`](https://pypi.python.org/pypi/typogrify)                                        | Pelican builtin    | Optional | Style ampersands.                                                                         |
 
 ## Installation
 
@@ -116,7 +116,7 @@ Plumage can be customized by adding these optional parameters to your
 | Setting name                                                                                  | Default value | Description                                                                                                                                                    |
 | :-------------------------------------------------------------------------------------------- | :------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `ARTICLE_EDIT_LINK`                                                                           |               | Generate an edit link besides each article. Can use `%(slug)s` to include dynamic article's slug in the link.                                                  |
-| `CODE_STYLE`                                                                                  | `"monokai"`   | Pygments' style ID. Choose one from `uv run -- pygmentize -L styles`.                                                                                         |
+| `CODE_STYLE`                                                                                  | `"monokai"`   | Pygments' style ID. Choose one from `uv run -- pygmentize -L styles`.                                                                                          |
 | `COPYRIGHT`                                                                                   |               | Additional copyright statement to add in the third column of the footer.                                                                                       |
 | `DISCLAIMER`                                                                                  |               | Override the disclaimer notice that gets displayed at the fourth column of the footer.                                                                         |
 | [`DISQUS_SITENAME`](http://docs.getpelican.com/en/stable/settings.html#DISQUS_SITENAME)       |               | Pelican can handle Disqus comments. Specify the Disqus sitename identifier here.                                                                               |
@@ -191,6 +191,7 @@ This was attempted in the past which limited success. That's because it is hard 
 Instead, I advise relying on external all-in-one optimization tools like [Jampack](https://jampack.divriots.com).
 
 After a build, just call it on the generated static content like so:
+
 ```shell-session
 $ npx @divriots/jampack ./output
 ```
@@ -239,8 +240,9 @@ If you need to work both on the content of your website and the theme, you need 
 - Also add this new section in the same `pyproject.toml`, to [force `uv` to pick up the latest local copy](https://github.com/astral-sh/uv/issues/2844#issuecomment-2241196371):
 
   ```toml
-  [tool.uv.sources]
-  plumage = { path = "../plumage", editable = true }
+  [tool.uv.sources.plumage]
+  path = "../plumage"
+  editable = true
   ```
 
 ## License
