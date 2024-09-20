@@ -69,7 +69,7 @@ djlint = ["djlint ~= 1.35.2"]
 "Repository" = 'https://github.com/kdeldycke/plumage'
 "Funding" = "https://github.com/sponsors/kdeldycke"
 "Issues" = "https://github.com/kdeldycke/plumage/issues"
-"Changelog" = "https://github.com/kdeldycke/plumage/blob/main/changelog.md#changelog"
+"Changelog" = "https://github.com/kdeldycke/plumage/blob/main/changelog.md"
 
 [tool.mypy]
 warn_unused_configs = true
