@@ -3,7 +3,7 @@
 name = "plumage"
 version = "5.0.0"
 # Python versions and their status: https://devguide.python.org/versions/
-requires-python = ">= 3.9"
+requires-python = ">= 3.10"
 description = "Clean and tidy theme for Pelican"
 authors = [{ name = "Kevin Deldycke", email = "kevin@deldycke.com" }]
 readme = "readme.md"
@@ -31,7 +31,6 @@ classifiers = [
     'Programming Language :: JavaScript',
     'Programming Language :: Other',
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
@@ -46,8 +45,7 @@ dependencies = [
     "cssmin ~= 0.2.0",              # XXX Unmaintained!
     "libsass ~= 0.23.0",
     "pelican >= 4.8.0",
-    "pelican-myst-reader @ git+https://github.com/kdeldycke/myst-reader.git@myst-parser-3",
-    # "pelican-myst-reader ~= 1.4.0",
+    "pelican-myst-reader ~= 1.4.0",
     "pelican-webassets ~= 2.0.0",
     "pygments ~= 2.18.0",
     "pynpm ~= 0.2.0",
