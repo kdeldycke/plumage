@@ -588,14 +588,14 @@ dependencies = [
 ]
 
 [package.optional-dependencies]
-test = [
+djlint = [
     { name = "djlint" },
 ]
 
 [package.metadata]
 requires-dist = [
     { name = "cssmin", specifier = "~=0.2.0" },
-    { name = "djlint", marker = "extra == 'test'", specifier = "~=1.34.1" },
+    { name = "djlint", marker = "extra == 'djlint'", specifier = "~=1.34.1" },
     { name = "libsass", specifier = "~=0.23.0" },
     { name = "pelican", specifier = ">=4.8.0" },
     { name = "pelican-myst-reader", specifier = "~=1.4.0" },
