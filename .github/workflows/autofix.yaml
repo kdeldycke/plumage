@@ -16,7 +16,7 @@ jobs:
 
   pygments-styles:
     name: Generate Pygment styles
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4.1.7
       - uses: actions/setup-python@v5.2.0
@@ -58,7 +58,7 @@ jobs:
 
   format-css:
     name: Format CSS files and create a PR
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4.1.7
       - name: Install npm
@@ -96,7 +96,7 @@ jobs:
 
   format-jinja:
     name: Format Jinja
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4.1.7
       - uses: actions/setup-python@v5.2.0
