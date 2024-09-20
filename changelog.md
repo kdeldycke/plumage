@@ -1,6 +1,6 @@
 # Changelog
 
-## [5.0.0 (unreleased)](https://github.com/kdeldycke/plumage/compare/v4.0.0...main)
+## [5.0.0 (2024-09-20)](https://github.com/kdeldycke/plumage/compare/v4.0.0...v5.0.0)
 
 > \[!IMPORTANT\]
 > This version is not released yet and is under active development.
