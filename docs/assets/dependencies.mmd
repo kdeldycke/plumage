@@ -1,60 +1,60 @@
 flowchart TD
     classDef missing stroke-dasharray: 5
-    alabaster["alabaster\n0.7.16"]
-    anyio["anyio\n4.3.0"]
-    babel["Babel\n2.15.0"]
+    alabaster["alabaster\n1.0.0"]
+    anyio["anyio\n4.5.0"]
+    babel["babel\n2.16.0"]
     beautifulsoup4["beautifulsoup4\n4.12.3"]
     blinker["blinker\n1.8.2"]
-    certifi["certifi\n2024.2.2"]
+    certifi["certifi\n2024.8.30"]
     charset-normalizer["charset-normalizer\n3.3.2"]
-    closure["closure\n20191111"]
     cssmin["cssmin\n0.2.0"]
     cssselect["cssselect\n1.2.0"]
-    docutils["docutils\n0.20.1"]
+    docutils["docutils\n0.21.2"]
     feedgenerator["feedgenerator\n2.1.0"]
-    idna["idna\n3.7"]
+    idna["idna\n3.10"]
     imagesize["imagesize\n1.4.1"]
     jinja2["Jinja2\n3.1.4"]
     latexcodec["latexcodec\n3.0.0"]
     libsass["libsass\n0.23.0"]
-    lxml["lxml\n5.2.2"]
+    lxml["lxml\n5.3.0"]
     markdown-it-py["markdown-it-py\n3.0.0"]
-    markdown-word-count["markdown-word-count\n0.0.1"]
+    markdown-word-count["markdown-word-count\n0.1.0"]
     markupsafe["MarkupSafe\n2.1.5"]
-    mdit-py-plugins["mdit-py-plugins\n0.4.1"]
+    mdit-py-plugins["mdit-py-plugins\n0.4.2"]
     mdurl["mdurl\n0.1.2"]
-    myst-parser["myst-parser\n2.0.0"]
+    myst-parser["myst-parser\n4.0.0"]
     ordered-set["ordered-set\n4.1.0"]
-    packaging["packaging\n24.0"]
-    pelican-myst-reader["pelican-myst-reader\n1.3.0"]
+    packaging["packaging\n24.1"]
+    pelican-myst-reader["pelican-myst-reader\n1.4.0"]
     pelican-webassets["pelican-webassets\n2.0.0"]
-    pelican["pelican\n4.9.1"]
-    plumage["plumage\n4.0.1"]
+    pelican["pelican\n4.10.0"]
+    plumage["plumage\n5.0.0"]
     pybtex-docutils["pybtex-docutils\n1.0.3"]
     pybtex["pybtex\n0.24.0"]
     pygments["Pygments\n2.18.0"]
     pynpm["pynpm\n0.2.0"]
-    pyquery["pyquery\n2.0.0"]
+    pyquery["pyquery\n2.0.1"]
     python-dateutil["python-dateutil\n2.9.0.post0"]
-    pytz["pytz\n2024.1"]
-    pyyaml["PyYAML\n6.0.1"]
-    requests["requests\n2.31.0"]
-    rich["rich\n13.7.1"]
+    pytz["pytz\n2024.2"]
+    pyyaml["PyYAML\n6.0.2"]
+    requests["requests\n2.32.3"]
+    rich["rich\n13.8.1"]
+    setuptools["setuptools\n75.1.0"]
     six["six\n1.16.0"]
     sniffio["sniffio\n1.3.1"]
     snowballstemmer["snowballstemmer\n2.2.0"]
-    soupsieve["soupsieve\n2.5"]
-    sphinx["Sphinx\n7.3.7"]
-    sphinxcontrib-applehelp["sphinxcontrib-applehelp\n1.0.8"]
-    sphinxcontrib-bibtex["sphinxcontrib-bibtex\n2.5.0"]
-    sphinxcontrib-devhelp["sphinxcontrib-devhelp\n1.0.6"]
-    sphinxcontrib-htmlhelp["sphinxcontrib-htmlhelp\n2.0.5"]
+    soupsieve["soupsieve\n2.6"]
+    sphinx["Sphinx\n8.0.2"]
+    sphinxcontrib-applehelp["sphinxcontrib-applehelp\n2.0.0"]
+    sphinxcontrib-bibtex["sphinxcontrib-bibtex\n2.6.3"]
+    sphinxcontrib-devhelp["sphinxcontrib-devhelp\n2.0.0"]
+    sphinxcontrib-htmlhelp["sphinxcontrib-htmlhelp\n2.1.0"]
     sphinxcontrib-jsmath["sphinxcontrib-jsmath\n1.0.1"]
-    sphinxcontrib-qthelp["sphinxcontrib-qthelp\n1.0.7"]
-    sphinxcontrib-serializinghtml["sphinxcontrib-serializinghtml\n1.1.10"]
+    sphinxcontrib-qthelp["sphinxcontrib-qthelp\n2.0.0"]
+    sphinxcontrib-serializinghtml["sphinxcontrib-serializinghtml\n2.0.0"]
     unidecode["Unidecode\n1.3.8"]
-    urllib3["urllib3\n2.2.1"]
-    watchfiles["watchfiles\n0.21.0"]
+    urllib3["urllib3\n2.2.3"]
+    watchfiles["watchfiles\n0.24.0"]
     webassets["webassets\n2.0"]
     anyio -- ">=1.1" --> sniffio
     anyio -- ">=2.8" --> idna
@@ -63,11 +63,11 @@ flowchart TD
     jinja2 -- ">=2.0" --> markupsafe
     markdown-it-py -- "~=0.1" --> mdurl
     mdit-py-plugins -- ">=1.0.0,<4.0.0" --> markdown-it-py
-    myst-parser -- ">=0.16,<0.21" --> docutils
-    myst-parser -- ">=6,<8" --> sphinx
+    myst-parser -- ">=0.19,<0.22" --> docutils
+    myst-parser -- ">=7,<9" --> sphinx
     myst-parser -- "any" --> jinja2
     myst-parser -- "any" --> pyyaml
-    myst-parser -- "~=0.4" --> mdit-py-plugins
+    myst-parser -- "~=0.4,>=0.4.1" --> mdit-py-plugins
     myst-parser -- "~=3.0" --> markdown-it-py
     pelican -- ">=0.20.1" --> docutils
     pelican -- ">=0.21.0" --> watchfiles
@@ -79,23 +79,23 @@ flowchart TD
     pelican -- ">=2.8.2" --> python-dateutil
     pelican -- ">=3.1.2" --> jinja2
     pelican -- ">=4.1.0" --> ordered-set
-    pelican-myst-reader -- ">=0.0.1,<0.0.2" --> markdown-word-count
-    pelican-myst-reader -- ">=0.17" --> docutils
-    pelican-myst-reader -- ">=2.0.0,<3.0.0" --> myst-parser
-    pelican-myst-reader -- ">=2.5.0,<2.6.0" --> sphinxcontrib-bibtex
+    pelican-myst-reader -- ">=0.1.0,<0.2.0" --> markdown-word-count
+    pelican-myst-reader -- ">=0.19" --> docutils
+    pelican-myst-reader -- ">=2.6.3,<3.0.0" --> sphinxcontrib-bibtex
+    pelican-myst-reader -- ">=4.0.0,<5.0.0" --> myst-parser
     pelican-myst-reader -- ">=4.5,<5.0" --> pelican
     pelican-myst-reader -- ">=4.9.3,<5.0.0" --> beautifulsoup4
     pelican-myst-reader -- ">=6.0,<7.0" --> pyyaml
     pelican-webassets -- ">=2.0,<3.0" --> webassets
     pelican-webassets -- ">=4.5,<5.0" --> pelican
-    plumage -- ">=0.2.0,<0.3.0" --> cssmin
-    plumage -- ">=0.2.0,<0.3.0" --> pynpm
-    plumage -- ">=0.23.0,<0.24.0" --> libsass
-    plumage -- ">=1.3.0b1,<2.0.0" --> pelican-myst-reader
-    plumage -- ">=2.0.0,<3.0.0" --> pelican-webassets
-    plumage -- ">=2.0.0,<3.0.0" --> pyquery
-    plumage -- ">=20191111,<20191112" --> closure
-    plumage -- ">=4.8.0,<5.0.0" --> pelican
+    plumage -- ">=4.8.0" --> pelican
+    plumage -- "~=0.2.0" --> cssmin
+    plumage -- "~=0.2.0" --> pynpm
+    plumage -- "~=0.23.0" --> libsass
+    plumage -- "~=1.4.0" --> pelican-myst-reader
+    plumage -- "~=2.0.0" --> pelican-webassets
+    plumage -- "~=2.0.0" --> pyquery
+    plumage -- "~=2.18.0" --> pygments
     pybtex -- ">=1.0.4" --> latexcodec
     pybtex -- ">=3.01" --> pyyaml
     pybtex -- "any" --> six
@@ -110,24 +110,25 @@ flowchart TD
     requests -- ">=2017.4.17" --> certifi
     rich -- ">=2.13.0,<3.0.0" --> pygments
     rich -- ">=2.2.0" --> markdown-it-py
-    sphinx -- ">=0.18.1,<0.22" --> docutils
+    sphinx -- ">=0.20,<0.22" --> docutils
+    sphinx -- ">=0.7.14" --> alabaster
     sphinx -- ">=1.1.9" --> sphinxcontrib-serializinghtml
     sphinx -- ">=1.3" --> imagesize
-    sphinx -- ">=2.0" --> snowballstemmer
     sphinx -- ">=2.0.0" --> sphinxcontrib-htmlhelp
-    sphinx -- ">=2.14" --> pygments
-    sphinx -- ">=2.25.0" --> requests
-    sphinx -- ">=2.9" --> babel
-    sphinx -- ">=21.0" --> packaging
-    sphinx -- ">=3.0" --> jinja2
+    sphinx -- ">=2.13" --> babel
+    sphinx -- ">=2.17" --> pygments
+    sphinx -- ">=2.2" --> snowballstemmer
+    sphinx -- ">=2.30.0" --> requests
+    sphinx -- ">=23.0" --> packaging
+    sphinx -- ">=3.1" --> jinja2
     sphinx -- "any" --> sphinxcontrib-applehelp
     sphinx -- "any" --> sphinxcontrib-devhelp
     sphinx -- "any" --> sphinxcontrib-jsmath
     sphinx -- "any" --> sphinxcontrib-qthelp
-    sphinx -- "~=0.7.14" --> alabaster
     sphinxcontrib-bibtex -- ">=0.24" --> pybtex
-    sphinxcontrib-bibtex -- ">=0.8" --> docutils
+    sphinxcontrib-bibtex -- ">=0.8,!=0.19.*,!=0.18.*" --> docutils
     sphinxcontrib-bibtex -- ">=1.0.0" --> pybtex-docutils
-    sphinxcontrib-bibtex -- ">=2.1" --> sphinx
+    sphinxcontrib-bibtex -- ">=3.5" --> sphinx
+    sphinxcontrib-bibtex -- "any" --> setuptools
     watchfiles -- ">=3.0.0" --> anyio
 
