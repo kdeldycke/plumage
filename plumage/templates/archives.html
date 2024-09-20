@@ -1,5 +1,7 @@
 {% extends "base.html" %}
-{% block title %}Archives{% endblock title %}
+{% block title %}
+    Archives
+{% endblock title %}
 {% block top_center %}
     <h1>
         <a href="{{ SITEURL }}/{{ ARCHIVES_SAVE_AS }}"
@@ -15,21 +17,19 @@
         {% set yearly_articles = [] %}
         {% for article in dates %}
             {% if article.date.year == year %}
-                {% if yearly_articles.append(article) %}
-                {% endif %}
+                {% if yearly_articles.append(article) %}{% endif %}
             {% endif %}
         {% endfor %}
         {# Ignore empty years #}
         {% if yearly_articles|length > 0 %}
-            {% if year_range.append({'year': year, 'articles': yearly_articles}) %}
-            {% endif %}
+            {% if year_range.append({'year': year, 'articles': yearly_articles}) %}{% endif %}
         {% endif %}
     {% endfor %}
     <div class="accordion"
          id="accordionArchives"
          role="tablist"
          aria-multiselectable="true">
-        {% for yearly_group in year_range|sort(reverse = True, attribute = 'year')  %}
+        {% for yearly_group in year_range|sort(reverse = True, attribute = 'year') %}
             <div class="card">
                 <h4 class="card-header" role="tab" id="heading{{ yearly_group.year }}">
                     <button type="button"
@@ -54,19 +54,19 @@
                             {% if article.date.month != current_month %}
                                 {% set current_month = article.date.month %}
                                 {% if not loop.first %}</dl>{% endif %}
-                                <dl class="row">
+                            <dl class="row">
                             {% endif %}
                             <dt class="col-sm-2">
-                                <abbr class="published" title="{{ article.date.isoformat() }}">{{ article.date.strftime('%b. %d') }}</abbr>
+                                <abbr class="published" title="{{ article.date.isoformat() }}">{{ article.date.strftime("%b. %d") }}</abbr>
                             </dt>
                             <dd class="col-sm-10">
                                 <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
                             </dd>
                             {% if loop.last %}</dl>{% endif %}
-                        {% endfor %}
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
-        {% endfor %}
-    </div>
+        </div>
+    {% endfor %}
+</div>
 {% endblock content %}

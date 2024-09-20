@@ -1,5 +1,7 @@
 {% extends "base.html" %}
-{% block title %}{{ category }}{% endblock title %}
+{% block title %}
+    {{ category }}
+{% endblock title %}
 {% block top_center %}
     <h1>
         <a href="{{ SITEURL }}/{{ category.url }}"

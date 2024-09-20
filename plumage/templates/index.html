@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
-    {% block content_title %}<h2>Articles</h2>{% endblock content_title %}
+    {% block content_title %}
+        <h2>Articles</h2>
+    {% endblock content_title %}
     {% for article in articles_page.object_list %}
         <article>
             <header>
@@ -15,7 +17,7 @@
                 <a class="btn btn-primary" href="{{ SITEURL }}/{{ article.url }}"><strong>➟ Read more</strong></a>
             </div>
         </article>
-        <hr/>
+        <hr />
     {% endfor %}
     {% include "pagination.html" %}
 {% endblock content %}
