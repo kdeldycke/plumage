@@ -18,7 +18,7 @@ jobs:
     name: Generate Pygment styles
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4.1.7
+      - uses: actions/checkout@v4.2.0
       - uses: actions/setup-python@v5.2.0
         with:
           python-version: "3.12"
@@ -60,7 +60,7 @@ jobs:
     name: Format CSS files and create a PR
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4.1.7
+      - uses: actions/checkout@v4.2.0
       - name: Install npm
         run: |
           sudo apt --quiet --yes install npm
@@ -98,7 +98,7 @@ jobs:
     name: Format Jinja
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4.1.7
+      - uses: actions/checkout@v4.2.0
       - uses: actions/setup-python@v5.2.0
         with:
           python-version: "3.12"
