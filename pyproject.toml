@@ -61,7 +61,7 @@ plumage = ["**"]
 plumage = ["package-lock.json"]
 
 [project.optional-dependencies]
-djlint = ["djlint ~= 1.35.2"]
+djlint = ["djlint ~= 1.36.3"]
 
 [project.urls]
 "Homepage" = 'https://github.com/kdeldycke/plumage'
