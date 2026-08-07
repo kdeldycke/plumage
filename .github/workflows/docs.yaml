@@ -8,7 +8,6 @@ name: 📚 Docs
     paths:
       - .github/workflows/docs.yaml
       - changelog.md
-      - citation.cff
       - "docs/**"
       - pyproject.toml
       - readme.md

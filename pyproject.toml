@@ -1,7 +1,7 @@
 [project]
 # Docs: https://packaging.python.org/en/latest/guides/writing-pyproject-toml/
 name = "plumage"
-version = "5.0.0"
+version = "5.0.0.dev0"
 # Python versions and their status: https://devguide.python.org/versions/
 requires-python = ">= 3.10"
 description = "Clean and tidy theme for Pelican"
@@ -66,6 +66,7 @@ djlint = ["djlint ~= 1.35.2"]
 [project.urls]
 "Homepage" = 'https://github.com/kdeldycke/plumage'
 "Documentation" = 'https://github.com/kdeldycke/plumage#settings'
+"Download" = "https://github.com/kdeldycke/plumage/releases/tag/v5.0.0.dev0"
 "Repository" = 'https://github.com/kdeldycke/plumage'
 "Funding" = "https://github.com/sponsors/kdeldycke"
 "Issues" = "https://github.com/kdeldycke/plumage/issues"
@@ -90,9 +91,25 @@ module = ["pyquery", "pynpm", "pelican.*"]
 # workflow used to pass to its reusable caller.
 gitignore.extra-categories = ["node"]
 
+# The canonical docs.yaml trigger filter lists citation.cff, which this project
+# does not carry. Strip it so the generated filters only name paths that exist.
+workflow.ignore-paths = ["citation.cff"]
+
 [tool.bumpversion]
-current_version = "5.0.0"
+current_version = "5.0.0.dev0"
+# Parse versions with an optional .devN suffix (PEP 440).
+parse = "(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)(\\.dev(?P<dev>\\d+))?"
+serialize = [
+  "{major}.{minor}.{patch}.dev{dev}",
+  "{major}.{minor}.{patch}",
+]
+ignore_missing_files = true
 allow_dirty = true
+parts.dev.optional_value = "release"
+# When dev is "release" (its optional value), the .devN suffix is omitted.
+# Bumping patch/minor/major resets dev to "0", producing X.Y.Z.dev0.
+# Bumping dev goes from "0" to "release", stripping the suffix for release.
+parts.dev.values = [ "0", "release" ]
 
 [[tool.bumpversion.files]]
 # Update Python package version in any __init__.py file.
@@ -100,13 +117,52 @@ glob = "./**/__init__.py"
 ignore_missing_version = true
 
 [[tool.bumpversion.files]]
-# Update version in project section.
+# Update version in [project] section. Anchored to a line start (regex) so it
+# does not also match version-suffixed keys like file-version/product-version
+# under [tool.nuitka], which contain `version = "X"` as a substring (their
+# values collide with the package version on release commits, where the .devN
+# suffix is absent).
 filename = "./pyproject.toml"
-search = 'version = "{current_version}"'
+regex = true
+search = '(?m)^version = "{current_version}"'
 replace = 'version = "{new_version}"'
 
 [[tool.bumpversion.files]]
-# Update the version in standard Markdown changelog.
+# Update version in download URL.
+filename = "./pyproject.toml"
+search = "releases/tag/v{current_version}"
+replace = "releases/tag/v{new_version}"
+
+[[tool.bumpversion.files]]
+# Keep the numeric file-version/product-version under [tool.nuitka] in sync,
+# when present. Nuitka rejects PEP 440 .devN suffixes, so the file-specific
+# serialize strips them; the `-version = "` prefix matches both keys at once.
+# ignore_missing_version makes this a no-op in projects without [tool.nuitka].
+filename = "./pyproject.toml"
+ignore_missing_version = true
+serialize = [ "{major}.{minor}.{patch}" ]
+search = '-version = "{current_version}"'
+replace = '-version = "{new_version}"'
+
+[[tool.bumpversion.files]]
+# Update the version in Markdown changelog.
 filename = "./changelog.md"
-search = "## [{current_version} (unreleased)]("
-replace = "## [{new_version} (unreleased)]("
+search = "## [`{current_version}` (unreleased)]("
+replace = "## [`{new_version}` (unreleased)]("
+
+[[tool.bumpversion.files]]
+# Update the version in the citation file. Anchored to a line start (regex) so
+# it does not also match the `cff-version:` schema field, which would otherwise
+# be overwritten with the package version on every bump as soon as the two
+# values coincide once.
+filename = "./citation.cff"
+regex = true
+search = "(?m)^version: {current_version}"
+replace = "version: {new_version}"
+
+[[tool.bumpversion.files]]
+# Update the release date in the citation file.
+filename = "./citation.cff"
+regex = true
+search = "date-released: \\d{{4}}-\\d{{2}}-\\d{{2}}"
+replace = "date-released: {utcnow:%Y-%m-%d}"

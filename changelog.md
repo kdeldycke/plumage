@@ -1,9 +1,9 @@
 # Changelog
 
-## [5.0.0 (unreleased)](https://github.com/kdeldycke/plumage/compare/v4.0.0...main)
+## [`5.0.0.dev0` (unreleased)](https://github.com/kdeldycke/plumage/compare/v4.0.0...main)
 
-> \[!IMPORTANT\]
-> This version is not released yet and is under active development.
+> [!WARNING]
+> This version is **not released yet** and is under active development.
 
 - Switch from Poetry to `uv`.
 - Drop support of Python 3.9.
@@ -19,7 +19,10 @@
 - Split Pygments style auto-update job from CSS formatting.
 - Runs workflows on latest `ubuntu-24.04`.
 
-## [4.0.0 (2024-05-17)](https://github.com/kdeldycke/plumage/compare/v3.1.0...v4.0.0)
+## [`4.0.0` (2024-05-18)](https://github.com/kdeldycke/plumage/compare/v3.1.0...v4.0.0)
+
+> [!NOTE]
+> `4.0.0` is available on [🐍 PyPI](https://pypi.org/project/plumage/4.0.0/) and [🐙 GitHub](https://github.com/kdeldycke/plumage/releases/tag/v4.0.0).
 
 - Replace Font Awesome by Bootstrap Icons.
 - Add support for MyST Markdown. Add new dependency on `pelican-myst-reader`.
@@ -30,7 +33,10 @@
 - Remove `bump2version` from dev dependencies, and let the external workflows install it.
 - Drop support of Python 3.8.
 
-## [3.1.0 (2023-06-03)](https://github.com/kdeldycke/plumage/compare/v3.0.0...v3.1.0)
+## [`3.1.0` (2023-06-03)](https://github.com/kdeldycke/plumage/compare/v3.0.0...v3.1.0)
+
+> [!NOTE]
+> `3.1.0` is available on [🐍 PyPI](https://pypi.org/project/plumage/3.1.0/) and [🐙 GitHub](https://github.com/kdeldycke/plumage/releases/tag/v3.1.0).
 
 - Replace Tipue Search with Stork. Closes #49.
 - Replace remote cdnjs version of Bootstrap with local one. Add new NPM dependency on Bootstrap.
@@ -38,7 +44,10 @@
 - Reintroduce the `extra_css` block in base template for local customizations.
 - Relax Python requirements to `>=3.8`.
 
-## [3.0.0 (2023-03-06)](https://github.com/kdeldycke/plumage/compare/v2.4.0...v3.0.0)
+## [`3.0.0` (2023-03-08)](https://github.com/kdeldycke/plumage/compare/v2.4.0...v3.0.0)
+
+> [!NOTE]
+> `3.0.0` is available on [🐍 PyPI](https://pypi.org/project/plumage/3.0.0/) and [🐙 GitHub](https://github.com/kdeldycke/plumage/releases/tag/v3.0.0).
 
 - Add `robots` directives to ignore search engine indexing of drafts & hidden articles and pages.
 - Upgrade to Bootstrap 5.3.0-alpha1.
@@ -59,7 +68,10 @@
 - Automate version management.
 - Add a `.mailmap` file.
 
-## [2.4.0 (2020-12-06)](https://github.com/kdeldycke/plumage/compare/v2.3.0...v2.4.0)
+## [`2.4.0` (2020-12-06)](https://github.com/kdeldycke/plumage/compare/v2.3.0...v2.4.0)
+
+> [!NOTE]
+> `2.4.0` is available on [🐍 PyPI](https://pypi.org/project/plumage/2.4.0/) and [🐙 GitHub](https://github.com/kdeldycke/plumage/releases/tag/v2.4.0).
 
 - Add new `CODE_STYLE` option to select code rendering among 30+ styles from
   Pygments.
@@ -69,7 +81,10 @@
 - Remove all custom default and code fonts. Rely on [Bootstrap's native font stack](https://getbootstrap.com/docs/4.1/content/reboot/#native-font-stack).
 - Add Pelican version in HTML headers.
 
-## [2.3.0 (2020-11-26)](https://github.com/kdeldycke/plumage/compare/v2.2.0...v2.3.0)
+## [`2.3.0` (2020-11-26)](https://github.com/kdeldycke/plumage/compare/v2.2.0...v2.3.0)
+
+> [!NOTE]
+> `2.3.0` is available on [🐍 PyPI](https://pypi.org/project/plumage/2.3.0/) and [🐙 GitHub](https://github.com/kdeldycke/plumage/releases/tag/v2.3.0).
 
 - Replace client-side jQuery calls by server-side Python post-processing to
   apply Bootstrap's CSS utility classes.
@@ -83,7 +98,10 @@
 - Fix blockquote border rendering.
 - Test publishing to PyPi in dry-run mode by the way of Poetry.
 
-## [2.2.0 (2020-11-20)](https://github.com/kdeldycke/plumage/compare/v2.1.0...v2.2.0)
+## [`2.2.0` (2020-11-20)](https://github.com/kdeldycke/plumage/compare/v2.1.0...v2.2.0)
+
+> [!NOTE]
+> `2.2.0` is available on [🐍 PyPI](https://pypi.org/project/plumage/2.2.0/) and [🐙 GitHub](https://github.com/kdeldycke/plumage/releases/tag/v2.2.0).
 
 - Upgrade to Bootstrap 4.5.3.
 - Upgrade to Font Awesome 5.15.1.
@@ -97,7 +115,10 @@
 - Add project header image and logo.
 - Remove special font only used for titles, headers and Typogrify ampersands.
 
-## [2.1.0 (2020-10-17)](https://github.com/kdeldycke/plumage/compare/v2.0.0...v2.1.0)
+## [`2.1.0` (2020-10-17)](https://github.com/kdeldycke/plumage/compare/v2.0.0...v2.1.0)
+
+> [!NOTE]
+> `2.1.0` is available on [🐍 PyPI](https://pypi.org/project/plumage/2.1.0/) and [🐙 GitHub](https://github.com/kdeldycke/plumage/releases/tag/v2.1.0).
 
 - Add `period_archives.html` template.
 - Add support for `similar_posts` plugin.
@@ -108,7 +129,10 @@
 - Rename `master` branch to `main`.
 - Upgrade to `Poetry >= 1.1.0`.
 
-## [2.0.0 (2020-08-26)](https://github.com/kdeldycke/plumage/compare/v1.1.0...v2.0.0)
+## [`2.0.0` (2020-08-26)](https://github.com/kdeldycke/plumage/compare/v1.1.0...v2.0.0)
+
+> [!NOTE]
+> `2.0.0` is available on [🐍 PyPI](https://pypi.org/project/plumage/2.0.0/) and [🐙 GitHub](https://github.com/kdeldycke/plumage/releases/tag/v2.0.0).
 
 - Upgrade to Bootstrap 4.5.2 with bundled popper.js.
 - Upgrade to jQuery 3.5.1.
@@ -133,7 +157,10 @@
 - Add direct dependency on pygments.
 - Auto upgrade pygment styles.
 
-## [1.1.0 (2020-08-12)](https://github.com/kdeldycke/plumage/compare/v1.0.0...v1.1.0)
+## [`1.1.0` (2020-08-11)](https://github.com/kdeldycke/plumage/compare/v1.0.0...v1.1.0)
+
+> [!NOTE]
+> `1.1.0` is available on [🐍 PyPI](https://pypi.org/project/plumage/1.1.0/) and [🐙 GitHub](https://github.com/kdeldycke/plumage/releases/tag/v1.1.0).
 
 - Replace Droid Sans Mono font by Source Code Pro.
 - Remove support for Piwik as Pelican does.
@@ -154,7 +181,10 @@
 - Add link to author list along tags, categories and dates.
 - Fix link icon alignment in footer.
 
-## [1.0.0 (2020-08-01)](https://github.com/kdeldycke/plumage/compare/v0.9.0...v1.0.0)
+## [`1.0.0` (2020-08-01)](https://github.com/kdeldycke/plumage/compare/v0.9.0...v1.0.0)
+
+> [!NOTE]
+> `1.0.0` is the *first version* available on [🐍 PyPI](https://pypi.org/project/plumage/1.0.0/).
 
 - Package Plumage in a python module.
 - Distribute Plumage on PyPi.
@@ -169,7 +199,7 @@
 - Always test package builds on commit and PR events.
 - Automate parts of package release.
 
-## [0.9.0 (2017-03-22)](https://github.com/kdeldycke/plumage/compare/v0.8.0...v0.9.0)
+## [`0.9.0` (2017-03-22)](https://github.com/kdeldycke/plumage/compare/v0.8.0...v0.9.0)
 
 - Upgrade Bootstrap to 3.3.7.
 - Add a new `FLAT_DESIGN` setting.
@@ -191,7 +221,7 @@
 - Load external resources via HTTPS when available.
 - Support title anchor links as produced by [Markdown ToC extension](https://pythonhosted.org/Markdown/extensions/toc.html).
 
-## [0.8.0 (2016-06-22)](https://github.com/kdeldycke/plumage/compare/v0.7.0...v0.8.0)
+## [`0.8.0` (2016-06-22)](https://github.com/kdeldycke/plumage/compare/v0.7.0...v0.8.0)
 
 - Remove legacy Google Analytics tracking code.
 - Rename `GOOGLE_ANALYTICS_UNIVERSAL` option by `GOOGLE_ANALYTICS` and
@@ -210,7 +240,7 @@
 - Fallback on default external link icon if none found.
 - Remove local copy of Tipue Search assets. Rely on CDNjs instead.
 
-## [0.7.0 (2015-12-28)](https://github.com/kdeldycke/plumage/compare/v0.6.0...v0.7.0)
+## [`0.7.0` (2015-12-28)](https://github.com/kdeldycke/plumage/compare/v0.6.0...v0.7.0)
 
 - Add option to bypass grabicon.com web service.
 - Add static search based on Tipue Search.
@@ -224,11 +254,11 @@
 - Upgrade to Masonry 3.3.2.
 - Remove `PDF_PROCESSOR` option now that plugin is out of core.
 
-## [0.6.0 (2015-05-30)](https://github.com/kdeldycke/plumage/compare/v0.5.0...v0.6.0)
+## [`0.6.0` (2015-05-30)](https://github.com/kdeldycke/plumage/compare/v0.5.0...v0.6.0)
 
 - Fix favicon rendering.
 
-## [0.5.0 (2015-05-25)](https://github.com/kdeldycke/plumage/compare/v0.4.0...v0.5.0)
+## [`0.5.0` (2015-05-25)](https://github.com/kdeldycke/plumage/compare/v0.4.0...v0.5.0)
 
 - Add support for piwik.
 - Upgrade to jQuery 2.1.3.
@@ -236,7 +266,7 @@
 - Upgrade to fitvids 1.1.0.
 - Upgrade to Magnific Popup 1.0.0.
 
-## [0.4.0 (2014-02-15)](https://github.com/kdeldycke/plumage/compare/v0.3.0...v0.4.0)
+## [`0.4.0` (2014-02-15)](https://github.com/kdeldycke/plumage/compare/v0.3.0...v0.4.0)
 
 - Allow grouping of projects.
 - Add option to override disclaimer notice.
@@ -253,7 +283,7 @@
 - Upgrade to ImagesLoaded 3.0.4.
 - Upgrade to Magnific Popup 0.9.9.
 
-## [0.3.0 (2013-08-16)](https://github.com/kdeldycke/plumage/compare/v0.2.0...v0.3.0)
+## [`0.3.0` (2013-08-16)](https://github.com/kdeldycke/plumage/compare/v0.2.0...v0.3.0)
 
 - Add auto-zoom of images based on Magnific Popup.
 - Let the content take the available width if there is no right or left
@@ -264,19 +294,19 @@
 - Escape and strip tags in all title attributes.
 - Style ampersands for those using typogrify.
 
-## [0.2.0 (2013-07-09)](https://github.com/kdeldycke/plumage/compare/v0.1.0...v0.2.0)
+## [`0.2.0` (2013-07-09)](https://github.com/kdeldycke/plumage/compare/v0.1.0...v0.2.0)
 
 - Make theme fully generic through the use of variables.
 - Replace custom navigation with Pelican's neighbors plugin.
 - Add screenshot.
 - Update documentation.
 
-## [0.1.0 (2013-07-07)](https://github.com/kdeldycke/plumage/compare/v0.0.0...v0.1.0)
+## [`0.1.0` (2013-07-07)](https://github.com/kdeldycke/plumage/compare/v0.0.0...v0.1.0)
 
 - Theme has now a name: Plumage.
 - Move the theme out of my [blog repository](https://github.com/kdeldycke/kevin-deldycke-blog) to its own repository.
 - Theme is now generic enough. Update TODO-list accordingly.
 
-## [0.0.0 (2012-12-23)](https://github.com/kdeldycke/plumage/commit/70df9b)
+## [`0.0.0` (2012-12-23)](https://github.com/kdeldycke/plumage/commit/70df9b)
 
 - First commit.
