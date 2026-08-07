@@ -94,10 +94,24 @@ def jinja_env() -> Environment:
 
 
 @pytest.fixture
-def render(jinja_env: Environment) -> Callable:
+def render_source(jinja_env: Environment) -> Callable:
+    """Render a template against ``BASE_CONTEXT`` and return its raw markup.
+
+    Nothing parses the result, so an unbalanced tag survives to be asserted on. The
+    ``render`` fixture below cannot see one: a parser repairs the markup on the way in.
+    """
+
+    def _render_source(template: str = "base.html", **overrides) -> str:
+        return jinja_env.get_template(template).render(BASE_CONTEXT | overrides)
+
+    return _render_source
+
+
+@pytest.fixture
+def render(render_source: Callable) -> Callable:
     """Render a template against ``BASE_CONTEXT`` and return the parsed document."""
 
     def _render(template: str = "base.html", **overrides) -> pq:
-        return pq(jinja_env.get_template(template).render(BASE_CONTEXT | overrides))
+        return pq(render_source(template, **overrides))
 
     return _render

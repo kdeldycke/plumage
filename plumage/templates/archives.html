@@ -49,13 +49,16 @@
                      aria-labelledby="heading{{ yearly_group.year }}"
                      data-bs-parent="#accordionArchives">
                     <div class="card-body">
-                        {% set current_month = False %}
+                        {# Carried in a namespace because a plain {% set %} does not outlive the
+                           iteration that made it: the month would reset on every article, and
+                           each one would open a list of its own. #}
+                        {% set month = namespace(current=False) %}
                         {# The <dl> opens inside one {% if %} and closes in two others, so djlint
                            cannot pair it up and drifts every tag that follows it. #}
                         {# djlint:off #}
                         {% for article in yearly_group.articles %}
-                            {% if article.date.month != current_month %}
-                                {% set current_month = article.date.month %}
+                            {% if article.date.month != month.current %}
+                                {% set month.current = article.date.month %}
                                 {% if not loop.first %}</dl>{% endif %}
                                 <dl class="row">
                             {% endif %}
