@@ -17,3 +17,5 @@ updates:
       - "🔗 dependencies"
     assignees:
       - "kdeldycke"
+    cooldown:
+      default-days: 7

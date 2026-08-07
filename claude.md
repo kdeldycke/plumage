@@ -36,6 +36,29 @@ Naming the workflow files individually is deliberate: a bare `repomatic init` al
 
 Check the release notes for breaking changes needing manual follow-up, like a renamed autofix job whose old PR branch must be closed.
 
+### Linter configuration lives in files, not in the workflow calls
+
+Three linters carry per-project deviations. All of them are declared in configuration the
+workflows pick up implicitly, rather than as flags on the `run:` lines, so that `lint.yaml`
+and `autofix.yaml` cannot drift apart and a local run behaves like CI:
+
+- **stylelint**: `.stylelintrc.yaml`. It selects the shareable config per file type through
+  `overrides`, so the workflows must *not* pass `--config`: that flag replaces the file
+  wholesale. Its `ignoreFiles` skips the generated Pygments stylesheets. There is no CLI flag
+  for individual rules, and `--config` only accepts a path, never inline JSON, so the file is
+  not optional. The empty root `rules: {}` is required: stylelint rejects a configuration
+  whose rules all come from `overrides`.
+- **djlint**: `[tool.djlint]` in `pyproject.toml`, which repomatic does not manage.
+- **zizmor**: inline `# zizmor: ignore[adhoc-packages]` comments, which it accepts on the
+  line above the finding.
+
+Each ignored rule is commented with the reason it does not apply. The recurring theme is that
+the theme styles and templates markup it does not emit (Bootstrap, Pygments, Stork), so rules
+assuming ownership of every class name and every nesting level cannot be satisfied.
+
+`stylelint --fix` cannot repair either rule the Pygments stylesheets trip, so formatting them
+was never going to make `lint-css` pass: skipping them is the only route to green.
+
 ### Known lint warning: top-level workflow permissions
 
 `repomatic lint-repo` warns that `autofix.yaml`, `lint.yaml`, and `release.yaml` define custom job steps but carry no top-level `permissions` key. Leave it that way. The check has a second arm that fires in the opposite direction: under a top-level `permissions: {}`, a job calling a reusable workflow without its own `permissions:` block is handed an empty scope set, and GitHub aborts the run at startup.

@@ -64,9 +64,17 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Install stylelint
         # --no-save keeps the theme's own package.json, which declares the webassets pipeline, free
-        # of these CI-only linters.
+        # of these CI-only linters. zizmor wants a lockfile install instead, but the only lockfile
+        # here is the theme's own, and pynpm installs from it on every user's site build: a linter
+        # added there would ship into those builds.
+        # zizmor: ignore[adhoc-packages]
         run: npm install --no-save stylelint stylelint-config-standard stylelint-config-sass-guidelines
+      # Both steps read .stylelintrc.yaml, which picks the shareable config per file type and
+      # carries the theme's deviations from it. Passing --config here would override that file.
       - name: Lint CSS
-        run: npx stylelint --config stylelint-config-standard "plumage/static/**/*.css"
+        # --allow-empty-input because .stylelintignore excludes the generated Pygments stylesheets,
+        # which are currently the only CSS the theme carries: the hand-written styles are all SCSS,
+        # linted by the step below. The step stays as a guard for any CSS added later.
+        run: npx stylelint --allow-empty-input "plumage/static/**/*.css"
       - name: Lint SCSS
-        run: npx stylelint --config stylelint-config-sass-guidelines "plumage/static/**/*.scss"
+        run: npx stylelint "plumage/static/**/*.scss"

@@ -74,14 +74,19 @@ jobs:
       - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
       - name: Install stylelint
         # --no-save keeps the theme's own package.json, which declares the webassets pipeline, free
-        # of these CI-only linters.
+        # of these CI-only linters. zizmor wants a lockfile install instead, but the only lockfile
+        # here is the theme's own, and pynpm installs from it on every user's site build: a linter
+        # added there would ship into those builds.
+        # zizmor: ignore[adhoc-packages]
         run: npm install --no-save stylelint stylelint-config-standard stylelint-config-sass-guidelines
       - name: Autofix CSS
         # Allowed to fail so the pull request below is still opened with whatever stylelint managed
         # to fix on its own. What it could not fix is reported by the lint workflow.
+        # Both calls read .stylelintrc.yaml, which picks the shareable config per file type and
+        # carries the theme's deviations from it. Passing --config here would override that file.
         run: |
-          npx stylelint --fix --config stylelint-config-standard "plumage/static/**/*.css" || true
-          npx stylelint --fix --config stylelint-config-sass-guidelines "plumage/static/**/*.scss" || true
+          npx stylelint --fix --allow-empty-input "plumage/static/**/*.css" || true
+          npx stylelint --fix "plumage/static/**/*.scss" || true
       - id: pr-metadata
         run: >
           uvx --no-progress 'repomatic==7.4.1' pr-body --output-format github-actions

@@ -119,6 +119,26 @@ pretty = true
 ignore_missing_imports = true
 module = ["pyquery", "pynpm", "pelican.*"]
 
+[tool.djlint]
+profile = "jinja"
+# Rules the theme opts out of, and why each does not apply. Kept here rather than as
+# --ignore flags in the workflows, so the list lives in one place instead of both
+# lint.yaml and autofix.yaml, and a local `djlint --lint` behaves like CI.
+#
+#   H006  Wants width/height on <img>. Both hits are user-supplied URLs whose dimensions
+#         the theme cannot know: SITE_THUMBNAIL, and each project's own thumb. Both
+#         images do carry an alt attribute.
+#   H025  Reports an orphan tag. Both hits are false positives: base.html does close its
+#         <head>, and the </dl> in archives.html is emitted conditionally inside the loop
+#         that opens the matching <dl> whenever the month changes.
+#   H030  Wants a meta description. Filling it properly means deriving per-page content
+#   H031  and a keywords list, which is a feature rather than a lint fix. Search engines
+#         have ignored the keywords meta since 2009.
+#   T028  Wants spaceless tags inside attribute values. It fires on one button in
+#         archives.html while leaving the identical `class="... {% if %}...{% endif %}"`
+#         pattern in base.html (lines 117 and 127) unflagged.
+ignore = "H006,H025,H030,H031,T028"
+
 [tool.repomatic]
 # The theme compiles its assets with an npm-based webassets pipeline, so the
 # sync-gitignore job has to keep Node entries when it regenerates .gitignore.

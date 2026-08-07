@@ -27,6 +27,10 @@
 - Document the `LAYOUT` setting.
 - Add a test suite covering settings validation, the HTML transforms, the favicon assets and the rendered templates. Run it with `uv run --extra test -- pytest`.
 - Run the test suite on Python 3.10 to 3.12 through a new `tests.yaml` workflow.
+- Fix the paginator emitting a whitespace-only `rel` attribute on pages carrying no link relation.
+- Add the missing `alt` text on the site thumbnail.
+- Configure stylelint and djlint, so both report only findings that apply to the theme. The generated Pygments stylesheets are no longer linted, and Sass Guidelines rules incompatible with extending Bootstrap's utility classes are turned off.
+- Give Dependabot a cooldown, and silence the two `adhoc-packages` warnings covering CI-only linters that must stay out of the theme's own `package.json`.
 
 ## [`4.0.0` (2024-05-18)](https://github.com/kdeldycke/plumage/compare/v3.1.0...v4.0.0)
 

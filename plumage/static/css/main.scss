@@ -27,10 +27,10 @@ a {
     @each $tag in 'h1',
       'h2',
       'h3',
-    'h4',
-    'h5',
-    'h6',
-    'dt' {
+      'h4',
+      'h5',
+      'h6',
+      'dt' {
       #{$tag}:hover>& {
         visibility: visible !important;
       }
@@ -59,9 +59,8 @@ a {
       $size: 100%;
       backface-visibility: hidden;
 
-      border: solid 0.2rem white{
-        radius: 1rem;
-      }
+      border: solid 0.2rem #fff;
+      border-radius: 1rem;
 
       box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.25);
       height: $size;
@@ -109,7 +108,7 @@ a {
   --bs-btn-font-size: 0.3rem;
 
   // Hide default SVG close button.
-  &>svg {
+  > svg {
     @extend .invisible;
   }
 }
@@ -297,5 +296,5 @@ span.amp {
 footer {
   background: url('/theme/img/creampaper.jpeg');
   box-shadow: inset 0 2rem 2rem -2rem rgba(0, 0, 0, 0.5);
-  text-shadow: 0 0.1rem 0.1rem white;
+  text-shadow: 0 0.1rem 0.1rem #fff;
 }
