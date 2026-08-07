@@ -4,7 +4,7 @@ name = "plumage"
 version = "5.0.0.dev0"
 # Python versions and their status: https://devguide.python.org/versions/
 requires-python = ">= 3.10"
-description = "Clean and tidy theme for Pelican"
+description = "🪶 Clean and tidy theme for Pelican, the static site generator"
 authors = [{ name = "Kevin Deldycke", email = "kevin@deldycke.com" }]
 readme = "readme.md"
 keywords = [
