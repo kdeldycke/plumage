@@ -158,11 +158,24 @@ The floor is set by Pelican, not by the theme: 4.12.0 is the first release requi
 
 `mypy` passing locally on a newer interpreter does not mean it passes in CI. Check against the minimum when touching type-sensitive code.
 
+### Content is parsed by the MyST reader, through two renderers
+
+`pelican-myst-reader` is a runtime dependency, for the directive syntax: ```` ```{note} ```` fences and friends. It registers for `md`, `markdown`, `mkd`, `mdown`, `mkdn`, `mdwn`, `Rmd` and `myst`, and registers late enough to take every one of them from Pelican's own `MarkdownReader`, so Python Markdown never sees a file and the `markdown` extra is not worth carrying. Both this plugin and `pelican-webassets` are namespace plugins, so they autoload as long as a site does not set `PLUGINS` explicitly.
+
+The part that surprises: the reader picks a renderer **per document**, and the two disagree on code block markup.
+
+| Renderer | Chosen when | Code block markup |
+| :------- | :---------- | :---------------- |
+| Sphinx   | the document holds `{filename}`, `{static}` or `{attach}`, a bibliography, `dollarmath` or `amsmath`, or `force_sphinx` is set | `<div class="highlight"><pre>` |
+| docutils | everything else | `<pre class="code ... literal-block">` |
+
+Every stylesheet under `static/css/pygments/` is generated with `-a ".highlight"`, and `code.scss` is scoped the same way, so only the first shape gets any syntax colors. `dom_transforms.py` wraps the second one to match, which is why highlighting works without configuration. Remove that wrap and half a site's code blocks silently lose their colors while still emitting every Pygments token span. `tests/test_markdown.py` covers both renderers for exactly this reason.
+
+The same selector has to keep its hands off plain docutils literal blocks, which `.rst` content produces from `::` and which carry no lexer output. That is what the `code` class in `pre.code.literal-block` discriminates.
+
 ### The myst-parser override
 
-Reaching Pelican 4.12.0 also needs the `override-dependencies` entry in `[tool.uv]`. Pelican 4.12.0 requires docutils 0.22, pelican-myst-reader 1.4.0 caps myst-parser below 5.0.0, and myst-parser 4.x caps docutils below 0.22. Nothing resolves without forcing myst-parser 5.
-
-The override is safe because the reader's cap is stale, not a real incompatibility. The reasoning and the rendering comparison behind that claim are recorded in the comment above the entry. It is still an override of an upstream constraint, so re-check it whenever pelican-myst-reader or myst-parser moves, and drop it the moment the reader relaxes its own pin.
+`pelican-myst-reader` 1.4.0 caps `myst-parser` below 5.0.0, which holds `docutils` below the 0.22 Pelican 4.12.0 requires, so the two cannot resolve together. `[tool.uv] override-dependencies` forces `myst-parser` 5 to break the deadlock. The evidence that the cap is stale rather than real, and the reason the override carries no upper bound, are both recorded in the comment above the entry.
 
 ## Testing
 

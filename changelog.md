@@ -12,6 +12,9 @@
 - **Breaking:** Remove inlining and minification of javascript assets, and the unmaintained `closure` dependency they relied on.
 - Require Pelican 4.12.0. Force `myst-parser` 5 through a `uv` override, as `pelican-myst-reader` still caps it below 5.0.0 and so holds `docutils` below the 0.22 that Pelican 4.12.0 needs.
 - Replace every `~=` requirement with `>=`, so no dependency carries an upper bound any more.
+- Fix syntax highlighting silently not applying to code blocks. The MyST reader renders a document through Sphinx or through docutils depending on its content, and only the former wraps code in the `.highlight` container every Pygments stylesheet selects through. Blocks coming out of the docutils renderer are now wrapped to match, so highlighting no longer depends on whether a page happens to carry an intra-site link.
+- Cover the path from Markdown source through the MyST reader to the theme's HTML rewrites with tests, across both of the reader's renderers.
+- Document code highlighting and admonitions, including the `colon_fence` extension needed for the `:::{note}` spelling.
 - Add 14 Pygments styles, including `dracula`, `github-dark`, `gruvbox-dark` and `nord`. Remove the `stata` one.
 - Add missing static assets in Python packages.
 - Move analytics code just below the `<head>` element, and all other javascript to the bottom of the page.

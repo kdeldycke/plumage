@@ -38,6 +38,24 @@ def transform(path, context):
     )
     doc("blockquote p").add_class("p-2")
 
+    # Give every code block the .highlight container the styling hangs off.
+    #
+    # Which markup a block arrives in depends on the reader and renderer that produced the
+    # page, and only one of the three needs help. reStructuredText's `code-block` and
+    # MyST's Sphinx renderer both wrap the block in a <div class="highlight">, but MyST's
+    # docutils renderer, the one it uses for any document without an intra-site link, a
+    # bibliography or maths, emits a bare <pre class="code ... literal-block">.
+    #
+    # That distinction is invisible until it is not: every stylesheet under
+    # static/css/pygments/ is generated with `-a ".highlight"`, and code.scss is scoped the
+    # same way, so a block that never gets the class renders with no syntax colors at all.
+    # Pygments still emits the token spans, and nothing selects them.
+    #
+    # Matching on `code` as well as `literal-block` keeps plain docutils literal blocks,
+    # which carry no lexer output, out of it. The wrap has to happen before the styling
+    # below, so the containers it creates are styled too.
+    doc("pre.code.literal-block").wrap('<div class="highlight"></div>')
+
     # Style code boxes.
     doc(".highlight").add_class("rounded shadow-sm mb-3")
 

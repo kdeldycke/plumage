@@ -58,6 +58,11 @@ dependencies = [
     # Pelican 4.12.0 is the first release to require Python 3.11, aligning with the
     # requires-python above. It also lifts its own Pygments ceiling to < 2.20.0.
     "pelican >= 4.12.0",
+    # Parses the site's Markdown, and gives it the MyST directive syntax on top: the
+    # ```{note} fenced blocks in particular. It claims every extension Pelican's own
+    # MarkdownReader answers to (md, markdown, mkd, mdown) plus mkdn, mdwn, Rmd and myst,
+    # and registers late enough to win all of them, so Python Markdown would never see a
+    # file and the `markdown` extra is not worth carrying.
     "pelican-myst-reader >= 1.4.0",
     "pelican-webassets >= 2.0.0",
     "pygments >= 2.18.0",
@@ -79,12 +84,12 @@ exclude-newer = "1 week"
 # consumers of the published wheel, so a myst-parser that does break the reader shows up in
 # CI rather than in someone else's resolver.
 #
-# The cap is stale rather than a real incompatibility. Every breaking change in myst-parser
-# 5.0.0 is a dependency floor (Python 3.11, Sphinx 8, docutils 0.20, markdown-it-py 4), with
-# no API removed, and the reader only reaches for MdParserConfig, create_md_parser and
-# read_topmatter. Rendering a document covering emphasis, links, inline code, headings,
-# blockquotes, highlighted code blocks, tables, admonitions, footnotes and definition lists
-# yields byte-identical HTML under myst-parser 4.0.1 and 5.1.0.
+# The reader's cap is stale rather than a real incompatibility. Every breaking change in
+# myst-parser 5.0.0 is a dependency floor (Python 3.11, Sphinx 8, docutils 0.20,
+# markdown-it-py 4), with no API removed, and the reader only reaches for MdParserConfig,
+# create_md_parser and read_topmatter. Rendering a document covering emphasis, links, inline
+# code, headings, blockquotes, highlighted code blocks, tables, admonitions, footnotes and
+# definition lists yields byte-identical HTML under myst-parser 4.0.1 and 5.1.0.
 #
 # Drop this once the reader relaxes its own pin: https://github.com/ashwinvis/myst-reader
 override-dependencies = ["myst-parser>=5"]

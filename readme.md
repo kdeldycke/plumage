@@ -169,9 +169,36 @@ The theme is also sensible to this list of [standard Pelican parameters
 
 ## Code Syntax Highlighting
 
-Syntax highlighting is produced by [Pygments](https://pygments.org).
+Syntax highlighting is produced by [Pygments](https://pygments.org) and needs no configuration. Fence a block with a language and it is highlighted:
 
-See [MyST Markdown code syntax](https://mystmd.org/guide/code) for more details.
+````markdown
+```python
+print("hello")
+```
+````
+
+The stylesheet for the [`CODE_STYLE`](#settings) you picked is compiled into the theme's CSS bundle, so there is no extra `<link>` to add and no `pygmentize` command to run. `CODE_STYLE` defaults to `monokai`, and any [Pygments style name](https://pygments.org/styles/) works.
+
+The theme also normalizes the markup around code blocks before styling them. Depending on the document, MyST renders a block either as a `.highlight` container or as a bare `<pre class="code ... literal-block">`, and every Pygments stylesheet only selects tokens through the former. Plumage rewrites the second shape into the first at generation time, so highlighting does not depend on which renderer a given page happened to use.
+
+## Admonitions
+
+Directive fences are styled as Bootstrap alerts out of the box:
+
+````markdown
+```{note}
+Body text.
+```
+````
+
+`note`, `tip`, `hint` and `info` render as blue alerts, `warning`, `attention`, `caution` and `important` as yellow, `danger` and `error` as red.
+
+The alternative `:::{note}` spelling, which avoids nesting problems inside fenced code, is a MyST extension that is off by default. Turn it on for both of the reader's renderers, or documents carrying an intra-site link will behave differently from the rest:
+
+```python
+MYST_DOCUTILS_SETTINGS = {"myst_enable_extensions": ["colon_fence"]}
+MYST_SPHINX_SETTINGS = {"myst_enable_extensions": ["colon_fence"]}
+```
 
 ## CSS customization
 
