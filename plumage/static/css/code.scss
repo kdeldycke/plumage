@@ -6,7 +6,7 @@ $pad: 0.5rem;
 .highlight {
   .filename {
     display: block;
-    font-family: var(--font-family-monospace);
+    font-family: var(--bs-font-monospace);
     font-size: 87.5%; // Same as Bootstrap's <pre> default value
     padding: $pad $pad 0 $pad;
   }
@@ -17,6 +17,7 @@ $pad: 0.5rem;
     padding-top: $pad;
 
     code {
+      word-break: normal;
 
       /* Highlight whole lines */
       span.hll {
@@ -29,9 +30,30 @@ $pad: 0.5rem;
     word-wrap: normal;
   }
 
+  /* Display line numbers with PyMdown Extensions' syntax:
+   * https://facelessuser.github.io/pymdown-extensions/extensions/highlight/#line-number-styles
+   * */
+  [data-linenos]::before {
+    content: attr(data-linenos);
+  }
+
+  /* Disable global Bootstrap box-sizing value locally. See:
+   * https://github.com/twbs/bootstrap/blob/v4-dev/site/content/docs/4.5/getting-started/introduction.md#box-sizing
+   * https://stackoverflow.com/a/53746125
+   * */
+  &,
+  *,
+  *::before,
+  *::after {
+    box-sizing: content-box !important;
+  }
 }
 
-/* Reset Pygments default padding */
+/* Reset Pygments default padding.
+ *
+ * Both selectors are needed: the generated stylesheets set the padding on
+ * `span.linenos` and again on `span.linenos.special`, and the latter out-specifies a
+ * lone `span.linenos` reset. */
 %reset-pygment-padding {
   padding-left: 0;
   padding-right: 0;
@@ -44,7 +66,7 @@ span.linenos {
   background-color: inherit;
 
   /* Gutter's border separating numbers from code */
-  box-shadow: -0.05rem 0 var(--secondary) inset;
+  box-shadow: -0.05rem 0 var(--bs-secondary) inset;
   color: inherit;
 
   /* Same as Bootstrap's .user-select-none class */
@@ -65,39 +87,11 @@ span.linenos {
     left: (-$pad);
     margin-left: (-$pad);
     margin-right: $pad;
-    padding: 0 0 0 $pad*2;
+    padding: 0 0 0 $pad * 2;
     position: sticky; // Makes the left-side line number gutter sticky.
 
     &.special {
-      background-color: var(--secondary); // Highlight every every Nth line number in the gutter
+      background-color: var(--bs-secondary); // Highlight every Nth line number in the gutter
     }
   }
-}
-
-.highlight {
-
-  /* Display line numbers with PyMdown Extensions' syntax:
-   * https://facelessuser.github.io/pymdown-extensions/extensions/highlight/#line-number-styles
-   * */
-  [data-linenos]::before {
-    content: attr(data-linenos);
-  }
-
-  /* Disable global Bootstrap box-sizing value locally. See:
-   * https://github.com/twbs/bootstrap/blob/v4-dev/site/content/docs/4.5/getting-started/introduction.md#box-sizing
-   * https://stackoverflow.com/a/53746125
-   * */
-  &,
-  *,
-  *::before,
-  *::after {
-    box-sizing: content-box !important;
-  }
-
-  pre {
-    code {
-      word-break: normal;
-    }
-  }
-
 }

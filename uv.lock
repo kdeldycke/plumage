@@ -10,6 +10,9 @@ resolution-markers = [
 exclude-newer = "0001-01-01T00:00:00Z" # This has no effect and is included for backwards compatibility when using relative exclude-newer values.
 exclude-newer-span = "P1W"
 
+[options.exclude-newer-package]
+repomatic = { timestamp = "0001-01-01T00:00:00Z", span = "PT0S" }
+
 [manifest]
 overrides = [{ name = "myst-parser", specifier = ">=5" }]
 
@@ -692,21 +695,21 @@ test = [
 
 [package.metadata]
 requires-dist = [
-    { name = "cssmin", specifier = ">=0.2.0" },
+    { name = "cssmin", specifier = ">=0.2" },
     { name = "libsass", specifier = ">=0.22" },
-    { name = "pelican", specifier = ">=4.12.0" },
-    { name = "pelican-myst-reader", specifier = ">=1.4.0" },
-    { name = "pelican-webassets", specifier = ">=2.0.0" },
-    { name = "pygments", specifier = ">=2.18.0" },
-    { name = "pynpm", specifier = ">=0.2.0" },
-    { name = "pyquery", specifier = ">=2.0.0" },
+    { name = "pelican", specifier = ">=4.12" },
+    { name = "pelican-myst-reader", specifier = ">=1.4" },
+    { name = "pelican-webassets", specifier = ">=2" },
+    { name = "pygments", specifier = ">=2.18" },
+    { name = "pynpm", specifier = ">=0.2" },
+    { name = "pyquery", specifier = ">=2" },
 ]
 
 [package.metadata.requires-dev]
 test = [
-    { name = "pytest", specifier = ">=8.4.0" },
-    { name = "pytest-cov", specifier = ">=7.0.0" },
-    { name = "pytest-xdist", extras = ["psutil"], specifier = ">=3.8.0" },
+    { name = "pytest", specifier = ">=8.4" },
+    { name = "pytest-cov", specifier = ">=7" },
+    { name = "pytest-xdist", extras = ["psutil"], specifier = ">=3.8" },
 ]
 
 [[package]]

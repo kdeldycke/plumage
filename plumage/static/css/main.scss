@@ -24,16 +24,10 @@ a {
     visibility: hidden;
     @extend .fs-4;
 
-    @each $tag in 'h1',
-      'h2',
-      'h3',
-      'h4',
-      'h5',
-      'h6',
-      'dt' {
-      #{$tag}:hover>& {
-        visibility: visible !important;
-      }
+    // Reveal the anchor when its own heading is hovered. This selector already outweighs
+    // the rule above, so it needs no !important to win.
+    :is(h1, h2, h3, h4, h5, h6, dt):hover > & {
+      visibility: visible;
     }
   }
 }
@@ -42,31 +36,31 @@ a {
 .avatar-container {
   $size: 6rem;
   height: $size;
-  perspective: 600;
+  // A bare number is not a length, so this used to be dropped and the flip below rendered
+  // flat.
+  perspective: 600px;
   position: relative;
   width: $size;
   z-index: 10;
 
   .avatar {
-    $size: 100%;
-    height: $size;
+    height: 100%;
     position: absolute;
     transform-style: preserve-3d;
     transition: all 0.2s ease-in-out;
-    width: $size;
+    width: 100%;
 
     .side {
-      $size: 100%;
       backface-visibility: hidden;
 
       border: solid 0.2rem #fff;
       border-radius: 1rem;
 
       box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.25);
-      height: $size;
+      height: 100%;
       overflow: hidden;
       position: absolute;
-      width: $size;
+      width: 100%;
     }
 
     .back {
@@ -157,7 +151,6 @@ a {
 
     // Hard-code the max-height of the results list.
     max-height: 30em;
-    //max-width: 200px;
 
     // Neutralize effects of <ul> default spacing.
     @extend .list-unstyled, .m-0;
@@ -170,9 +163,6 @@ a {
     li.stork-result {
       // Separate each result item.
       @extend .border-bottom;
-
-      // Reduce content size to increase density of results.
-      //@extend .lh-1;
 
       a {
         // Allow each result item to be highlighted on hover.
