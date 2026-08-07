@@ -1,9 +1,10 @@
 [build-system]
 build-backend = "uv_build"
-# Unlike repomatic, which leaves uv-build uncapped because it is pure Python, this
-# theme ships a large asset tree and an npm toolchain inside the package directory.
-# Those are exactly the packaging edge cases the uncapped-version warning guards
-# against, so the upper bound stays.
+# Left uncapped, like repomatic. uv warns on build that a future breaking uv-build
+# release could break the sdist, but a hard ceiling breaks every contributor and
+# runner the day the next minor lands, since uv self-updates. The asset tree and
+# npm toolchain this theme ships are exercised by the source-exclude/wheel-exclude
+# lists below, so a backend regression surfaces as a failed build, not a bad wheel.
 requires = ["uv-build>=0.8"]
 
 [project]
@@ -62,6 +63,10 @@ dependencies = [
     "pynpm ~= 0.2.0",
     "pyquery ~= 2.0.0",
 ]
+
+[tool.uv]
+required-version = ">=0.11.15"
+exclude-newer = "1 week"
 
 [tool.uv.build-backend]
 # The theme uses a flat layout: the package sits at the repo root, not under src/.
@@ -190,3 +195,10 @@ filename = "./citation.cff"
 regex = true
 search = "date-released: \\d{{4}}-\\d{{2}}-\\d{{2}}"
 replace = "date-released: {utcnow:%Y-%m-%d}"
+
+[tool.typos]
+default.extend-identifiers = { Github = "GitHub", IOS = "iOS", Javascript = "JavaScript", MacOS = "macOS", PyPi = "PyPI", Typescript = "TypeScript" }
+# False positives: "astroid" is a Python AST library (not "asteroid"); "oject" appears when "pyproject.toml" is split across line breaks in CLI help output; "sur" is macOS 11 Big Sur and Homebrew's big_sur bottle tag (not "sure").
+default.extend-words = { astroid = "astroid", oject = "oject", sur = "sur", certifi = "certifi", ges = "ges" }
+# Skip content between <!-- typos:off --> and <!-- typos:on --> markers.
+default.extend-ignore-re = [ "(?s)<!-- typos:off -->.*?<!-- typos:on -->" ]

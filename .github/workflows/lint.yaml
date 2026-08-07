@@ -21,7 +21,7 @@ name: 🧹 Lint
 jobs:
 
   lint:
-    uses: kdeldycke/repomatic/.github/workflows/lint.yaml@c81fb2e6fa884cb62ef46e69b8c8db44fa6fad15 # v7.3.1
+    uses: kdeldycke/repomatic/.github/workflows/lint.yaml@f3fd0341a6ffbe9f948e78e3270ca30faf2b2459 # v7.4.1
     secrets:
       REPOMATIC_NOTIFICATIONS_PAT: ${{ secrets.REPOMATIC_NOTIFICATIONS_PAT }}
       REPOMATIC_PAT: ${{ secrets.REPOMATIC_PAT }}
@@ -35,9 +35,14 @@ jobs:
     name: 🃏 Lint Jinja
     # Not "ubuntu-slim": djlint is installed from the project's own "djlint" extra, which builds it.
     runs-on: ubuntu-24.04
+    # Read-only: this job checks out and lints, and opens no pull request. Declared per-job because
+    # a top-level `permissions: {}` would starve the managed caller above, which `repomatic init`
+    # regenerates without a `permissions:` block of its own.
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990 # v8.3.2
+      - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
         with:
           # uv.lock pins watchfiles 0.24.0, a transitive Pelican dependency that ships no wheel
           # past 3.12 and falls back to a Rust build. Drop this pin once sync-uv-lock has moved
@@ -52,6 +57,9 @@ jobs:
     name: 💅 Lint CSS
     # Not "ubuntu-slim": stylelint and its shareable configs are installed from npm.
     runs-on: ubuntu-24.04
+    # Read-only: see the lint-jinja job above.
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Install stylelint
