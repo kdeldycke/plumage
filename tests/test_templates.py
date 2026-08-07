@@ -1,0 +1,149 @@
+# Copyright Kevin Deldycke <kevin@deldycke.com> and contributors.
+#
+# This program is Free Software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+
+"""High-level checks on the markup the theme's templates produce."""
+
+from __future__ import annotations
+
+import pytest
+
+from plumage import PLUMAGE_ROOT
+
+ALL_TEMPLATES = sorted(p.name for p in (PLUMAGE_ROOT / "templates").glob("*.html"))
+"""Every template the theme ships. Read at import time, to parametrize with it."""
+
+
+def classes(element) -> str:
+    """Normalize an element's class attribute, which templates pad with spaces."""
+    return " ".join((element.attr("class") or "").split())
+
+
+def test_theme_ships_templates():
+    assert "base.html" in ALL_TEMPLATES
+    assert len(ALL_TEMPLATES) > 10
+
+
+@pytest.mark.parametrize("template", ALL_TEMPLATES)
+def test_template_has_valid_syntax(jinja_env, template):
+    """Every shipped template parses, including the ones no test renders."""
+    assert jinja_env.get_template(template)
+
+
+def test_base_renders(render):
+    doc = render()
+    assert doc("title").text().endswith("Test Site")
+    assert doc("main#content")
+    assert doc("footer")
+
+
+# A full-width layout drops both sidebars, so the main content always spans the
+# whole row. Otherwise each declared sidebar takes 3 of the 12 columns. The block
+# above the content mirrors its width, and is offset only by a left sidebar.
+LAYOUT_CASES = (
+    # layout, has_left, has_right, main columns, top block classes, sidebar count
+    (None, False, False, "col-md-12", "col-md-12", 0),
+    (None, False, True, "col-md-9", "col-md-9", 1),
+    (None, True, False, "col-md-9", "col-md-9 offset-md-3", 1),
+    (None, True, True, "col-md-6", "col-md-6 offset-md-3", 2),
+    ("full-width", False, False, "col-md-12", "col-md-12", 0),
+    ("full-width", False, True, "col-md-12", "col-md-12", 0),
+    ("full-width", True, False, "col-md-12", "col-md-12", 0),
+    ("full-width", True, True, "col-md-12", "col-md-12", 0),
+)
+
+
+@pytest.mark.parametrize(
+    ("layout", "has_left", "has_right", "main_cls", "top_cls", "sidebars"),
+    LAYOUT_CASES,
+)
+def test_layout_columns(
+    render, layout, has_left, has_right, main_cls, top_cls, sidebars
+):
+    context = {"has_left": has_left, "has_right": has_right}
+    if layout:
+        context["LAYOUT"] = layout
+    doc = render(**context)
+
+    rows = doc(".container.mt-5 .row")
+    assert classes(doc("main#content")) == main_cls
+    assert classes(rows.eq(0).children().eq(0)) == top_cls
+    assert len(rows.eq(1).children(".col-md-3")) == sidebars
+
+
+@pytest.mark.parametrize("sidebar", ["LEFT_SIDEBAR", "RIGHT_SIDEBAR"])
+def test_sidebar_setting_declares_content(render, sidebar):
+    """Declaring a sidebar through the settings is enough to make it show up."""
+    doc = render(**{sidebar: "<p>Sidebar body</p>"})
+    assert len(doc(".container.mt-5 .row").eq(1).children(".col-md-3")) == 1
+    assert "Sidebar body" in doc(".container.mt-5").text()
+
+
+def test_full_width_layout_drops_sidebar_content(render):
+    """A full-width page ignores sidebars, whatever the settings declare."""
+    doc = render(LAYOUT="full-width", LEFT_SIDEBAR="<p>Sidebar body</p>")
+    assert "Sidebar body" not in doc.text()
+
+
+def test_search_box_hidden_by_default(render):
+    assert not render()("#sitesearch-input")
+
+
+def test_search_box_uses_bootstrap_icon(render):
+    """The theme dropped Font Awesome in 4.0.0 and loads Bootstrap Icons only."""
+    doc = render(STORK_SEARCH=True)
+    assert doc("#sitesearch-input")
+    assert classes(doc("label[for=sitesearch-input] i")) == "bi bi-search"
+
+
+@pytest.mark.parametrize("template", ALL_TEMPLATES)
+def test_no_font_awesome_icons(jinja_env, template):
+    """No template may reference an icon set the theme does not load."""
+    source = jinja_env.loader.get_source(jinja_env, template)[0]
+    assert "fa-" not in source
+
+
+def test_footer_reports_versions(render):
+    details = render()("footer details")
+    assert "Pelican v4.11.0" in details.text()
+    assert "Plumage v5.0.0.dev0" in details.text()
+
+
+@pytest.mark.parametrize("deprecated", ["text-muted", "text-dark"])
+def test_no_deprecated_color_utilities(render, deprecated):
+    """Bootstrap 5.3 replaced these with utilities that follow the color scheme."""
+    assert not render()(f".{deprecated}")
+
+
+def test_feeds_are_advertised(render):
+    doc = render(FEED_ALL_ATOM="feeds/all.atom.xml", FEED_DOMAIN="https://example.com")
+    feed = doc("link[rel=alternate]")
+    assert feed.attr("href") == "https://example.com/feeds/all.atom.xml"
+    assert feed.attr("type") == "application/atom+xml"
+
+
+@pytest.mark.parametrize(
+    ("context", "expected"),
+    [
+        ({}, "index, follow"),
+        ({"page": "a-draft", "drafts": ["a-draft"]}, "noindex, nofollow"),
+        (
+            {"page": "a-hidden-page", "hidden_pages": ["a-hidden-page"]},
+            "noindex, nofollow",
+        ),
+    ],
+)
+def test_robots_meta(render, context, expected):
+    assert render(**context)("meta[name=robots]").attr("content") == expected

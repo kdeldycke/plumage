@@ -91,6 +91,12 @@ wheel-exclude = [
 
 [project.optional-dependencies]
 djlint = ["djlint ~= 1.35.2"]
+test = [
+    "pytest ~= 8.4.0",
+    # Both are required by the addopts under [tool.pytest.ini_options].
+    "pytest-cov ~= 7.0.0",
+    "pytest-xdist[psutil] ~= 3.8.0",
+]
 
 [project.urls]
 "Homepage" = 'https://github.com/kdeldycke/plumage'
@@ -202,3 +208,34 @@ default.extend-identifiers = { Github = "GitHub", IOS = "iOS", Javascript = "Jav
 default.extend-words = { astroid = "astroid", oject = "oject", sur = "sur", certifi = "certifi", ges = "ges" }
 # Skip content between <!-- typos:off --> and <!-- typos:on --> markers.
 default.extend-ignore-re = [ "(?s)<!-- typos:off -->.*?<!-- typos:on -->" ]
+
+[tool.pytest.ini_options]
+# XXX repomatic 7.4.1 generates this table as [tool.pytest], which pytest ignores
+# outright: the section it reads is [tool.pytest.ini_options]. Renamed by hand, so
+# expect the next `repomatic init pytest` to undo it until the fix lands upstream.
+addopts = [
+    # Show the N slowest tests.
+    "--durations=10",
+    # Coverage settings - customize the package name for your project. The test
+    # workflow passes --cov-report=xml on the command line to produce the
+    # Codecov artifact, keeping it out of local runs.
+    "--cov=plumage",
+    "--cov-branch",
+    "--cov-precision=2",
+    "--cov-report=term",
+    # Run tests in parallel across all logical cores. Requires the
+    # pytest-xdist[psutil] test dependency.
+    "--numprocesses=auto",
+    # Import test modules via importlib instead of prepending their root dir to
+    # sys.path. Avoids "import file mismatch" collection errors when an installed
+    # copy of the package coexists with the source tree, as in distro builds.
+    "--import-mode=importlib",
+]
+markers = [
+    "once: Tests that only need to run once, not across the full CI matrix.",
+]
+# Restrict collection to the test suite, so pytest never descends into the
+# package or an installed copy of it in dual-copy builds.
+testpaths = ["tests"]
+# Make sure tests that are expected to fail do not resurrect and start working.
+xfail_strict = true

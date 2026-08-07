@@ -105,7 +105,7 @@ When adding or renaming a user-facing setting, update the settings table in `rea
 
 ### Python version pins in CI
 
-Three downstream jobs pin `python-version: "3.12"`. This is a workaround, not a policy: `uv.lock` holds watchfiles 0.24.0, a transitive Pelican dependency shipping no wheel past 3.12, which otherwise falls back to a Rust build. Drop the pins once `sync-uv-lock` has moved the lock past it.
+Three downstream jobs pin `python-version: "3.12"`, and the `tests.yaml` matrix stops at the same version instead of covering the full 3.10-3.14 range the classifiers advertise. This is a workaround, not a policy: `uv.lock` holds watchfiles 0.24.0, a transitive Pelican dependency shipping no wheel past 3.12, which otherwise falls back to a Rust build. Drop the pins and extend the matrix once `sync-uv-lock` has moved the lock past it.
 
 ## Python compatibility
 
@@ -119,6 +119,27 @@ The floor is Python 3.10 (`requires-python = ">= 3.10"`). Unavailable syntax:
 
 ## Testing
 
-There is no test suite. `tests.yaml` is intentionally absent: repomatic's header-only sync never creates that file, and there is nothing for it to run.
+The suite lives in `tests/` and runs with `uv run --extra test -- pytest`. It is deliberately high-level: templates are rendered through Jinja directly, so it needs neither a Pelican build nor the npm toolchain, and the whole thing finishes in seconds.
 
-If one is added, `repomatic init pytest` writes the shared configuration, and `tests.yaml` then needs to be created before the sync will maintain its header.
+Two pieces in `tests/conftest.py` make that possible:
+
+- `StubAssetsExtension` stands in for the `{% assets %}` tag of `pelican-webassets`, whose real implementation compiles SCSS through libsass and PostCSS.
+- `BASE_CONTEXT` is the smallest Pelican context that renders `base.html` end to end. Anything the templates iterate over has to be listed there: Jinja's default undefined renders as an empty string, but raises as soon as it is looped on.
+
+`favicon.py` and `webassets.py` sit well below the other modules in coverage. Both are driven by Pelican's generator objects and the npm toolchain, and neither repays the mocking a unit test would need. `tests/test_favicon.py` covers what matters there without any of it: that every favicon `base.html` links by absolute path is actually shipped.
+
+### Known repomatic bug: the pytest table name
+
+`repomatic init pytest` (7.4.1) writes the table as `[tool.pytest]`, which pytest ignores outright. The section it reads is `[tool.pytest.ini_options]`. The rename is applied by hand in `pyproject.toml`, and the next `repomatic init pytest` will undo it, so re-check the table name after any sync.
+
+The regression is silent. Symptom: `pytest` still passes, but prints no coverage summary and no durations table, because none of the generated `addopts` reach it.
+
+The generated `addopts` also assume dependencies the bare `pytest` pin does not bring in. `pytest-cov` and `pytest-xdist[psutil]` are in the `test` extra for that reason, and `--cov=.` was narrowed to `--cov=plumage` so coverage measures the theme rather than the suite.
+
+### `tests.yaml` is fully downstream-owned
+
+This workflow is the exception to the managed-caller rule described above. Repomatic ships no reusable tests workflow: its own `.github/workflows/tests.yaml` carries no `workflow_call:` trigger, so it cannot be called. `repomatic init workflows/tests.yaml` maintains only the header (name, triggers, `permissions: {}`, concurrency) and leaves every job alone.
+
+It also will not create the file. Seed a stub carrying a `jobs:` key first, then run the init to have the header generated.
+
+Because no job here calls a reusable workflow, the top-level `permissions: {}` is safe, unlike in `autofix.yaml`, `lint.yaml` and `release.yaml`. The `tests` job declares `contents: read` for itself.

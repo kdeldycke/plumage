@@ -1,0 +1,72 @@
+---
+name: 🔬 Tests
+"on":
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - plumage/**
+      - tests/**
+      - pyproject.toml
+      - uv.lock
+      - .github/workflows/tests.yaml
+  pull_request:
+    branches-ignore:
+      # This filter matches the PR's *base* branch (always `main`), not its
+      # head, so it does not actually exclude these PRs — see
+      # https://github.com/actions/runner/issues/1591. The real skip is the
+      # `github.head_ref` check in the `metadata` job's `if:` below. Kept
+      # here as documentation of intent.
+      - major-version-increment
+      - minor-version-increment
+      - prepare-release
+    paths:
+      - plumage/**
+      - tests/**
+      - pyproject.toml
+      - uv.lock
+      - .github/workflows/tests.yaml
+  schedule:
+    # Run tests monthly to catch regressions from dependency or environment changes.
+    - cron: "17 9 1 * *"
+
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ !startsWith(github.event.head_commit.message, '[changelog] Release') }}
+
+jobs:
+
+  # Everything below is downstream-owned. Repomatic ships no reusable tests workflow, so it only
+  # maintains the header above: there is no managed thin caller to preserve this job from.
+  # `repomatic init workflows/tests.yaml` regenerates the triggers, permissions and concurrency,
+  # and keeps the jobs untouched.
+
+  tests:
+    name: 🔬 Tests / py${{ matrix.python-version }}
+    # Not "ubuntu-slim": the suite imports the theme, so the project has to build first.
+    runs-on: ubuntu-24.04
+    # Read-only: this job checks out and runs the suite, and opens no pull request. Declared
+    # per-job because the top-level `permissions: {}` above otherwise leaves it with no scope.
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        # Stops at 3.12, like the other downstream jobs: uv.lock pins watchfiles 0.24.0, a
+        # transitive Pelican dependency shipping no wheel past 3.12, which otherwise falls back
+        # to a Rust build. Extend to the full 3.10-3.14 range once sync-uv-lock moves the lock
+        # past it.
+        python-version:
+          - "3.10"
+          - "3.11"
+          - "3.12"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Unittests
+        run: uv --no-progress run --frozen --extra test -- pytest

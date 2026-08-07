@@ -25,6 +25,8 @@
 - Replace the deprecated `text-muted` and the hard-coded `text-dark` in the footer with color scheme aware utilities.
 - Add a collapsible generation details block in the footer, listing the Pelican and Plumage versions. The latter is exposed as a new `PLUMAGE_VERSION` template variable.
 - Document the `LAYOUT` setting.
+- Add a test suite covering settings validation, the HTML transforms, the favicon assets and the rendered templates. Run it with `uv run --extra test -- pytest`.
+- Run the test suite on Python 3.10 to 3.12 through a new `tests.yaml` workflow.
 
 ## [`4.0.0` (2024-05-18)](https://github.com/kdeldycke/plumage/compare/v3.1.0...v4.0.0)
 
