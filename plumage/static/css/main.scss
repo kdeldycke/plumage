@@ -244,6 +244,32 @@ span.amp {
   font-family: cursive;
 }
 
+.admonition {
+  // No need to add extra padding to the admonition's body as all paragraphs already have a bottom margin.
+  @extend .pb-0;
+
+  // Reduce the size of the whole admonition content.
+  $font-size: 0.8125rem;
+  font-size: $font-size;
+
+  p {
+    margin-bottom: $font-size;
+  }
+
+  a {
+    // Colorize links with the same color as the admonition's title.
+    @extend .alert-link;
+    // Force links to be underlined.
+    @extend .text-decoration-underline;
+  }
+
+  .alert-heading {
+    @extend .text-uppercase;
+    // Reduce the size of the admonition's title.
+    font-size: $font-size;
+  }
+}
+
 .badge {
   @extend .btn, .btn-light, .rounded-pill;
 
