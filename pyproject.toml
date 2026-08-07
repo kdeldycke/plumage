@@ -157,19 +157,27 @@ profile = "jinja"
 # --ignore flags in the workflows, so the list lives in one place instead of both
 # lint.yaml and autofix.yaml, and a local `djlint --lint` behaves like CI.
 #
-#   H006  Wants width/height on <img>. Both hits are user-supplied URLs whose dimensions
-#         the theme cannot know: SITE_THUMBNAIL, and each project's own thumb. Both
-#         images do carry an alt attribute.
-#   H025  Reports an orphan tag. Both hits are false positives: base.html does close its
-#         <head>, and the </dl> in archives.html is emitted conditionally inside the loop
-#         that opens the matching <dl> whenever the month changes.
-#   H030  Wants a meta description. Filling it properly means deriving per-page content
-#   H031  and a keywords list, which is a feature rather than a lint fix. Search engines
-#         have ignored the keywords meta since 2009.
+#   H030  Wants a meta description. Filling it properly means deriving per-page content,
+#         which is a feature rather than a lint fix.
 #   T028  Wants spaceless tags inside attribute values. It fires on one button in
 #         archives.html while leaving the identical `class="... {% if %}...{% endif %}"`
 #         pattern in base.html (lines 117 and 127) unflagged.
-ignore = "H006,H025,H030,H031,T028"
+#
+# H006 (width/height on <img>) and H031 (meta keywords) were listed here too, until djlint
+# 1.42.1 moved both to opt-in for the reasons this file already gave: the theme's two <img>
+# hits are user-supplied URLs whose dimensions it cannot know, and search engines dropped
+# the keywords meta over a decade ago. Ignoring them no longer does anything.
+ignore = "H030,T028"
+
+# H025 reports an orphan tag. Scoped to the one file it misreads rather than ignored
+# outright, because it also catches real nesting errors: 1.40.4 taught it to report a list
+# inside a <p>, which found one in projects.html that the blanket ignore had been hiding.
+#
+# What remains here is a genuine false positive: the </dl> in archives.html is emitted
+# conditionally inside the loop that opens the matching <dl> whenever the month changes.
+# The other one this used to cover, an unclosed <head> in base.html, was fixed upstream.
+[tool.djlint.per-file-ignores]
+"archives.html" = "H025"
 
 [tool.typos]
 default.extend-identifiers = { Github = "GitHub", IOS = "iOS", Javascript = "JavaScript", MacOS = "macOS", PyPi = "PyPI", Typescript = "TypeScript" }

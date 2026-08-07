@@ -46,8 +46,9 @@ jobs:
       - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
       - name: Lint Jinja
         # Version-pinned so sync-workflow-pins bumps it past the minimum-release-age cooldown.
-        # Rules and profile come from [tool.djlint] in pyproject.toml.
-        run: uvx --no-progress 'djlint==1.35.4' --lint plumage/templates/*.html
+        # Rules and profile come from [tool.djlint] in pyproject.toml. --github-output renders each
+        # finding as a workflow annotation, so they land on the diff instead of only in the log.
+        run: uvx --no-progress 'djlint==1.43.1' --lint --github-output plumage/templates/*.html
 
   lint-css:
     name: 💅 Lint CSS

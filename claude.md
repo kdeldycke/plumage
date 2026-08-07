@@ -63,7 +63,10 @@ and `autofix.yaml` cannot drift apart and a local run behaves like CI:
   `plumage/static/**/*.{css,scss}`. The separate CSS and SCSS steps this replaced existed only
   to pass a different `--config` to each.
 
-- **djlint**: `[tool.djlint]` in `pyproject.toml`, which repomatic does not manage.
+- **djlint**: `[tool.djlint]` in `pyproject.toml`, which repomatic does not manage. `H025` is
+  scoped through `[tool.djlint.per-file-ignores]` instead of joining the flat `ignore` list,
+  because it also reports real nesting errors: it caught a `<ul>` inside a `<p>` in
+  `projects.html` that the blanket ignore had been hiding for as long as it was listed there.
 
 - **zizmor**: inline `# zizmor: ignore[adhoc-packages]` comments, which it accepts on the
   line above the finding.
@@ -74,6 +77,13 @@ assuming ownership of every class name and every nesting level cannot be satisfi
 
 `stylelint --fix` cannot repair either rule the Pygments stylesheets trip, so formatting them
 was never going to make `lint-css` pass: skipping them is the only route to green.
+
+`djlint --reformat` cannot indent a tag whose opening and closing halves sit in different
+`{% if %}` blocks. It dedents everything downstream instead, silently and far past the construct
+that confused it. Two templates use that idiom, the conditional `<a>` wrapping the thumbnail in
+`projects.html` and the month-boundary `<dl>` in `archives.html`, and both are fenced with
+`{# djlint:off #}` / `{# djlint:on #}`. Guard the smallest region holding the unbalanced tag: with
+the rest of the file still visible, the formatter indents everything around it correctly.
 
 ### Known lint warning: top-level workflow permissions
 

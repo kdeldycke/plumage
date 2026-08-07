@@ -50,11 +50,14 @@
                      data-bs-parent="#accordionArchives">
                     <div class="card-body">
                         {% set current_month = False %}
+                        {# The <dl> opens inside one {% if %} and closes in two others, so djlint
+                           cannot pair it up and drifts every tag that follows it. #}
+                        {# djlint:off #}
                         {% for article in yearly_group.articles %}
                             {% if article.date.month != current_month %}
                                 {% set current_month = article.date.month %}
                                 {% if not loop.first %}</dl>{% endif %}
-                            <dl class="row">
+                                <dl class="row">
                             {% endif %}
                             <dt class="col-sm-2">
                                 <abbr class="published" title="{{ article.date.isoformat() }}">{{ article.date.strftime("%b. %d") }}</abbr>
@@ -63,10 +66,11 @@
                                 <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
                             </dd>
                             {% if loop.last %}</dl>{% endif %}
-                    {% endfor %}
+                        {% endfor %}
+                        {# djlint:on #}
+                    </div>
                 </div>
             </div>
-        </div>
-    {% endfor %}
-</div>
+        {% endfor %}
+    </div>
 {% endblock content %}

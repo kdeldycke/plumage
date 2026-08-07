@@ -122,7 +122,7 @@ jobs:
         # Pinned to the same release as the lint-jinja job in lint.yaml, which sync-workflow-pins
         # bumps in lockstep. Rules and profile come from [tool.djlint] in pyproject.toml.
         run: >
-          uvx --no-progress 'djlint==1.35.4'
+          uvx --no-progress 'djlint==1.43.1'
           --reformat --format-css --format-js --warn plumage/templates/*.html
       - id: pr-metadata
         run: >

@@ -23,6 +23,10 @@ Sorted by priority: the first items takes precedence over those at the end. #}
 {% macro render_card(all_tags, project) %}
     <div class="card">
         {% if project.inactive %}<div class="corner-banner shadow-sm bg-danger text-white fw-bold">Inactive</div>{% endif %}
+        {# The <a> below opens and closes in two separate {% if %} blocks, which djlint's
+           indenter cannot pair up. Left to itself it dedents the whole rest of the macro,
+           so that card-body ends up looking like a sibling of card rather than its child. #}
+        {# djlint:off #}
         {% if project.thumb %}
             {% if project.thumb_link %}<a href="{{ project.thumb_link }}">{% endif %}
                 <img class="card-img-top"
@@ -30,10 +34,13 @@ Sorted by priority: the first items takes precedence over those at the end. #}
                      src="{{ project.thumb }}" />
                 {% if project.thumb_link %}</a>{% endif %}
         {% endif %}
+        {# djlint:on #}
         <div class="card-body">
             <h4 class="card-title">{{ project.name }}</h4>
             {% if project.roles or project.tools %}
-                <p class="card-text">
+                {# Not a <p>: a <ul> inside one is closed by the parser at the list, which drops
+                   card-text off it and leaves a stray empty paragraph behind. #}
+                <div class="card-text">
                     <ul class="list-inline">
                         {% for role in project.roles %}
                             <li class="list-inline-item">
@@ -56,7 +63,7 @@ Sorted by priority: the first items takes precedence over those at the end. #}
                             {% endif %}
                         {% endfor %}
                     </ul>
-                </p>
+                </div>
             {% endif %}
             {% if project.desc %}<p class="card-text">{{ project.desc }}</p>{% endif %}
             {% if project.links %}
@@ -122,9 +129,9 @@ Sorted by priority: the first items takes precedence over those at the end. #}
 {% block content %}
     {% if PROJECT_GROUPS is defined %}
         {% for group in PROJECT_GROUPS %}
-            {{ render_project_group(group, PROJECTS|selectattr("group", "sameas", group.id) ) }}
+            {{ render_project_group(group, PROJECTS|selectattr("group", "sameas", group.id)) }}
         {% endfor %}
-        {{ render_projects(PROJECTS|rejectattr("group", "defined") ) }}
+        {{ render_projects(PROJECTS|rejectattr("group", "defined")) }}
     {% else %}
         {{ render_projects(PROJECTS) }}
     {% endif %}
