@@ -6,9 +6,12 @@
 > This version is **not released yet** and is under active development.
 
 - **Breaking:** Drop support of Python 3.9.
+- **Breaking:** Drop support of Python 3.10, which Pelican 4.12.0 requires.
 - **Breaking:** Remove jQuery, `magnific-popup` and `mglass`, and the image auto-zoom they powered.
 - **Breaking:** Only support native Pygments syntax highlighting. The legacy `.codehilite` class is no longer styled.
 - **Breaking:** Remove inlining and minification of javascript assets, and the unmaintained `closure` dependency they relied on.
+- Require Pelican 4.12.0. Force `myst-parser` 5 through a `uv` override, as `pelican-myst-reader` still caps it below 5.0.0 and so holds `docutils` below the 0.22 that Pelican 4.12.0 needs.
+- Replace every `~=` requirement with `>=`, so no dependency carries an upper bound any more.
 - Add 14 Pygments styles, including `dracula`, `github-dark`, `gruvbox-dark` and `nord`. Remove the `stata` one.
 - Add missing static assets in Python packages.
 - Move analytics code just below the `<head>` element, and all other javascript to the bottom of the page.
@@ -26,7 +29,7 @@
 - Add a collapsible generation details block in the footer, listing the Pelican and Plumage versions. The latter is exposed as a new `PLUMAGE_VERSION` template variable.
 - Document the `LAYOUT` setting.
 - Add a test suite covering settings validation, the HTML transforms, the favicon assets and the rendered templates. Run it with `uv run --group test -- pytest`.
-- Run the test suite on Python 3.10 to 3.12 through a new `tests.yaml` workflow.
+- Run the test suite on Python 3.11 to 3.14 through a new `tests.yaml` workflow.
 - Fix the paginator emitting a whitespace-only `rel` attribute on pages carrying no link relation.
 - Add the missing `alt` text on the site thumbnail.
 - Configure stylelint and djlint, so both report only findings that apply to the theme. The generated Pygments stylesheets are no longer linted, and Sass Guidelines rules incompatible with extending Bootstrap's utility classes are turned off.

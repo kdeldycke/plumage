@@ -12,7 +12,7 @@ requires = ["uv-build>=0.8"]
 name = "plumage"
 version = "5.0.0.dev0"
 # Python versions and their status: https://devguide.python.org/versions/
-requires-python = ">= 3.10"
+requires-python = ">= 3.11"
 description = "🪶 Clean and tidy theme for Pelican, the static site generator"
 authors = [{ name = "Kevin Deldycke", email = "kevin@deldycke.com" }]
 readme = "readme.md"
@@ -41,7 +41,6 @@ classifiers = [
     'Programming Language :: JavaScript',
     'Programming Language :: Other',
     'Programming Language :: Python :: 3',
-    'Programming Language :: Python :: 3.10',
     'Programming Language :: Python :: 3.11',
     'Programming Language :: Python :: 3.12',
     'Programming Language :: Python :: 3.13',
@@ -54,19 +53,41 @@ classifiers = [
     'Typing :: Typed',
 ]
 dependencies = [
-    "cssmin ~= 0.2.0",              # XXX Unmaintained!
-    "libsass ~= 0.23.0",
-    "pelican >= 4.8.0",
-    "pelican-myst-reader ~= 1.4.0",
-    "pelican-webassets ~= 2.0.0",
-    "pygments ~= 2.18.0",
-    "pynpm ~= 0.2.0",
-    "pyquery ~= 2.0.0",
+    "cssmin >= 0.2.0",              # XXX Unmaintained!
+    "libsass >= 0.23.0",
+    # Pelican 4.12.0 is the first release to require Python 3.11, aligning with the
+    # requires-python above. It also lifts its own Pygments ceiling to < 2.20.0.
+    "pelican >= 4.12.0",
+    "pelican-myst-reader >= 1.4.0",
+    "pelican-webassets >= 2.0.0",
+    "pygments >= 2.18.0",
+    "pynpm >= 0.2.0",
+    "pyquery >= 2.0.0",
 ]
 
 [tool.uv]
 required-version = ">=0.11.15"
 exclude-newer = "1 week"
+# pelican-myst-reader 1.4.0 caps myst-parser below 5.0.0, and myst-parser 4.x in turn caps
+# docutils below 0.22, which Pelican 4.12.0 requires. The two are irreconcilable: without
+# this override `uv lock` fails outright with unsatisfiable requirements. An override is the
+# only lever that works, since it replaces the reader's own declaration; a direct
+# `myst-parser` dependency would just be one more party to the same conflict.
+#
+# No upper bound on purpose. A ceiling here would be the very thing this override exists to
+# undo, and it only ever silences the signal: overrides are workspace-local and never reach
+# consumers of the published wheel, so a myst-parser that does break the reader shows up in
+# CI rather than in someone else's resolver.
+#
+# The cap is stale rather than a real incompatibility. Every breaking change in myst-parser
+# 5.0.0 is a dependency floor (Python 3.11, Sphinx 8, docutils 0.20, markdown-it-py 4), with
+# no API removed, and the reader only reaches for MdParserConfig, create_md_parser and
+# read_topmatter. Rendering a document covering emphasis, links, inline code, headings,
+# blockquotes, highlighted code blocks, tables, admonitions, footnotes and definition lists
+# yields byte-identical HTML under myst-parser 4.0.1 and 5.1.0.
+#
+# Drop this once the reader relaxes its own pin: https://github.com/ashwinvis/myst-reader
+override-dependencies = ["myst-parser>=5"]
 
 [tool.uv.build-backend]
 # The theme uses a flat layout: the package sits at the repo root, not under src/.
@@ -91,10 +112,10 @@ wheel-exclude = [
 
 [dependency-groups]
 test = [
-    "pytest ~= 8.4.0",
+    "pytest >= 8.4.0",
     # Both are required by the addopts under [tool.pytest.ini_options].
-    "pytest-cov ~= 7.0.0",
-    "pytest-xdist[psutil] ~= 3.8.0",
+    "pytest-cov >= 7.0.0",
+    "pytest-xdist[psutil] >= 3.8.0",
 ]
 
 [project.urls]

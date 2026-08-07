@@ -142,7 +142,7 @@ When adding or renaming a user-facing setting, update the settings table in `rea
 
 ### Python version coverage in CI
 
-The `tests.yaml` matrix covers the full 3.10-3.14 range the classifiers advertise, and no downstream job pins `python-version`.
+The `tests.yaml` matrix covers the full 3.11-3.14 range the classifiers advertise, and no downstream job pins `python-version`.
 
 Both used to stop at 3.12, to keep `uv.lock`'s watchfiles 0.24.0 from falling back to a Rust build. That floor was the binding constraint but the cap was set one version too low: 0.24.0 does publish a cp313 wheel, and 3.14 was the first version it left uncovered. watchfiles 1.2.0 publishes cp310 through cp315, so the whole range installs from wheels. If a future resolution walks watchfiles back, 3.14 is the job that fails first.
 
@@ -150,13 +150,19 @@ Only jobs that install the project were ever affected. The two Jinja jobs used t
 
 ## Python compatibility
 
-The floor is Python 3.10 (`requires-python = ">= 3.10"`). Unavailable syntax:
+The floor is Python 3.11 (`requires-python = ">= 3.11"`). Unavailable syntax:
 
 - multi-line f-string expressions (3.12+): split into concatenated strings
-- exception groups and `except*` (3.11+)
-- the `Self` type hint (3.11+): use `typing_extensions.Self`
+
+The floor is set by Pelican, not by the theme: 4.12.0 is the first release requiring 3.11, so it cannot be reached while 3.10 is still supported. Exception groups, `except*` and the `Self` type hint came along with that move and no longer need a `typing_extensions` fallback.
 
 `mypy` passing locally on a newer interpreter does not mean it passes in CI. Check against the minimum when touching type-sensitive code.
+
+### The myst-parser override
+
+Reaching Pelican 4.12.0 also needs the `override-dependencies` entry in `[tool.uv]`. Pelican 4.12.0 requires docutils 0.22, pelican-myst-reader 1.4.0 caps myst-parser below 5.0.0, and myst-parser 4.x caps docutils below 0.22. Nothing resolves without forcing myst-parser 5.
+
+The override is safe because the reader's cap is stale, not a real incompatibility. The reasoning and the rendering comparison behind that claim are recorded in the comment above the entry. It is still an override of an upstream constraint, so re-check it whenever pelican-myst-reader or myst-parser moves, and drop it the moment the reader relaxes its own pin.
 
 ## Testing
 
