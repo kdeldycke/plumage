@@ -1,45 +1,64 @@
 ---
-name: Lint
+name: 🧹 Lint
 "on":
+  workflow_dispatch:
   push:
     branches:
       - main
+    paths-ignore:
+      - "**/*.gif"
+      - "**/*.jpeg"
+      - "**/*.jpg"
+      - "**/*.png"
+      - "**/*.svg"
+      - "**/*.webp"
   pull_request:
+    branches-ignore:
+      - major-version-increment
+      - minor-version-increment
+      - prepare-release
 
 jobs:
 
   lint:
-    uses: kdeldycke/workflows/.github/workflows/lint.yaml@v4.6.0
+    uses: kdeldycke/repomatic/.github/workflows/lint.yaml@c81fb2e6fa884cb62ef46e69b8c8db44fa6fad15 # v7.3.1
+    secrets:
+      REPOMATIC_NOTIFICATIONS_PAT: ${{ secrets.REPOMATIC_NOTIFICATIONS_PAT }}
+      REPOMATIC_PAT: ${{ secrets.REPOMATIC_PAT }}
+      VIRUSTOTAL_API_KEY: ${{ secrets.VIRUSTOTAL_API_KEY }}
+
+  # Theme-specific jobs below. Repomatic covers neither SCSS nor Jinja, so these stay downstream.
+  # `repomatic init` keeps every job declared after the managed caller above, so they survive a
+  # workflow re-sync. Their autofixing counterparts live in autofix.yaml.
 
   lint-jinja:
-    name: Lint Jinja
+    name: 🃏 Lint Jinja
+    # Not "ubuntu-slim": djlint is installed from the project's own "djlint" extra, which builds it.
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4.1.7
-      - uses: actions/setup-python@v5.2.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990 # v8.3.2
         with:
+          # uv.lock pins watchfiles 0.24.0, a transitive Pelican dependency that ships no wheel
+          # past 3.12 and falls back to a Rust build. Drop this pin once sync-uv-lock has moved
+          # the lock forward.
           python-version: "3.12"
-      - name: Install uv
-        run: |
-          python -m pip install -r https://raw.githubusercontent.com/kdeldycke/workflows/v4.6.0/requirements/uv.txt
-      - name: Install djlint
-        run: |
-          uv tool install --with djlint djlint
-      - name: Autofix Jinja
-        run: |
+      - name: Lint Jinja
+        run: >
+          uv --no-progress run --frozen --extra djlint --
           djlint --lint --profile jinja plumage/templates/*.html
 
   lint-css:
-    name: Lint CSS files
+    name: 💅 Lint CSS
+    # Not "ubuntu-slim": stylelint and its shareable configs are installed from npm.
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4.1.7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Install stylelint
-        run: |
-          npm install --save-dev stylelint stylelint-config-standard stylelint-config-sass-guidelines
+        # --no-save keeps the theme's own package.json, which declares the webassets pipeline, free
+        # of these CI-only linters.
+        run: npm install --no-save stylelint stylelint-config-standard stylelint-config-sass-guidelines
       - name: Lint CSS
-        run: |
-          npx stylelint --config stylelint-config-standard "plumage/static/**/*.css"
+        run: npx stylelint --config stylelint-config-standard "plumage/static/**/*.css"
       - name: Lint SCSS
-        run: |
-          npx stylelint --config stylelint-config-sass-guidelines "plumage/static/**/*.scss"
+        run: npx stylelint --config stylelint-config-sass-guidelines "plumage/static/**/*.scss"

@@ -83,6 +83,13 @@ pretty = true
 ignore_missing_imports = true
 module = ["pyquery", "pynpm", "pelican.*"]
 
+[tool.repomatic]
+# The theme compiles its assets with an npm-based webassets pipeline, so the
+# sync-gitignore job has to keep Node entries when it regenerates .gitignore.
+# Replaces the gitignore-extra-categories input the pre-repomatic autofix
+# workflow used to pass to its reusable caller.
+gitignore.extra-categories = ["node"]
+
 [tool.bumpversion]
 current_version = "5.0.0"
 allow_dirty = true

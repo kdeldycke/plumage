@@ -1,16 +1,30 @@
 ---
-name: Changelog & versions
+name: 🆙 Changelog & versions
 "on":
+  workflow_dispatch:
+  schedule:
+    - cron: "0 6 * * *"
   push:
     branches:
       - main
     paths:
       - changelog.md
-      - .bumpversion.cfg
-      - .github/workflows/changelog.yaml
-      - .github/workflows/release.yaml
+      - "**/pyproject.toml"
+      - ".github/workflows/*.yaml"
+      - uv.lock
+      - "**/*.py"
+      - "docs/**"
+  workflow_run:
+    workflows:
+      - "🚀 Build & release"
+    types:
+      - completed
+    branches:
+      - main
 
 jobs:
 
   changelog:
-    uses: kdeldycke/workflows/.github/workflows/changelog.yaml@v4.6.0
+    uses: kdeldycke/repomatic/.github/workflows/changelog.yaml@c81fb2e6fa884cb62ef46e69b8c8db44fa6fad15 # v7.3.1
+    secrets:
+      REPOMATIC_PAT: ${{ secrets.REPOMATIC_PAT }}

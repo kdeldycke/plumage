@@ -1,130 +1,139 @@
 ---
-name: Autofix
+name: 🪄 Autofix
 "on":
+  workflow_dispatch:
+  schedule:
+    - cron: "27 4 * * 1"
   push:
-    # Only targets main branch to avoid amplification effects of auto-fixing
-    # the exact same stuff in multiple non-rebased branches.
     branches:
       - main
 
 jobs:
 
   autofix:
-    uses: kdeldycke/workflows/.github/workflows/autofix.yaml@v4.6.0
-    with:
-      gitignore-extra-categories: node
+    uses: kdeldycke/repomatic/.github/workflows/autofix.yaml@c81fb2e6fa884cb62ef46e69b8c8db44fa6fad15 # v7.3.1
+    secrets:
+      REPOMATIC_NOTIFICATIONS_PAT: ${{ secrets.REPOMATIC_NOTIFICATIONS_PAT }}
+      REPOMATIC_PAT: ${{ secrets.REPOMATIC_PAT }}
+      VIRUSTOTAL_API_KEY: ${{ secrets.VIRUSTOTAL_API_KEY }}
+
+  # Theme-specific jobs below. Repomatic covers neither Pygments, SCSS nor Jinja, so these stay
+  # downstream. `repomatic init` keeps every job declared after the managed caller above, so they
+  # survive a workflow re-sync.
 
   pygments-styles:
-    name: Generate Pygment styles
+    name: 🎨 Generate Pygments styles
+    # Not "ubuntu-slim": the styles must come from the exact Pygments release the theme depends on,
+    # so this job builds the project, and jq parses the style listing.
     runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
-      - uses: actions/checkout@v4.1.7
-      - uses: actions/setup-python@v5.2.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990 # v8.3.2
         with:
+          # uv.lock pins watchfiles 0.24.0, a transitive Pelican dependency that ships no wheel
+          # past 3.12 and falls back to a Rust build. Drop this pin once sync-uv-lock has moved
+          # the lock forward.
           python-version: "3.12"
-      - name: Install uv
-        run: |
-          python -m pip install -r https://raw.githubusercontent.com/kdeldycke/workflows/v4.6.0/requirements/uv.txt
-      - name: Install Pygments
-        run: |
-          uv --no-progress venv
-          uv --no-progress sync --all-extras
       - name: Generate Pygments styles
         run: |
-          for STYLE in $( uv --no-progress run --frozen -- pygmentize -L styles --json | jq -r '.["styles"] | keys[]' );
-          do
+          STYLES=$(uv --no-progress run --frozen -- pygmentize -L styles --json | jq -r '.styles | keys[]')
+          for STYLE in $STYLES; do
             CSS_FILE="./plumage/static/css/pygments/$STYLE.css"
             uv --no-progress run --frozen -- pygmentize -f html -S "$STYLE" -a ".highlight" > "$CSS_FILE"
           done
-      - uses: peter-evans/create-pull-request@v7.0.5
+      - id: pr-metadata
+        run: >
+          uvx --no-progress 'repomatic==7.3.1' pr-body --output-format github-actions
+          --template-file .github/pr-pygments-styles.md
+          --output "$GITHUB_OUTPUT"
+      - uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         with:
+          token: ${{ secrets.REPOMATIC_PAT || github.token }}
           assignees: ${{ github.actor }}
-          commit-message: "[autofix] Update Pygments styles"
-          title: "[autofix] Update Pygments styles"
-          body: >
-            <details><summary><code>Workflow metadata</code></summary>
-
-
-            > [Auto-generated on run `#${{ github.run_id }}`](${{ github.event.repository.html_url }}/actions/runs/${{
-            github.run_id }}) by `${{ github.job }}` job from [`autofix.yaml`](${{ github.event.repository.html_url
-            }}/blob/${{ github.sha }}/.github/workflows/autofix.yaml) workflow.
-
-
-            </details>
-          labels: "📦 dependencies"
+          commit-message: ${{ steps.pr-metadata.outputs.commit_message }}
+          title: ${{ steps.pr-metadata.outputs.title }}
+          body: ${{ steps.pr-metadata.outputs.body }}
+          labels: "🔗 dependencies"
           branch: update-pygments-styles
+          delete-branch: true
           add-paths: |
             plumage/static/css/pygments/*.css
 
   format-css:
-    name: Format CSS files and create a PR
+    name: 💅 Format CSS
+    # Not "ubuntu-slim": stylelint and its shareable configs are installed from npm.
     runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
-      - uses: actions/checkout@v4.1.7
-      - name: Install npm
-        run: |
-          sudo apt --quiet --yes install npm
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990 # v8.3.2
       - name: Install stylelint
-        run: |
-          npm install --save-dev stylelint stylelint-config-standard stylelint-config-sass-guidelines
+        # --no-save keeps the theme's own package.json, which declares the webassets pipeline, free
+        # of these CI-only linters.
+        run: npm install --no-save stylelint stylelint-config-standard stylelint-config-sass-guidelines
       - name: Autofix CSS
-        # Allow that step to fail so we can proceed with creating the auto-fix PR below.
+        # Allowed to fail so the pull request below is still opened with whatever stylelint managed
+        # to fix on its own. What it could not fix is reported by the lint workflow.
         run: |
           npx stylelint --fix --config stylelint-config-standard "plumage/static/**/*.css" || true
           npx stylelint --fix --config stylelint-config-sass-guidelines "plumage/static/**/*.scss" || true
-      - uses: peter-evans/create-pull-request@v7.0.5
+      - id: pr-metadata
+        run: >
+          uvx --no-progress 'repomatic==7.3.1' pr-body --output-format github-actions
+          --template-file .github/pr-format-css.md
+          --output "$GITHUB_OUTPUT"
+      - uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         with:
+          token: ${{ secrets.REPOMATIC_PAT || github.token }}
           assignees: ${{ github.actor }}
-          commit-message: "[autofix] Format CSS style"
-          title: "[autofix] Format CSS style"
-          body: >
-            <details><summary><code>Workflow metadata</code></summary>
-
-
-            > [Auto-generated on run `#${{ github.run_id }}`](${{ github.event.repository.html_url }}/actions/runs/${{
-            github.run_id }}) by `${{ github.job }}` job from [`autofix.yaml`](${{ github.event.repository.html_url
-            }}/blob/${{ github.sha }}/.github/workflows/autofix.yaml) workflow.
-
-
-            </details>
+          commit-message: ${{ steps.pr-metadata.outputs.commit_message }}
+          title: ${{ steps.pr-metadata.outputs.title }}
+          body: ${{ steps.pr-metadata.outputs.body }}
           labels: "🤖 ci"
-          branch: autofix-css
-          # Only commit css and scss files at any depth of the plumage/static/ subtree.
+          branch: format-css
+          delete-branch: true
+          # Only commit stylesheets, so the npm install above cannot leak into the pull request. In
+          # a git pathspec "*" spans directory separators, so these reach any depth of static/.
           add-paths: |
             plumage/static/*.css
             plumage/static/*.scss
 
   format-jinja:
-    name: Format Jinja
+    name: 🃏 Format Jinja
+    # Not "ubuntu-slim": djlint is installed from the project's own "djlint" extra, which builds it.
     runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
-      - uses: actions/checkout@v4.1.7
-      - uses: actions/setup-python@v5.2.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: astral-sh/setup-uv@11f9893b081a58869d3b5fccaea48c9e9e46f990 # v8.3.2
         with:
+          # See the pygments-styles job above for why this is pinned.
           python-version: "3.12"
-      - name: Install uv
-        run: |
-          python -m pip install -r https://raw.githubusercontent.com/kdeldycke/workflows/v4.6.0/requirements/uv.txt
-      - name: Install djlint
-        run: |
-          uv tool install --with djlint djlint
       - name: Autofix Jinja
-        run: |
+        run: >
+          uv --no-progress run --frozen --extra djlint --
           djlint --reformat --profile jinja --format-css --format-js --warn plumage/templates/*.html
-      - uses: peter-evans/create-pull-request@v7.0.5
+      - id: pr-metadata
+        run: >
+          uvx --no-progress 'repomatic==7.3.1' pr-body --output-format github-actions
+          --template-file .github/pr-format-jinja.md
+          --output "$GITHUB_OUTPUT"
+      - uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         with:
+          token: ${{ secrets.REPOMATIC_PAT || github.token }}
           assignees: ${{ github.actor }}
-          commit-message: "[autofix] Format Jinja"
-          title: "[autofix] Format Jinja"
-          body: >
-            <details><summary><code>Workflow metadata</code></summary>
-
-
-            > [Auto-generated on run `#${{ github.run_id }}`](${{ github.event.repository.html_url }}/actions/runs/${{
-            github.run_id }}) by `${{ github.job }}` job from [`autofix.yaml`](${{ github.event.repository.html_url
-            }}/blob/${{ github.sha }}/.github/workflows/autofix.yaml) workflow.
-
-
-            </details>
+          commit-message: ${{ steps.pr-metadata.outputs.commit_message }}
+          title: ${{ steps.pr-metadata.outputs.title }}
+          body: ${{ steps.pr-metadata.outputs.body }}
           labels: "🤖 ci"
-          branch: autofix-jinja
+          branch: format-jinja
+          delete-branch: true
+          add-paths: |
+            plumage/templates/*.html
