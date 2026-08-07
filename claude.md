@@ -62,7 +62,9 @@ and `autofix.yaml` cannot drift apart and a local run behaves like CI:
   Because those `overrides` discriminate by file type, each job needs a single call over
   `plumage/static/**/*.{css,scss}`. The separate CSS and SCSS steps this replaced existed only
   to pass a different `--config` to each.
+
 - **djlint**: `[tool.djlint]` in `pyproject.toml`, which repomatic does not manage.
+
 - **zizmor**: inline `# zizmor: ignore[adhoc-packages]` comments, which it accepts on the
   line above the finding.
 
@@ -164,10 +166,10 @@ The floor is set by Pelican, not by the theme: 4.12.0 is the first release requi
 
 The part that surprises: the reader picks a renderer **per document**, and the two disagree on code block markup.
 
-| Renderer | Chosen when | Code block markup |
-| :------- | :---------- | :---------------- |
-| Sphinx   | the document holds `{filename}`, `{static}` or `{attach}`, a bibliography, `dollarmath` or `amsmath`, or `force_sphinx` is set | `<div class="highlight"><pre>` |
-| docutils | everything else | `<pre class="code ... literal-block">` |
+| Renderer | Chosen when                                                                                                                    | Code block markup                      |
+| :------- | :----------------------------------------------------------------------------------------------------------------------------- | :------------------------------------- |
+| Sphinx   | the document holds `{filename}`, `{static}` or `{attach}`, a bibliography, `dollarmath` or `amsmath`, or `force_sphinx` is set | `<div class="highlight"><pre>`         |
+| docutils | everything else                                                                                                                | `<pre class="code ... literal-block">` |
 
 Every stylesheet under `static/css/pygments/` is generated with `-a ".highlight"`, and `code.scss` is scoped the same way, so only the first shape gets any syntax colors. `dom_transforms.py` wraps the second one to match, which is why highlighting works without configuration. Remove that wrap and half a site's code blocks silently lose their colors while still emitting every Pygments token span. `tests/test_markdown.py` covers both renderers for exactly this reason.
 
