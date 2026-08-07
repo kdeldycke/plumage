@@ -5,19 +5,19 @@
 > [!WARNING]
 > This version is **not released yet** and is under active development.
 
-- Switch from Poetry to `uv`.
-- Drop support of Python 3.9.
+- **Breaking:** Drop support of Python 3.9.
+- **Breaking:** Remove jQuery, `magnific-popup` and `mglass`, and the image auto-zoom they powered.
+- **Breaking:** Only support native Pygments syntax highlighting. The legacy `.codehilite` class is no longer styled.
+- **Breaking:** Remove inlining and minification of javascript assets, and the unmaintained `closure` dependency they relied on.
+- Add 14 Pygments styles, including `dracula`, `github-dark`, `gruvbox-dark` and `nord`. Remove the `stata` one.
 - Add missing static assets in Python packages.
-- Move analytics code just below the `<head>` element.
-- Move all other javascript assets to the bottom of the page, before the `</body>` tag.
-- Remove inlining and minification of javascript assets.
-- Remove unmaintained `closure` dependency.
-- Remove auto-detection of the `closure` CLI jar file and auto-configuration for `webassets` plugin.
+- Move analytics code just below the `<head>` element, and all other javascript to the bottom of the page.
 - Remove hack fixing external images bug from `pelican-image-process` plugin.
-- Remove jQuery, `magnific-popup` and `mglass`.
-- Only support native Pygments syntax highlighting.
+- Switch from Poetry to `uv`. Move `djlint` from a dev dependency to an optional extra.
+- Manage the repository with `repomatic`.
 - Split Pygments style auto-update job from CSS formatting.
 - Runs workflows on latest `ubuntu-24.04`.
+- Document theme development, and recommend [Jampack](https://jampack.divriots.com) for asset optimization.
 
 ## [`4.0.0` (2024-05-18)](https://github.com/kdeldycke/plumage/compare/v3.1.0...v4.0.0)
 
@@ -26,6 +26,8 @@
 
 - Replace Font Awesome by Bootstrap Icons.
 - Add support for MyST Markdown. Add new dependency on `pelican-myst-reader`.
+- Rework right sidebar, tags and categories.
+- Rework header permalinks.
 - Remove support for `pymdownx` and dependency on `pymdown-extensions`.
 - Remove direct dependency on `Markdown` and `pygments`.
 - Auto-detect location of `closure.jar` file for `webassets`.
@@ -54,10 +56,12 @@
 - Upgrade to Font Awesome 6.3.0.
 - Upgrade to jQuery 3.6.3.
 - Re-introduce dependency on Masonry 4.2.2.
-- Remove `fitvids`. It's unmaintained and the modern web stack should not requires it.
+- Remove `fitvids`. It's unmaintained and the modern web stack should not require it.
+- Remove default underline on links.
+- Strip tags from article summaries.
 - Update dependency to `pelican-webassets` 2.0.0.
-- Let `autoprefixer` generates vendor prefixes in CSS.
-- Add dependency on `postcss-cli` and `autoprefixer` Node package.
+- Let `autoprefixer` generate vendor prefixes in CSS.
+- Add dependency on `postcss-cli` and `autoprefixer` Node packages.
 - Auto-install Node.js dependencies via `npm`.
 - Auto-configure `webassets` plugins on theme load.
 - Auto-format Jinja templates. Add dependency on `djlint`.
@@ -80,6 +84,7 @@
 - Improve styling of code blocks.
 - Remove all custom default and code fonts. Rely on [Bootstrap's native font stack](https://getbootstrap.com/docs/4.1/content/reboot/#native-font-stack).
 - Add Pelican version in HTML headers.
+- Add hack fixing external images bug from `pelican-image-process` plugin.
 
 ## [`2.3.0` (2020-11-26)](https://github.com/kdeldycke/plumage/compare/v2.2.0...v2.3.0)
 
@@ -91,12 +96,12 @@
 - Add dependency on `pyquery`.
 - Lint all SCSS and SASS files.
 - Lint all YAML files. Add dependency on `yamllint` package.
-- Aligns minimal Python version to 3.6, i.e. the one Pelican depends on.
+- Align minimal Python version to 3.6, the one Pelican depends on.
 - Add dependency on `black`.
 - Keep images optimized.
 - Style TOC permalinks produced by Python's `markdown.extensions.toc`.
 - Fix blockquote border rendering.
-- Test publishing to PyPi in dry-run mode by the way of Poetry.
+- Test publishing to PyPI in dry-run mode by the way of Poetry.
 
 ## [`2.2.0` (2020-11-20)](https://github.com/kdeldycke/plumage/compare/v2.1.0...v2.2.0)
 
@@ -107,7 +112,9 @@
 - Upgrade to Font Awesome 5.15.1.
 - Reduce image size by converting most assets from PNG to JPEG.
 - Add support for line numbers and highlights in code samples.
+- Support both CodeHilite and Highlight Markdown extensions for code rendering.
 - Add keywords meta tag in articles' header.
+- Add generator meta tag to promote Pelican.
 - Compile all local CSS and JS files into a single minified file.
 - Add support for `.scss` style files. Add dependency on `libsass`.
 - Add dependency on `pelican-webassets`, `cssmin` and `closure` packages.
@@ -122,7 +129,7 @@
 
 - Add `period_archives.html` template.
 - Add support for `similar_posts` plugin.
-- Upgrade to `pygment >= 2.7`.
+- Upgrade to `pygments >= 2.7`.
 - Fix code block color that made them unreadable.
 - Add Monokai style to render code block to increase contrast and
   readability. Set as new default instead of Solarized dark.
@@ -142,11 +149,11 @@
 - Remove dependency on Masonry.
 - Remove dependency on ImagesLoaded.
 - Remove `FLAT_DESIGN` option.
-- Use list group to renders related content at the bottom of articles.
+- Use list group to render related content at the bottom of articles.
 - Move badges above description in project cards.
 - Use latest Disqus reference code.
 - Do not display Disqus comments for draft articles.
-- Sort tags, categories and authors by frequency first, then alphabeticcaly.
+- Sort tags, categories and authors by frequency first, then alphabetically.
 - Ignore empty years in archive page.
 - Display number of articles per year in archive page.
 - Upgrade to latest Google Analytics code snippet.
@@ -154,8 +161,9 @@
 - Remove support for Google Search and `GOOGLE_SEARCH` option.
 - Add style support for `pymdownx.emoji`.
 - Add style support for `markdown.extensions.admonition`.
-- Add direct dependency on pygments.
-- Auto upgrade pygment styles.
+- Support both `pymdownx` and `codehilite` code highlighters.
+- Add direct dependency on Pygments.
+- Auto upgrade Pygments styles.
 
 ## [`1.1.0` (2020-08-11)](https://github.com/kdeldycke/plumage/compare/v1.0.0...v1.1.0)
 
@@ -187,7 +195,7 @@
 > `1.0.0` is the *first version* available on [🐍 PyPI](https://pypi.org/project/plumage/1.0.0/).
 
 - Package Plumage in a python module.
-- Distribute Plumage on PyPi.
+- Distribute Plumage on PyPI.
 - Fix issue with Pelican 4.x.
 - Update to Font Awesome 5.
 - Add new `MANUAL_LINKS` setting.
@@ -286,9 +294,10 @@
 ## [`0.3.0` (2013-08-16)](https://github.com/kdeldycke/plumage/compare/v0.2.0...v0.3.0)
 
 - Add auto-zoom of images based on Magnific Popup.
+- Render external links with Font Awesome icons instead of fetched favicons.
 - Let the content take the available width if there is no right or left
   sidebars.
-- Add an dynamic feed link in footer.
+- Add a dynamic feed link in footer.
 - Do not wrap code in code blocks.
 - Fix code highlight for older Pelican versions.
 - Escape and strip tags in all title attributes.
@@ -298,6 +307,7 @@
 
 - Make theme fully generic through the use of variables.
 - Replace custom navigation with Pelican's neighbors plugin.
+- Remove support for GoSquared analytics.
 - Add screenshot.
 - Update documentation.
 
