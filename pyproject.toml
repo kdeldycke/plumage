@@ -5,95 +5,111 @@ build-backend = "uv_build"
 # runner the day the next minor lands, since uv self-updates. The asset tree and
 # npm toolchain this theme ships are exercised by the source-exclude/wheel-exclude
 # lists below, so a backend regression surfaces as a failed build, not a bad wheel.
-requires = ["uv-build>=0.8"]
+requires = [ "uv-build>=0.8" ]
 
 [project]
 # Docs: https://packaging.python.org/en/latest/guides/writing-pyproject-toml/
 name = "plumage"
 version = "5.0.0.dev0"
-# Python versions and their status: https://devguide.python.org/versions/
-requires-python = ">= 3.11"
 description = "🪶 Clean and tidy theme for Pelican, the static site generator"
-authors = [{ name = "Kevin Deldycke", email = "kevin@deldycke.com" }]
 readme = "readme.md"
-license = "GPL-2.0-or-later"
-license-files = ["license"]
 keywords = [
-    'pelican',
-    'pelican-theme',
-    'stork',
-    'static-search',
-    'markdown',
-    'masonry',
-    'myst',
-    'theme',
-    'bootstrap',
+  "bootstrap",
+  "markdown",
+  "masonry",
+  "myst",
+  "pelican",
+  "pelican-theme",
+  "static-search",
+  "stork",
+  "theme",
 ]
+license = "GPL-2.0-or-later"
+license-files = [ "license" ]
+authors = [ { name = "Kevin Deldycke", email = "kevin@deldycke.com" } ]
+# Python versions and their status: https://devguide.python.org/versions/
+requires-python = ">=3.11"
 classifiers = [
-    # See: https://pypi.org/pypi?%3Aaction=list_classifiers
-    'Development Status :: 5 - Production/Stable',
-    'Environment :: Plugins',
-    'Environment :: Web Environment',
-    'Framework :: Pelican :: Themes',
-    'Intended Audience :: Developers',
-    'Intended Audience :: Information Technology',
-    'Operating System :: OS Independent',
-    'Programming Language :: JavaScript',
-    'Programming Language :: Other',
-    'Programming Language :: Python :: 3',
-    'Programming Language :: Python :: 3.11',
-    'Programming Language :: Python :: 3.12',
-    'Programming Language :: Python :: 3.13',
-    'Programming Language :: Python :: 3.14',
-    'Programming Language :: Python :: Implementation :: CPython',
-    'Topic :: Internet :: WWW/HTTP',
-    'Topic :: Internet :: WWW/HTTP :: Indexing/Search',
-    'Topic :: Text Processing :: Markup :: HTML',
-    'Topic :: Text Processing :: Markup :: Markdown',
-    'Typing :: Typed',
+  # See: https://pypi.org/pypi?%3Aaction=list_classifiers
+  "Development Status :: 5 - Production/Stable",
+  "Environment :: Plugins",
+  "Environment :: Web Environment",
+  "Framework :: Pelican :: Themes",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Information Technology",
+  "Operating System :: OS Independent",
+  "Programming Language :: JavaScript",
+  "Programming Language :: Other",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Topic :: Internet :: WWW/HTTP",
+  "Topic :: Internet :: WWW/HTTP :: Indexing/Search",
+  "Topic :: Text Processing :: Markup :: HTML",
+  "Topic :: Text Processing :: Markup :: Markdown",
+  "Typing :: Typed"
 ]
 dependencies = [
-    # Minifies the compiled stylesheet, as the last filter of the {% assets %} pipeline in
-    # base.html. webassets' cssmin filter imports the module by name. The floor is also the
-    # ceiling in practice: 0.2.0 is the last release the project ever published.
-    # XXX Unmaintained!
-    "cssmin >= 0.2.0",
-    # Compiles the theme's SCSS, through webassets' libsass filter in that same pipeline.
-    # No API boundary to anchor this one to: the filter only ever calls sass.compile() with
-    # output_style, include_paths and string/filename, stable across the whole 0.x line. 0.22
-    # is just the oldest release checked to install and compile across our Python range, so
-    # treat it as a tested floor rather than a real minimum.
-    "libsass >= 0.22",
-    # Pelican 4.12.0 is the first release to require Python 3.11, aligning with the
-    # requires-python above. It also lifts its own Pygments ceiling to < 2.20.0.
-    "pelican >= 4.12.0",
-    # Parses the site's Markdown, and gives it the MyST directive syntax on top: the
-    # ```{note} fenced blocks in particular. It claims every extension Pelican's own
-    # MarkdownReader answers to (md, markdown, mkd, mdown) plus mkdn, mdwn, Rmd and myst,
-    # and registers late enough to win all of them, so Python Markdown would never see a
-    # file and the `markdown` extra is not worth carrying.
-    "pelican-myst-reader >= 1.4.0",
-    # setup_webassets() hands the theme's configuration over as conf["WEBASSETS_CONFIG"].
-    # 2.0.0 introduced that key, falling back to the older ASSET_CONFIG; 1.0.0 reads neither,
-    # so every filter would run unconfigured instead of failing.
-    "pelican-webassets >= 2.0.0",
-    # Generates the stylesheets under static/css/pygments/, one per style, which CODE_STYLE
-    # picks between and ALL_CODE_STYLES validates against. 2.18.0 is the first release to know
-    # all 49 the theme ships: 2.17.2 is missing `coffee`, so sync-pygments-styles would quietly
-    # stop refreshing a stylesheet that is still shipped and still accepted as a CODE_STYLE.
-    "pygments >= 2.18.0",
-    # postcss_config() installs the theme's Node dependencies through NPMPackage(...).install().
-    # 0.2.0 is where that method arrived: 0.1.x exposes the class without it.
-    "pynpm >= 0.2.0",
-    # Drives the post-generation rewrites in dom_transforms.py: add_class(), attr(), wrap()
-    # and outerHtml(), over a pq(filename=...) document. 2.0.0 opens the modern line and
-    # already carries all of them, wrap() included.
-    "pyquery >= 2.0.0",
+  # Minifies the compiled stylesheet, as the last filter of the {% assets %} pipeline in
+  # base.html. webassets' cssmin filter imports the module by name. The floor is also the
+  # ceiling in practice: 0.2.0 is the last release the project ever published.
+  # XXX Unmaintained!
+  "cssmin>=0.2",
+  # Compiles the theme's SCSS, through webassets' libsass filter in that same pipeline.
+  # No API boundary to anchor this one to: the filter only ever calls sass.compile() with
+  # output_style, include_paths and string/filename, stable across the whole 0.x line. 0.22
+  # is just the oldest release checked to install and compile across our Python range, so
+  # treat it as a tested floor rather than a real minimum.
+  "libsass>=0.22",
+  # Pelican 4.12.0 is the first release to require Python 3.11, aligning with the
+  # requires-python above. It also lifts its own Pygments ceiling to < 2.20.0.
+  "pelican>=4.12",
+  # Parses the site's Markdown, and gives it the MyST directive syntax on top: the
+  # ```{note} fenced blocks in particular. It claims every extension Pelican's own
+  # MarkdownReader answers to (md, markdown, mkd, mdown) plus mkdn, mdwn, Rmd and myst,
+  # and registers late enough to win all of them, so Python Markdown would never see a
+  # file and the `markdown` extra is not worth carrying.
+  "pelican-myst-reader>=1.4",
+  # setup_webassets() hands the theme's configuration over as conf["WEBASSETS_CONFIG"].
+  # 2.0.0 introduced that key, falling back to the older ASSET_CONFIG; 1.0.0 reads neither,
+  # so every filter would run unconfigured instead of failing.
+  "pelican-webassets>=2",
+  # Generates the stylesheets under static/css/pygments/, one per style, which CODE_STYLE
+  # picks between and ALL_CODE_STYLES validates against. 2.18.0 is the first release to know
+  # all 49 the theme ships: 2.17.2 is missing `coffee`, so sync-pygments-styles would quietly
+  # stop refreshing a stylesheet that is still shipped and still accepted as a CODE_STYLE.
+  "pygments>=2.18",
+  # postcss_config() installs the theme's Node dependencies through NPMPackage(...).install().
+  # 0.2.0 is where that method arrived: 0.1.x exposes the class without it.
+  "pynpm>=0.2",
+  # Drives the post-generation rewrites in dom_transforms.py: add_class(), attr(), wrap()
+  # and outerHtml(), over a pq(filename=...) document. 2.0.0 opens the modern line and
+  # already carries all of them, wrap() included.
+  "pyquery>=2",
+]
+urls.Changelog = "https://github.com/kdeldycke/plumage/blob/main/changelog.md"
+urls.Documentation = "https://github.com/kdeldycke/plumage#settings"
+urls.Download = "https://github.com/kdeldycke/plumage/releases/tag/v5.0.0.dev0"
+urls.Funding = "https://github.com/sponsors/kdeldycke"
+urls.Homepage = "https://github.com/kdeldycke/plumage"
+urls.Issues = "https://github.com/kdeldycke/plumage/issues"
+urls.Repository = "https://github.com/kdeldycke/plumage"
+
+[dependency-groups]
+test = [
+  "pytest>=8.4",
+  # Both are required by the addopts under [tool.pytest.ini_options].
+  "pytest-cov>=7",
+  "pytest-xdist[psutil]>=3.8",
 ]
 
 [tool.uv]
 required-version = ">=0.11.15"
-exclude-newer = "1 week"
 # pelican-myst-reader 1.4.0 caps myst-parser below 5.0.0, and myst-parser 4.x in turn caps
 # docutils below 0.22, which Pelican 4.12.0 requires. The two are irreconcilable: without
 # this override `uv lock` fails outright with unsatisfiable requirements. An override is the
@@ -113,57 +129,27 @@ exclude-newer = "1 week"
 # definition lists yields byte-identical HTML under myst-parser 4.0.1 and 5.1.0.
 #
 # Drop this once the reader relaxes its own pin: https://github.com/ashwinvis/myst-reader
-override-dependencies = ["myst-parser>=5"]
-
-[tool.uv.build-backend]
+override-dependencies = [ "myst-parser>=5" ]
+exclude-newer = "1 week"
 # The theme uses a flat layout: the package sits at the repo root, not under src/.
-module-root = ""
+build-backend.module-root = ""
 # The backend already ships every asset found in the ./plumage subfolder, which is
 # what a theme needs. What must not be distributed is listed below: the npm tree
 # the webassets pipeline installs at build time, the JS lock file, and local build
 # artifacts. The last two entries are redundant with .gitignore, but uv_build does
 # not read it, so they have to be repeated here.
-source-exclude = [
-    "**/node_modules",
-    "**/package-lock.json",
-    "**/*.egg-info",
-    "**/.DS_Store",
+build-backend.source-exclude = [
+  "**/node_modules",
+  "**/package-lock.json",
+  "**/*.egg-info",
+  "**/.DS_Store",
 ]
-wheel-exclude = [
-    "**/node_modules",
-    "**/package-lock.json",
-    "**/*.egg-info",
-    "**/.DS_Store",
+build-backend.wheel-exclude = [
+  "**/node_modules",
+  "**/package-lock.json",
+  "**/*.egg-info",
+  "**/.DS_Store",
 ]
-
-[dependency-groups]
-test = [
-    "pytest >= 8.4.0",
-    # Both are required by the addopts under [tool.pytest.ini_options].
-    "pytest-cov >= 7.0.0",
-    "pytest-xdist[psutil] >= 3.8.0",
-]
-
-[project.urls]
-"Homepage" = 'https://github.com/kdeldycke/plumage'
-"Documentation" = 'https://github.com/kdeldycke/plumage#settings'
-"Download" = "https://github.com/kdeldycke/plumage/releases/tag/v5.0.0.dev0"
-"Repository" = 'https://github.com/kdeldycke/plumage'
-"Funding" = "https://github.com/sponsors/kdeldycke"
-"Issues" = "https://github.com/kdeldycke/plumage/issues"
-"Changelog" = "https://github.com/kdeldycke/plumage/blob/main/changelog.md"
-
-[tool.mypy]
-warn_unused_configs = true
-warn_redundant_casts = true
-warn_unused_ignores = true
-warn_return_any = true
-warn_unreachable = true
-pretty = true
-
-[[tool.mypy.overrides]]
-ignore_missing_imports = true
-module = ["pyquery", "pynpm", "pelican.*"]
 
 [tool.djlint]
 profile = "jinja"
@@ -185,16 +171,52 @@ profile = "jinja"
 #         pattern in base.html (lines 117 and 127) unflagged.
 ignore = "H006,H025,H030,H031,T028"
 
-[tool.repomatic]
-# The theme compiles its assets with an npm-based webassets pipeline, so the
-# sync-gitignore job has to keep Node entries when it regenerates .gitignore.
-# Replaces the gitignore-extra-categories input the pre-repomatic autofix
-# workflow used to pass to its reusable caller.
-gitignore.extra-categories = ["node"]
+[tool.typos]
+default.extend-identifiers = { Github = "GitHub", IOS = "iOS", Javascript = "JavaScript", MacOS = "macOS", PyPi = "PyPI", Typescript = "TypeScript" }
+# False positives: "astroid" is a Python AST library (not "asteroid"); "oject" appears when "pyproject.toml" is split across line breaks in CLI help output; "sur" is macOS 11 Big Sur and Homebrew's big_sur bottle tag (not "sure").
+default.extend-words = { astroid = "astroid", oject = "oject", sur = "sur", certifi = "certifi", ges = "ges" }
+# Skip content between <!-- typos:off --> and <!-- typos:on --> markers.
+default.extend-ignore-re = [ "(?s)<!-- typos:off -->.*?<!-- typos:on -->" ]
 
-# The canonical docs.yaml trigger filter lists citation.cff, which this project
-# does not carry. Strip it so the generated filters only name paths that exist.
-workflow.ignore-paths = ["citation.cff"]
+[tool.mypy]
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_return_any = true
+warn_unreachable = true
+pretty = true
+warn_unused_configs = true
+overrides = [ { module = [ "pelican.*", "pynpm", "pyquery" ], ignore_missing_imports = true } ]
+
+[tool.pytest]
+# Restrict collection to the test suite, so pytest never descends into the
+# package or an installed copy of it in dual-copy builds.
+ini_options.testpaths = [ "tests" ]
+# XXX repomatic 7.4.1 generates this table as [tool.pytest], which pytest ignores
+# outright: the section it reads is [tool.pytest.ini_options]. Renamed by hand, so
+# expect the next `repomatic init pytest` to undo it until the fix lands upstream.
+ini_options.addopts = [
+  # Show the N slowest tests.
+  "--durations=10",
+  # Coverage settings - customize the package name for your project. The test
+  # workflow passes --cov-report=xml on the command line to produce the
+  # Codecov artifact, keeping it out of local runs.
+  "--cov=plumage",
+  "--cov-branch",
+  "--cov-precision=2",
+  "--cov-report=term",
+  # Run tests in parallel across all logical cores. Requires the
+  # pytest-xdist[psutil] test dependency.
+  "--numprocesses=auto",
+  # Import test modules via importlib instead of prepending their root dir to
+  # sys.path. Avoids "import file mismatch" collection errors when an installed
+  # copy of the package coexists with the source tree, as in distro builds.
+  "--import-mode=importlib",
+]
+ini_options.markers = [
+  "once: Tests that only need to run once, not across the full CI matrix.",
+]
+# Make sure tests that are expected to fail do not resurrect and start working.
+ini_options.xfail_strict = true
 
 [tool.bumpversion]
 current_version = "5.0.0.dev0"
@@ -268,40 +290,12 @@ regex = true
 search = "date-released: \\d{{4}}-\\d{{2}}-\\d{{2}}"
 replace = "date-released: {utcnow:%Y-%m-%d}"
 
-[tool.typos]
-default.extend-identifiers = { Github = "GitHub", IOS = "iOS", Javascript = "JavaScript", MacOS = "macOS", PyPi = "PyPI", Typescript = "TypeScript" }
-# False positives: "astroid" is a Python AST library (not "asteroid"); "oject" appears when "pyproject.toml" is split across line breaks in CLI help output; "sur" is macOS 11 Big Sur and Homebrew's big_sur bottle tag (not "sure").
-default.extend-words = { astroid = "astroid", oject = "oject", sur = "sur", certifi = "certifi", ges = "ges" }
-# Skip content between <!-- typos:off --> and <!-- typos:on --> markers.
-default.extend-ignore-re = [ "(?s)<!-- typos:off -->.*?<!-- typos:on -->" ]
-
-[tool.pytest.ini_options]
-# XXX repomatic 7.4.1 generates this table as [tool.pytest], which pytest ignores
-# outright: the section it reads is [tool.pytest.ini_options]. Renamed by hand, so
-# expect the next `repomatic init pytest` to undo it until the fix lands upstream.
-addopts = [
-    # Show the N slowest tests.
-    "--durations=10",
-    # Coverage settings - customize the package name for your project. The test
-    # workflow passes --cov-report=xml on the command line to produce the
-    # Codecov artifact, keeping it out of local runs.
-    "--cov=plumage",
-    "--cov-branch",
-    "--cov-precision=2",
-    "--cov-report=term",
-    # Run tests in parallel across all logical cores. Requires the
-    # pytest-xdist[psutil] test dependency.
-    "--numprocesses=auto",
-    # Import test modules via importlib instead of prepending their root dir to
-    # sys.path. Avoids "import file mismatch" collection errors when an installed
-    # copy of the package coexists with the source tree, as in distro builds.
-    "--import-mode=importlib",
-]
-markers = [
-    "once: Tests that only need to run once, not across the full CI matrix.",
-]
-# Restrict collection to the test suite, so pytest never descends into the
-# package or an installed copy of it in dual-copy builds.
-testpaths = ["tests"]
-# Make sure tests that are expected to fail do not resurrect and start working.
-xfail_strict = true
+[tool.repomatic]
+# The theme compiles its assets with an npm-based webassets pipeline, so the
+# sync-gitignore job has to keep Node entries when it regenerates .gitignore.
+# Replaces the gitignore-extra-categories input the pre-repomatic autofix
+# workflow used to pass to its reusable caller.
+gitignore.extra-categories = [ "node" ]
+# The canonical docs.yaml trigger filter lists citation.cff, which this project
+# does not carry. Strip it so the generated filters only name paths that exist.
+workflow.ignore-paths = [ "citation.cff" ]
