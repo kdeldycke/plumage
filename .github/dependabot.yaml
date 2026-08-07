@@ -1,32 +1,19 @@
 # https://docs.github.com/en/github/administering-a-repository/configuration-options-for-dependency-updates
+#
+# Only npm is left here. Repomatic took over the two other ecosystems:
+#   - "pip" is covered by its sync-dep-sources and sync-uv-lock jobs,
+#   - "github-actions" by its sync-action-pins job.
+# Both run from the autofix workflow. Repomatic has no equivalent for the
+# theme's package.json, so the webassets pipeline still relies on Dependabot.
 ---
 version: 2
 updates:
-
-  - package-ecosystem: "pip"
-    directory: "/"
-    versioning-strategy: increase-if-necessary
-    schedule:
-      interval: "daily"
-    labels:
-      - "📦 dependencies"
-    assignees:
-      - "kdeldycke"
-
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-      interval: "daily"
-    labels:
-      - "📦 dependencies"
-    assignees:
-      - "kdeldycke"
 
   - package-ecosystem: "npm"
     directory: "/plumage"
     schedule:
       interval: "daily"
     labels:
-      - "📦 dependencies"
+      - "🔗 dependencies"
     assignees:
       - "kdeldycke"
