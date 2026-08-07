@@ -42,7 +42,18 @@
 - Lint and autofix all stylesheets in a single stylelint call each, instead of one per file extension.
 - Fix the build crashing on an article with no category. Pelican 4.12.0 dropped category from an article's mandatory properties and binds the template name to `None` instead of leaving it out, so the header advertised a category feed whose URL had no slug to interpolate. Setting `CATEGORY_SAVE_AS` to an empty string was enough to hit it.
 - Add a `page_content` block to `page.html`, matching the one Pelican 4.12.0 gave its own, so an override can replace a page's body without restating the markup around it.
+- Fix every page of a multilingual site being labelled with `DEFAULT_LANG`. The `lang` attribute now sits in an `html_lang` block, which `article.html`, `page.html` and `projects.html` override with the language of the content they render. Site-level listings keep the site default, having no single language of their own.
+- Fix the navigation bar never highlighting the current category. The categories loop tested the flag computed by the pages loop, which Jinja scopes to that loop and leaves undefined here.
 - Drop the stale Python 3.10 classifier, left over from the 3.11 floor Pelican 4.12.0 imposes.
+- Rewrite the installation instructions around `uv`. They installed the current directory rather than the theme, so following them from a site's checkout got you the site.
+- Advertise translations to crawlers. `translations.html` gained an `entry_hreflang` macro, which `article.html` and `page.html` emit in their `<head>`, and the visible translation links now carry `hreflang` too.
+- Add a meta description, taken from the entry's `Description:` metadata or its summary, with `SITESUBTITLE` standing in site-wide. Drops the `H030` djlint exemption, which the theme no longer needs.
+- Show when an article was last modified, next to the date it was published.
+- Announce the current navigation entry with `aria-current`, in place of a visually-hidden label, matching what the paginator already did.
+- Wrap the header, navigation bar and footer of `base.html` in `header`, `nav` and `footer` blocks, so a theme extending Plumage can replace one region without copying the file. Document every block the theme exposes.
+- Support Pelican's own `ANALYTICS` setting, holding whatever markup an analytics provider hands you. `GOOGLE_ANALYTICS` still emits its `gtag.js` snippet, and is no longer documented as a Pelican setting: it never was one.
+- Mark up dates with `<time datetime>` instead of `<abbr title>`. `title` still carries the timestamp, so the hover tooltip is unchanged.
+- Show a site's pages, or a short notice, on an index with no article to list.
 
 ## [`4.0.0` (2024-05-18)](https://github.com/kdeldycke/plumage/compare/v3.1.0...v4.0.0)
 

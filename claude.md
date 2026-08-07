@@ -195,11 +195,12 @@ The suite lives in `tests/` and runs with `uv run --group test -- pytest`. It is
 
 Its dependencies sit in a PEP 735 `[dependency-groups]` table, like repomatic, and no longer in an extra. Groups stay out of the published metadata, so there is no installable `plumage[test]` for a theme consumer to reach for, and the suite is not shipped in the distribution anyway. With djlint gone too, `[project.optional-dependencies]` was empty and was removed. The upstream `lint-types` job already syncs with `--all-extras --all-groups`, so it picks the group up unchanged.
 
-Three pieces in `tests/conftest.py` make that possible:
+Four pieces in `tests/conftest.py` make that possible:
 
 - `StubAssetsExtension` stands in for the `{% assets %}` tag of `pelican-webassets`, whose real implementation compiles SCSS through libsass and PostCSS.
 - `BASE_CONTEXT` is the smallest Pelican context that renders `base.html` end to end. Anything the templates iterate over has to be listed there: Jinja's default undefined renders as an empty string, but raises as soon as it is looped on.
 - `render_source` returns the markup unparsed, where `render` hands back a `pyquery` document. Reach for it to assert on tag balance: a parser silently repairs an unclosed tag, so the rendered tree of a template missing one looks exactly like the tree of a template that has it.
+- `render_override` renders a template through a generated child that replaces one of its blocks, which is the only thing a named block is worth anything for. What the block exposes is only covered if an override reaches the output *and* the default content it displaces does not, so assert both.
 
 `test_archives.py` and `test_projects.py` cover the two regions fenced off with `{# djlint:off #}`, since no linter reads inside a fence. Both hold a tag whose halves live in different `{% if %}` blocks, so the failure they guard against is a missing half: an unclosed `<a>` re-parents the entire card body into the thumbnail link, and an unclosed `<dl>` swallows the next month's entries.
 

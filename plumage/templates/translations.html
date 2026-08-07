@@ -2,7 +2,20 @@
     {% if article.translations %}
         Translations:
         {% for translation in article.translations %}
-            <a href="{{ SITEURL }}/{{ translation.url }}">{{ translation.lang }}</a>
+            <a href="{{ SITEURL }}/{{ translation.url }}"
+               hreflang="{{ translation.lang }}">{{ translation.lang }}</a>
+        {% endfor %}
+    {% endif %}
+{% endmacro %}
+{# Head-side counterpart of the macro above: it tells a search engine that the
+translations are the same document in another language, which the visible links alone
+do not. Emitted inside <head>, so it renders nothing when there is no translation. #}
+{% macro entry_hreflang(entry) %}
+    {% if entry.translations %}
+        {% for translation in entry.translations %}
+            <link rel="alternate"
+                  hreflang="{{ translation.lang }}"
+                  href="{{ SITEURL }}/{{ translation.url }}" />
         {% endfor %}
     {% endif %}
 {% endmacro %}

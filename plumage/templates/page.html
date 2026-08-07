@@ -1,7 +1,15 @@
 {% extends "base.html" %}
+{% block html_lang %}{{ page.lang }}{% endblock html_lang %}
 {% block title %}
     {{ page.title|striptags }}
 {% endblock title %}
+{% block head %}
+    {% import 'translations.html' as translations with context %}
+    {{ translations.entry_hreflang(page) }}
+{% endblock head %}
+{% block meta_description %}
+    {{ m.render_meta_description(page) }}
+{% endblock meta_description %}
 {% block top_center %}
     <h1>
         <a href="{{ SITEURL }}/{{ page.url }}"

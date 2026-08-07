@@ -1,3 +1,13 @@
+{% macro render_meta_description(entry) -%}
+    {# An explicit `Description:` metadata wins over the summary Pelican derives from the
+    body. Truncating before escaping keeps a cut from landing inside an entity. #}
+    {% if entry.description %}
+        <meta name="description" content="{{ entry.description|striptags|e }}" />
+    {% elif entry.summary %}
+        <meta name="description"
+              content="{{ entry.summary|striptags|truncate(150) |e }}" />
+    {% endif %}
+{%- endmacro %}
 {% macro render_tag(tag, counter, kind='tag') -%}
     {# A tag or a category can be pass as argument as they share the same data structure #}
     {% set kind = 'tag' if kind == 'tag' else 'category' %}

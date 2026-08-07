@@ -18,6 +18,20 @@
             </div>
         </article>
         <hr />
+    {% else %}
+        {# A site with no article at all still gets something to look at, rather than a
+        heading over an empty page. Pages are what a brand new site tends to have. #}
+        {% if pages %}
+            <ul>
+                {% for p in pages %}
+                    <li>
+                        <a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="text-body-tertiary">This site has no content yet.</p>
+        {% endif %}
     {% endfor %}
     {% include "pagination.html" %}
 {% endblock content %}

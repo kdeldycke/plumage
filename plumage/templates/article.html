@@ -1,14 +1,20 @@
 {% extends "base.html" %}
 {% set has_right = True %}
+{% block html_lang %}{{ article.lang }}{% endblock html_lang %}
 {% block title %}
     {{ article.title|striptags|e }}
 {% endblock title %}
 {% block head %}
+    {% import 'translations.html' as translations with context %}
+    {{ translations.entry_hreflang(article) }}
     {% if article.tags %}
         <meta name="keywords"
               content="{{ article.tags|join(', ', attribute='name') |e }}">
     {% endif %}
 {% endblock head %}
+{% block meta_description %}
+    {{ m.render_meta_description(article) }}
+{% endblock meta_description %}
 {% block top_center %}
     <h1>
         <a href="{{ SITEURL }}/{{ article.url }}"
@@ -19,11 +25,24 @@
 {% block right_sidebar %}
     <ul class="list-group list-group-flush">
         <li class="list-group-item">
-            <abbr title="{{ article.date.isoformat() }}">
+            {# <time> rather than <abbr>: a date is not an abbreviation, and datetime is
+            the attribute a parser reads. title repeats it to keep the hover tooltip
+            <abbr> used to give. #}
+            <time datetime="{{ article.date.isoformat() }}"
+                  title="{{ article.date.isoformat() }}">
                 <i class="bi bi-calendar-event-fill"></i>
                 {{ article.locale_date }}
-            </abbr>
+            </time>
         </li>
+        {% if article.modified %}
+            <li class="list-group-item">
+                <time datetime="{{ article.modified.isoformat() }}"
+                      title="{{ article.modified.isoformat() }}">
+                    <i class="bi bi-clock-history"></i>
+                    Updated {{ article.locale_modified }}
+                </time>
+            </li>
+        {% endif %}
         {% if AUTHOR_SAVE_AS and article.authors %}
             <li class="list-group-item">
                 <address>
@@ -110,9 +129,11 @@
                    href="{{ SITEURL }}/{{ related_post.url }}">
                     <div class="d-flex w-100 justify-content-between">
                         <h5>{{ related_post.title }}</h5>
-                        <abbr class="small published" title="{{ related_post.date.isoformat() }}">
+                        <time class="small published"
+                              datetime="{{ related_post.date.isoformat() }}"
+                              title="{{ related_post.date.isoformat() }}">
                             {{ related_post.date.strftime("%Y") }}
-                        </abbr>
+                        </time>
                     </div>
                     <small>{{ related_post.summary|striptags|e }}</small>
                 </a>

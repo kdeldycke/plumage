@@ -1,5 +1,10 @@
 {% set LAYOUT = "full-width" %}
 {% extends "base.html" %}
+{# Rendered for a page carrying `Template: projects`, so it declares its language the
+same way page.html does. Unlike page.html it is also reachable with no page bound at
+all, through TEMPLATE_PAGES, and reading an attribute off an undefined name raises
+rather than rendering empty. #}
+{% block html_lang %}{{ page.lang if page is defined else DEFAULT_LANG }}{% endblock html_lang %}
 {# Map URL substring matches to link's icon, then label.
 Sorted by priority: the first items takes precedence over those at the end. #}
 {% set ICONS = [

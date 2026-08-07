@@ -114,5 +114,13 @@ def test_articles_are_linked(archives):
 
 
 def test_entries_carry_a_machine_readable_date(archives):
-    stamps = [abbr.attr("title") for abbr in archives("dt abbr.published").items()]
-    assert stamps == [a.date.isoformat() for a in ARTICLES]
+    """The stamp lives in datetime, where a parser looks for it.
+
+    ``title`` repeats it only to keep the hover tooltip the ``<abbr>`` this replaced
+    used to provide.
+    """
+    entries = list(archives("dt time.published").items())
+    assert [t.attr("datetime") for t in entries] == [
+        a.date.isoformat() for a in ARTICLES
+    ]
+    assert [t.attr("title") for t in entries] == [a.date.isoformat() for a in ARTICLES]

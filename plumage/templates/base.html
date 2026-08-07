@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 {% import 'macros.html' as m %}
-<html lang="{{ DEFAULT_LANG }}">
+{# In a block, so a template rendering a single piece of content declares its own
+language instead of the site-wide default. Every override has to stay on one line: what
+the block emits lands inside an attribute value, newlines and indentation included. #}
+<html lang="{% block html_lang %}{{ DEFAULT_LANG }}{% endblock html_lang %}">
     <head>
         <!-- To install the tag, copy and paste it into the code of every page on your website immediately after the <head> element.
         Source: https://support.google.com/analytics/answer/12002338 -->
@@ -17,7 +20,13 @@
             {% block title %}
                 Home
             {% endblock title %}
-        | {{ SITENAME|e }}</title>
+        | {{ SITENAME|striptags|e }}</title>
+        {# Overridden by article.html and page.html with the summary of what they render.
+        Pelican allows markup in SITENAME and SITESUBTITLE, hence the striptags before the
+        escape: a meta value has to be plain text, not entities standing in for tags. #}
+        {% block meta_description %}
+            {% if SITESUBTITLE %}<meta name="description" content="{{ SITESUBTITLE|striptags|e }}" />{% endif %}
+        {% endblock meta_description %}
         <meta name="author" content="{{ AUTHOR|e }}" />
         <meta name="generator" content="Pelican v{{ PELICAN_VERSION }}" />
         {% assets filters="libsass,postcss,cssmin", output="css/main.min.css",
@@ -84,90 +93,94 @@
     </head>
     <body class="bg-transparent pt-4">
         <div class="container">
-            {% if SITE_THUMBNAIL %}
-                <a href="{{ SITEURL }}" class="avatar-container float-start mx-4">
-                    <div class="avatar {% if SITE_THUMBNAIL_TEXT %}animate{% endif %}">
-                        <div class="side">
-                            <img src="{{ SITE_THUMBNAIL }}" alt="{{ SITENAME|e }}" class="img-fluid" />
+            {% block header %}
+                {% if SITE_THUMBNAIL %}
+                    <a href="{{ SITEURL }}" class="avatar-container float-start mx-4">
+                        <div class="avatar {% if SITE_THUMBNAIL_TEXT %}animate{% endif %}">
+                            <div class="side">
+                                <img src="{{ SITE_THUMBNAIL }}" alt="{{ SITENAME|e }}" class="img-fluid" />
+                            </div>
+                            {% if SITE_THUMBNAIL_TEXT %}
+                                <div class="side back position-relative text-center pt-2 px-1 small">
+                                    <span class="position-absolute top-50 start-0 translate-middle-y">{{ SITE_THUMBNAIL_TEXT }}</span>
+                                </div>
+                            {% endif %}
                         </div>
-                        {% if SITE_THUMBNAIL_TEXT %}
-                            <div class="side back position-relative text-center pt-2 px-1 small">
-                                <span class="position-absolute top-50 start-0 translate-middle-y">{{ SITE_THUMBNAIL_TEXT }}</span>
+                    </a>
+                {% endif %}
+                <h1>
+                    <a href="{{ SITEURL }}" class="text-body-emphasis text-decoration-none">{{ SITENAME }}</a>
+                    <small class="text-body-tertiary"><small>{{ SITESUBTITLE }}</small></small>
+                </h1>
+            {% endblock header %}
+            {% block nav %}
+                <nav class="navbar d-block navbar-expand-lg bg-body-tertiary shadow rounded-3">
+                    <a class="navbar-brand d-none"
+                       href="{{ SITEURL }}"
+                       title="{{ SITESUBTITLE|e }}">{{ SITENAME }}</a>
+                    <button class="navbar-toggler"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#plumage-navbar-collapse-1"
+                            aria-controls="plumage-navbar-collapse-1"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse mx-4" id="plumage-navbar-collapse-1">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            {# aria-current announces the current entry, so nothing
+                            visually-hidden duplicates it. The .active class stays for
+                            the styling Bootstrap hangs off it. #}
+                            {% for title, link in MENUITEMS %}
+                                {% set active_page = link == ("/%s"|format(output_file)).strip('index.html') -%}
+                                <li class="nav-item {% if active_page %}active{% endif %}">
+                                    <a class="nav-link"
+                                       href="{{ link }}"
+                                       {% if active_page %}aria-current="page"{% endif %}>{{ title }}</a>
+                                </li>
+                            {% endfor %}
+                            {% if DISPLAY_PAGES_ON_MENU %}
+                                {% for p in pages %}
+                                    {% set active_page = (p == page) -%}
+                                    <li class="nav-item {% if active_page %}active{% endif %}">
+                                        <a class="nav-link"
+                                           href="{{ SITEURL }}/{{ p.url }}"
+                                           {% if active_page %}aria-current="page"{% endif %}>{{ p.title }}</a>
+                                    </li>
+                                {% endfor %}
+                            {% endif %}
+                            {% if DISPLAY_CATEGORIES_ON_MENU %}
+                                {% for c, null in categories %}
+                                    {% set active_category = (c == category) -%}
+                                    <li class="nav-item {% if active_category %}active{% endif %}">
+                                        <a class="nav-link"
+                                           href="{{ SITEURL }}/{{ c.url }}"
+                                           {% if active_category %}aria-current="page"{% endif %}>{{ c.name }}</a>
+                                    </li>
+                                {% endfor %}
+                            {% endif %}
+                        </ul>
+                        {% if STORK_SEARCH %}
+                            <div class="position-relative dropdown">
+                                <div class="input-group">
+                                    <label class="input-group-text" for="sitesearch-input">
+                                        <i class="bi bi-search"></i>
+                                    </label>
+                                    <input data-stork="sitesearch"
+                                           id="sitesearch-input"
+                                           class="form-control dropdown-toggle"
+                                           placeholder="Search"
+                                           data-bs-toggle="dropdown"
+                                           aria-expanded="false" />
+                                    <div data-stork="sitesearch-output"
+                                         class="dropdown-menu dropdown-menu-end shadow"></div>
+                                </div>
                             </div>
                         {% endif %}
                     </div>
-                </a>
-            {% endif %}
-            <h1>
-                <a href="{{ SITEURL }}" class="text-body-emphasis text-decoration-none">{{ SITENAME }}</a>
-                <small class="text-body-tertiary"><small>{{ SITESUBTITLE }}</small></small>
-            </h1>
-            <nav class="navbar d-block navbar-expand-lg bg-body-tertiary shadow rounded-3">
-                <a class="navbar-brand d-none"
-                   href="{{ SITEURL }}"
-                   title="{{ SITESUBTITLE|e }}">{{ SITENAME }}</a>
-                <button class="navbar-toggler"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#plumage-navbar-collapse-1"
-                        aria-controls="plumage-navbar-collapse-1"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse mx-4" id="plumage-navbar-collapse-1">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        {% for title, link in MENUITEMS %}
-                            {% set active_page = link == ("/%s"|format(output_file)).strip('index.html') -%}
-                            <li class="nav-item {% if active_page %}active{% endif %}">
-                                <a class="nav-link" href="{{ link }}">
-                                    {{ title }}
-                                    {% if active_page %}<span class="visually-hidden">(current)</span>{% endif %}
-                                </a>
-                            </li>
-                        {% endfor %}
-                        {% if DISPLAY_PAGES_ON_MENU %}
-                            {% for p in pages %}
-                                {% set active_page = (p == page) -%}
-                                <li class="nav-item {% if active_page %}active{% endif %}">
-                                    <a class="nav-link" href="{{ SITEURL }}/{{ p.url }}">
-                                        {{ p.title }}
-                                        {% if active_page %}<span class="visually-hidden">(current)</span>{% endif %}
-                                    </a>
-                                </li>
-                            {% endfor %}
-                        {% endif %}
-                        {% if DISPLAY_CATEGORIES_ON_MENU %}
-                            {% for c, null in categories %}
-                                {% set active_category = (c == category) -%}
-                                <li class="nav-item {% if active_page %}active{% endif %}">
-                                    <a class="nav-link" href="{{ SITEURL }}/{{ c.url }}">
-                                        {{ c.name }}
-                                        {% if active_category %}<span class="visually-hidden">(current)</span>{% endif %}
-                                    </a>
-                                </li>
-                            {% endfor %}
-                        {% endif %}
-                    </ul>
-                    {% if STORK_SEARCH %}
-                        <div class="position-relative dropdown">
-                            <div class="input-group">
-                                <label class="input-group-text" for="sitesearch-input">
-                                    <i class="bi bi-search"></i>
-                                </label>
-                                <input data-stork="sitesearch"
-                                       id="sitesearch-input"
-                                       class="form-control dropdown-toggle"
-                                       placeholder="Search"
-                                       data-bs-toggle="dropdown"
-                                       aria-expanded="false" />
-                                <div data-stork="sitesearch-output"
-                                     class="dropdown-menu dropdown-menu-end shadow"></div>
-                            </div>
-                        </div>
-                    {% endif %}
-                </div>
-            </nav>
+                </nav>
+            {% endblock nav %}
         </div>
         <div class="container mt-5">
             {# A full-width layout drops both sidebars, whatever the site configuration provides. #}
@@ -210,122 +223,124 @@
         </div>
         {# TODO: make footer sticky #}
         <footer class="container-fluid mt-5 p-4 small fw-light">
-            <div class="row mx-5">
-                {% set SOCIAL_WIDGET_NAME = SOCIAL_WIDGET_NAME or 'Social' %}
-                {% set LINKS_WIDGET_NAME = LINKS_WIDGET_NAME or 'Links' %}
-                {% for group_title, group_links in ((SOCIAL_WIDGET_NAME, SOCIAL), (LINKS_WIDGET_NAME, LINKS)) %}
+            {% block footer %}
+                <div class="row mx-5">
+                    {% set SOCIAL_WIDGET_NAME = SOCIAL_WIDGET_NAME or 'Social' %}
+                    {% set LINKS_WIDGET_NAME = LINKS_WIDGET_NAME or 'Links' %}
+                    {% for group_title, group_links in ((SOCIAL_WIDGET_NAME, SOCIAL), (LINKS_WIDGET_NAME, LINKS)) %}
+                        <div class="col-md-2">
+                            {% if group_links %}
+                                <h6>{{ group_title }}</h6>
+                                <ul class="list-unstyled">
+                                    {% if MANUAL_LINKS %}
+                                        {% for item in group_links %}<li>{{ item }}</li>{% endfor %}
+                                    {% else %}
+                                        {% for title, link in group_links %}<li>{{ m.render_link_icon(link, title, FAVICON_LINKS) }}</li>{% endfor %}
+                                    {% endif %}
+                                </ul>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
                     <div class="col-md-2">
-                        {% if group_links %}
-                            <h6>{{ group_title }}</h6>
-                            <ul class="list-unstyled">
-                                {% if MANUAL_LINKS %}
-                                    {% for item in group_links %}<li>{{ item }}</li>{% endfor %}
-                                {% else %}
-                                    {% for title, link in group_links %}<li>{{ m.render_link_icon(link, title, FAVICON_LINKS) }}</li>{% endfor %}
-                                {% endif %}
+                        <h6>Browse content by</h6>
+                        <ul class="list-unstyled">
+                            {% if CATEGORIES_SAVE_AS %}
+                                <li>
+                                    <a href="{{ SITEURL }}/{{ CATEGORIES_SAVE_AS }}">
+                                        <i class="bi bi-list-task"></i>
+                                        Categories
+                                    </a>
+                                </li>
+                            {% endif %}
+                            {% if AUTHORS_SAVE_AS %}
+                                <li>
+                                    <a href="{{ SITEURL }}/{{ AUTHORS_SAVE_AS }}">
+                                        <i class="bi bi-people-fill"></i>
+                                        Authors
+                                    </a>
+                                </li>
+                            {% endif %}
+                            {% if ARCHIVES_SAVE_AS %}
+                                <li>
+                                    <a href="{{ SITEURL }}/{{ ARCHIVES_SAVE_AS }}">
+                                        <i class="bi bi-calendar3"></i>
+                                        Dates
+                                    </a>
+                                </li>
+                            {% endif %}
+                            {% if TAGS_SAVE_AS %}
+                                <li>
+                                    <a href="{{ SITEURL }}/{{ TAGS_SAVE_AS }}">
+                                        <i class="bi bi-tags-fill"></i>
+                                        Tags
+                                    </a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <div class="col-md-2 text-body-tertiary">
+                        <h6>Copyright notice</h6>
+                        {% set date_start = dates[-1].date.year if dates else None %}
+                        {% set date_end = dates[0].date.year if dates else None %}
+                        <p class="small">
+                            © Copyright
+                            {{ date_start if date_start }}{{ '-%s' % date_end if date_end and date_end != date_start }}
+                            {{ AUTHOR }}.
+                            {% if COPYRIGHT %}{{ COPYRIGHT }}{% endif %}
+                        </p>
+                    </div>
+                    <div class="col-md-2 text-body-tertiary">
+                        <h6>Disclaimer</h6>
+                        <p class="small">
+                            {% if DISCLAIMER %}
+                                {{ DISCLAIMER }}
+                            {% else %}
+                                All opinions expressed in this site are my own
+                                personal opinions and are not endorsed by, nor
+                                do they represent the opinions of my previous,
+                                current and future employers or any of its
+                                affiliates, partners or customers.
+                            {% endif %}
+                        </p>
+                    </div>
+                    <div class="col-md-2">
+                        {% if all_feeds %}
+                            <h6>Feeds</h6>
+                            <ul class="list-unstyled small">
+                                {% for feed in all_feeds %}
+                                    <li>
+                                        <a href="{{ FEED_DOMAIN }}/{{ feed.url }}">
+                                            <i class="bi {% if feed.kind == 'RSS' %} bi-rss-fill {% else %} bi-rss {% endif %}"></i>
+                                            {{ feed.name }} ({{ feed.kind }})
+                                        </a>
+                                    </li>
+                                {% endfor %}
                             </ul>
                         {% endif %}
                     </div>
-                {% endfor %}
-                <div class="col-md-2">
-                    <h6>Browse content by</h6>
-                    <ul class="list-unstyled">
-                        {% if CATEGORIES_SAVE_AS %}
-                            <li>
-                                <a href="{{ SITEURL }}/{{ CATEGORIES_SAVE_AS }}">
-                                    <i class="bi bi-list-task"></i>
-                                    Categories
-                                </a>
-                            </li>
-                        {% endif %}
-                        {% if AUTHORS_SAVE_AS %}
-                            <li>
-                                <a href="{{ SITEURL }}/{{ AUTHORS_SAVE_AS }}">
-                                    <i class="bi bi-people-fill"></i>
-                                    Authors
-                                </a>
-                            </li>
-                        {% endif %}
-                        {% if ARCHIVES_SAVE_AS %}
-                            <li>
-                                <a href="{{ SITEURL }}/{{ ARCHIVES_SAVE_AS }}">
-                                    <i class="bi bi-calendar3"></i>
-                                    Dates
-                                </a>
-                            </li>
-                        {% endif %}
-                        {% if TAGS_SAVE_AS %}
-                            <li>
-                                <a href="{{ SITEURL }}/{{ TAGS_SAVE_AS }}">
-                                    <i class="bi bi-tags-fill"></i>
-                                    Tags
-                                </a>
-                            </li>
-                        {% endif %}
-                    </ul>
                 </div>
-                <div class="col-md-2 text-body-tertiary">
-                    <h6>Copyright notice</h6>
-                    {% set date_start = dates[-1].date.year if dates else None %}
-                    {% set date_end = dates[0].date.year if dates else None %}
-                    <p class="small">
-                        © Copyright
-                        {{ date_start if date_start }}{{ '-%s' % date_end if date_end and date_end != date_start }}
-                        {{ AUTHOR }}.
-                        {% if COPYRIGHT %}{{ COPYRIGHT }}{% endif %}
-                    </p>
+                <div class="row mt-3">
+                    <div class="offset-3 col-6 small fw-lighter text-body-tertiary text-center">
+                        <p>
+                            Site generated by <a class="text-body-secondary" href="https://getpelican.com">Pelican</a>.
+                            <br />
+                            <a class="text-body-secondary"
+                               href="https://github.com/kdeldycke/plumage">Plumage</a>
+                            theme by <a class="text-body-secondary" href="https://kevin.deldycke.com">Kevin Deldycke</a>.
+                        </p>
+                        <details>
+                            <summary>Generation details</summary>
+                            <ul>
+                                <li>Pelican v{{ PELICAN_VERSION }}</li>
+                                <li>Plumage v{{ PLUMAGE_VERSION }}</li>
+                            </ul>
+                        </details>
+                    </div>
+                    <div class="col-3 text-end d-flex flex-column">
+                        <a class="mt-auto" href="#"><i class="bi bi-arrow-bar-up"></i> Back to top</a>
+                    </div>
                 </div>
-                <div class="col-md-2 text-body-tertiary">
-                    <h6>Disclaimer</h6>
-                    <p class="small">
-                        {% if DISCLAIMER %}
-                            {{ DISCLAIMER }}
-                        {% else %}
-                            All opinions expressed in this site are my own
-                            personal opinions and are not endorsed by, nor
-                            do they represent the opinions of my previous,
-                            current and future employers or any of its
-                            affiliates, partners or customers.
-                        {% endif %}
-                    </p>
-                </div>
-                <div class="col-md-2">
-                    {% if all_feeds %}
-                        <h6>Feeds</h6>
-                        <ul class="list-unstyled small">
-                            {% for feed in all_feeds %}
-                                <li>
-                                    <a href="{{ FEED_DOMAIN }}/{{ feed.url }}">
-                                        <i class="bi {% if feed.kind == 'RSS' %} bi-rss-fill {% else %} bi-rss {% endif %}"></i>
-                                        {{ feed.name }} ({{ feed.kind }})
-                                    </a>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="offset-3 col-6 small fw-lighter text-body-tertiary text-center">
-                    <p>
-                        Site generated by <a class="text-body-secondary" href="https://getpelican.com">Pelican</a>.
-                        <br />
-                        <a class="text-body-secondary"
-                           href="https://github.com/kdeldycke/plumage">Plumage</a>
-                        theme by <a class="text-body-secondary" href="https://kevin.deldycke.com">Kevin Deldycke</a>.
-                    </p>
-                    <details>
-                        <summary>Generation details</summary>
-                        <ul>
-                            <li>Pelican v{{ PELICAN_VERSION }}</li>
-                            <li>Plumage v{{ PLUMAGE_VERSION }}</li>
-                        </ul>
-                    </details>
-                </div>
-                <div class="col-3 text-end d-flex flex-column">
-                    <a class="mt-auto" href="#"><i class="bi bi-arrow-bar-up"></i> Back to top</a>
-                </div>
-            </div>
+            {% endblock footer %}
         </footer>
         <!-- Scripts moved to the bottom of the page, as per Bootstrap and Stork canonical example -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"
@@ -337,9 +352,7 @@
         {% endblock extra_js %}
         {% if STORK_SEARCH %}
             <script src="https://files.stork-search.net/releases/v1.6.0/stork.js"></script>
-            <script>
-                stork.register("sitesearch", "{{ SITEURL }}/search-index.st")
-            </script>
+            <script>stork.register("sitesearch", "{{ SITEURL }}/search-index.st")</script>
         {% endif %}
     </body>
 </html>

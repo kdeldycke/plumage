@@ -156,17 +156,20 @@ profile = "jinja"
 # --ignore flags in the workflows, so the list lives in one place instead of both
 # lint.yaml and autofix.yaml, and a local `djlint --lint` behaves like CI.
 #
-#   H030  Wants a meta description. Filling it properly means deriving per-page content,
-#         which is a feature rather than a lint fix.
 #   T028  Wants spaceless tags inside attribute values. It fires on one button in
 #         archives.html while leaving the identical `class="... {% if %}...{% endif %}"`
-#         pattern in base.html (lines 117 and 127) unflagged.
+#         pattern in base.html unflagged.
+#
+# H030 (meta description) was listed here too, on the grounds that filling it properly
+# meant deriving per-page content. base.html now carries a site-wide one and article.html
+# and page.html override it from the entry's own description or summary, so the rule
+# passes on its merits.
 #
 # H006 (width/height on <img>) and H031 (meta keywords) were listed here too, until djlint
 # 1.42.1 moved both to opt-in for the reasons this file already gave: the theme's two <img>
 # hits are user-supplied URLs whose dimensions it cannot know, and search engines dropped
 # the keywords meta over a decade ago. Ignoring them no longer does anything.
-ignore = "H030,T028"
+ignore = "T028"
 
 # H025 reports an orphan tag. Scoped to the one file it misreads rather than ignored
 # outright, because it also catches real nesting errors: 1.40.4 taught it to report a list

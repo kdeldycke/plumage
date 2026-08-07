@@ -1,3 +1,9 @@
+{# ANALYTICS is Pelican's own setting, holding whatever markup the provider hands you.
+GOOGLE_ANALYTICS predates it here and only ever spoke gtag, so it stays for the sites
+already on it. Both render when both are set. #}
+{% if ANALYTICS %}
+    {{ ANALYTICS }}
+{% endif %}
 {% if GOOGLE_ANALYTICS %}
     <script async
             src="https://www.googletagmanager.com/gtag/js?id={{ GOOGLE_ANALYTICS }}"></script>

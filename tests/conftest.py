@@ -21,7 +21,7 @@ from __future__ import annotations
 from collections.abc import Callable
 
 import pytest
-from jinja2 import Environment, FileSystemLoader, nodes
+from jinja2 import ChoiceLoader, DictLoader, Environment, FileSystemLoader, nodes
 from jinja2.ext import Extension
 from pyquery import PyQuery as pq
 
@@ -115,3 +115,29 @@ def render(render_source: Callable) -> Callable:
         return pq(render_source(template, **overrides))
 
     return _render
+
+
+@pytest.fixture
+def render_override(jinja_env: Environment) -> Callable:
+    """Render a template through a child replacing one of its blocks.
+
+    Stands in for a downstream theme extending Plumage, which is the only thing a named
+    block is worth anything for. What it checks is that the override reaches the output
+    and the default content it displaces does not.
+    """
+
+    def _render_override(
+        block: str, markup: str, template: str = "base.html", **overrides
+    ) -> pq:
+        child = (
+            f"{{% extends '{template}' %}}"
+            f"{{% block {block} %}}{markup}{{% endblock {block} %}}"
+        )
+        env = jinja_env.overlay(
+            loader=ChoiceLoader(
+                [DictLoader({"child.html": child}), FileSystemLoader(TEMPLATE_DIR)],
+            ),
+        )
+        return pq(env.get_template("child.html").render(BASE_CONTEXT | overrides))
+
+    return _render_override

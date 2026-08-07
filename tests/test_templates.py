@@ -18,6 +18,7 @@
 
 from __future__ import annotations
 
+from datetime import UTC, datetime
 from types import SimpleNamespace
 
 import pytest
@@ -99,6 +100,38 @@ def test_full_width_layout_drops_sidebar_content(render):
     assert "Sidebar body" not in doc.text()
 
 
+NAV_CASES = (
+    # Setting turning the menu section on, context feeding it, and the name the
+    # current item is compared against.
+    ("DISPLAY_PAGES_ON_MENU", "pages", "page"),
+    ("DISPLAY_CATEGORIES_ON_MENU", "categories", "category"),
+)
+
+
+@pytest.mark.parametrize(("setting", "collection", "current"), NAV_CASES)
+def test_nav_marks_only_the_current_entry(render, setting, collection, current):
+    """Each menu section highlights the entry the page being rendered belongs to.
+
+    The two sections compute their own flag, and the category one used to test the flag
+    belonging to the pages loop. Jinja scopes a ``{% set %}`` to the loop that made it,
+    so the name was undefined there and no category was ever marked.
+
+    ``aria-current`` is what carries this to a screen reader; the class only drives the
+    styling.
+    """
+    here = SimpleNamespace(name="Notes", title="Notes", url="notes.html")
+    elsewhere = SimpleNamespace(name="Other", title="Other", url="other.html")
+    # Categories arrive as (term, articles) pairs, pages as a flat list.
+    items = [here, elsewhere]
+    if collection == "categories":
+        items = [(item, []) for item in items]
+    doc = render(**{setting: True, collection: items, current: here})
+
+    entries = list(doc(".navbar-nav li").items())
+    assert [classes(entry) for entry in entries] == ["nav-item active", "nav-item"]
+    assert [entry.find("a").attr("aria-current") for entry in entries] == ["page", None]
+
+
 def test_search_box_hidden_by_default(render):
     assert not render()("#sitesearch-input")
 
@@ -134,6 +167,166 @@ def test_feeds_are_advertised(render):
     feed = doc("link[rel=alternate]")
     assert feed.attr("href") == "https://example.com/feeds/all.atom.xml"
     assert feed.attr("type") == "application/atom+xml"
+
+
+TRANSLATED_CONTENT = {
+    "title": "Bonjour",
+    "url": "bonjour.html",
+    "lang": "fr",
+    "content": "<p>Salut.</p>",
+    "date": datetime(2026, 1, 2, tzinfo=UTC),
+    "locale_date": "2 January 2026",
+}
+"""One translated article or page, as a dict.
+
+Jinja falls back to item lookup when the attribute is missing, so every field a given
+template does not read is undefined rather than an ``AttributeError``.
+"""
+
+ENTRY_TEMPLATES = (("article.html", "article"), ("page.html", "page"))
+"""The two templates rendering a single entry, and the name each binds it to."""
+
+
+def translation(lang: str, url: str) -> SimpleNamespace:
+    """Stand-in for the sibling entries Pelican hangs off ``translations``."""
+    return SimpleNamespace(lang=lang, url=url)
+
+
+def test_html_lang_defaults_to_the_site_language(render):
+    """Nothing on a site-level listing carries a language of its own."""
+    assert render().attr("lang") == "en"
+
+
+@pytest.mark.parametrize(
+    ("template", "name"),
+    [("article.html", "article"), ("page.html", "page"), ("projects.html", "page")],
+)
+def test_html_lang_follows_the_content(render, template, name):
+    """A translation declares its own language instead of the site-wide default."""
+    doc = render(template, PROJECTS=[], tags=[], **{name: TRANSLATED_CONTENT})
+    assert doc.attr("lang") == "fr"
+
+
+@pytest.mark.parametrize(("template", "name"), ENTRY_TEMPLATES)
+def test_translations_are_advertised_in_the_head(render, template, name):
+    """The visible links say nothing to a crawler. These say it is the same document."""
+    entry = TRANSLATED_CONTENT | {
+        "translations": [
+            translation("en", "hello.html"),
+            translation("de", "hallo.html"),
+        ]
+    }
+    links = render(template, **{name: entry})("head link[rel=alternate][hreflang]")
+    assert {link.get("hreflang"): link.get("href") for link in links} == {
+        "en": "/hello.html",
+        "de": "/hallo.html",
+    }
+
+
+@pytest.mark.parametrize(("template", "name"), ENTRY_TEMPLATES)
+def test_no_hreflang_without_a_translation(render, template, name):
+    doc = render(template, **{name: TRANSLATED_CONTENT})
+    assert not doc("head link[rel=alternate][hreflang]")
+
+
+@pytest.mark.parametrize(("template", "name"), ENTRY_TEMPLATES)
+def test_visible_translation_links_carry_their_language(render, template, name):
+    entry = TRANSLATED_CONTENT | {"translations": [translation("en", "hello.html")]}
+    link = render(template, **{name: entry})("main#content a[hreflang]")
+    assert link.attr("hreflang") == "en"
+
+
+def test_meta_description_falls_back_to_the_site_subtitle(render):
+    doc = render(SITESUBTITLE="<em>Notes</em> on things")
+    assert doc("meta[name=description]").attr("content") == "Notes on things"
+
+
+def test_no_meta_description_without_a_subtitle(render):
+    assert not render()("meta[name=description]")
+
+
+@pytest.mark.parametrize(("template", "name"), ENTRY_TEMPLATES)
+@pytest.mark.parametrize(
+    ("fields", "expected"),
+    [
+        ({"summary": "<p>Derived from the body.</p>"}, "Derived from the body."),
+        # An explicit Description: wins over the summary Pelican derives.
+        (
+            {"summary": "<p>Derived.</p>", "description": "Hand-written."},
+            "Hand-written.",
+        ),
+    ],
+    ids=["summary", "description"],
+)
+def test_meta_description_comes_from_the_entry(
+    render, template, name, fields, expected
+):
+    """The site-wide subtitle is displaced rather than joined by a second tag."""
+    doc = render(
+        template, SITESUBTITLE="Site subtitle", **{name: TRANSLATED_CONTENT | fields}
+    )
+    assert doc("meta[name=description]").attr("content") == expected
+    assert len(doc("meta[name=description]")) == 1
+
+
+def test_article_shows_when_it_was_last_modified(render):
+    stamp = datetime(2026, 3, 4, tzinfo=UTC)
+    article = TRANSLATED_CONTENT | {
+        "modified": stamp,
+        "locale_modified": "4 March 2026",
+    }
+    sidebar = render("article.html", article=article)("#content ~ div time")
+    assert sidebar.eq(1).attr("datetime") == stamp.isoformat()
+    assert "4 March 2026" in sidebar.eq(1).text()
+
+
+def test_article_without_a_modified_date_shows_none(render):
+    doc = render("article.html", article=TRANSLATED_CONTENT)
+    assert len(doc("#content ~ div time")) == 1
+
+
+def test_analytics_markup_is_passed_through(render):
+    """Pelican's own ANALYTICS setting takes whatever the provider hands you."""
+    doc = render(ANALYTICS='<script src="https://example.com/count.js"></script>')
+    assert doc("head script[src='https://example.com/count.js']")
+
+
+def test_google_analytics_still_works(render):
+    assert "G-ABC123" in render(GOOGLE_ANALYTICS="G-ABC123")("head").text()
+
+
+@pytest.mark.parametrize(
+    ("block", "displaced"),
+    [
+        # Block name, and a selector matching what that region renders by default.
+        ("header", "h1 a.text-body-emphasis"),
+        ("nav", "nav.navbar"),
+        ("footer", "footer .row"),
+    ],
+)
+def test_base_regions_are_overridable(render, render_override, block, displaced):
+    """A theme extending Plumage swaps one region instead of copying base.html."""
+    # Assert the selector matches something first, so the check below cannot pass by
+    # naming a region that was never there.
+    assert render()(displaced)
+    doc = render_override(block, "<p id='replaced'>Mine</p>")
+    assert doc("#replaced")
+    # The region's own content is replaced, not pushed aside.
+    assert not doc(displaced)
+
+
+EMPTY_INDEX = {"articles_page": SimpleNamespace(object_list=[])}
+
+
+def test_empty_site_lists_its_pages(render):
+    pages = [SimpleNamespace(title="About", url="about.html")]
+    doc = render("index.html", pages=pages, **EMPTY_INDEX)
+    assert doc("main#content li a").attr("href") == "/about.html"
+
+
+def test_site_with_nothing_at_all_says_so(render):
+    doc = render("index.html", **EMPTY_INDEX)
+    assert "no content yet" in doc("main#content").text()
 
 
 TAXONOMY_FEEDS = (

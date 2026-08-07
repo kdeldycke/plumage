@@ -70,11 +70,17 @@ Plumage has built-in support for the following plugins and extensions:
 
 ## Installation
 
+Plumage is a dependency of your site rather than a tool of its own, so it goes into the same environment as Pelican. With [`uv`](https://docs.astral.sh/uv/) managing a site that has a `pyproject.toml`:
+
 ```shell-session
-$ python -m pip install uv
+$ uv add plumage
+```
+
+Outside a `uv` project, install it into the site's virtual environment instead. `uv pip` picks up the `.venv` of the current directory, so there is nothing to activate:
+
+```shell-session
 $ uv venv
-$ source .venv/bin/activate
-$ uv pip install .
+$ uv pip install plumage
 ```
 
 Then, once you're done installing the `plumage` module, update your `pelicanconf.py` file to reference the module:
@@ -115,13 +121,14 @@ Plumage can be customized by adding these optional parameters to your
 
 | Setting name                                                                                  | Default value | Description                                                                                                                                                    |
 | :-------------------------------------------------------------------------------------------- | :------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`ANALYTICS`](https://docs.getpelican.com/en/stable/settings.html#ANALYTICS)                  |               | Arbitrary markup injected at the top of every page's `<head>`, for whichever analytics provider you use.                                                       |
 | `ARTICLE_EDIT_LINK`                                                                           |               | Generate an edit link besides each article. Can use `%(slug)s` to include dynamic article's slug in the link.                                                  |
 | `CODE_STYLE`                                                                                  | `"monokai"`   | Pygments' style ID. Choose one from `uv run -- pygmentize -L styles`.                                                                                          |
 | `COPYRIGHT`                                                                                   |               | Additional copyright statement to add in the third column of the footer.                                                                                       |
 | `DISCLAIMER`                                                                                  |               | Override the disclaimer notice that gets displayed at the fourth column of the footer.                                                                         |
 | [`DISQUS_SITENAME`](http://docs.getpelican.com/en/stable/settings.html#DISQUS_SITENAME)       |               | Pelican can handle Disqus comments. Specify the Disqus sitename identifier here.                                                                               |
 | `FAVICON_LINKS`                                                                               | `True`        | Fetch link's icons from [Google's favicons webservice](https://www.google.com/s2/favicons).                                                                    |
-| [`GOOGLE_ANALYTICS`](http://docs.getpelican.com/en/stable/settings.html#GOOGLE_ANALYTICS)     |               | Set to `UA-XXXXXX-Y` Property's tracking ID to activate Google Analytics.                                                                                      |
+| `GOOGLE_ANALYTICS`                                                                            |               | Set to a Google tag ID to have the `gtag.js` snippet emitted. Prefer `ANALYTICS` for anything else.                                                            |
 | `LAYOUT`                                                                                      |               | Set to `"full-width"` to drop both sidebars and let the content span the whole page. Also settable per-template, as `projects.html` does.                      |
 | `LEFT_SIDEBAR`                                                                                |               | HTML content to put as-is in the left sidebar.                                                                                                                 |
 | [`LINKS_WIDGET_NAME`](http://docs.getpelican.com/en/stable/settings.html#LINKS_WIDGET_NAME)   | `"Links"`     | Allows override of the name of the links widget.                                                                                                               |
@@ -166,6 +173,27 @@ The theme is also sensible to this list of [standard Pelican parameters
 - `TAG_FEED_ATOM`
 - `TAG_FEED_RSS`
 - `TAGS_SAVE_AS`
+
+## Template overrides
+
+Point [`THEME_TEMPLATES_OVERRIDES`](https://docs.getpelican.com/en/stable/settings.html#THEME_TEMPLATES_OVERRIDES) at a directory of your own, then extend a shipped template instead of copying it. `base.html` exposes these blocks:
+
+| Block                           | Default content                                                                                                    |
+| :------------------------------ | :----------------------------------------------------------------------------------------------------------------- |
+| `content`                       | Empty. The main column.                                                                                            |
+| `extra_css`                     | Empty. Rendered after the theme's own stylesheet.                                                                  |
+| `extra_js`                      | Empty. Rendered after the theme's own scripts.                                                                     |
+| `footer`                        | Link columns, copyright, disclaimer and feeds.                                                                     |
+| `head`                          | Empty, and rendered last in `<head>`, so an override appends to it rather than replacing it. No `super()` needed.  |
+| `header`                        | Site thumbnail, title and subtitle.                                                                                |
+| `html_lang`                     | `DEFAULT_LANG`. Overridden per entry, so keep any override on a single line: it renders inside an attribute value. |
+| `left_sidebar`, `right_sidebar` | Empty.                                                                                                             |
+| `meta_description`              | `SITESUBTITLE`. Overridden per entry from its `Description:` metadata, falling back to its summary.                |
+| `nav`                           | Navigation bar and search box.                                                                                     |
+| `title`                         | `Home`, joined with `SITENAME`.                                                                                    |
+| `top_center`                    | Empty. Sits above the main column and lines up with it.                                                            |
+
+On top of those, `index.html` adds `content_title`, `page.html` adds `page_content`, and `projects.html` adds `project_pre_content` and `project_post_content`.
 
 ## Code Syntax Highlighting
 
