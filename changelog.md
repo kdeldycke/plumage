@@ -40,6 +40,9 @@
 - Pin every tool invoked from a workflow to an exact version, so `sync-workflow-pins` bumps them past the shared release-age cooldown. Drop the `djlint` extra: it is now a pinned `uvx` call, and no longer publishes a `plumage[djlint]` extra to PyPI.
 - Declare the test dependencies as a PEP 735 group instead of an extra, so `plumage[test]` is no longer published to PyPI either. `[project.optional-dependencies]` is now empty and gone.
 - Lint and autofix all stylesheets in a single stylelint call each, instead of one per file extension.
+- Fix the build crashing on an article with no category. Pelican 4.12.0 dropped category from an article's mandatory properties and binds the template name to `None` instead of leaving it out, so the header advertised a category feed whose URL had no slug to interpolate. Setting `CATEGORY_SAVE_AS` to an empty string was enough to hit it.
+- Add a `page_content` block to `page.html`, matching the one Pelican 4.12.0 gave its own, so an override can replace a page's body without restating the markup around it.
+- Drop the stale Python 3.10 classifier, left over from the 3.11 floor Pelican 4.12.0 imposes.
 
 ## [`4.0.0` (2024-05-18)](https://github.com/kdeldycke/plumage/compare/v3.1.0...v4.0.0)
 

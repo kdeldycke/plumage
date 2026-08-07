@@ -52,19 +52,24 @@
         {% if FEED_RSS %}
             {% if all_feeds.append({'kind': 'RSS', 'url': FEED_RSS, 'name': 'Latest posts'}) %}{% endif %}
         {% endif %}
-        {% if CATEGORY_FEED_ATOM and category is defined %}
+        {# Guard on the value rather than on `is defined`. Pelican 4.12.0 dropped
+        category from an article's mandatory properties, and now binds the name to
+        None on the page of an article carrying none, so it is defined but has no
+        slug to format. Disabling CATEGORY_SAVE_AS is enough to get there: the reader
+        then stops applying DEFAULT_CATEGORY, while CATEGORY_FEED_ATOM stays on. #}
+        {% if CATEGORY_FEED_ATOM and category %}
             {% if all_feeds.append({'kind': 'Atom', 'url': CATEGORY_FEED_ATOM.format(slug=category.slug), 'name': 'Category: ' + category.name}) %}
             {% endif %}
         {% endif %}
-        {% if CATEGORY_FEED_RSS and category is defined %}
+        {% if CATEGORY_FEED_RSS and category %}
             {% if all_feeds.append({'kind': 'RSS', 'url': CATEGORY_FEED_RSS.format(slug=category.slug), 'name': 'Category: ' + category.name}) %}
             {% endif %}
         {% endif %}
-        {% if TAG_FEED_ATOM and tag is defined %}
+        {% if TAG_FEED_ATOM and tag %}
             {% if all_feeds.append({'kind': 'Atom', 'url': TAG_FEED_ATOM.format(slug=tag.slug), 'name': 'Tag: ' + tag.name}) %}
             {% endif %}
         {% endif %}
-        {% if TAG_FEED_RSS and tag is defined %}
+        {% if TAG_FEED_RSS and tag %}
             {% if all_feeds.append({'kind': 'RSS', 'url': TAG_FEED_RSS.format(slug=tag.slug), 'name': 'Tag: ' + tag.name}) %}
             {% endif %}
         {% endif %}

@@ -12,5 +12,11 @@
 {% block content %}
     {% import 'translations.html' as translations with context %}
     {{ translations.translations_for(page) }}
-    <div>{{ page.content }}</div>
+    {# Named block around the body alone, as Pelican 4.12.0 gave its own page.html, so
+    an override can replace what a page renders without restating the wrapper. #}
+    <div>
+        {% block page_content %}
+            {{ page.content }}
+        {% endblock page_content %}
+    </div>
 {% endblock content %}

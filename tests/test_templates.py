@@ -18,6 +18,8 @@
 
 from __future__ import annotations
 
+from types import SimpleNamespace
+
 import pytest
 
 from plumage import PLUMAGE_ROOT
@@ -117,7 +119,7 @@ def test_no_font_awesome_icons(jinja_env, template):
 
 def test_footer_reports_versions(render):
     details = render()("footer details")
-    assert "Pelican v4.11.0" in details.text()
+    assert "Pelican v4.12.0" in details.text()
     assert "Plumage v5.0.0.dev0" in details.text()
 
 
@@ -132,6 +134,42 @@ def test_feeds_are_advertised(render):
     feed = doc("link[rel=alternate]")
     assert feed.attr("href") == "https://example.com/feeds/all.atom.xml"
     assert feed.attr("type") == "application/atom+xml"
+
+
+TAXONOMY_FEEDS = (
+    # Template name the term is bound to, the setting holding its feed pattern, and
+    # the label the advertised feed carries.
+    ("category", "CATEGORY_FEED_ATOM", "Category: Notes"),
+    ("category", "CATEGORY_FEED_RSS", "Category: Notes"),
+    ("tag", "TAG_FEED_ATOM", "Tag: Notes"),
+    ("tag", "TAG_FEED_RSS", "Tag: Notes"),
+)
+
+
+@pytest.mark.parametrize(("name", "setting", "label"), TAXONOMY_FEEDS)
+def test_taxonomy_feed_advertised(render, name, setting, label):
+    term = SimpleNamespace(name="Notes", slug="notes")
+    doc = render(
+        FEED_DOMAIN="https://example.com", **{setting: "feeds/{slug}.xml", name: term}
+    )
+    feed = doc("link[rel=alternate]")
+    assert feed.attr("href") == "https://example.com/feeds/notes.xml"
+    assert label in feed.attr("title")
+
+
+@pytest.mark.parametrize(
+    ("name", "setting"), [(name, setting) for name, setting, _ in TAXONOMY_FEEDS]
+)
+def test_taxonomy_feed_skipped_for_a_term_bound_to_none(render, name, setting):
+    """Pelican 4.12.0 made an article's category optional.
+
+    It binds the name to None on the page of an article carrying none, where earlier
+    releases left it out entirely. Both have to render, and neither may advertise a
+    feed: the term the pattern interpolates does not exist. The undefined case is
+    covered by every other render here, as the base context declares neither name.
+    """
+    doc = render(**{setting: "feeds/{slug}.xml", name: None})
+    assert not doc("link[rel=alternate]")
 
 
 @pytest.mark.parametrize(

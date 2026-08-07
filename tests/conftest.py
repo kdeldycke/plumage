@@ -72,7 +72,7 @@ BASE_CONTEXT: dict = {
     "CODE_STYLE": "monokai",
     "DEFAULT_LANG": "en",
     "output_file": "index.html",
-    "PELICAN_VERSION": "4.11.0",
+    "PELICAN_VERSION": "4.12.0",
     "PLUMAGE_VERSION": "5.0.0.dev0",
     "SITENAME": "Test Site",
     "SITEURL": "",
