@@ -69,4 +69,4 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Unittests
-        run: uv --no-progress run --frozen --extra test -- pytest
+        run: uv --no-progress run --frozen --group test -- pytest

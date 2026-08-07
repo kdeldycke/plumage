@@ -628,7 +628,7 @@ dependencies = [
     { name = "pyquery" },
 ]
 
-[package.optional-dependencies]
+[package.dev-dependencies]
 test = [
     { name = "pytest" },
     { name = "pytest-cov" },
@@ -645,11 +645,14 @@ requires-dist = [
     { name = "pygments", specifier = "~=2.18.0" },
     { name = "pynpm", specifier = "~=0.2.0" },
     { name = "pyquery", specifier = "~=2.0.0" },
-    { name = "pytest", marker = "extra == 'test'", specifier = "~=8.4.0" },
-    { name = "pytest-cov", marker = "extra == 'test'", specifier = "~=7.0.0" },
-    { name = "pytest-xdist", extras = ["psutil"], marker = "extra == 'test'", specifier = "~=3.8.0" },
 ]
-provides-extras = ["test"]
+
+[package.metadata.requires-dev]
+test = [
+    { name = "pytest", specifier = "~=8.4.0" },
+    { name = "pytest-cov", specifier = "~=7.0.0" },
+    { name = "pytest-xdist", extras = ["psutil"], specifier = "~=3.8.0" },
+]
 
 [[package]]
 name = "psutil"

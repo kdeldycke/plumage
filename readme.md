@@ -249,7 +249,7 @@ If you need to work both on the content of your website and the theme, you need 
 The suite covers settings validation, the post-generation HTML transforms, and the markup the templates produce. It renders templates directly, so it needs neither a generated site nor the npm toolchain:
 
 ```shell-session
-$ uv run --extra test -- pytest
+$ uv run --group test -- pytest
 ```
 
 ## License

@@ -158,7 +158,9 @@ The floor is Python 3.10 (`requires-python = ">= 3.10"`). Unavailable syntax:
 
 ## Testing
 
-The suite lives in `tests/` and runs with `uv run --extra test -- pytest`. It is deliberately high-level: templates are rendered through Jinja directly, so it needs neither a Pelican build nor the npm toolchain, and the whole thing finishes in seconds.
+The suite lives in `tests/` and runs with `uv run --group test -- pytest`. It is deliberately high-level: templates are rendered through Jinja directly, so it needs neither a Pelican build nor the npm toolchain, and the whole thing finishes in seconds.
+
+Its dependencies sit in a PEP 735 `[dependency-groups]` table, like repomatic, and no longer in an extra. Groups stay out of the published metadata, so there is no installable `plumage[test]` for a theme consumer to reach for, and the suite is not shipped in the distribution anyway. With djlint gone too, `[project.optional-dependencies]` was empty and was removed. The upstream `lint-types` job already syncs with `--all-extras --all-groups`, so it picks the group up unchanged.
 
 Two pieces in `tests/conftest.py` make that possible:
 
