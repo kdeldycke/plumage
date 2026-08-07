@@ -53,8 +53,17 @@ classifiers = [
     'Typing :: Typed',
 ]
 dependencies = [
-    "cssmin >= 0.2.0",              # XXX Unmaintained!
-    "libsass >= 0.23.0",
+    # Minifies the compiled stylesheet, as the last filter of the {% assets %} pipeline in
+    # base.html. webassets' cssmin filter imports the module by name. The floor is also the
+    # ceiling in practice: 0.2.0 is the last release the project ever published.
+    # XXX Unmaintained!
+    "cssmin >= 0.2.0",
+    # Compiles the theme's SCSS, through webassets' libsass filter in that same pipeline.
+    # No API boundary to anchor this one to: the filter only ever calls sass.compile() with
+    # output_style, include_paths and string/filename, stable across the whole 0.x line. 0.22
+    # is just the oldest release checked to install and compile across our Python range, so
+    # treat it as a tested floor rather than a real minimum.
+    "libsass >= 0.22",
     # Pelican 4.12.0 is the first release to require Python 3.11, aligning with the
     # requires-python above. It also lifts its own Pygments ceiling to < 2.20.0.
     "pelican >= 4.12.0",
@@ -64,9 +73,21 @@ dependencies = [
     # and registers late enough to win all of them, so Python Markdown would never see a
     # file and the `markdown` extra is not worth carrying.
     "pelican-myst-reader >= 1.4.0",
+    # setup_webassets() hands the theme's configuration over as conf["WEBASSETS_CONFIG"].
+    # 2.0.0 introduced that key, falling back to the older ASSET_CONFIG; 1.0.0 reads neither,
+    # so every filter would run unconfigured instead of failing.
     "pelican-webassets >= 2.0.0",
+    # Generates the stylesheets under static/css/pygments/, one per style, which CODE_STYLE
+    # picks between and ALL_CODE_STYLES validates against. 2.18.0 is the first release to know
+    # all 49 the theme ships: 2.17.2 is missing `coffee`, so sync-pygments-styles would quietly
+    # stop refreshing a stylesheet that is still shipped and still accepted as a CODE_STYLE.
     "pygments >= 2.18.0",
+    # postcss_config() installs the theme's Node dependencies through NPMPackage(...).install().
+    # 0.2.0 is where that method arrived: 0.1.x exposes the class without it.
     "pynpm >= 0.2.0",
+    # Drives the post-generation rewrites in dom_transforms.py: add_class(), attr(), wrap()
+    # and outerHtml(), over a pq(filename=...) document. 2.0.0 opens the modern line and
+    # already carries all of them, wrap() included.
     "pyquery >= 2.0.0",
 ]
 

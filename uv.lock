@@ -693,7 +693,7 @@ test = [
 [package.metadata]
 requires-dist = [
     { name = "cssmin", specifier = ">=0.2.0" },
-    { name = "libsass", specifier = ">=0.23.0" },
+    { name = "libsass", specifier = ">=0.22" },
     { name = "pelican", specifier = ">=4.12.0" },
     { name = "pelican-myst-reader", specifier = ">=1.4.0" },
     { name = "pelican-webassets", specifier = ">=2.0.0" },
