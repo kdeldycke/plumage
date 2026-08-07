@@ -90,7 +90,6 @@ wheel-exclude = [
 ]
 
 [project.optional-dependencies]
-djlint = ["djlint ~= 1.35.2"]
 test = [
     "pytest ~= 8.4.0",
     # Both are required by the addopts under [tool.pytest.ini_options].

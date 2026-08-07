@@ -31,6 +31,8 @@
 - Add the missing `alt` text on the site thumbnail.
 - Configure stylelint and djlint, so both report only findings that apply to the theme. The generated Pygments stylesheets are no longer linted, and Sass Guidelines rules incompatible with extending Bootstrap's utility classes are turned off.
 - Give Dependabot a cooldown, and silence the two `adhoc-packages` warnings covering CI-only linters that must stay out of the theme's own `package.json`.
+- Pin every tool invoked from a workflow to an exact version, so `sync-workflow-pins` bumps them past the shared release-age cooldown. Drop the `djlint` extra: it is now a pinned `uvx` call, and no longer publishes a `plumage[djlint]` extra to PyPI.
+- Lint and autofix all stylesheets in a single stylelint call each, instead of one per file extension.
 
 ## [`4.0.0` (2024-05-18)](https://github.com/kdeldycke/plumage/compare/v3.1.0...v4.0.0)
 

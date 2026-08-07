@@ -34,7 +34,17 @@ Naming the workflow files individually is deliberate: a bare `repomatic init` al
 - the `uvx --no-progress 'repomatic==X.Y.Z' pr-body` version strings (three occurrences)
 - action pins that upstream moved, like `astral-sh/setup-uv`
 
+Only for the bump you are performing, though: `sync-workflow-pins` bumps those same literals on its own schedule, once a release clears the cooldown. The hand edit is what makes them match the `uses:` ref you just moved, in the same commit.
+
 Check the release notes for breaking changes needing manual follow-up, like a renamed autofix job whose old PR branch must be closed.
+
+### Tools called from workflows are version-pinned
+
+Every external tool a workflow invokes carries an exact version literal, in one of the two shapes `sync-workflow-pins` recognizes: `uvx '<pkg>==X.Y.Z'` for PyPI, and `npm install pkg@X.Y.Z` for npm. That job resolves each to the newest release past the shared `minimum-release-age` cooldown (default `"8 days"`, so no explicit `[tool.repomatic]` entry is needed) and opens a pull request. Anything invoked unpinned silently floats to the newest release on every run, outside that cooldown.
+
+This is why djlint is *not* a `[project.optional-dependencies]` extra. As a locked dependency its version moved through `sync-uv-lock`, which works, but it also published a meaningless `plumage[djlint]` extra to PyPI. As a pinned `uvx` call it stays on the same footing as every other CI-only linter. Run it locally the way CI does, with `uvx 'djlint==X.Y.Z' --lint plumage/templates/*.html`.
+
+The stylelint pins are repeated in `lint.yaml` and `autofix.yaml` rather than factored into a composite action. `sync-workflow-pins` rewrites every literal it finds in one pass, so the two copies move together on their own and there is nothing for an extra layer of indirection to protect.
 
 ### Linter configuration lives in files, not in the workflow calls
 
@@ -48,6 +58,10 @@ and `autofix.yaml` cannot drift apart and a local run behaves like CI:
   for individual rules, and `--config` only accepts a path, never inline JSON, so the file is
   not optional. The empty root `rules: {}` is required: stylelint rejects a configuration
   whose rules all come from `overrides`.
+
+  Because those `overrides` discriminate by file type, each job needs a single call over
+  `plumage/static/**/*.{css,scss}`. The separate CSS and SCSS steps this replaced existed only
+  to pass a different `--config` to each.
 - **djlint**: `[tool.djlint]` in `pyproject.toml`, which repomatic does not manage.
 - **zizmor**: inline `# zizmor: ignore[adhoc-packages]` comments, which it accepts on the
   line above the finding.
@@ -128,7 +142,9 @@ When adding or renaming a user-facing setting, update the settings table in `rea
 
 ### Python version pins in CI
 
-Three downstream jobs pin `python-version: "3.12"`, and the `tests.yaml` matrix stops at the same version instead of covering the full 3.10-3.14 range the classifiers advertise. This is a workaround, not a policy: `uv.lock` holds watchfiles 0.24.0, a transitive Pelican dependency shipping no wheel past 3.12, which otherwise falls back to a Rust build. Drop the pins and extend the matrix once `sync-uv-lock` has moved the lock past it.
+`sync-pygments-styles` pins `python-version: "3.12"`, and the `tests.yaml` matrix stops at the same version instead of covering the full 3.10-3.14 range the classifiers advertise. This is a workaround, not a policy: `uv.lock` holds watchfiles 0.24.0, a transitive Pelican dependency shipping no wheel past 3.12, which otherwise falls back to a Rust build. Drop the pin and extend the matrix once `sync-uv-lock` has moved the lock past it.
+
+Only jobs that install the project are affected. The two Jinja jobs used to carry the same pin, and lost it when djlint moved to a `uvx` call that never touches `uv.lock`.
 
 ## Python compatibility
 

@@ -33,7 +33,8 @@ jobs:
 
   lint-jinja:
     name: 🃏 Lint Jinja
-    # Not "ubuntu-slim": djlint is installed from the project's own "djlint" extra, which builds it.
+    # Not "ubuntu-slim": uvx builds djlint's sdist-only dependencies (editorconfig, cssbeautifier,
+    # jsbeautifier) on install.
     runs-on: ubuntu-24.04
     # Read-only: this job checks out and lints, and opens no pull request. Declared per-job because
     # a top-level `permissions: {}` would starve the managed caller above, which `repomatic init`
@@ -43,15 +44,10 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
-        with:
-          # uv.lock pins watchfiles 0.24.0, a transitive Pelican dependency that ships no wheel
-          # past 3.12 and falls back to a Rust build. Drop this pin once sync-uv-lock has moved
-          # the lock forward.
-          python-version: "3.12"
       - name: Lint Jinja
-        run: >
-          uv --no-progress run --frozen --extra djlint --
-          djlint --lint --profile jinja plumage/templates/*.html
+        # Version-pinned so sync-workflow-pins bumps it past the minimum-release-age cooldown.
+        # Rules and profile come from [tool.djlint] in pyproject.toml.
+        run: uvx --no-progress 'djlint==1.35.4' --lint plumage/templates/*.html
 
   lint-css:
     name: 💅 Lint CSS
@@ -67,14 +63,15 @@ jobs:
         # of these CI-only linters. zizmor wants a lockfile install instead, but the only lockfile
         # here is the theme's own, and pynpm installs from it on every user's site build: a linter
         # added there would ship into those builds.
+        # Version-pinned so sync-workflow-pins bumps them past the minimum-release-age cooldown.
         # zizmor: ignore[adhoc-packages]
-        run: npm install --no-save stylelint stylelint-config-standard stylelint-config-sass-guidelines
-      # Both steps read .stylelintrc.yaml, which picks the shareable config per file type and
-      # carries the theme's deviations from it. Passing --config here would override that file.
-      - name: Lint CSS
-        # --allow-empty-input because .stylelintignore excludes the generated Pygments stylesheets,
-        # which are currently the only CSS the theme carries: the hand-written styles are all SCSS,
-        # linted by the step below. The step stays as a guard for any CSS added later.
-        run: npx stylelint --allow-empty-input "plumage/static/**/*.css"
-      - name: Lint SCSS
-        run: npx stylelint "plumage/static/**/*.scss"
+        run: >
+          npm install --no-save
+          stylelint@17.14.1
+          stylelint-config-standard@40.0.0
+          stylelint-config-sass-guidelines@13.0.0
+      - name: Lint stylesheets
+        # One call for both extensions: .stylelintrc.yaml selects the shareable config per file
+        # type through `overrides`, so nothing here needs to tell CSS and SCSS apart. Passing
+        # --config would override that file wholesale.
+        run: npx stylelint "plumage/static/**/*.{css,scss}"

@@ -1,0 +1,44 @@
+---
+# Both shareable configs are declared here rather than passed as --config on the command
+# line, so the per-rule deviations below survive. The lint and autofix workflows select
+# files by glob and let these overrides pick the matching config.
+#
+# The empty root "rules" is required: stylelint rejects a configuration whose rules only
+# ever come from "overrides" with "No rules found within configuration".
+rules: {}
+
+# Pygments generates every stylesheet in this folder from the release pinned in
+# pyproject.toml, and sync-pygments-styles regenerates them wholesale on each sync. Its
+# output puts several declarations on a single line and uses Pygments' own token class
+# names, tripping declaration-block-single-line-max-declarations (1053 hits) and
+# selector-class-pattern (23). Neither is repairable here: stylelint --fix leaves both
+# alone, and any hand edit is overwritten by the next sync anyway.
+#
+# Declared here rather than in a .stylelintignore, so a single file carries the whole
+# configuration and a local `npx stylelint` behaves exactly like CI.
+ignoreFiles:
+  - plumage/static/css/pygments/**
+
+overrides:
+
+  - files: ["**/*.css"]
+    extends: stylelint-config-standard
+
+  - files: ["**/*.scss"]
+    extends: stylelint-config-sass-guidelines
+    rules:
+      # Sass Guidelines wants @extend to target a %placeholder. This theme extends
+      # Bootstrap's utility classes (.fs-4, .btn-close, .rounded-circle, ...), which ship
+      # as real classes with no placeholder equivalent, so the rule cannot be satisfied
+      # without vendoring Bootstrap's utilities. Where the theme defines its own
+      # extendable rule it does use a placeholder: see %reset-pygment-padding in code.scss.
+      scss/at-extend-no-missing-placeholder: null
+      # Sass Guidelines caps nesting at 1. The theme styles third-party markup it does not
+      # emit (Bootstrap components, Pygments output, Stork's search results), and mirroring
+      # those structures costs a few levels: the deepest today is the Stork result item,
+      # .stork-output > li > a > .stork-title. Capped rather than disabled, to keep the
+      # guardrail meaningful.
+      max-nesting-depth: 4
+      # Qualifying a class with its element type (span.amp, td.linenos) is how the theme
+      # targets markup emitted by Pygments and Bootstrap, whose class names it does not own.
+      selector-no-qualifying-type: null

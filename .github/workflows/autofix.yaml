@@ -77,16 +77,20 @@ jobs:
         # of these CI-only linters. zizmor wants a lockfile install instead, but the only lockfile
         # here is the theme's own, and pynpm installs from it on every user's site build: a linter
         # added there would ship into those builds.
+        # Pinned to the same releases as the lint-css job in lint.yaml, which sync-workflow-pins
+        # bumps in lockstep.
         # zizmor: ignore[adhoc-packages]
-        run: npm install --no-save stylelint stylelint-config-standard stylelint-config-sass-guidelines
-      - name: Autofix CSS
-        # Allowed to fail so the pull request below is still opened with whatever stylelint managed
-        # to fix on its own. What it could not fix is reported by the lint workflow.
-        # Both calls read .stylelintrc.yaml, which picks the shareable config per file type and
-        # carries the theme's deviations from it. Passing --config here would override that file.
-        run: |
-          npx stylelint --fix --allow-empty-input "plumage/static/**/*.css" || true
-          npx stylelint --fix "plumage/static/**/*.scss" || true
+        run: >
+          npm install --no-save
+          stylelint@17.14.1
+          stylelint-config-standard@40.0.0
+          stylelint-config-sass-guidelines@13.0.0
+      - name: Autofix stylesheets
+        # One call for both extensions, as in the lint-css job: .stylelintrc.yaml selects the
+        # shareable config per file type. Allowed to fail so the pull request below is still
+        # opened with whatever stylelint managed to fix on its own. What it could not fix is
+        # reported by the lint workflow.
+        run: npx stylelint --fix "plumage/static/**/*.{css,scss}" || true
       - id: pr-metadata
         run: >
           uvx --no-progress 'repomatic==7.4.1' pr-body --output-format github-actions
@@ -110,7 +114,8 @@ jobs:
 
   format-jinja:
     name: 🃏 Format Jinja
-    # Not "ubuntu-slim": djlint is installed from the project's own "djlint" extra, which builds it.
+    # Not "ubuntu-slim": uvx builds djlint's sdist-only dependencies (editorconfig, cssbeautifier,
+    # jsbeautifier) on install.
     runs-on: ubuntu-24.04
     permissions:
       contents: write
@@ -118,13 +123,12 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
-        with:
-          # See the sync-pygments-styles job above for why this is pinned.
-          python-version: "3.12"
       - name: Autofix Jinja
+        # Pinned to the same release as the lint-jinja job in lint.yaml, which sync-workflow-pins
+        # bumps in lockstep. Rules and profile come from [tool.djlint] in pyproject.toml.
         run: >
-          uv --no-progress run --frozen --extra djlint --
-          djlint --reformat --profile jinja --format-css --format-js --warn plumage/templates/*.html
+          uvx --no-progress 'djlint==1.35.4'
+          --reformat --format-css --format-js --warn plumage/templates/*.html
       - id: pr-metadata
         run: >
           uvx --no-progress 'repomatic==7.4.1' pr-body --output-format github-actions
