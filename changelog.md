@@ -20,6 +20,11 @@
 - Split Pygments style auto-update job from CSS formatting.
 - Runs workflows on latest `ubuntu-24.04`.
 - Document theme development, and recommend [Jampack](https://jampack.divriots.com) for asset optimization.
+- Fix the search box icon, left behind by the Font Awesome to Bootstrap Icons migration.
+- Fix the `full-width` layout: the main content now spans all 12 columns, and the block above it lines up with it instead of being capped at half width.
+- Replace the deprecated `text-muted` and the hard-coded `text-dark` in the footer with color scheme aware utilities.
+- Add a collapsible generation details block in the footer, listing the Pelican and Plumage versions. The latter is exposed as a new `PLUMAGE_VERSION` template variable.
+- Document the `LAYOUT` setting.
 
 ## [`4.0.0` (2024-05-18)](https://github.com/kdeldycke/plumage/compare/v3.1.0...v4.0.0)
 

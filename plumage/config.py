@@ -19,7 +19,7 @@ from typing import Any
 import pelican
 from pelican import signals
 
-from . import PLUMAGE_ROOT
+from . import PLUMAGE_ROOT, __version__
 from .dom_transforms import transform
 from .favicon import add_favicon_assets
 from .webassets import setup_webassets
@@ -41,6 +41,7 @@ def check_config(sender) -> None:
 
     # Keep some metadata around.
     conf["PELICAN_VERSION"] = pelican.__version__
+    conf["PLUMAGE_VERSION"] = __version__
 
     # Check code coloe scheme ID.
     conf = check_codestyle(conf)
