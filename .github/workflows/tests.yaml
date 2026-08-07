@@ -55,14 +55,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # Stops at 3.12, like the other downstream jobs: uv.lock pins watchfiles 0.24.0, a
-        # transitive Pelican dependency shipping no wheel past 3.12, which otherwise falls back
-        # to a Rust build. Extend to the full 3.10-3.14 range once sync-uv-lock moves the lock
-        # past it.
+        # The full range advertised by the classifiers in pyproject.toml.
         python-version:
           - "3.10"
           - "3.11"
           - "3.12"
+          - "3.13"
+          - "3.14"
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0

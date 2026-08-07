@@ -140,11 +140,13 @@ Five modules under `plumage/`, all small:
 
 When adding or renaming a user-facing setting, update the settings table in `readme.md` in the same change. That table and the PR body templates under `.github/` both name settings directly, and both have drifted from the code before.
 
-### Python version pins in CI
+### Python version coverage in CI
 
-`sync-pygments-styles` pins `python-version: "3.12"`, and the `tests.yaml` matrix stops at the same version instead of covering the full 3.10-3.14 range the classifiers advertise. This is a workaround, not a policy: `uv.lock` holds watchfiles 0.24.0, a transitive Pelican dependency shipping no wheel past 3.12, which otherwise falls back to a Rust build. Drop the pin and extend the matrix once `sync-uv-lock` has moved the lock past it.
+The `tests.yaml` matrix covers the full 3.10-3.14 range the classifiers advertise, and no downstream job pins `python-version`.
 
-Only jobs that install the project are affected. The two Jinja jobs used to carry the same pin, and lost it when djlint moved to a `uvx` call that never touches `uv.lock`.
+Both used to stop at 3.12, to keep `uv.lock`'s watchfiles 0.24.0 from falling back to a Rust build. That floor was the binding constraint but the cap was set one version too low: 0.24.0 does publish a cp313 wheel, and 3.14 was the first version it left uncovered. watchfiles 1.2.0 publishes cp310 through cp315, so the whole range installs from wheels. If a future resolution walks watchfiles back, 3.14 is the job that fails first.
+
+Only jobs that install the project were ever affected. The two Jinja jobs used to carry the same pin, and lost it when djlint moved to a `uvx` call that never touches `uv.lock`.
 
 ## Python compatibility
 
