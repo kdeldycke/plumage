@@ -1,3 +1,11 @@
+[build-system]
+build-backend = "uv_build"
+# Unlike repomatic, which leaves uv-build uncapped because it is pure Python, this
+# theme ships a large asset tree and an npm toolchain inside the package directory.
+# Those are exactly the packaging edge cases the uncapped-version warning guards
+# against, so the upper bound stays.
+requires = ["uv-build>=0.8,<0.13"]
+
 [project]
 # Docs: https://packaging.python.org/en/latest/guides/writing-pyproject-toml/
 name = "plumage"
@@ -7,6 +15,8 @@ requires-python = ">= 3.10"
 description = "🪶 Clean and tidy theme for Pelican, the static site generator"
 authors = [{ name = "Kevin Deldycke", email = "kevin@deldycke.com" }]
 readme = "readme.md"
+license = "GPL-2.0-or-later"
+license-files = ["license"]
 keywords = [
     'pelican',
     'pelican-theme',
@@ -26,7 +36,6 @@ classifiers = [
     'Framework :: Pelican :: Themes',
     'Intended Audience :: Developers',
     'Intended Audience :: Information Technology',
-    'License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)',
     'Operating System :: OS Independent',
     'Programming Language :: JavaScript',
     'Programming Language :: Other',
@@ -54,13 +63,26 @@ dependencies = [
     "pyquery ~= 2.0.0",
 ]
 
-[tool.setuptools.package-data]
-# Add all content found within the ./plumage subfolder.
-plumage = ["**"]
-
-[tool.setuptools.exclude-package-data]
-# Exclude the locked JS dependencies file.
-plumage = ["package-lock.json"]
+[tool.uv.build-backend]
+# The theme uses a flat layout: the package sits at the repo root, not under src/.
+module-root = ""
+# The backend already ships every asset found in the ./plumage subfolder, which is
+# what a theme needs. What must not be distributed is listed below: the npm tree
+# the webassets pipeline installs at build time, the JS lock file, and local build
+# artifacts. The last two entries are redundant with .gitignore, but uv_build does
+# not read it, so they have to be repeated here.
+source-exclude = [
+    "**/node_modules",
+    "**/package-lock.json",
+    "**/*.egg-info",
+    "**/.DS_Store",
+]
+wheel-exclude = [
+    "**/node_modules",
+    "**/package-lock.json",
+    "**/*.egg-info",
+    "**/.DS_Store",
+]
 
 [project.optional-dependencies]
 djlint = ["djlint ~= 1.35.2"]

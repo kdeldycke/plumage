@@ -14,6 +14,8 @@
 - Move analytics code just below the `<head>` element, and all other javascript to the bottom of the page.
 - Remove hack fixing external images bug from `pelican-image-process` plugin.
 - Switch from Poetry to `uv`. Move `djlint` from a dev dependency to an optional extra.
+- Build with the `uv_build` backend, and stop shipping `node_modules`: the wheel shrinks from 17.4 MB to 0.4 MB.
+- Declare the license as an SPDX expression, and ship the license file in the package.
 - Manage the repository with `repomatic`.
 - Split Pygments style auto-update job from CSS formatting.
 - Runs workflows on latest `ubuntu-24.04`.
