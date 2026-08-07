@@ -98,10 +98,12 @@ a {
   @extend .btn-close;
   // Shape the button into a circle.
   @extend .rounded-circle;
-  // Work around the default close button styling.
-  // XXX btn-close-white is deprecated in Bootstrap 5.3.0.
-  // XXX Try playing with --bs-btn-close-color: $white; or something.
-  @extend .btn-close-white, .bg-dark-subtle;
+  // Whiten the close button icon so it reads against the subtle dark background below.
+  // Bootstrap 5.3.4 moved the filter behind .btn-close-white into a custom property the
+  // button applies unconditionally, so setting it here reaches the same rendering without
+  // extending a class deprecated since 5.3.0.
+  --bs-btn-close-filter: #{$btn-close-filter-dark};
+  @extend .bg-dark-subtle;
   // Reduce button's size.
   @extend .me-2, .p-1;
   @extend .btn; // Required to override the font size below.
@@ -115,7 +117,9 @@ a {
 
 .stork-progress {
   @extend .progress, .progress-bar;
-  height: 5px;
+  // Set the height through the component's own variable rather than overriding the
+  // property it feeds: since Bootstrap 5.3.4 the striped animation keyframes read it too.
+  --bs-progress-height: 5px;
 }
 
 // Special customization for the search box.

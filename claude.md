@@ -140,6 +140,20 @@ Consequences worth remembering:
 - `node_modules` lands *inside* the package directory at build time. Both `source-exclude` and `wheel-exclude` in `[tool.uv.build-backend]` must keep it (and `package-lock.json`) out of the distribution. `uv_build` does not read `.gitignore`, so those exclusions are repeated there on purpose.
 - The package uses a flat layout, so `[tool.uv.build-backend] module-root = ""`. The package sits at the repo root, not under `src/`.
 
+#### Bumping the npm dependencies by hand
+
+Repomatic covers no npm ecosystem, so `.github/dependabot.yaml` is what keeps `package.json` moving, under a `cooldown.default-days: 7` matching `[tool.uv] exclude-newer`. With no `semver-*-days` alongside it, that one value governs major, minor and patch alike.
+
+Updating by hand has to reproduce that cooldown, and npm has its own spelling of `exclude-newer`:
+
+```shell-session
+$ npm install --before=$(date -v-7d +%Y-%m-%d)
+```
+
+`--before` applies to the whole tree, not just the four direct dependencies, so it is the only invocation that keeps a transitive package from landing inside the cooldown window.
+
+`npm install` alone will not lift a transitive dependency that still satisfies its parent's range, however stale or vulnerable it is: it only touches what `package.json` forced to move. Reach for `npm update --before=…` to sweep those, then `npm audit` to confirm.
+
 ### Python modules
 
 Five modules under `plumage/`, all small:

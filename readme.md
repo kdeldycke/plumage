@@ -102,12 +102,15 @@ WARNING: postcss CLI not found.
   |     "name": "plumage-webassets-pipeline",
   |     "description": "Plumage dependencies for the webassets compilation pipeline.",
   |     "dependencies": {
-  |       "postcss-cli": "^8.3.1"
+  |       "autoprefixer": "^10.5.4",
+  |       "bootstrap": "^5.3.8",
+  |       "postcss": "^8.5.25",
+  |       "postcss-cli": "^11.0.1"
   |     }
   |   }
   |
 
-up to date, audited 96 packages in 984ms
+up to date, audited 65 packages in 1s
 
 found 0 vulnerabilities
 -> postcss CLI found at (…)/plumage/node_modules/.bin/postcss

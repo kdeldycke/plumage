@@ -54,6 +54,9 @@
 - Support Pelican's own `ANALYTICS` setting, holding whatever markup an analytics provider hands you. `GOOGLE_ANALYTICS` still emits its `gtag.js` snippet, and is no longer documented as a Pelican setting: it never was one.
 - Mark up dates with `<time datetime>` instead of `<abbr title>`. `title` still carries the timestamp, so the hover tooltip is unchanged.
 - Show a site's pages, or a short notice, on an index with no article to list.
+- Update the webassets pipeline's Node dependencies: Bootstrap to `5.3.8`, PostCSS to `8.5.25`, Autoprefixer to `10.5.4` and `postcss-cli` to `11.0.1`. The PostCSS `8.5` series closes an XSS through an unescaped `</style>`, and hardens source map loading, which let a stylesheet pull in any file the build could read.
+- Style the search reset button through the `--bs-btn-close-filter` custom property Bootstrap `5.3.4` introduced, instead of extending `.btn-close-white`, deprecated since `5.3.0`. Set the search progress bar's height through `--bs-progress-height` for the same reason: `5.3.4` made the striped animation read it.
+- Remove `plumage/postcss.config.js`. `postcss-cli` skips config file lookup altogether when handed `--use`, which `webassets.py` always does, so the file has never been read. `POSTCSS_EXTRA_ARGS` is now the only place the autoprefixer plugin is declared.
 
 ## [`4.0.0` (2024-05-18)](https://github.com/kdeldycke/plumage/compare/v3.1.0...v4.0.0)
 
