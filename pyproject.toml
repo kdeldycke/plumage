@@ -4,7 +4,7 @@ build-backend = "uv_build"
 # theme ships a large asset tree and an npm toolchain inside the package directory.
 # Those are exactly the packaging edge cases the uncapped-version warning guards
 # against, so the upper bound stays.
-requires = ["uv-build>=0.8,<0.13"]
+requires = ["uv-build>=0.8"]
 
 [project]
 # Docs: https://packaging.python.org/en/latest/guides/writing-pyproject-toml/
