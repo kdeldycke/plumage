@@ -25,7 +25,8 @@ from .favicon import add_favicon_assets
 from .webassets import setup_webassets
 
 ALL_CODE_STYLES: set[str] = {
-    f.stem for f in PLUMAGE_ROOT.joinpath("static/css/pygments/").resolve().glob("*.css")
+    f.stem
+    for f in PLUMAGE_ROOT.joinpath("static/css/pygments/").resolve().glob("*.css")
 }
 """Styles a site can select through ``CODE_STYLE``, one per generated stylesheet.
 
