@@ -40,7 +40,6 @@ classifiers = [
   "Operating System :: OS Independent",
   "Programming Language :: JavaScript",
   "Programming Language :: Other",
-  "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3 :: Only",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
@@ -51,7 +50,7 @@ classifiers = [
   "Topic :: Internet :: WWW/HTTP :: Indexing/Search",
   "Topic :: Text Processing :: Markup :: HTML",
   "Topic :: Text Processing :: Markup :: Markdown",
-  "Typing :: Typed"
+  "Typing :: Typed",
 ]
 dependencies = [
   # Minifies the compiled stylesheet, as the last filter of the {% assets %} pipeline in
@@ -194,7 +193,6 @@ profile = "jinja"
 # hits are user-supplied URLs whose dimensions it cannot know, and search engines dropped
 # the keywords meta over a decade ago. Ignoring them no longer does anything.
 ignore = "T028"
-
 # H025 reports an orphan tag. Scoped to the one file it misreads rather than ignored
 # outright, because it also catches real nesting errors: 1.40.4 taught it to report a list
 # inside a <p>, which found one in projects.html that the blanket ignore had been hiding.
@@ -202,8 +200,7 @@ ignore = "T028"
 # What remains here is a genuine false positive: the </dl> in archives.html is emitted
 # conditionally inside the loop that opens the matching <dl> whenever the month changes.
 # The other one this used to cover, an unclosed <head> in base.html, was fixed upstream.
-[tool.djlint.per-file-ignores]
-"archives.html" = "H025"
+per-file-ignores."archives.html" = "H025"
 
 [tool.typos]
 default.extend-identifiers = { Github = "GitHub", IOS = "iOS", Javascript = "JavaScript", MacOS = "macOS", PyPi = "PyPI", Typescript = "TypeScript" }
