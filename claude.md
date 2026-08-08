@@ -130,6 +130,8 @@ The warning is advisory: `lint-repo` exits 0. Least privilege is instead declare
 - `ges`: Pygments' CSS class for the `Generic.EmphStrong` token, present in every generated stylesheet under `plumage/static/css/pygments/`.
 - `certifi`: the PyPI package, named in the generated `docs/assets/dependencies.mmd` graph.
 
+`files.extend-exclude` carries `*.min.js` for the same reason, and survives a re-sync the same way: the merge grafts local-only keys onto the bundled template. Minified bundles are mangled identifiers end to end and read as one long typo, `bootstrap.bundle.min.js` alone reporting 23, every one a two-letter identifier the minifier produced. Spelling those fragments out here would trip the checker again, since it reads this file too; the `<!-- typos:off -->` markers are the way out when one has to be quoted. None of it is fixable anyway, since `sync-vendored-assets` overwrites those files from `node_modules` on every refresh. The glob splits the tree exactly where it should: every script vendored out of an npm package is minified, and the theme's own `main.js` deliberately is not, so it stays covered. Same shape as stylelint's `ignoreFiles` skipping the generated Pygments stylesheets.
+
 `[tool.uv]`'s `exclude-newer` must stay in `pyproject.toml`, not only in a personal `~/.config/uv/uv.toml`: CI runners have no user-level uv config, so a locally-declared cooldown silently does not apply to `sync-uv-lock`.
 
 ## Naming automated operations

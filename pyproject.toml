@@ -105,9 +105,14 @@ test = [
   # Both are required by the addopts under [tool.pytest.ini_options].
   "pytest-cov>=7",
   "pytest-xdist[psutil]>=3.8",
-  # test_workflows.py parses .github/workflows/. Pelican pulls PyYAML in anyway, but this
-  # suite is the only thing importing it, so it says so instead of relying on that.
+  # test_vendored_assets.py parses .github/workflows/. Pelican pulls PyYAML in anyway, but
+  # this suite is the only thing importing it, so it says so instead of relying on that.
   "pyyaml>=6",
+  # Stubs for the above. PyYAML ships none of its own, so mypy fails on the import rather
+  # than falling back to Any, and the lint-types job syncs with --all-groups so this is
+  # where it picks them up. Preferred over an ignore_missing_imports override, which would
+  # silence the error and give up the checking with it.
+  "types-pyyaml>=6",
 ]
 
 [tool.uv]
@@ -190,6 +195,9 @@ default.extend-identifiers = { Github = "GitHub", IOS = "iOS", Javascript = "Jav
 default.extend-words = { astroid = "astroid", oject = "oject", sur = "sur", certifi = "certifi", ges = "ges" }
 # Skip content between <!-- typos:off --> and <!-- typos:on --> markers.
 default.extend-ignore-re = [ "(?s)<!-- typos:off -->.*?<!-- typos:on -->" ]
+# Skip the vendored minified bundles, whose mangled identifiers read as one long typo.
+# Reasoning in claude.md, since a re-sync drops comments written here.
+files.extend-exclude = [ "*.min.js" ]
 
 [tool.mypy]
 warn_redundant_casts = true
