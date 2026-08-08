@@ -1,5 +1,10 @@
 # Changelog
 
+## [`5.0.1.dev0` (unreleased)](https://github.com/kdeldycke/plumage/compare/v5.0.0...main)
+
+> [!WARNING]
+> This version is **not released yet** and is under active development.
+
 ## [`5.0.0` (2026-08-08)](https://github.com/kdeldycke/plumage/compare/v4.0.0...v5.0.0)
 
 - **Breaking:** Drop support for Python 3.9 and 3.10. The floor is now Python 3.11.
