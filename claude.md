@@ -140,11 +140,23 @@ Consequences worth remembering:
 - `node_modules` lands *inside* the package directory at build time. Both `source-exclude` and `wheel-exclude` in `[tool.uv.build-backend]` must keep it (and `package-lock.json`) out of the distribution. `uv_build` does not read `.gitignore`, so those exclusions are repeated there on purpose.
 - The package uses a flat layout, so `[tool.uv.build-backend] module-root = ""`. The package sits at the repo root, not under `src/`.
 
-#### The icon font is vendored, not installed
+#### Assets served to browsers are vendored, not installed
 
-`static/fonts/bootstrap-icons.woff2` is a copy of the file inside the `bootstrap-icons` npm package, committed so the wheel is self-contained: `node_modules` is excluded from the distribution, so a site could not otherwise reach it. `sync-bootstrap-icons` in `autofix.yaml` refreshes the copy from whatever release the lock file pins, the same shape as `sync-pygments-styles` regenerating the stylesheets.
+Three files under `static/` are copies of files inside npm packages, committed so the wheel is self-contained: `node_modules` is excluded from the distribution, so a site could not otherwise reach them.
 
-Two halves have to move together, and different things move them. Dependabot bumps the version in `package.json`; the sync job replaces the binary. `tests/test_fonts.py` guards the seam, and compares the two only when `node_modules` happens to be installed, since the suite otherwise runs without the npm toolchain.
+| Vendored copy                        | npm package       |
+| :----------------------------------- | :---------------- |
+| `static/fonts/bootstrap-icons.woff2` | `bootstrap-icons` |
+| `static/js/bootstrap.bundle.min.js`  | `bootstrap`       |
+| `static/js/masonry.pkgd.min.js`      | `masonry-layout`  |
+
+`sync-vendored-assets` in `autofix.yaml` refreshes all three from whatever releases the lock file pins, the same shape as `sync-pygments-styles` regenerating the stylesheets.
+
+The reason they are here at all, rather than on a CDN: nothing reads a version out of a URL in a template. Dependabot only sees manifests, and `sync-workflow-pins` only sees workflows, so a `<script src>` pinned to a release stays on it forever. Bootstrap's bundle had drifted five patch releases behind the stylesheets built from the same package before this moved.
+
+Two halves therefore have to move together, and different things move them. Dependabot bumps the version in `package.json`; the sync job replaces the file. `tests/test_vendored_assets.py` guards the seam, and compares bytes only when `node_modules` happens to be installed, since the suite otherwise runs without the npm toolchain. It also fails on any CDN host reappearing in a template.
+
+Bootstrap's *bundle* is the one to copy: it carries Popper, which the dropdowns need. The theme's own `static/js/main.js` is not minified, which is what keeps it out of the job's `add-paths`.
 
 `main.scss` overrides `$bootstrap-icons-font-dir` to the absolute `/theme/fonts`, because the upstream default is relative to the stylesheet and this one gets bundled into `css/main.min.css`. Only `woff2` is declared: the `woff` beside it is another 180 KB for browsers that no longer need it. The `@import` spells out the `.scss` extension, against a stylelint rule disabled inline right above it, because the package ships a `bootstrap-icons.css` next to it and Sass refuses to pick.
 

@@ -5,6 +5,7 @@
     "autoprefixer": "^10.5.4",
     "bootstrap": "^5.3.8",
     "bootstrap-icons": "^1.13.1",
+    "masonry-layout": "^4.2.2",
     "postcss": "^8.5.25",
     "postcss-cli": "^11.0.1"
   }

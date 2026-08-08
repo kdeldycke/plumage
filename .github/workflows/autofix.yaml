@@ -21,10 +21,16 @@ jobs:
   # downstream. `repomatic init` keeps every job declared after the managed caller above, so they
   # survive a workflow re-sync.
 
-  sync-bootstrap-icons:
-    name: 🔣 Sync Bootstrap Icons
-    # Not "ubuntu-slim": the font has to come from the exact bootstrap-icons release the theme
-    # pins, so this job installs the npm tree from the lock file.
+  sync-vendored-assets:
+    name: 📦 Sync vendored assets
+    # Browsers are served these three files directly, so they cannot come from node_modules,
+    # which is excluded from the distribution. They are committed instead, and refreshed here
+    # from whatever releases the lock file pins, the way sync-pygments-styles regenerates the
+    # stylesheets. That is what puts their versions in package.json, where Dependabot bumps
+    # them: nothing reads a version out of a URL in a template.
+    #
+    # Not "ubuntu-slim": the copies have to come from the exact pinned releases, so this job
+    # installs the npm tree from the lock file.
     runs-on: ubuntu-24.04
     permissions:
       contents: write
@@ -33,18 +39,22 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
       - name: Install Node dependencies
-        # From the lock file, so the font matches the pinned release rather than whatever is
+        # From the lock file, so the copies match the pinned releases rather than whatever is
         # newest. Not an adhoc install: every package here is the theme's own declared dependency.
         run: npm --prefix ./plumage ci
-      - name: Copy the icon font
-        # woff2 only, matching the single format main.scss declares in $bootstrap-icons-font-src.
-        run: >
-          cp ./plumage/node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2
-          ./plumage/static/fonts/bootstrap-icons.woff2
+      - name: Copy vendored assets
+        # The icon font is woff2 only, matching the single format main.scss declares in
+        # $bootstrap-icons-font-src. Bootstrap's bundle is the one carrying Popper, which the
+        # dropdowns need.
+        run: |
+          cd ./plumage
+          cp node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2 static/fonts/
+          cp node_modules/bootstrap/dist/js/bootstrap.bundle.min.js static/js/
+          cp node_modules/masonry-layout/dist/masonry.pkgd.min.js static/js/
       - id: pr-metadata
         run: >
           uvx --no-progress 'repomatic==7.4.1' pr-body --output-format github-actions
-          --template-file .github/pr-templates/sync-bootstrap-icons.md
+          --template-file .github/pr-templates/sync-vendored-assets.md
           --output "$GITHUB_OUTPUT"
       - uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         with:
@@ -54,11 +64,13 @@ jobs:
           title: ${{ steps.pr-metadata.outputs.title }}
           body: ${{ steps.pr-metadata.outputs.body }}
           labels: "🔗 dependencies"
-          branch: sync-bootstrap-icons
+          branch: sync-vendored-assets
           delete-branch: true
-          # Only the font, so the npm install above cannot leak into the pull request.
+          # Only the vendored copies, so the npm install above cannot leak into the pull
+          # request. The theme's own static/js/main.js is not minified, so it is never matched.
           add-paths: |
             plumage/static/fonts/*.woff2
+            plumage/static/js/*.min.js
 
   sync-pygments-styles:
     name: 🎨 Sync Pygments styles

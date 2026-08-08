@@ -338,10 +338,7 @@ the block emits lands inside an attribute value, newlines and indentation includ
             {% endblock footer %}
         </footer>
         <!-- Scripts moved to the bottom of the page, as per Bootstrap and Stork canonical example -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"
-                integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg=="
-                crossorigin="anonymous"
-                referrerpolicy="no-referrer"></script>
+        <script src="{{ SITEURL }}/theme/js/bootstrap.bundle.min.js"></script>
         <script src="{{ SITEURL }}/theme/js/main.js"></script>
         {% block extra_js %}
         {% endblock extra_js %}
