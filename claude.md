@@ -13,7 +13,7 @@ Each workflow file has two parts:
 - The first job is the managed thin caller, delegating to a reusable upstream workflow via a SHA-pinned `uses:`. Regenerate it, never hand-edit it.
 - Every job declared *after* that caller is downstream-owned. `repomatic init` preserves them across a re-sync, so this is where theme-specific jobs live.
 
-`autofix.yaml` and `lint.yaml` are the only two files carrying downstream jobs. They cover Pygments, SCSS/CSS, and Jinja, none of which repomatic handles.
+`autofix.yaml` and `lint.yaml` are the only two files pairing a managed caller with downstream jobs. They cover Pygments, SCSS/CSS, and Jinja, none of which repomatic handles. `tests.yaml` is downstream-owned end to end, carrying no managed caller at all: see below.
 
 ### Bumping the repomatic pin
 
@@ -24,7 +24,7 @@ $ uvx --no-progress 'repomatic==X.Y.Z' init \
     workflows/autofix.yaml workflows/autolock.yaml workflows/cancel-runs.yaml \
     workflows/changelog.yaml workflows/debug.yaml workflows/docs.yaml \
     workflows/labels.yaml workflows/lint.yaml workflows/release.yaml \
-    publish-pypi-action
+    workflows/tests.yaml publish-pypi-action
 ```
 
 Naming the workflow files individually is deliberate: a bare `repomatic init` also materializes labels config and a changelog, and an unqualified `workflows` selector bypasses scope gating.
@@ -152,13 +152,13 @@ A file-modifying job uses one `verb-noun` across all of its dimensions: job ID, 
 
 - Single-line commands use plain inline `run:`. Multi-line commands use the folded scalar (`>`), which joins lines with spaces and needs no backslash continuations. Reserve the literal scalar (`|`) for preserved newlines: multi-statement scripts and heredocs.
 - Lines may run to 120 characters, not Python's 88. `yamllint` is configured with `line-length: max: 120`.
-- Jobs default to `ubuntu-slim`. Move a job to a fuller image only when a failure proves a tool is missing, and record the reason in a comment above `runs-on:`. All five downstream jobs sit on `ubuntu-24.04` for that reason: three build the project, two install linters from npm.
+- Jobs default to `ubuntu-slim`. Move a job to a fuller image only when a failure proves a tool is missing, and record the reason in a comment above `runs-on:`. All seven downstream jobs sit on `ubuntu-24.04` for that reason: three reach for npm (`sync-vendored-assets`, `format-css`, `lint-css`), two build the project (`sync-pygments-styles`, `tests`), and two have `uvx` build djlint's sdist-only dependencies (`format-jinja`, `lint-jinja`).
 
 ## Theme architecture
 
 ### Asset pipeline
 
-`plumage/package.json` declares the npm side of the pipeline: Bootstrap, Bootstrap Icons, PostCSS, and autoprefixer. `plumage/webassets.py` drives it through `pynpm`, and `pelican-webassets` wires the result into Pelican's build.
+`plumage/package.json` declares the npm side of the pipeline: Bootstrap, Bootstrap Icons, Masonry, PostCSS, `postcss-cli` and autoprefixer. `plumage/webassets.py` drives it through `pynpm`, and `pelican-webassets` wires the result into Pelican's build.
 
 Consequences worth remembering:
 
@@ -227,7 +227,7 @@ The floor is Python 3.11 (`requires-python = ">= 3.11"`). Unavailable syntax:
 
 - multi-line f-string expressions (3.12+): split into concatenated strings
 
-The floor is set by Pelican, not by the theme: 4.12.0 is the first release requiring 3.11, so it cannot be reached while 3.10 is still supported. Exception groups, `except*` and the `Self` type hint came along with that move and no longer need a `typing_extensions` fallback.
+The floor was originally set by Pelican rather than the theme: 4.12.0 is the first release requiring 3.11, so 3.11 could not be reached while 3.10 was still supported. It is now the theme's own choice, since the published `pelican` floor had to drop back to 4.11 (see the comment above that dependency): 4.11 still installs on 3.9, so nothing outside this repository forces 3.11 any more. Keeping it there is deliberate, and Exception groups, `except*` and the `Self` type hint came along with the original move and no longer need a `typing_extensions` fallback.
 
 `mypy` passing locally on a newer interpreter does not mean it passes in CI. Check against the minimum when touching type-sensitive code.
 
@@ -249,6 +249,14 @@ The same selector has to keep its hands off plain docutils literal blocks, which
 ### The myst-parser override
 
 `pelican-myst-reader` 1.4.0 caps `myst-parser` below 5.0.0, which holds `docutils` below the 0.22 Pelican 4.12.0 requires, so the two cannot resolve together. `[tool.uv] override-dependencies` forces `myst-parser` 5 to break the deadlock. The evidence that the cap is stale rather than real, and the reason the override carries no upper bound, are both recorded in the comment above the entry.
+
+The override only reaches this repository, though, and that is the part to keep in mind. `override-dependencies` is workspace-scoped: uv applies it while resolving *this* project, and no consumer installing the theme ever sees it. So a `pelican>=4.12` floor published to PyPI is unsatisfiable for everyone, by `pip` and `uv` alike, even though it resolves cleanly here. That is why the declared floor sits at 4.11 while `uv.lock` still pins 4.12.0, and why the configuration users actually resolve (4.11 with `myst-parser` 4 and `docutils` 0.21) is not the one CI exercises. The whole suite was run against that set by hand when the floor moved, and all 197 tests passed, so the relaxed floor is sound rather than merely installable. Nothing holds it there, though: the honest fix is a matrix cell that resolves without the override.
+
+Verify a floor change against a *fresh* resolution from outside the repository, never from a working tree: `uv --directory <elsewhere> pip install <built wheel>` reproduces what a user gets, while the same command run from the repo root silently picks the override up and passes. That trap is easy to fall into and reads as a clean bill of health.
+
+Both halves come back together once the reader relaxes its pin, which [ashwinvis/myst-reader#49](https://github.com/ashwinvis/myst-reader/pull/49) proposes by uncapping every one of its dependencies, so the dance does not have to be repeated a fourth time. Once that merges and ships to PyPI, lifting the floor back to 4.12 is what closes this out.
+
+That pull request is green, but its checks do not cover the case this theme depends on: the reader's `nox` session installs through `uv sync`, so it resolves the `myst-parser` 4 its own lock file pins and never exercises 5. Running its suite against `myst-parser` 5 by hand gives 21 passed, 4 xfailed and 1 failed, and the failure is cosmetic: the MDIT renderer serializes boolean attributes as `disabled=""` where the committed fixture expects `disabled="disabled"`. Both are equivalent HTML, and MDIT is a third renderer this theme never selects, so nothing here is at risk either way.
 
 ## Testing
 

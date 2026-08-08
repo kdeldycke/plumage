@@ -46,24 +46,37 @@ RENDERER_SOURCES = {
 }
 
 
+def read_and_transform(tmp_path, reader_class, name: str, source: str) -> pq:
+    """Read a content file the way Pelican does, then apply the post-generation rewrite.
+
+    Which reader gets there is the variable: the two of them produce the code block
+    markup the rewrite has to tell apart, and everything downstream of the read is the
+    same page Pelican would have written out.
+    """
+    page = tmp_path / name
+    page.write_text(source, encoding="utf-8")
+
+    settings = DEFAULT_CONFIG.copy()
+    settings["PATH"] = str(tmp_path)
+    content, _metadata = reader_class(settings).read(str(page))
+
+    html = tmp_path / "index.html"
+    html.write_text(
+        f"<html><body><main id='content'>{content}</main></body></html>",
+        encoding="utf-8",
+    )
+    transform(str(html), context={})
+    return pq(filename=str(html), encoding="utf-8")
+
+
 @pytest.fixture
 def rendered(tmp_path):
     """Read MyST the way Pelican does, then apply the post-generation rewrite."""
 
     def _rendered(source: str) -> pq:
-        page = tmp_path / "index.md"
-        page.write_text(FRONTMATTER + source)
-
-        settings = DEFAULT_CONFIG.copy()
-        settings["PATH"] = str(tmp_path)
-        content, _metadata = MySTReader(settings).read(str(page))
-
-        html = tmp_path / "index.html"
-        html.write_text(
-            f"<html><body><main id='content'>{content}</main></body></html>",
+        return read_and_transform(
+            tmp_path, MySTReader, "index.md", FRONTMATTER + source
         )
-        transform(str(html), context={})
-        return pq(filename=str(html))
 
     return _rendered
 
@@ -140,17 +153,9 @@ def test_unlexed_code_blocks_still_get_a_container(rendered):
 )
 def test_rst_literal_blocks_are_told_apart(tmp_path, source, is_code_box):
     """The theme serves `.rst` content too, where the two shapes are distinguishable."""
-    page = tmp_path / "index.rst"
-    page.write_text(f":title: Probe\n\n{source}")
-
-    settings = DEFAULT_CONFIG.copy()
-    settings["PATH"] = str(tmp_path)
-    content, _metadata = RstReader(settings).read(str(page))
-
-    html = tmp_path / "index.html"
-    html.write_text(f"<html><body><main id='content'>{content}</main></body></html>")
-    transform(str(html), context={})
-    doc = pq(filename=str(html))
+    doc = read_and_transform(
+        tmp_path, RstReader, "index.rst", f":title: Probe\n\n{source}"
+    )
 
     assert bool(doc(".highlight")) is is_code_box
     assert not doc(".highlight .highlight")

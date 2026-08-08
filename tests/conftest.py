@@ -20,12 +20,13 @@ from __future__ import annotations
 
 from collections.abc import Callable
 
+import pelican
 import pytest
 from jinja2 import ChoiceLoader, DictLoader, Environment, FileSystemLoader, nodes
 from jinja2.ext import Extension
 from pyquery import PyQuery as pq
 
-from plumage import PLUMAGE_ROOT
+from plumage import PLUMAGE_ROOT, __version__
 
 TEMPLATE_DIR = PLUMAGE_ROOT / "templates"
 
@@ -67,13 +68,16 @@ BASE_CONTEXT: dict = {
     "hidden_pages": [],
     "MENUITEMS": [],
     "pages": [],
-    # Plain values the base template expects from Pelican and from check_config().
+    # Plain values the base template expects from Pelican and from check_config(). The two
+    # versions are read off the modules check_config() reads them from, rather than pinned:
+    # nothing bumps a literal here, so a pinned one would go stale on the next release and
+    # leave the footer asserting a version no longer shipped.
     "AUTHOR": "Test Author",
     "CODE_STYLE": "monokai",
     "DEFAULT_LANG": "en",
     "output_file": "index.html",
-    "PELICAN_VERSION": "4.12.0",
-    "PLUMAGE_VERSION": "5.0.0.dev0",
+    "PELICAN_VERSION": pelican.__version__,
+    "PLUMAGE_VERSION": __version__,
     "SITENAME": "Test Site",
     "SITEURL": "",
 }

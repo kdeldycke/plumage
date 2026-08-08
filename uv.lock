@@ -699,7 +699,7 @@ test = [
 requires-dist = [
     { name = "cssmin", specifier = ">=0.2" },
     { name = "libsass", specifier = ">=0.22" },
-    { name = "pelican", specifier = ">=4.12" },
+    { name = "pelican", specifier = ">=4.11" },
     { name = "pelican-myst-reader", specifier = ">=1.4" },
     { name = "pelican-webassets", specifier = ">=2" },
     { name = "pygments", specifier = ">=2.18" },

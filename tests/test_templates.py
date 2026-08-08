@@ -21,8 +21,10 @@ from __future__ import annotations
 from datetime import UTC, datetime
 from types import SimpleNamespace
 
+import pelican
 import pytest
 
+import plumage
 from plumage import PLUMAGE_ROOT
 
 ALL_TEMPLATES = sorted(p.name for p in (PLUMAGE_ROOT / "templates").glob("*.html"))
@@ -152,8 +154,8 @@ def test_no_font_awesome_icons(jinja_env, template):
 
 def test_footer_reports_versions(render):
     details = render()("footer details")
-    assert "Pelican v4.12.0" in details.text()
-    assert "Plumage v5.0.0.dev0" in details.text()
+    assert f"Pelican v{pelican.__version__}" in details.text()
+    assert f"Plumage v{plumage.__version__}" in details.text()
 
 
 @pytest.mark.parametrize("deprecated", ["text-muted", "text-dark"])
@@ -199,7 +201,8 @@ def test_html_lang_defaults_to_the_site_language(render):
 
 @pytest.mark.parametrize(
     ("template", "name"),
-    [("article.html", "article"), ("page.html", "page"), ("projects.html", "page")],
+    # projects.html renders a page too, through a `Template: projects` override.
+    [*ENTRY_TEMPLATES, ("projects.html", "page")],
 )
 def test_html_lang_follows_the_content(render, template, name):
     """A translation declares its own language instead of the site-wide default."""
@@ -363,6 +366,96 @@ def test_taxonomy_feed_skipped_for_a_term_bound_to_none(render, name, setting):
     """
     doc = render(**{setting: "feeds/{slug}.xml", name: None})
     assert not doc("link[rel=alternate]")
+
+
+def term(name: str, kind: str = "tag") -> SimpleNamespace:
+    """A tag or a category as Pelican hands it over, cut to what render_tag reads."""
+    return SimpleNamespace(name=name, url=f"{kind}/{name}.html")
+
+
+TAG = term("python")
+
+TAG_BADGE_CALLERS: tuple[tuple[str, dict], ...] = (
+    # Template rendering a badge through the macro, and what it needs on top of the
+    # site-wide `tags` list all three of them walk. Annotated because one of the three
+    # needs no extra context, and mypy cannot infer an element type from the empty dict.
+    ("article.html", {"article": TRANSLATED_CONTENT | {"tags": [TAG]}}),
+    ("tags.html", {}),
+    ("projects.html", {"PROJECTS": [{"name": "Test Project", "tools": ["python"]}]}),
+)
+
+
+@pytest.mark.parametrize(("template", "context"), TAG_BADGE_CALLERS)
+def test_tag_badges_link_through_siteurl(render, template, context):
+    """A site served under a sub-path needs its badge links prefixed with SITEURL.
+
+    base.html imports macros.html, and an import without ``with context`` hands the
+    macros no context at all: SITEURL was undefined inside render_tag and every badge
+    came out root-relative. A site at a domain root cannot tell the two apart, which is
+    what kept this quiet, and the base context renders with an empty SITEURL for the
+    same reason. Hence the sub-path here.
+    """
+    doc = render(
+        template,
+        SITEURL="https://example.com/blog",
+        tags=[(TAG, ["an-article"])],
+        **context,
+    )
+    assert doc("a.badge.tag").attr("href") == "https://example.com/blog/tag/python.html"
+
+
+def test_tag_tooltips_count_the_articles_of_their_own_tag(render):
+    """Each badge reports its own tag's total, not the site's.
+
+    article.html collects the counts in one loop and renders them in another, and the
+    call used to recompute one from ``articles``: a name the first loop bound and the
+    second does not, so out there it resolves to the site-wide list from the Pelican
+    context and every tooltip repeated the same number.
+    """
+    counts = {"python": 3, "rust": 1}
+    doc = render(
+        "article.html",
+        article=TRANSLATED_CONTENT | {"tags": [term(name) for name in counts]},
+        tags=[(term(name), ["an-article"] * count) for name, count in counts.items()],
+        # Longer than either tag's, so a count read off the wrong list stands out.
+        articles=["an-article"] * 17,
+    )
+    # Badges are ordered by frequency, so the three-article tag comes first.
+    assert [badge.attr("title") for badge in doc("a.badge.tag").items()] == [
+        "3 articles with this tag",
+        "1 article with this tag",
+    ]
+
+
+def test_category_tooltip_counts_the_articles_of_its_own_category(render):
+    """The sibling call a few lines up, which reads a live loop variable and is right.
+
+    Pinned so the fix to the tag call above is not mirrored onto a line that never
+    needed it.
+    """
+    category = term("notes", kind="category")
+    doc = render(
+        "article.html",
+        article=TRANSLATED_CONTENT | {"category": category},
+        categories=[(category, ["an-article"] * 4)],
+        articles=["an-article"] * 17,
+    )
+    assert doc("a.badge.category").attr("title") == "4 articles with this category"
+
+
+def test_link_icon_ignores_a_colliding_context_name(render):
+    """Importing the macros with context must not let a global leak into one.
+
+    render_link_icon only computes `domain` for an http link. Left unbound on any other
+    branch, the name would resolve against the caller's context instead, and a site
+    defining one would get a favicon <img> pointed at it on links that have no domain
+    at all.
+    """
+    doc = render(LINKS=[("Home", "/about.html")], domain="leaked.example.com")
+    link = doc("footer a[href='/about.html']")
+    assert link
+    assert not link.find("img")
+    assert classes(link.find("i")) == "bi bi-box-arrow-up-right"
 
 
 @pytest.mark.parametrize(

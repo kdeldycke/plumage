@@ -20,7 +20,12 @@ from pyquery import PyQuery as pq
 def transform(path, context):
     # XXX This direct construct is stripping the "<!DOCTYPE>" heading. See:
     # https://github.com/gawel/pyquery/issues/199
-    doc = pq(filename=path)
+    #
+    # Both ends of the round-trip name their encoding. Pelican writes UTF-8, but neither
+    # pyquery's open() nor the one below passes an encoding of its own, so both would
+    # otherwise take the platform default: cp1252 on Windows, which raises on the first
+    # accented character anywhere in a site.
+    doc = pq(filename=path, encoding="utf-8")
 
     # Add bootstrap table style to table elements.
     doc("#content table").add_class("table table-hover")
@@ -59,11 +64,14 @@ def transform(path, context):
     # Style code boxes.
     doc(".highlight").add_class("rounded shadow-sm mb-3")
 
-    # Style admonitions produced by Python Markdown into alerts.
+    # Style admonitions into alerts. Both of the renderers MyST picks between emit the
+    # same `.admonition` hook, differing only in the element carrying it: <aside> from
+    # the docutils one, <div> from Sphinx. reStructuredText's directives land there too.
     doc(".admonition").add_class("alert shadow").attr("role", "alert")
     doc(".admonition-title").add_class("alert-heading h4")
-    # Map rST's admonition types to Bootstrap's:
-    # https://python-markdown.github.io/extensions/admonition/#syntax
+    # Map the admonition types those readers emit onto Bootstrap's alert variants. The
+    # docutils set is the wider one, and the MyST directive names line up with it:
+    # https://docutils.sourceforge.io/docs/ref/rst/directives.html#admonitions
     admo_map = {
         "primary": {"primary"},
         "secondary": {"secondary"},
@@ -79,5 +87,5 @@ def transform(path, context):
             doc(f".admonition.{admo_class}").add_class(f"alert-{bootstrap_class}")
 
     # Save result.
-    with open(path, "w") as source:
+    with open(path, "w", encoding="utf-8") as source:
         source.write(doc.outerHtml())

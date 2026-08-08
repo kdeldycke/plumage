@@ -6,7 +6,7 @@
 // package.json where Dependabot can reach it. Templates name icons dynamically, and a site
 // can name any of them through its own settings, so the whole font has to ship.
 //
-// Point the @font-face at the copy under static/fonts/, which sync-bootstrap-icons keeps
+// Point the @font-face at the copy under static/fonts/, which sync-vendored-assets keeps
 // in step with the pinned release. The upstream default is "./fonts", relative to a
 // stylesheet this one gets bundled into, and only woff2 is listed: every browser able to
 // run the theme reads it, and the woff alongside it is another 180 KB for nothing.

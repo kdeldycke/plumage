@@ -38,7 +38,7 @@ PLUMAGE_ROOT: Path = Path(__file__).resolve().parent
 def get_path() -> str:
     """Returns installation path of the theme.
 
-    Used in ``pelicanconf.py`` to dynamiccaly fetch theme location on the system.
+    Used in ``pelicanconf.py`` to dynamically fetch theme location on the system.
     """
     return str(PLUMAGE_ROOT)
 

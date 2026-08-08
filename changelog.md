@@ -6,11 +6,11 @@
 > This version is **not released yet** and is under active development.
 
 - **Breaking:** Drop support of Python 3.9.
-- **Breaking:** Drop support of Python 3.10, which Pelican 4.12.0 requires.
+- **Breaking:** Drop support of Python 3.10.
 - **Breaking:** Remove jQuery, `magnific-popup` and `mglass`, and the image auto-zoom they powered.
 - **Breaking:** Only support native Pygments syntax highlighting. The legacy `.codehilite` class is no longer styled.
 - **Breaking:** Remove inlining and minification of javascript assets, and the unmaintained `closure` dependency they relied on.
-- Require Pelican 4.12.0. Force `myst-parser` 5 through a `uv` override, as `pelican-myst-reader` still caps it below 5.0.0 and so holds `docutils` below the 0.22 that Pelican 4.12.0 needs.
+- Require Pelican 4.11, and develop against 4.12. A 4.12 floor is uninstallable: `pelican-myst-reader` caps `myst-parser` below 5.0.0, holding `docutils` under the 0.22 that 4.12 needs, and the `uv` override forcing `myst-parser` 5 never reaches a consumer.
 - Replace every `~=` requirement with `>=`, so no dependency carries an upper bound any more.
 - Fix syntax highlighting silently not applying to code blocks. The MyST reader renders a document through Sphinx or through docutils depending on its content, and only the former wraps code in the `.highlight` container every Pygments stylesheet selects through. Blocks coming out of the docutils renderer are now wrapped to match, so highlighting no longer depends on whether a page happens to carry an intra-site link.
 - Cover the path from Markdown source through the MyST reader to the theme's HTML rewrites with tests, across both of the reader's renderers.
@@ -44,7 +44,7 @@
 - Add a `page_content` block to `page.html`, matching the one Pelican 4.12.0 gave its own, so an override can replace a page's body without restating the markup around it.
 - Fix every page of a multilingual site being labelled with `DEFAULT_LANG`. The `lang` attribute now sits in an `html_lang` block, which `article.html`, `page.html` and `projects.html` override with the language of the content they render. Site-level listings keep the site default, having no single language of their own.
 - Fix the navigation bar never highlighting the current category. The categories loop tested the flag computed by the pages loop, which Jinja scopes to that loop and leaves undefined here.
-- Drop the stale Python 3.10 classifier, left over from the 3.11 floor Pelican 4.12.0 imposes.
+- Drop the stale Python 3.10 classifier, left over from the move to a 3.11 floor.
 - Rewrite the installation instructions around `uv`. They installed the current directory rather than the theme, so following them from a site's checkout got you the site.
 - Advertise translations to crawlers. `translations.html` gained an `entry_hreflang` macro, which `article.html` and `page.html` emit in their `<head>`, and the visible translation links now carry `hreflang` too.
 - Add a meta description, taken from the entry's `Description:` metadata or its summary, with `SITESUBTITLE` standing in site-wide. Drops the `H030` djlint exemption, which the theme no longer needs.

@@ -62,9 +62,7 @@
                                 {% if not loop.first %}</dl>{% endif %}
                                 <dl class="row">
                             {% endif %}
-                            <dt class="col-sm-2">
-                                <time class="published" datetime="{{ article.date.isoformat() }}" title="{{ article.date.isoformat() }}">{{ article.date.strftime("%b. %d") }}</time>
-                            </dt>
+                            <dt class="col-sm-2">{{ m.render_published_date(article.date, article.date.strftime("%b. %d")) }}</dt>
                             <dd class="col-sm-10">
                                 <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
                             </dd>

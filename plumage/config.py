@@ -50,7 +50,7 @@ def check_config(sender) -> None:
     conf["PELICAN_VERSION"] = pelican.__version__
     conf["PLUMAGE_VERSION"] = __version__
 
-    # Check code coloe scheme ID.
+    # Check code color scheme ID.
     conf = check_codestyle(conf)
 
     # Setup webassets plugin.
@@ -71,8 +71,6 @@ def check_codestyle(conf: dict[str, Any]) -> dict[str, Any]:
     code_style = conf["CODE_STYLE"]
     if code_style not in ALL_CODE_STYLES:
         msg = f"{code_style} not recognized among {sorted(ALL_CODE_STYLES)}."
-        raise ValueError(
-            msg,
-        )
+        raise ValueError(msg)
 
     return conf

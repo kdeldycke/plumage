@@ -65,9 +65,20 @@ dependencies = [
   # is just the oldest release checked to install and compile across our Python range, so
   # treat it as a tested floor rather than a real minimum.
   "libsass>=0.22",
-  # Pelican 4.12.0 is the first release to require Python 3.11, aligning with the
-  # requires-python above. It also lifts its own Pygments ceiling to < 2.20.0.
-  "pelican>=4.12",
+  # 4.11, not the 4.12 this theme is developed and tested against. pelican-myst-reader caps
+  # myst-parser below 5.0.0, which holds docutils below the 0.22 Pelican 4.12.0 requires, so
+  # a floor of 4.12 makes the published package unsatisfiable: pip and uv both refuse it.
+  # The override-dependencies entry below hides that inside this repo and is invisible to
+  # anyone installing the theme, so the floor has to stay under 4.12 until the reader
+  # relaxes its own pin: https://github.com/ashwinvis/myst-reader/pull/49 uncaps it, and a
+  # release carrying that is what lets this go back to 4.12.
+  # Two consequences worth remembering. uv.lock still resolves 4.12.0, so CI only ever
+  # exercises 4.12, while a fresh install resolves 4.11 with myst-parser 4 and docutils 0.21.
+  # That combination was run against the full suite by hand when the floor moved, and all of
+  # it passed, but nothing keeps it that way: a matrix cell resolving without the override is
+  # what would. And requires-python stays at 3.11 as the theme's own choice, no longer as a
+  # consequence of Pelican's floor.
+  "pelican>=4.11",
   # Parses the site's Markdown, and gives it the MyST directive syntax on top: the
   # ```{note} fenced blocks in particular. It claims every extension Pelican's own
   # MarkdownReader answers to (md, markdown, mkd, mdown) plus mkdn, mdwn, Rmd and myst,
@@ -135,7 +146,12 @@ required-version = ">=0.11.15"
 # code, headings, blockquotes, highlighted code blocks, tables, admonitions, footnotes and
 # definition lists yields byte-identical HTML under myst-parser 4.0.1 and 5.1.0.
 #
-# Drop this once the reader relaxes its own pin: https://github.com/ashwinvis/myst-reader
+# Drop this once the reader relaxes its own pin, proposed in
+# https://github.com/ashwinvis/myst-reader/pull/49 and green there. Its CI installs through
+# `uv sync`, though, so it resolves the lock file's myst-parser 4 and never exercises 5: the
+# one thing that does fail under 5 is the MDIT renderer's tasklist fixture, and only on
+# boolean-attribute serialization (disabled="" against disabled="disabled"). Neither renderer
+# this theme uses is affected.
 override-dependencies = [ "myst-parser>=5" ]
 exclude-newer = "1 week"
 # The theme uses a flat layout: the package sits at the repo root, not under src/.

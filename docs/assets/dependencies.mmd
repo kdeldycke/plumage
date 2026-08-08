@@ -7,6 +7,7 @@ flowchart LR
         pelican{{"`pelican`"}}
         pyquery{{"`pyquery`"}}
         pygments{{"`pygments`"}}
+        pyyaml{{"`pyyaml`"}}
         cssmin{{"`cssmin`"}}
         libsass{{"`libsass`"}}
         pynpm{{"`pynpm`"}}
@@ -23,7 +24,6 @@ flowchart LR
     anyio(["`anyio`"])
     beautifulsoup4(["`beautifulsoup4`"])
     pybtex_docutils(["`pybtex-docutils`"])
-    pyyaml(["`pyyaml`"])
     rich(["`rich`"])
     colorama(["`colorama`"])
     coverage(["`coverage`"])
@@ -67,19 +67,21 @@ flowchart LR
     urllib3(["`urllib3`"])
 
     subgraph grp_test [--group test]
-        pytest{{"`pytest >=8.4.0`"}}
-        pytest_cov{{"`pytest-cov >=7.0.0`"}}
-        pytest_xdist{{"`pytest-xdist >=3.8.0`"}}
+        pytest{{"`pytest >=8.4`"}}
+        pytest_cov{{"`pytest-cov >=7`"}}
+        pytest_xdist{{"`pytest-xdist >=3.8`"}}
+        types_pyyaml{{"`types-pyyaml >=6`"}}
     end
 
-    plumage ==>|" >=4.12.0 "| pelican
-    plumage ==>|" >=1.4.0 "| pelican_myst_reader
-    plumage ==>|" >=2.18.0 "| pygments
-    plumage ==>|" >=2.0.0 "| pyquery
-    plumage ==>|" >=2.0.0 "| pelican_webassets
-    plumage ==>|" >=0.2.0 "| cssmin
-    plumage ==>|" >=0.23.0 "| libsass
-    plumage ==>|" >=0.2.0 "| pynpm
+    plumage ==>|" >=4.12 "| pelican
+    plumage ==>|" >=1.4 "| pelican_myst_reader
+    plumage ==>|" >=2.18 "| pygments
+    plumage ==>|" >=6 "| pyyaml
+    plumage ==>|" >=2 "| pyquery
+    plumage ==>|" >=2 "| pelican_webassets
+    plumage ==>|" >=0.2 "| cssmin
+    plumage ==>|" >=0.22 "| libsass
+    plumage ==>|" >=0.2 "| pynpm
     pelican --> docutils
     pelican --> pygments
     pelican --> jinja2
@@ -95,8 +97,8 @@ flowchart LR
     pelican_myst_reader --> myst_parser
     pelican_myst_reader --> docutils
     pelican_myst_reader --> sphinxcontrib_bibtex
-    pelican_myst_reader --> beautifulsoup4
     pelican_myst_reader --> pyyaml
+    pelican_myst_reader --> beautifulsoup4
     pelican_myst_reader --> markdown_word_count
     pytest --> pygments
     pytest --> colorama
@@ -222,6 +224,7 @@ flowchart LR
     click sphinxcontrib_qthelp "https://pypi.org/project/sphinxcontrib-qthelp/" _blank
     click sphinxcontrib_serializinghtml "https://pypi.org/project/sphinxcontrib-serializinghtml/" _blank
     click tomli "https://pypi.org/project/tomli/" _blank
+    click types_pyyaml "https://pypi.org/project/types-pyyaml/" _blank
     click typing_extensions "https://pypi.org/project/typing-extensions/" _blank
     click tzdata "https://pypi.org/project/tzdata/" _blank
     click unidecode "https://pypi.org/project/unidecode/" _blank
@@ -240,6 +243,8 @@ flowchart LR
     style pytest stroke-width:3px
     style pytest_cov stroke-width:3px
     style pytest_xdist stroke-width:3px
+    style pyyaml stroke-width:3px
+    style types_pyyaml stroke-width:3px
 
     style primary-deps fill:#1565C020,stroke:#42A5F5
     style grp_test fill:#546E7A20,stroke:#90A4AE

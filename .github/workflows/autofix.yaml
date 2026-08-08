@@ -82,7 +82,7 @@ jobs:
   sync-pygments-styles:
     name: 🎨 Sync Pygments styles
     # Not "ubuntu-slim": the styles must come from the exact Pygments release the theme depends on,
-    # so this job builds the project, and jq parses the style listing.
+    # so this job builds the project.
     runs-on: ubuntu-24.04
     permissions:
       contents: write

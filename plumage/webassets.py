@@ -68,10 +68,11 @@ def postcss_config():
     if not postcss_bin:
         logger.warning(f"{POSTCSS_CLI_NAME} CLI not found.")
 
-        # Install Node dependencies.
+        # Install Node dependencies. The manifest is read as UTF-8, which JSON is by
+        # spec, rather than as whatever the platform defaults to: cp1252 on Windows.
         logger.info(
             f"Install Plumage's Node.js dependencies from {node_deps_file}:\n"
-            f"{indent(node_deps_file.read_text(), ' ' * 2)}",
+            f"{indent(node_deps_file.read_text(encoding='utf-8'), ' ' * 2)}",
         )
         pkg = NPMPackage(node_deps_file)
         try:
@@ -95,7 +96,7 @@ def postcss_config():
 def setup_webassets(conf: dict[str, Any]) -> dict[str, Any]:
     """Setup pelican-webassets plugin configuration."""
     # Merge static and dynamic configurations to produce webassets' defaults.
-    default_conf = CONFIG_DEFAULTS.copy() | postcss_config()
+    default_conf = CONFIG_DEFAULTS | postcss_config()
 
     # Update the default configuration with user-defined values.
     webassets_conf = default_conf | dict(conf.get("WEBASSETS_CONFIG", {}))

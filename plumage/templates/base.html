@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-{% import 'macros.html' as m %}
+{# `with context`, as the macros read globals the caller never passes: render_tag
+prefixes its href with SITEURL, which resolves to undefined without it and emits a
+root-relative link, silently fine at a domain root and broken under a sub-path. #}
+{% import 'macros.html' as m with context %}
 {# In a block, so a template rendering a single piece of content declares its own
 language instead of the site-wide default. Every override has to stay on one line: what
 the block emits lands inside an attribute value, newlines and indentation included. #}

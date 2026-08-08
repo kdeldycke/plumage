@@ -8,6 +8,14 @@
               content="{{ entry.summary|striptags|truncate(150) |e }}" />
     {% endif %}
 {%- endmacro %}
+{% macro render_published_date(date, label) -%}
+    {# <time> rather than <abbr>: a date is not an abbreviation, and datetime is the
+    attribute a parser reads. title repeats the stamp to keep the hover tooltip the
+    <abbr> this replaced used to give. -#}
+    <time class="published"
+          datetime="{{ date.isoformat() }}"
+          title="{{ date.isoformat() }}">{{ label }}</time>
+{%- endmacro %}
 {% macro render_tag(tag, counter, kind='tag') -%}
     {# A tag or a category can be pass as argument as they share the same data structure #}
     {% set kind = 'tag' if kind == 'tag' else 'category' %}
@@ -18,6 +26,10 @@
        {% if counter is defined %} title="{{ counter }} article{{ 's' if counter > 1 else '' }} with this {{ kind }}" {% endif %}>{{ tag.name }}</a>
 {%- endmacro %}
 {% macro render_link_icon(link, label, favicon=True) -%}
+    {# Bound up front rather than only in the http branch below. macros.html is imported
+    `with context`, so a name left unset in a branch that was not taken falls through to
+    the caller's globals instead of being undefined. #}
+    {% set domain = None %}
     {% set icon = [] %}
     {% set favicon = False if favicon == False else True %}
     {% set protocol = link.split(':', 1)[0] %}

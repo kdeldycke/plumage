@@ -74,7 +74,10 @@
                         {% endfor %}
                         {# Sort by tag frequency, then alphabetically #}
                         {% for tag in article_tags|sort(attribute='name')|sort(reverse=True, attribute='articles') %}
-                            <li class="list-inline-item">{{ m.render_tag(tag, counter=articles|length()) }}</li>
+                            {# The count comes off the entry, not from `articles`: the loop
+                            binding that name closed above, so out here it resolves to the
+                            site-wide article list and every tooltip reports the same total. #}
+                            <li class="list-inline-item">{{ m.render_tag(tag, counter=tag.articles) }}</li>
                         {% endfor %}
                     {% endif %}
                 </ul>
@@ -111,7 +114,7 @@
     {{ translations.translations_for(article) }}
     {{ article.content }}
     {# Fetch content related to the current article from either related-posts
-    or simila-posts plugin. The latter teakes precedence as it produces more
+    or similar-posts plugin. The latter takes precedence as it produces more
     robust results. #}
     {% set related = None %}
     {% if article.similar_posts %}

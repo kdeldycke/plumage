@@ -30,7 +30,7 @@ it is now generic enough to be used by anyone.
 
 - Based on [Bootstrap v5](https://getbootstrap.com).
 
-- [Code syntax highlighting](#code-syntax-highlighting) with [30+ styles](https://github.com/kdeldycke/plumage/tree/main/plumage/static/css/pygments).
+- [Code syntax highlighting](#code-syntax-highlighting) with [49 styles](https://github.com/kdeldycke/plumage/tree/main/plumage/static/css/pygments).
 
 - Site-wide static search via [Stork](https://stork-search.net).
 
@@ -42,12 +42,7 @@ it is now generic enough to be used by anyone.
 
   ![Plumage GitHub edit link](https://raw.githubusercontent.com/kdeldycke/plumage/main/docs/assets/github-edit-link.jpeg)
 
-- Magnifying glass overlays on images and zoom:
-
-  ![Plumage image magnifying glass](https://raw.githubusercontent.com/kdeldycke/plumage/main/docs/assets/magnifying-glass.jpeg)
-  ![Plumage image zoom](https://raw.githubusercontent.com/kdeldycke/plumage/main/docs/assets/zoom.jpeg)
-
-- External assets (Bootstrap, …) relies on [CDNjs](https://cdnjs.com/about).
+- Third-party assets are shipped with the theme and served from the site, instead of being fetched from a CDN. [Stork](https://stork-search.net) is the exception: its script still loads from the project's own release host when `STORK_SEARCH` is on.
 
 - Disqus integration:
 
@@ -57,16 +52,19 @@ it is now generic enough to be used by anyone.
 
 Plumage has built-in support for the following plugins and extensions:
 
-| Plugin name                                                                                  | Type               | Status   | Notes                                                                                     |
-| :------------------------------------------------------------------------------------------- | :----------------- | :------- | :---------------------------------------------------------------------------------------- |
-| [`pelican-neighbors`](https://github.com/pelican-plugins/neighbors)                          | Pelican plugin     | Optional |                                                                                           |
-| [`pelican-related-posts`](https://github.com/pelican-plugins/related-posts)                  | Pelican plugin     | Optional |                                                                                           |
-| [`pelican-similar-posts`](https://github.com/pelican-plugins/similar-posts)                  | Pelican plugin     | Optional |                                                                                           |
-| [`pelican-search`](https://github.com/pelican-plugins/search)                                | Pelican plugin     | Optional |                                                                                           |
-| [`pelican-webassets`](https://github.com/pelican-plugins/webassets)                          | Pelican plugin     | Required |                                                                                           |
-| [`markdown.extensions.admonition`](https://python-markdown.github.io/extensions/admonition/) | Markdown extension | Optional | Re-style admonitions into [alerts](https://getbootstrap.com/docs/4.5/components/alerts/). |
-| [`markdown.extensions.toc`](https://python-markdown.github.io/extensions/toc/#usage)         | Markdown extension | Optional | Adds permalink anchors to article's subtitles.                                            |
-| [`typogrify`](https://pypi.python.org/pypi/typogrify)                                        | Pelican builtin    | Optional | Style ampersands.                                                                         |
+| Plugin name                                                                 | Type            | Status   | Notes                                                                                            |
+| :-------------------------------------------------------------------------- | :-------------- | :------- | :----------------------------------------------------------------------------------------------- |
+| [`pelican-myst-reader`](https://github.com/ashwinvis/myst-reader)           | Pelican plugin  | Required | Parses the site's Markdown, and adds [MyST](https://mystmd.org)'s directive syntax on top of it. |
+| [`pelican-neighbors`](https://github.com/pelican-plugins/neighbors)         | Pelican plugin  | Optional | Previous and next article links at the bottom of an article.                                     |
+| [`pelican-related-posts`](https://github.com/pelican-plugins/related-posts) | Pelican plugin  | Optional | Falls back to this when `pelican-similar-posts` is not installed.                                |
+| [`pelican-search`](https://github.com/pelican-plugins/search)               | Pelican plugin  | Optional | Required by `STORK_SEARCH`.                                                                      |
+| [`pelican-similar-posts`](https://github.com/pelican-plugins/similar-posts) | Pelican plugin  | Optional | Takes precedence over `pelican-related-posts`.                                                   |
+| [`pelican-webassets`](https://github.com/pelican-plugins/webassets)         | Pelican plugin  | Required | Compiles the theme's stylesheets.                                                                |
+| [`typogrify`](https://pypi.org/project/typogrify/)                          | Pelican builtin | Optional | Style ampersands.                                                                                |
+
+Both required plugins are installed as dependencies of the theme, and are [namespace plugins](https://docs.getpelican.com/en/stable/plugins.html), so they autoload as long as your site does not set `PLUGINS` explicitly.
+
+Python Markdown extensions no longer apply: `pelican-myst-reader` claims every Markdown file extension Pelican's own reader answers to, so Python Markdown never sees a file. [Admonitions](#admonitions) come from MyST directives instead, and heading permalinks from the reader's Sphinx renderer.
 
 ## Installation
 
@@ -138,7 +136,7 @@ Plumage can be customized by adding these optional parameters to your
 | `LEFT_SIDEBAR`                                                                                |               | HTML content to put as-is in the left sidebar.                                                                                                                 |
 | [`LINKS_WIDGET_NAME`](http://docs.getpelican.com/en/stable/settings.html#LINKS_WIDGET_NAME)   | `"Links"`     | Allows override of the name of the links widget.                                                                                                               |
 | [`LINKS`](http://docs.getpelican.com/en/stable/settings.html#LINKS)                           |               | A list of tuples (Title, URL) for links to appear in the second column of the footer.                                                                          |
-| [`MANUAL_LINKS`](http://docs.getpelican.com/en/stable/settings.html#MANUAL_LINKS)             |               | When enabling this, you must pass the links (in LINKS & SOCIAL settings) not as tuples anymore, but as list, where every entry is formatted as you like        |
+| `MANUAL_LINKS`                                                                                |               | When enabling this, you must pass the links (in LINKS & SOCIAL settings) not as tuples anymore, but as list, where every entry is formatted as you like        |
 | [`MENUITEMS`](http://docs.getpelican.com/en/stable/settings.html#MENUITEMS)                   |               | A list of tuples (Title, URL) for additional menu items to appear at the beginning of the main menu.                                                           |
 | `RIGHT_SIDEBAR`                                                                               |               | HTML content to put as-is in the right sidebar.                                                                                                                |
 | [`SITESUBTITLE`](http://docs.getpelican.com/en/stable/settings.html#SITESUBTITLE)             |               | A subtitle to appear in the header.                                                                                                                            |
@@ -200,7 +198,9 @@ Point [`THEME_TEMPLATES_OVERRIDES`](https://docs.getpelican.com/en/stable/settin
 
 On top of those, `index.html` adds `content_title`, `page.html` adds `page_content`, and `projects.html` adds `project_pre_content` and `project_post_content`.
 
-## Code Syntax Highlighting
+Templates can also read two variables the theme sets for itself: `PELICAN_VERSION` and `PLUMAGE_VERSION`, both of which the footer's generation details block displays.
+
+## Code syntax highlighting
 
 Syntax highlighting is produced by [Pygments](https://pygments.org) and needs no configuration. Fence a block with a language and it is highlighted:
 
@@ -226,12 +226,14 @@ Body text.
 
 `note`, `tip`, `hint` and `info` render as blue alerts, `warning`, `attention`, `caution` and `important` as yellow, `danger` and `error` as red.
 
-The alternative `:::{note}` spelling, which avoids nesting problems inside fenced code, is a MyST extension that is off by default. Turn it on for both of the reader's renderers, or documents carrying an intra-site link will behave differently from the rest:
+The alternative `:::{note}` spelling, which avoids nesting problems inside fenced code, comes from a MyST extension the reader enables for only one of its two renderers. A document handed to Sphinx gets it; a document handed to docutils renders the fence as plain text. Turn it on for both, or the spelling works on the documents carrying an intra-site link and renders as literal text on the rest:
 
 ```python
-MYST_DOCUTILS_SETTINGS = {"myst_enable_extensions": ["colon_fence"]}
-MYST_SPHINX_SETTINGS = {"myst_enable_extensions": ["colon_fence"]}
+MYST_DOCUTILS_SETTINGS = {"myst_enable_extensions": ["colon_fence", "deflist"]}
+MYST_SPHINX_SETTINGS = {"myst_enable_extensions": ["colon_fence", "deflist"]}
 ```
+
+`deflist` is named alongside it on purpose. The reader merges these settings over its own defaults one key at a time, so setting `myst_enable_extensions` replaces the whole set instead of adding to it, and the Sphinx renderer's default set holds both extensions. Leave `deflist` out and definition lists stop rendering on every document Sphinx handles.
 
 ## CSS customization
 
@@ -264,7 +266,7 @@ $ npx @divriots/jampack ./output
 The [official Pelican's `search` plugin](https://github.com/pelican-plugins/search) needs to
 be installed.
 
-TODO: Activate search field automaticcaly if the plugin is present.
+TODO: Activate search field automatically if the plugin is present.
 
 ## Development
 
@@ -316,15 +318,25 @@ $ uv run --group test -- pytest
 ## License
 
 This software is licensed under the [GNU General Public License v2 or later
-(GPLv2+)](https://github.com/kdeldycke/plumage/blob/main/LICENSE).
+(GPLv2+)](https://github.com/kdeldycke/plumage/blob/main/license).
 
-Copyright © 2012-2024 [Kevin Deldycke](https://kevin.deldycke.com) and
+Copyright © 2012-2026 [Kevin Deldycke](https://kevin.deldycke.com) and
 [contributors](https://github.com/kdeldycke/plumage/graphs/contributors).
 
 ## Third-party assets
 
 The theme embed copies of some external software, scripts, libraries and
-artworks:
+artworks.
+
+Three files under `plumage/static/` are copies taken from the npm packages listed in [`plumage/package.json`](https://github.com/kdeldycke/plumage/blob/main/plumage/package.json), committed so a generated site can serve them without the npm tree:
+
+| Vendored copy                        | npm package       | License |
+| :----------------------------------- | :---------------- | :------ |
+| `static/fonts/bootstrap-icons.woff2` | `bootstrap-icons` | MIT     |
+| `static/js/bootstrap.bundle.min.js`  | `bootstrap`       | MIT     |
+| `static/js/masonry.pkgd.min.js`      | `masonry-layout`  | MIT     |
+
+The rest are artworks:
 
 ```text
 Fabric (Plaid)

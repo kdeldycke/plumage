@@ -35,9 +35,9 @@ overrides:
       scss/at-extend-no-missing-placeholder: null
       # Sass Guidelines caps nesting at 1. The theme styles third-party markup it does not
       # emit (Bootstrap components, Pygments output, Stork's search results), and mirroring
-      # those structures costs a few levels: the deepest today is the Stork result item,
-      # .stork-output > li > a > .stork-title. Capped rather than disabled, to keep the
-      # guardrail meaningful.
+      # those structures costs a few levels: the deepest today is the Stork result title,
+      # nested under .navbar .dropdown > .stork-results > .stork-result > a. Capped rather
+      # than disabled, to keep the guardrail meaningful.
       max-nesting-depth: 4
       # Qualifying a class with its element type (span.amp, td.linenos) is how the theme
       # targets markup emitted by Pygments and Bootstrap, whose class names it does not own.

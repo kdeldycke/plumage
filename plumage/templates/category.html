@@ -12,11 +12,7 @@
 {% block content %}
     <dl class="row">
         {% for article in articles %}
-            <dt class="col-sm-3">
-                <time class="published"
-                      datetime="{{ article.date.isoformat() }}"
-                      title="{{ article.date.isoformat() }}">{{ article.locale_date }}</time>
-            </dt>
+            <dt class="col-sm-3">{{ m.render_published_date(article.date, article.locale_date) }}</dt>
             <dd class="col-sm-9">
                 <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
             </dd>

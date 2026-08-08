@@ -1,6 +1,6 @@
 ---
 title: Sync vendored assets
-footer: 'false'
+footer: false
 ---
 
 > [!TIP]
