@@ -45,7 +45,11 @@ STATIC = PLUMAGE_ROOT / "static"
 TEMPLATES = PLUMAGE_ROOT / "templates"
 WORKFLOW_DIR = REPO_ROOT / ".github" / "workflows"
 
-MAIN_SCSS = (STATIC / "css" / "main.scss").read_text()
+# Every read below names UTF-8, the way dom_transforms.py and webassets.py do, rather than
+# taking the platform default: cp1252 on Windows. The templates carry arrows and an ➟, the
+# workflow names carry emoji, and none of that decodes there. This one runs at import time,
+# so the whole module would fail to collect.
+MAIN_SCSS = (STATIC / "css" / "main.scss").read_text(encoding="utf-8")
 
 FONT_DIR_URL = "/theme/fonts"
 """Where the theme serves its fonts from, once Pelican has copied `static/` to `theme/`."""
@@ -61,7 +65,8 @@ SCRIPT_FILES = sorted({
     name
     for template in TEMPLATES.glob("*.html")
     for name in re.findall(
-        r'<script src="\{\{ SITEURL \}\}/theme/js/([^"]+)"', template.read_text()
+        r'<script src="\{\{ SITEURL \}\}/theme/js/([^"]+)"',
+        template.read_text(encoding="utf-8"),
     )
 })
 """Every script the templates load from the theme itself, vendored or not."""
@@ -108,7 +113,7 @@ def test_no_script_is_shipped_unused():
 def test_no_asset_is_loaded_from_a_cdn():
     """Anything served from a URL carries a version no tooling can see or bump."""
     for template in TEMPLATES.glob("*.html"):
-        markup = template.read_text()
+        markup = template.read_text(encoding="utf-8")
         for host in ("cdnjs.cloudflare.com", "cdn.jsdelivr.net", "unpkg.com"):
             assert host not in markup, f"{template.name} loads an asset from {host}"
 
@@ -116,7 +121,7 @@ def test_no_asset_is_loaded_from_a_cdn():
 @pytest.mark.parametrize("name", sorted(VENDORED))
 def test_vendored_asset_is_declared_as_a_dependency(name):
     """Its version has to live in a manifest, which is the only thing Dependabot reads."""
-    package = json.loads((PLUMAGE_ROOT / "package.json").read_text())
+    package = json.loads((PLUMAGE_ROOT / "package.json").read_text(encoding="utf-8"))
     assert VENDORED[name].split("/")[0] in package["dependencies"]
 
 
@@ -131,7 +136,7 @@ def test_npm_jobs_declare_a_node_version():
     """
     checked = 0
     for path in sorted(WORKFLOW_DIR.glob("*.yaml")):
-        jobs = (yaml.safe_load(path.read_text()) or {}).get("jobs", {})
+        jobs = (yaml.safe_load(path.read_text(encoding="utf-8")) or {}).get("jobs", {})
         for name, job in jobs.items():
             steps = job.get("steps") if isinstance(job, dict) else None
             if not steps or not any("npm " in str(s.get("run", "")) for s in steps):

@@ -25,9 +25,9 @@
 {% block right_sidebar %}
     <ul class="list-group list-group-flush">
         <li class="list-group-item">
-            {# <time> rather than <abbr>: a date is not an abbreviation, and datetime is
-            the attribute a parser reads. title repeats it to keep the hover tooltip
-            <abbr> used to give. #}
+            {# Spelled out rather than rendered through render_published_date, whose
+            markup this otherwise matches: the label here is an icon plus text, and the
+            sidebar entries carry no .published class. See macros.html for why <time>. #}
             <time datetime="{{ article.date.isoformat() }}"
                   title="{{ article.date.isoformat() }}">
                 <i class="bi bi-calendar-event-fill"></i>

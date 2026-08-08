@@ -18,6 +18,12 @@ from pyquery import PyQuery as pq
 
 
 def transform(path, context):
+    """Rewrite a page in place, adding the Bootstrap classes the theme's styles hang off.
+
+    Connected to Pelican's ``content_written`` signal, which hands over the path of the
+    page just written and the site context. Nothing below reads the context: every
+    rewrite is driven by the markup alone.
+    """
     # XXX This direct construct is stripping the "<!DOCTYPE>" heading. See:
     # https://github.com/gawel/pyquery/issues/199
     #

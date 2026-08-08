@@ -16,6 +16,34 @@
           datetime="{{ date.isoformat() }}"
           title="{{ date.isoformat() }}">{{ label }}</time>
 {%- endmacro %}
+{% macro render_article_list(entries) -%}
+    {# The dated article list tag.html, category.html and period_archives.html each
+    render, over a collection of their own. #}
+    <dl class="row">
+        {% for article in entries %}
+            <dt class="col-sm-3">{{ render_published_date(article.date, article.locale_date) }}</dt>
+            <dd class="col-sm-9">
+                <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
+            </dd>
+        {% endfor %}
+    </dl>
+{%- endmacro %}
+{% macro render_term_list(terms, badge_class) -%}
+    {# The taxonomy index authors.html and categories.html each render, differing only in
+    the badge color. Terms arrive as the {name, url, articles} dicts those templates build
+    from Pelican's (term, articles) pairs. #}
+    <dl class="row">
+        {# Sort by term frequency, then alphabetically #}
+        {% for term in terms|sort(attribute='name')|sort(reverse=True, attribute='articles') %}
+            <dt class="col-sm-2">
+                <a href="{{ SITEURL }}/{{ term.url }}" class="badge {{ badge_class }}">{{ term.name }}</a>
+            </dt>
+            <dd class="col-sm-10">
+                <a href="{{ SITEURL }}/{{ term.url }}">{{ term.articles }} article{{ 's' if term.articles > 1 else '' }}</a>
+            </dd>
+        {% endfor %}
+    </dl>
+{%- endmacro %}
 {% macro render_tag(tag, counter, kind='tag') -%}
     {# A tag or a category can be pass as argument as they share the same data structure #}
     {% set kind = 'tag' if kind == 'tag' else 'category' %}

@@ -5,73 +5,59 @@
 > [!WARNING]
 > This version is **not released yet** and is under active development.
 
-- **Breaking:** Drop support of Python 3.9.
-- **Breaking:** Drop support of Python 3.10.
+- **Breaking:** Drop support for Python 3.9 and 3.10. The floor is now Python 3.11.
 - **Breaking:** Remove jQuery, `magnific-popup` and `mglass`, and the image auto-zoom they powered.
 - **Breaking:** Only support native Pygments syntax highlighting. The legacy `.codehilite` class is no longer styled.
-- **Breaking:** Remove inlining and minification of javascript assets, and the unmaintained `closure` dependency they relied on.
-- Require Pelican 4.11, and develop against 4.12. A 4.12 floor is uninstallable: `pelican-myst-reader` caps `myst-parser` below 5.0.0, holding `docutils` under the 0.22 that 4.12 needs, and the `uv` override forcing `myst-parser` 5 never reaches a consumer.
-- Replace every `~=` requirement with `>=`, so no dependency carries an upper bound any more.
-- Fix syntax highlighting silently not applying to code blocks. The MyST reader renders a document through Sphinx or through docutils depending on its content, and only the former wraps code in the `.highlight` container every Pygments stylesheet selects through. Blocks coming out of the docutils renderer are now wrapped to match, so highlighting no longer depends on whether a page happens to carry an intra-site link.
-- Cover the path from Markdown source through the MyST reader to the theme's HTML rewrites with tests, across both of the reader's renderers.
-- Document code highlighting and admonitions, including the `colon_fence` extension needed for the `:::{note}` spelling.
+- **Breaking:** Remove inlining and minification of JavaScript assets, and the unmaintained `closure` dependency they relied on.
 - Add 14 Pygments styles, including `dracula`, `github-dark`, `gruvbox-dark` and `nord`. Remove the `stata` one.
-- Add missing static assets in Python packages.
-- Move analytics code just below the `<head>` element, and all other javascript to the bottom of the page.
-- Remove hack fixing external images bug from `pelican-image-process` plugin.
-- Switch from Poetry to `uv`. Move `djlint` from a dev dependency to an optional extra.
-- Build with the `uv_build` backend, and stop shipping `node_modules`: the wheel shrinks from 17.4 MB to 0.4 MB.
-- Declare the license as an SPDX expression, and ship the license file in the package.
-- Manage the repository with `repomatic`.
-- Split Pygments style auto-update job from CSS formatting.
-- Runs workflows on latest `ubuntu-24.04`.
-- Document theme development, and recommend [Jampack](https://jampack.divriots.com) for asset optimization.
-- Fix the search box icon, left behind by the Font Awesome to Bootstrap Icons migration.
-- Fix the `full-width` layout: the main content now spans all 12 columns, and the block above it lines up with it instead of being capped at half width.
-- Replace the deprecated `text-muted` and the hard-coded `text-dark` in the footer with color scheme aware utilities.
+- Wrap the header, navigation bar and footer of `base.html` in overridable `header`, `nav` and `footer` blocks, and give `page.html` a `page_content` block.
+- Support Pelican's own `ANALYTICS` setting, holding whatever markup an analytics provider hands you. `GOOGLE_ANALYTICS` still emits its `gtag.js` snippet.
 - Add a collapsible generation details block in the footer, listing the Pelican and Plumage versions. The latter is exposed as a new `PLUMAGE_VERSION` template variable.
-- Document the `LAYOUT` setting.
-- Add a test suite covering settings validation, the HTML transforms, the favicon assets and the rendered templates. Run it with `uv run --group test -- pytest`.
-- Run the test suite on Python 3.11 to 3.14 through a new `tests.yaml` workflow.
-- Fix the paginator emitting a whitespace-only `rel` attribute on pages carrying no link relation.
-- Add the missing `alt` text on the site thumbnail.
-- Configure stylelint and djlint, so both report only findings that apply to the theme. The generated Pygments stylesheets are no longer linted, and Sass Guidelines rules incompatible with extending Bootstrap's utility classes are turned off.
-- Give Dependabot a cooldown, and silence the two `adhoc-packages` warnings covering CI-only linters that must stay out of the theme's own `package.json`.
-- Pin every tool invoked from a workflow to an exact version, so `sync-workflow-pins` bumps them past the shared release-age cooldown. Drop the `djlint` extra: it is now a pinned `uvx` call, and no longer publishes a `plumage[djlint]` extra to PyPI.
-- Declare the test dependencies as a PEP 735 group instead of an extra, so `plumage[test]` is no longer published to PyPI either. `[project.optional-dependencies]` is now empty and gone.
-- Lint and autofix all stylesheets in a single stylelint call each, instead of one per file extension.
-- Fix the build crashing on an article with no category. Pelican 4.12.0 dropped category from an article's mandatory properties and binds the template name to `None` instead of leaving it out, so the header advertised a category feed whose URL had no slug to interpolate. Setting `CATEGORY_SAVE_AS` to an empty string was enough to hit it.
-- Add a `page_content` block to `page.html`, matching the one Pelican 4.12.0 gave its own, so an override can replace a page's body without restating the markup around it.
-- Fix every page of a multilingual site being labelled with `DEFAULT_LANG`. The `lang` attribute now sits in an `html_lang` block, which `article.html`, `page.html` and `projects.html` override with the language of the content they render. Site-level listings keep the site default, having no single language of their own.
-- Fix the navigation bar never highlighting the current category. The categories loop tested the flag computed by the pages loop, which Jinja scopes to that loop and leaves undefined here.
-- Drop the stale Python 3.10 classifier, left over from the move to a 3.11 floor.
-- Rewrite the installation instructions around `uv`. They installed the current directory rather than the theme, so following them from a site's checkout got you the site.
-- Advertise translations to crawlers. `translations.html` gained an `entry_hreflang` macro, which `article.html` and `page.html` emit in their `<head>`, and the visible translation links now carry `hreflang` too.
-- Add a meta description, taken from the entry's `Description:` metadata or its summary, with `SITESUBTITLE` standing in site-wide. Drops the `H030` djlint exemption, which the theme no longer needs.
+- Add a meta description, taken from the entry's `Description:` metadata or its summary, with `SITESUBTITLE` standing in site-wide.
+- Advertise translations to crawlers, with `hreflang` on the `<head>` links and the visible ones alike.
 - Show when an article was last modified, next to the date it was published.
-- Announce the current navigation entry with `aria-current`, in place of a visually-hidden label, matching what the paginator already did.
-- Wrap the header, navigation bar and footer of `base.html` in `header`, `nav` and `footer` blocks, so a theme extending Plumage can replace one region without copying the file. Document every block the theme exposes.
-- Support Pelican's own `ANALYTICS` setting, holding whatever markup an analytics provider hands you. `GOOGLE_ANALYTICS` still emits its `gtag.js` snippet, and is no longer documented as a Pelican setting: it never was one.
-- Mark up dates with `<time datetime>` instead of `<abbr title>`. `title` still carries the timestamp, so the hover tooltip is unchanged.
 - Show a site's pages, or a short notice, on an index with no article to list.
-- Update the webassets pipeline's Node dependencies: Bootstrap to `5.3.8`, PostCSS to `8.5.25`, Autoprefixer to `10.5.4` and `postcss-cli` to `11.0.1`. The PostCSS `8.5` series closes an XSS through an unescaped `</style>`, and hardens source map loading, which let a stylesheet pull in any file the build could read.
-- Style the search reset button through the `--bs-btn-close-filter` custom property Bootstrap `5.3.4` introduced, instead of extending `.btn-close-white`, deprecated since `5.3.0`. Set the search progress bar's height through `--bs-progress-height` for the same reason: `5.3.4` made the striped animation read it.
-- Remove `plumage/postcss.config.js`. `postcss-cli` skips config file lookup altogether when handed `--use`, which `webassets.py` always does, so the file has never been read. `POSTCSS_EXTRA_ARGS` is now the only place the autoprefixer plugin is declared.
-- Stop spell-checking the vendored minified bundles. `bootstrap.bundle.min.js` reported 23 findings, every one a two-letter identifier the minifier produced, and none of them fixable: `sync-vendored-assets` rewrites the file from `node_modules` on every refresh.
-- Declare the PyYAML stubs alongside PyYAML itself, so type-checking the workflow parsing in the test suite no longer fails on the import.
-- Fix three declarations in `code.scss` naming CSS variables that no longer exist. Bootstrap 5 moved every root variable behind a `--bs-` prefix, so `var(--font-family-monospace)` and `var(--secondary)` resolved to nothing and took their whole declaration down with them: a code block's filename label rendered in the body font, the line-number gutter lost the border separating it from the code, and highlighted line numbers lost their background, letting code scroll visibly under them.
-- Fix the avatar's flip rendering flat. Its `perspective` was set to a bare `600`, and a number with no unit is not a length, so the declaration was dropped.
-- Collapse the seven rules revealing a heading's anchor link into one, using `:is()`, and drop the `!important` they carried. The selector already outweighed the rule it overrides.
-- Serve every third-party asset from the site rather than from a CDN, and declare each one in `plumage/package.json`, where Dependabot reaches it under the same cooldown as the rest of the pipeline. Nothing reads a version out of a URL in a template, so all three had been frozen wherever they were first written: the Bootstrap Icons font at `1.11.3`, now `1.13.1`; Bootstrap's JavaScript bundle at `5.3.3`, five patch releases behind the `5.3.8` its own stylesheets were already built from; and Masonry at `4.2.2`, which is still current. A new `sync-vendored-assets` job copies all three out of the pinned releases, the way `sync-pygments-styles` regenerates the stylesheets. Only the `woff2` ships, which every browser the theme targets reads.
-- Declare the Node version every workflow running `npm` uses, instead of inheriting whatever the runner image shipped.
-- Generate the Pygments stylesheets through the library's own API rather than a shell loop over `pygmentize`, dropping the dependency on the runner's `jq`. The stylesheets are unchanged.
-- Test that every workflow job running `npm` sets Node up rather than inheriting it. The two neighbouring checks, on the Python range spread across `requires-python`, the classifiers and the `tests.yaml` matrix, and on the runner image each job names for itself, went upstream into `repomatic lint-repo` instead: neither is specific to this theme, and only upstream knows which runner images are worth being on.
-- Take the code block's line-number gutter background from whichever stylesheet `CODE_STYLE` selects, instead of the Monokai color hard-coded into `code.scss`. On any of the other 48 styles the gutter was a mismatched dark green-black stripe.
-- Drop the `box-sizing: content-box !important` override that `code.scss` applied to every descendant of a code block. It cited a Bootstrap 4 issue, and renders identically with and without it across all four markup shapes the theme's readers produce.
-- Follow the color scheme in the page surround, the footer, heading shadows, and the avatar, instead of the light-mode values they hard-coded. Both textures are opaque JPEGs, so they are multiplied against a scheme-aware color rather than laid over one.
-- Fix the search reset button rendering as a blank disc under a dark scheme. `.btn-close` tints its glyph with `filter`, which applies to the whole element, so the subtle-dark circle behind it was inverted along with the glyph and both came out light. The button now carries no background, as Bootstrap's own does, and its icon follows the color scheme.
-- Stop badges extending `.btn` and `.btn-light`. That put the class in 60-odd selectors to deliver a border in a fixed light gray: invisible against a light page, a bright ring around every badge under a dark one.
-- Ignore anything that is not a stylesheet when collecting `ALL_CODE_STYLES`. The directory listing behind it offered `CODE_STYLE` whatever else landed in the folder, a `.DS_Store` included.
+- Serve every third-party asset from the site rather than from a CDN, declared in `plumage/package.json` so Dependabot bumps them. A new `sync-vendored-assets` job refreshes the copies, which had been frozen wherever they were first written.
+- Require Pelican 4.11, and develop against 4.12. A 4.12 floor is uninstallable while `pelican-myst-reader` caps `myst-parser` below `5.0.0`, holding `docutils` under the `0.22` that 4.12 needs.
+- Replace every `~=` requirement with `>=`, so no dependency carries an upper bound any more.
+- Switch from Poetry to `uv`, and build with the `uv_build` backend. Dropping `node_modules` from the distribution shrinks the wheel from 17.4 MB to 0.4 MB.
+- Declare the test dependencies as a PEP 735 group, so neither `plumage[test]` nor `plumage[djlint]` is published to PyPI.
+- Declare the license as an SPDX expression, and ship the license file in the package.
+- Update the webassets pipeline's Node dependencies: Bootstrap to `5.3.8`, PostCSS to `8.5.25`, Autoprefixer to `10.5.4` and `postcss-cli` to `11.0.1`. The PostCSS `8.5` series closes an XSS through an unescaped `</style>`.
+- Move analytics code just below the `<head>` element, and all other JavaScript to the bottom of the page.
+- Mark up dates with `<time datetime>` instead of `<abbr title>`. `title` still carries the timestamp, so the hover tooltip is unchanged.
+- Announce the current navigation entry with `aria-current`, in place of a visually-hidden label.
+- Follow the color scheme in the page surround, the footer, heading shadows and the avatar, instead of the light-mode values they hard-coded.
+- Fix syntax highlighting silently not applying to code blocks. The MyST reader's docutils renderer omits the `.highlight` container every Pygments stylesheet selects through, so highlighting no longer depends on whether a page happens to carry an intra-site link.
+- Fix the build crashing on an article with no category, which Pelican 4.12.0 made reachable by binding the name to `None` instead of leaving it out.
+- Fix every page of a multilingual site being labelled with `DEFAULT_LANG`. The `lang` attribute now sits in an `html_lang` block the content templates override.
+- Fix the navigation bar never highlighting the current category.
+- Fix the paginator emitting a whitespace-only `rel` attribute on pages carrying no link relation.
+- Fix the `full-width` layout: the main content now spans all 12 columns, and the block above it lines up with it instead of being capped at half width.
+- Fix the search box icon, left behind by the Font Awesome to Bootstrap Icons migration.
+- Fix the search reset button rendering as a blank disc under a dark color scheme.
+- Fix three declarations in `code.scss` naming CSS variables Bootstrap 5 moved behind a `--bs-` prefix: a code block's filename label, the line-number gutter border, and highlighted line-number backgrounds.
+- Fix the avatar's flip rendering flat. Its `perspective` was set to a bare `600`, and a number with no unit is not a length.
+- Take the code block's line-number gutter background from whichever stylesheet `CODE_STYLE` selects, instead of a hard-coded Monokai color.
+- Stop badges extending `.btn` and `.btn-light`, which drew a border in a fixed light gray around every one of them.
+- Style the search reset button and the search progress bar through the `--bs-btn-close-filter` and `--bs-progress-height` custom properties Bootstrap `5.3.4` introduced.
+- Replace the deprecated `text-muted` and the hard-coded `text-dark` in the footer with color scheme aware utilities.
+- Add the missing `alt` text on the site thumbnail.
+- Ignore anything that is not a stylesheet when collecting `ALL_CODE_STYLES`.
+- Drop the stale Python 3.10 classifier, left over from the move to a 3.11 floor.
+- Remove the `pelican-image-process` external-images workaround, the never-read `plumage/postcss.config.js`, and the `box-sizing: content-box !important` override on code blocks.
+- Collapse the seven rules revealing a heading's anchor link into one, using `:is()`, and drop the `!important` they carried.
+- Add a test suite covering settings validation, the HTML transforms, the favicon assets and the rendered templates, across both of the MyST reader's renderers. Run it with `uv run --group test -- pytest`.
+- Run the test suite on Python 3.11 to 3.14 through a new `tests.yaml` workflow.
+- Document code highlighting, admonitions, the `LAYOUT` setting, and every block the theme exposes.
+- Document theme development, recommend [Jampack](https://jampack.divriots.com) for asset optimization, and rewrite the installation instructions around `uv`.
+- Manage the repository with `repomatic`, and run the theme's own CI jobs on `ubuntu-24.04`.
+- Pin every tool invoked from a workflow to an exact version, and declare the Node version every job running `npm` uses.
+- Give Dependabot a cooldown, and configure stylelint and djlint to report only findings that apply to the theme.
+- Generate the Pygments stylesheets through the library's own API, in a job split from CSS formatting.
+- Lint and autofix all stylesheets in a single stylelint call each, instead of one per file extension.
+- Stop spell-checking the vendored minified bundles.
+- Declare the PyYAML stubs alongside PyYAML itself, so type-checking the test suite's workflow parsing no longer fails on the import.
 
 ## [`4.0.0` (2024-05-18)](https://github.com/kdeldycke/plumage/compare/v3.1.0...v4.0.0)
 

@@ -15,6 +15,8 @@ Each workflow file has two parts:
 
 `autofix.yaml` and `lint.yaml` are the only two files pairing a managed caller with downstream jobs. They cover Pygments, SCSS/CSS, and Jinja, none of which repomatic handles. `tests.yaml` is downstream-owned end to end, carrying no managed caller at all: see below.
 
+Position alone does not settle ownership, though. `release.yaml` declares `publish-pypi` and `release` after its `build` caller, and both are canonical: the first runs repomatic's own `publish-pypi` composite action, the second is another thin caller. Go by the comment instead. The three files holding downstream jobs say so in as many words, right above the first one; `release.yaml` carries no such marker, so nothing in it is yours to hand-edit.
+
 ### Bumping the repomatic pin
 
 Regenerate rather than search-and-replace, so codegen changes (new job permissions, reshaped triggers) come along:
@@ -179,7 +181,7 @@ Three files under `static/` are copies of files inside npm packages, committed s
 
 The reason they are here at all, rather than on a CDN: nothing reads a version out of a URL in a template. Dependabot only sees manifests, and `sync-workflow-pins` only sees workflows, so a `<script src>` pinned to a release stays on it forever. Bootstrap's bundle had drifted five patch releases behind the stylesheets built from the same package before this moved.
 
-Two halves therefore have to move together, and different things move them. Dependabot bumps the version in `package.json`; the sync job replaces the file. `tests/test_vendored_assets.py` guards the seam, and compares bytes only when `node_modules` happens to be installed, since the suite otherwise runs without the npm toolchain. It also fails on any CDN host reappearing in a template.
+Two halves therefore have to move together, and different things move them. Dependabot bumps the version in `package.json`; the sync job replaces the file. `tests/test_vendored_assets.py` guards the seam, and compares bytes only when `node_modules` happens to be installed, since the suite otherwise runs without the npm toolchain. It also fails on `cdnjs.cloudflare.com`, `cdn.jsdelivr.net` or `unpkg.com` reappearing in a template: that list is hand-maintained, so a fourth CDN has to be added to it to be caught.
 
 Bootstrap's *bundle* is the one to copy: it carries Popper, which the dropdowns need. The theme's own `static/js/main.js` is not minified, which is what keeps it out of the job's `add-paths`.
 
@@ -195,7 +197,7 @@ Updating by hand has to reproduce that cooldown, and npm has its own spelling of
 $ npm install --before=$(date -v-7d +%Y-%m-%d)
 ```
 
-`--before` applies to the whole tree, not just the four direct dependencies, so it is the only invocation that keeps a transitive package from landing inside the cooldown window.
+`--before` applies to the whole tree, not just the six direct dependencies, so it is the only invocation that keeps a transitive package from landing inside the cooldown window.
 
 `npm install` alone will not lift a transitive dependency that still satisfies its parent's range, however stale or vulnerable it is: it only touches what `package.json` forced to move. Reach for `npm update --before=…` to sweep those, then `npm audit` to confirm.
 
@@ -211,7 +213,7 @@ Five modules under `plumage/`, all small:
 - `webassets.py`: npm and webassets setup.
 - `__init__.py`: version and paths.
 
-When adding or renaming a user-facing setting, update the settings table in `readme.md` in the same change. That table and the PR body templates under `.github/` both name settings directly, and both have drifted from the code before.
+When adding or renaming a user-facing setting, update the settings table in `readme.md` in the same change. That table and the PR body templates under `.github/pr-templates/` both name settings directly, and both have drifted from the code before.
 
 ### Python version coverage in CI
 
@@ -277,11 +279,11 @@ Four pieces in `tests/conftest.py` make that possible:
 
 ### Known repomatic bug: the pytest table name
 
-`repomatic init pytest` (7.4.1) writes the table as `[tool.pytest]`, which pytest ignores outright. The section it reads is `[tool.pytest.ini_options]`. The rename is applied by hand in `pyproject.toml`, and the next `repomatic init pytest` will undo it, so re-check the table name after any sync.
+`repomatic init pytest` (7.4.1) writes the table as `[tool.pytest]`, which pytest ignores outright: the section it reads is `[tool.pytest.ini_options]`. The fix applied by hand in `pyproject.toml` leaves that generated header alone and qualifies each key instead, as `ini_options.testpaths` and `ini_options.addopts`, which TOML resolves to the path pytest looks for. The next `repomatic init pytest` will flatten those keys back, so re-check them after any sync rather than the header, which reads `[tool.pytest]` whether the fix is in place or not.
 
 The regression is silent. Symptom: `pytest` still passes, but prints no coverage summary and no durations table, because none of the generated `addopts` reach it.
 
-The generated `addopts` also assume dependencies the bare `pytest` pin does not bring in. `pytest-cov` and `pytest-xdist[psutil]` are in the `test` extra for that reason, and `--cov=.` was narrowed to `--cov=plumage` so coverage measures the theme rather than the suite.
+The generated `addopts` also assume dependencies the bare `pytest` pin does not bring in. `pytest-cov` and `pytest-xdist[psutil]` are in the `test` dependency group for that reason, and `--cov=.` was narrowed to `--cov=plumage` so coverage measures the theme rather than the suite.
 
 ### `tests.yaml` is fully downstream-owned
 

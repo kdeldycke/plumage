@@ -222,12 +222,15 @@ warn_unused_configs = true
 overrides = [ { module = [ "pelican.*", "pynpm", "pyquery" ], ignore_missing_imports = true } ]
 
 [tool.pytest]
-# Restrict collection to the test suite, so pytest never descends into the
+# XXX repomatic 7.4.1 generates this table with bare keys, which resolve to
+# tool.pytest.addopts and friends. pytest ignores those outright: the path it reads is
+# tool.pytest.ini_options. The generated header is left as it comes and every key below
+# carries an `ini_options.` prefix instead, which TOML resolves to where pytest looks.
+# That prefix is what the next `repomatic init pytest` strips, so it is what to re-check
+# after a sync: the header reads [tool.pytest] either way and settles nothing.
+# testpaths restricts collection to the test suite, so pytest never descends into the
 # package or an installed copy of it in dual-copy builds.
 ini_options.testpaths = [ "tests" ]
-# XXX repomatic 7.4.1 generates this table as [tool.pytest], which pytest ignores
-# outright: the section it reads is [tool.pytest.ini_options]. Renamed by hand, so
-# expect the next `repomatic init pytest` to undo it until the fix lands upstream.
 ini_options.addopts = [
   # Show the N slowest tests.
   "--durations=10",

@@ -10,12 +10,5 @@
     </h1>
 {% endblock top_center %}
 {% block content %}
-    <dl class="row">
-        {% for article in articles %}
-            <dt class="col-sm-3">{{ m.render_published_date(article.date, article.locale_date) }}</dt>
-            <dd class="col-sm-9">
-                <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
-            </dd>
-        {% endfor %}
-    </dl>
+    {{ m.render_article_list(articles) }}
 {% endblock content %}

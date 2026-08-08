@@ -39,6 +39,6 @@ overrides:
       # nested under .navbar .dropdown > .stork-results > .stork-result > a. Capped rather
       # than disabled, to keep the guardrail meaningful.
       max-nesting-depth: 4
-      # Qualifying a class with its element type (span.amp, td.linenos) is how the theme
+      # Qualifying a class with its element type (span.amp, span.linenos) is how the theme
       # targets markup emitted by Pygments and Bootstrap, whose class names it does not own.
       selector-no-qualifying-type: null

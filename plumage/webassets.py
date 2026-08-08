@@ -14,6 +14,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+"""Setup the `webassets <https://github.com/miracle2k/webassets>`_ plugin for Pelican."""
+
 import os
 from shutil import which
 from textwrap import indent
@@ -22,23 +24,6 @@ from typing import Any
 from pynpm import NPMPackage
 
 from . import PLUMAGE_ROOT, logger
-
-"""Setup the `webassets <https://github.com/miracle2k/webassets>`_ plugin for Pelican.
-"""
-
-
-CONFIG_DEFAULTS: dict[str, str] = {
-    # No need to force a compressed rendering, a minification pass is applied
-    # at the end of the pipeline. See:
-    # https://webassets.readthedocs.io/en/latest/builtin_filters.html#webassets.filter.libsass.LibSass
-    # "LIBSASS_STYLE": "compressed",
-}
-"""Default configuration for `webassets <https://github.com/miracle2k/webassets>`_.
-
-See the `list of configuration parameters for each filter
-<https://webassets.readthedocs.io/en/latest/builtin_filters.html>`_.
-"""
-
 
 POSTCSS_CLI_NAME = "postcss"
 """Name of the PostCSS CLI binary."""
@@ -95,11 +80,13 @@ def postcss_config():
 
 def setup_webassets(conf: dict[str, Any]) -> dict[str, Any]:
     """Setup pelican-webassets plugin configuration."""
-    # Merge static and dynamic configurations to produce webassets' defaults.
-    default_conf = CONFIG_DEFAULTS | postcss_config()
-
-    # Update the default configuration with user-defined values.
-    webassets_conf = default_conf | dict(conf.get("WEBASSETS_CONFIG", {}))
+    # PostCSS is the only filter the theme configures. In particular no LIBSASS_STYLE:
+    # the {% assets %} pipeline in base.html ends on a cssmin pass, so asking libsass for
+    # compressed output too would only do the same work twice. See the parameters each
+    # filter accepts: https://webassets.readthedocs.io/en/latest/builtin_filters.html
+    #
+    # Update the defaults with user-defined values.
+    webassets_conf = postcss_config() | dict(conf.get("WEBASSETS_CONFIG", {}))
 
     # Save updated configuration in Pelican settings in the form of ``(key, value)``
     # instead of a ``dict`` as expected by ``webassets`` plugin. See:

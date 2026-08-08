@@ -226,6 +226,16 @@ Body text.
 
 `note`, `tip`, `hint` and `info` render as blue alerts, `warning`, `attention`, `caution` and `important` as yellow, `danger` and `error` as red.
 
+Bootstrap's remaining alert variants are reachable as well: a `primary`, `secondary`, `success`, `light` or `dark` class on an admonition maps onto the matching `alert-*`. The generic `admonition` directive is what attaches one, through its `:class:` option:
+
+````markdown
+```{admonition} Shipped
+:class: success
+
+Body text.
+```
+````
+
 The alternative `:::{note}` spelling, which avoids nesting problems inside fenced code, comes from a MyST extension the reader enables for only one of its two renderers. A document handed to Sphinx gets it; a document handed to docutils renders the fence as plain text. Turn it on for both, or the spelling works on the documents carrying an intra-site link and renders as literal text on the rest:
 
 ```python
