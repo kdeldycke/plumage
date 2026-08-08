@@ -44,7 +44,7 @@ jobs:
       - id: pr-metadata
         run: >
           uvx --no-progress 'repomatic==7.4.1' pr-body --output-format github-actions
-          --template-file .github/pr-sync-bootstrap-icons.md
+          --template-file .github/pr-templates/sync-bootstrap-icons.md
           --output "$GITHUB_OUTPUT"
       - uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         with:
@@ -81,7 +81,7 @@ jobs:
       - id: pr-metadata
         run: >
           uvx --no-progress 'repomatic==7.4.1' pr-body --output-format github-actions
-          --template-file .github/pr-sync-pygments-styles.md
+          --template-file .github/pr-templates/sync-pygments-styles.md
           --output "$GITHUB_OUTPUT"
       - uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         with:
@@ -128,7 +128,7 @@ jobs:
       - id: pr-metadata
         run: >
           uvx --no-progress 'repomatic==7.4.1' pr-body --output-format github-actions
-          --template-file .github/pr-format-css.md
+          --template-file .github/pr-templates/format-css.md
           --output "$GITHUB_OUTPUT"
       - uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         with:
@@ -166,7 +166,7 @@ jobs:
       - id: pr-metadata
         run: >
           uvx --no-progress 'repomatic==7.4.1' pr-body --output-format github-actions
-          --template-file .github/pr-format-jinja.md
+          --template-file .github/pr-templates/format-jinja.md
           --output "$GITHUB_OUTPUT"
       - uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         with:

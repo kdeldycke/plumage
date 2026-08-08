@@ -1,6 +1,6 @@
 ---
 title: Sync Bootstrap Icons
-footer: 'false'
+footer: false
 ---
 
 > [!TIP]

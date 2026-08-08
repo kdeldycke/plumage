@@ -1,6 +1,6 @@
 ---
 title: Format Jinja
-footer: 'false'
+footer: false
 ---
 
 > [!TIP]

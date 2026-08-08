@@ -1,6 +1,6 @@
 ---
 title: Sync Pygments styles
-footer: 'false'
+footer: false
 ---
 
 > [!TIP]

@@ -1,6 +1,6 @@
 ---
 title: Format CSS style
-footer: 'false'
+footer: false
 ---
 
 > [!TIP]
