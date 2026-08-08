@@ -133,12 +133,20 @@ A file-modifying job uses one `verb-noun` across all of its dimensions: job ID, 
 
 ### Asset pipeline
 
-`plumage/package.json` declares the npm side of the pipeline: Bootstrap, PostCSS, and autoprefixer. `plumage/webassets.py` drives it through `pynpm`, and `pelican-webassets` wires the result into Pelican's build.
+`plumage/package.json` declares the npm side of the pipeline: Bootstrap, Bootstrap Icons, PostCSS, and autoprefixer. `plumage/webassets.py` drives it through `pynpm`, and `pelican-webassets` wires the result into Pelican's build.
 
 Consequences worth remembering:
 
 - `node_modules` lands *inside* the package directory at build time. Both `source-exclude` and `wheel-exclude` in `[tool.uv.build-backend]` must keep it (and `package-lock.json`) out of the distribution. `uv_build` does not read `.gitignore`, so those exclusions are repeated there on purpose.
 - The package uses a flat layout, so `[tool.uv.build-backend] module-root = ""`. The package sits at the repo root, not under `src/`.
+
+#### The icon font is vendored, not installed
+
+`static/fonts/bootstrap-icons.woff2` is a copy of the file inside the `bootstrap-icons` npm package, committed so the wheel is self-contained: `node_modules` is excluded from the distribution, so a site could not otherwise reach it. `sync-bootstrap-icons` in `autofix.yaml` refreshes the copy from whatever release the lock file pins, the same shape as `sync-pygments-styles` regenerating the stylesheets.
+
+Two halves have to move together, and different things move them. Dependabot bumps the version in `package.json`; the sync job replaces the binary. `tests/test_fonts.py` guards the seam, and compares the two only when `node_modules` happens to be installed, since the suite otherwise runs without the npm toolchain.
+
+`main.scss` overrides `$bootstrap-icons-font-dir` to the absolute `/theme/fonts`, because the upstream default is relative to the stylesheet and this one gets bundled into `css/main.min.css`. Only `woff2` is declared: the `woff` beside it is another 180 KB for browsers that no longer need it. The `@import` spells out the `.scss` extension, against a stylelint rule disabled inline right above it, because the package ships a `bootstrap-icons.css` next to it and Sass refuses to pick.
 
 #### Bumping the npm dependencies by hand
 
@@ -153,6 +161,8 @@ $ npm install --before=$(date -v-7d +%Y-%m-%d)
 `--before` applies to the whole tree, not just the four direct dependencies, so it is the only invocation that keeps a transitive package from landing inside the cooldown window.
 
 `npm install` alone will not lift a transitive dependency that still satisfies its parent's range, however stale or vulnerable it is: it only touches what `package.json` forced to move. Reach for `npm update --before=…` to sweep those, then `npm audit` to confirm.
+
+A cooldown and a security fix pull in opposite directions, and the cooldown wins here: `--before` will hold back a fix that has not aged yet, so expect `npm audit` to keep reporting one. Leave it. Dependabot's `cooldown` covers version updates only and never gates a security update, so it opens that pull request on its own, ahead of the window.
 
 ### Python modules
 

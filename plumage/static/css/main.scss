@@ -2,11 +2,30 @@
 // See: https://getbootstrap.com/docs/5.3/customize/sass/#importing
 @import '../../node_modules/bootstrap/scss/bootstrap';
 
+// Bootstrap Icons, served by the site rather than from a CDN, so its version is pinned in
+// package.json where Dependabot can reach it. Templates name icons dynamically, and a site
+// can name any of them through its own settings, so the whole font has to ship.
+//
+// Point the @font-face at the copy under static/fonts/, which sync-bootstrap-icons keeps
+// in step with the pinned release. The upstream default is "./fonts", relative to a
+// stylesheet this one gets bundled into, and only woff2 is listed: every browser able to
+// run the theme reads it, and the woff alongside it is another 180 KB for nothing.
+$bootstrap-icons-font-dir: '/theme/fonts';
+$bootstrap-icons-font-src: url('#{$bootstrap-icons-font-dir}/bootstrap-icons.woff2') format('woff2');
+// Extension spelled out, against the rule below: the package ships a bootstrap-icons.css
+// next to the .scss, and Sass refuses to guess between the two.
+// stylelint-disable-next-line scss/at-import-partial-extension-disallowed-list
+@import '../../node_modules/bootstrap-icons/font/bootstrap-icons.scss';
+
 // Custom Plumage CSS is below.
 // TODO: replace hard-coded styling with bootstrap's own class names for consistency.
 
 html {
-  background: rgb(236, 236, 236) url('/theme/img/fabric_plaid.jpeg');
+  // The texture tiles over the page surround, which <body class="bg-transparent"> lets
+  // through. Multiplying it against a scheme-aware color is what makes it follow the
+  // color mode: the JPEG is opaque, so a plain background color behind it never shows.
+  background: var(--bs-secondary-bg) url('/theme/img/fabric_plaid.jpeg');
+  background-blend-mode: multiply;
   box-shadow: inset 0 1rem 6rem -2rem rgba(0, 0, 0, 0.5);
 }
 
@@ -53,7 +72,8 @@ a {
     .side {
       backface-visibility: hidden;
 
-      border: solid 0.2rem #fff;
+      // Reads as a photo mount against the page, in either color mode.
+      border: solid 0.2rem var(--bs-body-bg);
       border-radius: 1rem;
 
       box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.25);
@@ -64,7 +84,7 @@ a {
     }
 
     .back {
-      background-image: linear-gradient(#eee, #ddd);
+      background-image: linear-gradient(var(--bs-tertiary-bg), var(--bs-secondary-bg));
       box-shadow: inset 0 0 1.5rem rgba(0, 0, 0, 0.1);
     }
 
@@ -88,20 +108,23 @@ a {
 .stork-close-button {
   // Place the reset button on the right side of the search box.
   @extend .position-absolute, .top-50, .end-0, .translate-middle-y;
-  // Use Bootstrap's default SVG-based close button.
+  // Use Bootstrap's default SVG-based close button, and let it recolor itself with the
+  // color scheme.
+  //
+  // Deliberately no background here. .btn-close tints its icon with `filter`, which
+  // applies to the whole element, so a background-color gets inverted along with the
+  // glyph: under a dark scheme the subtle-dark circle this used to carry came out light,
+  // the icon came out white on top of it, and the button rendered as a blank disc.
+  // Bootstrap gives .btn-close a transparent background for that reason.
   @extend .btn-close;
-  // Shape the button into a circle.
-  @extend .rounded-circle;
-  // Whiten the close button icon so it reads against the subtle dark background below.
-  // Bootstrap 5.3.4 moved the filter behind .btn-close-white into a custom property the
-  // button applies unconditionally, so setting it here reaches the same rendering without
-  // extending a class deprecated since 5.3.0.
-  --bs-btn-close-filter: #{$btn-close-filter-dark};
-  @extend .bg-dark-subtle;
-  // Reduce button's size.
+  // Reduce button's size. .btn-close draws itself in em, so the font size is the knob
+  // that shrinks it. Setting the property directly rather than extending .btn, which was
+  // here only to make --bs-btn-font-size mean something and dragged its whole ruleset in:
+  // that alone put this class in 40-odd selectors it has no other use for. Of everything
+  // .btn contributed, only the cursor is worth keeping on an icon-only button.
   @extend .me-2, .p-1;
-  @extend .btn; // Required to override the font size below.
-  --bs-btn-font-size: 0.3rem;
+  cursor: pointer;
+  font-size: 0.3rem;
 
   // Hide default SVG close button.
   > svg {
@@ -228,7 +251,10 @@ a {
 
 h1,
 h2 {
-  text-shadow: 0.1rem 0.1rem 0.1rem #ddd;
+  // Translucent black rather than a fixed light gray: it darkens whatever it falls on, so
+  // it stays a shadow under the letters instead of turning into a halo around them once
+  // the page goes darker than the shadow. Over white this lands on the #ddd it replaces.
+  text-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.15);
 }
 
 
@@ -264,7 +290,12 @@ span.amp {
 }
 
 .badge {
-  @extend .btn, .btn-light, .rounded-pill;
+  // Only the pill shape. This used to extend .btn and .btn-light too, which cost the
+  // class a place in 60-odd selectors to deliver one visible thing: a border in a fixed
+  // light gray, invisible against a light page and a bright ring around every badge under
+  // a dark one. Bootstrap's own .badge already supplies the padding and font, and every
+  // badge the theme emits carries a .category, .tag or .text-bg-* modifier for its color.
+  @extend .rounded-pill;
 
   &.category {
     @extend .bg-primary-subtle, .text-primary-emphasis;
@@ -288,7 +319,11 @@ span.amp {
 
 
 footer {
-  background: url('/theme/img/creampaper.jpeg');
+  // Same treatment as the page surround above: the paper texture is an opaque JPEG, so it
+  // is multiplied against a scheme-aware color rather than laid over one. Left alone it
+  // stayed cream under a dark scheme, and the body text turned near-white on top of it.
+  background: var(--bs-secondary-bg) url('/theme/img/creampaper.jpeg');
+  background-blend-mode: multiply;
   box-shadow: inset 0 2rem 2rem -2rem rgba(0, 0, 0, 0.5);
-  text-shadow: 0 0.1rem 0.1rem #fff;
+  text-shadow: 0 0.1rem 0.1rem var(--bs-body-bg);
 }

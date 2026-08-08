@@ -39,6 +39,17 @@ def test_code_styles_match_shipped_stylesheets():
         assert (PLUMAGE_ROOT / "static" / "css" / "pygments" / f"{style}.css").is_file()
 
 
+def test_code_styles_offer_every_stylesheet_and_nothing_else():
+    """Anything under pygments/ that is not a stylesheet is not a style.
+
+    The set is built once at import time from the shipped directory, so a listing that
+    does not discriminate on the suffix hands ``CODE_STYLE`` whatever else lands there:
+    a ``.DS_Store``, or a directory a tool left behind.
+    """
+    stylesheets = (PLUMAGE_ROOT / "static" / "css" / "pygments").glob("*.css")
+    assert config.ALL_CODE_STYLES == {f.stem for f in stylesheets}
+
+
 @pytest.mark.parametrize("style", ["monokai", "dracula", "github-dark", "nord"])
 def test_known_code_style_is_kept(style):
     assert config.check_codestyle({"CODE_STYLE": style})["CODE_STYLE"] == style

@@ -104,13 +104,14 @@ WARNING: postcss CLI not found.
   |     "dependencies": {
   |       "autoprefixer": "^10.5.4",
   |       "bootstrap": "^5.3.8",
+  |       "bootstrap-icons": "^1.13.1",
   |       "postcss": "^8.5.25",
   |       "postcss-cli": "^11.0.1"
   |     }
   |   }
   |
 
-up to date, audited 65 packages in 1s
+up to date, audited 66 packages in 1s
 
 found 0 vulnerabilities
 -> postcss CLI found at (…)/plumage/node_modules/.bin/postcss

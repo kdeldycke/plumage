@@ -25,8 +25,14 @@ from .favicon import add_favicon_assets
 from .webassets import setup_webassets
 
 ALL_CODE_STYLES: set[str] = {
-    f.stem for f in PLUMAGE_ROOT.joinpath("static/css/pygments/").resolve().iterdir()
+    f.stem for f in PLUMAGE_ROOT.joinpath("static/css/pygments/").resolve().glob("*.css")
 }
+"""Styles a site can select through ``CODE_STYLE``, one per generated stylesheet.
+
+Matching on the ``.css`` suffix rather than listing the directory keeps anything else that
+lands there out: a stray ``.DS_Store``, which ``[tool.uv.build-backend]`` already has to
+exclude from the distribution, would otherwise register as a selectable style.
+"""
 
 
 def register_signals() -> None:
