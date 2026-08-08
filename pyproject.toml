@@ -105,6 +105,9 @@ test = [
   # Both are required by the addopts under [tool.pytest.ini_options].
   "pytest-cov>=7",
   "pytest-xdist[psutil]>=3.8",
+  # test_workflows.py parses .github/workflows/. Pelican pulls PyYAML in anyway, but this
+  # suite is the only thing importing it, so it says so instead of relying on that.
+  "pyyaml>=6",
 ]
 
 [tool.uv]

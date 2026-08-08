@@ -85,6 +85,29 @@ that confused it. Two templates use that idiom, the conditional `<a>` wrapping t
 `{# djlint:off #}` / `{# djlint:on #}`. Guard the smallest region holding the unbalanced tag: with
 the rest of the file still visible, the formatter indents everything around it correctly.
 
+### Facts a workflow restates, and what reconciles them
+
+Three things are declared in more than one place, and nothing in GitHub reconciles the copies. Two of the three are not specific to this theme, so they live upstream where every managed repository gets them; the third is npm-shaped and stays here.
+
+`repomatic lint-repo` carries these, in `check_python_version_consistency` and `check_runner_images`:
+
+- **The supported Python range**, spread across `requires-python`, the classifiers, and the `tests.yaml` matrix. The upstream check requires the matrix to reach *both ends* of the advertised range rather than cover every version in it: skipping intermediate releases is a legitimate way to cut CI load, advertising a boundary nothing tests is not.
+- **The runner image.** Neither `sync-workflow-pins` nor Dependabot bumps a `runs-on:` literal, the first only rewriting `uses:` refs and the second only the `uvx '<pkg>==X.Y.Z'` and `npm install pkg@X.Y.Z` shapes. So a runner is the one dependency in a workflow nothing moves. Upstream flags `-latest` aliases, and images outside the curated axes in `repomatic.matrix_axes` — which currently includes this repository's `ubuntu-24.04`, see below.
+
+`tests/test_vendored_assets.py` keeps the third, since repomatic has no model of a job that runs npm and deliberately leaves the pipeline downstream:
+
+- **Node.** Every job running `npm` sets it up explicitly, rather than inheriting whatever the runner image shipped. Held to a major (`node-version: "22"`, matching what `ubuntu-24.04` ships today) rather than an exact version, precisely because `sync-workflow-pins` cannot read that input: an exact pin there would be the one literal in the repository nothing ever bumps.
+
+#### Open question: `ubuntu-24.04` versus `ubuntu-24.04-arm`
+
+The seven downstream jobs sit on `ubuntu-24.04`, which is not among the images `repomatic.matrix_axes` curates (`ubuntu-24.04-arm` and `ubuntu-slim` are its Linux entries), so `lint-repo` flags them. They moved off `ubuntu-slim` for tool availability, never for architecture, and repomatic's own measurements put `ubuntu-24.04-arm` two to three times faster than `ubuntu-slim` on its suite. Worth re-testing on ARM rather than left as an accident.
+
+### Tools the runner provides are avoided, not pinned
+
+`sync-pygments-styles` used to read the style list with `jq`, which is whatever the runner image ships and which nothing pins or bumps. It now calls Pygments' own API through `uv run --frozen`, so the version comes from `uv.lock` like every other Python dependency. The output is unchanged: `get_style_defs()` is what `pygmentize -S` calls underneath, and the CLI only adds the trailing newline the script restores.
+
+Prefer that move generally. A runner-provided tool has no version anywhere in the repository, so reaching for the pinned dependency that already does the job beats finding a way to pin the tool.
+
 ### Known lint warning: top-level workflow permissions
 
 `repomatic lint-repo` warns that `autofix.yaml`, `lint.yaml`, and `release.yaml` define custom job steps but carry no top-level `permissions` key. Leave it that way. The check has a second arm that fires in the opposite direction: under a top-level `permissions: {}`, a job calling a reusable workflow without its own `permissions:` block is handed an empty scope set, and GitHub aborts the run at startup.

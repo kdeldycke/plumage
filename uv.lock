@@ -691,6 +691,7 @@ test = [
     { name = "pytest" },
     { name = "pytest-cov" },
     { name = "pytest-xdist", extra = ["psutil"] },
+    { name = "pyyaml" },
 ]
 
 [package.metadata]
@@ -710,6 +711,7 @@ test = [
     { name = "pytest", specifier = ">=8.4" },
     { name = "pytest-cov", specifier = ">=7" },
     { name = "pytest-xdist", extras = ["psutil"], specifier = ">=3.8" },
+    { name = "pyyaml", specifier = ">=6" },
 ]
 
 [[package]]

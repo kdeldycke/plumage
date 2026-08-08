@@ -21,6 +21,12 @@ distribution, and refreshed by the `sync-vendored-assets` job from the release p
 `package.json`. Two halves therefore move separately: Dependabot bumps the version, the
 job replaces the file. These cover the seam between them, and the one before it, where a
 template or stylesheet names a file nobody ships.
+
+The npm toolchain the job runs on is covered here too. Repomatic has no model of a job
+that runs npm, by design: it treats npm as a registry to resolve version literals
+against, and leaves the pipeline itself downstream. So that one stays with the assets it
+produces, while the checks that are not npm-shaped, on the Python range and the runner
+images, live upstream in `repomatic lint-repo` where every managed repository gets them.
 """
 
 from __future__ import annotations
@@ -30,11 +36,14 @@ import re
 from pathlib import Path
 
 import pytest
+import yaml
 
 from plumage import PLUMAGE_ROOT
 
+REPO_ROOT = PLUMAGE_ROOT.parent
 STATIC = PLUMAGE_ROOT / "static"
 TEMPLATES = PLUMAGE_ROOT / "templates"
+WORKFLOW_DIR = REPO_ROOT / ".github" / "workflows"
 
 MAIN_SCSS = (STATIC / "css" / "main.scss").read_text()
 
@@ -109,6 +118,29 @@ def test_vendored_asset_is_declared_as_a_dependency(name):
     """Its version has to live in a manifest, which is the only thing Dependabot reads."""
     package = json.loads((PLUMAGE_ROOT / "package.json").read_text())
     assert VENDORED[name].split("/")[0] in package["dependencies"]
+
+
+def test_npm_jobs_declare_a_node_version():
+    """Every workflow job running npm sets Node up rather than inheriting it.
+
+    Left to the runner image, the toolchain that copies these assets is whatever Node
+    that image happened to be built with, and it moves without a commit here. Held to a
+    major rather than an exact version: `sync-workflow-pins` reads `uvx` and
+    `npm install` literals, not a `node-version` input, so an exact pin would be the one
+    version in the repository nothing ever bumps.
+    """
+    checked = 0
+    for path in sorted(WORKFLOW_DIR.glob("*.yaml")):
+        jobs = (yaml.safe_load(path.read_text()) or {}).get("jobs", {})
+        for name, job in jobs.items():
+            steps = job.get("steps") if isinstance(job, dict) else None
+            if not steps or not any("npm " in str(s.get("run", "")) for s in steps):
+                continue
+            checked += 1
+            assert any("setup-node" in str(s.get("uses", "")) for s in steps), (
+                f"{path.name}:{name} runs npm without actions/setup-node"
+            )
+    assert checked, "no npm job found: this check has stopped covering anything"
 
 
 @pytest.mark.parametrize("name", sorted(VENDORED))

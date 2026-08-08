@@ -38,6 +38,13 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+      # Declared rather than inherited from the runner image, which ships whatever Node it was
+      # built with and moves it without a commit here. Held to the major, so security patches
+      # still arrive: sync-workflow-pins reads `uvx` and `npm install` literals, not this input,
+      # so an exact version here would be the one pin nothing bumps.
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "22"
       - name: Install Node dependencies
         # From the lock file, so the copies match the pinned releases rather than whatever is
         # newest. Not an adhoc install: every package here is the theme's own declared dependency.
@@ -84,12 +91,23 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
       - name: Generate Pygments styles
+        # Through Pygments' own API rather than a shell loop over `pygmentize -S`, which needed
+        # jq to read the style listing. jq is whatever the runner image happens to ship, and
+        # nothing pins or bumps it; Pygments itself is pinned in pyproject.toml and resolved
+        # from uv.lock by --frozen. The output is byte-identical: get_style_defs() is what
+        # `pygmentize -S` calls, and the CLI only adds the trailing newline restored here.
         run: |
-          STYLES=$(uv --no-progress run --frozen -- pygmentize -L styles --json | jq -r '.styles | keys[]')
-          for STYLE in $STYLES; do
-            CSS_FILE="./plumage/static/css/pygments/$STYLE.css"
-            uv --no-progress run --frozen -- pygmentize -f html -S "$STYLE" -a ".highlight" > "$CSS_FILE"
-          done
+          uv --no-progress run --frozen -- python - <<'EOF'
+          from pathlib import Path
+
+          from pygments.formatters import HtmlFormatter
+          from pygments.styles import get_all_styles
+
+          target = Path("plumage/static/css/pygments")
+          for style in get_all_styles():
+              css = HtmlFormatter(style=style).get_style_defs(".highlight")
+              (target / f"{style}.css").write_text(f"{css}\n")
+          EOF
       - id: pr-metadata
         run: >
           uvx --no-progress 'repomatic==7.4.1' pr-body --output-format github-actions
@@ -118,6 +136,10 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+      # Same Node as the sync-vendored-assets job above, and for the same reason.
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "22"
       - name: Install stylelint
         # --no-save keeps the theme's own package.json, which declares the webassets pipeline, free
         # of these CI-only linters. zizmor wants a lockfile install instead, but the only lockfile
