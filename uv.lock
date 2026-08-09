@@ -670,7 +670,7 @@ wheels = [
 
 [[package]]
 name = "plumage"
-version = "5.0.0"
+version = "5.0.1.dev0"
 source = { editable = "." }
 dependencies = [
     { name = "cssmin" },
