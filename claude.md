@@ -31,9 +31,9 @@ $ uvx --no-progress 'repomatic==X.Y.Z' init \
 
 Naming the workflow files individually is deliberate: a bare `repomatic init` also materializes labels config and a changelog, and an unqualified `workflows` selector bypasses scope gating.
 
-`init` does not reach into downstream-owned jobs. After it runs, update by hand in `autofix.yaml` and `lint.yaml`:
+`init` does not reach into downstream-owned jobs. After it runs, update by hand in `autofix.yaml`, which is the only file left carrying either:
 
-- the `uvx --no-progress 'repomatic==X.Y.Z' pr-body` version strings (three occurrences)
+- the `uvx --no-progress 'repomatic==X.Y.Z' pr-body` version strings, one per PR-opening job, so four of them today. Count them rather than trusting this number: a new `sync-` or `format-` job adds one, which is how the count went from three to four. `repomatic lint-repo` catches a stale one as an *error* and exits non-zero, so a missed occurrence reddens the Lint workflow rather than lurking
 - action pins that upstream moved, like `astral-sh/setup-uv`
 
 Only for the bump you are performing, though: `sync-workflow-pins` bumps those same literals on its own schedule, once a release clears the cooldown. The hand edit is what makes them match the `uses:` ref you just moved, in the same commit.
