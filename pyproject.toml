@@ -64,13 +64,14 @@ dependencies = [
   # is just the oldest release checked to install and compile across our Python range, so
   # treat it as a tested floor rather than a real minimum.
   "libsass>=0.22",
-  # 4.11, not the 4.12 this theme is developed and tested against. pelican-myst-reader caps
-  # myst-parser below 5.0.0, which holds docutils below the 0.22 Pelican 4.12.0 requires, so
-  # a floor of 4.12 makes the published package unsatisfiable: pip and uv both refuse it.
-  # The override-dependencies entry below hides that inside this repo and is invisible to
-  # anyone installing the theme, so the floor has to stay under 4.12 until the reader
-  # relaxes its own pin: https://github.com/ashwinvis/myst-reader/pull/49 uncaps it, and a
-  # release carrying that is what lets this go back to 4.12.
+  # 4.11, not the 4.12 this theme is developed and tested against. pelican-myst-reader 1.4.0
+  # caps myst-parser below 5.0.0, which holds docutils below the 0.22 Pelican 4.12.0 requires,
+  # so a floor of 4.12 makes the published package unsatisfiable: pip and uv both refuse it.
+  # https://github.com/ashwinvis/myst-reader/pull/49 uncapped the reader and was merged, but
+  # no release carries it yet, so PyPI still serves 1.4.0 and its cap. The
+  # override-dependencies entry below hides that inside this repo and is invisible to anyone
+  # installing the theme, so the floor has to stay under 4.12 until that release lands. See
+  # the comment on the override for why the merge alone does not settle it.
   # Two consequences worth remembering. uv.lock still resolves 4.12.0, so CI only ever
   # exercises 4.12, while a fresh install resolves 4.11 with myst-parser 4 and docutils 0.21.
   # That combination was run against the full suite by hand when the floor moved, and all of
@@ -143,15 +144,19 @@ required-version = ">=0.11.15"
 # markdown-it-py 4), with no API removed, and the reader only reaches for MdParserConfig,
 # create_md_parser and read_topmatter. Rendering a document covering emphasis, links, inline
 # code, headings, blockquotes, highlighted code blocks, tables, admonitions, footnotes and
-# definition lists yields byte-identical HTML under myst-parser 4.0.1 and 5.1.0.
+# definition lists yields byte-identical HTML under myst-parser 4.0.1 and 5.1.0. Upstream
+# agreed and merged https://github.com/ashwinvis/myst-reader/pull/49 on 2026-08-11.
 #
-# Drop this once the reader relaxes its own pin, proposed in
-# https://github.com/ashwinvis/myst-reader/pull/49 and green there. Its CI installs through
-# `uv sync`, though, so it resolves the lock file's myst-parser 4 and never exercises 5: the
-# one thing that does fail under 5 is the MDIT renderer's tasklist fixture, and only on
-# boolean-attribute serialization (disabled="" against disabled="disabled"). Neither renderer
-# this theme uses is affected.
-override-dependencies = [ "myst-parser>=5" ]
+# That merge alone was not enough to drop this. `main` also carries PR 36, merged
+# 2025-10-14 and never released, which made MDIT the default renderer: directives stopped
+# becoming admonitions, code blocks arrived carrying no Pygments markup, and a `:::` fence
+# that is not `{image}` raised RuntimeError out of a module-level `super()` call. Resolving
+# from `main` reddened 8 tests in test_markdown.py.
+#
+# https://github.com/ashwinvis/myst-reader/pull/50 fixes all of that, and the
+# [tool.uv.sources] entry below is what holds this repository against it while it waits for
+# review. The override is unnecessary while that pin is in place, since the branch asks for
+# myst-parser 5 on its own.
 exclude-newer = "1 week"
 # The theme uses a flat layout: the package sits at the repo root, not under src/.
 build-backend.module-root = ""
@@ -172,6 +177,27 @@ build-backend.wheel-exclude = [
   "**/*.egg-info",
   "**/.DS_Store",
 ]
+
+# A temporary source, standing in for a release that does not exist yet, and pinned to the
+# head of https://github.com/ashwinvis/myst-reader/pull/50 rather than to `main`: the branch
+# carries both the dependency uncap (merged as ashwinvis/myst-reader#49) and the fixes that
+# make `main` usable again. Pinned by commit rather than by branch name, so neither a force
+# push on the pull request nor `sync-uv-lock` can move this repository onto different code
+# without the pin changing here first.
+#
+# Workspace-scoped, exactly like the `override-dependencies` entry it replaces: uv applies it
+# while resolving *this* project, and it reaches nobody installing the theme. uv strips its
+# sources at build time, so the wheel still advertises the plain `pelican-myst-reader>=1.4`
+# above. That is also why the Pelican floor has to stay at 4.11 regardless of what resolves
+# here.
+#
+# Delete this once the reader ships a release carrying the fixes, moving the
+# `pelican-myst-reader` floor to that version and the Pelican floor back to 4.12 in the same
+# change. If the pull request is rejected or reworked instead, the `override-dependencies`
+# entry described above is what comes back.
+[tool.uv.sources.pelican-myst-reader]
+git = "https://github.com/kdeldycke/myst-reader"
+rev = "a9be9e744b10c862ad591af525673428ae8e9392"
 
 [tool.djlint]
 profile = "jinja"
