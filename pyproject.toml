@@ -128,6 +128,25 @@ test = [
 
 [tool.uv]
 required-version = ">=0.11.15"
+# A temporary source, standing in for a release that does not exist yet, and pinned to the
+# head of https://github.com/ashwinvis/myst-reader/pull/50 rather than to `main`: the branch
+# carries both the dependency uncap (merged as ashwinvis/myst-reader#49) and the fixes that
+# make `main` usable again. Pinned by commit rather than by branch name, so neither a force
+# push on the pull request nor `sync-uv-lock` can move this repository onto different code
+# without the pin changing here first.
+#
+# Workspace-scoped, exactly like the `override-dependencies` entry it replaces: uv applies it
+# while resolving *this* project, and it reaches nobody installing the theme. uv strips its
+# sources at build time, so the wheel still advertises the plain `pelican-myst-reader>=1.4`
+# above. That is also why the Pelican floor has to stay at 4.11 regardless of what resolves
+# here.
+#
+# Delete this once the reader ships a release carrying the fixes, moving the
+# `pelican-myst-reader` floor to that version and the Pelican floor back to 4.12 in the same
+# change. If the pull request is rejected or reworked instead, the `override-dependencies`
+# entry described above is what comes back.
+sources.pelican-myst-reader.git = "https://github.com/kdeldycke/myst-reader"
+sources.pelican-myst-reader.rev = "a9be9e744b10c862ad591af525673428ae8e9392"
 # pelican-myst-reader 1.4.0 caps myst-parser below 5.0.0, and myst-parser 4.x in turn caps
 # docutils below 0.22, which Pelican 4.12.0 requires. The two are irreconcilable: without
 # this override `uv lock` fails outright with unsatisfiable requirements. An override is the
@@ -177,27 +196,6 @@ build-backend.wheel-exclude = [
   "**/*.egg-info",
   "**/.DS_Store",
 ]
-
-# A temporary source, standing in for a release that does not exist yet, and pinned to the
-# head of https://github.com/ashwinvis/myst-reader/pull/50 rather than to `main`: the branch
-# carries both the dependency uncap (merged as ashwinvis/myst-reader#49) and the fixes that
-# make `main` usable again. Pinned by commit rather than by branch name, so neither a force
-# push on the pull request nor `sync-uv-lock` can move this repository onto different code
-# without the pin changing here first.
-#
-# Workspace-scoped, exactly like the `override-dependencies` entry it replaces: uv applies it
-# while resolving *this* project, and it reaches nobody installing the theme. uv strips its
-# sources at build time, so the wheel still advertises the plain `pelican-myst-reader>=1.4`
-# above. That is also why the Pelican floor has to stay at 4.11 regardless of what resolves
-# here.
-#
-# Delete this once the reader ships a release carrying the fixes, moving the
-# `pelican-myst-reader` floor to that version and the Pelican floor back to 4.12 in the same
-# change. If the pull request is rejected or reworked instead, the `override-dependencies`
-# entry described above is what comes back.
-[tool.uv.sources.pelican-myst-reader]
-git = "https://github.com/kdeldycke/myst-reader"
-rev = "a9be9e744b10c862ad591af525673428ae8e9392"
 
 [tool.djlint]
 profile = "jinja"
