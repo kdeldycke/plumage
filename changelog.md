@@ -7,6 +7,9 @@
 
 ## [`5.0.0` (2026-08-09)](https://github.com/kdeldycke/plumage/compare/v4.0.0...v5.0.0)
 
+> [!NOTE]
+> `5.0.0` is available on [🐍 PyPI](https://pypi.org/project/plumage/5.0.0/) and [🐙 GitHub](https://github.com/kdeldycke/plumage/releases/tag/v5.0.0).
+
 - **Breaking:** Drop support for Python 3.9 and 3.10. The floor is now Python 3.11.
 - **Breaking:** Remove jQuery, `magnific-popup` and `mglass`, and the image auto-zoom they powered.
 - **Breaking:** Only support native Pygments syntax highlighting. The legacy `.codehilite` class is no longer styled.
