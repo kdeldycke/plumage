@@ -49,7 +49,7 @@
 - Drop the stale Python 3.10 classifier, left over from the move to a 3.11 floor.
 - Remove the `pelican-image-process` external-images workaround, the never-read `plumage/postcss.config.js`, and the `box-sizing: content-box !important` override on code blocks.
 - Collapse the seven rules revealing a heading's anchor link into one, using `:is()`, and drop the `!important` they carried.
-- Add a test suite covering settings validation, the HTML transforms, the favicon assets and the rendered templates, across both of the MyST reader's renderers. Run it with `uv run --group test -- pytest`.
+- Add a test suite covering settings validation, the HTML transforms, the favicon assets and the rendered templates, across both of the MyST reader's renderers. Run it with `uv run --group test -- pytest`. Closes [#85](https://github.com/kdeldycke/plumage/issues/85).
 - Run the test suite on Python 3.11 to 3.14 through a new `tests.yaml` workflow.
 - Document code highlighting, admonitions, the `LAYOUT` setting, and every block the theme exposes.
 - Document theme development, recommend [Jampack](https://jampack.divriots.com) for asset optimization, and rewrite the installation instructions around `uv`.

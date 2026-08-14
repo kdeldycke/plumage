@@ -33,7 +33,7 @@ Naming the workflow files individually is deliberate: a bare `repomatic init` al
 
 `init` does not reach into downstream-owned jobs. After it runs, update by hand in `autofix.yaml`, which is the only file left carrying either:
 
-- the `uvx --no-progress 'repomatic==X.Y.Z' pr-body` version strings, one per PR-opening job, so four of them today. Count them rather than trusting this number: a new `sync-` or `format-` job adds one, which is how the count went from three to four. `repomatic lint-repo` catches a stale one as an *error* and exits non-zero, so a missed occurrence reddens the Lint workflow rather than lurking
+- the `uvx --no-progress 'repomatic==X.Y.Z' pr-sync` version strings, one per PR-opening job, so four of them today. Count them rather than trusting this number: a new `sync-` or `format-` job adds one, which is how the count went from three to four. `repomatic lint-repo` catches a stale one as an *error* and exits non-zero, so a missed occurrence reddens the Lint workflow rather than lurking. `repomatic init` realigns them on its own since 7.9.0, so the hand edit is now a check rather than a chore
 - action pins that upstream moved, like `astral-sh/setup-uv`
 
 Only for the bump you are performing, though: `sync-workflow-pins` bumps those same literals on its own schedule, once a release clears the cooldown. The hand edit is what makes them match the `uses:` ref you just moved, in the same commit.
@@ -94,15 +94,21 @@ Three things are declared in more than one place, and nothing in GitHub reconcil
 `repomatic lint-repo` carries these, in `check_python_version_consistency` and `check_runner_images`:
 
 - **The supported Python range**, spread across `requires-python`, the classifiers, and the `tests.yaml` matrix. The upstream check requires the matrix to reach *both ends* of the advertised range rather than cover every version in it: skipping intermediate releases is a legitimate way to cut CI load, advertising a boundary nothing tests is not.
-- **The runner image.** Neither `sync-workflow-pins` nor Dependabot bumps a `runs-on:` literal, the first only rewriting `uses:` refs and the second only the `uvx '<pkg>==X.Y.Z'` and `npm install pkg@X.Y.Z` shapes. So a runner is the one dependency in a workflow nothing moves. Upstream flags `-latest` aliases, and images outside the curated axes in `repomatic.matrix_axes` — which currently includes this repository's `ubuntu-24.04`, see below.
+- **The runner image.** Neither `sync-workflow-pins` nor Dependabot bumps a `runs-on:` literal, the first only rewriting `uses:` refs and the second only the `uvx '<pkg>==X.Y.Z'` and `npm install pkg@X.Y.Z` shapes. So a runner is the one dependency in a workflow nothing moves. Upstream flags `-latest` aliases, and images outside the curated axes in `repomatic.matrix_axes`, whose Linux entries are `ubuntu-26.04` and `ubuntu-26.04-arm` since repomatic 7.10.0 retired `ubuntu-slim`.
 
 `tests/test_vendored_assets.py` keeps the third, since repomatic has no model of a job that runs npm and deliberately leaves the pipeline downstream:
 
-- **Node.** Every job running `npm` sets it up explicitly, rather than inheriting whatever the runner image shipped. Held to a major (`node-version: "22"`, matching what `ubuntu-24.04` ships today) rather than an exact version, precisely because `sync-workflow-pins` cannot read that input: an exact pin there would be the one literal in the repository nothing ever bumps.
+- **Node.** Every job running `npm` sets it up explicitly, rather than inheriting whatever the runner image shipped. Held to a major (`node-version: "22"`) rather than an exact version, precisely because `sync-workflow-pins` cannot read that input: an exact pin there would be the one literal in the repository nothing ever bumps.
 
-#### Open question: `ubuntu-24.04` versus `ubuntu-24.04-arm`
+#### The actionlint runner-label config
 
-The seven downstream jobs sit on `ubuntu-24.04`, which is not among the images `repomatic.matrix_axes` curates (`ubuntu-24.04-arm` and `ubuntu-slim` are its Linux entries), so `lint-repo` flags them. They moved off `ubuntu-slim` for tool availability, never for architecture, and repomatic's own measurements put `ubuntu-24.04-arm` two to three times faster than `ubuntu-slim` on its suite. Worth re-testing on ARM rather than left as an accident.
+`.github/actionlint.yaml` declares `ubuntu-26.04` and `ubuntu-26.04-arm` to actionlint, which validates `runs-on:` against a label list baked into the binary at build time. The pinned 1.7.12 predates both, so without that file the Lint workflow fails on `release.yaml`'s generated `publish-pypi` job, which carries `ubuntu-26.04` with no downstream say in the matter.
+
+Delete the file once a repomatic release carrying its own bundled actionlint config is adopted: merged upstream, unreleased as of 7.11.0. A native config replaces the bundled one rather than layering over it, so leaving it in place would shadow it and silently miss a label added upstream later.
+
+#### Open question: x86 versus ARM
+
+The seven downstream jobs sit on `ubuntu-26.04`, moved there from `ubuntu-24.04` when repomatic 7.10.0 retired `ubuntu-slim` and moved its curated Linux axes to the 26.04 pair. x86 was the low-risk half of that pair, not a measured choice: repomatic's own measurements put ARM two to three times faster on its suite, and the reasons these jobs once needed a fuller image (npm, a project build, djlint's sdist-only dependencies) say nothing about architecture. Worth re-testing on `ubuntu-26.04-arm` rather than left as an accident. `.github/actionlint.yaml` already declares that label, so the move is a `runs-on:` edit and a live CI run.
 
 ### Tools the runner provides are avoided, not pinned
 
@@ -117,6 +123,10 @@ Prefer that move generally. A runner-provided tool has no version anywhere in th
 The managed caller job in each of these files is exactly such a job, and `generate_thin_caller` rebuilds it from scratch with no `permissions:` key. Adding the top-level key would satisfy the lint today and break the workflow on the next re-sync. There is no `[tool.repomatic]` setting to grant scopes to a generated caller job.
 
 The warning is advisory: `lint-repo` exits 0. Least privilege is instead declared per job on the downstream-owned jobs, which survive a re-sync.
+
+### `REPOMATIC_PAT` needs `Administration: Read-only`
+
+Since repomatic 7.9.0 the `lint-repo` job *fails* without that scope rather than skipping the checks that need it, so the Lint workflow stays red until the token is regenerated. The error is explicit: `Token lacks 'Administration: Read-only' permission`. The setup guide issue carries a pre-filled link for the regeneration. Nothing in the repository can fix this: the token is a GitHub account setting.
 
 ### Configuration repomatic reads
 
@@ -150,11 +160,19 @@ A file-modifying job uses one `verb-noun` across all of its dimensions: job ID, 
 
 `sync-pygments-styles` regenerates stylesheets from whatever Pygments release `pyproject.toml` pins, so it syncs from an external source. `format-css` and `format-jinja` reformat files already in the tree. Read-only jobs (`lint-css`, `lint-jinja`) use only a job ID, since they open no pull request.
 
+Since the four PR-opening jobs moved to `pr-sync` (repomatic 7.11.0), that convention is enforced rather than merely observed: the branch defaults to the template file's stem, so a template named for something other than its job silently opens the wrong branch.
+
+### `pr-sync` replaced `create-pull-request`
+
+Each PR-opening job ends in one `repomatic pr-sync --template-file` call, where it used to run a `pr-body` step feeding a `peter-evans/create-pull-request` action. Everything the action took as an input now comes off the template: title and body from its content, labels from its frontmatter, branch from its filename, assignee from the ambient `GITHUB_ACTOR`. It also retires a stale pull request once the drift it reported is gone, which an action step could never do from behind a gate that skipped it.
+
+The one input with no equivalent is `add-paths`. `pr-sync` stages the whole tree, so a job leaving anything else dirty commits it. That is why `format-css` installs stylelint with `--no-package-lock` on top of `--no-save`: the latter only holds npm off `package.json`, and the `package-lock.json` npm would otherwise write at the repository root is not gitignored. `sync-vendored-assets` needs no such flag, since `npm ci` fails rather than rewrite the lock file it installs from. Check this whenever a step is added to one of these jobs.
+
 ## YAML in workflows
 
 - Single-line commands use plain inline `run:`. Multi-line commands use the folded scalar (`>`), which joins lines with spaces and needs no backslash continuations. Reserve the literal scalar (`|`) for preserved newlines: multi-statement scripts and heredocs.
 - Lines may run to 120 characters, not Python's 88. `yamllint` is configured with `line-length: max: 120`.
-- Jobs default to `ubuntu-slim`. Move a job to a fuller image only when a failure proves a tool is missing, and record the reason in a comment above `runs-on:`. All seven downstream jobs sit on `ubuntu-24.04` for that reason: three reach for npm (`sync-vendored-assets`, `format-css`, `lint-css`), two build the project (`sync-pygments-styles`, `tests`), and two have `uvx` build djlint's sdist-only dependencies (`format-jinja`, `lint-jinja`).
+- Every job sits on `ubuntu-26.04`, the x86 half of the curated Linux pair. There is no slimmer tier to opt out of any more, so a `runs-on:` needs no justifying comment: repomatic 7.10.0 retired `ubuntu-slim` and made every job run on a test-matrix runner. A job moving off that image does need one.
 
 ## Theme architecture
 
@@ -183,7 +201,7 @@ The reason they are here at all, rather than on a CDN: nothing reads a version o
 
 Two halves therefore have to move together, and different things move them. Dependabot bumps the version in `package.json`; the sync job replaces the file. `tests/test_vendored_assets.py` guards the seam, and compares bytes only when `node_modules` happens to be installed, since the suite otherwise runs without the npm toolchain. It also fails on `cdnjs.cloudflare.com`, `cdn.jsdelivr.net` or `unpkg.com` reappearing in a template: that list is hand-maintained, so a fourth CDN has to be added to it to be caught.
 
-Bootstrap's *bundle* is the one to copy: it carries Popper, which the dropdowns need. The theme's own `static/js/main.js` is not minified, which is what keeps it out of the job's `add-paths`.
+Bootstrap's *bundle* is the one to copy: it carries Popper, which the dropdowns need. The theme's own `static/js/main.js` sits in the same directory as two of the three copies and is deliberately not minified; the job names each file it copies, so nothing it does can reach `main.js`. That used to be enforced by an `add-paths` glob matching only `*.min.js`, which went with `create-pull-request`.
 
 `main.scss` overrides `$bootstrap-icons-font-dir` to the absolute `/theme/fonts`, because the upstream default is relative to the stylesheet and this one gets bundled into `css/main.min.css`. Only `woff2` is declared: the `woff` beside it is another 180 KB for browsers that no longer need it. The `@import` spells out the `.scss` extension, against a stylelint rule disabled inline right above it, because the package ships a `bootstrap-icons.css` next to it and Sass refuses to pick.
 
@@ -265,6 +283,20 @@ Upstream CI will not catch that, which is worth knowing before reading a green c
 So the pin points at [ashwinvis/myst-reader#50](https://github.com/ashwinvis/myst-reader/pull/50) instead, which restores Docutils as the default, reinstates the commented-out routing, and makes the colon fence handler a `Renderer` method. Against that branch the whole suite passes, including all eight tests `main` reddens. It is pinned by commit on the `kdeldycke` fork rather than by branch name, so nothing moves this repository onto different code without the `rev` changing first, and the branch cannot be deleted out from under CI by anyone else.
 
 A release is still the trigger for undoing any of this, and it has to be read rather than assumed to be `1.4.0` plus the uncap. The renderer table above describes `1.4.0`, which is what PyPI still serves and what every claim in this section rests on, so it is the first thing to re-check against whatever ships. If that pull request is reworked or rejected instead, `override-dependencies = [ "myst-parser>=5" ]` is what comes back, and the eight reds come back with it.
+
+#### The `[tool.uv.sources]` pin blocks the next release
+
+`repomatic lint-deps`, added in 7.10.0, refuses to publish a project whose dependencies do not all resolve from the index its users install from, and a git source is the first thing on its list. Run it and this repository reports `pelican-myst-reader | git | tool.uv.sources | blocks release`.
+
+Nothing is broken until a release is cut. The job is fatal only on a release commit, so ordinary pushes stay green; what it stops is `build-package`, and with it the PyPI upload, the tag, and the GitHub release. It also replaces the release PR checklist's opener with a `[!CAUTION]` block naming the dependency, which is the layer that actually reaches a maintainer in time.
+
+Three ways out, none of them chosen yet:
+
+- `[tool.repomatic] lint-deps.allow = { pelican-myst-reader = "<reason>" }`. The reason renders in the report and the PR banner, so the exemption stays visible. Defensible here specifically because the published wheel advertises a plain `pelican-myst-reader>=1.4` and that resolution was run against the full suite by hand, but it does assert that a source override is safe to ship, which is exactly what the gate exists to doubt.
+- Revert to `override-dependencies = [ "myst-parser>=5" ]`, which `lint-deps` downgrades to a warning since it names a published version. Costs the fork's renderer fixes, so the eight `test_markdown.py` reds come back.
+- Wait for the reader's release, which drops the pin and the problem together.
+
+The documented `sync-dep-sources` idiom (pair the git source with a `.dev` floor naming the awaited release, let the swap PR open on its own) does not apply: the fork branch still declares `1.4.0`, so there is no awaited version to name, and a `.dev` floor would in any case make the published wheel unsatisfiable.
 
 ## Testing
 

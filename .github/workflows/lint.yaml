@@ -36,9 +36,7 @@ jobs:
 
   lint-jinja:
     name: 🃏 Lint Jinja
-    # Not "ubuntu-slim": uvx builds djlint's sdist-only dependencies (editorconfig, cssbeautifier,
-    # jsbeautifier) on install.
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     # Read-only: this job checks out and lints, and opens no pull request. Declared per-job because
     # a top-level `permissions: {}` would starve the managed caller above, which `repomatic init`
     # regenerates without a `permissions:` block of its own.
@@ -55,8 +53,7 @@ jobs:
 
   lint-css:
     name: 💅 Lint CSS
-    # Not "ubuntu-slim": stylelint and its shareable configs are installed from npm.
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     # Read-only: see the lint-jinja job above.
     permissions:
       contents: read

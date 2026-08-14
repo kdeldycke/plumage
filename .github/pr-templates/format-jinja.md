@@ -1,6 +1,7 @@
 ---
 title: Format Jinja
 footer: false
+labels: [🤖 ci]
 ---
 
 > [!TIP]

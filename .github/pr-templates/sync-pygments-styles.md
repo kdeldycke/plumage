@@ -1,6 +1,7 @@
 ---
 title: Sync Pygments styles
 footer: false
+labels: [🔗 dependencies]
 ---
 
 > [!TIP]

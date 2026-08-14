@@ -61,8 +61,7 @@ jobs:
 
   tests:
     name: 🔬 Tests / py${{ matrix.python-version }}
-    # Not "ubuntu-slim": the suite imports the theme, so the project has to build first.
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     # Read-only: this job checks out and runs the suite, and opens no pull request. Declared
     # per-job because the top-level `permissions: {}` above otherwise leaves it with no scope.
     permissions:

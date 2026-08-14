@@ -34,10 +34,7 @@ jobs:
     # from whatever releases the lock file pins, the way sync-pygments-styles regenerates the
     # stylesheets. That is what puts their versions in package.json, where Dependabot bumps
     # them: nothing reads a version out of a URL in a template.
-    #
-    # Not "ubuntu-slim": the copies have to come from the exact pinned releases, so this job
-    # installs the npm tree from the lock file.
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     permissions:
       contents: write
       pull-requests: write
@@ -64,32 +61,27 @@ jobs:
           cp node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2 static/fonts/
           cp node_modules/bootstrap/dist/js/bootstrap.bundle.min.js static/js/
           cp node_modules/masonry-layout/dist/masonry.pkgd.min.js static/js/
-      - id: pr-metadata
+      - name: Sync pull request
+        # One call in place of the pr-body step and the create-pull-request action it fed.
+        # Everything the action took as an input now comes off the template: the frontmatter
+        # carries the labels, the filename names the branch, and the assignee defaults to the
+        # workflow actor. It also retires the pull request once the copies stop drifting,
+        # which an action step cannot do from behind a gate that skipped it.
+        #
+        # The one thing it does not take is create-pull-request's add-paths allowlist: it
+        # stages the whole tree. Nothing leaks here regardless, since node_modules is
+        # gitignored and `npm ci` fails rather than rewrite the lock file it installs from.
+        # The jobs below that install npm packages outside a lock file need a flag for that;
+        # see format-css.
+        env:
+          GH_TOKEN: ${{ secrets.REPOMATIC_PAT || github.token }}
         run: >
-          uvx --no-progress 'repomatic==7.11.0' pr-body --output-format github-actions
-          --template-file .github/pr-templates/sync-vendored-assets.md
-          --output "$GITHUB_OUTPUT"
-      - uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
-        with:
-          token: ${{ secrets.REPOMATIC_PAT || github.token }}
-          assignees: ${{ github.actor }}
-          commit-message: ${{ steps.pr-metadata.outputs.commit_message }}
-          title: ${{ steps.pr-metadata.outputs.title }}
-          body: ${{ steps.pr-metadata.outputs.body }}
-          labels: "🔗 dependencies"
-          branch: sync-vendored-assets
-          delete-branch: true
-          # Only the vendored copies, so the npm install above cannot leak into the pull
-          # request. The theme's own static/js/main.js is not minified, so it is never matched.
-          add-paths: |
-            plumage/static/fonts/*.woff2
-            plumage/static/js/*.min.js
+          uvx --no-progress 'repomatic==7.11.0'
+          pr-sync --template-file .github/pr-templates/sync-vendored-assets.md
 
   sync-pygments-styles:
     name: 🎨 Sync Pygments styles
-    # Not "ubuntu-slim": the styles must come from the exact Pygments release the theme depends on,
-    # so this job builds the project.
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     permissions:
       contents: write
       pull-requests: write
@@ -114,28 +106,19 @@ jobs:
               css = HtmlFormatter(style=style).get_style_defs(".highlight")
               (target / f"{style}.css").write_text(f"{css}\n")
           EOF
-      - id: pr-metadata
+      - name: Sync pull request
+        # See the sync-vendored-assets job above for what the template supplies. Nothing but
+        # the generated stylesheets can be dirty here: `uv run --frozen` resolves from
+        # uv.lock without writing to it.
+        env:
+          GH_TOKEN: ${{ secrets.REPOMATIC_PAT || github.token }}
         run: >
-          uvx --no-progress 'repomatic==7.11.0' pr-body --output-format github-actions
-          --template-file .github/pr-templates/sync-pygments-styles.md
-          --output "$GITHUB_OUTPUT"
-      - uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
-        with:
-          token: ${{ secrets.REPOMATIC_PAT || github.token }}
-          assignees: ${{ github.actor }}
-          commit-message: ${{ steps.pr-metadata.outputs.commit_message }}
-          title: ${{ steps.pr-metadata.outputs.title }}
-          body: ${{ steps.pr-metadata.outputs.body }}
-          labels: "🔗 dependencies"
-          branch: sync-pygments-styles
-          delete-branch: true
-          add-paths: |
-            plumage/static/css/pygments/*.css
+          uvx --no-progress 'repomatic==7.11.0'
+          pr-sync --template-file .github/pr-templates/sync-pygments-styles.md
 
   format-css:
     name: 💅 Format CSS
-    # Not "ubuntu-slim": stylelint and its shareable configs are installed from npm.
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     permissions:
       contents: write
       pull-requests: write
@@ -153,9 +136,14 @@ jobs:
         # added there would ship into those builds.
         # Pinned to the same releases as the lint-css job in lint.yaml, which sync-workflow-pins
         # bumps in lockstep.
+        # --no-package-lock because --no-save only holds npm off package.json: without it npm
+        # writes a package-lock.json at the repository root, which is not gitignored and which
+        # the pr-sync step below would commit into the pull request. create-pull-request used
+        # to filter that out with add-paths; pr-sync stages the whole tree instead, so the
+        # stray file has to be prevented rather than skipped.
         # zizmor: ignore[adhoc-packages]
         run: >
-          npm install --no-save
+          npm install --no-save --no-package-lock
           stylelint@17.14.1
           stylelint-config-standard@40.0.0
           stylelint-config-sass-guidelines@13.0.0
@@ -165,32 +153,19 @@ jobs:
         # opened with whatever stylelint managed to fix on its own. What it could not fix is
         # reported by the lint workflow.
         run: npx stylelint --fix "plumage/static/**/*.{css,scss}" || true
-      - id: pr-metadata
+      - name: Sync pull request
+        # See the sync-vendored-assets job above for what the template supplies. What the npm
+        # install leaves behind is node_modules, which is gitignored, and the lock file the
+        # --no-package-lock flag above stops it writing.
+        env:
+          GH_TOKEN: ${{ secrets.REPOMATIC_PAT || github.token }}
         run: >
-          uvx --no-progress 'repomatic==7.11.0' pr-body --output-format github-actions
-          --template-file .github/pr-templates/format-css.md
-          --output "$GITHUB_OUTPUT"
-      - uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
-        with:
-          token: ${{ secrets.REPOMATIC_PAT || github.token }}
-          assignees: ${{ github.actor }}
-          commit-message: ${{ steps.pr-metadata.outputs.commit_message }}
-          title: ${{ steps.pr-metadata.outputs.title }}
-          body: ${{ steps.pr-metadata.outputs.body }}
-          labels: "🤖 ci"
-          branch: format-css
-          delete-branch: true
-          # Only commit stylesheets, so the npm install above cannot leak into the pull request. In
-          # a git pathspec "*" spans directory separators, so these reach any depth of static/.
-          add-paths: |
-            plumage/static/*.css
-            plumage/static/*.scss
+          uvx --no-progress 'repomatic==7.11.0'
+          pr-sync --template-file .github/pr-templates/format-css.md
 
   format-jinja:
     name: 🃏 Format Jinja
-    # Not "ubuntu-slim": uvx builds djlint's sdist-only dependencies (editorconfig, cssbeautifier,
-    # jsbeautifier) on install.
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     permissions:
       contents: write
       pull-requests: write
@@ -203,20 +178,11 @@ jobs:
         run: >
           uvx --no-progress 'djlint==1.43.1'
           --reformat --format-css --format-js --warn plumage/templates/*.html
-      - id: pr-metadata
+      - name: Sync pull request
+        # See the sync-vendored-assets job above for what the template supplies. djlint writes
+        # nothing but the templates it reformats, so the tree holds only those.
+        env:
+          GH_TOKEN: ${{ secrets.REPOMATIC_PAT || github.token }}
         run: >
-          uvx --no-progress 'repomatic==7.11.0' pr-body --output-format github-actions
-          --template-file .github/pr-templates/format-jinja.md
-          --output "$GITHUB_OUTPUT"
-      - uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
-        with:
-          token: ${{ secrets.REPOMATIC_PAT || github.token }}
-          assignees: ${{ github.actor }}
-          commit-message: ${{ steps.pr-metadata.outputs.commit_message }}
-          title: ${{ steps.pr-metadata.outputs.title }}
-          body: ${{ steps.pr-metadata.outputs.body }}
-          labels: "🤖 ci"
-          branch: format-jinja
-          delete-branch: true
-          add-paths: |
-            plumage/templates/*.html
+          uvx --no-progress 'repomatic==7.11.0'
+          pr-sync --template-file .github/pr-templates/format-jinja.md

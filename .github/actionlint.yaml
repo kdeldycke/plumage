@@ -1,0 +1,19 @@
+# actionlint validates every `runs-on:` against a list of GitHub-hosted runner labels baked into
+# the binary when it was built, so that list trails GitHub's image announcements by however long
+# it takes actionlint to cut a release. The pinned 1.7.12 predates `ubuntu-26.04`, which repomatic
+# 7.10.0 made the default for its generated workflows: `release.yaml:publish-pypi` carries it with
+# no downstream say in the matter, and the seven downstream jobs were moved onto it to match.
+# Without this file the Lint workflow fails on a value repomatic itself wrote.
+#
+# `self-hosted-runner.labels` is actionlint's documented escape hatch for an unrecognized label.
+# It implies nothing about the runners being self-hosted.
+# https://github.com/rhysd/actionlint/blob/main/docs/config.md
+#
+# Delete this file once a repomatic release carrying its own bundled actionlint config is adopted
+# (merged upstream, unreleased as of 7.11.0). A native config here REPLACES the bundled one rather
+# than layering over it, so leaving this in place would shadow it and silently miss any label
+# added upstream later.
+self-hosted-runner:
+  labels:
+    - ubuntu-26.04
+    - ubuntu-26.04-arm

@@ -1,6 +1,7 @@
 ---
 title: Format CSS style
 footer: false
+labels: [🤖 ci]
 ---
 
 > [!TIP]

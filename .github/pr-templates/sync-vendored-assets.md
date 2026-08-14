@@ -1,6 +1,7 @@
 ---
 title: Sync vendored assets
 footer: false
+labels: [🔗 dependencies]
 ---
 
 > [!TIP]
