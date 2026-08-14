@@ -13,7 +13,7 @@ permissions: {}
 jobs:
 
   autofix:
-    uses: kdeldycke/repomatic/.github/workflows/autofix.yaml@ab43527b67361553b1c8539e8f3d9e6e2013b98c # v7.8.0
+    uses: kdeldycke/repomatic/.github/workflows/autofix.yaml@66650046de54a8032f4c38358b7ef8c9ae39e7b5 # v7.11.0
     permissions:
       contents: write
       issues: write
@@ -66,7 +66,7 @@ jobs:
           cp node_modules/masonry-layout/dist/masonry.pkgd.min.js static/js/
       - id: pr-metadata
         run: >
-          uvx --no-progress 'repomatic==7.8.0' pr-body --output-format github-actions
+          uvx --no-progress 'repomatic==7.11.0' pr-body --output-format github-actions
           --template-file .github/pr-templates/sync-vendored-assets.md
           --output "$GITHUB_OUTPUT"
       - uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
@@ -116,7 +116,7 @@ jobs:
           EOF
       - id: pr-metadata
         run: >
-          uvx --no-progress 'repomatic==7.8.0' pr-body --output-format github-actions
+          uvx --no-progress 'repomatic==7.11.0' pr-body --output-format github-actions
           --template-file .github/pr-templates/sync-pygments-styles.md
           --output "$GITHUB_OUTPUT"
       - uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
@@ -167,7 +167,7 @@ jobs:
         run: npx stylelint --fix "plumage/static/**/*.{css,scss}" || true
       - id: pr-metadata
         run: >
-          uvx --no-progress 'repomatic==7.8.0' pr-body --output-format github-actions
+          uvx --no-progress 'repomatic==7.11.0' pr-body --output-format github-actions
           --template-file .github/pr-templates/format-css.md
           --output "$GITHUB_OUTPUT"
       - uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
@@ -205,7 +205,7 @@ jobs:
           --reformat --format-css --format-js --warn plumage/templates/*.html
       - id: pr-metadata
         run: >
-          uvx --no-progress 'repomatic==7.8.0' pr-body --output-format github-actions
+          uvx --no-progress 'repomatic==7.11.0' pr-body --output-format github-actions
           --template-file .github/pr-templates/format-jinja.md
           --output "$GITHUB_OUTPUT"
       - uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
