@@ -49,7 +49,7 @@ jobs:
         # Version-pinned so sync-workflow-pins bumps it past the minimum-release-age cooldown.
         # Rules and profile come from [tool.djlint] in pyproject.toml. --github-output renders each
         # finding as a workflow annotation, so they land on the diff instead of only in the log.
-        run: uvx --no-progress 'djlint==1.43.1' --lint --github-output plumage/templates/*.html
+        run: uvx --no-progress 'djlint==1.44.2' --lint --github-output plumage/templates/*.html
 
   lint-css:
     name: 💅 Lint CSS
