@@ -1,9 +1,6 @@
 # Changelog
 
-## [`5.0.1.dev0` (unreleased)](https://github.com/kdeldycke/plumage/compare/v5.0.0...main)
-
-> [!WARNING]
-> This version is **not released yet** and is under active development.
+## [`5.0.1` (2026-08-17)](https://github.com/kdeldycke/plumage/compare/v5.0.0...v5.0.1)
 
 ## [`5.0.0` (2026-08-09)](https://github.com/kdeldycke/plumage/compare/v4.0.0...v5.0.0)
 

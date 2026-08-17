@@ -10,7 +10,7 @@ requires = [ "uv-build>=0.8" ]
 [project]
 # Docs: https://packaging.python.org/en/latest/guides/writing-pyproject-toml/
 name = "plumage"
-version = "5.0.1.dev0"
+version = "5.0.1"
 description = "🪶 Clean and tidy theme for Pelican, the static site generator"
 readme = "readme.md"
 keywords = [
@@ -104,7 +104,7 @@ dependencies = [
 ]
 urls.Changelog = "https://github.com/kdeldycke/plumage/blob/main/changelog.md"
 urls.Documentation = "https://github.com/kdeldycke/plumage#settings"
-urls.Download = "https://github.com/kdeldycke/plumage/releases/tag/v5.0.1.dev0"
+urls.Download = "https://github.com/kdeldycke/plumage/releases/tag/v5.0.1"
 urls.Funding = "https://github.com/sponsors/kdeldycke"
 urls.Homepage = "https://github.com/kdeldycke/plumage"
 urls.Issues = "https://github.com/kdeldycke/plumage/issues"
@@ -282,7 +282,7 @@ ini_options.markers = [
 ini_options.xfail_strict = true
 
 [tool.bumpversion]
-current_version = "5.0.1.dev0"
+current_version = "5.0.1"
 # Parse versions with an optional .devN suffix (PEP 440).
 parse = "(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)(\\.dev(?P<dev>\\d+))?"
 serialize = [
