@@ -76,7 +76,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.REPOMATIC_PAT || github.token }}
         run: >
-          uvx --no-progress 'repomatic==7.11.0'
+          uvx --no-progress --exclude-newer-package repomatic=P0D 'repomatic==7.11.0'
           pr-sync --template-file .github/pr-templates/sync-vendored-assets.md
 
   sync-pygments-styles:
@@ -113,7 +113,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.REPOMATIC_PAT || github.token }}
         run: >
-          uvx --no-progress 'repomatic==7.11.0'
+          uvx --no-progress --exclude-newer-package repomatic=P0D 'repomatic==7.11.0'
           pr-sync --template-file .github/pr-templates/sync-pygments-styles.md
 
   format-css:
@@ -160,7 +160,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.REPOMATIC_PAT || github.token }}
         run: >
-          uvx --no-progress 'repomatic==7.11.0'
+          uvx --no-progress --exclude-newer-package repomatic=P0D 'repomatic==7.11.0'
           pr-sync --template-file .github/pr-templates/format-css.md
 
   format-jinja:
@@ -176,7 +176,7 @@ jobs:
         # Pinned to the same release as the lint-jinja job in lint.yaml, which sync-workflow-pins
         # bumps in lockstep. Rules and profile come from [tool.djlint] in pyproject.toml.
         run: >
-          uvx --no-progress 'djlint==1.43.1'
+          uvx --no-progress 'djlint==1.44.2'
           --reformat --format-css --format-js --warn plumage/templates/*.html
       - name: Sync pull request
         # See the sync-vendored-assets job above for what the template supplies. djlint writes
@@ -184,5 +184,5 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.REPOMATIC_PAT || github.token }}
         run: >
-          uvx --no-progress 'repomatic==7.11.0'
+          uvx --no-progress --exclude-newer-package repomatic=P0D 'repomatic==7.11.0'
           pr-sync --template-file .github/pr-templates/format-jinja.md
