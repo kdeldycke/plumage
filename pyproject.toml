@@ -229,11 +229,24 @@ ignore = "T028"
 per-file-ignores."archives.html" = "H025"
 
 [tool.typos]
-default.extend-identifiers = { Github = "GitHub", IOS = "iOS", Javascript = "JavaScript", MacOS = "macOS", PyPi = "PyPI", Typescript = "TypeScript" }
+# Correct capitalization for proper nouns, plus "PATCHed"
+# and "PNGs": typos cuts an all-caps run before its trailing lowercase letters,
+# so "PNGs" is checked as "PN" + "Gs" and rewritten to "ONGs", and "PATCHed" as
+# "PATC" + "Hed" and rewritten to "PATCHead". Only an identifier accept
+# suppresses either, since the checker never sees the whole word. Any acronym
+# carrying a lowercase suffix needs its own entry here.
+default.extend-identifiers = { Github = "GitHub", IOS = "iOS", Javascript = "JavaScript", MacOS = "macOS", PATCHed = "PATCHed", PNGs = "PNGs", PyPi = "PyPI", Typescript = "TypeScript" }
 # False positives: "astroid" is a Python AST library (not "asteroid"); "oject" appears when "pyproject.toml" is split across line breaks in CLI help output; "sur" is macOS 11 Big Sur and Homebrew's big_sur bottle tag (not "sure").
 default.extend-words = { astroid = "astroid", oject = "oject", sur = "sur", certifi = "certifi", ges = "ges" }
 # Skip content between <!-- typos:off --> and <!-- typos:on --> markers.
 default.extend-ignore-re = [ "(?s)<!-- typos:off -->.*?<!-- typos:on -->" ]
+# Skip the content of SVG files. A terminal capture renders each run of
+# same-styled characters as one <text> element, so a word cut at a run boundary
+# leaves a fragment the checker reads as a misspelling. Correcting it in place
+# adds a letter to a run of fixed width, while the next run still carries the
+# rest of the word, so the picture gains a doubled letter. typos ships an "svg"
+# file type, so no glob is needed here. Filenames stay checked.
+type.svg.check-file = false
 # Skip the vendored minified bundles, whose mangled identifiers read as one long typo.
 # Reasoning in claude.md, since a re-sync drops comments written here.
 files.extend-exclude = [ "*.min.js" ]

@@ -44,7 +44,7 @@ concurrency:
 # minimum-release-age`. repomatic's own test suite enforces that upstream; a
 # synced copy is kept in step by hand. Deliberate bypasses are per-package CLI
 # flags (`--exclude-newer-package`, `--min-release-age-exclude`).
-# See claude.md for the rationale.
+# See https://repomatic.net/workflows#install-time-cooldown for the rationale.
 env:
   NPM_CONFIG_MIN_RELEASE_AGE: 7
   UV_EXCLUDE_NEWER: "1 week"
@@ -52,7 +52,7 @@ env:
 jobs:
 
   build:
-    uses: kdeldycke/repomatic/.github/workflows/_release-build.yaml@66650046de54a8032f4c38358b7ef8c9ae39e7b5 # v7.11.0
+    uses: kdeldycke/repomatic/.github/workflows/_release-build.yaml@94a5f543d75da9342a1ad315251988360e580ab1 # v7.17.0
     permissions:
       id-token: write
       issues: write
@@ -74,18 +74,19 @@ jobs:
       # `{"include":[]}` matrix, which expands the job to zero runs and skips it cleanly.
       matrix: ${{ fromJSON(needs.build.outputs.release_commits_matrix || '{"include":[]}') }}
     runs-on: ubuntu-26.04
+    timeout-minutes: 15
     permissions:
       # OIDC only: the PyPI Trusted Publishing token. The GitHub release notes
       # (with their PyPI admonition) are owned end to end by the engine lane's
       # create-release job, so this lane needs no write access to the repo.
       id-token: write
     steps:
-      - uses: kdeldycke/repomatic/.github/actions/publish-pypi@66650046de54a8032f4c38358b7ef8c9ae39e7b5 # v7.11.0
+      - uses: kdeldycke/repomatic/.github/actions/publish-pypi@94a5f543d75da9342a1ad315251988360e580ab1 # v7.17.0
         with:
           artifact-name: ${{ github.event.repository.name }}-${{ matrix.short_sha }}
 
   release:
-    uses: kdeldycke/repomatic/.github/workflows/_release-engine.yaml@66650046de54a8032f4c38358b7ef8c9ae39e7b5 # v7.11.0
+    uses: kdeldycke/repomatic/.github/workflows/_release-engine.yaml@94a5f543d75da9342a1ad315251988360e580ab1 # v7.17.0
     needs: build
     permissions:
       attestations: write
@@ -95,4 +96,3 @@ jobs:
     secrets:
       REPOMATIC_PAT: ${{ secrets.REPOMATIC_PAT }}
       VIRUSTOTAL_API_KEY: ${{ secrets.VIRUSTOTAL_API_KEY }}
-
