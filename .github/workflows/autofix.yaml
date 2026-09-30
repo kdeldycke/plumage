@@ -149,7 +149,7 @@ jobs:
         # zizmor: ignore[adhoc-packages]
         run: >
           npm install --no-save
-          stylelint@17.14.1
+          stylelint@17.15.0
           stylelint-config-standard@40.0.0
           stylelint-config-sass-guidelines@13.0.0
       - name: Autofix stylesheets
@@ -185,7 +185,7 @@ jobs:
         # Pinned to the same release as the lint-jinja job in lint.yaml, which sync-workflow-pins
         # bumps in lockstep. Rules and profile come from [tool.djlint] in pyproject.toml.
         run: >
-          uvx --no-progress 'djlint==1.43.1'
+          uvx --no-progress 'djlint==1.46.2'
           --reformat --format-css --format-js --warn plumage/templates/*.html
       - name: Sync pull request
         # See the sync-vendored-assets job above for what the template and --add-path supply.
