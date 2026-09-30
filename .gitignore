@@ -538,6 +538,10 @@ $RECYCLE.BIN/
 # Claude Code local files.
 .claude/scheduled_tasks.lock
 .claude/settings.local.json
+**/.claude/.cc-writes/
+
+# Cloudflare wrangler local state.
+.wrangler/
 
 # Sphinx linkcheck output.
 docs/_linkcheck/
