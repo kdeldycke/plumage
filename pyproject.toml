@@ -53,46 +53,30 @@ classifiers = [
   "Typing :: Typed",
 ]
 dependencies = [
-  # Minifies the compiled stylesheet, as the last filter of the {% assets %} pipeline in
-  # base.html. webassets' cssmin filter imports the module by name. The floor is also the
-  # ceiling in practice: 0.2.0 is the last release the project ever published.
+  # Minifies the stylesheet as the last filter of the {% assets %} pipeline in base.html:
+  # webassets' cssmin filter imports it by name. 0.2.0 is the last release ever published,
+  # so the floor is also the ceiling.
   # XXX Unmaintained!
   "cssmin>=0.2",
-  # Compiles the theme's SCSS, through webassets' libsass filter in that same pipeline.
-  # No API boundary to anchor this one to: the filter only ever calls sass.compile() with
-  # output_style, include_paths and string/filename, stable across the whole 0.x line. 0.22
-  # is just the oldest release checked to install and compile across our Python range, so
-  # treat it as a tested floor rather than a real minimum.
+  # Compiles the SCSS, through webassets' libsass filter. No API sets this floor: the
+  # filter's sass.compile() call is stable across 0.x, and 0.22 is the oldest release
+  # checked to install and compile on the supported Python range.
   "libsass>=0.22",
-  # 4.11, not the 4.12 this theme is developed and tested against. pelican-myst-reader 1.4.0
-  # caps myst-parser below 5.0.0, which holds docutils below the 0.22 Pelican 4.12.0 requires,
-  # so a floor of 4.12 makes the published package unsatisfiable: pip and uv both refuse it.
-  # https://github.com/ashwinvis/myst-reader/pull/49 uncapped the reader and was merged, but
-  # no release carries it yet, so PyPI still serves 1.4.0 and its cap. The
-  # override-dependencies entry below hides that inside this repo and is invisible to anyone
-  # installing the theme, so the floor has to stay under 4.12 until that release lands. See
-  # the comment on the override for why the merge alone does not settle it.
-  # Two consequences worth remembering. uv.lock still resolves 4.12.0, so CI only ever
-  # exercises 4.12, while a fresh install resolves 4.11 with myst-parser 4 and docutils 0.21.
-  # That combination was run against the full suite by hand when the floor moved, and all of
-  # it passed, but nothing keeps it that way: a matrix cell resolving without the override is
-  # what would. And requires-python stays at 3.11 as the theme's own choice, no longer as a
-  # consequence of Pelican's floor.
+  # 4.11, not the 4.12 uv.lock resolves: pelican-myst-reader 1.4.0 caps myst-parser below 5,
+  # which holds docutils below the 0.22 Pelican 4.12 requires, so a 4.12 floor is
+  # unsatisfiable from PyPI. See the myst-parser override in claude.md.
   "pelican>=4.11",
-  # Parses the site's Markdown, and gives it the MyST directive syntax on top: the
-  # ```{note} fenced blocks in particular. It claims every extension Pelican's own
-  # MarkdownReader answers to (md, markdown, mkd, mdown) plus mkdn, mdwn, Rmd and myst,
-  # and registers late enough to win all of them, so Python Markdown would never see a
-  # file and the `markdown` extra is not worth carrying.
+  # Parses the site's Markdown and adds MyST directives, like ```{note} fences, taking every
+  # Markdown extension from Pelican's MarkdownReader. 1.4.0 is the release the renderer table
+  # in claude.md describes, on myst-parser 4 and Sphinx 8.
   "pelican-myst-reader>=1.4",
   # setup_webassets() hands the theme's configuration over as conf["WEBASSETS_CONFIG"].
   # 2.0.0 introduced that key, falling back to the older ASSET_CONFIG; 1.0.0 reads neither,
   # so every filter would run unconfigured instead of failing.
   "pelican-webassets>=2",
-  # Generates the stylesheets under static/css/pygments/, one per style, which CODE_STYLE
-  # picks between and ALL_CODE_STYLES validates against. 2.18.0 is the first release to know
-  # all 49 the theme ships: 2.17.2 is missing `coffee`, so sync-pygments-styles would quietly
-  # stop refreshing a stylesheet that is still shipped and still accepted as a CODE_STYLE.
+  # Generates the stylesheets under static/css/pygments/, one per CODE_STYLE. 2.18.0 is the
+  # first release to know all 49 the theme ships: 2.17.2 lacks `coffee`, which
+  # sync-pygments-styles would then stop refreshing while CODE_STYLE still accepts it.
   "pygments>=2.18",
   # postcss_config() installs the theme's Node dependencies through NPMPackage(...).install().
   # 0.2.0 is where that method arrived: 0.1.x exposes the class without it.
@@ -112,17 +96,23 @@ urls.Repository = "https://github.com/kdeldycke/plumage"
 
 [dependency-groups]
 test = [
-  "pytest>=8.4",
-  # Both are required by the addopts under [tool.pytest.ini_options].
+  # 9.0 is the first release reading [tool.pytest] natively. Older ones only look for
+  # [tool.pytest.ini_options], and silently run without this project's addopts.
+  "pytest>=9",
+  # Required by --cov and --cov-precision in the [tool.pytest] addopts. 6.1 is the first
+  # release whose term report honors --cov-precision; 7 is a tested floor above it.
   "pytest-cov>=7",
+  # Required by --numprocesses=auto in the [tool.pytest] addopts. No API sets this floor:
+  # 3.8 added nothing those addopts use, and it is the release CI runs.
   "pytest-xdist[psutil]>=3.8",
   # test_vendored_assets.py parses .github/workflows/. Pelican pulls PyYAML in anyway, but
   # this suite is the only thing importing it, so it says so instead of relying on that.
   "pyyaml>=6",
-  # Stubs for the above. PyYAML ships none of its own, so mypy fails on the import rather
-  # than falling back to Any, and the lint-types job syncs with --all-groups so this is
-  # where it picks them up. Preferred over an ignore_missing_imports override, which would
-  # silence the error and give up the checking with it.
+]
+typing = [
+  # Stubs for the pyyaml test dependency: PyYAML ships none, so mypy fails on its import.
+  # Preferred over an ignore_missing_imports override, which silences the error and the
+  # checking with it. 6 matches the pyyaml floor.
   "types-pyyaml>=6",
 ]
 
@@ -261,16 +251,7 @@ warn_unused_configs = true
 overrides = [ { module = [ "pelican.*", "pynpm", "pyquery" ], ignore_missing_imports = true } ]
 
 [tool.pytest]
-# XXX repomatic 7.4.1 generates this table with bare keys, which resolve to
-# tool.pytest.addopts and friends. pytest ignores those outright: the path it reads is
-# tool.pytest.ini_options. The generated header is left as it comes and every key below
-# carries an `ini_options.` prefix instead, which TOML resolves to where pytest looks.
-# That prefix is what the next `repomatic init pytest` strips, so it is what to re-check
-# after a sync: the header reads [tool.pytest] either way and settles nothing.
-# testpaths restricts collection to the test suite, so pytest never descends into the
-# package or an installed copy of it in dual-copy builds.
-ini_options.testpaths = [ "tests" ]
-ini_options.addopts = [
+addopts = [
   # Show the N slowest tests.
   "--durations=10",
   # Coverage settings - customize the package name for your project. The test
@@ -288,11 +269,14 @@ ini_options.addopts = [
   # copy of the package coexists with the source tree, as in distro builds.
   "--import-mode=importlib",
 ]
-ini_options.markers = [
+markers = [
   "once: Tests that only need to run once, not across the full CI matrix.",
 ]
+# testpaths restricts collection to the test suite, so pytest never descends into the
+# package or an installed copy of it in dual-copy builds.
+testpaths = [ "tests" ]
 # Make sure tests that are expected to fail do not resurrect and start working.
-ini_options.xfail_strict = true
+xfail_strict = true
 
 [tool.bumpversion]
 current_version = "5.0.1.dev0"

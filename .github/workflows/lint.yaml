@@ -40,6 +40,7 @@ jobs:
   lint-jinja:
     name: 🃏 Lint Jinja
     runs-on: ubuntu-26.04
+    timeout-minutes: 15
     # Read-only: this job checks out and lints, and opens no pull request. Declared per-job because
     # a top-level `permissions: {}` would starve the managed caller above, which `repomatic init`
     # regenerates without a `permissions:` block of its own.
@@ -47,7 +48,9 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          version: "0.12.17"
       - name: Lint Jinja
         # Version-pinned so sync-workflow-pins bumps it past the minimum-release-age cooldown.
         # Rules and profile come from [tool.djlint] in pyproject.toml. --github-output renders each
@@ -57,6 +60,7 @@ jobs:
   lint-css:
     name: 💅 Lint CSS
     runs-on: ubuntu-26.04
+    timeout-minutes: 15
     # Read-only: see the lint-jinja job above.
     permissions:
       contents: read

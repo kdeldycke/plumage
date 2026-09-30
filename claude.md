@@ -24,17 +24,19 @@ Regenerate rather than search-and-replace, so codegen changes (new job permissio
 ```shell-session
 $ uvx --no-progress 'repomatic==X.Y.Z' init \
     workflows/autofix.yaml workflows/autolock.yaml workflows/cancel-runs.yaml \
-    workflows/changelog.yaml workflows/debug.yaml workflows/docs.yaml \
-    workflows/labels.yaml workflows/lint.yaml workflows/release.yaml \
-    workflows/tests.yaml publish-pypi-action
+    workflows/changelog.yaml workflows/docs.yaml workflows/labels.yaml \
+    workflows/lint.yaml workflows/release.yaml workflows/tests.yaml \
+    publish-pypi-action
 ```
 
 Naming the workflow files individually is deliberate: a bare `repomatic init` also materializes labels config and a changelog, and an unqualified `workflows` selector bypasses scope gating.
 
+`debug.yaml` is not in the list: repomatic 7.14.0 made it opt-in, and naming it while `[tool.repomatic] debug.sync` is unset writes nothing. Set that key to bring it back.
+
 `init` does not reach into downstream-owned jobs. After it runs, update by hand in `autofix.yaml`, which is the only file left carrying either:
 
-- the `uvx --no-progress 'repomatic==X.Y.Z' pr-sync` version strings, one per PR-opening job, so four of them today. Count them rather than trusting this number: a new `sync-` or `format-` job adds one, which is how the count went from three to four. `repomatic lint-repo` catches a stale one as an *error* and exits non-zero, so a missed occurrence reddens the Lint workflow rather than lurking. `repomatic init` realigns them on its own since 7.9.0, so the hand edit is now a check rather than a chore
-- action pins that upstream moved, like `astral-sh/setup-uv`
+- the `uvx --no-progress --exclude-newer-package repomatic=P0D 'repomatic==X.Y.Z' pr-sync` version strings, one per PR-opening job, so four of them today. Count them rather than trusting this number: a new `sync-` or `format-` job adds one, which is how the count went from three to four. `repomatic lint-repo` catches a stale one as an *error* and exits non-zero, and fails one missing the `--exclude-newer-package` exemption the same way, so a missed occurrence reddens the Lint workflow rather than lurking. `repomatic init` realigns them on its own, exemption included, so the hand edit is now a check rather than a chore
+- action pins that upstream moved, like `astral-sh/setup-uv`, and the uv `version:` each of its steps carries. `lint-repo` warns when a step omits it, when two steps disagree, or when the pinned action cannot checksum-verify that uv, so match the managed `.github/actions/publish-pypi/action.yaml`
 
 Only for the bump you are performing, though: `sync-workflow-pins` bumps those same literals on its own schedule, once a release clears the cooldown. The hand edit is what makes them match the `uses:` ref you just moved, in the same commit.
 
@@ -94,21 +96,15 @@ Three things are declared in more than one place, and nothing in GitHub reconcil
 `repomatic lint-repo` carries these, in `check_python_version_consistency` and `check_runner_images`:
 
 - **The supported Python range**, spread across `requires-python`, the classifiers, and the `tests.yaml` matrix. The upstream check requires the matrix to reach *both ends* of the advertised range rather than cover every version in it: skipping intermediate releases is a legitimate way to cut CI load, advertising a boundary nothing tests is not.
-- **The runner image.** Neither `sync-workflow-pins` nor Dependabot bumps a `runs-on:` literal, the first only rewriting `uses:` refs and the second only the `uvx '<pkg>==X.Y.Z'` and `npm install pkg@X.Y.Z` shapes. So a runner is the one dependency in a workflow nothing moves. Upstream flags `-latest` aliases, and images outside the curated axes in `repomatic.matrix_axes`, whose Linux entries are `ubuntu-26.04` and `ubuntu-26.04-arm` since repomatic 7.10.0 retired `ubuntu-slim`.
+- **The runner image.** Neither `sync-workflow-pins` nor Dependabot bumps a `runs-on:` literal. The managed autofix caller's weekly `sync-runner-images` job does: it opens a pull request rewriting every literal `runs-on:`, the seven downstream jobs included, once GitHub retires the image or lists a newer version of it. Upstream flags `-latest` aliases, and images outside the curated axes in `repomatic.matrix_axes`, whose Linux entries are `ubuntu-26.04` and `ubuntu-26.04-arm` since repomatic 7.10.0 retired `ubuntu-slim`.
 
 `tests/test_vendored_assets.py` keeps the third, since repomatic has no model of a job that runs npm and deliberately leaves the pipeline downstream:
 
 - **Node.** Every job running `npm` sets it up explicitly, rather than inheriting whatever the runner image shipped. Held to a major (`node-version: "22"`) rather than an exact version, precisely because `sync-workflow-pins` cannot read that input: an exact pin there would be the one literal in the repository nothing ever bumps.
 
-#### The actionlint runner-label config
-
-`.github/actionlint.yaml` declares `ubuntu-26.04` and `ubuntu-26.04-arm` to actionlint, which validates `runs-on:` against a label list baked into the binary at build time. The pinned 1.7.12 predates both, so without that file the Lint workflow fails on `release.yaml`'s generated `publish-pypi` job, which carries `ubuntu-26.04` with no downstream say in the matter.
-
-Delete the file once a repomatic release carrying its own bundled actionlint config is adopted: merged upstream, unreleased as of 7.11.0. A native config replaces the bundled one rather than layering over it, so leaving it in place would shadow it and silently miss a label added upstream later.
-
 #### Open question: x86 versus ARM
 
-The seven downstream jobs sit on `ubuntu-26.04`, moved there from `ubuntu-24.04` when repomatic 7.10.0 retired `ubuntu-slim` and moved its curated Linux axes to the 26.04 pair. x86 was the low-risk half of that pair, not a measured choice: repomatic's own measurements put ARM two to three times faster on its suite, and the reasons these jobs once needed a fuller image (npm, a project build, djlint's sdist-only dependencies) say nothing about architecture. Worth re-testing on `ubuntu-26.04-arm` rather than left as an accident. `.github/actionlint.yaml` already declares that label, so the move is a `runs-on:` edit and a live CI run.
+The seven downstream jobs sit on `ubuntu-26.04`, moved there from `ubuntu-24.04` when repomatic 7.10.0 retired `ubuntu-slim` and moved its curated Linux axes to the 26.04 pair. x86 was the low-risk half of that pair, not a measured choice: repomatic's own measurements put ARM two to three times faster on its suite, and the reasons these jobs once needed a fuller image (npm, a project build, djlint's sdist-only dependencies) say nothing about architecture. Worth re-testing on `ubuntu-26.04-arm` rather than left as an accident. The actionlint config bundled with repomatic already declares that label, so the move is a `runs-on:` edit and a live CI run.
 
 ### Tools the runner provides are avoided, not pinned
 
@@ -135,7 +131,7 @@ Since repomatic 7.9.0 the `lint-repo` job *fails* without that scope rather than
 - `gitignore.extra-categories = ["node"]` keeps Node entries when `sync-gitignore` regenerates `.gitignore`, since the webassets pipeline installs `node_modules` into the package directory.
 - `workflow.ignore-paths = ["citation.cff"]` strips a canonical trigger path this project does not carry.
 
-`[tool.uv]`, `[tool.typos]`, `[tool.mypy]`, and `[tool.bumpversion]` are synced from repomatic's bundled templates. Local edits to them are re-applied on the next sync, so put deviations behind a `[tool.repomatic]` setting instead.
+`[tool.uv]`, `[tool.typos]`, and `[tool.bumpversion]` are synced from repomatic's bundled templates. Local edits to them are re-applied on the next sync, so put deviations behind a `[tool.repomatic]` setting instead. `[tool.mypy]` and `[tool.pytest]` are seeded once and never revisited: `lint-repo` warns when the bundled template gains an entry they lack.
 
 `[tool.typos]` merges rather than overwrites: local additions to `extend-words` and `extend-identifiers` survive a re-sync, but the merge reorders keys (bundled first, local appended) and discards any comment written inside the section. Document why a word is allowlisted here, not there. Currently allowlisted on top of the bundled defaults:
 
@@ -164,9 +160,9 @@ Since the four PR-opening jobs moved to `pr-sync` (repomatic 7.11.0), that conve
 
 ### `pr-sync` replaced `create-pull-request`
 
-Each PR-opening job ends in one `repomatic pr-sync --template-file` call, where it used to run a `pr-body` step feeding a `peter-evans/create-pull-request` action. Everything the action took as an input now comes off the template: title and body from its content, labels from its frontmatter, branch from its filename, assignee from the ambient `GITHUB_ACTOR`. It also retires a stale pull request once the drift it reported is gone, which an action step could never do from behind a gate that skipped it.
+Each PR-opening job ends in one `repomatic pr-sync --template-file` call, where it used to run a `pr-body` step feeding a `peter-evans/create-pull-request` action. Every other input the action took now comes off the template: title and body from its content, labels from its frontmatter, branch from its filename, assignee from the ambient `GITHUB_ACTOR`. It also retires a stale pull request once the drift it reported is gone, which an action step could never do from behind a gate that skipped it.
 
-The one input with no equivalent is `add-paths`. `pr-sync` stages the whole tree, so a job leaving anything else dirty commits it. That is why `format-css` installs stylelint with `--no-package-lock` on top of `--no-save`: the latter only holds npm off `package.json`, and the `package-lock.json` npm would otherwise write at the repository root is not gitignored. `sync-vendored-assets` needs no such flag, since `npm ci` fails rather than rewrite the lock file it installs from. Check this whenever a step is added to one of these jobs.
+The exception is `add-paths`, restated as `--add-path` flags. Without them `pr-sync` stages the whole tree, so each job names the files it produces and nothing else can ride along: not the `package-lock.json` the stylelint install in `format-css` writes at the repository root, which is not gitignored. A step added to one of these jobs cannot leak into its pull request, but one writing a new kind of output needs its path added, or the pull request silently leaves it out.
 
 ## YAML in workflows
 
@@ -201,7 +197,7 @@ The reason they are here at all, rather than on a CDN: nothing reads a version o
 
 Two halves therefore have to move together, and different things move them. Dependabot bumps the version in `package.json`; the sync job replaces the file. `tests/test_vendored_assets.py` guards the seam, and compares bytes only when `node_modules` happens to be installed, since the suite otherwise runs without the npm toolchain. It also fails on `cdnjs.cloudflare.com`, `cdn.jsdelivr.net` or `unpkg.com` reappearing in a template: that list is hand-maintained, so a fourth CDN has to be added to it to be caught.
 
-Bootstrap's *bundle* is the one to copy: it carries Popper, which the dropdowns need. The theme's own `static/js/main.js` sits in the same directory as two of the three copies and is deliberately not minified; the job names each file it copies, so nothing it does can reach `main.js`. That used to be enforced by an `add-paths` glob matching only `*.min.js`, which went with `create-pull-request`.
+Bootstrap's *bundle* is the one to copy: it carries Popper, which the dropdowns need. The theme's own `static/js/main.js` sits in the same directory as two of the three copies and is deliberately not minified; the job names each file it copies, and its `--add-path` globs match only `*.min.js` and `*.woff2`, so nothing it does can reach `main.js`.
 
 `main.scss` overrides `$bootstrap-icons-font-dir` to the absolute `/theme/fonts`, because the upstream default is relative to the stylesheet and this one gets bundled into `css/main.min.css`. Only `woff2` is declared: the `woff` beside it is another 180 KB for browsers that no longer need it. The `@import` spells out the `.scss` extension, against a stylelint rule disabled inline right above it, because the package ships a `bootstrap-icons.css` next to it and Sass refuses to pick.
 
@@ -302,7 +298,7 @@ The documented `sync-dep-sources` idiom (pair the git source with a `.dev` floor
 
 The suite lives in `tests/` and runs with `uv run --group test -- pytest`. It is deliberately high-level: templates are rendered through Jinja directly, so it needs neither a Pelican build nor the npm toolchain, and the whole thing finishes in seconds.
 
-Its dependencies sit in a PEP 735 `[dependency-groups]` table, like repomatic, and no longer in an extra. Groups stay out of the published metadata, so there is no installable `plumage[test]` for a theme consumer to reach for, and the suite is not shipped in the distribution anyway. With djlint gone too, `[project.optional-dependencies]` was empty and was removed. The upstream `lint-types` job already syncs with `--all-extras --all-groups`, so it picks the group up unchanged.
+Its dependencies sit in a PEP 735 `[dependency-groups]` table, like repomatic, and no longer in an extra. Groups stay out of the published metadata, so there is no installable `plumage[test]` for a theme consumer to reach for, and the suite is not shipped in the distribution anyway. With djlint gone too, `[project.optional-dependencies]` was empty and was removed. The `types-pyyaml` stubs sit apart in a `typing` group, where `lint-deps` wants stub-only packages. The upstream `lint-types` job syncs with `--all-extras --all-groups`, so it picks up both groups.
 
 Four pieces in `tests/conftest.py` make that possible:
 
@@ -315,13 +311,11 @@ Four pieces in `tests/conftest.py` make that possible:
 
 `favicon.py` and `webassets.py` sit well below the other modules in coverage. Both are driven by Pelican's generator objects and the npm toolchain, and neither repays the mocking a unit test would need. `tests/test_favicon.py` covers what matters there without any of it: that every favicon `base.html` links by absolute path is actually shipped.
 
-### Known repomatic bug: the pytest table name
+### `[tool.pytest]` is the native table
 
-`repomatic init pytest` (7.4.1) writes the table as `[tool.pytest]`, which pytest ignores outright: the section it reads is `[tool.pytest.ini_options]`. The fix applied by hand in `pyproject.toml` leaves that generated header alone and qualifies each key instead, as `ini_options.testpaths` and `ini_options.addopts`, which TOML resolves to the path pytest looks for. The next `repomatic init pytest` will flatten those keys back, so re-check them after any sync rather than the header, which reads `[tool.pytest]` whether the fix is in place or not.
+pytest reads `[tool.pytest]` natively since 9.0, the floor the `test` group declares. Never add a key under `ini_options` beside it: pytest refuses a file carrying both tables.
 
-The regression is silent. Symptom: `pytest` still passes, but prints no coverage summary and no durations table, because none of the generated `addopts` reach it.
-
-The generated `addopts` also assume dependencies the bare `pytest` pin does not bring in. `pytest-cov` and `pytest-xdist[psutil]` are in the `test` dependency group for that reason, and `--cov=.` was narrowed to `--cov=plumage` so coverage measures the theme rather than the suite.
+The generated `addopts` assume dependencies the bare `pytest` pin does not bring in. `pytest-cov` and `pytest-xdist[psutil]` are in the `test` dependency group for that reason, and `--cov=.` was narrowed to `--cov=plumage` so coverage measures the theme rather than the suite.
 
 ### `tests.yaml` is fully downstream-owned
 

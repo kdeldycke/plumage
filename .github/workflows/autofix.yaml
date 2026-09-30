@@ -38,12 +38,15 @@ jobs:
     # stylesheets. That is what puts their versions in package.json, where Dependabot bumps
     # them: nothing reads a version out of a URL in a template.
     runs-on: ubuntu-26.04
+    timeout-minutes: 15
     permissions:
       contents: write
       pull-requests: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          version: "0.12.17"
       # Declared rather than inherited from the runner image, which ships whatever Node it was
       # built with and moves it without a commit here. Held to the major, so security patches
       # still arrive: sync-workflow-pins reads `uvx` and `npm install` literals, not this input,
@@ -71,26 +74,28 @@ jobs:
         # workflow actor. It also retires the pull request once the copies stop drifting,
         # which an action step cannot do from behind a gate that skipped it.
         #
-        # The one thing it does not take is create-pull-request's add-paths allowlist: it
-        # stages the whole tree. Nothing leaks here regardless, since node_modules is
-        # gitignored and `npm ci` fails rather than rewrite the lock file it installs from.
-        # The jobs below that install npm packages outside a lock file need a flag for that;
-        # see format-css.
+        # --add-path is the one input restated here, as create-pull-request's add-paths was: only
+        # the vendored copies are committed, so the npm install above cannot leak into the pull
+        # request. The theme's own static/js/main.js is not minified, so it is never matched.
         env:
           GH_TOKEN: ${{ secrets.REPOMATIC_PAT || github.token }}
         run: >
           uvx --no-progress --exclude-newer-package repomatic=P0D 'repomatic==7.17.0'
           pr-sync --template-file .github/pr-templates/sync-vendored-assets.md
+          --add-path 'plumage/static/fonts/*.woff2' --add-path 'plumage/static/js/*.min.js'
 
   sync-pygments-styles:
     name: 🎨 Sync Pygments styles
     runs-on: ubuntu-26.04
+    timeout-minutes: 15
     permissions:
       contents: write
       pull-requests: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          version: "0.12.17"
       - name: Generate Pygments styles
         # Through Pygments' own API rather than a shell loop over `pygmentize -S`, which needed
         # jq to read the style listing. jq is whatever the runner image happens to ship, and
@@ -110,24 +115,26 @@ jobs:
               (target / f"{style}.css").write_text(f"{css}\n")
           EOF
       - name: Sync pull request
-        # See the sync-vendored-assets job above for what the template supplies. Nothing but
-        # the generated stylesheets can be dirty here: `uv run --frozen` resolves from
-        # uv.lock without writing to it.
+        # See the sync-vendored-assets job above for what the template and --add-path supply.
         env:
           GH_TOKEN: ${{ secrets.REPOMATIC_PAT || github.token }}
         run: >
           uvx --no-progress --exclude-newer-package repomatic=P0D 'repomatic==7.17.0'
           pr-sync --template-file .github/pr-templates/sync-pygments-styles.md
+          --add-path 'plumage/static/css/pygments/*.css'
 
   format-css:
     name: 💅 Format CSS
     runs-on: ubuntu-26.04
+    timeout-minutes: 15
     permissions:
       contents: write
       pull-requests: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          version: "0.12.17"
       # Same Node as the sync-vendored-assets job above, and for the same reason.
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
@@ -139,14 +146,9 @@ jobs:
         # added there would ship into those builds.
         # Pinned to the same releases as the lint-css job in lint.yaml, which sync-workflow-pins
         # bumps in lockstep.
-        # --no-package-lock because --no-save only holds npm off package.json: without it npm
-        # writes a package-lock.json at the repository root, which is not gitignored and which
-        # the pr-sync step below would commit into the pull request. create-pull-request used
-        # to filter that out with add-paths; pr-sync stages the whole tree instead, so the
-        # stray file has to be prevented rather than skipped.
         # zizmor: ignore[adhoc-packages]
         run: >
-          npm install --no-save --no-package-lock
+          npm install --no-save
           stylelint@17.14.1
           stylelint-config-standard@40.0.0
           stylelint-config-sass-guidelines@13.0.0
@@ -157,24 +159,28 @@ jobs:
         # reported by the lint workflow.
         run: npx stylelint --fix "plumage/static/**/*.{css,scss}" || true
       - name: Sync pull request
-        # See the sync-vendored-assets job above for what the template supplies. What the npm
-        # install leaves behind is node_modules, which is gitignored, and the lock file the
-        # --no-package-lock flag above stops it writing.
+        # See the sync-vendored-assets job above for what the template and --add-path supply.
+        # --add-path keeps out the package-lock.json the npm install above writes at the root.
+        # In a git pathspec `*` spans directory separators, so these reach any depth of static/.
         env:
           GH_TOKEN: ${{ secrets.REPOMATIC_PAT || github.token }}
         run: >
           uvx --no-progress --exclude-newer-package repomatic=P0D 'repomatic==7.17.0'
           pr-sync --template-file .github/pr-templates/format-css.md
+          --add-path 'plumage/static/*.css' --add-path 'plumage/static/*.scss'
 
   format-jinja:
     name: 🃏 Format Jinja
     runs-on: ubuntu-26.04
+    timeout-minutes: 15
     permissions:
       contents: write
       pull-requests: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          version: "0.12.17"
       - name: Autofix Jinja
         # Pinned to the same release as the lint-jinja job in lint.yaml, which sync-workflow-pins
         # bumps in lockstep. Rules and profile come from [tool.djlint] in pyproject.toml.
@@ -182,10 +188,10 @@ jobs:
           uvx --no-progress 'djlint==1.43.1'
           --reformat --format-css --format-js --warn plumage/templates/*.html
       - name: Sync pull request
-        # See the sync-vendored-assets job above for what the template supplies. djlint writes
-        # nothing but the templates it reformats, so the tree holds only those.
+        # See the sync-vendored-assets job above for what the template and --add-path supply.
         env:
           GH_TOKEN: ${{ secrets.REPOMATIC_PAT || github.token }}
         run: >
           uvx --no-progress --exclude-newer-package repomatic=P0D 'repomatic==7.17.0'
           pr-sync --template-file .github/pr-templates/format-jinja.md
+          --add-path 'plumage/templates/*.html'
