@@ -10,6 +10,9 @@ resolution-markers = [
 exclude-newer = "0001-01-01T00:00:00Z" # This has no effect and is included for backwards compatibility when using relative exclude-newer values.
 exclude-newer-span = "P1W"
 
+[options.exclude-newer-package]
+pelican-myst-reader = "2026-10-05T21:52:00Z"
+
 [[package]]
 name = "alabaster"
 version = "1.0.0"
@@ -648,8 +651,8 @@ wheels = [
 
 [[package]]
 name = "pelican-myst-reader"
-version = "1.4.0"
-source = { git = "https://github.com/kdeldycke/myst-reader?rev=a9be9e744b10c862ad591af525673428ae8e9392#a9be9e744b10c862ad591af525673428ae8e9392" }
+version = "2.0.0b0"
+source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "beautifulsoup4" },
     { name = "docutils" },
@@ -661,6 +664,10 @@ dependencies = [
     { name = "pyyaml" },
     { name = "setuptools" },
     { name = "sphinxcontrib-bibtex" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/6f/dc/8555889cec382269a22d5e59be706c36d98adccd600c9da04207572aeab2/pelican_myst_reader-2.0.0b0.tar.gz", hash = "sha256:9d493075c4be5bda721c73b43de3ad5e2f66687c1fdc484a11660892c4ed44a9", size = 109114, upload-time = "2026-10-05T21:51:43.344Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/39/71/0ca8d8b1120c837e378f8a2087164dc69dd21b3cf3882b919e28b77bb6f4/pelican_myst_reader-2.0.0b0-py3-none-any.whl", hash = "sha256:9cfc437ee9fc4e7dc563852536f5cd82cafaa5151947f4391b7e235e01f7eda5", size = 26256, upload-time = "2026-10-05T21:51:41.878Z" },
 ]
 
 [[package]]
@@ -714,8 +721,8 @@ typing = [
 requires-dist = [
     { name = "cssmin", specifier = ">=0.2" },
     { name = "libsass", specifier = ">=0.22" },
-    { name = "pelican", specifier = ">=4.11" },
-    { name = "pelican-myst-reader", git = "https://github.com/kdeldycke/myst-reader?rev=a9be9e744b10c862ad591af525673428ae8e9392" },
+    { name = "pelican", specifier = ">=4.12" },
+    { name = "pelican-myst-reader", specifier = ">=2.0.0b0" },
     { name = "pelican-webassets", specifier = ">=2" },
     { name = "pygments", specifier = ">=2.18" },
     { name = "pynpm", specifier = ">=0.2" },

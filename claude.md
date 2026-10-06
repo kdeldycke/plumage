@@ -243,7 +243,7 @@ The floor is Python 3.11 (`requires-python = ">= 3.11"`). Unavailable syntax:
 
 - multi-line f-string expressions (3.12+): split into concatenated strings
 
-The floor was originally set by Pelican rather than the theme: 4.12.0 is the first release requiring 3.11, so 3.11 could not be reached while 3.10 was still supported. It is now the theme's own choice, since the published `pelican` floor had to drop back to 4.11 (see the comment above that dependency): 4.11 still installs on 3.9, so nothing outside this repository forces 3.11 any more. Keeping it there is deliberate, and Exception groups, `except*` and the `Self` type hint came along with the original move and no longer need a `typing_extensions` fallback.
+Pelican sets the floor as much as the theme does: 4.12.0, the declared `pelican` floor, is the first release requiring 3.11, and `pelican-myst-reader` `2.0.0b0` requires it too. Exception groups, `except*` and the `Self` type hint came along with it and need no `typing_extensions` fallback.
 
 `mypy` passing locally on a newer interpreter does not mean it passes in CI. Check against the minimum when touching type-sensitive code.
 
@@ -262,37 +262,18 @@ Every stylesheet under `static/css/pygments/` is generated with `-a ".highlight"
 
 The same selector has to keep its hands off plain docutils literal blocks, which `.rst` content produces from `::` and which carry no lexer output. That is what the `code` class in `pre.code.literal-block` discriminates.
 
-### The myst-parser override
+### The reader floor names a pre-release
 
-`pelican-myst-reader` 1.4.0 caps `myst-parser` below 5.0.0, which holds `docutils` below the 0.22 Pelican 4.12.0 requires, so the two cannot resolve together. `[tool.uv] override-dependencies` forces `myst-parser` 5 to break the deadlock. The evidence that the cap is stale rather than real, and the reason the override carries no upper bound, are both recorded in the comment above the entry.
+`pelican-myst-reader` `1.4.0` caps `myst-parser` below 5.0.0, which holds `docutils` below the 0.22 that Pelican 4.12.0 requires. `2.0.0b0` is the first release that resolves beside Pelican 4.12, through [ashwinvis/myst-reader#49](https://github.com/ashwinvis/myst-reader/pull/49). Both floors sit there, so the tree CI exercises is one a user of the theme resolves too.
 
-The override only reaches this repository, though, and that is the part to keep in mind. `override-dependencies` is workspace-scoped: uv applies it while resolving *this* project, and no consumer installing the theme ever sees it. So a `pelican>=4.12` floor published to PyPI is unsatisfiable for everyone, by `pip` and `uv` alike, even though it resolves cleanly here. That is why the declared floor sits at 4.11 while `uv.lock` still pins 4.12.0, and why the configuration users actually resolve (4.11 with `myst-parser` 4 and `docutils` 0.21) is not the one CI exercises. The whole suite was run against that set by hand when the floor moved, and all 197 tests passed, so the relaxed floor is sound rather than merely installable. Nothing holds it there, though: the honest fix is a matrix cell that resolves without the override.
+A pre-release floor has one cost. uv before `0.12.0` refuses a pre-release that only a dependency asks for. A site locked with such a uv must name `pelican-myst-reader>=2.0.0b0` in its own dependencies, or pass `--prerelease=allow`. Move the floor to `2.0.0` when it ships.
 
-Verify a floor change against a *fresh* resolution from outside the repository, never from a working tree: `uv --directory <elsewhere> pip install <built wheel>` reproduces what a user gets, while the same command run from the repo root silently picks the override up and passes. That trap is easy to fall into and reads as a clean bill of health.
+`2.0.0b0` differs from `1.4.0` in two ways that reach a site, and the renderer table above describes it:
 
-Both halves come back together once the reader ships a release carrying [ashwinvis/myst-reader#49](https://github.com/ashwinvis/myst-reader/pull/49), which uncaps every one of its dependencies, so the dance does not have to be repeated a fourth time. It was merged on 2026-08-11, but no release carries it: PyPI still serves `1.4.0` from 2024-09-19 with the cap intact, and a resolver reads the published metadata, so nothing has moved for anyone installing the theme.
+- It adds a third renderer, MDIT, behind `MYST_FORCE_MDIT`. The theme does not support its output: a directive fence stays a literal code block, and a code block holds no Pygments markup for `dom_transforms.py` to wrap.
+- It reads `dollarmath` and `amsmath` from `MYST_MDIT_SETTINGS`, where `1.4.0` read `MYST_SPHINX_SETTINGS`. [ashwinvis/myst-reader#50](https://github.com/ashwinvis/myst-reader/pull/50) restores the documented key.
 
-The merge is not what this repository resolves, though. A `[tool.uv.sources]` git pin at the merge commit works mechanically: the deadlock clears, `myst-parser` 5.1.0 and Pelican 4.12.0 resolve to exactly what `override-dependencies` used to force, and the built wheel still advertises a plain `pelican-myst-reader>=1.4` with no direct URL, since uv strips its sources at build time. What sinks `main` is everything else on it. [ashwinvis/myst-reader#36](https://github.com/ashwinvis/myst-reader/pull/36) merged on 2025-10-14 and never shipped either, and it makes MDIT the default renderer: the branch routing `{filename}`, `{static}`, `{attach}` and maths to Sphinx sits commented out directly above the `else` that returns MDIT. Eight tests in `test_markdown.py` go red on it, none of them from this side of the seam. Directives stop becoming admonitions, code blocks arrive with no Pygments token spans for `dom_transforms.py` to wrap, and a `:::` fence that is not `{image}` raises `RuntimeError: super(): __class__ cell not found` out of a module-level function in `_mdit_renderer.py`. Only `MYST_FORCE_SPHINX` restores the old output: `MYST_FORCE_DOCUTILS` on its own raises on any document holding a `{filename}` link, which is what the commented-out routing existed to avoid.
-
-Upstream CI will not catch that, which is worth knowing before reading a green check as coverage: the reader's `nox` session installs through `uv sync`, so it resolves the `myst-parser` 4 its own lock file pins and never exercises 5 at all.
-
-So the pin points at [ashwinvis/myst-reader#50](https://github.com/ashwinvis/myst-reader/pull/50) instead, which restores Docutils as the default, reinstates the commented-out routing, and makes the colon fence handler a `Renderer` method. Against that branch the whole suite passes, including all eight tests `main` reddens. It is pinned by commit on the `kdeldycke` fork rather than by branch name, so nothing moves this repository onto different code without the `rev` changing first, and the branch cannot be deleted out from under CI by anyone else.
-
-A release is still the trigger for undoing any of this, and it has to be read rather than assumed to be `1.4.0` plus the uncap. The renderer table above describes `1.4.0`, which is what PyPI still serves and what every claim in this section rests on, so it is the first thing to re-check against whatever ships. If that pull request is reworked or rejected instead, `override-dependencies = [ "myst-parser>=5" ]` is what comes back, and the eight reds come back with it.
-
-#### The `[tool.uv.sources]` pin blocks the next release
-
-`repomatic lint-deps`, added in 7.10.0, refuses to publish a project whose dependencies do not all resolve from the index its users install from, and a git source is the first thing on its list. Run it and this repository reports `pelican-myst-reader | git | tool.uv.sources | blocks release`.
-
-Nothing is broken until a release is cut. The job is fatal only on a release commit, so ordinary pushes stay green; what it stops is `build-package`, and with it the PyPI upload, the tag, and the GitHub release. It also replaces the release PR checklist's opener with a `[!CAUTION]` block naming the dependency, which is the layer that actually reaches a maintainer in time.
-
-Three ways out, none of them chosen yet:
-
-- `[tool.repomatic] lint-deps.allow = { pelican-myst-reader = "<reason>" }`. The reason renders in the report and the PR banner, so the exemption stays visible. Defensible here specifically because the published wheel advertises a plain `pelican-myst-reader>=1.4` and that resolution was run against the full suite by hand, but it does assert that a source override is safe to ship, which is exactly what the gate exists to doubt.
-- Revert to `override-dependencies = [ "myst-parser>=5" ]`, which `lint-deps` downgrades to a warning since it names a published version. Costs the fork's renderer fixes, so the eight `test_markdown.py` reds come back.
-- Wait for the reader's release, which drops the pin and the problem together.
-
-The documented `sync-dep-sources` idiom (pair the git source with a `.dev` floor naming the awaited release, let the swap PR open on its own) does not apply: the fork branch still declares `1.4.0`, so there is no awaited version to name, and a `.dev` floor would in any case make the published wheel unsatisfiable.
+Verify a floor change against a *fresh* resolution from outside the repository, never from a working tree: `uv --directory <elsewhere> pip install <built wheel>` reproduces what a user gets. The same command run from the repository root reads `[tool.uv]`, the cooldown exemption included, and can pass where a user's resolution fails.
 
 ## Testing
 
