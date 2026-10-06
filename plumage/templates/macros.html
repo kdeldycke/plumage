@@ -61,9 +61,9 @@
     {% set icon = [] %}
     {% set favicon = False if favicon == False else True %}
     {% set protocol = link.split(':', 1)[0] %}
-    {% if protocol == 'mailto' %}
-        {% if icon.append('envelope-fill') %}{% endif %}
-    {% elif protocol.startswith('http') %}
+    {% if protocol == "mailto" %}
+        {% if icon.append("envelope-fill") %}{% endif %}
+    {% elif protocol.startswith("http") %}
         {% set domain = link.split('%s://' % protocol, 1)[1].split('/', 1)[0] %}
         {% set SITE_ICONS = {
             "apple": [

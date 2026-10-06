@@ -12,7 +12,7 @@
 {% block content %}
     {% set all_categories = [] %}
     {% for category, articles in categories %}
-        {% if all_categories.append({'name': category.name, 'url': category.url, 'articles': articles|length()}) %}{% endif %}
+        {% if all_categories.append({"name": category.name, "url": category.url, "articles": articles|length()}) %}{% endif %}
     {% endfor %}
     {{ m.render_term_list(all_categories, badge_class='category') }}
 {% endblock content %}

@@ -22,7 +22,7 @@
         {% endfor %}
         {# Ignore empty years #}
         {% if yearly_articles|length > 0 %}
-            {% if year_range.append({'year': year, 'articles': yearly_articles}) %}{% endif %}
+            {% if year_range.append({"year": year, "articles": yearly_articles}) %}{% endif %}
         {% endif %}
     {% endfor %}
     <div class="accordion"

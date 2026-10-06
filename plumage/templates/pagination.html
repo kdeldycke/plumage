@@ -30,16 +30,16 @@
                         attribute instead of emitting a whitespace-only one. #}
                         {% set rels = [] %}
                         {% if num == 1 %}
-                            {% if rels.append('first') %}{% endif %}
+                            {% if rels.append("first") %}{% endif %}
                         {% endif %}
                         {% if num == articles_paginator.num_pages %}
-                            {% if rels.append('last') %}{% endif %}
+                            {% if rels.append("last") %}{% endif %}
                         {% endif %}
                         {% if num == (articles_page.number - 1) %}
-                            {% if rels.append('prev') %}{% endif %}
+                            {% if rels.append("prev") %}{% endif %}
                         {% endif %}
                         {% if num == (articles_page.number + 1) %}
-                            {% if rels.append('next') %}{% endif %}
+                            {% if rels.append("next") %}{% endif %}
                         {% endif %}
                         <a class="page-link"
                            href="{{ SITEURL }}/{{ articles_paginator.page(num).url }}"
