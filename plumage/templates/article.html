@@ -68,7 +68,7 @@
                         {% for tag, articles in tags %}
                             {% for t in article.tags %}
                                 {% if tag.url == t.url %}
-                                    {% if article_tags.append({'name': tag.name, 'url': tag.url, 'articles': articles|length()}) %}{% endif %}
+                                    {% if article_tags.append({"name": tag.name, "url": tag.url, "articles": articles|length()}) %}{% endif %}
                                 {% endif %}
                             {% endfor %}
                         {% endfor %}

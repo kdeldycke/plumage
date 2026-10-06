@@ -55,7 +55,7 @@ the block emits lands inside an attribute value, newlines and indentation includ
             ('Atom', FEED_ATOM, 'Latest posts'),
             ('RSS', FEED_RSS, 'Latest posts')] %}
             {% if feed_url %}
-                {% if all_feeds.append({'kind': kind, 'url': feed_url, 'name': feed_name}) %}{% endif %}
+                {% if all_feeds.append({"kind": kind, "url": feed_url, "name": feed_name}) %}{% endif %}
             {% endif %}
         {% endfor %}
         {# The taxonomy feeds interpolate the term's own slug, so the term has to be
@@ -69,7 +69,7 @@ the block emits lands inside an attribute value, newlines and indentation includ
             ('Atom', TAG_FEED_ATOM, 'Tag', tag),
             ('RSS', TAG_FEED_RSS, 'Tag', tag)] %}
             {% if pattern and term %}
-                {% if all_feeds.append({'kind': kind, 'url': pattern.format(slug=term.slug), 'name': label ~ ': ' ~ term.name}) %}
+                {% if all_feeds.append({"kind": kind, "url": pattern.format(slug=term.slug), "name": label ~ ": " ~ term.name}) %}
                 {% endif %}
             {% endif %}
         {% endfor %}
@@ -317,7 +317,8 @@ the block emits lands inside an attribute value, newlines and indentation includ
                             <br />
                             <a class="text-body-secondary"
                                href="https://github.com/kdeldycke/plumage">Plumage</a>
-                            theme by <a class="text-body-secondary" href="https://kevin.deldycke.com">Kevin Deldycke</a>.
+                            theme by <a class="text-body-secondary"
+    href="https://kevin.deldycke.com">Kevin Deldycke</a>.
                         </p>
                         <details>
                             <summary>Generation details</summary>

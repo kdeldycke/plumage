@@ -95,7 +95,7 @@ Sorted by priority: the first items takes precedence over those at the end. #}
 {% macro render_projects(projects) %}
     {% set all_tags = [] %}
     {% for tag, articles in tags %}
-        {% if all_tags.append({'name': tag.name, 'url': tag.url, 'articles': articles|length()}) %}{% endif %}
+        {% if all_tags.append({"name": tag.name, "url": tag.url, "articles": articles|length()}) %}{% endif %}
     {% endfor %}
     {% if projects is defined %}
         <div class="row" data-masonry='{"percentPosition": true }'>
