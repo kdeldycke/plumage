@@ -12,18 +12,27 @@ const nav = document.querySelector('.navbar')
 const brand = document.querySelector('.navbar-brand')
 if (nav && brand) {
   const navTop = nav.offsetTop
+  // Takes the place of the navigation while it is fixed. A fixed element leaves the flow,
+  // so without a stand-in of the same height the content below moves up. A browser with
+  // scroll anchoring then scrolls by that height to keep the content in place, and that
+  // scroll calls the handler again: the navigation flips between its two states.
+  const placeholder = document.createElement('div')
   let isFixed = false
   window.onscroll = function () {
-    if (window.scrollY >= navTop && !isFixed) {
-      isFixed = true
-      nav.classList.add('fixed-top')
-      nav.classList.remove('rounded-3', 'd-block')
-      brand.classList.remove('d-none')
-    } else if (window.scrollY <= navTop && isFixed) {
-      isFixed = false
-      nav.classList.remove('fixed-top')
-      nav.classList.add('rounded-3', 'd-block')
-      brand.classList.add('d-none')
+    const shouldFix = window.scrollY >= navTop
+    if (shouldFix === isFixed) {
+      return
     }
+    isFixed = shouldFix
+    if (shouldFix) {
+      placeholder.style.height = `${nav.getBoundingClientRect().height}px`
+      nav.before(placeholder)
+    } else {
+      placeholder.remove()
+    }
+    nav.classList.toggle('fixed-top', shouldFix)
+    nav.classList.toggle('rounded-3', !shouldFix)
+    nav.classList.toggle('d-block', !shouldFix)
+    brand.classList.toggle('d-none', !shouldFix)
   }
 }
