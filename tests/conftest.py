@@ -27,6 +27,7 @@ from jinja2.ext import Extension
 from pyquery import PyQuery as pq
 
 from plumage import PLUMAGE_ROOT, __version__
+from plumage.config import scripts_digest
 
 TEMPLATE_DIR = PLUMAGE_ROOT / "templates"
 
@@ -71,12 +72,14 @@ BASE_CONTEXT: dict = {
     # Plain values the base template expects from Pelican and from check_config(). The two
     # versions are read off the modules check_config() reads them from, rather than pinned:
     # nothing bumps a literal here, so a pinned one would go stale on the next release and
-    # leave the footer asserting a version no longer shipped.
+    # leave the footer asserting a version no longer shipped. The digest of the scripts
+    # comes from the function check_config() calls, for the same reason.
     "AUTHOR": "Test Author",
     "CODE_STYLE": "monokai",
     "DEFAULT_LANG": "en",
     "output_file": "index.html",
     "PELICAN_VERSION": pelican.__version__,
+    "PLUMAGE_SCRIPTS_DIGEST": scripts_digest(),
     "PLUMAGE_VERSION": __version__,
     "SITENAME": "Test Site",
     "SITEURL": "",

@@ -18,6 +18,7 @@
 
 from __future__ import annotations
 
+import re
 from types import SimpleNamespace
 
 import pytest
@@ -77,3 +78,28 @@ def test_check_config_exposes_versions(monkeypatch):
     assert sender.settings["PLUMAGE_VERSION"] == plumage.__version__
     assert sender.settings["PELICAN_VERSION"]
     assert sender.settings["CODE_STYLE"] == "monokai"
+
+
+def test_check_config_exposes_the_scripts_digest(monkeypatch):
+    """Templates put it in the URL of every script, so it must reach settings."""
+    # Sidestep the npm toolchain the webassets pipeline would otherwise install.
+    monkeypatch.setattr(config, "setup_webassets", lambda conf: conf)
+    sender = SimpleNamespace(settings={})
+
+    config.check_config(sender)
+
+    assert sender.settings["PLUMAGE_SCRIPTS_DIGEST"] == config.scripts_digest()
+
+
+def test_scripts_digest_follows_the_content(monkeypatch, tmp_path):
+    """A digest is only worth putting in a URL if a changed script changes it."""
+    script = tmp_path / "static" / "js" / "weather.js"
+    script.parent.mkdir(parents=True)
+    script.write_text("const sky = 'rain'", encoding="UTF-8")
+    monkeypatch.setattr(config, "PLUMAGE_ROOT", tmp_path)
+
+    rain = config.scripts_digest()
+    script.write_text("const sky = 'sun'", encoding="UTF-8")
+
+    assert re.fullmatch(r"[0-9a-f]{8}", rain)
+    assert config.scripts_digest() != rain

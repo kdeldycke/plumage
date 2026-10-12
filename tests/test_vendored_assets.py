@@ -65,11 +65,14 @@ SCRIPT_FILES = sorted({
     name
     for template in TEMPLATES.glob("*.html")
     for name in re.findall(
-        r'<script src="\{\{ SITEURL \}\}/theme/js/([^"]+)"',
+        r'<script src="\{\{ SITEURL \}\}/theme/js/([^"?]+)',
         template.read_text(encoding="utf-8"),
     )
 })
-"""Every script the templates load from the theme itself, vendored or not."""
+"""Every script the templates load from the theme itself, vendored or not.
+
+The name stops at the query, which carries the digest and names no file.
+"""
 
 VENDORED = {
     "bootstrap.bundle.min.js": "bootstrap/dist/js/bootstrap.bundle.min.js",
@@ -108,6 +111,23 @@ def test_every_script_asked_for_is_shipped():
 def test_no_script_is_shipped_unused():
     shipped = {p.name for p in (STATIC / "js").iterdir() if p.is_file()}
     assert shipped == set(SCRIPT_FILES)
+
+
+def test_every_theme_script_url_carries_the_digest():
+    """Without it, a browser goes on running the copy it already holds of that URL.
+
+    The stylesheet gets the same treatment from `webassets`, which appends a hash of its
+    own. Nothing does it for a plain `<script>`, so the templates spell the query out.
+    """
+    checked = 0
+    for template in TEMPLATES.glob("*.html"):
+        markup = template.read_text(encoding="utf-8")
+        for url in re.findall(r'<script src="\{\{ SITEURL \}\}(/theme/[^"]+)"', markup):
+            checked += 1
+            assert url.endswith("?{{ PLUMAGE_SCRIPTS_DIGEST }}"), (
+                f"{template.name} loads {url} with no digest"
+            )
+    assert checked, "no script tag found: this check has stopped covering anything"
 
 
 def test_no_asset_is_loaded_from_a_cdn():

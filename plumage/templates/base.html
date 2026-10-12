@@ -340,8 +340,10 @@ the block emits lands inside an attribute value, newlines and indentation includ
             {% endblock footer %}
         </footer>
         <!-- Scripts moved to the bottom of the page, as per Bootstrap and Stork canonical example -->
-        <script src="{{ SITEURL }}/theme/js/bootstrap.bundle.min.js"></script>
-        <script src="{{ SITEURL }}/theme/js/main.js"></script>
+        {# The query changes with the scripts, so a browser does not go on running the copy it
+        already holds. webassets does the same for the stylesheet above. #}
+        <script src="{{ SITEURL }}/theme/js/bootstrap.bundle.min.js?{{ PLUMAGE_SCRIPTS_DIGEST }}"></script>
+        <script src="{{ SITEURL }}/theme/js/main.js?{{ PLUMAGE_SCRIPTS_DIGEST }}"></script>
         {% block extra_js %}
         {% endblock extra_js %}
         {% if STORK_SEARCH %}

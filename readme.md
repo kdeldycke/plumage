@@ -198,7 +198,7 @@ Point [`THEME_TEMPLATES_OVERRIDES`](https://docs.getpelican.com/en/stable/settin
 
 On top of those, `index.html` adds `content_title`, `page.html` adds `page_content`, and `projects.html` adds `project_pre_content` and `project_post_content`.
 
-Templates can also read two variables the theme sets for itself: `PELICAN_VERSION` and `PLUMAGE_VERSION`, both of which the footer's generation details block displays.
+Templates can also read three variables the theme sets for itself. The footer's generation details block displays `PELICAN_VERSION` and `PLUMAGE_VERSION`. `PLUMAGE_SCRIPTS_DIGEST` is a short hash of the theme's own scripts, which the templates append to their URLs as a query: a browser then fetches them again whenever they change.
 
 ## Code syntax highlighting
 

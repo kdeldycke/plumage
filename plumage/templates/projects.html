@@ -126,7 +126,7 @@ Sorted by priority: the first items takes precedence over those at the end. #}
     {{ group.post }}
 {% endmacro %}
 {% block extra_js %}
-    <script src="{{ SITEURL }}/theme/js/masonry.pkgd.min.js"></script>
+    <script src="{{ SITEURL }}/theme/js/masonry.pkgd.min.js?{{ PLUMAGE_SCRIPTS_DIGEST }}"></script>
 {% endblock extra_js %}
 {% block content %}
     {% if PROJECT_GROUPS is defined %}

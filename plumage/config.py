@@ -14,6 +14,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
+import hashlib
 from typing import Any
 
 import pelican
@@ -49,6 +50,7 @@ def check_config(sender) -> None:
     # Keep some metadata around.
     conf["PELICAN_VERSION"] = pelican.__version__
     conf["PLUMAGE_VERSION"] = __version__
+    conf["PLUMAGE_SCRIPTS_DIGEST"] = scripts_digest()
 
     # Check code color scheme ID.
     conf = check_codestyle(conf)
@@ -57,6 +59,21 @@ def check_config(sender) -> None:
     conf = setup_webassets(conf)
 
     sender.settings = conf
+
+
+def scripts_digest() -> str:
+    """Short digest of the scripts the theme ships, for templates to put in their URLs.
+
+    A browser reuses the copy it holds of a URL, for a time of its own choosing when the
+    server sets none. A query that changes with the content makes it fetch the new copy,
+    as the hash ``webassets`` appends does for the stylesheet.
+
+    One digest covers every script: they ship together, in one release of the theme.
+    """
+    digest = hashlib.sha256()
+    for script in sorted(PLUMAGE_ROOT.joinpath("static/js").glob("*.js")):
+        digest.update(script.read_bytes())
+    return digest.hexdigest()[:8]
 
 
 def check_codestyle(conf: dict[str, Any]) -> dict[str, Any]:
