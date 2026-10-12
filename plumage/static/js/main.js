@@ -31,6 +31,12 @@ if (nav && brand) {
     // place. Without it the content below moves up. A browser with scroll anchoring
     // scrolls by the same height to cancel that move, and that scroll calls this handler
     // again: the navigation flips between its two looks.
+    //
+    // Scroll anchoring has a rule against that loop: no such scroll when an element
+    // becomes fixed. Chromium 154 and Safari 27 do not apply it when the display of the
+    // element changes in the same call, which the classes below do. The working group
+    // tracks the wider question, whether anchoring follows elements or layout boxes, in:
+    // https://github.com/w3c/csswg-drafts/issues/13564
     bar.style.minHeight = shouldStick ? `${bar.getBoundingClientRect().height}px` : ''
     // A sticky box stacks its content as one layer, which the site thumbnail sits over.
     // Hand the pinning to the navigation itself: fixed-top stacks it above the thumbnail.
