@@ -13,7 +13,7 @@ permissions: {}
 jobs:
 
   autofix:
-    uses: kdeldycke/repomatic/.github/workflows/autofix.yaml@94a5f543d75da9342a1ad315251988360e580ab1 # v7.17.0
+    uses: kdeldycke/repomatic/.github/workflows/autofix.yaml@504998fb9b230dfd2405d6dc352366e2d08923ad # v7.17.1
     permissions:
       contents: write
       issues: write
@@ -80,7 +80,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.REPOMATIC_PAT || github.token }}
         run: >
-          uvx --no-progress --exclude-newer-package repomatic=P0D 'repomatic==7.17.0'
+          uvx --no-progress --exclude-newer-package repomatic=P0D 'repomatic==7.17.1'
           pr-sync --template-file .github/pr-templates/sync-vendored-assets.md
           --add-path 'plumage/static/fonts/*.woff2' --add-path 'plumage/static/js/*.min.js'
 
@@ -119,7 +119,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.REPOMATIC_PAT || github.token }}
         run: >
-          uvx --no-progress --exclude-newer-package repomatic=P0D 'repomatic==7.17.0'
+          uvx --no-progress --exclude-newer-package repomatic=P0D 'repomatic==7.17.1'
           pr-sync --template-file .github/pr-templates/sync-pygments-styles.md
           --add-path 'plumage/static/css/pygments/*.css'
 
@@ -165,7 +165,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.REPOMATIC_PAT || github.token }}
         run: >
-          uvx --no-progress --exclude-newer-package repomatic=P0D 'repomatic==7.17.0'
+          uvx --no-progress --exclude-newer-package repomatic=P0D 'repomatic==7.17.1'
           pr-sync --template-file .github/pr-templates/format-css.md
           --add-path 'plumage/static/*.css' --add-path 'plumage/static/*.scss'
 
@@ -192,6 +192,6 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.REPOMATIC_PAT || github.token }}
         run: >
-          uvx --no-progress --exclude-newer-package repomatic=P0D 'repomatic==7.17.0'
+          uvx --no-progress --exclude-newer-package repomatic=P0D 'repomatic==7.17.1'
           pr-sync --template-file .github/pr-templates/format-jinja.md
           --add-path 'plumage/templates/*.html'
