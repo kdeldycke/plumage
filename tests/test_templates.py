@@ -102,6 +102,19 @@ def test_full_width_layout_drops_sidebar_content(render):
     assert "Sidebar body" not in doc.text()
 
 
+def test_projects_page_is_full_width(render):
+    """projects.html sets the layout itself, from below its ``extends`` tag.
+
+    An assignment outside any block of a child template still runs before the parent
+    renders. That is what lets the tag djlint wants first stay first.
+    """
+    doc = render(
+        "projects.html", PROJECTS=[], tags=[], LEFT_SIDEBAR="<p>Sidebar body</p>"
+    )
+    assert classes(doc("main#content")) == "col-md-12"
+    assert "Sidebar body" not in doc.text()
+
+
 NAV_CASES = (
     # Setting turning the menu section on, context feeding it, and the name the
     # current item is compared against.
