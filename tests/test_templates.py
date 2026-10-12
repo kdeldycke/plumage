@@ -134,6 +134,21 @@ def test_nav_marks_only_the_current_entry(render, setting, collection, current):
     assert [entry.find("a").attr("aria-current") for entry in entries] == ["page", None]
 
 
+def test_nav_sits_alone_in_a_container_under_body(render, render_override):
+    """The script makes that container sticky, and a sticky box never leaves its parent.
+
+    Right under ``<body>``, that container can follow the whole page. In the header's
+    container, the navigation would stop where it ends, and scroll away with it.
+    """
+    bar = render()("nav.navbar").parent()
+    assert bar.parent().is_("body")
+    # Whatever shared the container would stick to the top along with the navigation.
+    assert len(bar.children()) == 1
+    # An override lands in the same container, with nothing sticky about it.
+    override = render_override("nav", "<p id='replaced'>Mine</p>")("#replaced")
+    assert classes(override.parent()) == "container"
+
+
 def test_search_box_hidden_by_default(render):
     assert not render()("#sitesearch-input")
 

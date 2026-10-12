@@ -104,6 +104,11 @@ the block emits lands inside an attribute value, newlines and indentation includ
                     <small class="text-body-tertiary"><small>{{ SITESUBTITLE }}</small></small>
                 </h1>
             {% endblock header %}
+        </div>
+        {# A container of its own, right under <body>: main.js makes it sticky, and a sticky
+        box never leaves its parent. In the header's container, the navigation would scroll
+        away with it. #}
+        <div class="container">
             {% block nav %}
                 <nav class="navbar d-block navbar-expand-lg bg-body-tertiary shadow rounded-3">
                     <a class="navbar-brand d-none"

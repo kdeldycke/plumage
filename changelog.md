@@ -7,6 +7,7 @@
 
 - Require Pelican `4.12` and `pelican-myst-reader` `2.0.0b0`, the first release of the reader that installs beside it. A site locked with uv older than `0.12.0` must name that pre-release in its own dependencies, or pass `--prerelease=allow`.
 - Fix the navigation bar flipping between its two states in Safari 27, and the content jumping when the bar locks to the top.
+- Keep the navigation bar visible while it locks to the top on a fast scroll, where it used to vanish for a few frames.
 
 ## [`5.0.0` (2026-08-09)](https://github.com/kdeldycke/plumage/compare/v4.0.0...v5.0.0)
 

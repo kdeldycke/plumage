@@ -60,7 +60,9 @@ a {
   perspective: 600px;
   position: relative;
   width: $size;
-  z-index: 10;
+  // Over the navigation bar it overlaps, which main.js pins with .sticky-top, and under
+  // that bar once main.js fixes it to the top of the viewport.
+  z-index: $zindex-sticky + 1;
 
   .avatar {
     height: 100%;
