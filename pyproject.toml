@@ -119,12 +119,6 @@ typing = [
 [tool.uv]
 required-version = ">=0.11.15"
 exclude-newer = "1 week"
-# pelican-myst-reader 2.0.0b0 reached PyPI on 2026-10-05, inside the window above. The
-# dependencies ask for it, so `uv lock` finds no solution without this entry. The cutoff
-# admits that one release and nothing newer, and its own dependencies stay gated. The
-# package files of its wheel are the same as tag `2.0.0b0` of ashwinvis/myst-reader.
-# Temporary: `sync-uv-lock` removes the entry once the release is a week old.
-exclude-newer-package = { pelican-myst-reader = "2026-10-05T21:52:00Z" }
 # The theme uses a flat layout: the package sits at the repo root, not under src/.
 build-backend.module-root = ""
 # The backend already ships every asset found in the ./plumage subfolder, which is
