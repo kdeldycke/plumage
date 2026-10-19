@@ -1,5 +1,10 @@
 # Changelog
 
+## [`5.0.2.dev0` (unreleased)](https://github.com/kdeldycke/plumage/compare/v5.0.1...main)
+
+> [!WARNING]
+> This version is **not released yet** and is under active development.
+
 ## [`5.0.1` (2026-10-19)](https://github.com/kdeldycke/plumage/compare/v5.0.0...v5.0.1)
 
 - Append a digest of the theme's scripts to their URLs, so a browser fetches them again when they change. Templates read it as `PLUMAGE_SCRIPTS_DIGEST`.
