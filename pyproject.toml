@@ -194,7 +194,7 @@ default.extend-ignore-re = [ "(?s)<!-- typos:off -->.*?<!-- typos:on -->" ]
 # file type, so no glob is needed here. Filenames stay checked.
 type.svg.check-file = false
 # Skip the vendored minified bundles, whose mangled identifiers read as one long typo.
-# Reasoning in claude.md, since a re-sync drops comments written here.
+# Reasoning in AGENTS.md, since a re-sync drops comments written here.
 files.extend-exclude = [ "*.min.js" ]
 
 [tool.mypy]
